@@ -16,9 +16,21 @@ if (uri) {
             deprecationErrors: true,
         }
     });
+
 }
+async function run() {
+    try {
+        await client.connect();
+        await client.db("admin").command({ ping: 1 });
+        console.log("A c onexão com o MongoDB foi efetuada com sucesso!");
+    } finally {
+        await client.close();
+    }
+}
+run().catch(console.dir);
 const prisma = new PrismaClient();
 class DataController {
+
     public async registerData(req: Request, res: Response) {
         try {
             await client.connect();
@@ -51,17 +63,12 @@ class DataController {
 
     public async readData(req: Request, res: Response) {
         try {
-
             const result = await prisma.company.findMany({
-
             });
             return res.status(200).json({ data: result })
         }
-
         catch (error) {
-
             return res.status(500).json({ message: `Não foi possível retornar os dados!` })
-
         }
 
     }
