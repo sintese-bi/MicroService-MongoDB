@@ -3,6 +3,5 @@ import { Router } from "express"
 
 const dataRouter = Router()
 
-dataRouter.get("/registerdata", DataController.registerData)
-dataRouter.get("/readdata", DataController.readData)
+dataRouter.get("/infodata", DataController.infoData)
 export default dataRouter
