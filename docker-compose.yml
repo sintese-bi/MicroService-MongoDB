@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  dev:
+    container_name: monolite-mongodb-dev
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/app
+      - ./src/server.js:/server.js
+    ports:
+      - '8080:8080'
+   
+
+  prod:
+    container_name: monolite-mongodb-prod
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/app
+    ports:
+      - '8080:8080'
+    
+      

@@ -1,17 +1,28 @@
-FROM node:16-alpine
+# Use Node.js 18 como base
+FROM node:18-alpine
 
+# Define o diretório de trabalho
 WORKDIR /usr/app
 
+# Copie os arquivos de dependências
 COPY package*.json ./
 
+# Atualize o npm para a versão mais recente
+RUN npm install -g npm@latest
+
+# Instale as dependências do projeto
 RUN npm install --legacy-peer-deps
 
-RUN npm install -g ts-node-dev
-
-RUN npx prisma generate
-
+# Copie o diretório Prisma e o restante do código antes de gerar o cliente Prisma
+COPY prisma ./prisma
 COPY . .
 
+# Gere o cliente Prisma para os esquemas
+RUN npx prisma generate --schema=./prisma/schemaLBCBi.prisma
+RUN npx prisma generate --schema=./prisma/schemaSalesMonitor.prisma
+
+# Exponha a porta que a aplicação usará
 EXPOSE 8080
 
-CMD ["npm", "run", "dev"]
+# Comando para iniciar a aplicação
+CMD ["npm", "run", "start"]
