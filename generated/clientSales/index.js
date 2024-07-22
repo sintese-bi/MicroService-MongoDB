@@ -148,7 +148,7 @@ const config = {
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": "../../.env",
+    "rootEnvPath": null,
     "schemaEnvPath": "../../.env"
   },
   "relativePath": "../../prisma",
@@ -167,8 +167,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/clientSales\"\n}\n\ndatasource db {\n  provider = \"mongodb\"\n  url      = env(\"DATABASE_URLSALES\")\n}\n\ntype VendasFormaspg {\n  dtV DateTime @db.Date\n  fCd String\n  fId String\n  seq String\n  vl  String\n}\n\ntype VendasItems {\n  aIcm   String?\n  bId    String\n  bLmc   String\n  cB     String\n  codG   String\n  dI     String\n  dtA    DateTime @db.Date\n  iId    String\n  iTip   String\n  isIcSt String\n  isIs   String\n  isNI   String\n  pC     String\n  pTb    String\n  pUn    String\n  qd     String\n  seq    String\n  st     String\n  tot    String\n  vId    String\n}\n\nmodel Vendas {\n  id       String           @id @default(auto()) @map(\"_id\") @db.ObjectId\n  cdT      String\n  clId     String?\n  cpf      String?\n  dCh      String\n  dPr      String\n  dTE      String\n  dTa      String\n  dtHr     DateTime         @db.Date\n  fcId     String\n  formaspg VendasFormaspg[]\n  ibm      String\n  id_      String           @map(\"id\")\n  idC      String\n  idT      String\n  items    VendasItems[]\n  mod      String\n  nCf      String\n  nEc      String\n  pl       String?\n  st       String\n  tot      String\n  vId      String\n  ver      String\n}\n",
-  "inlineSchemaHash": "d5a2a087e7f9e6490c8a730db281ab300c54b432597e3abe76365f439f52469b",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/clientSales\"\n}\n\ndatasource db {\n  provider = \"mongodb\"\n  url      = env(\"DATABASE_URLSALES\")\n}\n\ntype VendasFormaspg {\n  dtV DateTime @db.Date\n  fCd String\n  fId String\n  seq String\n  vl  String\n}\n\ntype VendasItems {\n  aIcm   String?\n  bId    String\n  bLmc   String\n  cB     String\n  codG   String\n  dI     String\n  dtA    DateTime @db.Date\n  iId    String\n  iTip   String\n  isIcSt String\n  isIs   String\n  isNI   String\n  pC     String\n  pTb    String\n  pUn    String\n  qd     String\n  seq    String\n  st     String\n  tot    String\n  vId    String\n}\n\nmodel Vendas {\n  id       String           @id @default(auto()) @map(\"_id\") @db.ObjectId\n  cdT      String\n  clId     String?\n  cpf      String?\n  dCh      String\n  dPr      String\n  dTE      String\n  dTa      String\n  dtHr     DateTime         @db.Date\n  fcId     String\n  formaspg VendasFormaspg[]\n  ibm      String\n  id_      String           @map(\"id\")\n  idC      String\n  idT      String\n  items    VendasItems[]\n  mod      String\n  nCf      String\n  nEc      String\n  pl       String?\n  st       String\n  tot      String\n  vId      String\n  ver      String\n\n  @@index([dtHr], name: \"index_dtHr\")\n}\n",
+  "inlineSchemaHash": "a30121d137d0da7e6af0ed2b8d34bd8ea96647f8198753cb27f74c19b7c5538c",
   "copyEngine": true
 }
 

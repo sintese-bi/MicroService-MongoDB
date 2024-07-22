@@ -64,4 +64,6 @@ model Vendas {
   tot      String
   vId      String
   ver      String
+
+  @@index([dtHr], name: "index_dtHr")
 }
