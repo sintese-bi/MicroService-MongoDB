@@ -64,30 +64,68 @@ class DataController {
             if (clientToken == `Bearer ${expectedToken}`) {
 
                 const fuelliterageSell = await prismaSales.vendas.findMany({
-                    select: { id: true, tot: true, items: true },
-                    where: { dtHr: { gte: "2024-07-22T13:35:00.000+00:00", lte: "2024-07-22T18:35:00.000+00:00" } }
+                    select: { items: true },
+                    where: { dtHr: { gte: "2024-07-23T10:35:00.000+00:00", lte: "2024-07-23T18:35:00.000+00:00" } }
 
                 })
-                //Soma da venda de combustíveis
-                const arraySellfuel = fuelliterageSell.map(element => {
-                    return parseFloat(element.tot)
+                //Construção array de items
+                const itemsArray = fuelliterageSell.flatMap(element => {
 
-                })
-                const sumFuel = Math.round(arraySellfuel.reduce((acumulador, valorAtual) => {
-                    return acumulador + valorAtual;
-                }, 0) * 100) / 100;
-
-                //Soma da litragem  
-
-                const arrayLiterage = fuelliterageSell.map(element => {
-
+                    return element.items
 
 
                 })
 
+                //Soma combustíveis tipo combustivel
+                const fuel = itemsArray
+                    .map(element => {
+                        if (element.iTip == "1") {
+                            return parseFloat(element.tot);
+                        }
+                        return undefined;
+                    })
+                    .filter((item): item is number => item !== undefined)
+
+                const sumFuel = fuel.reduce((accumulator, currentValue) => {
+                    return (accumulator || 0) + (currentValue || 0);
+                }, 0);
+
+                //Soma da litragem tipo combustível
+                const literage = itemsArray.map(element => {
+                    if (element.iTip == "1") { return parseFloat(element.qd) }
+                    return undefined;
+
+                }).filter((item): item is number => item !== undefined)
 
 
-                return res.status(200).json({ data: { sumfuelsales: sumFuel } })
+                const sumLiterage = literage.reduce((accumulator, currentValue) => {
+                    return (accumulator || 0) + (currentValue || 0);
+                }, 0);
+
+                //Soma combustíveis tipo produto
+                const fuelProd = itemsArray.map(element => {
+                    if (element.iTip == "0") { return parseFloat(element.tot) }
+                    return undefined
+
+                }).filter((item): item is number => item !== undefined)
+
+                const sumFuelProd = fuelProd.reduce((accumulator, currentValue) => {
+                    return (accumulator || 0) + (currentValue || 0);
+                }, 0);
+
+                //Soma da litragem tipo produto
+                const literageProd = itemsArray.map(element => {
+                    if (element.iTip == "0") { return parseFloat(element.qd) }
+                    return undefined
+
+                }).filter((item): item is number => item !== undefined)
+
+                const sumLiterageProd = literageProd.reduce((accumulator, currentValue) => {
+                    return (accumulator || 0) + (currentValue || 0);
+                }, 0);
+
+
+                return res.status(200).json({ data: { sumfuel: Math.round(sumFuel * 100) / 100, sumLiterage: Math.round(sumLiterage * 100) / 100, sumFuelProduct: Math.round(sumFuelProd * 100) / 100, sumLiterageProduct: Math.round(sumLiterageProd * 100) / 100 } })
             } else {
                 return res
                     .status(401)
