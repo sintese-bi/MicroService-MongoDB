@@ -4,7 +4,7 @@ import dataRouter from "../routes/data";
 
 // import wppRouter from "../routes/wpp";
 const app = express();
-const PORT = 8080;
+const PORT = 3052;
 const apiVersion = "v1";
 
 const corsOptions = {

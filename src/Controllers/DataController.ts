@@ -5,6 +5,7 @@ import { Request, Response, application } from "express";
 import { PrismaClient as PrismaLBCBi } from '../../generated/clientLBCBi'
 import { PrismaClient as PrismaSales } from '../../generated/clientSales'
 import { MongoClient, ServerApiVersion } from 'mongodb';
+import moment from "moment";
 import dotenv from 'dotenv'
 import { v4 as uuidv4 } from 'uuid';
 const prismaLBCBi = new PrismaLBCBi()
@@ -55,7 +56,7 @@ class DataController {
     public async sumFuelLiterage(req: Request, res: Response) {
 
         try {
-
+            const actualdate = moment().format("YYYY-MM-DD")
             const clientToken = req.headers.authorization;
             if (!clientToken) {
                 return res.status(401).json({ message: "Token não fornecido." });
@@ -65,7 +66,12 @@ class DataController {
 
                 const fuelliterageSell = await prismaSales.vendas.findMany({
                     select: { items: true },
-                    where: { dtHr: { gte: "2024-07-23T10:35:00.000+00:00", lte: "2024-07-23T18:35:00.000+00:00" } }
+                    where: {
+                        dtHr: {
+                            gte: `${actualdate}T00:00:00.000Z`,
+                            lte: `${actualdate}T23:59:59.999Z`
+                        }
+                    }
 
                 })
                 //Construção array de items
@@ -141,8 +147,40 @@ class DataController {
 
     }
 
+    public async dataFrameGallonage(req: Request, res: Response) {
+        try {
+            const clientToken = req.headers.authorization;
+            if (!clientToken) {
+                return res.status(401).json({ message: "Token não fornecido." });
+            }
+
+            const expectedToken = process.env.TOKEN;
+            if (clientToken == `Bearer ${expectedToken}`) {
 
 
+                
+
+
+
+
+
+
+
+            } else {
+                return res
+                    .status(401)
+                    .json({ message: "Falha na autenticação: Token inválido." });
+            }
+
+
+
+
+
+
+        } catch (error) {
+            return res.status(500).json({ message: `Erro ao retornar os dados: ${error}` });
+        }
+    }
 
 
 }

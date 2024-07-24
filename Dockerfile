@@ -21,8 +21,10 @@ COPY . .
 RUN npx prisma generate --schema=./prisma/schemaLBCBi.prisma
 RUN npx prisma generate --schema=./prisma/schemaSalesMonitor.prisma
 
+RUN npm run build
+
 # Exponha a porta que a aplicação usará
-EXPOSE 8080
+EXPOSE 3052
 
 # Comando para iniciar a aplicação
 CMD ["npm", "run", "start"]
