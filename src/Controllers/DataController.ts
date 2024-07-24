@@ -149,7 +149,7 @@ class DataController {
     //Primeiro dataframe
     public async dataFrameGallonage(req: Request, res: Response) {
         try {
-
+            const actualdate = moment().format("YYYY-MM-DD")
             const clientToken = req.headers.authorization;
             if (!clientToken) {
                 return res.status(401).json({ message: "Token não fornecido." });
@@ -161,9 +161,16 @@ class DataController {
 
 
                 const vendas = await prismaSales.vendas.findMany({
+                    where: {
+                        dtHr: {
+                            gte: `${actualdate}T00:00:00.000Z`,
+                            lte: `${actualdate}T23:59:59.999Z`
+                        }
+                    },
                     orderBy: {
                         dtHr: 'asc',
                     },
+
                 });
 
                 // Extração de `ibm` únicos
