@@ -132,7 +132,7 @@ class DataController {
                 }, 0);
 
 
-                return res.status(200).json({ data: { sumfuel: Math.round(sumFuel * 100) / 100, sumLiterage: Math.round(sumLiterage * 100) / 100, sumFuelProduct: Math.round(sumFuelProd * 100) / 100, sumLiterageProduct: Math.round(sumLiterageProd * 100) / 100 } })
+                return res.status(200).json({ data: [{ label: "Venda de Combustível", value: Math.round(sumFuel * 100) / 100, secondary_label: "TMC", secondary_value: 0.545 }, { label: "Total Litragem", value: Math.round(sumLiterage * 100) / 100, secondary_label: "TM VOL", secondary_value: 0.323 }, { label: "Venda de combustível(Produto)", value: Math.round(sumFuelProd * 100) / 100, secondary_label: "TMP", secondary_value: 0.434 }, { label: "Total Litragem(Produto)", value: Math.round(sumLiterageProd * 100) / 100, secondary_label: "TMP", secondary_value: 0.235 }, { label: "Venda de Ducha", value: 10000, secondary_label: "TMD", secondary_value: 0.543 }, { label: "Venda de Serviços", value: 50000, secondary_label: "TMS", secondary_value: 0.890 }] })
             } else {
                 return res
                     .status(401)
@@ -160,8 +160,6 @@ class DataController {
             const expectedToken = process.env.TOKEN;
             if (clientToken == `Bearer ${expectedToken}`) {
 
-
-
                 const vendas = await prismaSales.vendas.findMany({
                     where: {
                         dtHr: {
@@ -172,29 +170,12 @@ class DataController {
                     orderBy: {
                         dtHr: 'asc',
                     },
-
                 });
 
                 // Extração de `ibm` únicos
                 const ibmList = [...new Set(vendas.map(venda => venda.ibm))];
 
-                // Listas auxiliares
-                const listFinalPostos: string[] = [];
-
-                const listFinalCombustivel: number[] = [];
-                const listLitroFinalCombustivel: number[] = [];
-
-                const listFinalProduto: number[] = [];
-                const listLitroFinalProduto: number[] = [];
-
-                const listFinalOutros: number[] = [];
-                const listLitroFinalOutros: number[] = [];
-
-                const registros: number[] = [];
-
-                const listQtdComb: number[] = [];
-                const listQtdProduto: number[] = [];
-                const listQtdOutros: number[] = [];
+                const results = [];
 
                 for (const posto of ibmList) {
                     let registroPosto = 0;
@@ -206,7 +187,6 @@ class DataController {
                     const valorOutros: number[] = [];
                     const litrosOutros: number[] = [];
 
-                    listFinalPostos.push(posto);
                     const iTips: string[] = [];
 
                     // Consulta documentos filtrados por `ibm`
@@ -238,37 +218,24 @@ class DataController {
                         }
                     }
 
-                    listQtdComb.push(valorCombustivel.length);
-                    listQtdProduto.push(valorProduto.length);
-                    listQtdOutros.push(valorOutros.length);
-                    registros.push(registroPosto);
+                    const result = {
+                        Posto: posto,
+                        registrosNaBase: registroPosto,
+                        qtdAbastecimento: valorCombustivel.length,
+                        vendaCombustivel: Number(valorCombustivel.reduce((a, b) => a + b, 0).toFixed(2)),
+                        litroCombustivel: Number(litroCombustivel.reduce((a, b) => a + b, 0).toFixed(2)),
+                        qtdProduto: valorProduto.length,
+                        vendaProduto: Number(valorProduto.reduce((a, b) => a + b, 0).toFixed(2)),
+                        litroProduto: Number(litroProduto.reduce((a, b) => a + b, 0).toFixed(2)),
+                        qtdOutrosProdutos: valorOutros.length,
+                        vendasOutros: Number(valorOutros.reduce((a, b) => a + b, 0).toFixed(2)),
+                        litroOutros: Number(litrosOutros.reduce((a, b) => a + b, 0).toFixed(2)),
+                    };
 
-                    listFinalCombustivel.push(Number(valorCombustivel.reduce((a, b) => a + b, 0).toFixed(2)));
-                    listLitroFinalCombustivel.push(Number(litroCombustivel.reduce((a, b) => a + b, 0).toFixed(2)));
-
-                    listFinalProduto.push(Number(valorProduto.reduce((a, b) => a + b, 0).toFixed(2)));
-                    listLitroFinalProduto.push(Number(litroProduto.reduce((a, b) => a + b, 0).toFixed(2)));
-
-                    listFinalOutros.push(Number(valorOutros.reduce((a, b) => a + b, 0).toFixed(2)));
-                    listLitroFinalOutros.push(Number(litrosOutros.reduce((a, b) => a + b, 0).toFixed(2)));
+                    results.push(result);
                 }
 
-                const dicionario = {
-                    Posto: listFinalPostos,
-                    registrosNaBase: registros,
-                    qtdAbastecimento: listQtdComb,
-                    vendaCombustivel: listFinalCombustivel,
-                    litroCombustivel: listLitroFinalCombustivel,
-                    qtdProduto: listQtdProduto,
-                    vendaProduto: listFinalProduto,
-                    litroProduto: listLitroFinalProduto,
-                    qtdOutrosProdutos: listQtdOutros,
-                    vendasOutros: listFinalOutros,
-                    litroOutros: listLitroFinalOutros,
-                };
-
-                return res.status(200).json({ data: dicionario })
-
+                return res.status(200).json({ data: results });
 
             } else {
                 return res
@@ -276,11 +243,11 @@ class DataController {
                     .json({ message: "Falha na autenticação: Token inválido." });
             }
 
-
         } catch (error) {
             return res.status(500).json({ message: `Erro ao retornar os dados: ${error}` });
         }
     }
+
 
 
 }
