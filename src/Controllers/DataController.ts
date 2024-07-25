@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-
+import 'moment-timezone';
 import { Request, Response, application } from "express";
 import { PrismaClient as PrismaLBCBi } from '../../generated/clientLBCBi'
 import { PrismaClient as PrismaSales } from '../../generated/clientSales'
@@ -56,7 +56,8 @@ class DataController {
     public async sumFuelLiterage(req: Request, res: Response) {
 
         try {
-            const actualdate = moment().format("YYYY-MM-DD")
+            const actualdate = moment().tz("America/Sao_Paulo").format("YYYY-MM-DD");
+
             const clientToken = req.headers.authorization;
             if (!clientToken) {
                 return res.status(401).json({ message: "Token não fornecido." });
@@ -149,7 +150,8 @@ class DataController {
     //Primeiro dataframe
     public async dataFrameGallonage(req: Request, res: Response) {
         try {
-            const actualdate = moment().format("YYYY-MM-DD")
+            const actualdate = moment().tz("America/Sao_Paulo").format("YYYY-MM-DD");
+
             const clientToken = req.headers.authorization;
             if (!clientToken) {
                 return res.status(401).json({ message: "Token não fornecido." });
