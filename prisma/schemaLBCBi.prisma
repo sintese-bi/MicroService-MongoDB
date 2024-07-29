@@ -23,6 +23,7 @@ model Combustiveis {
   dtHr  DateTime @db.Date
   eTo   String?
   ibm   String
+  icm   String?
   id_   String   @map("id")
   ncm   String?
   pis   String?
@@ -44,6 +45,16 @@ model FormasPg {
   tip  String
 }
 
+model Lojas {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  cnpj         String
+  dtHr         DateTime @db.Date
+  ibm          String
+  nomeFantasia String
+  razaoSocial  String
+  rede         String
+}
+
 model Produtos {
   id   String   @id @default(auto()) @map("_id") @db.ObjectId
   St   String?
@@ -52,17 +63,16 @@ model Produtos {
   cus  String?
   des  String
   dtHr DateTime @db.Date
-  eDe  String
+  eDe  String?
   eMa  String?
   eMi  String?
-  eOl  String
-  ePi  String
-  eTo  String
-  gr   String
-  ibm  String
-  icm  String
+  eOl  String?
+  ePi  String?
+  eTo  String?
+  gr   String?
+  ibm  String?
+  icm  String?
   id_  String   @map("id")
-  ipi  String?
   sgr  String?
   st   String?
   uCx  String?
@@ -72,7 +82,7 @@ model Produtos {
 
 model Produtos_Grupos {
   id   String   @id @default(auto()) @map("_id") @db.ObjectId
-  des  String
+  des  String?
   dtHr DateTime @db.Date
   ibm  String
   id_  String   @map("id")

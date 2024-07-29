@@ -59,6 +59,7 @@ class DataController {
             const actualdate = moment().tz("America/Sao_Paulo").format("YYYY-MM-DD");
 
             const clientToken = req.headers.authorization;
+
             if (!clientToken) {
                 return res.status(401).json({ message: "Token não fornecido." });
             }
@@ -132,7 +133,7 @@ class DataController {
                 }, 0);
 
 
-                return res.status(200).json({ data: [{ label: "Venda de Combustível", value: Math.round(sumFuel * 100) / 100, secondary_label: "TMC", secondary_value: 0.545 }, { label: "Total Litragem", value: Math.round(sumLiterage * 100) / 100, secondary_label: "TM VOL", secondary_value: 0.323 }, { label: "Venda de combustível(Produto)", value: Math.round(sumFuelProd * 100) / 100, secondary_label: "TMP", secondary_value: 0.434 }, { label: "Total Litragem(Produto)", value: Math.round(sumLiterageProd * 100) / 100, secondary_label: "TMP", secondary_value: 0.235 }, { label: "Venda de Ducha", value: 10000, secondary_label: "TMD", secondary_value: 0.543 }, { label: "Venda de Serviços", value: 50000, secondary_label: "TMS", secondary_value: 0.890 }] })
+                return res.status(200).json({ data: [{ label: "Venda de Combustível", value: Math.round(sumFuel * 100) / 100, secondary_label: "TMC", secondary_value: 0.545 }, { label: "Volume Total", value: Math.round(sumLiterage * 100) / 100, secondary_label: "TMV", secondary_value: 0.323 }, { label: "Venda de Produto", value: Math.round(sumFuelProd * 100) / 100, secondary_label: "TMP", secondary_value: 0.434 }, { label: "Quantidade de Produto Vendido", value: Math.round(sumLiterageProd * 100) / 100, secondary_label: "TMP", secondary_value: 0.235 }, { label: "Venda de Serviços", value: 10000, secondary_label: "TMS", secondary_value: 0.543 }, { label: "Outros", value: 50000, secondary_label: "TMS", secondary_value: 0.890 }] })
             } else {
                 return res
                     .status(401)
@@ -247,6 +248,54 @@ class DataController {
             return res.status(500).json({ message: `Erro ao retornar os dados: ${error}` });
         }
     }
+
+    //Dados do Gráfico diário
+    public async dailyGraphic(req: Request, res: Response) {
+        try {
+            const actualdate = moment().tz("America/Sao_Paulo").format("YYYY-MM-DD");
+            const clientToken = req.headers.authorization;
+            if (!clientToken) {
+                return res.status(401).json({ message: "Token não fornecido." });
+            }
+            const { week_day, variable_type }: { week_day: string, variable_type: string } = req.body
+            const expectedToken = process.env.TOKEN;
+            if (clientToken == `Bearer ${expectedToken}`) {
+
+
+                const fuelliterageSell = await prismaSales.vendas.findMany({
+                    select: { items: true, dtHr: true },
+                    where: {
+                        dtHr: {
+                            gte: `${actualdate}T00:00:00.000Z`,
+                            lte: `${actualdate}T23:59:59.999Z`
+                        }
+                    }
+
+                })
+
+
+
+
+
+
+
+
+
+            } else {
+                return res
+                    .status(401)
+                    .json({ message: "Falha na autenticação: Token inválido." });
+            }
+
+
+        } catch (error) {
+            return res.status(500).json({ message: `Erro ao retornar os dados: ${error}` });
+        }
+
+    }
+
+
+
 
 
 
