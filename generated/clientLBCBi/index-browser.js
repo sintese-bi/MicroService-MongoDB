@@ -127,6 +127,7 @@ exports.Prisma.CombustiveisScalarFieldEnum = {
   dtHr: 'dtHr',
   eTo: 'eTo',
   ibm: 'ibm',
+  icm: 'icm',
   id_: 'id_',
   ncm: 'ncm',
   pis: 'pis',
@@ -148,6 +149,16 @@ exports.Prisma.FormasPgScalarFieldEnum = {
   tip: 'tip'
 };
 
+exports.Prisma.LojasScalarFieldEnum = {
+  id: 'id',
+  cnpj: 'cnpj',
+  dtHr: 'dtHr',
+  ibm: 'ibm',
+  nomeFantasia: 'nomeFantasia',
+  razaoSocial: 'razaoSocial',
+  rede: 'rede'
+};
+
 exports.Prisma.ProdutosScalarFieldEnum = {
   id: 'id',
   St: 'St',
@@ -166,7 +177,6 @@ exports.Prisma.ProdutosScalarFieldEnum = {
   ibm: 'ibm',
   icm: 'icm',
   id_: 'id_',
-  ipi: 'ipi',
   sgr: 'sgr',
   st: 'st',
   uCx: 'uCx',
@@ -216,6 +226,7 @@ exports.Prisma.QueryMode = {
 exports.Prisma.ModelName = {
   Combustiveis: 'Combustiveis',
   FormasPg: 'FormasPg',
+  Lojas: 'Lojas',
   Produtos: 'Produtos',
   Produtos_Grupos: 'Produtos_Grupos',
   Turnos: 'Turnos',

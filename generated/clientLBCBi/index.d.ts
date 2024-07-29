@@ -24,6 +24,11 @@ export type Combustiveis = $Result.DefaultSelection<Prisma.$CombustiveisPayload>
  */
 export type FormasPg = $Result.DefaultSelection<Prisma.$FormasPgPayload>
 /**
+ * Model Lojas
+ * 
+ */
+export type Lojas = $Result.DefaultSelection<Prisma.$LojasPayload>
+/**
  * Model Produtos
  * 
  */
@@ -153,6 +158,16 @@ export class PrismaClient<
     * ```
     */
   get formasPg(): Prisma.FormasPgDelegate<ExtArgs>;
+
+  /**
+   * `prisma.lojas`: Exposes CRUD operations for the **Lojas** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Lojas
+    * const lojas = await prisma.lojas.findMany()
+    * ```
+    */
+  get lojas(): Prisma.LojasDelegate<ExtArgs>;
 
   /**
    * `prisma.produtos`: Exposes CRUD operations for the **Produtos** model.
@@ -672,6 +687,7 @@ export namespace Prisma {
   export const ModelName: {
     Combustiveis: 'Combustiveis',
     FormasPg: 'FormasPg',
+    Lojas: 'Lojas',
     Produtos: 'Produtos',
     Produtos_Grupos: 'Produtos_Grupos',
     Turnos: 'Turnos',
@@ -692,7 +708,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'combustiveis' | 'formasPg' | 'produtos' | 'produtos_Grupos' | 'turnos' | 'usuarios'
+      modelProps: 'combustiveis' | 'formasPg' | 'lojas' | 'produtos' | 'produtos_Grupos' | 'turnos' | 'usuarios'
       txIsolationLevel: never
     },
     model: {
@@ -841,6 +857,80 @@ export namespace Prisma {
           count: {
             args: Prisma.FormasPgCountArgs<ExtArgs>,
             result: $Utils.Optional<FormasPgCountAggregateOutputType> | number
+          }
+        }
+      }
+      Lojas: {
+        payload: Prisma.$LojasPayload<ExtArgs>
+        fields: Prisma.LojasFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.LojasFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$LojasPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.LojasFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$LojasPayload>
+          }
+          findFirst: {
+            args: Prisma.LojasFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$LojasPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.LojasFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$LojasPayload>
+          }
+          findMany: {
+            args: Prisma.LojasFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$LojasPayload>[]
+          }
+          create: {
+            args: Prisma.LojasCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$LojasPayload>
+          }
+          createMany: {
+            args: Prisma.LojasCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.LojasDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$LojasPayload>
+          }
+          update: {
+            args: Prisma.LojasUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$LojasPayload>
+          }
+          deleteMany: {
+            args: Prisma.LojasDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.LojasUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.LojasUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$LojasPayload>
+          }
+          aggregate: {
+            args: Prisma.LojasAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateLojas>
+          }
+          groupBy: {
+            args: Prisma.LojasGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<LojasGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.LojasFindRawArgs<ExtArgs>,
+            result: Prisma.JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.LojasAggregateRawArgs<ExtArgs>,
+            result: Prisma.JsonObject
+          }
+          count: {
+            args: Prisma.LojasCountArgs<ExtArgs>,
+            result: $Utils.Optional<LojasCountAggregateOutputType> | number
           }
         }
       }
@@ -1312,6 +1402,7 @@ export namespace Prisma {
     dtHr: Date | null
     eTo: string | null
     ibm: string | null
+    icm: string | null
     id_: string | null
     ncm: string | null
     pis: string | null
@@ -1337,6 +1428,7 @@ export namespace Prisma {
     dtHr: Date | null
     eTo: string | null
     ibm: string | null
+    icm: string | null
     id_: string | null
     ncm: string | null
     pis: string | null
@@ -1362,6 +1454,7 @@ export namespace Prisma {
     dtHr: number
     eTo: number
     ibm: number
+    icm: number
     id_: number
     ncm: number
     pis: number
@@ -1389,6 +1482,7 @@ export namespace Prisma {
     dtHr?: true
     eTo?: true
     ibm?: true
+    icm?: true
     id_?: true
     ncm?: true
     pis?: true
@@ -1414,6 +1508,7 @@ export namespace Prisma {
     dtHr?: true
     eTo?: true
     ibm?: true
+    icm?: true
     id_?: true
     ncm?: true
     pis?: true
@@ -1439,6 +1534,7 @@ export namespace Prisma {
     dtHr?: true
     eTo?: true
     ibm?: true
+    icm?: true
     id_?: true
     ncm?: true
     pis?: true
@@ -1537,6 +1633,7 @@ export namespace Prisma {
     dtHr: Date
     eTo: string | null
     ibm: string
+    icm: string | null
     id_: string
     ncm: string | null
     pis: string | null
@@ -1579,6 +1676,7 @@ export namespace Prisma {
     dtHr?: boolean
     eTo?: boolean
     ibm?: boolean
+    icm?: boolean
     id_?: boolean
     ncm?: boolean
     pis?: boolean
@@ -1605,6 +1703,7 @@ export namespace Prisma {
     dtHr?: boolean
     eTo?: boolean
     ibm?: boolean
+    icm?: boolean
     id_?: boolean
     ncm?: boolean
     pis?: boolean
@@ -1634,6 +1733,7 @@ export namespace Prisma {
       dtHr: Date
       eTo: string | null
       ibm: string
+      icm: string | null
       id_: string
       ncm: string | null
       pis: string | null
@@ -2076,6 +2176,7 @@ export namespace Prisma {
     readonly dtHr: FieldRef<"Combustiveis", 'DateTime'>
     readonly eTo: FieldRef<"Combustiveis", 'String'>
     readonly ibm: FieldRef<"Combustiveis", 'String'>
+    readonly icm: FieldRef<"Combustiveis", 'String'>
     readonly id_: FieldRef<"Combustiveis", 'String'>
     readonly ncm: FieldRef<"Combustiveis", 'String'>
     readonly pis: FieldRef<"Combustiveis", 'String'>
@@ -3328,6 +3429,938 @@ export namespace Prisma {
 
 
   /**
+   * Model Lojas
+   */
+
+  export type AggregateLojas = {
+    _count: LojasCountAggregateOutputType | null
+    _min: LojasMinAggregateOutputType | null
+    _max: LojasMaxAggregateOutputType | null
+  }
+
+  export type LojasMinAggregateOutputType = {
+    id: string | null
+    cnpj: string | null
+    dtHr: Date | null
+    ibm: string | null
+    nomeFantasia: string | null
+    razaoSocial: string | null
+    rede: string | null
+  }
+
+  export type LojasMaxAggregateOutputType = {
+    id: string | null
+    cnpj: string | null
+    dtHr: Date | null
+    ibm: string | null
+    nomeFantasia: string | null
+    razaoSocial: string | null
+    rede: string | null
+  }
+
+  export type LojasCountAggregateOutputType = {
+    id: number
+    cnpj: number
+    dtHr: number
+    ibm: number
+    nomeFantasia: number
+    razaoSocial: number
+    rede: number
+    _all: number
+  }
+
+
+  export type LojasMinAggregateInputType = {
+    id?: true
+    cnpj?: true
+    dtHr?: true
+    ibm?: true
+    nomeFantasia?: true
+    razaoSocial?: true
+    rede?: true
+  }
+
+  export type LojasMaxAggregateInputType = {
+    id?: true
+    cnpj?: true
+    dtHr?: true
+    ibm?: true
+    nomeFantasia?: true
+    razaoSocial?: true
+    rede?: true
+  }
+
+  export type LojasCountAggregateInputType = {
+    id?: true
+    cnpj?: true
+    dtHr?: true
+    ibm?: true
+    nomeFantasia?: true
+    razaoSocial?: true
+    rede?: true
+    _all?: true
+  }
+
+  export type LojasAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Lojas to aggregate.
+     */
+    where?: LojasWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Lojas to fetch.
+     */
+    orderBy?: LojasOrderByWithRelationInput | LojasOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: LojasWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Lojas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Lojas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Lojas
+    **/
+    _count?: true | LojasCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: LojasMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: LojasMaxAggregateInputType
+  }
+
+  export type GetLojasAggregateType<T extends LojasAggregateArgs> = {
+        [P in keyof T & keyof AggregateLojas]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLojas[P]>
+      : GetScalarType<T[P], AggregateLojas[P]>
+  }
+
+
+
+
+  export type LojasGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LojasWhereInput
+    orderBy?: LojasOrderByWithAggregationInput | LojasOrderByWithAggregationInput[]
+    by: LojasScalarFieldEnum[] | LojasScalarFieldEnum
+    having?: LojasScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: LojasCountAggregateInputType | true
+    _min?: LojasMinAggregateInputType
+    _max?: LojasMaxAggregateInputType
+  }
+
+  export type LojasGroupByOutputType = {
+    id: string
+    cnpj: string
+    dtHr: Date
+    ibm: string
+    nomeFantasia: string
+    razaoSocial: string
+    rede: string
+    _count: LojasCountAggregateOutputType | null
+    _min: LojasMinAggregateOutputType | null
+    _max: LojasMaxAggregateOutputType | null
+  }
+
+  type GetLojasGroupByPayload<T extends LojasGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<LojasGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof LojasGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], LojasGroupByOutputType[P]>
+            : GetScalarType<T[P], LojasGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type LojasSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    cnpj?: boolean
+    dtHr?: boolean
+    ibm?: boolean
+    nomeFantasia?: boolean
+    razaoSocial?: boolean
+    rede?: boolean
+  }, ExtArgs["result"]["lojas"]>
+
+
+  export type LojasSelectScalar = {
+    id?: boolean
+    cnpj?: boolean
+    dtHr?: boolean
+    ibm?: boolean
+    nomeFantasia?: boolean
+    razaoSocial?: boolean
+    rede?: boolean
+  }
+
+
+  export type $LojasPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Lojas"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      cnpj: string
+      dtHr: Date
+      ibm: string
+      nomeFantasia: string
+      razaoSocial: string
+      rede: string
+    }, ExtArgs["result"]["lojas"]>
+    composites: {}
+  }
+
+  type LojasGetPayload<S extends boolean | null | undefined | LojasDefaultArgs> = $Result.GetResult<Prisma.$LojasPayload, S>
+
+  type LojasCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<LojasFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: LojasCountAggregateInputType | true
+    }
+
+  export interface LojasDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Lojas'], meta: { name: 'Lojas' } }
+    /**
+     * Find zero or one Lojas that matches the filter.
+     * @param {LojasFindUniqueArgs} args - Arguments to find a Lojas
+     * @example
+     * // Get one Lojas
+     * const lojas = await prisma.lojas.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends LojasFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, LojasFindUniqueArgs<ExtArgs>>
+    ): Prisma__LojasClient<$Result.GetResult<Prisma.$LojasPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one Lojas that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {LojasFindUniqueOrThrowArgs} args - Arguments to find a Lojas
+     * @example
+     * // Get one Lojas
+     * const lojas = await prisma.lojas.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends LojasFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, LojasFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__LojasClient<$Result.GetResult<Prisma.$LojasPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first Lojas that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LojasFindFirstArgs} args - Arguments to find a Lojas
+     * @example
+     * // Get one Lojas
+     * const lojas = await prisma.lojas.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends LojasFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, LojasFindFirstArgs<ExtArgs>>
+    ): Prisma__LojasClient<$Result.GetResult<Prisma.$LojasPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first Lojas that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LojasFindFirstOrThrowArgs} args - Arguments to find a Lojas
+     * @example
+     * // Get one Lojas
+     * const lojas = await prisma.lojas.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends LojasFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, LojasFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__LojasClient<$Result.GetResult<Prisma.$LojasPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more Lojas that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LojasFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Lojas
+     * const lojas = await prisma.lojas.findMany()
+     * 
+     * // Get first 10 Lojas
+     * const lojas = await prisma.lojas.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const lojasWithIdOnly = await prisma.lojas.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends LojasFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, LojasFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LojasPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a Lojas.
+     * @param {LojasCreateArgs} args - Arguments to create a Lojas.
+     * @example
+     * // Create one Lojas
+     * const Lojas = await prisma.lojas.create({
+     *   data: {
+     *     // ... data to create a Lojas
+     *   }
+     * })
+     * 
+    **/
+    create<T extends LojasCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, LojasCreateArgs<ExtArgs>>
+    ): Prisma__LojasClient<$Result.GetResult<Prisma.$LojasPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many Lojas.
+     * @param {LojasCreateManyArgs} args - Arguments to create many Lojas.
+     * @example
+     * // Create many Lojas
+     * const lojas = await prisma.lojas.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+    **/
+    createMany<T extends LojasCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, LojasCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Lojas.
+     * @param {LojasDeleteArgs} args - Arguments to delete one Lojas.
+     * @example
+     * // Delete one Lojas
+     * const Lojas = await prisma.lojas.delete({
+     *   where: {
+     *     // ... filter to delete one Lojas
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends LojasDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, LojasDeleteArgs<ExtArgs>>
+    ): Prisma__LojasClient<$Result.GetResult<Prisma.$LojasPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one Lojas.
+     * @param {LojasUpdateArgs} args - Arguments to update one Lojas.
+     * @example
+     * // Update one Lojas
+     * const lojas = await prisma.lojas.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends LojasUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, LojasUpdateArgs<ExtArgs>>
+    ): Prisma__LojasClient<$Result.GetResult<Prisma.$LojasPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more Lojas.
+     * @param {LojasDeleteManyArgs} args - Arguments to filter Lojas to delete.
+     * @example
+     * // Delete a few Lojas
+     * const { count } = await prisma.lojas.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends LojasDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, LojasDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Lojas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LojasUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Lojas
+     * const lojas = await prisma.lojas.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends LojasUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, LojasUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Lojas.
+     * @param {LojasUpsertArgs} args - Arguments to update or create a Lojas.
+     * @example
+     * // Update or create a Lojas
+     * const lojas = await prisma.lojas.upsert({
+     *   create: {
+     *     // ... data to create a Lojas
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Lojas we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends LojasUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, LojasUpsertArgs<ExtArgs>>
+    ): Prisma__LojasClient<$Result.GetResult<Prisma.$LojasPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Find zero or more Lojas that matches the filter.
+     * @param {LojasFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const lojas = await prisma.lojas.findRaw({
+     *   filter: { age: { $gt: 25 } } 
+     * })
+    **/
+    findRaw(
+      args?: LojasFindRawArgs
+    ): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a Lojas.
+     * @param {LojasAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const lojas = await prisma.lojas.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+    **/
+    aggregateRaw(
+      args?: LojasAggregateRawArgs
+    ): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Count the number of Lojas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LojasCountArgs} args - Arguments to filter Lojas to count.
+     * @example
+     * // Count the number of Lojas
+     * const count = await prisma.lojas.count({
+     *   where: {
+     *     // ... the filter for the Lojas we want to count
+     *   }
+     * })
+    **/
+    count<T extends LojasCountArgs>(
+      args?: Subset<T, LojasCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], LojasCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Lojas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LojasAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends LojasAggregateArgs>(args: Subset<T, LojasAggregateArgs>): Prisma.PrismaPromise<GetLojasAggregateType<T>>
+
+    /**
+     * Group by Lojas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LojasGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends LojasGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: LojasGroupByArgs['orderBy'] }
+        : { orderBy?: LojasGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, LojasGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLojasGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Lojas model
+   */
+  readonly fields: LojasFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Lojas.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__LojasClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the Lojas model
+   */ 
+  interface LojasFieldRefs {
+    readonly id: FieldRef<"Lojas", 'String'>
+    readonly cnpj: FieldRef<"Lojas", 'String'>
+    readonly dtHr: FieldRef<"Lojas", 'DateTime'>
+    readonly ibm: FieldRef<"Lojas", 'String'>
+    readonly nomeFantasia: FieldRef<"Lojas", 'String'>
+    readonly razaoSocial: FieldRef<"Lojas", 'String'>
+    readonly rede: FieldRef<"Lojas", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Lojas findUnique
+   */
+  export type LojasFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Lojas
+     */
+    select?: LojasSelect<ExtArgs> | null
+    /**
+     * Filter, which Lojas to fetch.
+     */
+    where: LojasWhereUniqueInput
+  }
+
+  /**
+   * Lojas findUniqueOrThrow
+   */
+  export type LojasFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Lojas
+     */
+    select?: LojasSelect<ExtArgs> | null
+    /**
+     * Filter, which Lojas to fetch.
+     */
+    where: LojasWhereUniqueInput
+  }
+
+  /**
+   * Lojas findFirst
+   */
+  export type LojasFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Lojas
+     */
+    select?: LojasSelect<ExtArgs> | null
+    /**
+     * Filter, which Lojas to fetch.
+     */
+    where?: LojasWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Lojas to fetch.
+     */
+    orderBy?: LojasOrderByWithRelationInput | LojasOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Lojas.
+     */
+    cursor?: LojasWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Lojas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Lojas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Lojas.
+     */
+    distinct?: LojasScalarFieldEnum | LojasScalarFieldEnum[]
+  }
+
+  /**
+   * Lojas findFirstOrThrow
+   */
+  export type LojasFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Lojas
+     */
+    select?: LojasSelect<ExtArgs> | null
+    /**
+     * Filter, which Lojas to fetch.
+     */
+    where?: LojasWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Lojas to fetch.
+     */
+    orderBy?: LojasOrderByWithRelationInput | LojasOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Lojas.
+     */
+    cursor?: LojasWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Lojas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Lojas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Lojas.
+     */
+    distinct?: LojasScalarFieldEnum | LojasScalarFieldEnum[]
+  }
+
+  /**
+   * Lojas findMany
+   */
+  export type LojasFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Lojas
+     */
+    select?: LojasSelect<ExtArgs> | null
+    /**
+     * Filter, which Lojas to fetch.
+     */
+    where?: LojasWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Lojas to fetch.
+     */
+    orderBy?: LojasOrderByWithRelationInput | LojasOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Lojas.
+     */
+    cursor?: LojasWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Lojas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Lojas.
+     */
+    skip?: number
+    distinct?: LojasScalarFieldEnum | LojasScalarFieldEnum[]
+  }
+
+  /**
+   * Lojas create
+   */
+  export type LojasCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Lojas
+     */
+    select?: LojasSelect<ExtArgs> | null
+    /**
+     * The data needed to create a Lojas.
+     */
+    data: XOR<LojasCreateInput, LojasUncheckedCreateInput>
+  }
+
+  /**
+   * Lojas createMany
+   */
+  export type LojasCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Lojas.
+     */
+    data: LojasCreateManyInput | LojasCreateManyInput[]
+  }
+
+  /**
+   * Lojas update
+   */
+  export type LojasUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Lojas
+     */
+    select?: LojasSelect<ExtArgs> | null
+    /**
+     * The data needed to update a Lojas.
+     */
+    data: XOR<LojasUpdateInput, LojasUncheckedUpdateInput>
+    /**
+     * Choose, which Lojas to update.
+     */
+    where: LojasWhereUniqueInput
+  }
+
+  /**
+   * Lojas updateMany
+   */
+  export type LojasUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Lojas.
+     */
+    data: XOR<LojasUpdateManyMutationInput, LojasUncheckedUpdateManyInput>
+    /**
+     * Filter which Lojas to update
+     */
+    where?: LojasWhereInput
+  }
+
+  /**
+   * Lojas upsert
+   */
+  export type LojasUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Lojas
+     */
+    select?: LojasSelect<ExtArgs> | null
+    /**
+     * The filter to search for the Lojas to update in case it exists.
+     */
+    where: LojasWhereUniqueInput
+    /**
+     * In case the Lojas found by the `where` argument doesn't exist, create a new Lojas with this data.
+     */
+    create: XOR<LojasCreateInput, LojasUncheckedCreateInput>
+    /**
+     * In case the Lojas was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<LojasUpdateInput, LojasUncheckedUpdateInput>
+  }
+
+  /**
+   * Lojas delete
+   */
+  export type LojasDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Lojas
+     */
+    select?: LojasSelect<ExtArgs> | null
+    /**
+     * Filter which Lojas to delete.
+     */
+    where: LojasWhereUniqueInput
+  }
+
+  /**
+   * Lojas deleteMany
+   */
+  export type LojasDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Lojas to delete
+     */
+    where?: LojasWhereInput
+  }
+
+  /**
+   * Lojas findRaw
+   */
+  export type LojasFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * Lojas aggregateRaw
+   */
+  export type LojasAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * Lojas without action
+   */
+  export type LojasDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Lojas
+     */
+    select?: LojasSelect<ExtArgs> | null
+  }
+
+
+  /**
    * Model Produtos
    */
 
@@ -3355,7 +4388,6 @@ export namespace Prisma {
     ibm: string | null
     icm: string | null
     id_: string | null
-    ipi: string | null
     sgr: string | null
     st: string | null
     uCx: string | null
@@ -3381,7 +4413,6 @@ export namespace Prisma {
     ibm: string | null
     icm: string | null
     id_: string | null
-    ipi: string | null
     sgr: string | null
     st: string | null
     uCx: string | null
@@ -3407,7 +4438,6 @@ export namespace Prisma {
     ibm: number
     icm: number
     id_: number
-    ipi: number
     sgr: number
     st: number
     uCx: number
@@ -3435,7 +4465,6 @@ export namespace Prisma {
     ibm?: true
     icm?: true
     id_?: true
-    ipi?: true
     sgr?: true
     st?: true
     uCx?: true
@@ -3461,7 +4490,6 @@ export namespace Prisma {
     ibm?: true
     icm?: true
     id_?: true
-    ipi?: true
     sgr?: true
     st?: true
     uCx?: true
@@ -3487,7 +4515,6 @@ export namespace Prisma {
     ibm?: true
     icm?: true
     id_?: true
-    ipi?: true
     sgr?: true
     st?: true
     uCx?: true
@@ -3576,17 +4603,16 @@ export namespace Prisma {
     cus: string | null
     des: string
     dtHr: Date
-    eDe: string
+    eDe: string | null
     eMa: string | null
     eMi: string | null
-    eOl: string
-    ePi: string
-    eTo: string
-    gr: string
-    ibm: string
-    icm: string
+    eOl: string | null
+    ePi: string | null
+    eTo: string | null
+    gr: string | null
+    ibm: string | null
+    icm: string | null
     id_: string
-    ipi: string | null
     sgr: string | null
     st: string | null
     uCx: string | null
@@ -3629,7 +4655,6 @@ export namespace Prisma {
     ibm?: boolean
     icm?: boolean
     id_?: boolean
-    ipi?: boolean
     sgr?: boolean
     st?: boolean
     uCx?: boolean
@@ -3656,7 +4681,6 @@ export namespace Prisma {
     ibm?: boolean
     icm?: boolean
     id_?: boolean
-    ipi?: boolean
     sgr?: boolean
     st?: boolean
     uCx?: boolean
@@ -3676,17 +4700,16 @@ export namespace Prisma {
       cus: string | null
       des: string
       dtHr: Date
-      eDe: string
+      eDe: string | null
       eMa: string | null
       eMi: string | null
-      eOl: string
-      ePi: string
-      eTo: string
-      gr: string
-      ibm: string
-      icm: string
+      eOl: string | null
+      ePi: string | null
+      eTo: string | null
+      gr: string | null
+      ibm: string | null
+      icm: string | null
       id_: string
-      ipi: string | null
       sgr: string | null
       st: string | null
       uCx: string | null
@@ -4129,7 +5152,6 @@ export namespace Prisma {
     readonly ibm: FieldRef<"Produtos", 'String'>
     readonly icm: FieldRef<"Produtos", 'String'>
     readonly id_: FieldRef<"Produtos", 'String'>
-    readonly ipi: FieldRef<"Produtos", 'String'>
     readonly sgr: FieldRef<"Produtos", 'String'>
     readonly st: FieldRef<"Produtos", 'String'>
     readonly uCx: FieldRef<"Produtos", 'String'>
@@ -4570,7 +5592,7 @@ export namespace Prisma {
 
   export type Produtos_GruposGroupByOutputType = {
     id: string
-    des: string
+    des: string | null
     dtHr: Date
     ibm: string
     id_: string
@@ -4616,7 +5638,7 @@ export namespace Prisma {
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      des: string
+      des: string | null
       dtHr: Date
       ibm: string
       id_: string
@@ -7228,6 +8250,7 @@ export namespace Prisma {
     dtHr: 'dtHr',
     eTo: 'eTo',
     ibm: 'ibm',
+    icm: 'icm',
     id_: 'id_',
     ncm: 'ncm',
     pis: 'pis',
@@ -7255,6 +8278,19 @@ export namespace Prisma {
   export type FormasPgScalarFieldEnum = (typeof FormasPgScalarFieldEnum)[keyof typeof FormasPgScalarFieldEnum]
 
 
+  export const LojasScalarFieldEnum: {
+    id: 'id',
+    cnpj: 'cnpj',
+    dtHr: 'dtHr',
+    ibm: 'ibm',
+    nomeFantasia: 'nomeFantasia',
+    razaoSocial: 'razaoSocial',
+    rede: 'rede'
+  };
+
+  export type LojasScalarFieldEnum = (typeof LojasScalarFieldEnum)[keyof typeof LojasScalarFieldEnum]
+
+
   export const ProdutosScalarFieldEnum: {
     id: 'id',
     St: 'St',
@@ -7273,7 +8309,6 @@ export namespace Prisma {
     ibm: 'ibm',
     icm: 'icm',
     id_: 'id_',
-    ipi: 'ipi',
     sgr: 'sgr',
     st: 'st',
     uCx: 'uCx',
@@ -7405,6 +8440,7 @@ export namespace Prisma {
     dtHr?: DateTimeFilter<"Combustiveis"> | Date | string
     eTo?: StringNullableFilter<"Combustiveis"> | string | null
     ibm?: StringFilter<"Combustiveis"> | string
+    icm?: StringNullableFilter<"Combustiveis"> | string | null
     id_?: StringFilter<"Combustiveis"> | string
     ncm?: StringNullableFilter<"Combustiveis"> | string | null
     pis?: StringNullableFilter<"Combustiveis"> | string | null
@@ -7430,6 +8466,7 @@ export namespace Prisma {
     dtHr?: SortOrder
     eTo?: SortOrder
     ibm?: SortOrder
+    icm?: SortOrder
     id_?: SortOrder
     ncm?: SortOrder
     pis?: SortOrder
@@ -7458,6 +8495,7 @@ export namespace Prisma {
     dtHr?: DateTimeFilter<"Combustiveis"> | Date | string
     eTo?: StringNullableFilter<"Combustiveis"> | string | null
     ibm?: StringFilter<"Combustiveis"> | string
+    icm?: StringNullableFilter<"Combustiveis"> | string | null
     id_?: StringFilter<"Combustiveis"> | string
     ncm?: StringNullableFilter<"Combustiveis"> | string | null
     pis?: StringNullableFilter<"Combustiveis"> | string | null
@@ -7483,6 +8521,7 @@ export namespace Prisma {
     dtHr?: SortOrder
     eTo?: SortOrder
     ibm?: SortOrder
+    icm?: SortOrder
     id_?: SortOrder
     ncm?: SortOrder
     pis?: SortOrder
@@ -7514,6 +8553,7 @@ export namespace Prisma {
     dtHr?: DateTimeWithAggregatesFilter<"Combustiveis"> | Date | string
     eTo?: StringNullableWithAggregatesFilter<"Combustiveis"> | string | null
     ibm?: StringWithAggregatesFilter<"Combustiveis"> | string
+    icm?: StringNullableWithAggregatesFilter<"Combustiveis"> | string | null
     id_?: StringWithAggregatesFilter<"Combustiveis"> | string
     ncm?: StringNullableWithAggregatesFilter<"Combustiveis"> | string | null
     pis?: StringNullableWithAggregatesFilter<"Combustiveis"> | string | null
@@ -7591,6 +8631,68 @@ export namespace Prisma {
     tip?: StringWithAggregatesFilter<"FormasPg"> | string
   }
 
+  export type LojasWhereInput = {
+    AND?: LojasWhereInput | LojasWhereInput[]
+    OR?: LojasWhereInput[]
+    NOT?: LojasWhereInput | LojasWhereInput[]
+    id?: StringFilter<"Lojas"> | string
+    cnpj?: StringFilter<"Lojas"> | string
+    dtHr?: DateTimeFilter<"Lojas"> | Date | string
+    ibm?: StringFilter<"Lojas"> | string
+    nomeFantasia?: StringFilter<"Lojas"> | string
+    razaoSocial?: StringFilter<"Lojas"> | string
+    rede?: StringFilter<"Lojas"> | string
+  }
+
+  export type LojasOrderByWithRelationInput = {
+    id?: SortOrder
+    cnpj?: SortOrder
+    dtHr?: SortOrder
+    ibm?: SortOrder
+    nomeFantasia?: SortOrder
+    razaoSocial?: SortOrder
+    rede?: SortOrder
+  }
+
+  export type LojasWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: LojasWhereInput | LojasWhereInput[]
+    OR?: LojasWhereInput[]
+    NOT?: LojasWhereInput | LojasWhereInput[]
+    cnpj?: StringFilter<"Lojas"> | string
+    dtHr?: DateTimeFilter<"Lojas"> | Date | string
+    ibm?: StringFilter<"Lojas"> | string
+    nomeFantasia?: StringFilter<"Lojas"> | string
+    razaoSocial?: StringFilter<"Lojas"> | string
+    rede?: StringFilter<"Lojas"> | string
+  }, "id">
+
+  export type LojasOrderByWithAggregationInput = {
+    id?: SortOrder
+    cnpj?: SortOrder
+    dtHr?: SortOrder
+    ibm?: SortOrder
+    nomeFantasia?: SortOrder
+    razaoSocial?: SortOrder
+    rede?: SortOrder
+    _count?: LojasCountOrderByAggregateInput
+    _max?: LojasMaxOrderByAggregateInput
+    _min?: LojasMinOrderByAggregateInput
+  }
+
+  export type LojasScalarWhereWithAggregatesInput = {
+    AND?: LojasScalarWhereWithAggregatesInput | LojasScalarWhereWithAggregatesInput[]
+    OR?: LojasScalarWhereWithAggregatesInput[]
+    NOT?: LojasScalarWhereWithAggregatesInput | LojasScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Lojas"> | string
+    cnpj?: StringWithAggregatesFilter<"Lojas"> | string
+    dtHr?: DateTimeWithAggregatesFilter<"Lojas"> | Date | string
+    ibm?: StringWithAggregatesFilter<"Lojas"> | string
+    nomeFantasia?: StringWithAggregatesFilter<"Lojas"> | string
+    razaoSocial?: StringWithAggregatesFilter<"Lojas"> | string
+    rede?: StringWithAggregatesFilter<"Lojas"> | string
+  }
+
   export type ProdutosWhereInput = {
     AND?: ProdutosWhereInput | ProdutosWhereInput[]
     OR?: ProdutosWhereInput[]
@@ -7602,17 +8704,16 @@ export namespace Prisma {
     cus?: StringNullableFilter<"Produtos"> | string | null
     des?: StringFilter<"Produtos"> | string
     dtHr?: DateTimeFilter<"Produtos"> | Date | string
-    eDe?: StringFilter<"Produtos"> | string
+    eDe?: StringNullableFilter<"Produtos"> | string | null
     eMa?: StringNullableFilter<"Produtos"> | string | null
     eMi?: StringNullableFilter<"Produtos"> | string | null
-    eOl?: StringFilter<"Produtos"> | string
-    ePi?: StringFilter<"Produtos"> | string
-    eTo?: StringFilter<"Produtos"> | string
-    gr?: StringFilter<"Produtos"> | string
-    ibm?: StringFilter<"Produtos"> | string
-    icm?: StringFilter<"Produtos"> | string
+    eOl?: StringNullableFilter<"Produtos"> | string | null
+    ePi?: StringNullableFilter<"Produtos"> | string | null
+    eTo?: StringNullableFilter<"Produtos"> | string | null
+    gr?: StringNullableFilter<"Produtos"> | string | null
+    ibm?: StringNullableFilter<"Produtos"> | string | null
+    icm?: StringNullableFilter<"Produtos"> | string | null
     id_?: StringFilter<"Produtos"> | string
-    ipi?: StringNullableFilter<"Produtos"> | string | null
     sgr?: StringNullableFilter<"Produtos"> | string | null
     st?: StringNullableFilter<"Produtos"> | string | null
     uCx?: StringNullableFilter<"Produtos"> | string | null
@@ -7638,7 +8739,6 @@ export namespace Prisma {
     ibm?: SortOrder
     icm?: SortOrder
     id_?: SortOrder
-    ipi?: SortOrder
     sgr?: SortOrder
     st?: SortOrder
     uCx?: SortOrder
@@ -7657,17 +8757,16 @@ export namespace Prisma {
     cus?: StringNullableFilter<"Produtos"> | string | null
     des?: StringFilter<"Produtos"> | string
     dtHr?: DateTimeFilter<"Produtos"> | Date | string
-    eDe?: StringFilter<"Produtos"> | string
+    eDe?: StringNullableFilter<"Produtos"> | string | null
     eMa?: StringNullableFilter<"Produtos"> | string | null
     eMi?: StringNullableFilter<"Produtos"> | string | null
-    eOl?: StringFilter<"Produtos"> | string
-    ePi?: StringFilter<"Produtos"> | string
-    eTo?: StringFilter<"Produtos"> | string
-    gr?: StringFilter<"Produtos"> | string
-    ibm?: StringFilter<"Produtos"> | string
-    icm?: StringFilter<"Produtos"> | string
+    eOl?: StringNullableFilter<"Produtos"> | string | null
+    ePi?: StringNullableFilter<"Produtos"> | string | null
+    eTo?: StringNullableFilter<"Produtos"> | string | null
+    gr?: StringNullableFilter<"Produtos"> | string | null
+    ibm?: StringNullableFilter<"Produtos"> | string | null
+    icm?: StringNullableFilter<"Produtos"> | string | null
     id_?: StringFilter<"Produtos"> | string
-    ipi?: StringNullableFilter<"Produtos"> | string | null
     sgr?: StringNullableFilter<"Produtos"> | string | null
     st?: StringNullableFilter<"Produtos"> | string | null
     uCx?: StringNullableFilter<"Produtos"> | string | null
@@ -7693,7 +8792,6 @@ export namespace Prisma {
     ibm?: SortOrder
     icm?: SortOrder
     id_?: SortOrder
-    ipi?: SortOrder
     sgr?: SortOrder
     st?: SortOrder
     uCx?: SortOrder
@@ -7715,17 +8813,16 @@ export namespace Prisma {
     cus?: StringNullableWithAggregatesFilter<"Produtos"> | string | null
     des?: StringWithAggregatesFilter<"Produtos"> | string
     dtHr?: DateTimeWithAggregatesFilter<"Produtos"> | Date | string
-    eDe?: StringWithAggregatesFilter<"Produtos"> | string
+    eDe?: StringNullableWithAggregatesFilter<"Produtos"> | string | null
     eMa?: StringNullableWithAggregatesFilter<"Produtos"> | string | null
     eMi?: StringNullableWithAggregatesFilter<"Produtos"> | string | null
-    eOl?: StringWithAggregatesFilter<"Produtos"> | string
-    ePi?: StringWithAggregatesFilter<"Produtos"> | string
-    eTo?: StringWithAggregatesFilter<"Produtos"> | string
-    gr?: StringWithAggregatesFilter<"Produtos"> | string
-    ibm?: StringWithAggregatesFilter<"Produtos"> | string
-    icm?: StringWithAggregatesFilter<"Produtos"> | string
+    eOl?: StringNullableWithAggregatesFilter<"Produtos"> | string | null
+    ePi?: StringNullableWithAggregatesFilter<"Produtos"> | string | null
+    eTo?: StringNullableWithAggregatesFilter<"Produtos"> | string | null
+    gr?: StringNullableWithAggregatesFilter<"Produtos"> | string | null
+    ibm?: StringNullableWithAggregatesFilter<"Produtos"> | string | null
+    icm?: StringNullableWithAggregatesFilter<"Produtos"> | string | null
     id_?: StringWithAggregatesFilter<"Produtos"> | string
-    ipi?: StringNullableWithAggregatesFilter<"Produtos"> | string | null
     sgr?: StringNullableWithAggregatesFilter<"Produtos"> | string | null
     st?: StringNullableWithAggregatesFilter<"Produtos"> | string | null
     uCx?: StringNullableWithAggregatesFilter<"Produtos"> | string | null
@@ -7738,7 +8835,7 @@ export namespace Prisma {
     OR?: Produtos_GruposWhereInput[]
     NOT?: Produtos_GruposWhereInput | Produtos_GruposWhereInput[]
     id?: StringFilter<"Produtos_Grupos"> | string
-    des?: StringFilter<"Produtos_Grupos"> | string
+    des?: StringNullableFilter<"Produtos_Grupos"> | string | null
     dtHr?: DateTimeFilter<"Produtos_Grupos"> | Date | string
     ibm?: StringFilter<"Produtos_Grupos"> | string
     id_?: StringFilter<"Produtos_Grupos"> | string
@@ -7757,7 +8854,7 @@ export namespace Prisma {
     AND?: Produtos_GruposWhereInput | Produtos_GruposWhereInput[]
     OR?: Produtos_GruposWhereInput[]
     NOT?: Produtos_GruposWhereInput | Produtos_GruposWhereInput[]
-    des?: StringFilter<"Produtos_Grupos"> | string
+    des?: StringNullableFilter<"Produtos_Grupos"> | string | null
     dtHr?: DateTimeFilter<"Produtos_Grupos"> | Date | string
     ibm?: StringFilter<"Produtos_Grupos"> | string
     id_?: StringFilter<"Produtos_Grupos"> | string
@@ -7779,7 +8876,7 @@ export namespace Prisma {
     OR?: Produtos_GruposScalarWhereWithAggregatesInput[]
     NOT?: Produtos_GruposScalarWhereWithAggregatesInput | Produtos_GruposScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Produtos_Grupos"> | string
-    des?: StringWithAggregatesFilter<"Produtos_Grupos"> | string
+    des?: StringNullableWithAggregatesFilter<"Produtos_Grupos"> | string | null
     dtHr?: DateTimeWithAggregatesFilter<"Produtos_Grupos"> | Date | string
     ibm?: StringWithAggregatesFilter<"Produtos_Grupos"> | string
     id_?: StringWithAggregatesFilter<"Produtos_Grupos"> | string
@@ -7924,6 +9021,7 @@ export namespace Prisma {
     dtHr: Date | string
     eTo?: string | null
     ibm: string
+    icm?: string | null
     id_: string
     ncm?: string | null
     pis?: string | null
@@ -7949,6 +9047,7 @@ export namespace Prisma {
     dtHr: Date | string
     eTo?: string | null
     ibm: string
+    icm?: string | null
     id_: string
     ncm?: string | null
     pis?: string | null
@@ -7973,6 +9072,7 @@ export namespace Prisma {
     dtHr?: DateTimeFieldUpdateOperationsInput | Date | string
     eTo?: NullableStringFieldUpdateOperationsInput | string | null
     ibm?: StringFieldUpdateOperationsInput | string
+    icm?: NullableStringFieldUpdateOperationsInput | string | null
     id_?: StringFieldUpdateOperationsInput | string
     ncm?: NullableStringFieldUpdateOperationsInput | string | null
     pis?: NullableStringFieldUpdateOperationsInput | string | null
@@ -7997,6 +9097,7 @@ export namespace Prisma {
     dtHr?: DateTimeFieldUpdateOperationsInput | Date | string
     eTo?: NullableStringFieldUpdateOperationsInput | string | null
     ibm?: StringFieldUpdateOperationsInput | string
+    icm?: NullableStringFieldUpdateOperationsInput | string | null
     id_?: StringFieldUpdateOperationsInput | string
     ncm?: NullableStringFieldUpdateOperationsInput | string | null
     pis?: NullableStringFieldUpdateOperationsInput | string | null
@@ -8022,6 +9123,7 @@ export namespace Prisma {
     dtHr: Date | string
     eTo?: string | null
     ibm: string
+    icm?: string | null
     id_: string
     ncm?: string | null
     pis?: string | null
@@ -8046,6 +9148,7 @@ export namespace Prisma {
     dtHr?: DateTimeFieldUpdateOperationsInput | Date | string
     eTo?: NullableStringFieldUpdateOperationsInput | string | null
     ibm?: StringFieldUpdateOperationsInput | string
+    icm?: NullableStringFieldUpdateOperationsInput | string | null
     id_?: StringFieldUpdateOperationsInput | string
     ncm?: NullableStringFieldUpdateOperationsInput | string | null
     pis?: NullableStringFieldUpdateOperationsInput | string | null
@@ -8070,6 +9173,7 @@ export namespace Prisma {
     dtHr?: DateTimeFieldUpdateOperationsInput | Date | string
     eTo?: NullableStringFieldUpdateOperationsInput | string | null
     ibm?: StringFieldUpdateOperationsInput | string
+    icm?: NullableStringFieldUpdateOperationsInput | string | null
     id_?: StringFieldUpdateOperationsInput | string
     ncm?: NullableStringFieldUpdateOperationsInput | string | null
     pis?: NullableStringFieldUpdateOperationsInput | string | null
@@ -8153,6 +9257,72 @@ export namespace Prisma {
     tip?: StringFieldUpdateOperationsInput | string
   }
 
+  export type LojasCreateInput = {
+    id?: string
+    cnpj: string
+    dtHr: Date | string
+    ibm: string
+    nomeFantasia: string
+    razaoSocial: string
+    rede: string
+  }
+
+  export type LojasUncheckedCreateInput = {
+    id?: string
+    cnpj: string
+    dtHr: Date | string
+    ibm: string
+    nomeFantasia: string
+    razaoSocial: string
+    rede: string
+  }
+
+  export type LojasUpdateInput = {
+    cnpj?: StringFieldUpdateOperationsInput | string
+    dtHr?: DateTimeFieldUpdateOperationsInput | Date | string
+    ibm?: StringFieldUpdateOperationsInput | string
+    nomeFantasia?: StringFieldUpdateOperationsInput | string
+    razaoSocial?: StringFieldUpdateOperationsInput | string
+    rede?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type LojasUncheckedUpdateInput = {
+    cnpj?: StringFieldUpdateOperationsInput | string
+    dtHr?: DateTimeFieldUpdateOperationsInput | Date | string
+    ibm?: StringFieldUpdateOperationsInput | string
+    nomeFantasia?: StringFieldUpdateOperationsInput | string
+    razaoSocial?: StringFieldUpdateOperationsInput | string
+    rede?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type LojasCreateManyInput = {
+    id?: string
+    cnpj: string
+    dtHr: Date | string
+    ibm: string
+    nomeFantasia: string
+    razaoSocial: string
+    rede: string
+  }
+
+  export type LojasUpdateManyMutationInput = {
+    cnpj?: StringFieldUpdateOperationsInput | string
+    dtHr?: DateTimeFieldUpdateOperationsInput | Date | string
+    ibm?: StringFieldUpdateOperationsInput | string
+    nomeFantasia?: StringFieldUpdateOperationsInput | string
+    razaoSocial?: StringFieldUpdateOperationsInput | string
+    rede?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type LojasUncheckedUpdateManyInput = {
+    cnpj?: StringFieldUpdateOperationsInput | string
+    dtHr?: DateTimeFieldUpdateOperationsInput | Date | string
+    ibm?: StringFieldUpdateOperationsInput | string
+    nomeFantasia?: StringFieldUpdateOperationsInput | string
+    razaoSocial?: StringFieldUpdateOperationsInput | string
+    rede?: StringFieldUpdateOperationsInput | string
+  }
+
   export type ProdutosCreateInput = {
     id?: string
     St?: string | null
@@ -8161,17 +9331,16 @@ export namespace Prisma {
     cus?: string | null
     des: string
     dtHr: Date | string
-    eDe: string
+    eDe?: string | null
     eMa?: string | null
     eMi?: string | null
-    eOl: string
-    ePi: string
-    eTo: string
-    gr: string
-    ibm: string
-    icm: string
+    eOl?: string | null
+    ePi?: string | null
+    eTo?: string | null
+    gr?: string | null
+    ibm?: string | null
+    icm?: string | null
     id_: string
-    ipi?: string | null
     sgr?: string | null
     st?: string | null
     uCx?: string | null
@@ -8187,17 +9356,16 @@ export namespace Prisma {
     cus?: string | null
     des: string
     dtHr: Date | string
-    eDe: string
+    eDe?: string | null
     eMa?: string | null
     eMi?: string | null
-    eOl: string
-    ePi: string
-    eTo: string
-    gr: string
-    ibm: string
-    icm: string
+    eOl?: string | null
+    ePi?: string | null
+    eTo?: string | null
+    gr?: string | null
+    ibm?: string | null
+    icm?: string | null
     id_: string
-    ipi?: string | null
     sgr?: string | null
     st?: string | null
     uCx?: string | null
@@ -8212,17 +9380,16 @@ export namespace Prisma {
     cus?: NullableStringFieldUpdateOperationsInput | string | null
     des?: StringFieldUpdateOperationsInput | string
     dtHr?: DateTimeFieldUpdateOperationsInput | Date | string
-    eDe?: StringFieldUpdateOperationsInput | string
+    eDe?: NullableStringFieldUpdateOperationsInput | string | null
     eMa?: NullableStringFieldUpdateOperationsInput | string | null
     eMi?: NullableStringFieldUpdateOperationsInput | string | null
-    eOl?: StringFieldUpdateOperationsInput | string
-    ePi?: StringFieldUpdateOperationsInput | string
-    eTo?: StringFieldUpdateOperationsInput | string
-    gr?: StringFieldUpdateOperationsInput | string
-    ibm?: StringFieldUpdateOperationsInput | string
-    icm?: StringFieldUpdateOperationsInput | string
+    eOl?: NullableStringFieldUpdateOperationsInput | string | null
+    ePi?: NullableStringFieldUpdateOperationsInput | string | null
+    eTo?: NullableStringFieldUpdateOperationsInput | string | null
+    gr?: NullableStringFieldUpdateOperationsInput | string | null
+    ibm?: NullableStringFieldUpdateOperationsInput | string | null
+    icm?: NullableStringFieldUpdateOperationsInput | string | null
     id_?: StringFieldUpdateOperationsInput | string
-    ipi?: NullableStringFieldUpdateOperationsInput | string | null
     sgr?: NullableStringFieldUpdateOperationsInput | string | null
     st?: NullableStringFieldUpdateOperationsInput | string | null
     uCx?: NullableStringFieldUpdateOperationsInput | string | null
@@ -8237,17 +9404,16 @@ export namespace Prisma {
     cus?: NullableStringFieldUpdateOperationsInput | string | null
     des?: StringFieldUpdateOperationsInput | string
     dtHr?: DateTimeFieldUpdateOperationsInput | Date | string
-    eDe?: StringFieldUpdateOperationsInput | string
+    eDe?: NullableStringFieldUpdateOperationsInput | string | null
     eMa?: NullableStringFieldUpdateOperationsInput | string | null
     eMi?: NullableStringFieldUpdateOperationsInput | string | null
-    eOl?: StringFieldUpdateOperationsInput | string
-    ePi?: StringFieldUpdateOperationsInput | string
-    eTo?: StringFieldUpdateOperationsInput | string
-    gr?: StringFieldUpdateOperationsInput | string
-    ibm?: StringFieldUpdateOperationsInput | string
-    icm?: StringFieldUpdateOperationsInput | string
+    eOl?: NullableStringFieldUpdateOperationsInput | string | null
+    ePi?: NullableStringFieldUpdateOperationsInput | string | null
+    eTo?: NullableStringFieldUpdateOperationsInput | string | null
+    gr?: NullableStringFieldUpdateOperationsInput | string | null
+    ibm?: NullableStringFieldUpdateOperationsInput | string | null
+    icm?: NullableStringFieldUpdateOperationsInput | string | null
     id_?: StringFieldUpdateOperationsInput | string
-    ipi?: NullableStringFieldUpdateOperationsInput | string | null
     sgr?: NullableStringFieldUpdateOperationsInput | string | null
     st?: NullableStringFieldUpdateOperationsInput | string | null
     uCx?: NullableStringFieldUpdateOperationsInput | string | null
@@ -8263,17 +9429,16 @@ export namespace Prisma {
     cus?: string | null
     des: string
     dtHr: Date | string
-    eDe: string
+    eDe?: string | null
     eMa?: string | null
     eMi?: string | null
-    eOl: string
-    ePi: string
-    eTo: string
-    gr: string
-    ibm: string
-    icm: string
+    eOl?: string | null
+    ePi?: string | null
+    eTo?: string | null
+    gr?: string | null
+    ibm?: string | null
+    icm?: string | null
     id_: string
-    ipi?: string | null
     sgr?: string | null
     st?: string | null
     uCx?: string | null
@@ -8288,17 +9453,16 @@ export namespace Prisma {
     cus?: NullableStringFieldUpdateOperationsInput | string | null
     des?: StringFieldUpdateOperationsInput | string
     dtHr?: DateTimeFieldUpdateOperationsInput | Date | string
-    eDe?: StringFieldUpdateOperationsInput | string
+    eDe?: NullableStringFieldUpdateOperationsInput | string | null
     eMa?: NullableStringFieldUpdateOperationsInput | string | null
     eMi?: NullableStringFieldUpdateOperationsInput | string | null
-    eOl?: StringFieldUpdateOperationsInput | string
-    ePi?: StringFieldUpdateOperationsInput | string
-    eTo?: StringFieldUpdateOperationsInput | string
-    gr?: StringFieldUpdateOperationsInput | string
-    ibm?: StringFieldUpdateOperationsInput | string
-    icm?: StringFieldUpdateOperationsInput | string
+    eOl?: NullableStringFieldUpdateOperationsInput | string | null
+    ePi?: NullableStringFieldUpdateOperationsInput | string | null
+    eTo?: NullableStringFieldUpdateOperationsInput | string | null
+    gr?: NullableStringFieldUpdateOperationsInput | string | null
+    ibm?: NullableStringFieldUpdateOperationsInput | string | null
+    icm?: NullableStringFieldUpdateOperationsInput | string | null
     id_?: StringFieldUpdateOperationsInput | string
-    ipi?: NullableStringFieldUpdateOperationsInput | string | null
     sgr?: NullableStringFieldUpdateOperationsInput | string | null
     st?: NullableStringFieldUpdateOperationsInput | string | null
     uCx?: NullableStringFieldUpdateOperationsInput | string | null
@@ -8313,17 +9477,16 @@ export namespace Prisma {
     cus?: NullableStringFieldUpdateOperationsInput | string | null
     des?: StringFieldUpdateOperationsInput | string
     dtHr?: DateTimeFieldUpdateOperationsInput | Date | string
-    eDe?: StringFieldUpdateOperationsInput | string
+    eDe?: NullableStringFieldUpdateOperationsInput | string | null
     eMa?: NullableStringFieldUpdateOperationsInput | string | null
     eMi?: NullableStringFieldUpdateOperationsInput | string | null
-    eOl?: StringFieldUpdateOperationsInput | string
-    ePi?: StringFieldUpdateOperationsInput | string
-    eTo?: StringFieldUpdateOperationsInput | string
-    gr?: StringFieldUpdateOperationsInput | string
-    ibm?: StringFieldUpdateOperationsInput | string
-    icm?: StringFieldUpdateOperationsInput | string
+    eOl?: NullableStringFieldUpdateOperationsInput | string | null
+    ePi?: NullableStringFieldUpdateOperationsInput | string | null
+    eTo?: NullableStringFieldUpdateOperationsInput | string | null
+    gr?: NullableStringFieldUpdateOperationsInput | string | null
+    ibm?: NullableStringFieldUpdateOperationsInput | string | null
+    icm?: NullableStringFieldUpdateOperationsInput | string | null
     id_?: StringFieldUpdateOperationsInput | string
-    ipi?: NullableStringFieldUpdateOperationsInput | string | null
     sgr?: NullableStringFieldUpdateOperationsInput | string | null
     st?: NullableStringFieldUpdateOperationsInput | string | null
     uCx?: NullableStringFieldUpdateOperationsInput | string | null
@@ -8333,7 +9496,7 @@ export namespace Prisma {
 
   export type Produtos_GruposCreateInput = {
     id?: string
-    des: string
+    des?: string | null
     dtHr: Date | string
     ibm: string
     id_: string
@@ -8341,21 +9504,21 @@ export namespace Prisma {
 
   export type Produtos_GruposUncheckedCreateInput = {
     id?: string
-    des: string
+    des?: string | null
     dtHr: Date | string
     ibm: string
     id_: string
   }
 
   export type Produtos_GruposUpdateInput = {
-    des?: StringFieldUpdateOperationsInput | string
+    des?: NullableStringFieldUpdateOperationsInput | string | null
     dtHr?: DateTimeFieldUpdateOperationsInput | Date | string
     ibm?: StringFieldUpdateOperationsInput | string
     id_?: StringFieldUpdateOperationsInput | string
   }
 
   export type Produtos_GruposUncheckedUpdateInput = {
-    des?: StringFieldUpdateOperationsInput | string
+    des?: NullableStringFieldUpdateOperationsInput | string | null
     dtHr?: DateTimeFieldUpdateOperationsInput | Date | string
     ibm?: StringFieldUpdateOperationsInput | string
     id_?: StringFieldUpdateOperationsInput | string
@@ -8363,21 +9526,21 @@ export namespace Prisma {
 
   export type Produtos_GruposCreateManyInput = {
     id?: string
-    des: string
+    des?: string | null
     dtHr: Date | string
     ibm: string
     id_: string
   }
 
   export type Produtos_GruposUpdateManyMutationInput = {
-    des?: StringFieldUpdateOperationsInput | string
+    des?: NullableStringFieldUpdateOperationsInput | string | null
     dtHr?: DateTimeFieldUpdateOperationsInput | Date | string
     ibm?: StringFieldUpdateOperationsInput | string
     id_?: StringFieldUpdateOperationsInput | string
   }
 
   export type Produtos_GruposUncheckedUpdateManyInput = {
-    des?: StringFieldUpdateOperationsInput | string
+    des?: NullableStringFieldUpdateOperationsInput | string | null
     dtHr?: DateTimeFieldUpdateOperationsInput | Date | string
     ibm?: StringFieldUpdateOperationsInput | string
     id_?: StringFieldUpdateOperationsInput | string
@@ -8572,6 +9735,7 @@ export namespace Prisma {
     dtHr?: SortOrder
     eTo?: SortOrder
     ibm?: SortOrder
+    icm?: SortOrder
     id_?: SortOrder
     ncm?: SortOrder
     pis?: SortOrder
@@ -8597,6 +9761,7 @@ export namespace Prisma {
     dtHr?: SortOrder
     eTo?: SortOrder
     ibm?: SortOrder
+    icm?: SortOrder
     id_?: SortOrder
     ncm?: SortOrder
     pis?: SortOrder
@@ -8622,6 +9787,7 @@ export namespace Prisma {
     dtHr?: SortOrder
     eTo?: SortOrder
     ibm?: SortOrder
+    icm?: SortOrder
     id_?: SortOrder
     ncm?: SortOrder
     pis?: SortOrder
@@ -8716,6 +9882,36 @@ export namespace Prisma {
     tip?: SortOrder
   }
 
+  export type LojasCountOrderByAggregateInput = {
+    id?: SortOrder
+    cnpj?: SortOrder
+    dtHr?: SortOrder
+    ibm?: SortOrder
+    nomeFantasia?: SortOrder
+    razaoSocial?: SortOrder
+    rede?: SortOrder
+  }
+
+  export type LojasMaxOrderByAggregateInput = {
+    id?: SortOrder
+    cnpj?: SortOrder
+    dtHr?: SortOrder
+    ibm?: SortOrder
+    nomeFantasia?: SortOrder
+    razaoSocial?: SortOrder
+    rede?: SortOrder
+  }
+
+  export type LojasMinOrderByAggregateInput = {
+    id?: SortOrder
+    cnpj?: SortOrder
+    dtHr?: SortOrder
+    ibm?: SortOrder
+    nomeFantasia?: SortOrder
+    razaoSocial?: SortOrder
+    rede?: SortOrder
+  }
+
   export type ProdutosCountOrderByAggregateInput = {
     id?: SortOrder
     St?: SortOrder
@@ -8734,7 +9930,6 @@ export namespace Prisma {
     ibm?: SortOrder
     icm?: SortOrder
     id_?: SortOrder
-    ipi?: SortOrder
     sgr?: SortOrder
     st?: SortOrder
     uCx?: SortOrder
@@ -8760,7 +9955,6 @@ export namespace Prisma {
     ibm?: SortOrder
     icm?: SortOrder
     id_?: SortOrder
-    ipi?: SortOrder
     sgr?: SortOrder
     st?: SortOrder
     uCx?: SortOrder
@@ -8786,7 +9980,6 @@ export namespace Prisma {
     ibm?: SortOrder
     icm?: SortOrder
     id_?: SortOrder
-    ipi?: SortOrder
     sgr?: SortOrder
     st?: SortOrder
     uCx?: SortOrder
@@ -9016,6 +10209,10 @@ export namespace Prisma {
      * @deprecated Use FormasPgDefaultArgs instead
      */
     export type FormasPgArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = FormasPgDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use LojasDefaultArgs instead
+     */
+    export type LojasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = LojasDefaultArgs<ExtArgs>
     /**
      * @deprecated Use ProdutosDefaultArgs instead
      */
