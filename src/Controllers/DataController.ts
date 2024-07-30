@@ -67,7 +67,7 @@ class DataController {
             if (clientToken == `Bearer ${expectedToken}`) {
 
                 const fuelliterageSell = await prismaSales.vendas.findMany({
-                    select: { items: true },
+                    select: { items: true,ibm:true },
                     where: {
                         dtHr: {
                             gte: `${actualdate}T00:00:00.000Z`,
@@ -76,6 +76,19 @@ class DataController {
                     }
 
                 })
+                // const ibmSet = new Set(fuelliterageSell.map(element => element.ibm));
+                // const ibmList = Array.from(ibmSet);
+                // const value = ibmList.length
+
+                // const names = await prismaLBCBi.lojas.findMany({
+
+
+                //     select: { ibm: true, nomeFantasia: true }
+
+                // })
+                // const missingIbms = names.filter(name => !ibmSet.has(name.ibm));
+
+                // return res.status(200).json({ data: ibmList, quantidade: value, nomes:names,missing:missingIbms})
                 //Construção array de items
                 const itemsArray = fuelliterageSell.flatMap(element => {
 
@@ -162,12 +175,7 @@ class DataController {
             if (clientToken == `Bearer ${expectedToken}`) {
 
                 const vendas = await prismaSales.vendas.findMany({
-                    where: {
-                        dtHr: {
-                            gte: `${actualdate}T00:00:00.000Z`,
-                            lte: `${actualdate}T23:59:59.999Z`
-                        }
-                    },
+
                     orderBy: {
                         dtHr: 'asc',
                     },
@@ -175,7 +183,6 @@ class DataController {
 
                 // Extração de `ibm` únicos
                 const ibmList = [...new Set(vendas.map(venda => venda.ibm))];
-
                 const results = [];
 
                 for (const posto of ibmList) {
@@ -194,6 +201,10 @@ class DataController {
                     const docPosto = await prismaSales.vendas.findMany({
                         where: {
                             ibm: posto,
+                            dtHr: {
+                                gte: `2024-07-29T00:00:00.000Z`,
+                                lte: `2024-07-29T23:59:59.999Z`
+                            }
                         },
                         orderBy: {
                             dtHr: 'asc',
@@ -294,7 +305,90 @@ class DataController {
 
     }
 
+    public async dataFrameGallonage2(req: Request, res: Response) {
+        try {
+            const actualdate = moment().tz("America/Sao_Paulo").format("YYYY-MM-DD");
 
+            const clientToken = req.headers.authorization;
+            if (!clientToken) {
+                return res.status(401).json({ message: "Token não fornecido." });
+            }
+
+            const expectedToken = process.env.TOKEN;
+            if (clientToken == `Bearer ${expectedToken}`) {
+                const fuelliterageSell = await prismaSales.vendas.findMany({
+                    select: { items: true, ibm: true, dtHr: true },
+                    where: {
+                        dtHr: {
+                            gte: `${actualdate}T00:00:00.000Z`,
+                            lte: `${actualdate}T23:59:59.999Z`
+                        }
+                    }
+
+                })
+                interface GasStation {
+                    [key: string]: any;
+                }
+                const gasStation: GasStation = {};
+
+                fuelliterageSell.forEach(element => {
+
+                    if (!gasStation[element.ibm]) {
+                        gasStation[element.ibm] = element.items
+
+                    }
+                    gasStation[element.ibm] = gasStation[element.ibm].concat(Array.from(element.items))
+                })
+                interface Item {
+                    iTip: string;
+                    tot: string; 
+                }
+
+                const resultado: { [key: string]: number[] } = Object.entries(gasStation).reduce((acumulador, [key, itemsArray]) => {
+       
+                    if (!acumulador[key]) {
+                        acumulador[key] = [];
+                    }
+                
+                
+                    itemsArray.forEach((item: Item) => {
+                        const valor = parseFloat(item.tot); 
+                        if (!isNaN(valor)&&item.iTip) { 
+                            acumulador[key].push(valor);
+                        }
+                    });
+                
+                    return acumulador;
+                }, {} as { [key: string]: number[] }); 
+                
+                // Passo 2: Calcular a soma de cada array
+                const somaPorPropriedade: { [key: string]: number } = Object.entries(resultado).reduce((acumulador, [key, valoresArray]) => {
+                    const soma = valoresArray.reduce((somaAcumulada, valor) => somaAcumulada + valor, 0);
+                    acumulador[key] = soma;
+                    return acumulador;
+                }, {} as { [key: string]: number }); 
+                
+                // Passo 3: Retornar a resposta JSON com as somas
+                return res.json({ data: somaPorPropriedade });
+
+
+
+                // return res.json({ data: gasStation })
+
+                // const ibmSet = new Set(fuelliterageSell.map(element => element.ibm));
+                // const ibmList = Array.from(ibmSet);
+
+
+            } else {
+                return res
+                    .status(401)
+                    .json({ message: "Falha na autenticação: Token inválido." });
+            }
+
+        } catch (error) {
+            return res.status(500).json({ message: `Erro ao retornar os dados: ${error}` });
+        }
+    }
 
 
 
