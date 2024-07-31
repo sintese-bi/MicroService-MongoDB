@@ -67,7 +67,7 @@ class DataController {
             if (clientToken == `Bearer ${expectedToken}`) {
 
                 const fuelliterageSell = await prismaSales.vendas.findMany({
-                    select: { items: true,ibm:true },
+                    select: { items: true, ibm: true },
                     where: {
                         dtHr: {
                             gte: `${actualdate}T00:00:00.000Z`,
@@ -263,7 +263,6 @@ class DataController {
     //Dados do Gráfico diário
     public async dailyGraphic(req: Request, res: Response) {
         try {
-            const actualdate = moment().tz("America/Sao_Paulo").format("YYYY-MM-DD");
             const clientToken = req.headers.authorization;
             if (!clientToken) {
                 return res.status(401).json({ message: "Token não fornecido." });
@@ -271,14 +270,47 @@ class DataController {
             const { week_day, variable_type }: { week_day: string, variable_type: string } = req.body
             const expectedToken = process.env.TOKEN;
             if (clientToken == `Bearer ${expectedToken}`) {
+                //Fuso Horário
+                const timezone = "America/Sao_Paulo"
 
+                //Data atual com ano e mês
+                const actualdate = moment().tz(timezone).format("YYYY-MM");
+                const actualYear = parseInt(actualdate.split('-')[0]);
+                const actualMonth = parseInt(actualdate.split('-')[1]);
 
-                const fuelliterageSell = await prismaSales.vendas.findMany({
-                    select: { items: true, dtHr: true },
-                    where: {
+                //Primeiro e último dia do mês
+                const firstDayweek = moment.tz({ year: actualYear, month: actualMonth - 1 }, timezone).startOf('month');
+                const lastDayweek = moment.tz({ year: actualYear, month: actualMonth - 1 }, timezone).endOf('month');
+
+                // Agregar os dias da semana
+                const daysOfWeek: { [key: string]: string[] } = {};
+                let currentDay = firstDayweek.clone();
+
+                while (currentDay.isBefore(lastDayweek) || currentDay.isSame(lastDayweek)) {
+                    const dayOfWeek = currentDay.format('dddd');
+                    const formattedDate = currentDay.format('YYYY-MM-DD');
+
+                    if (!daysOfWeek[dayOfWeek]) {
+                        daysOfWeek[dayOfWeek] = [];
+                    }
+
+                    daysOfWeek[dayOfWeek].push(formattedDate);
+                    currentDay.add(1, 'day');
+                }
+                let dateRanges
+                for (let week in daysOfWeek) {
+
+                    if (week_day == week) {
+                        dateRanges = daysOfWeek[week]
+                    }
+
+                }
+                const multiplesInterval: any = dateRanges?.map(element => {
+
+                    return {
                         dtHr: {
-                            gte: `${actualdate}T00:00:00.000Z`,
-                            lte: `${actualdate}T23:59:59.999Z`
+                            gte: `${element}T00:00:00.000Z`,
+                            lte: `${element}T23:59:59.999Z`,
                         }
                     }
 
@@ -286,11 +318,39 @@ class DataController {
 
 
 
+                const fuelliterageSell = await prismaSales.vendas.findMany({
+                    select: { items: true, dtHr: true },
+                    where: {
+                        OR: multiplesInterval
+                    }
+                });
+
+                const separatedResults: Record<string, any[]> = {};
+                fuelliterageSell.forEach(record => {
+                    const recordDate = new Date(record.dtHr).toISOString().split('T')[0];
+                    if (!separatedResults[recordDate]) {
+                        separatedResults[recordDate] = [];
+                    }
+                    separatedResults[recordDate].push(record);
+                });
+
+
+                // const fuelItems = fuelliterageSell.flatMap(element => {
+                //     return element.items
+                // })
 
 
 
 
 
+
+
+
+
+
+
+
+                return res.status(200).json({ data: separatedResults })
 
             } else {
                 return res
@@ -341,33 +401,33 @@ class DataController {
                 })
                 interface Item {
                     iTip: string;
-                    tot: string; 
+                    tot: string;
                 }
 
                 const resultado: { [key: string]: number[] } = Object.entries(gasStation).reduce((acumulador, [key, itemsArray]) => {
-       
+
                     if (!acumulador[key]) {
                         acumulador[key] = [];
                     }
-                
-                
+
+
                     itemsArray.forEach((item: Item) => {
-                        const valor = parseFloat(item.tot); 
-                        if (!isNaN(valor)&&item.iTip) { 
+                        const valor = parseFloat(item.tot);
+                        if (!isNaN(valor) && item.iTip) {
                             acumulador[key].push(valor);
                         }
                     });
-                
+
                     return acumulador;
-                }, {} as { [key: string]: number[] }); 
-                
+                }, {} as { [key: string]: number[] });
+
                 // Passo 2: Calcular a soma de cada array
                 const somaPorPropriedade: { [key: string]: number } = Object.entries(resultado).reduce((acumulador, [key, valoresArray]) => {
                     const soma = valoresArray.reduce((somaAcumulada, valor) => somaAcumulada + valor, 0);
                     acumulador[key] = soma;
                     return acumulador;
-                }, {} as { [key: string]: number }); 
-                
+                }, {} as { [key: string]: number });
+
                 // Passo 3: Retornar a resposta JSON com as somas
                 return res.json({ data: somaPorPropriedade });
 
