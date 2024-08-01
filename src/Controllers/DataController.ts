@@ -146,7 +146,7 @@ class DataController {
                 }, 0);
 
 
-                return res.status(200).json({ data: [{ label: "Venda de Combustível", value: Math.round(sumFuel * 100) / 100, secondary_label: "TMC", secondary_value: 0.545 }, { label: "Volume Total", value: Math.round(sumLiterage * 100) / 100, secondary_label: "TMV", secondary_value: 0.323 }, { label: "Venda de Produto", value: Math.round(sumFuelProd * 100) / 100, secondary_label: "TMP", secondary_value: 0.434 }, { label: "Quantidade de Produto Vendido", value: Math.round(sumLiterageProd * 100) / 100, secondary_label: "TMP", secondary_value: 0.235 }, { label: "Venda de Serviços", value: 10000, secondary_label: "TMS", secondary_value: 0.543 }, { label: "Outros", value: 50000, secondary_label: "TMS", secondary_value: 0.890 }] })
+                return res.status(200).json({ data: [{ label: "Venda de Combustível", value: Math.round(sumFuel * 100) / 100, secondary_label: "TMC", secondary_value: 0.545 }, { label: "Volume Total", value: Math.round(sumLiterage * 100) / 100, secondary_label: "TMV", secondary_value: 0.323 }, { label: "Venda de Produto", value: Math.round(sumFuelProd * 100) / 100, secondary_label: "TMP", secondary_value: 0.434 }, { label: "Quantidade de Produto Vendido", value: Math.round(sumLiterageProd * 100) / 100, secondary_label: "TMP", secondary_value: 0.235 }, { label: "Venda de Serviços", value: 2000, secondary_label: "TMS", secondary_value: 0.543 }, { label: "Outros", value: 50000, secondary_label: "TMS", secondary_value: 0.890 }] })
             } else {
                 return res
                     .status(401)
@@ -306,17 +306,13 @@ class DataController {
 
                 }
                 const multiplesInterval: any = dateRanges?.map(element => {
-
                     return {
                         dtHr: {
                             gte: `${element}T00:00:00.000Z`,
                             lte: `${element}T23:59:59.999Z`,
                         }
                     }
-
                 })
-
-
 
                 const fuelliterageSell = await prismaSales.vendas.findMany({
                     select: { items: true, dtHr: true },
@@ -325,38 +321,54 @@ class DataController {
                     }
                 });
 
+                let dateSeparation: any = {}
+                dateRanges?.forEach(element => {
+
+                    dateSeparation[element] = []
+
+                })
+                fuelliterageSell.forEach(element => {
+                    const date = new Date(element.dtHr).toISOString().split('T')[0];
+                    dateSeparation[date].push(...element.items);
+                });
+                interface DateSum {
+                    date: string;
+                    sum: number;
+                }
+                let sumArray: DateSum[] = []
+
+                for (const date in dateSeparation) {
+                    if (dateSeparation.hasOwnProperty(date)) {
+
+                        const itemsArray = dateSeparation[date];
+
+                        if (itemsArray.length == 0) {
+                            sumArray.push({ date: date, sum: 0 })
+                            continue;
+                        }
+                        const sum = itemsArray.reduce((accumulate: any, initialvalue: any) => {
+                            if (initialvalue.iTip == "1") {
+                               
+                                if (variable_type == "invoicing") {
+                                    return Math.round((accumulate + Math.round(parseFloat(initialvalue.tot) * 100) / 100) * 100) / 100
+                                } else if (variable_type == "volume_sold") {
+                                    return Math.round((accumulate + Math.round(parseFloat(initialvalue.qd) * 100) / 100) * 100) / 100
+
+                                } else if (variable_type == "cost") {
+                                    return Math.round((accumulate + Math.round(parseFloat(initialvalue.tot) * 100) / 100) * 100) / 100
+                                } else if (variable_type == "fuel_margin") {
+                                    return Math.round((accumulate + Math.round(parseFloat(initialvalue.tot) * 100) / 100) * 100) / 100
+                                }
+                            }
+                            return accumulate;
+                        }, 0)
+                        sumArray.push({ date: date, sum: sum })
+
+                    }
+                }
 
 
-
-
-
-
-                // const separatedResults: Record<string, any[]> = {};
-                // fuelliterageSell.forEach(record => {
-                //     const recordDate = new Date(record.dtHr).toISOString().split('T')[0];
-                //     if (!separatedResults[recordDate]) {
-                //         separatedResults[recordDate] = [];
-                //     }
-                //     separatedResults[recordDate].push(record);
-                // });
-
-
-                // const fuelItems = fuelliterageSell.flatMap(element => {
-                //     return element.items
-                // })
-
-
-
-
-
-
-
-
-
-
-
-
-                return res.status(200).json({ data: fuelliterageSell })
+                return res.status(200).json({ data: sumArray })
 
             } else {
                 return res
