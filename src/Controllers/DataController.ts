@@ -465,8 +465,8 @@ class DataController {
 
             const expectedToken = process.env.TOKEN;
             if (clientToken == `Bearer ${expectedToken}`) {
-                const results = {
-                    "data": [
+                const results =
+                    [
                         {
                             "Posto": "POSTO001",
                             "registrosNaBase": 5,
@@ -534,7 +534,7 @@ class DataController {
                         }
 
                     ]
-                }
+
 
 
 
