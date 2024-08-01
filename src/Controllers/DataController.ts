@@ -162,103 +162,103 @@ class DataController {
 
     }
     //Primeiro dataframe
-    public async dataFrameGallonage(req: Request, res: Response) {
-        try {
-            const actualdate = moment().tz("America/Sao_Paulo").format("YYYY-MM-DD");
+    // public async dataFrameGallonage(req: Request, res: Response) {
+    //     try {
+    //         const actualdate = moment().tz("America/Sao_Paulo").format("YYYY-MM-DD");
 
-            const clientToken = req.headers.authorization;
-            if (!clientToken) {
-                return res.status(401).json({ message: "Token não fornecido." });
-            }
+    //         const clientToken = req.headers.authorization;
+    //         if (!clientToken) {
+    //             return res.status(401).json({ message: "Token não fornecido." });
+    //         }
 
-            const expectedToken = process.env.TOKEN;
-            if (clientToken == `Bearer ${expectedToken}`) {
+    //         const expectedToken = process.env.TOKEN;
+    //         if (clientToken == `Bearer ${expectedToken}`) {
 
-                const vendas = await prismaSales.vendas.findMany({
+    //             const vendas = await prismaSales.vendas.findMany({
 
-                    orderBy: {
-                        dtHr: 'asc',
-                    },
-                });
+    //                 orderBy: {
+    //                     dtHr: 'asc',
+    //                 },
+    //             });
 
-                // Extração de `ibm` únicos
-                const ibmList = [...new Set(vendas.map(venda => venda.ibm))];
-                const results = [];
+    //             // Extração de `ibm` únicos
+    //             const ibmList = [...new Set(vendas.map(venda => venda.ibm))];
+    //             const results = [];
 
-                for (const posto of ibmList) {
-                    let registroPosto = 0;
-                    // Listas auxiliares
-                    const valorCombustivel: number[] = [];
-                    const litroCombustivel: number[] = [];
-                    const valorProduto: number[] = [];
-                    const litroProduto: number[] = [];
-                    const valorOutros: number[] = [];
-                    const litrosOutros: number[] = [];
+    //             for (const posto of ibmList) {
+    //                 let registroPosto = 0;
+    //                 // Listas auxiliares
+    //                 const valorCombustivel: number[] = [];
+    //                 const litroCombustivel: number[] = [];
+    //                 const valorProduto: number[] = [];
+    //                 const litroProduto: number[] = [];
+    //                 const valorOutros: number[] = [];
+    //                 const litrosOutros: number[] = [];
 
-                    const iTips: string[] = [];
+    //                 const iTips: string[] = [];
 
-                    // Consulta documentos filtrados por `ibm`
-                    const docPosto = await prismaSales.vendas.findMany({
-                        where: {
-                            ibm: posto,
-                            dtHr: {
-                                gte: `2024-07-29T00:00:00.000Z`,
-                                lte: `2024-07-29T23:59:59.999Z`
-                            }
-                        },
-                        orderBy: {
-                            dtHr: 'asc',
-                        },
-                    });
+    //                 // Consulta documentos filtrados por `ibm`
+    //                 const docPosto = await prismaSales.vendas.findMany({
+    //                     where: {
+    //                         ibm: posto,
+    //                         dtHr: {
+    //                             gte: `2024-07-29T00:00:00.000Z`,
+    //                             lte: `2024-07-29T23:59:59.999Z`
+    //                         }
+    //                     },
+    //                     orderBy: {
+    //                         dtHr: 'asc',
+    //                     },
+    //                 });
 
-                    for (const doc of docPosto) {
-                        registroPosto++;
-                        const docItens = doc.items;
+    //                 for (const doc of docPosto) {
+    //                     registroPosto++;
+    //                     const docItens = doc.items;
 
-                        for (const item of docItens) {
-                            iTips.push(item.iTip);
-                            if (item.iTip === '1') {
-                                valorCombustivel.push(parseFloat(item.tot));
-                                litroCombustivel.push(parseFloat(item.qd));
-                            } else if (item.iTip === '0') {
-                                valorProduto.push(parseFloat(item.tot));
-                                litroProduto.push(parseFloat(item.qd));
-                            } else {
-                                valorOutros.push(parseFloat(item.tot));
-                                litrosOutros.push(parseFloat(item.qd));
-                            }
-                        }
-                    }
+    //                     for (const item of docItens) {
+    //                         iTips.push(item.iTip);
+    //                         if (item.iTip === '1') {
+    //                             valorCombustivel.push(parseFloat(item.tot));
+    //                             litroCombustivel.push(parseFloat(item.qd));
+    //                         } else if (item.iTip === '0') {
+    //                             valorProduto.push(parseFloat(item.tot));
+    //                             litroProduto.push(parseFloat(item.qd));
+    //                         } else {
+    //                             valorOutros.push(parseFloat(item.tot));
+    //                             litrosOutros.push(parseFloat(item.qd));
+    //                         }
+    //                     }
+    //                 }
 
-                    const result = {
-                        Posto: posto,
-                        registrosNaBase: registroPosto,
-                        qtdAbastecimento: valorCombustivel.length,
-                        vendaCombustivel: Number(valorCombustivel.reduce((a, b) => a + b, 0).toFixed(2)),
-                        litroCombustivel: Number(litroCombustivel.reduce((a, b) => a + b, 0).toFixed(2)),
-                        qtdProduto: valorProduto.length,
-                        vendaProduto: Number(valorProduto.reduce((a, b) => a + b, 0).toFixed(2)),
-                        litroProduto: Number(litroProduto.reduce((a, b) => a + b, 0).toFixed(2)),
-                        qtdOutrosProdutos: valorOutros.length,
-                        vendasOutros: Number(valorOutros.reduce((a, b) => a + b, 0).toFixed(2)),
-                        litroOutros: Number(litrosOutros.reduce((a, b) => a + b, 0).toFixed(2)),
-                    };
+    //                 const result = {
+    //                     Posto: posto,
+    //                     registrosNaBase: registroPosto,
+    //                     qtdAbastecimento: valorCombustivel.length,
+    //                     vendaCombustivel: Number(valorCombustivel.reduce((a, b) => a + b, 0).toFixed(2)),
+    //                     litroCombustivel: Number(litroCombustivel.reduce((a, b) => a + b, 0).toFixed(2)),
+    //                     qtdProduto: valorProduto.length,
+    //                     vendaProduto: Number(valorProduto.reduce((a, b) => a + b, 0).toFixed(2)),
+    //                     litroProduto: Number(litroProduto.reduce((a, b) => a + b, 0).toFixed(2)),
+    //                     qtdOutrosProdutos: valorOutros.length,
+    //                     vendasOutros: Number(valorOutros.reduce((a, b) => a + b, 0).toFixed(2)),
+    //                     litroOutros: Number(litrosOutros.reduce((a, b) => a + b, 0).toFixed(2)),
+    //                 };
 
-                    results.push(result);
-                }
+    //                 results.push(result);
+    //             }
 
-                return res.status(200).json({ data: results });
+    //             return res.status(200).json({ data: results });
 
-            } else {
-                return res
-                    .status(401)
-                    .json({ message: "Falha na autenticação: Token inválido." });
-            }
+    //         } else {
+    //             return res
+    //                 .status(401)
+    //                 .json({ message: "Falha na autenticação: Token inválido." });
+    //         }
 
-        } catch (error) {
-            return res.status(500).json({ message: `Erro ao retornar os dados: ${error}` });
-        }
-    }
+    //     } catch (error) {
+    //         return res.status(500).json({ message: `Erro ao retornar os dados: ${error}` });
+    //     }
+    // }
 
     //Dados do Gráfico diário
     public async dailyGraphic(req: Request, res: Response) {
@@ -325,14 +325,20 @@ class DataController {
                     }
                 });
 
-                const separatedResults: Record<string, any[]> = {};
-                fuelliterageSell.forEach(record => {
-                    const recordDate = new Date(record.dtHr).toISOString().split('T')[0];
-                    if (!separatedResults[recordDate]) {
-                        separatedResults[recordDate] = [];
-                    }
-                    separatedResults[recordDate].push(record);
-                });
+
+
+
+
+
+
+                // const separatedResults: Record<string, any[]> = {};
+                // fuelliterageSell.forEach(record => {
+                //     const recordDate = new Date(record.dtHr).toISOString().split('T')[0];
+                //     if (!separatedResults[recordDate]) {
+                //         separatedResults[recordDate] = [];
+                //     }
+                //     separatedResults[recordDate].push(record);
+                // });
 
 
                 // const fuelItems = fuelliterageSell.flatMap(element => {
@@ -350,7 +356,7 @@ class DataController {
 
 
 
-                return res.status(200).json({ data: separatedResults })
+                return res.status(200).json({ data: fuelliterageSell })
 
             } else {
                 return res
@@ -449,7 +455,101 @@ class DataController {
             return res.status(500).json({ message: `Erro ao retornar os dados: ${error}` });
         }
     }
+    public async dataFrameGallonage(req: Request, res: Response) {
+        try {
 
+            const clientToken = req.headers.authorization;
+            if (!clientToken) {
+                return res.status(401).json({ message: "Token não fornecido." });
+            }
+
+            const expectedToken = process.env.TOKEN;
+            if (clientToken == `Bearer ${expectedToken}`) {
+                const results = {
+                    "data": [
+                        {
+                            "Posto": "POSTO001",
+                            "registrosNaBase": 5,
+                            "qtdAbastecimento": 3,
+                            "vendaCombustivel": 1500.75,
+                            "litroCombustivel": 500.5,
+                            "qtdProduto": 2,
+                            "vendaProduto": 300.25,
+                            "litroProduto": 150.0,
+                            "qtdOutrosProdutos": 1,
+                            "vendasOutros": 100.00,
+                            "litroOutros": 50.0
+                        },
+                        {
+                            "Posto": "POSTO002",
+                            "registrosNaBase": 3,
+                            "qtdAbastecimento": 1,
+                            "vendaCombustivel": 500.50,
+                            "litroCombustivel": 200.0,
+                            "qtdProduto": 1,
+                            "vendaProduto": 150.00,
+                            "litroProduto": 75.0,
+                            "qtdOutrosProdutos": 1,
+                            "vendasOutros": 50.00,
+                            "litroOutros": 25.0
+                        },
+                        {
+                            "Posto": "POSTO003",
+                            "registrosNaBase": 3,
+                            "qtdAbastecimento": 1,
+                            "vendaCombustivel": 500.50,
+                            "litroCombustivel": 200.0,
+                            "qtdProduto": 1,
+                            "vendaProduto": 150.00,
+                            "litroProduto": 75.0,
+                            "qtdOutrosProdutos": 1,
+                            "vendasOutros": 50.00,
+                            "litroOutros": 25.0
+                        },
+                        {
+                            "Posto": "POSTO004",
+                            "registrosNaBase": 3,
+                            "qtdAbastecimento": 1,
+                            "vendaCombustivel": 500.50,
+                            "litroCombustivel": 200.0,
+                            "qtdProduto": 1,
+                            "vendaProduto": 150.00,
+                            "litroProduto": 75.0,
+                            "qtdOutrosProdutos": 1,
+                            "vendasOutros": 50.00,
+                            "litroOutros": 25.0
+                        },
+                        {
+                            "Posto": "POSTO005",
+                            "registrosNaBase": 3,
+                            "qtdAbastecimento": 1,
+                            "vendaCombustivel": 500.50,
+                            "litroCombustivel": 200.0,
+                            "qtdProduto": 1,
+                            "vendaProduto": 150.00,
+                            "litroProduto": 75.0,
+                            "qtdOutrosProdutos": 1,
+                            "vendasOutros": 50.00,
+                            "litroOutros": 25.0
+                        }
+
+                    ]
+                }
+
+
+
+                return res.status(200).json({ data: results });
+
+            } else {
+                return res
+                    .status(401)
+                    .json({ message: "Falha na autenticação: Token inválido." });
+            }
+
+        } catch (error) {
+            return res.status(500).json({ message: `Erro ao retornar os dados: ${error}` });
+        }
+    }
 
 
 
