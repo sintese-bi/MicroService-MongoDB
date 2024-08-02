@@ -346,23 +346,31 @@ class DataController {
                             sumArray.push({ date: date, sum: 0 })
                             continue;
                         }
-                        const sum = itemsArray.reduce((accumulate: any, initialvalue: any) => {
-                            if (initialvalue.iTip == "1") {
-                               
-                                if (variable_type == "invoicing") {
-                                    return Math.round((accumulate + Math.round(parseFloat(initialvalue.tot) * 100) / 100) * 100) / 100
-                                } else if (variable_type == "volume_sold") {
-                                    return Math.round((accumulate + Math.round(parseFloat(initialvalue.qd) * 100) / 100) * 100) / 100
+                        let total = 0;
+                        let quantity = 0;
 
+                        const sum = itemsArray.reduce((accumulate: any, initialValue: any) => {
+                            if (initialValue.iTip == "1") {
+                                const value = parseFloat(initialValue.tot);
+                                const quantityValue = parseFloat(initialValue.qd);
+                                const cost = parseFloat(initialValue.pC);
+
+                                if (variable_type == "invoicing") {
+                                    return Math.round((accumulate + value) * 100) / 100;
+                                } else if (variable_type == "volume_sold") {
+                                    return Math.round((accumulate + quantityValue) * 100) / 100;
                                 } else if (variable_type == "cost") {
-                                    return Math.round((accumulate + Math.round(parseFloat(initialvalue.tot) * 100) / 100) * 100) / 100
+                                    return Math.round((accumulate + cost) * 100) / 100;
                                 } else if (variable_type == "fuel_margin") {
-                                    return Math.round((accumulate + Math.round(parseFloat(initialvalue.tot) * 100) / 100) * 100) / 100
+                                    total += value;
+                                    quantity += quantityValue;
+                                    return Math.round((total / quantity) * 100) / 100;
                                 }
                             }
                             return accumulate;
-                        }, 0)
-                        sumArray.push({ date: date, sum: sum })
+                        }, 0);
+
+                        sumArray.push({ date: date, sum: sum });
 
                     }
                 }
