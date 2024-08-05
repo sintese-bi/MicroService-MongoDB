@@ -291,7 +291,7 @@ class DataController {
                 //Primeiro e último dia do mês
                 const firstDayweek = moment.tz(timezone).startOf('month').subtract(3, 'hours');
                 const lastDayweek = moment.tz(timezone).endOf('month').subtract(3, 'hours');
-                
+
                 // Agregar os dias da semana
                 const daysOfWeek: { [key: string]: string[] } = {};
                 let currentDay = firstDayweek.clone();
@@ -367,18 +367,18 @@ class DataController {
                                 const cost = parseFloat(initialValue.pC);
 
                                 if (variable_type == "invoicing") {
-                                    return Math.round((accumulate + value) * 100) / 100;
+                                    return accumulate + value
                                 } else if (variable_type == "volume_sold") {
-                                    return Math.round((accumulate + quantityValue) * 100) / 100;
+                                    return accumulate + quantityValue;
                                 } else if (variable_type == "cost") {
-                                    return Math.round((accumulate + cost) * 100) / 100;
+                                    return accumulate + cost
                                 } else if (variable_type == "fuel_margin") {
                                     total += value;
                                     quantity += quantityValue;
-                                    return Math.round((total / quantity) * 100) / 100;
+                                    return total / quantity
                                 }
                             }
-                            return accumulate;
+                            return Math.round(accumulate * 100) / 100;
                         }, 0);
 
                         sumArray.push({ date: date, sum: sum });
