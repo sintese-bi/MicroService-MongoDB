@@ -10,7 +10,8 @@ import dotenv from 'dotenv'
 import { v4 as uuidv4 } from 'uuid';
 const prismaLBCBi = new PrismaLBCBi()
 const prismaSales = new PrismaSales()
-
+import regionStation from '../utils/regionsstation.json';
+// import regionstation from "../utils/region";
 class DataController {
     //Listagem dos nomes de tipos de combustível e produtos
     public async infoData(req: Request, res: Response) {
@@ -314,6 +315,7 @@ class DataController {
                     }
 
                 }
+
                 const multiplesInterval: any = dateRanges?.map(element => {
                     return {
                         dtHr: {
@@ -383,7 +385,10 @@ class DataController {
 
                     }
                 }
-
+                sumArray.forEach(element => {
+                    const [year, month, day] = element.date.split('-')
+                    element.date = `${day}-${month}-${year}`
+                })
 
                 return res.status(200).json({ data: sumArray })
 
@@ -400,102 +405,120 @@ class DataController {
 
     }
 
-
-    public async dataFrameGallonage(req: Request, res: Response) {
+    public async regionalChart(req: Request, res: Response) {
         try {
-
             const clientToken = req.headers.authorization;
             if (!clientToken) {
                 return res.status(401).json({ message: "Token não fornecido." });
             }
 
+            const { variable_type }: { variable_type: string } = req.body;
             const expectedToken = process.env.TOKEN;
-            if (clientToken == `Bearer ${expectedToken}`) {
-                const results =
-                    [
-                        {
-                            "Posto": "POSTO001",
-                            "registrosNaBase": 5,
-                            "qtdAbastecimento": 3,
-                            "vendaCombustivel": 1500.75,
-                            "litroCombustivel": 500.5,
-                            "qtdProduto": 2,
-                            "vendaProduto": 300.25,
-                            "litroProduto": 150.0,
-                            "qtdOutrosProdutos": 1,
-                            "vendasOutros": 100.00,
-                            "litroOutros": 50.0
-                        },
-                        {
-                            "Posto": "POSTO002",
-                            "registrosNaBase": 3,
-                            "qtdAbastecimento": 1,
-                            "vendaCombustivel": 500.50,
-                            "litroCombustivel": 200.0,
-                            "qtdProduto": 1,
-                            "vendaProduto": 150.00,
-                            "litroProduto": 75.0,
-                            "qtdOutrosProdutos": 1,
-                            "vendasOutros": 50.00,
-                            "litroOutros": 25.0
-                        },
-                        {
-                            "Posto": "POSTO003",
-                            "registrosNaBase": 3,
-                            "qtdAbastecimento": 1,
-                            "vendaCombustivel": 500.50,
-                            "litroCombustivel": 200.0,
-                            "qtdProduto": 1,
-                            "vendaProduto": 150.00,
-                            "litroProduto": 75.0,
-                            "qtdOutrosProdutos": 1,
-                            "vendasOutros": 50.00,
-                            "litroOutros": 25.0
-                        },
-                        {
-                            "Posto": "POSTO004",
-                            "registrosNaBase": 3,
-                            "qtdAbastecimento": 1,
-                            "vendaCombustivel": 500.50,
-                            "litroCombustivel": 200.0,
-                            "qtdProduto": 1,
-                            "vendaProduto": 150.00,
-                            "litroProduto": 75.0,
-                            "qtdOutrosProdutos": 1,
-                            "vendasOutros": 50.00,
-                            "litroOutros": 25.0
-                        },
-                        {
-                            "Posto": "POSTO005",
-                            "registrosNaBase": 3,
-                            "qtdAbastecimento": 1,
-                            "vendaCombustivel": 500.50,
-                            "litroCombustivel": 200.0,
-                            "qtdProduto": 1,
-                            "vendaProduto": 150.00,
-                            "litroProduto": 75.0,
-                            "qtdOutrosProdutos": 1,
-                            "vendasOutros": 50.00,
-                            "litroOutros": 25.0
+            if (clientToken === `Bearer ${expectedToken}`) {
+                const timezone = 'America/Sao_Paulo';
+
+                // Primeiro dia do mês corrente
+                const firstDay = moment.tz(timezone).startOf('month').format('YYYY-MM-DD');
+                // Último dia do mês corrente
+                const lastDay = moment.tz(timezone).endOf('month').format('YYYY-MM-DD');
+
+                const result = await prismaSales.vendas.findMany({
+                    select: {
+                        items: true,
+                        ibm: true
+                    },
+                    where: {
+                        dtHr: {
+                            gte: `2024-08-05T00:00:00.000Z`,
+                            lte: `2024-08-05T23:59:59.999Z`,
+                        }
+                    }
+                });
+
+                type RegionStation = {
+                    [key: string]: string[];
+                };
+
+                type RegionalTotals = {
+                    [key: string]: number;
+                };
+
+                const regionalMap: RegionStation = regionStation;
+                const regionalTotals: RegionalTotals = {};
+                const regionalQuantities: RegionalTotals = {};
+                for (const entry of result) {
+                    const ibm = entry.ibm;
+                    let regionalName: string | null = null;
+
+                    for (const [region, ibms] of Object.entries(regionalMap)) {
+                        if (ibms.includes(ibm)) {
+                            regionalName = region;
+                            break;
+                        }
+                    }
+
+                    if (regionalName) {
+                        if (!regionalTotals[regionalName]) {
+                            regionalTotals[regionalName] = 0;
+                            regionalQuantities[regionalName] = 0;
                         }
 
-                    ]
+                        for (const item of entry.items) {
+                            if (item.iTip === '1') {
+                                if (variable_type === 'invoicing') {
+                                    // Somar tot se variable_type for 'invoicing'
+                                    regionalTotals[regionalName] += parseFloat(item.tot) || 0;
+                                } else if (variable_type === 'volume_sold') {
+                                    // Somar qd se variable_type for 'volume_sold'
+                                    regionalTotals[regionalName] += parseFloat(item.qd) || 0;
+                                } else if (variable_type === 'cost') {
+                                    // Somar pC se variable_type for 'cost'
+                                    regionalTotals[regionalName] += parseFloat(item.pC) || 0;
+                                } else if (variable_type === 'fuel_margin') {
+                                    // Acumular tot e qd para calcular a margem de combustível
+                                    regionalTotals[regionalName] += parseFloat(item.tot) || 0;
+                                    regionalQuantities[regionalName] += parseFloat(item.qd) || 0;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // Para calcular a margem de combustível, dividir tot por qd
+                if (variable_type === 'fuel_margin') {
+                    for (const region of Object.keys(regionalTotals)) {
+                        if (regionalQuantities[region] > 0) {
+                            regionalTotals[region] = regionalTotals[region] / regionalQuantities[region];
+                        } else {
+                            regionalTotals[region] = 0;
+                        }
+                    }
+                }
+
+                let finalRegionalTotals: { [key: string]: number } = {};
+
+                for (let key in regionalTotals) {
+                    if (regionalTotals.hasOwnProperty(key)) {
+
+                        let roundedValue = Math.round(regionalTotals[key] * 100) / 100;
+
+                        finalRegionalTotals[key] = roundedValue;
+                    }
+                }
+                let orderRegional = { "Regional 1": finalRegionalTotals["REGIONAL1"], "Regional 2": finalRegionalTotals["REGIONAL2"], "Regional 3": finalRegionalTotals["REGIONAL3"], "Regional 4": finalRegionalTotals["REGIONAL4"], "Regional 5": finalRegionalTotals["REGIONAL5"], "Regional Itaúna": finalRegionalTotals["REGIONALITAUNA"] }
 
 
-
-
-                return res.status(200).json({ data: results });
+                return res.json(orderRegional);
 
             } else {
-                return res
-                    .status(401)
-                    .json({ message: "Falha na autenticação: Token inválido." });
+                return res.status(401).json({ message: "Falha na autenticação: Token inválido." });
             }
 
         } catch (error) {
             return res.status(500).json({ message: `Erro ao retornar os dados: ${error}` });
         }
     }
+
 
 
 
