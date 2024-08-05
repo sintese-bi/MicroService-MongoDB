@@ -5,6 +5,6 @@ const dataRouter = Router()
 
 dataRouter.get("/infodata", DataController.infoData)
 dataRouter.get("/sum-fuel-literage", DataController.sumFuelLiterage)
-dataRouter.get("/dataframe-gallonage", DataController.dataFrameGallonage)
 dataRouter.post("/daily-graphic", DataController.dailyGraphic)
+dataRouter.post("/regional-chart", DataController.regionalChart)
 export default dataRouter
