@@ -289,9 +289,9 @@ class DataController {
                 const actualMonth = parseInt(actualdate.split('-')[1]);
 
                 //Primeiro e último dia do mês
-                const firstDayweek = moment.tz({ year: actualYear, month: actualMonth - 1 }, timezone).startOf('month');
-                const lastDayweek = moment.tz({ year: actualYear, month: actualMonth - 1 }, timezone).endOf('month');
-
+                const firstDayweek = moment.tz(timezone).startOf('month').subtract(3, 'hours');
+                const lastDayweek = moment.tz(timezone).endOf('month').subtract(3, 'hours');
+                
                 // Agregar os dias da semana
                 const daysOfWeek: { [key: string]: string[] } = {};
                 let currentDay = firstDayweek.clone();
