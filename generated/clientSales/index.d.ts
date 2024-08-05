@@ -976,7 +976,6 @@ export namespace Prisma {
     name: "VendasItems"
     objects: {}
     scalars: {
-      ibm: any;
       aIcm: string | null
       bId: string
       bLmc: string

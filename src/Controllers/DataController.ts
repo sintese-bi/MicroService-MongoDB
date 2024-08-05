@@ -429,8 +429,8 @@ class DataController {
                     },
                     where: {
                         dtHr: {
-                            gte: `2024-08-05T00:00:00.000Z`,
-                            lte: `2024-08-05T23:59:59.999Z`,
+                            gte: `${firstDay}T00:00:00.000Z`,
+                            lte: `${lastDay}T23:59:59.999Z`,
                         }
                     }
                 });
