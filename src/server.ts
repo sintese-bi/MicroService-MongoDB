@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import dataRouter from "../routes/data";
-
+import alertsRouter from "../routes/alerts";
 // import wppRouter from "../routes/wpp";
 const app = express();
 const PORT = 3052;
