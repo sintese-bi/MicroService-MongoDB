@@ -289,13 +289,12 @@ class DataController {
                 const actualMonth = parseInt(actualdate.split('-')[1]);
 
                 //Primeiro e último dia do mês
-                const firstDayweek = moment.tz(timezone).startOf('month').subtract(3, 'hours');
-                const lastDayweek = moment.tz(timezone).endOf('month').subtract(3, 'hours');
+                const firstDayweek = moment.tz(timezone).startOf('month');
+                const lastDayweek = moment.tz(timezone).endOf('month');
 
                 // Agregar os dias da semana
                 const daysOfWeek: { [key: string]: string[] } = {};
                 let currentDay = firstDayweek.clone();
-
                 while (currentDay.isBefore(lastDayweek) || currentDay.isSame(lastDayweek)) {
                     const dayOfWeek = currentDay.format('dddd');
                     const formattedDate = currentDay.format('YYYY-MM-DD');
@@ -315,7 +314,6 @@ class DataController {
                     }
 
                 }
-
                 const multiplesInterval: any = dateRanges?.map(element => {
                     return {
                         dtHr: {
