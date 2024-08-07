@@ -156,7 +156,7 @@ class DataController {
                 }, 0);
 
 
-                return res.status(200).json({ data: [{ label: "Venda de Combustível", value: Math.round(sumFuel * 100) / 100, secondary_label: "TMC", secondary_value: Math.round((sumFuel / quantSupply) * 100) / 100 }, { label: "Volume Total", value: Math.round(sumLiterage * 100) / 100, secondary_label: "TMV", secondary_value: Math.round((sumLiterage / quantSupply) * 100) / 100 }, { label: "Venda de Produto", value: Math.round(sumFuelProd * 100) / 100, secondary_label: "TMP", secondary_value: Math.round((sumFuelProd / quantTotal) * 100) / 100 }, {}, {}, {}] })
+                return res.status(200).json({ data: [{ label: "Venda de Combustível", value: Math.round(sumFuel * 100) / 100, secondary_label: "TMC", secondary_value: Math.round((sumFuel / quantSupply) * 100) / 100 }, { label: "Volume Total", value: Math.round(sumLiterage * 100) / 100, secondary_label: "TMV", secondary_value: Math.round((sumLiterage / quantSupply) * 100) / 100 }, { label: "Venda de Produto", value: Math.round(sumFuelProd * 100) / 100, secondary_label: "TMP", secondary_value: Math.round((sumFuelProd / quantTotal) * 100) / 100 }] })
             } else {
                 return res
                     .status(401)
@@ -420,7 +420,7 @@ class DataController {
             const timezone = 'America/Sao_Paulo';
             const firstDay = moment.tz(timezone).startOf('month').toDate();
             const lastDay = moment.tz(timezone).endOf('month').toDate();
-            const today=moment.tz(timezone).format('YYYY-MM-DD')
+            const today = moment.tz(timezone).format('YYYY-MM-DD')
             // Pré-processar o mapeamento regional
             const ibmToRegionMap: { [key: string]: string } = {};
             for (const [region, ibms] of Object.entries(regionStation)) {
