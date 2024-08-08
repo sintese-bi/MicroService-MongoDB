@@ -77,19 +77,7 @@ class DataController {
                     }
 
                 })
-                // const ibmSet = new Set(fuelliterageSell.map(element => element.ibm));
-                // const ibmList = Array.from(ibmSet);
-                // const value = ibmList.length
 
-                // const names = await prismaLBCBi.lojas.findMany({
-
-
-                //     select: { ibm: true, nomeFantasia: true }
-
-                // })
-                // const missingIbms = names.filter(name => !ibmSet.has(name.ibm));
-
-                // return res.status(200).json({ data: ibmList, quantidade: value, nomes:names,missing:missingIbms})
                 //Construção array de items
                 const itemsArray = fuelliterageSell.flatMap(element => {
 
@@ -99,14 +87,13 @@ class DataController {
                 })
                 //Quantas vezes foi abastecido combustível nos postos
                 const supplyQuantity = itemsArray.flatMap(element => {
-                    if (element.iTip == "1") {
-                        return element
-                    }
+                    return element
 
                 })
                 //Quantas vezes entraram carros e compraram no posto
                 const quantTotal = itemsArray.length
                 const quantSupply = supplyQuantity.length
+
                 //Soma combustíveis tipo combustivel
                 const fuel = itemsArray
                     .map(element => {
@@ -159,8 +146,8 @@ class DataController {
                 return res.status(200).json({
                     data: [{ label: "Venda de Combustível", value: Math.round(sumFuel * 100) / 100, secondary_label: "TMC", secondary_value: Math.round((sumFuel / quantSupply) * 100) / 100 },
                     { label: "Volume Total", value: Math.round(sumLiterage * 100) / 100, secondary_label: "TMV", secondary_value: Math.round((sumLiterage / quantSupply) * 100) / 100 },
-                    { label: "Venda de Produto", value: Math.round(sumFuelProd * 100) / 100, secondary_label: "TMP", secondary_value: Math.round((sumFuelProd / quantTotal) * 100) / 100 },
-                    { label: "Quantidade de Produto Vendido", value: 100, secondary_label: "TMP", secondary_value: 0.225 },
+                    { label: "Venda de Produto", value: Math.round(sumFuelProd * 100) / 100, secondary_label: "TMP", secondary_value: Math.round((sumFuelProd / quantSupply) * 100) / 100 },
+                    { label: "Quantidade de Produto Vendido", value: Math.round(sumLiterageProd * 100) / 100, secondary_label: "TMP", secondary_value: sumLiterageProd / quantSupply },
                     { label: "Venda de Serviços", value: 2000, secondary_label: "TMS", secondary_value: 0.54 },
                     { label: "Outros", value: 50000, secondary_label: "TMS", secondary_value: 0.89 },
                     ]
@@ -179,104 +166,6 @@ class DataController {
 
 
     }
-    //Primeiro dataframe
-    // public async dataFrameGallonage(req: Request, res: Response) {
-    //     try {
-    //         const actualdate = moment().tz("America/Sao_Paulo").format("YYYY-MM-DD");
-
-    //         const clientToken = req.headers.authorization;
-    //         if (!clientToken) {
-    //             return res.status(401).json({ message: "Token não fornecido." });
-    //         }
-
-    //         const expectedToken = process.env.TOKEN;
-    //         if (clientToken == `Bearer ${expectedToken}`) {
-
-    //             const vendas = await prismaSales.vendas.findMany({
-
-    //                 orderBy: {
-    //                     dtHr: 'asc',
-    //                 },
-    //             });
-
-    //             // Extração de `ibm` únicos
-    //             const ibmList = [...new Set(vendas.map(venda => venda.ibm))];
-    //             const results = [];
-
-    //             for (const posto of ibmList) {
-    //                 let registroPosto = 0;
-    //                 // Listas auxiliares
-    //                 const valorCombustivel: number[] = [];
-    //                 const litroCombustivel: number[] = [];
-    //                 const valorProduto: number[] = [];
-    //                 const litroProduto: number[] = [];
-    //                 const valorOutros: number[] = [];
-    //                 const litrosOutros: number[] = [];
-
-    //                 const iTips: string[] = [];
-
-    //                 // Consulta documentos filtrados por `ibm`
-    //                 const docPosto = await prismaSales.vendas.findMany({
-    //                     where: {
-    //                         ibm: posto,
-    //                         dtHr: {
-    //                             gte: `2024-07-29T00:00:00.000Z`,
-    //                             lte: `2024-07-29T23:59:59.999Z`
-    //                         }
-    //                     },
-    //                     orderBy: {
-    //                         dtHr: 'asc',
-    //                     },
-    //                 });
-
-    //                 for (const doc of docPosto) {
-    //                     registroPosto++;
-    //                     const docItens = doc.items;
-
-    //                     for (const item of docItens) {
-    //                         iTips.push(item.iTip);
-    //                         if (item.iTip === '1') {
-    //                             valorCombustivel.push(parseFloat(item.tot));
-    //                             litroCombustivel.push(parseFloat(item.qd));
-    //                         } else if (item.iTip === '0') {
-    //                             valorProduto.push(parseFloat(item.tot));
-    //                             litroProduto.push(parseFloat(item.qd));
-    //                         } else {
-    //                             valorOutros.push(parseFloat(item.tot));
-    //                             litrosOutros.push(parseFloat(item.qd));
-    //                         }
-    //                     }
-    //                 }
-
-    //                 const result = {
-    //                     Posto: posto,
-    //                     registrosNaBase: registroPosto,
-    //                     qtdAbastecimento: valorCombustivel.length,
-    //                     vendaCombustivel: Number(valorCombustivel.reduce((a, b) => a + b, 0).toFixed(2)),
-    //                     litroCombustivel: Number(litroCombustivel.reduce((a, b) => a + b, 0).toFixed(2)),
-    //                     qtdProduto: valorProduto.length,
-    //                     vendaProduto: Number(valorProduto.reduce((a, b) => a + b, 0).toFixed(2)),
-    //                     litroProduto: Number(litroProduto.reduce((a, b) => a + b, 0).toFixed(2)),
-    //                     qtdOutrosProdutos: valorOutros.length,
-    //                     vendasOutros: Number(valorOutros.reduce((a, b) => a + b, 0).toFixed(2)),
-    //                     litroOutros: Number(litrosOutros.reduce((a, b) => a + b, 0).toFixed(2)),
-    //                 };
-
-    //                 results.push(result);
-    //             }
-
-    //             return res.status(200).json({ data: results });
-
-    //         } else {
-    //             return res
-    //                 .status(401)
-    //                 .json({ message: "Falha na autenticação: Token inválido." });
-    //         }
-
-    //     } catch (error) {
-    //         return res.status(500).json({ message: `Erro ao retornar os dados: ${error}` });
-    //     }
-    // }
 
     //Dados do Gráfico diário
     public async dailyGraphic(req: Request, res: Response) {
@@ -521,7 +410,24 @@ class DataController {
             return res.status(500).json({ message: `Erro ao retornar os dados: ${error}` });
         }
     }
+    public async mapData(req: Request, res: Response) {
+        try {
+            const today = moment.tz('America/Sao_Paulo').format('YYYY-MM-DD')
 
+            const result = await prismaSales.vendas.findMany({
+                select: { ibm: true, items: true },
+                where: {
+                    dtHr: {
+                        gte: `${today}T00:00:00.000Z`,
+                        lte: `${today}T23:59:59.999Z`,
+                    }
+                }
+            })
+
+            return res.status(200).json({ data: result })
+
+        } catch (error) { return res.status(500).json({ message: `Erro ao retornar os dados: ${error}` }); }
+    }
 
 
 

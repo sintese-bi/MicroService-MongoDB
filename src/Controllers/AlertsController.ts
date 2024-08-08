@@ -16,10 +16,17 @@ import regionStation from '../utils/regionsstation.json';
 
 class AlertsController {
 
+    public async Test(req: Request, res: Response) {
+        try {
+            
+          
 
 
 
-
+         } catch (error) {
+            return res.status(500).json({ message: `Erro ao retornar os dados: ${error}` });
+        }
+    }
 
 }
 
