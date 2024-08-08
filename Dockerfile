@@ -20,7 +20,7 @@ COPY . .
 # Gere o cliente Prisma para os esquemas
 RUN npx prisma generate --schema=./prisma/schemaLBCBi.prisma
 RUN npx prisma generate --schema=./prisma/schemaSalesMonitor.prisma
-
+RUN npx prisma generate --schema=./prisma/schemaRedeFlex.prisma
 RUN npm run build
 
 # Exponha a porta que a aplicação usará
