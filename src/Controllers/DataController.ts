@@ -156,7 +156,15 @@ class DataController {
                 }, 0);
 
 
-                return res.status(200).json({ data: [{ label: "Venda de Combustível", value: Math.round(sumFuel * 100) / 100, secondary_label: "TMC", secondary_value: Math.round((sumFuel / quantSupply) * 100) / 100 }, { label: "Volume Total", value: Math.round(sumLiterage * 100) / 100, secondary_label: "TMV", secondary_value: Math.round((sumLiterage / quantSupply) * 100) / 100 }, { label: "Venda de Produto", value: Math.round(sumFuelProd * 100) / 100, secondary_label: "TMP", secondary_value: Math.round((sumFuelProd / quantTotal) * 100) / 100 }] })
+                return res.status(200).json({
+                    data: [{ label: "Venda de Combustível", value: Math.round(sumFuel * 100) / 100, secondary_label: "TMC", secondary_value: Math.round((sumFuel / quantSupply) * 100) / 100 },
+                    { label: "Volume Total", value: Math.round(sumLiterage * 100) / 100, secondary_label: "TMV", secondary_value: Math.round((sumLiterage / quantSupply) * 100) / 100 },
+                    { label: "Venda de Produto", value: Math.round(sumFuelProd * 100) / 100, secondary_label: "TMP", secondary_value: Math.round((sumFuelProd / quantTotal) * 100) / 100 },
+                    { label: "Quantidade de Produto Vendido", value: 100, secondary_label: "TMP", secondary_value: 0.225 },
+                    { label: "Venda de Serviços", value: 2000, secondary_label: "TMS", secondary_value: 0.54 },
+                    { label: "Outros", value: 50000, secondary_label: "TMS", secondary_value: 0.89 },
+                    ]
+                })
             } else {
                 return res
                     .status(401)
