@@ -145,11 +145,11 @@ class DataController {
 
                 return res.status(200).json({
                     data: [{ label: "Venda de Combustível", value: Math.round(sumFuel * 100) / 100, secondary_label: "TMC", secondary_value: Math.round((sumFuel / quantSupply) * 100) / 100 },
-                    { label: "Volume Total", value: Math.round(sumLiterage * 100) / 100, secondary_label: "TMV", secondary_value: Math.round((sumLiterage / quantSupply) * 100) / 100 },
+                    { label: "Galonagem", value: Math.round(sumLiterage * 100) / 100, secondary_label: "TMV", secondary_value: Math.round((sumLiterage / quantSupply) * 100) / 100 },
                     { label: "Venda de Produto", value: Math.round(sumFuelProd * 100) / 100, secondary_label: "TMP", secondary_value: Math.round((sumFuelProd / quantSupply) * 100) / 100 },
-                    { label: "Quantidade de Produto Vendido", value: Math.round(sumLiterageProd * 100) / 100},
-                    { label: "Venda de Serviços", value: 2000},
-                    { label: "Outros", value: 50000 },
+                    { label: "Lucro Combustível", value: Math.round(sumLiterageProd * 100) / 100 },
+                    { label: "Lucro Produto", value: 2000 },
+                    { label: "Quantidade de Produto Vendido", value: 50000 },
                     ]
                 })
             } else {
@@ -412,20 +412,83 @@ class DataController {
     }
     public async mapData(req: Request, res: Response) {
         try {
-            const today = moment.tz('America/Sao_Paulo').format('YYYY-MM-DD')
+            const clientToken = req.headers.authorization;
 
-            const result = await prismaSales.vendas.findMany({
-                select: { ibm: true, items: true },
-                where: {
-                    dtHr: {
-                        gte: `${today}T00:00:00.000Z`,
-                        lte: `${today}T23:59:59.999Z`,
+            if (!clientToken) {
+                return res.status(401).json({ message: "Token não fornecido." });
+            }
+            const expectedToken = process.env.TOKEN;
+            if (clientToken == `Bearer ${expectedToken}`) {
+                const today = moment.tz('America/Sao_Paulo').format('YYYY-MM-DD')
+
+                const result = await prismaSales.vendas.findMany({
+                    select: { ibm: true, items: true },
+                    where: {
+                        dtHr: {
+                            gte: `${today}T00:00:00.000Z`,
+                            lte: `${today}T23:59:59.999Z`,
+                        }
                     }
+                })
+                //Agregando por IBM
+                let station: { [key: string]: Object[] } = {}
+                result.forEach(element => {
+
+                    if (!station[element.ibm]) {
+                        station[element.ibm] = []
+
+                    }
+                    station[element.ibm].push(...element.items);
+
+                })
+                let ibmvalues = []
+                for (let ibm in station) {
+                    let itemsArray = station[ibm];
+
+                    const sumfuel = itemsArray.reduce((accumulate: number, initialValue: any) => {
+                        if (initialValue.iTip == "1") {
+                            const value = parseFloat(initialValue.tot);
+                            return accumulate + value;
+                        }
+                        return accumulate;
+                    }, 0);
+                    const literage = itemsArray.reduce((accumulate: number, initialValue: any) => {
+                        if (initialValue.iTip == "1") {
+                            const value = parseFloat(initialValue.qd);
+                            return accumulate + value;
+                        }
+                        return accumulate;
+                    }, 0);
+                    const sumproduct = itemsArray.reduce((accumulate: number, initialValue: any) => {
+                        if (initialValue.iTip == "0") {
+                            const value = parseFloat(initialValue.tot);
+                            return accumulate + value;
+                        }
+                        return accumulate;
+                    }, 0);
+                    const cost_price = itemsArray.reduce((accumulate: number, initialValue: any) => {
+                        if (initialValue.iTip == "1") {
+                            const value = parseFloat(initialValue.pC);
+                            return accumulate + value;
+                        }
+                        return accumulate;
+                    }, 0);
+
+                    const roundedSum = Math.round(sumfuel * 100) / 100;
+                    const roundedProduct = Math.round(sumproduct * 100) / 100;
+                    const roundedLiterage = Math.round(literage * 100) / 100;
+
+
+
+                    ibmvalues.push({ ibm: ibm, fuel_sales: roundedSum, product_sales: roundedProduct, literage: roundedLiterage });
                 }
-            })
 
-            return res.status(200).json({ data: result })
-
+                return res.status(200).json({ data: ibmvalues })
+            } else {
+                return res
+                    .status(401)
+                    .json({ message: "Falha na autenticação: Token inválido." });
+            }
         } catch (error) { return res.status(500).json({ message: `Erro ao retornar os dados: ${error}` }); }
     }
 
