@@ -480,7 +480,7 @@ class DataController {
 
 
 
-                    ibmvalues.push({ ibm: ibm, fuel_sales: roundedSum, product_sales: roundedProduct, literage: roundedLiterage });
+                    ibmvalues.push({ ibm: ibm, "Venda de Combustível": roundedSum, "Produtos vendidos": roundedProduct,"Galonagem": roundedLiterage });
                 }
 
                 return res.status(200).json({ data: ibmvalues })
