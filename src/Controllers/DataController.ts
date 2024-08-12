@@ -145,10 +145,10 @@ class DataController {
 
                 return res.status(200).json({
                     data: [{ label: "Venda de Combustível", value: Math.round(sumFuel * 100) / 100, secondary_label: "TMC", secondary_value: Math.round((sumFuel / quantSupply) * 100) / 100 },
-                    { label: "Galonagem", value: Math.round(sumLiterage * 100) / 100, secondary_label: "TMV", secondary_value: Math.round((sumLiterage / quantSupply) * 100) / 100 },
-                    { label: "Venda de Produto", value: Math.round(sumFuelProd * 100) / 100, secondary_label: "TMP", secondary_value: Math.round((sumFuelProd / quantSupply) * 100) / 100 },
                     { label: "Lucro Combustível", value: Math.round(sumLiterageProd * 100) / 100 },
+                    { label: "Venda de Produto", value: Math.round(sumFuelProd * 100) / 100, secondary_label: "TMP", secondary_value: Math.round((sumFuelProd / quantSupply) * 100) / 100 },
                     { label: "Lucro Produto", value: 2000 },
+                    { label: "Galonagem", value: Math.round(sumLiterage * 100) / 100, secondary_label: "TMV", secondary_value: Math.round((sumLiterage / quantSupply) * 100) / 100 },
                     { label: "Quantidade de Produto Vendido", value: 50000 },
                     ]
                 })
