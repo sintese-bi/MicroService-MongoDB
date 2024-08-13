@@ -120,16 +120,21 @@ class DataController {
                     return (accumulator || 0) + (currentValue || 0);
                 }, 0);
                 //Soma do preço de custo do combustível
-                const cost_price = itemsArray.map(element => {
-                    if (element.iTip == "1") { return parseFloat(element.pC) }
-                    return undefined;
-
-                }).filter((item): item is number => item !== undefined)
+                const cost_price = itemsArray
+                    .map(element => {
+                        if (element.iTip === "1") {
+                            return { pc: parseFloat(element.pC), qd: parseFloat(element.qd) };
+                        }
+                        return undefined;
+                    })
+                    .filter((item): item is { pc: number; qd: number } => item !== undefined);
 
 
                 const sumCostPrice = cost_price.reduce((accumulator, currentValue) => {
-                    return (accumulator || 0) + (currentValue || 0);
+                    return (accumulator || 0) + (currentValue.qd * currentValue.pc || 0);
                 }, 0);
+
+
                 //Soma combustíveis tipo produto
                 const fuelProd = itemsArray.map(element => {
                     if (element.iTip == "0") { return parseFloat(element.tot) }
@@ -152,15 +157,18 @@ class DataController {
                     return (accumulator || 0) + (currentValue || 0);
                 }, 0);
                 //Soma do preço de custo do produto
-                const product_price = itemsArray.map(element => {
-                    if (element.iTip == "0") { return parseFloat(element.pC) }
-                    return undefined;
-
-                }).filter((item): item is number => item !== undefined)
+                const product_price = itemsArray
+                    .map(element => {
+                        if (element.iTip === "0") {
+                            return { pc: parseFloat(element.pC), qd: parseFloat(element.qd) };
+                        }
+                        return undefined;
+                    })
+                    .filter((item): item is { pc: number; qd: number } => item !== undefined);
 
 
                 const sumProductPrice = product_price.reduce((accumulator, currentValue) => {
-                    return (accumulator || 0) + (currentValue || 0);
+                    return (accumulator || 0) + (currentValue.pc * currentValue.qd || 0);
                 }, 0);
                 //Diferença faturamento de combustível pelo custo que é o lucro
                 const fuelProfit = Math.round(((sumFuel - sumCostPrice)) * 100) / 100
