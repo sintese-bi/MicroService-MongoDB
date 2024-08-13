@@ -119,7 +119,17 @@ class DataController {
                 const sumLiterage = literage.reduce((accumulator, currentValue) => {
                     return (accumulator || 0) + (currentValue || 0);
                 }, 0);
+                //Soma do preço de custo do combustível
+                const cost_price = itemsArray.map(element => {
+                    if (element.iTip == "1") { return parseFloat(element.pC) }
+                    return undefined;
 
+                }).filter((item): item is number => item !== undefined)
+
+
+                const sumCostPrice = cost_price.reduce((accumulator, currentValue) => {
+                    return (accumulator || 0) + (currentValue || 0);
+                }, 0);
                 //Soma combustíveis tipo produto
                 const fuelProd = itemsArray.map(element => {
                     if (element.iTip == "0") { return parseFloat(element.tot) }
@@ -141,15 +151,28 @@ class DataController {
                 const sumLiterageProd = literageProd.reduce((accumulator, currentValue) => {
                     return (accumulator || 0) + (currentValue || 0);
                 }, 0);
+                //Soma do preço de custo do produto
+                const product_price = itemsArray.map(element => {
+                    if (element.iTip == "0") { return parseFloat(element.pC) }
+                    return undefined;
+
+                }).filter((item): item is number => item !== undefined)
 
 
+                const sumProductPrice = product_price.reduce((accumulator, currentValue) => {
+                    return (accumulator || 0) + (currentValue || 0);
+                }, 0);
+                //Diferença faturamento de combustível pelo custo que é o lucro
+                const fuelProfit = Math.round(((sumFuel - sumCostPrice)) * 100) / 100
+                //Diferença faturamento de produto pelo custo que é o lucro
+                const productProfit = Math.round(((sumFuelProd - sumProductPrice)) * 100) / 100
                 return res.status(200).json({
                     data: [{ label: "Venda de Combustível", value: Math.round(sumFuel * 100) / 100, secondary_label: "TMC", secondary_value: Math.round((sumFuel / quantSupply) * 100) / 100 },
-                    { label: "Lucro Combustível", value: Math.round(sumLiterageProd * 100) / 100 },
+                    { label: "Lucro Combustível", value: fuelProfit },
                     { label: "Venda de Produto", value: Math.round(sumFuelProd * 100) / 100, secondary_label: "TMP", secondary_value: Math.round((sumFuelProd / quantSupply) * 100) / 100 },
-                    { label: "Lucro Produto", value: 2000 },
+                    { label: "Lucro Produto", value: productProfit },
                     { label: "Galonagem", value: Math.round(sumLiterage * 100) / 100, secondary_label: "TMV", secondary_value: Math.round((sumLiterage / quantSupply) * 100) / 100 },
-                    { label: "Quantidade de Produto Vendido", value: 50000 },
+                    { label: "Quantidade de Produto Vendido", value: sumLiterageProd },
                     ]
                 })
             } else {
@@ -192,6 +215,7 @@ class DataController {
                 // Agregar os dias da semana
                 const daysOfWeek: { [key: string]: string[] } = {};
                 let currentDay = firstDayweek.clone();
+
                 while (currentDay.isBefore(lastDayweek) || currentDay.isSame(lastDayweek)) {
                     const dayOfWeek = currentDay.format('dddd');
                     const formattedDate = currentDay.format('YYYY-MM-DD');
@@ -480,7 +504,7 @@ class DataController {
 
 
 
-                    ibmvalues.push({ ibm: ibm, "Venda de Combustível": roundedSum, "Produtos vendidos": roundedProduct,"Galonagem": roundedLiterage });
+                    ibmvalues.push({ ibm: ibm, "Venda de Combustível": roundedSum, "Produtos vendidos": roundedProduct, "Galonagem": roundedLiterage });
                 }
 
                 return res.status(200).json({ data: ibmvalues })
