@@ -115,7 +115,14 @@ class DataController {
 
                 }).filter((item): item is number => item !== undefined)
 
+                //Carros que entraram no posto
+                const supply = itemsArray.map(element => {
+                    return parseFloat(element.qd)
 
+                }, 0)
+                const sumSupply = supply.reduce((accumulator, currentValue) => {
+                    return (accumulator || 0) + (currentValue || 0);
+                })
                 const sumLiterage = literage.reduce((accumulator, currentValue) => {
                     return (accumulator || 0) + (currentValue || 0);
                 }, 0);
@@ -175,12 +182,15 @@ class DataController {
                 //Diferença faturamento de produto pelo custo que é o lucro
                 const productProfit = Math.round(((sumFuelProd - sumProductPrice)) * 100) / 100
                 return res.status(200).json({
-                    data: [{ label: "Venda de Combustível", value: Math.round(sumFuel * 100) / 100, secondary_label: "TMC", secondary_value: Math.round((sumFuel / quantSupply) * 100) / 100 },
-                    { label: "Lucro Combustível", value: fuelProfit },
+                    data: [{ label: "Galonagem", value: Math.round(sumLiterage * 100) / 100, secondary_label: "TMV", secondary_value: Math.round((sumLiterage / quantSupply) * 100) / 100 },
+                    { label: "Quantidade de Produtos Vendidos", value: sumLiterageProd },
+                    { label: "Abastecimentos", value: Math.round(sumSupply * 100) / 100 },
+                    { label: "Venda Galonagem", value: Math.round(sumFuel * 100) / 100, secondary_label: "TMF", secondary_value: Math.round((sumFuel / quantSupply) * 100) / 100 },
+                    { label: "Lucro Galonagem", value: fuelProfit },
+                    { label: "Resultado Bruto Galonagem(%)", value: Math.round(fuelProfit / sumCostPrice * 100) },
                     { label: "Venda de Produto", value: Math.round(sumFuelProd * 100) / 100, secondary_label: "TMP", secondary_value: Math.round((sumFuelProd / quantSupply) * 100) / 100 },
                     { label: "Lucro Produto", value: productProfit },
-                    { label: "Galonagem", value: Math.round(sumLiterage * 100) / 100, secondary_label: "TMV", secondary_value: Math.round((sumLiterage / quantSupply) * 100) / 100 },
-                    { label: "Quantidade de Produto Vendido", value: sumLiterageProd },
+                    { label: "Resultado Bruto Produto(%)", value: Math.round(productProfit / sumProductPrice * 100) },
                     ]
                 })
             } else {
