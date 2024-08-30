@@ -8,139 +8,102 @@ datasource db {
   url      = env("DATABASE_URLPOSTGRESQL")
 }
 
-model basedados {
-  company_uuid       String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  company_emp        Int?
-  company_name       String?   @db.VarChar(50)
-  company_date       DateTime? @db.Date
-  company_week_day   String?   @db.VarChar(50)
-  company_fuel       String?   @db.VarChar(50)
-  company_volume     Float?    @db.Real
-  company_cost       Float?    @db.Real
-  company_sale       Float?    @db.Real
-  company_profit     Float?    @db.Real
-  company_created_at DateTime  @default(now()) @db.Timestamp(6)
-  company_updated_at DateTime  @default(now()) @db.Timestamp(6)
-}
-
-model dataframe_fuel {
-  datafuel_uuid              String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  datafuel_qtdAbastecimento  Float?
-  datafuel_vendaCombustivel  Float?
-  datafuel_litroCombustivel  Float?
-  datafuel_qtdProduto        Float?
-  datafuel_vendaProduto      Float?
-  datafuel_litroProduto      Float?
-  datafuel_qtdOutrosProdutos Float?
-  datafuel_vendasOutros      Float?
-  datafuel_litroOutros       Float?
-  datafuel_custo             Float?
-  datafuel_lucro             Float?
-  datafuel_dt_registro       String? @db.VarChar(255)
-  datafuel_updated           String? @db.VarChar(255)
-}
-
-model dataframe_product {
-  dataproduct_uuid                String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  dataproduct_posto               String? @db.VarChar(255)
-  dataproduct_venda_produto       String? @db.VarChar(255)
-  dataproduct_valor_venda         Float?
-  dataproduct_qtd_produto_vendido Float?
-  dataproduct_dt_registro         String? @db.VarChar(255)
-  dataproduct_updated             String? @db.VarChar(255)
-}
-
-model fuel {
-  fuel_uuid             String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  fuel_regular_gasoline Float?   @db.Real
-  fuel_alcohol          Float?   @db.Real
-  use_uuid              String?  @db.Uuid
-  fuel_created_at       DateTime @default(now()) @db.Timestamp(6)
-  fuel_updated_at       DateTime @default(now()) @db.Timestamp(6)
-  users                 users?   @relation(fields: [use_uuid], references: [use_uuid])
-}
-
-model gas_station {
-  gas_uuid       String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  gas_fuel_type  String?  @db.VarChar(255)
-  gas_value      Float?
-  gas_created_at DateTime @default(now()) @db.Timestamp(6)
-  gas_updated_at DateTime @default(now()) @db.Timestamp(6)
-  gas_ibm        String?  @db.VarChar(255)
-  gas_identifier String?  @db.VarChar(255)
-}
-
 model ibm_info {
-  ibm          String? @db.VarChar(255)
-  nomefantasia String? @db.VarChar(255)
-  cnpj         String? @db.VarChar(255)
-  razaosocial  String? @db.VarChar(255)
-  cep          String? @db.VarChar(255)
-  lat          Float?
-  long         Float?
-  id           String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-}
-
-model posto_signal {
-  table_id      String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  posto_id      String?   @db.Uuid
-  vol_sold      Float?    @db.Real
-  vol_rate      Float?    @db.Real
-  vol_alert     String?   @db.VarChar(255)
-  invoicing     Float?    @db.Real
-  invoice_rate  Float?    @db.Real
-  invoice_alert String?   @db.VarChar(255)
-  created_at    DateTime  @default(now()) @db.Timestamp(6)
-  rd_posto      rd_posto? @relation(fields: [posto_id], references: [posto_uuid])
-
-  @@index([posto_id])
-}
-
-model rd_posto {
-  posto_uuid   String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  posto_name   String?        @db.VarChar(255)
-  posto_signal posto_signal[]
-}
-
-model set_variables {
-  set_uuid             String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  set_regular_gasoline Float?   @db.Real
-  set_alcohol          Float?   @db.Real
-  use_uuid             String?  @db.Uuid
-  set_created_at       DateTime @default(now()) @db.Timestamp(6)
-  set_updated_at       DateTime @default(now()) @db.Timestamp(6)
-  users                users?   @relation(fields: [use_uuid], references: [use_uuid])
+  ibm                      String?                    @db.VarChar(255)
+  nomefantasia             String?                    @db.VarChar(255)
+  cnpj                     String?                    @db.VarChar(255)
+  razaosocial              String?                    @db.VarChar(255)
+  cep                      String?                    @db.VarChar(255)
+  lat                      Float?
+  long                     Float?
+  id                       String                     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  endereco                 String?                    @db.VarChar(255)
+  regional                 String?                    @db.VarChar(255)
+  ibm_margin_AL            Float[]
+  ibm_margin_GC            Float[]
+  ibm_margin_Total         Float[]
+  ibm_volume_AL            Float[]
+  ibm_volume_GC            Float[]
+  ibm_volume_Total         Float[]
+  gas_station_setvariables gas_station_setvariables[]
 }
 
 model users {
-  use_uuid              String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  use_name              String?         @db.VarChar(100)
-  use_email             String?         @db.VarChar(50)
-  use_password          String?         @db.VarChar(255)
-  use_created_at        DateTime        @default(now()) @db.Timestamp(6)
-  use_updated_at        DateTime        @default(now()) @db.Timestamp(6)
-  use_date_expire       DateTime?
-  use_token             String?         @db.VarChar(255)
-  use_volume_gc         Boolean?
-  use_volume_al         Boolean?
-  use_volume_total      Boolean?
-  use_volume_gc_min     Float?
-  use_volume_al_min     Float?
-  use_volume_total_min  Float?
-  use_level             String?         @db.VarChar(20)
-  use_whats_app         String[]        @db.VarChar(255)
-  use_margin_al         Boolean?
-  use_margin_al_flag    String?         @db.VarChar(20)
-  use_margin_al_min     Float?
-  use_margin_gc         Boolean?
-  use_margin_gc_flag    String?         @db.VarChar(20)
-  use_margin_gc_min     Float?
-  use_margin_total      Boolean?
-  use_margin_total_flag String?         @db.VarChar(20)
-  use_margin_total_min  Float?
-  use_volume_al_flag    String?         @db.VarChar(20)
-  use_volume_gc_flag    String?         @db.VarChar(20)
-  use_volume_total_flag String?         @db.VarChar(20)
-  fuel                  fuel[]
-  set_variables         set_variables[]
+  use_uuid                 String                     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  use_name                 String?                    @db.VarChar(100)
+  use_email                String?                    @db.VarChar(50)
+  use_password             String?                    @db.VarChar(255)
+  use_created_at           DateTime                   @default(now()) @db.Timestamp(6)
+  use_updated_at           DateTime                   @default(now()) @db.Timestamp(6)
+  use_date_expire          DateTime?
+  use_token                String?                    @db.VarChar(255)
+  use_level                String?                    @db.VarChar(20)
+  use_whats_app            String[]                   @db.VarChar(255)
+  gas_station_setvariables gas_station_setvariables[]
+  region_setvariables      region_setvariables[]
+}
+
+model gas_station_setvariables {
+  gas_station_uuid             String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  gas_station_marginGC         Float?
+  gas_station_marginAL         Float?
+  gas_station_marginTotal      Float?
+  gas_station_volumeGC         Float?
+  gas_station_volumeAL         Float?
+  gas_station_volumeTotal      Float?
+  gas_station_type_marginGC    Boolean?
+  gas_station_type_marginAL    Boolean?
+  gas_station_type_marginTotal Boolean?
+  gas_station_type_volumeGC    Boolean?
+  gas_station_type_volumeAL    Boolean?
+  gas_station_type_volumeTotal Boolean?
+  gas_station_whats_app        String[]  @db.VarChar(255)
+  gas_station_created_at       DateTime  @default(now()) @db.Timestamp(6)
+  gas_station_updated_at       DateTime  @default(now()) @db.Timestamp(6)
+  ibm_info_id                  String?   @db.Uuid
+  use_uuid                     String?   @db.Uuid
+  verification_hour            DateTime?
+  verification_msg_sent        Boolean?  @default(false)
+  ibm_info                     ibm_info? @relation(fields: [ibm_info_id], references: [id])
+  users                        users?    @relation(fields: [use_uuid], references: [use_uuid])
+}
+
+model region_setvariables {
+  region_uuid               String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  region_marginGC           Float?
+  region_marginAL           Float?
+  region_marginTotal        Float?
+  region_volumeGC           Float?
+  region_volumeAL           Float?
+  region_volumeTotal        Float?
+  region_type_marginGC      Boolean?
+  region_type_marginAL      Boolean?
+  region_type_marginTotal   Boolean?
+  region_type_volumeGC      Boolean?
+  region_type_volumeAL      Boolean?
+  region_type_volumeTotal   Boolean?
+  region_whats_app          String[]  @db.VarChar(255)
+  region_station_created_at DateTime  @default(now()) @db.Timestamp(6)
+  region_station_updated_at DateTime  @default(now()) @db.Timestamp(6)
+  use_uuid                  String?   @db.Uuid
+  regions_uuid              String?   @db.Uuid
+  verification_hour         DateTime?
+  verification_msg_sent     Boolean?  @default(false)
+  regions                   regions?  @relation(fields: [regions_uuid], references: [regions_uuid])
+  users                     users?    @relation(fields: [use_uuid], references: [use_uuid])
+}
+
+model regions {
+  regions_uuid         String                @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  regions_name         String?               @db.VarChar(50)
+  regions_types        String?               @db.VarChar(50)
+  region_created_at    DateTime              @default(now()) @db.Timestamp(6)
+  region_updated_at    DateTime              @default(now()) @db.Timestamp(6)
+  regions_margin_AL    Float[]
+  regions_margin_GC    Float[]
+  regions_margin_Total Float[]
+  regions_volume_AL    Float[]
+  regions_volume_GC    Float[]
+  regions_volume_Total Float[]
+  region_setvariables  region_setvariables[]
 }

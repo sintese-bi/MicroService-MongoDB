@@ -119,67 +119,6 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.BasedadosScalarFieldEnum = {
-  company_uuid: 'company_uuid',
-  company_emp: 'company_emp',
-  company_name: 'company_name',
-  company_date: 'company_date',
-  company_week_day: 'company_week_day',
-  company_fuel: 'company_fuel',
-  company_volume: 'company_volume',
-  company_cost: 'company_cost',
-  company_sale: 'company_sale',
-  company_profit: 'company_profit',
-  company_created_at: 'company_created_at',
-  company_updated_at: 'company_updated_at'
-};
-
-exports.Prisma.Dataframe_fuelScalarFieldEnum = {
-  datafuel_uuid: 'datafuel_uuid',
-  datafuel_qtdAbastecimento: 'datafuel_qtdAbastecimento',
-  datafuel_vendaCombustivel: 'datafuel_vendaCombustivel',
-  datafuel_litroCombustivel: 'datafuel_litroCombustivel',
-  datafuel_qtdProduto: 'datafuel_qtdProduto',
-  datafuel_vendaProduto: 'datafuel_vendaProduto',
-  datafuel_litroProduto: 'datafuel_litroProduto',
-  datafuel_qtdOutrosProdutos: 'datafuel_qtdOutrosProdutos',
-  datafuel_vendasOutros: 'datafuel_vendasOutros',
-  datafuel_litroOutros: 'datafuel_litroOutros',
-  datafuel_custo: 'datafuel_custo',
-  datafuel_lucro: 'datafuel_lucro',
-  datafuel_dt_registro: 'datafuel_dt_registro',
-  datafuel_updated: 'datafuel_updated'
-};
-
-exports.Prisma.Dataframe_productScalarFieldEnum = {
-  dataproduct_uuid: 'dataproduct_uuid',
-  dataproduct_posto: 'dataproduct_posto',
-  dataproduct_venda_produto: 'dataproduct_venda_produto',
-  dataproduct_valor_venda: 'dataproduct_valor_venda',
-  dataproduct_qtd_produto_vendido: 'dataproduct_qtd_produto_vendido',
-  dataproduct_dt_registro: 'dataproduct_dt_registro',
-  dataproduct_updated: 'dataproduct_updated'
-};
-
-exports.Prisma.FuelScalarFieldEnum = {
-  fuel_uuid: 'fuel_uuid',
-  fuel_regular_gasoline: 'fuel_regular_gasoline',
-  fuel_alcohol: 'fuel_alcohol',
-  use_uuid: 'use_uuid',
-  fuel_created_at: 'fuel_created_at',
-  fuel_updated_at: 'fuel_updated_at'
-};
-
-exports.Prisma.Gas_stationScalarFieldEnum = {
-  gas_uuid: 'gas_uuid',
-  gas_fuel_type: 'gas_fuel_type',
-  gas_value: 'gas_value',
-  gas_created_at: 'gas_created_at',
-  gas_updated_at: 'gas_updated_at',
-  gas_ibm: 'gas_ibm',
-  gas_identifier: 'gas_identifier'
-};
-
 exports.Prisma.Ibm_infoScalarFieldEnum = {
   ibm: 'ibm',
   nomefantasia: 'nomefantasia',
@@ -188,33 +127,15 @@ exports.Prisma.Ibm_infoScalarFieldEnum = {
   cep: 'cep',
   lat: 'lat',
   long: 'long',
-  id: 'id'
-};
-
-exports.Prisma.Posto_signalScalarFieldEnum = {
-  table_id: 'table_id',
-  posto_id: 'posto_id',
-  vol_sold: 'vol_sold',
-  vol_rate: 'vol_rate',
-  vol_alert: 'vol_alert',
-  invoicing: 'invoicing',
-  invoice_rate: 'invoice_rate',
-  invoice_alert: 'invoice_alert',
-  created_at: 'created_at'
-};
-
-exports.Prisma.Rd_postoScalarFieldEnum = {
-  posto_uuid: 'posto_uuid',
-  posto_name: 'posto_name'
-};
-
-exports.Prisma.Set_variablesScalarFieldEnum = {
-  set_uuid: 'set_uuid',
-  set_regular_gasoline: 'set_regular_gasoline',
-  set_alcohol: 'set_alcohol',
-  use_uuid: 'use_uuid',
-  set_created_at: 'set_created_at',
-  set_updated_at: 'set_updated_at'
+  id: 'id',
+  endereco: 'endereco',
+  regional: 'regional',
+  ibm_margin_AL: 'ibm_margin_AL',
+  ibm_margin_GC: 'ibm_margin_GC',
+  ibm_margin_Total: 'ibm_margin_Total',
+  ibm_volume_AL: 'ibm_volume_AL',
+  ibm_volume_GC: 'ibm_volume_GC',
+  ibm_volume_Total: 'ibm_volume_Total'
 };
 
 exports.Prisma.UsersScalarFieldEnum = {
@@ -226,26 +147,68 @@ exports.Prisma.UsersScalarFieldEnum = {
   use_updated_at: 'use_updated_at',
   use_date_expire: 'use_date_expire',
   use_token: 'use_token',
-  use_volume_gc: 'use_volume_gc',
-  use_volume_al: 'use_volume_al',
-  use_volume_total: 'use_volume_total',
-  use_volume_gc_min: 'use_volume_gc_min',
-  use_volume_al_min: 'use_volume_al_min',
-  use_volume_total_min: 'use_volume_total_min',
   use_level: 'use_level',
-  use_whats_app: 'use_whats_app',
-  use_margin_al: 'use_margin_al',
-  use_margin_al_flag: 'use_margin_al_flag',
-  use_margin_al_min: 'use_margin_al_min',
-  use_margin_gc: 'use_margin_gc',
-  use_margin_gc_flag: 'use_margin_gc_flag',
-  use_margin_gc_min: 'use_margin_gc_min',
-  use_margin_total: 'use_margin_total',
-  use_margin_total_flag: 'use_margin_total_flag',
-  use_margin_total_min: 'use_margin_total_min',
-  use_volume_al_flag: 'use_volume_al_flag',
-  use_volume_gc_flag: 'use_volume_gc_flag',
-  use_volume_total_flag: 'use_volume_total_flag'
+  use_whats_app: 'use_whats_app'
+};
+
+exports.Prisma.Gas_station_setvariablesScalarFieldEnum = {
+  gas_station_uuid: 'gas_station_uuid',
+  gas_station_marginGC: 'gas_station_marginGC',
+  gas_station_marginAL: 'gas_station_marginAL',
+  gas_station_marginTotal: 'gas_station_marginTotal',
+  gas_station_volumeGC: 'gas_station_volumeGC',
+  gas_station_volumeAL: 'gas_station_volumeAL',
+  gas_station_volumeTotal: 'gas_station_volumeTotal',
+  gas_station_type_marginGC: 'gas_station_type_marginGC',
+  gas_station_type_marginAL: 'gas_station_type_marginAL',
+  gas_station_type_marginTotal: 'gas_station_type_marginTotal',
+  gas_station_type_volumeGC: 'gas_station_type_volumeGC',
+  gas_station_type_volumeAL: 'gas_station_type_volumeAL',
+  gas_station_type_volumeTotal: 'gas_station_type_volumeTotal',
+  gas_station_whats_app: 'gas_station_whats_app',
+  gas_station_created_at: 'gas_station_created_at',
+  gas_station_updated_at: 'gas_station_updated_at',
+  ibm_info_id: 'ibm_info_id',
+  use_uuid: 'use_uuid',
+  verification_hour: 'verification_hour',
+  verification_msg_sent: 'verification_msg_sent'
+};
+
+exports.Prisma.Region_setvariablesScalarFieldEnum = {
+  region_uuid: 'region_uuid',
+  region_marginGC: 'region_marginGC',
+  region_marginAL: 'region_marginAL',
+  region_marginTotal: 'region_marginTotal',
+  region_volumeGC: 'region_volumeGC',
+  region_volumeAL: 'region_volumeAL',
+  region_volumeTotal: 'region_volumeTotal',
+  region_type_marginGC: 'region_type_marginGC',
+  region_type_marginAL: 'region_type_marginAL',
+  region_type_marginTotal: 'region_type_marginTotal',
+  region_type_volumeGC: 'region_type_volumeGC',
+  region_type_volumeAL: 'region_type_volumeAL',
+  region_type_volumeTotal: 'region_type_volumeTotal',
+  region_whats_app: 'region_whats_app',
+  region_station_created_at: 'region_station_created_at',
+  region_station_updated_at: 'region_station_updated_at',
+  use_uuid: 'use_uuid',
+  regions_uuid: 'regions_uuid',
+  verification_hour: 'verification_hour',
+  verification_msg_sent: 'verification_msg_sent'
+};
+
+exports.Prisma.RegionsScalarFieldEnum = {
+  regions_uuid: 'regions_uuid',
+  regions_name: 'regions_name',
+  regions_types: 'regions_types',
+  region_created_at: 'region_created_at',
+  region_updated_at: 'region_updated_at',
+  regions_margin_AL: 'regions_margin_AL',
+  regions_margin_GC: 'regions_margin_GC',
+  regions_margin_Total: 'regions_margin_Total',
+  regions_volume_AL: 'regions_volume_AL',
+  regions_volume_GC: 'regions_volume_GC',
+  regions_volume_Total: 'regions_volume_Total'
 };
 
 exports.Prisma.SortOrder = {
@@ -265,16 +228,11 @@ exports.Prisma.NullsOrder = {
 
 
 exports.Prisma.ModelName = {
-  basedados: 'basedados',
-  dataframe_fuel: 'dataframe_fuel',
-  dataframe_product: 'dataframe_product',
-  fuel: 'fuel',
-  gas_station: 'gas_station',
   ibm_info: 'ibm_info',
-  posto_signal: 'posto_signal',
-  rd_posto: 'rd_posto',
-  set_variables: 'set_variables',
-  users: 'users'
+  users: 'users',
+  gas_station_setvariables: 'gas_station_setvariables',
+  region_setvariables: 'region_setvariables',
+  regions: 'regions'
 };
 
 /**
