@@ -202,10 +202,10 @@ class DataController {
                     { label: "Faturamento", value: Math.round(sumFuelTotal * 100) / 100, secondary_label: "TMF", secondary_value: Math.round((sumFuelTotal / quantSupply) * 100) / 100 },
                     { label: "Abastecimentos", value: Math.round(quantSupply * 100) / 100 },
                     { label: "Venda Galonagem", value: Math.round(sumCostPrice * 100) / 100, secondary_label: "TMC", secondary_value: Math.round((sumCostPrice / quantSupply) * 100) / 100 },
-                    { label: "Lucro Galonagem", value: fuelProfit, secondary_label: "Lucro Bruto Operacional", secondary_value: Math.round((fuelProfit / sumFuel) * 100)  },
+                    { label: "Lucro Galonagem", value: fuelProfit, secondary_label: "Lucro Bruto Operacional", secondary_value: Math.round((fuelProfit / sumFuel) * 100) },
                     { label: "M/LT", value: Math.round(fuelProfit / sumLiterage * 100) },
                     { label: "Venda de Produto", value: Math.round(sumProductPrice * 100) / 100, secondary_label: "TMP", secondary_value: Math.round((sumProductPrice / quantSupply) * 100) / 100 },
-                    { label: "Lucro Produto", value: productProfit, secondary_label: "Lucro Bruto Operacional", secondary_value: Math.round((productProfit / sumFuelProd) * 100)  },
+                    { label: "Lucro Produto", value: productProfit, secondary_label: "Lucro Bruto Operacional", secondary_value: Math.round((productProfit / sumFuelProd) * 100) },
                     { label: "Lucro Bruto Operacional", value: Math.round((productProfit + fuelProfit) / sumFuelTotal * 100) },
                     ]
                 })
@@ -680,6 +680,224 @@ class DataController {
 
                     for (const item of entry.items) {
                         if (item.iTip === '1') {
+                            const tot = parseFloat(item.tot) || 0;
+                            const qd = parseFloat(item.qd) || 0;
+                            const pC = parseFloat(item.pC) || 0;
+
+                            switch (variable_type) {
+                                case 'invoicing':
+                                    regionalTotals[regionalName] += tot;
+                                    break;
+                                case 'volume_sold':
+                                    regionalTotals[regionalName] += qd;
+                                    break;
+                                case 'cost':
+                                    regionalTotals[regionalName] += pC;
+                                    break;
+                                case 'fuel_margin':
+                                    regionalTotals[regionalName] += tot;
+                                    regionalQuantities[regionalName] += qd;
+                                    break;
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (variable_type === 'fuel_margin') {
+                for (const region in regionalTotals) {
+                    if (regionalQuantities[region] > 0) {
+                        regionalTotals[region] = regionalTotals[region] / regionalQuantities[region];
+                    } else {
+                        regionalTotals[region] = 0;
+                    }
+                }
+            }
+
+            const finalRegionalTotals: { [key: string]: number } = {};
+            for (const region in regionalTotals) {
+                finalRegionalTotals[region] = Math.round(regionalTotals[region] * 100) / 100;
+            }
+
+            const orderRegional = {
+                "Regional 1": finalRegionalTotals["REGIONAL1"],
+                "Regional 2": finalRegionalTotals["REGIONAL2"],
+                "Regional 3": finalRegionalTotals["REGIONAL3"],
+                "Regional 4": finalRegionalTotals["REGIONAL4"],
+                "Regional 5": finalRegionalTotals["REGIONAL5"],
+                "Regional Itaúna": finalRegionalTotals["REGIONALITAUNA"]
+            };
+
+            return res.json(orderRegional);
+
+        } catch (error) {
+            return res.status(500).json({ message: `Erro ao retornar os dados: ${error}` });
+        }
+    }
+    public async regionalChartFuel(req: Request, res: Response) {
+        try {
+            const clientToken = req.headers.authorization;
+            if (!clientToken) {
+                return res.status(401).json({ message: "Token não fornecido." });
+            }
+
+            const { variable_type }: { variable_type: string } = req.body;
+            const expectedToken = process.env.TOKEN;
+            if (clientToken !== `Bearer ${expectedToken}`) {
+                return res.status(401).json({ message: "Falha na autenticação: Token inválido." });
+            }
+
+            const timezone = 'America/Sao_Paulo';
+            const firstDay = moment.tz(timezone).startOf('month').toDate();
+            const lastDay = moment.tz(timezone).endOf('month').toDate();
+            const today = moment.tz(timezone).format('YYYY-MM-DD')
+            // Pré-processar o mapeamento regional
+            const ibmToRegionMap: { [key: string]: string } = {};
+            for (const [region, ibms] of Object.entries(regionStation)) {
+                for (const ibm of ibms) {
+                    ibmToRegionMap[ibm] = region;
+                }
+            }
+
+            const result = await prismaSales.vendas.findMany({
+                select: {
+                    items: true,
+                    ibm: true
+                },
+                where: {
+                    dtHr: {
+                        gte: `${today}T00:00:00.000Z`,
+                        lte: `${today}T23:59:59.999Z`,
+                    }
+                }
+            });
+
+            type RegionalTotals = {
+                [key: string]: number;
+            };
+
+            const regionalTotals: RegionalTotals = {};
+            const regionalQuantities: RegionalTotals = {};
+
+            for (const entry of result) {
+                const regionalName = ibmToRegionMap[entry.ibm];
+                if (regionalName) {
+                    if (!regionalTotals[regionalName]) {
+                        regionalTotals[regionalName] = 0;
+                        regionalQuantities[regionalName] = 0;
+                    }
+
+                    for (const item of entry.items) {
+                        if (item.iTip === '1') {
+                            const tot = parseFloat(item.tot) || 0;
+                            const qd = parseFloat(item.qd) || 0;
+                            const pC = parseFloat(item.pC) || 0;
+
+                            switch (variable_type) {
+                                case 'invoicing':
+                                    regionalTotals[regionalName] += tot;
+                                    break;
+                                case 'volume_sold':
+                                    regionalTotals[regionalName] += qd;
+                                    break;
+                                case 'cost':
+                                    regionalTotals[regionalName] += pC;
+                                    break;
+                                case 'fuel_margin':
+                                    regionalTotals[regionalName] += tot;
+                                    regionalQuantities[regionalName] += qd;
+                                    break;
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (variable_type === 'fuel_margin') {
+                for (const region in regionalTotals) {
+                    if (regionalQuantities[region] > 0) {
+                        regionalTotals[region] = regionalTotals[region] / regionalQuantities[region];
+                    } else {
+                        regionalTotals[region] = 0;
+                    }
+                }
+            }
+
+            const finalRegionalTotals: { [key: string]: number } = {};
+            for (const region in regionalTotals) {
+                finalRegionalTotals[region] = Math.round(regionalTotals[region] * 100) / 100;
+            }
+
+            const orderRegional = {
+                "Regional 1": finalRegionalTotals["REGIONAL1"],
+                "Regional 2": finalRegionalTotals["REGIONAL2"],
+                "Regional 3": finalRegionalTotals["REGIONAL3"],
+                "Regional 4": finalRegionalTotals["REGIONAL4"],
+                "Regional 5": finalRegionalTotals["REGIONAL5"],
+                "Regional Itaúna": finalRegionalTotals["REGIONALITAUNA"]
+            };
+
+            return res.json(orderRegional);
+
+        } catch (error) {
+            return res.status(500).json({ message: `Erro ao retornar os dados: ${error}` });
+        }
+    }
+    public async regionalChartProduct(req: Request, res: Response) {
+        try {
+            const clientToken = req.headers.authorization;
+            if (!clientToken) {
+                return res.status(401).json({ message: "Token não fornecido." });
+            }
+
+            const { variable_type }: { variable_type: string } = req.body;
+            const expectedToken = process.env.TOKEN;
+            if (clientToken !== `Bearer ${expectedToken}`) {
+                return res.status(401).json({ message: "Falha na autenticação: Token inválido." });
+            }
+
+            const timezone = 'America/Sao_Paulo';
+            const firstDay = moment.tz(timezone).startOf('month').toDate();
+            const lastDay = moment.tz(timezone).endOf('month').toDate();
+            const today = moment.tz(timezone).format('YYYY-MM-DD')
+            // Pré-processar o mapeamento regional
+            const ibmToRegionMap: { [key: string]: string } = {};
+            for (const [region, ibms] of Object.entries(regionStation)) {
+                for (const ibm of ibms) {
+                    ibmToRegionMap[ibm] = region;
+                }
+            }
+
+            const result = await prismaSales.vendas.findMany({
+                select: {
+                    items: true,
+                    ibm: true
+                },
+                where: {
+                    dtHr: {
+                        gte: `${today}T00:00:00.000Z`,
+                        lte: `${today}T23:59:59.999Z`,
+                    }
+                }
+            });
+
+            type RegionalTotals = {
+                [key: string]: number;
+            };
+
+            const regionalTotals: RegionalTotals = {};
+            const regionalQuantities: RegionalTotals = {};
+
+            for (const entry of result) {
+                const regionalName = ibmToRegionMap[entry.ibm];
+                if (regionalName) {
+                    if (!regionalTotals[regionalName]) {
+                        regionalTotals[regionalName] = 0;
+                        regionalQuantities[regionalName] = 0;
+                    }
+
+                    for (const item of entry.items) {
+                        if (item.iTip === '0') {
                             const tot = parseFloat(item.tot) || 0;
                             const qd = parseFloat(item.qd) || 0;
                             const pC = parseFloat(item.pC) || 0;

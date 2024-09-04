@@ -9,5 +9,7 @@ dataRouter.post("/daily-graphic", DataController.dailyGraphic)
 dataRouter.post("/daily-graphic-fuel", DataController.dailyGraphicFuel)
 dataRouter.post("/daily-graphic-product", DataController.dailyGraphicProduct)
 dataRouter.post("/regional-chart", DataController.regionalChart)
+dataRouter.post("/regional-chart-fuel", DataController.regionalChartFuel)
+dataRouter.post("/regional-chart-product", DataController.regionalChartProduct)
 dataRouter.get("/map-data", DataController.mapData)
 export default dataRouter
