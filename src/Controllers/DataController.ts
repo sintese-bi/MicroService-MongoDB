@@ -85,6 +85,7 @@ class DataController {
 
 
                 })
+                console.log(itemsArray.length)
                 //Quantas vezes foi abastecido combustível nos postos
                 const supplyQuantity = itemsArray.flatMap(element => {
                     return element
@@ -201,10 +202,10 @@ class DataController {
                     { label: "Faturamento", value: Math.round(sumFuelTotal * 100) / 100, secondary_label: "TMF", secondary_value: Math.round((sumFuelTotal / quantSupply) * 100) / 100 },
                     { label: "Abastecimentos", value: Math.round(quantSupply * 100) / 100 },
                     { label: "Venda Galonagem", value: Math.round(sumCostPrice * 100) / 100, secondary_label: "TMC", secondary_value: Math.round((sumCostPrice / quantSupply) * 100) / 100 },
-                    { label: "Lucro Galonagem", value: fuelProfit },
+                    { label: "Lucro Galonagem", value: fuelProfit, secondary_label: "Lucro Bruto Operacional", secondary_value: Math.round((fuelProfit / sumFuel) * 100)  },
                     { label: "M/LT", value: Math.round(fuelProfit / sumLiterage * 100) },
                     { label: "Venda de Produto", value: Math.round(sumProductPrice * 100) / 100, secondary_label: "TMP", secondary_value: Math.round((sumProductPrice / quantSupply) * 100) / 100 },
-                    { label: "Lucro Produto", value: productProfit },
+                    { label: "Lucro Produto", value: productProfit, secondary_label: "Lucro Bruto Operacional", secondary_value: Math.round((productProfit / sumFuelProd) * 100)  },
                     { label: "Lucro Bruto Operacional", value: Math.round((productProfit + fuelProfit) / sumFuelTotal * 100) },
                     ]
                 })
@@ -357,7 +358,273 @@ class DataController {
         }
 
     }
+    public async dailyGraphicFuel(req: Request, res: Response) {
+        try {
+            const clientToken = req.headers.authorization;
+            if (!clientToken) {
+                return res.status(401).json({ message: "Token não fornecido." });
+            }
+            const { week_day, variable_type }: { week_day: string, variable_type: string } = req.body
+            const expectedToken = process.env.TOKEN;
+            if (clientToken == `Bearer ${expectedToken}`) {
+                //Fuso Horário
+                const timezone = "America/Sao_Paulo"
 
+                //Data atual com ano e mês
+                const actualdate = moment().tz(timezone).format("YYYY-MM");
+                const actualYear = parseInt(actualdate.split('-')[0]);
+                const actualMonth = parseInt(actualdate.split('-')[1]);
+
+                //Primeiro e último dia do mês
+                const firstDayweek = moment.tz(timezone).startOf('month');
+                const lastDayweek = moment.tz(timezone).endOf('month');
+
+                // Agregar os dias da semana
+                const daysOfWeek: { [key: string]: string[] } = {};
+                let currentDay = firstDayweek.clone();
+
+                while (currentDay.isBefore(lastDayweek) || currentDay.isSame(lastDayweek)) {
+                    const dayOfWeek = currentDay.format('dddd');
+                    const formattedDate = currentDay.format('YYYY-MM-DD');
+
+                    if (!daysOfWeek[dayOfWeek]) {
+                        daysOfWeek[dayOfWeek] = [];
+                    }
+
+                    daysOfWeek[dayOfWeek].push(formattedDate);
+                    currentDay.add(1, 'day');
+                }
+                let dateRanges
+                for (let week in daysOfWeek) {
+
+                    if (week_day == week) {
+                        dateRanges = daysOfWeek[week]
+                    }
+
+                }
+
+                const multiplesInterval: any = dateRanges?.map(element => {
+                    return {
+                        dtHr: {
+                            gte: `${element}T00:00:00.000Z`,
+                            lte: `${element}T23:59:59.999Z`,
+                        }
+                    }
+                })
+
+                const fuelliterageSell = await prismaSales.vendas.findMany({
+                    select: { items: true, dtHr: true },
+                    where: {
+                        OR: multiplesInterval
+                    }
+                });
+
+                let dateSeparation: any = {}
+                dateRanges?.forEach(element => {
+
+                    dateSeparation[element] = []
+
+                })
+                fuelliterageSell.forEach(element => {
+                    const date = new Date(element.dtHr).toISOString().split('T')[0];
+                    dateSeparation[date].push(...element.items);
+                });
+                interface DateSum {
+                    date: string;
+                    sum: number;
+                }
+                let sumArray: DateSum[] = []
+
+                for (const date in dateSeparation) {
+                    if (dateSeparation.hasOwnProperty(date)) {
+
+                        const itemsArray = dateSeparation[date];
+
+                        if (itemsArray.length == 0) {
+                            sumArray.push({ date: date, sum: 0 })
+                            continue;
+                        }
+                        let total = 0;
+                        let quantity = 0;
+
+                        const sum = itemsArray.reduce((accumulate: any, initialValue: any) => {
+                            if (initialValue.iTip == "1") {
+                                const value = parseFloat(initialValue.tot);
+                                const quantityValue = parseFloat(initialValue.qd);
+                                const cost = parseFloat(initialValue.pC);
+
+                                if (variable_type == "invoicing") {
+                                    return Math.round((accumulate + value) * 100) / 100;
+                                } else if (variable_type == "volume_sold") {
+                                    return Math.round((accumulate + quantityValue) * 100) / 100;
+                                } else if (variable_type == "cost") {
+                                    return Math.round((accumulate + quantityValue * cost) * 100) / 100;
+                                } else if (variable_type == "fuel_margin") {
+                                    total += value;
+                                    quantity += quantityValue;
+                                    return Math.round((total / quantity) * 100) / 100;
+                                }
+                            }
+                            return accumulate;
+                        }, 0);
+                        sumArray.push({ date: date, sum: sum });
+
+                    }
+                }
+                sumArray.forEach(element => {
+                    const [year, month, day] = element.date.split('-')
+                    element.date = `${day}-${month}-${year}`
+                })
+
+                return res.status(200).json({ data: sumArray })
+
+            } else {
+                return res
+                    .status(401)
+                    .json({ message: "Falha na autenticação: Token inválido." });
+            }
+
+
+        } catch (error) {
+            return res.status(500).json({ message: `Erro ao retornar os dados: ${error}` });
+        }
+
+
+    }
+    public async dailyGraphicProduct(req: Request, res: Response) {
+        try {
+            const clientToken = req.headers.authorization;
+            if (!clientToken) {
+                return res.status(401).json({ message: "Token não fornecido." });
+            }
+            const { week_day, variable_type }: { week_day: string, variable_type: string } = req.body
+            const expectedToken = process.env.TOKEN;
+            if (clientToken == `Bearer ${expectedToken}`) {
+                //Fuso Horário
+                const timezone = "America/Sao_Paulo"
+
+                //Data atual com ano e mês
+                const actualdate = moment().tz(timezone).format("YYYY-MM");
+                const actualYear = parseInt(actualdate.split('-')[0]);
+                const actualMonth = parseInt(actualdate.split('-')[1]);
+
+                //Primeiro e último dia do mês
+                const firstDayweek = moment.tz(timezone).startOf('month');
+                const lastDayweek = moment.tz(timezone).endOf('month');
+
+                // Agregar os dias da semana
+                const daysOfWeek: { [key: string]: string[] } = {};
+                let currentDay = firstDayweek.clone();
+
+                while (currentDay.isBefore(lastDayweek) || currentDay.isSame(lastDayweek)) {
+                    const dayOfWeek = currentDay.format('dddd');
+                    const formattedDate = currentDay.format('YYYY-MM-DD');
+
+                    if (!daysOfWeek[dayOfWeek]) {
+                        daysOfWeek[dayOfWeek] = [];
+                    }
+
+                    daysOfWeek[dayOfWeek].push(formattedDate);
+                    currentDay.add(1, 'day');
+                }
+                let dateRanges
+                for (let week in daysOfWeek) {
+
+                    if (week_day == week) {
+                        dateRanges = daysOfWeek[week]
+                    }
+
+                }
+
+                const multiplesInterval: any = dateRanges?.map(element => {
+                    return {
+                        dtHr: {
+                            gte: `${element}T00:00:00.000Z`,
+                            lte: `${element}T23:59:59.999Z`,
+                        }
+                    }
+                })
+
+                const fuelliterageSell = await prismaSales.vendas.findMany({
+                    select: { items: true, dtHr: true },
+                    where: {
+                        OR: multiplesInterval
+                    }
+                });
+
+                let dateSeparation: any = {}
+                dateRanges?.forEach(element => {
+
+                    dateSeparation[element] = []
+
+                })
+                fuelliterageSell.forEach(element => {
+                    const date = new Date(element.dtHr).toISOString().split('T')[0];
+                    dateSeparation[date].push(...element.items);
+                });
+                interface DateSum {
+                    date: string;
+                    sum: number;
+                }
+                let sumArray: DateSum[] = []
+
+                for (const date in dateSeparation) {
+                    if (dateSeparation.hasOwnProperty(date)) {
+
+                        const itemsArray = dateSeparation[date];
+
+                        if (itemsArray.length == 0) {
+                            sumArray.push({ date: date, sum: 0 })
+                            continue;
+                        }
+                        let total = 0;
+                        let quantity = 0;
+
+                        const sum = itemsArray.reduce((accumulate: any, initialValue: any) => {
+                            if (initialValue.iTip == "0") {
+                                const value = parseFloat(initialValue.tot);
+                                const quantityValue = parseFloat(initialValue.qd);
+                                const cost = parseFloat(initialValue.pC);
+
+                                if (variable_type == "invoicing") {
+                                    return Math.round((accumulate + value) * 100) / 100;
+                                } else if (variable_type == "volume_sold") {
+                                    return Math.round((accumulate + quantityValue) * 100) / 100;
+                                } else if (variable_type == "cost") {
+                                    return Math.round((accumulate + quantityValue * cost) * 100) / 100;
+                                } else if (variable_type == "fuel_margin") {
+                                    total += value;
+                                    quantity += quantityValue;
+                                    return Math.round((total / quantity) * 100) / 100;
+                                }
+                            }
+                            return accumulate;
+                        }, 0);
+
+                        sumArray.push({ date: date, sum: sum });
+
+                    }
+                }
+                sumArray.forEach(element => {
+                    const [year, month, day] = element.date.split('-')
+                    element.date = `${day}-${month}-${year}`
+                })
+
+                return res.status(200).json({ data: sumArray })
+
+            } else {
+                return res
+                    .status(401)
+                    .json({ message: "Falha na autenticação: Token inválido." });
+            }
+
+
+        } catch (error) {
+            return res.status(500).json({ message: `Erro ao retornar os dados: ${error}` });
+        }
+
+
+    }
     public async regionalChart(req: Request, res: Response) {
         try {
             const clientToken = req.headers.authorization;
