@@ -1033,7 +1033,20 @@ class DataController {
             }
         } catch (error) { return res.status(500).json({ message: `Erro ao retornar os dados: ${error}` }); }
     }
+    public async fuelTypes(req: Request, res: Response) {
+        try {
+            const data = await prismaLBCBi.combustiveis.findMany({ select: { des: true } })
 
+            const uniqueData = [...new Set(data.map(item => item.des))];
+
+            return res.status(200).json({ data: uniqueData })
+
+
+        } catch (error) {
+            return res.status(500).json({ message: `Erro ao retornar os dados: ${error}` })
+        }
+
+    }
 
 
 }
