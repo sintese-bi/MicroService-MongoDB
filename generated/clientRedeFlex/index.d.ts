@@ -3570,8 +3570,9 @@ export namespace Prisma {
     gas_station_updated_at: Date | null
     ibm_info_id: string | null
     use_uuid: string | null
-    verification_hour: Date | null
     verification_msg_sent: boolean | null
+    verification_hour_marginAL: Date | null
+    verification_hour_marginGC: Date | null
   }
 
   export type Gas_station_setvariablesMaxAggregateOutputType = {
@@ -3592,8 +3593,9 @@ export namespace Prisma {
     gas_station_updated_at: Date | null
     ibm_info_id: string | null
     use_uuid: string | null
-    verification_hour: Date | null
     verification_msg_sent: boolean | null
+    verification_hour_marginAL: Date | null
+    verification_hour_marginGC: Date | null
   }
 
   export type Gas_station_setvariablesCountAggregateOutputType = {
@@ -3615,8 +3617,9 @@ export namespace Prisma {
     gas_station_updated_at: number
     ibm_info_id: number
     use_uuid: number
-    verification_hour: number
     verification_msg_sent: number
+    verification_hour_marginAL: number
+    verification_hour_marginGC: number
     _all: number
   }
 
@@ -3657,8 +3660,9 @@ export namespace Prisma {
     gas_station_updated_at?: true
     ibm_info_id?: true
     use_uuid?: true
-    verification_hour?: true
     verification_msg_sent?: true
+    verification_hour_marginAL?: true
+    verification_hour_marginGC?: true
   }
 
   export type Gas_station_setvariablesMaxAggregateInputType = {
@@ -3679,8 +3683,9 @@ export namespace Prisma {
     gas_station_updated_at?: true
     ibm_info_id?: true
     use_uuid?: true
-    verification_hour?: true
     verification_msg_sent?: true
+    verification_hour_marginAL?: true
+    verification_hour_marginGC?: true
   }
 
   export type Gas_station_setvariablesCountAggregateInputType = {
@@ -3702,8 +3707,9 @@ export namespace Prisma {
     gas_station_updated_at?: true
     ibm_info_id?: true
     use_uuid?: true
-    verification_hour?: true
     verification_msg_sent?: true
+    verification_hour_marginAL?: true
+    verification_hour_marginGC?: true
     _all?: true
   }
 
@@ -3812,8 +3818,9 @@ export namespace Prisma {
     gas_station_updated_at: Date
     ibm_info_id: string | null
     use_uuid: string | null
-    verification_hour: Date | null
     verification_msg_sent: boolean | null
+    verification_hour_marginAL: Date | null
+    verification_hour_marginGC: Date | null
     _count: Gas_station_setvariablesCountAggregateOutputType | null
     _avg: Gas_station_setvariablesAvgAggregateOutputType | null
     _sum: Gas_station_setvariablesSumAggregateOutputType | null
@@ -3854,8 +3861,9 @@ export namespace Prisma {
     gas_station_updated_at?: boolean
     ibm_info_id?: boolean
     use_uuid?: boolean
-    verification_hour?: boolean
     verification_msg_sent?: boolean
+    verification_hour_marginAL?: boolean
+    verification_hour_marginGC?: boolean
     ibm_info?: boolean | gas_station_setvariables$ibm_infoArgs<ExtArgs>
     users?: boolean | gas_station_setvariables$usersArgs<ExtArgs>
   }, ExtArgs["result"]["gas_station_setvariables"]>
@@ -3879,8 +3887,9 @@ export namespace Prisma {
     gas_station_updated_at?: boolean
     ibm_info_id?: boolean
     use_uuid?: boolean
-    verification_hour?: boolean
     verification_msg_sent?: boolean
+    verification_hour_marginAL?: boolean
+    verification_hour_marginGC?: boolean
     ibm_info?: boolean | gas_station_setvariables$ibm_infoArgs<ExtArgs>
     users?: boolean | gas_station_setvariables$usersArgs<ExtArgs>
   }, ExtArgs["result"]["gas_station_setvariables"]>
@@ -3904,8 +3913,9 @@ export namespace Prisma {
     gas_station_updated_at?: boolean
     ibm_info_id?: boolean
     use_uuid?: boolean
-    verification_hour?: boolean
     verification_msg_sent?: boolean
+    verification_hour_marginAL?: boolean
+    verification_hour_marginGC?: boolean
   }
 
   export type gas_station_setvariablesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3942,8 +3952,9 @@ export namespace Prisma {
       gas_station_updated_at: Date
       ibm_info_id: string | null
       use_uuid: string | null
-      verification_hour: Date | null
       verification_msg_sent: boolean | null
+      verification_hour_marginAL: Date | null
+      verification_hour_marginGC: Date | null
     }, ExtArgs["result"]["gas_station_setvariables"]>
     composites: {}
   }
@@ -4384,8 +4395,9 @@ export namespace Prisma {
     readonly gas_station_updated_at: FieldRef<"gas_station_setvariables", 'DateTime'>
     readonly ibm_info_id: FieldRef<"gas_station_setvariables", 'String'>
     readonly use_uuid: FieldRef<"gas_station_setvariables", 'String'>
-    readonly verification_hour: FieldRef<"gas_station_setvariables", 'DateTime'>
     readonly verification_msg_sent: FieldRef<"gas_station_setvariables", 'Boolean'>
+    readonly verification_hour_marginAL: FieldRef<"gas_station_setvariables", 'DateTime'>
+    readonly verification_hour_marginGC: FieldRef<"gas_station_setvariables", 'DateTime'>
   }
     
 
@@ -4796,8 +4808,9 @@ export namespace Prisma {
     region_station_updated_at: Date | null
     use_uuid: string | null
     regions_uuid: string | null
-    verification_hour: Date | null
     verification_msg_sent: boolean | null
+    verification_hour_marginAL: Date | null
+    verification_hour_marginGC: Date | null
   }
 
   export type Region_setvariablesMaxAggregateOutputType = {
@@ -4818,8 +4831,9 @@ export namespace Prisma {
     region_station_updated_at: Date | null
     use_uuid: string | null
     regions_uuid: string | null
-    verification_hour: Date | null
     verification_msg_sent: boolean | null
+    verification_hour_marginAL: Date | null
+    verification_hour_marginGC: Date | null
   }
 
   export type Region_setvariablesCountAggregateOutputType = {
@@ -4841,8 +4855,9 @@ export namespace Prisma {
     region_station_updated_at: number
     use_uuid: number
     regions_uuid: number
-    verification_hour: number
     verification_msg_sent: number
+    verification_hour_marginAL: number
+    verification_hour_marginGC: number
     _all: number
   }
 
@@ -4883,8 +4898,9 @@ export namespace Prisma {
     region_station_updated_at?: true
     use_uuid?: true
     regions_uuid?: true
-    verification_hour?: true
     verification_msg_sent?: true
+    verification_hour_marginAL?: true
+    verification_hour_marginGC?: true
   }
 
   export type Region_setvariablesMaxAggregateInputType = {
@@ -4905,8 +4921,9 @@ export namespace Prisma {
     region_station_updated_at?: true
     use_uuid?: true
     regions_uuid?: true
-    verification_hour?: true
     verification_msg_sent?: true
+    verification_hour_marginAL?: true
+    verification_hour_marginGC?: true
   }
 
   export type Region_setvariablesCountAggregateInputType = {
@@ -4928,8 +4945,9 @@ export namespace Prisma {
     region_station_updated_at?: true
     use_uuid?: true
     regions_uuid?: true
-    verification_hour?: true
     verification_msg_sent?: true
+    verification_hour_marginAL?: true
+    verification_hour_marginGC?: true
     _all?: true
   }
 
@@ -5038,8 +5056,9 @@ export namespace Prisma {
     region_station_updated_at: Date
     use_uuid: string | null
     regions_uuid: string | null
-    verification_hour: Date | null
     verification_msg_sent: boolean | null
+    verification_hour_marginAL: Date | null
+    verification_hour_marginGC: Date | null
     _count: Region_setvariablesCountAggregateOutputType | null
     _avg: Region_setvariablesAvgAggregateOutputType | null
     _sum: Region_setvariablesSumAggregateOutputType | null
@@ -5080,8 +5099,9 @@ export namespace Prisma {
     region_station_updated_at?: boolean
     use_uuid?: boolean
     regions_uuid?: boolean
-    verification_hour?: boolean
     verification_msg_sent?: boolean
+    verification_hour_marginAL?: boolean
+    verification_hour_marginGC?: boolean
     regions?: boolean | region_setvariables$regionsArgs<ExtArgs>
     users?: boolean | region_setvariables$usersArgs<ExtArgs>
   }, ExtArgs["result"]["region_setvariables"]>
@@ -5105,8 +5125,9 @@ export namespace Prisma {
     region_station_updated_at?: boolean
     use_uuid?: boolean
     regions_uuid?: boolean
-    verification_hour?: boolean
     verification_msg_sent?: boolean
+    verification_hour_marginAL?: boolean
+    verification_hour_marginGC?: boolean
     regions?: boolean | region_setvariables$regionsArgs<ExtArgs>
     users?: boolean | region_setvariables$usersArgs<ExtArgs>
   }, ExtArgs["result"]["region_setvariables"]>
@@ -5130,8 +5151,9 @@ export namespace Prisma {
     region_station_updated_at?: boolean
     use_uuid?: boolean
     regions_uuid?: boolean
-    verification_hour?: boolean
     verification_msg_sent?: boolean
+    verification_hour_marginAL?: boolean
+    verification_hour_marginGC?: boolean
   }
 
   export type region_setvariablesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5168,8 +5190,9 @@ export namespace Prisma {
       region_station_updated_at: Date
       use_uuid: string | null
       regions_uuid: string | null
-      verification_hour: Date | null
       verification_msg_sent: boolean | null
+      verification_hour_marginAL: Date | null
+      verification_hour_marginGC: Date | null
     }, ExtArgs["result"]["region_setvariables"]>
     composites: {}
   }
@@ -5610,8 +5633,9 @@ export namespace Prisma {
     readonly region_station_updated_at: FieldRef<"region_setvariables", 'DateTime'>
     readonly use_uuid: FieldRef<"region_setvariables", 'String'>
     readonly regions_uuid: FieldRef<"region_setvariables", 'String'>
-    readonly verification_hour: FieldRef<"region_setvariables", 'DateTime'>
     readonly verification_msg_sent: FieldRef<"region_setvariables", 'Boolean'>
+    readonly verification_hour_marginAL: FieldRef<"region_setvariables", 'DateTime'>
+    readonly verification_hour_marginGC: FieldRef<"region_setvariables", 'DateTime'>
   }
     
 
@@ -7121,8 +7145,9 @@ export namespace Prisma {
     gas_station_updated_at: 'gas_station_updated_at',
     ibm_info_id: 'ibm_info_id',
     use_uuid: 'use_uuid',
-    verification_hour: 'verification_hour',
-    verification_msg_sent: 'verification_msg_sent'
+    verification_msg_sent: 'verification_msg_sent',
+    verification_hour_marginAL: 'verification_hour_marginAL',
+    verification_hour_marginGC: 'verification_hour_marginGC'
   };
 
   export type Gas_station_setvariablesScalarFieldEnum = (typeof Gas_station_setvariablesScalarFieldEnum)[keyof typeof Gas_station_setvariablesScalarFieldEnum]
@@ -7147,8 +7172,9 @@ export namespace Prisma {
     region_station_updated_at: 'region_station_updated_at',
     use_uuid: 'use_uuid',
     regions_uuid: 'regions_uuid',
-    verification_hour: 'verification_hour',
-    verification_msg_sent: 'verification_msg_sent'
+    verification_msg_sent: 'verification_msg_sent',
+    verification_hour_marginAL: 'verification_hour_marginAL',
+    verification_hour_marginGC: 'verification_hour_marginGC'
   };
 
   export type Region_setvariablesScalarFieldEnum = (typeof Region_setvariablesScalarFieldEnum)[keyof typeof Region_setvariablesScalarFieldEnum]
@@ -7483,8 +7509,9 @@ export namespace Prisma {
     gas_station_updated_at?: DateTimeFilter<"gas_station_setvariables"> | Date | string
     ibm_info_id?: UuidNullableFilter<"gas_station_setvariables"> | string | null
     use_uuid?: UuidNullableFilter<"gas_station_setvariables"> | string | null
-    verification_hour?: DateTimeNullableFilter<"gas_station_setvariables"> | Date | string | null
     verification_msg_sent?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
+    verification_hour_marginAL?: DateTimeNullableFilter<"gas_station_setvariables"> | Date | string | null
+    verification_hour_marginGC?: DateTimeNullableFilter<"gas_station_setvariables"> | Date | string | null
     ibm_info?: XOR<Ibm_infoNullableRelationFilter, ibm_infoWhereInput> | null
     users?: XOR<UsersNullableRelationFilter, usersWhereInput> | null
   }
@@ -7508,8 +7535,9 @@ export namespace Prisma {
     gas_station_updated_at?: SortOrder
     ibm_info_id?: SortOrderInput | SortOrder
     use_uuid?: SortOrderInput | SortOrder
-    verification_hour?: SortOrderInput | SortOrder
     verification_msg_sent?: SortOrderInput | SortOrder
+    verification_hour_marginAL?: SortOrderInput | SortOrder
+    verification_hour_marginGC?: SortOrderInput | SortOrder
     ibm_info?: ibm_infoOrderByWithRelationInput
     users?: usersOrderByWithRelationInput
   }
@@ -7536,8 +7564,9 @@ export namespace Prisma {
     gas_station_updated_at?: DateTimeFilter<"gas_station_setvariables"> | Date | string
     ibm_info_id?: UuidNullableFilter<"gas_station_setvariables"> | string | null
     use_uuid?: UuidNullableFilter<"gas_station_setvariables"> | string | null
-    verification_hour?: DateTimeNullableFilter<"gas_station_setvariables"> | Date | string | null
     verification_msg_sent?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
+    verification_hour_marginAL?: DateTimeNullableFilter<"gas_station_setvariables"> | Date | string | null
+    verification_hour_marginGC?: DateTimeNullableFilter<"gas_station_setvariables"> | Date | string | null
     ibm_info?: XOR<Ibm_infoNullableRelationFilter, ibm_infoWhereInput> | null
     users?: XOR<UsersNullableRelationFilter, usersWhereInput> | null
   }, "gas_station_uuid">
@@ -7561,8 +7590,9 @@ export namespace Prisma {
     gas_station_updated_at?: SortOrder
     ibm_info_id?: SortOrderInput | SortOrder
     use_uuid?: SortOrderInput | SortOrder
-    verification_hour?: SortOrderInput | SortOrder
     verification_msg_sent?: SortOrderInput | SortOrder
+    verification_hour_marginAL?: SortOrderInput | SortOrder
+    verification_hour_marginGC?: SortOrderInput | SortOrder
     _count?: gas_station_setvariablesCountOrderByAggregateInput
     _avg?: gas_station_setvariablesAvgOrderByAggregateInput
     _max?: gas_station_setvariablesMaxOrderByAggregateInput
@@ -7592,8 +7622,9 @@ export namespace Prisma {
     gas_station_updated_at?: DateTimeWithAggregatesFilter<"gas_station_setvariables"> | Date | string
     ibm_info_id?: UuidNullableWithAggregatesFilter<"gas_station_setvariables"> | string | null
     use_uuid?: UuidNullableWithAggregatesFilter<"gas_station_setvariables"> | string | null
-    verification_hour?: DateTimeNullableWithAggregatesFilter<"gas_station_setvariables"> | Date | string | null
     verification_msg_sent?: BoolNullableWithAggregatesFilter<"gas_station_setvariables"> | boolean | null
+    verification_hour_marginAL?: DateTimeNullableWithAggregatesFilter<"gas_station_setvariables"> | Date | string | null
+    verification_hour_marginGC?: DateTimeNullableWithAggregatesFilter<"gas_station_setvariables"> | Date | string | null
   }
 
   export type region_setvariablesWhereInput = {
@@ -7618,8 +7649,9 @@ export namespace Prisma {
     region_station_updated_at?: DateTimeFilter<"region_setvariables"> | Date | string
     use_uuid?: UuidNullableFilter<"region_setvariables"> | string | null
     regions_uuid?: UuidNullableFilter<"region_setvariables"> | string | null
-    verification_hour?: DateTimeNullableFilter<"region_setvariables"> | Date | string | null
     verification_msg_sent?: BoolNullableFilter<"region_setvariables"> | boolean | null
+    verification_hour_marginAL?: DateTimeNullableFilter<"region_setvariables"> | Date | string | null
+    verification_hour_marginGC?: DateTimeNullableFilter<"region_setvariables"> | Date | string | null
     regions?: XOR<RegionsNullableRelationFilter, regionsWhereInput> | null
     users?: XOR<UsersNullableRelationFilter, usersWhereInput> | null
   }
@@ -7643,8 +7675,9 @@ export namespace Prisma {
     region_station_updated_at?: SortOrder
     use_uuid?: SortOrderInput | SortOrder
     regions_uuid?: SortOrderInput | SortOrder
-    verification_hour?: SortOrderInput | SortOrder
     verification_msg_sent?: SortOrderInput | SortOrder
+    verification_hour_marginAL?: SortOrderInput | SortOrder
+    verification_hour_marginGC?: SortOrderInput | SortOrder
     regions?: regionsOrderByWithRelationInput
     users?: usersOrderByWithRelationInput
   }
@@ -7671,8 +7704,9 @@ export namespace Prisma {
     region_station_updated_at?: DateTimeFilter<"region_setvariables"> | Date | string
     use_uuid?: UuidNullableFilter<"region_setvariables"> | string | null
     regions_uuid?: UuidNullableFilter<"region_setvariables"> | string | null
-    verification_hour?: DateTimeNullableFilter<"region_setvariables"> | Date | string | null
     verification_msg_sent?: BoolNullableFilter<"region_setvariables"> | boolean | null
+    verification_hour_marginAL?: DateTimeNullableFilter<"region_setvariables"> | Date | string | null
+    verification_hour_marginGC?: DateTimeNullableFilter<"region_setvariables"> | Date | string | null
     regions?: XOR<RegionsNullableRelationFilter, regionsWhereInput> | null
     users?: XOR<UsersNullableRelationFilter, usersWhereInput> | null
   }, "region_uuid">
@@ -7696,8 +7730,9 @@ export namespace Prisma {
     region_station_updated_at?: SortOrder
     use_uuid?: SortOrderInput | SortOrder
     regions_uuid?: SortOrderInput | SortOrder
-    verification_hour?: SortOrderInput | SortOrder
     verification_msg_sent?: SortOrderInput | SortOrder
+    verification_hour_marginAL?: SortOrderInput | SortOrder
+    verification_hour_marginGC?: SortOrderInput | SortOrder
     _count?: region_setvariablesCountOrderByAggregateInput
     _avg?: region_setvariablesAvgOrderByAggregateInput
     _max?: region_setvariablesMaxOrderByAggregateInput
@@ -7727,8 +7762,9 @@ export namespace Prisma {
     region_station_updated_at?: DateTimeWithAggregatesFilter<"region_setvariables"> | Date | string
     use_uuid?: UuidNullableWithAggregatesFilter<"region_setvariables"> | string | null
     regions_uuid?: UuidNullableWithAggregatesFilter<"region_setvariables"> | string | null
-    verification_hour?: DateTimeNullableWithAggregatesFilter<"region_setvariables"> | Date | string | null
     verification_msg_sent?: BoolNullableWithAggregatesFilter<"region_setvariables"> | boolean | null
+    verification_hour_marginAL?: DateTimeNullableWithAggregatesFilter<"region_setvariables"> | Date | string | null
+    verification_hour_marginGC?: DateTimeNullableWithAggregatesFilter<"region_setvariables"> | Date | string | null
   }
 
   export type regionsWhereInput = {
@@ -8071,8 +8107,9 @@ export namespace Prisma {
     gas_station_whats_app?: gas_station_setvariablesCreategas_station_whats_appInput | string[]
     gas_station_created_at?: Date | string
     gas_station_updated_at?: Date | string
-    verification_hour?: Date | string | null
     verification_msg_sent?: boolean | null
+    verification_hour_marginAL?: Date | string | null
+    verification_hour_marginGC?: Date | string | null
     ibm_info?: ibm_infoCreateNestedOneWithoutGas_station_setvariablesInput
     users?: usersCreateNestedOneWithoutGas_station_setvariablesInput
   }
@@ -8096,8 +8133,9 @@ export namespace Prisma {
     gas_station_updated_at?: Date | string
     ibm_info_id?: string | null
     use_uuid?: string | null
-    verification_hour?: Date | string | null
     verification_msg_sent?: boolean | null
+    verification_hour_marginAL?: Date | string | null
+    verification_hour_marginGC?: Date | string | null
   }
 
   export type gas_station_setvariablesUpdateInput = {
@@ -8117,8 +8155,9 @@ export namespace Prisma {
     gas_station_whats_app?: gas_station_setvariablesUpdategas_station_whats_appInput | string[]
     gas_station_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     gas_station_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    verification_hour?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     verification_msg_sent?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    verification_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     ibm_info?: ibm_infoUpdateOneWithoutGas_station_setvariablesNestedInput
     users?: usersUpdateOneWithoutGas_station_setvariablesNestedInput
   }
@@ -8142,8 +8181,9 @@ export namespace Prisma {
     gas_station_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     ibm_info_id?: NullableStringFieldUpdateOperationsInput | string | null
     use_uuid?: NullableStringFieldUpdateOperationsInput | string | null
-    verification_hour?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     verification_msg_sent?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    verification_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type gas_station_setvariablesCreateManyInput = {
@@ -8165,8 +8205,9 @@ export namespace Prisma {
     gas_station_updated_at?: Date | string
     ibm_info_id?: string | null
     use_uuid?: string | null
-    verification_hour?: Date | string | null
     verification_msg_sent?: boolean | null
+    verification_hour_marginAL?: Date | string | null
+    verification_hour_marginGC?: Date | string | null
   }
 
   export type gas_station_setvariablesUpdateManyMutationInput = {
@@ -8186,8 +8227,9 @@ export namespace Prisma {
     gas_station_whats_app?: gas_station_setvariablesUpdategas_station_whats_appInput | string[]
     gas_station_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     gas_station_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    verification_hour?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     verification_msg_sent?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    verification_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type gas_station_setvariablesUncheckedUpdateManyInput = {
@@ -8209,8 +8251,9 @@ export namespace Prisma {
     gas_station_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     ibm_info_id?: NullableStringFieldUpdateOperationsInput | string | null
     use_uuid?: NullableStringFieldUpdateOperationsInput | string | null
-    verification_hour?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     verification_msg_sent?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    verification_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type region_setvariablesCreateInput = {
@@ -8230,8 +8273,9 @@ export namespace Prisma {
     region_whats_app?: region_setvariablesCreateregion_whats_appInput | string[]
     region_station_created_at?: Date | string
     region_station_updated_at?: Date | string
-    verification_hour?: Date | string | null
     verification_msg_sent?: boolean | null
+    verification_hour_marginAL?: Date | string | null
+    verification_hour_marginGC?: Date | string | null
     regions?: regionsCreateNestedOneWithoutRegion_setvariablesInput
     users?: usersCreateNestedOneWithoutRegion_setvariablesInput
   }
@@ -8255,8 +8299,9 @@ export namespace Prisma {
     region_station_updated_at?: Date | string
     use_uuid?: string | null
     regions_uuid?: string | null
-    verification_hour?: Date | string | null
     verification_msg_sent?: boolean | null
+    verification_hour_marginAL?: Date | string | null
+    verification_hour_marginGC?: Date | string | null
   }
 
   export type region_setvariablesUpdateInput = {
@@ -8276,8 +8321,9 @@ export namespace Prisma {
     region_whats_app?: region_setvariablesUpdateregion_whats_appInput | string[]
     region_station_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     region_station_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    verification_hour?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     verification_msg_sent?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    verification_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     regions?: regionsUpdateOneWithoutRegion_setvariablesNestedInput
     users?: usersUpdateOneWithoutRegion_setvariablesNestedInput
   }
@@ -8301,8 +8347,9 @@ export namespace Prisma {
     region_station_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     use_uuid?: NullableStringFieldUpdateOperationsInput | string | null
     regions_uuid?: NullableStringFieldUpdateOperationsInput | string | null
-    verification_hour?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     verification_msg_sent?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    verification_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type region_setvariablesCreateManyInput = {
@@ -8324,8 +8371,9 @@ export namespace Prisma {
     region_station_updated_at?: Date | string
     use_uuid?: string | null
     regions_uuid?: string | null
-    verification_hour?: Date | string | null
     verification_msg_sent?: boolean | null
+    verification_hour_marginAL?: Date | string | null
+    verification_hour_marginGC?: Date | string | null
   }
 
   export type region_setvariablesUpdateManyMutationInput = {
@@ -8345,8 +8393,9 @@ export namespace Prisma {
     region_whats_app?: region_setvariablesUpdateregion_whats_appInput | string[]
     region_station_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     region_station_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    verification_hour?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     verification_msg_sent?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    verification_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type region_setvariablesUncheckedUpdateManyInput = {
@@ -8368,8 +8417,9 @@ export namespace Prisma {
     region_station_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     use_uuid?: NullableStringFieldUpdateOperationsInput | string | null
     regions_uuid?: NullableStringFieldUpdateOperationsInput | string | null
-    verification_hour?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     verification_msg_sent?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    verification_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type regionsCreateInput = {
@@ -8802,8 +8852,9 @@ export namespace Prisma {
     gas_station_updated_at?: SortOrder
     ibm_info_id?: SortOrder
     use_uuid?: SortOrder
-    verification_hour?: SortOrder
     verification_msg_sent?: SortOrder
+    verification_hour_marginAL?: SortOrder
+    verification_hour_marginGC?: SortOrder
   }
 
   export type gas_station_setvariablesAvgOrderByAggregateInput = {
@@ -8833,8 +8884,9 @@ export namespace Prisma {
     gas_station_updated_at?: SortOrder
     ibm_info_id?: SortOrder
     use_uuid?: SortOrder
-    verification_hour?: SortOrder
     verification_msg_sent?: SortOrder
+    verification_hour_marginAL?: SortOrder
+    verification_hour_marginGC?: SortOrder
   }
 
   export type gas_station_setvariablesMinOrderByAggregateInput = {
@@ -8855,8 +8907,9 @@ export namespace Prisma {
     gas_station_updated_at?: SortOrder
     ibm_info_id?: SortOrder
     use_uuid?: SortOrder
-    verification_hour?: SortOrder
     verification_msg_sent?: SortOrder
+    verification_hour_marginAL?: SortOrder
+    verification_hour_marginGC?: SortOrder
   }
 
   export type gas_station_setvariablesSumOrderByAggregateInput = {
@@ -8915,8 +8968,9 @@ export namespace Prisma {
     region_station_updated_at?: SortOrder
     use_uuid?: SortOrder
     regions_uuid?: SortOrder
-    verification_hour?: SortOrder
     verification_msg_sent?: SortOrder
+    verification_hour_marginAL?: SortOrder
+    verification_hour_marginGC?: SortOrder
   }
 
   export type region_setvariablesAvgOrderByAggregateInput = {
@@ -8946,8 +9000,9 @@ export namespace Prisma {
     region_station_updated_at?: SortOrder
     use_uuid?: SortOrder
     regions_uuid?: SortOrder
-    verification_hour?: SortOrder
     verification_msg_sent?: SortOrder
+    verification_hour_marginAL?: SortOrder
+    verification_hour_marginGC?: SortOrder
   }
 
   export type region_setvariablesMinOrderByAggregateInput = {
@@ -8968,8 +9023,9 @@ export namespace Prisma {
     region_station_updated_at?: SortOrder
     use_uuid?: SortOrder
     regions_uuid?: SortOrder
-    verification_hour?: SortOrder
     verification_msg_sent?: SortOrder
+    verification_hour_marginAL?: SortOrder
+    verification_hour_marginGC?: SortOrder
   }
 
   export type region_setvariablesSumOrderByAggregateInput = {
@@ -9648,8 +9704,9 @@ export namespace Prisma {
     gas_station_whats_app?: gas_station_setvariablesCreategas_station_whats_appInput | string[]
     gas_station_created_at?: Date | string
     gas_station_updated_at?: Date | string
-    verification_hour?: Date | string | null
     verification_msg_sent?: boolean | null
+    verification_hour_marginAL?: Date | string | null
+    verification_hour_marginGC?: Date | string | null
     users?: usersCreateNestedOneWithoutGas_station_setvariablesInput
   }
 
@@ -9671,8 +9728,9 @@ export namespace Prisma {
     gas_station_created_at?: Date | string
     gas_station_updated_at?: Date | string
     use_uuid?: string | null
-    verification_hour?: Date | string | null
     verification_msg_sent?: boolean | null
+    verification_hour_marginAL?: Date | string | null
+    verification_hour_marginGC?: Date | string | null
   }
 
   export type gas_station_setvariablesCreateOrConnectWithoutIbm_infoInput = {
@@ -9723,8 +9781,9 @@ export namespace Prisma {
     gas_station_updated_at?: DateTimeFilter<"gas_station_setvariables"> | Date | string
     ibm_info_id?: UuidNullableFilter<"gas_station_setvariables"> | string | null
     use_uuid?: UuidNullableFilter<"gas_station_setvariables"> | string | null
-    verification_hour?: DateTimeNullableFilter<"gas_station_setvariables"> | Date | string | null
     verification_msg_sent?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
+    verification_hour_marginAL?: DateTimeNullableFilter<"gas_station_setvariables"> | Date | string | null
+    verification_hour_marginGC?: DateTimeNullableFilter<"gas_station_setvariables"> | Date | string | null
   }
 
   export type gas_station_setvariablesCreateWithoutUsersInput = {
@@ -9744,8 +9803,9 @@ export namespace Prisma {
     gas_station_whats_app?: gas_station_setvariablesCreategas_station_whats_appInput | string[]
     gas_station_created_at?: Date | string
     gas_station_updated_at?: Date | string
-    verification_hour?: Date | string | null
     verification_msg_sent?: boolean | null
+    verification_hour_marginAL?: Date | string | null
+    verification_hour_marginGC?: Date | string | null
     ibm_info?: ibm_infoCreateNestedOneWithoutGas_station_setvariablesInput
   }
 
@@ -9767,8 +9827,9 @@ export namespace Prisma {
     gas_station_created_at?: Date | string
     gas_station_updated_at?: Date | string
     ibm_info_id?: string | null
-    verification_hour?: Date | string | null
     verification_msg_sent?: boolean | null
+    verification_hour_marginAL?: Date | string | null
+    verification_hour_marginGC?: Date | string | null
   }
 
   export type gas_station_setvariablesCreateOrConnectWithoutUsersInput = {
@@ -9798,8 +9859,9 @@ export namespace Prisma {
     region_whats_app?: region_setvariablesCreateregion_whats_appInput | string[]
     region_station_created_at?: Date | string
     region_station_updated_at?: Date | string
-    verification_hour?: Date | string | null
     verification_msg_sent?: boolean | null
+    verification_hour_marginAL?: Date | string | null
+    verification_hour_marginGC?: Date | string | null
     regions?: regionsCreateNestedOneWithoutRegion_setvariablesInput
   }
 
@@ -9821,8 +9883,9 @@ export namespace Prisma {
     region_station_created_at?: Date | string
     region_station_updated_at?: Date | string
     regions_uuid?: string | null
-    verification_hour?: Date | string | null
     verification_msg_sent?: boolean | null
+    verification_hour_marginAL?: Date | string | null
+    verification_hour_marginGC?: Date | string | null
   }
 
   export type region_setvariablesCreateOrConnectWithoutUsersInput = {
@@ -9889,8 +9952,9 @@ export namespace Prisma {
     region_station_updated_at?: DateTimeFilter<"region_setvariables"> | Date | string
     use_uuid?: UuidNullableFilter<"region_setvariables"> | string | null
     regions_uuid?: UuidNullableFilter<"region_setvariables"> | string | null
-    verification_hour?: DateTimeNullableFilter<"region_setvariables"> | Date | string | null
     verification_msg_sent?: BoolNullableFilter<"region_setvariables"> | boolean | null
+    verification_hour_marginAL?: DateTimeNullableFilter<"region_setvariables"> | Date | string | null
+    verification_hour_marginGC?: DateTimeNullableFilter<"region_setvariables"> | Date | string | null
   }
 
   export type ibm_infoCreateWithoutGas_station_setvariablesInput = {
@@ -10218,8 +10282,9 @@ export namespace Prisma {
     region_whats_app?: region_setvariablesCreateregion_whats_appInput | string[]
     region_station_created_at?: Date | string
     region_station_updated_at?: Date | string
-    verification_hour?: Date | string | null
     verification_msg_sent?: boolean | null
+    verification_hour_marginAL?: Date | string | null
+    verification_hour_marginGC?: Date | string | null
     users?: usersCreateNestedOneWithoutRegion_setvariablesInput
   }
 
@@ -10241,8 +10306,9 @@ export namespace Prisma {
     region_station_created_at?: Date | string
     region_station_updated_at?: Date | string
     use_uuid?: string | null
-    verification_hour?: Date | string | null
     verification_msg_sent?: boolean | null
+    verification_hour_marginAL?: Date | string | null
+    verification_hour_marginGC?: Date | string | null
   }
 
   export type region_setvariablesCreateOrConnectWithoutRegionsInput = {
@@ -10289,8 +10355,9 @@ export namespace Prisma {
     gas_station_created_at?: Date | string
     gas_station_updated_at?: Date | string
     use_uuid?: string | null
-    verification_hour?: Date | string | null
     verification_msg_sent?: boolean | null
+    verification_hour_marginAL?: Date | string | null
+    verification_hour_marginGC?: Date | string | null
   }
 
   export type gas_station_setvariablesUpdateWithoutIbm_infoInput = {
@@ -10310,8 +10377,9 @@ export namespace Prisma {
     gas_station_whats_app?: gas_station_setvariablesUpdategas_station_whats_appInput | string[]
     gas_station_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     gas_station_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    verification_hour?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     verification_msg_sent?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    verification_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     users?: usersUpdateOneWithoutGas_station_setvariablesNestedInput
   }
 
@@ -10333,8 +10401,9 @@ export namespace Prisma {
     gas_station_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     gas_station_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     use_uuid?: NullableStringFieldUpdateOperationsInput | string | null
-    verification_hour?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     verification_msg_sent?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    verification_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type gas_station_setvariablesUncheckedUpdateManyWithoutIbm_infoInput = {
@@ -10355,8 +10424,9 @@ export namespace Prisma {
     gas_station_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     gas_station_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     use_uuid?: NullableStringFieldUpdateOperationsInput | string | null
-    verification_hour?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     verification_msg_sent?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    verification_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type gas_station_setvariablesCreateManyUsersInput = {
@@ -10377,8 +10447,9 @@ export namespace Prisma {
     gas_station_created_at?: Date | string
     gas_station_updated_at?: Date | string
     ibm_info_id?: string | null
-    verification_hour?: Date | string | null
     verification_msg_sent?: boolean | null
+    verification_hour_marginAL?: Date | string | null
+    verification_hour_marginGC?: Date | string | null
   }
 
   export type region_setvariablesCreateManyUsersInput = {
@@ -10399,8 +10470,9 @@ export namespace Prisma {
     region_station_created_at?: Date | string
     region_station_updated_at?: Date | string
     regions_uuid?: string | null
-    verification_hour?: Date | string | null
     verification_msg_sent?: boolean | null
+    verification_hour_marginAL?: Date | string | null
+    verification_hour_marginGC?: Date | string | null
   }
 
   export type gas_station_setvariablesUpdateWithoutUsersInput = {
@@ -10420,8 +10492,9 @@ export namespace Prisma {
     gas_station_whats_app?: gas_station_setvariablesUpdategas_station_whats_appInput | string[]
     gas_station_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     gas_station_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    verification_hour?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     verification_msg_sent?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    verification_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     ibm_info?: ibm_infoUpdateOneWithoutGas_station_setvariablesNestedInput
   }
 
@@ -10443,8 +10516,9 @@ export namespace Prisma {
     gas_station_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     gas_station_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     ibm_info_id?: NullableStringFieldUpdateOperationsInput | string | null
-    verification_hour?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     verification_msg_sent?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    verification_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type gas_station_setvariablesUncheckedUpdateManyWithoutUsersInput = {
@@ -10465,8 +10539,9 @@ export namespace Prisma {
     gas_station_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     gas_station_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     ibm_info_id?: NullableStringFieldUpdateOperationsInput | string | null
-    verification_hour?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     verification_msg_sent?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    verification_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type region_setvariablesUpdateWithoutUsersInput = {
@@ -10486,8 +10561,9 @@ export namespace Prisma {
     region_whats_app?: region_setvariablesUpdateregion_whats_appInput | string[]
     region_station_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     region_station_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    verification_hour?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     verification_msg_sent?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    verification_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     regions?: regionsUpdateOneWithoutRegion_setvariablesNestedInput
   }
 
@@ -10509,8 +10585,9 @@ export namespace Prisma {
     region_station_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     region_station_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     regions_uuid?: NullableStringFieldUpdateOperationsInput | string | null
-    verification_hour?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     verification_msg_sent?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    verification_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type region_setvariablesUncheckedUpdateManyWithoutUsersInput = {
@@ -10531,8 +10608,9 @@ export namespace Prisma {
     region_station_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     region_station_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     regions_uuid?: NullableStringFieldUpdateOperationsInput | string | null
-    verification_hour?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     verification_msg_sent?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    verification_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type region_setvariablesCreateManyRegionsInput = {
@@ -10553,8 +10631,9 @@ export namespace Prisma {
     region_station_created_at?: Date | string
     region_station_updated_at?: Date | string
     use_uuid?: string | null
-    verification_hour?: Date | string | null
     verification_msg_sent?: boolean | null
+    verification_hour_marginAL?: Date | string | null
+    verification_hour_marginGC?: Date | string | null
   }
 
   export type region_setvariablesUpdateWithoutRegionsInput = {
@@ -10574,8 +10653,9 @@ export namespace Prisma {
     region_whats_app?: region_setvariablesUpdateregion_whats_appInput | string[]
     region_station_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     region_station_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    verification_hour?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     verification_msg_sent?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    verification_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     users?: usersUpdateOneWithoutRegion_setvariablesNestedInput
   }
 
@@ -10597,8 +10677,9 @@ export namespace Prisma {
     region_station_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     region_station_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     use_uuid?: NullableStringFieldUpdateOperationsInput | string | null
-    verification_hour?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     verification_msg_sent?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    verification_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type region_setvariablesUncheckedUpdateManyWithoutRegionsInput = {
@@ -10619,8 +10700,9 @@ export namespace Prisma {
     region_station_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     region_station_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     use_uuid?: NullableStringFieldUpdateOperationsInput | string | null
-    verification_hour?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     verification_msg_sent?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    verification_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
 

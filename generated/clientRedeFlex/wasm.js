@@ -170,8 +170,9 @@ exports.Prisma.Gas_station_setvariablesScalarFieldEnum = {
   gas_station_updated_at: 'gas_station_updated_at',
   ibm_info_id: 'ibm_info_id',
   use_uuid: 'use_uuid',
-  verification_hour: 'verification_hour',
-  verification_msg_sent: 'verification_msg_sent'
+  verification_msg_sent: 'verification_msg_sent',
+  verification_hour_marginAL: 'verification_hour_marginAL',
+  verification_hour_marginGC: 'verification_hour_marginGC'
 };
 
 exports.Prisma.Region_setvariablesScalarFieldEnum = {
@@ -193,8 +194,9 @@ exports.Prisma.Region_setvariablesScalarFieldEnum = {
   region_station_updated_at: 'region_station_updated_at',
   use_uuid: 'use_uuid',
   regions_uuid: 'regions_uuid',
-  verification_hour: 'verification_hour',
-  verification_msg_sent: 'verification_msg_sent'
+  verification_msg_sent: 'verification_msg_sent',
+  verification_hour_marginAL: 'verification_hour_marginAL',
+  verification_hour_marginGC: 'verification_hour_marginGC'
 };
 
 exports.Prisma.RegionsScalarFieldEnum = {
