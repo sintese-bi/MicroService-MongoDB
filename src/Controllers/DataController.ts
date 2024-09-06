@@ -108,6 +108,7 @@ class DataController {
                 const sumFuel = fuel.reduce((accumulator, currentValue) => {
                     return (accumulator || 0) + (currentValue || 0);
                 }, 0);
+
                 //Faturamento total combustível+produto
                 const fuelTotal = itemsArray
                     .map(element => {
@@ -138,7 +139,7 @@ class DataController {
                 }, 0)
                 const sumSupply = supply.reduce((accumulator, currentValue) => {
                     return (accumulator || 0) + (currentValue || 0);
-                })
+                }, 0);
                 const sumLiterage = literage.reduce((accumulator, currentValue) => {
                     return (accumulator || 0) + (currentValue || 0);
                 }, 0);
@@ -197,16 +198,25 @@ class DataController {
                 const fuelProfit = Math.round(((sumFuel - sumCostPrice)) * 100) / 100
                 //Diferença faturamento de produto pelo custo que é o lucro
                 const productProfit = Math.round(((sumFuelProd - sumProductPrice)) * 100) / 100
+                // Exemplo de verificação antes da divisão:
+                const secondary_value_fuel = quantSupply !== 0 ? (sumFuelTotal / quantSupply) : 0;
+                const secondary_value_galonagem = quantSupply !== 0 ? (sumLiterage / quantSupply) : 0;
+                const secondary_value_tmc = quantSupply !== 0 ? (sumCostPrice / quantSupply) : 0;
+                const secondary_value_produto = quantSupply !== 0 ? (sumProductPrice / quantSupply) : 0;
+                const secondary_value_fuelProfit = sumFuel !== 0 ? ((fuelProfit / sumFuel) * 100) : 0;
+                const secondary_value_productProfit = sumFuelProd !== 0 ? ((productProfit / sumFuelProd) * 100) : 0;
+                const secondary_value_bruto_operacional = sumFuelTotal !== 0 ? ((productProfit + fuelProfit) / sumFuelTotal * 100) : 0;
+
                 return res.status(200).json({
-                    data: [{ label: "Galonagem", value: Math.round(sumLiterage * 100) / 100, secondary_label: "TM VOL", secondary_value: Math.round((sumLiterage / quantSupply) * 100) / 100 },
-                    { label: "Faturamento", value: Math.round(sumFuelTotal * 100) / 100, secondary_label: "TMF", secondary_value: Math.round((sumFuelTotal / quantSupply) * 100) / 100 },
+                    data: [{ label: "Galonagem", value: Math.round(sumLiterage * 100) / 100, secondary_label: "TM VOL", secondary_value: Math.round((secondary_value_galonagem) * 100) / 100 },
+                    { label: "Faturamento", value: Math.round(sumFuelTotal * 100) / 100, secondary_label: "TMF", secondary_value: Math.round((secondary_value_fuel) * 100) / 100 },
                     { label: "Abastecimentos", value: Math.round(quantSupply * 100) / 100 },
-                    { label: "Venda Galonagem", value: Math.round(sumCostPrice * 100) / 100, secondary_label: "TMC", secondary_value: Math.round((sumCostPrice / quantSupply) * 100) / 100 },
-                    { label: "Lucro Galonagem", value: fuelProfit, secondary_label: "Lucro Bruto Operacional", secondary_value: Math.round((fuelProfit / sumFuel) * 100) },
+                    { label: "Venda Galonagem", value: Math.round(sumCostPrice * 100) / 100, secondary_label: "TMC", secondary_value: Math.round((secondary_value_tmc) * 100) / 100 },
+                    { label: "Lucro Galonagem", value: fuelProfit, secondary_label: "Lucro Bruto Operacional", secondary_value: Math.round((secondary_value_fuelProfit) * 100) },
                     { label: "M/LT", value: Math.round(fuelProfit / sumLiterage * 100) / 100 },
-                    { label: "Venda de Produto", value: Math.round(sumProductPrice * 100) / 100, secondary_label: "TMP", secondary_value: Math.round((sumProductPrice / quantSupply) * 100) / 100 },
-                    { label: "Lucro Produto", value: productProfit, secondary_label: "Lucro Bruto Operacional", secondary_value: Math.round((productProfit / sumFuelProd) * 100) },
-                    { label: "Lucro Bruto Operacional", value: Math.round((productProfit + fuelProfit) / sumFuelTotal * 100) },
+                    { label: "Venda de Produto", value: Math.round(sumProductPrice * 100) / 100, secondary_label: "TMP", secondary_value: Math.round((secondary_value_produto) * 100) / 100 },
+                    { label: "Lucro Produto", value: productProfit, secondary_label: "Lucro Bruto Operacional", secondary_value: Math.round((secondary_value_productProfit) * 100) },
+                    { label: "Lucro Bruto Operacional", value: Math.round((secondary_value_bruto_operacional)) },
                     ]
                 })
             } else {
