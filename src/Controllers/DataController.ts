@@ -212,10 +212,10 @@ class DataController {
                     { label: "Faturamento", value: Math.round(sumFuelTotal * 100) / 100, secondary_label: "TMF", secondary_value: Math.round((secondary_value_fuel) * 100) / 100 },
                     { label: "Abastecimentos", value: Math.round(quantSupply * 100) / 100 },
                     { label: "Venda Galonagem", value: Math.round(sumCostPrice * 100) / 100, secondary_label: "TMC", secondary_value: Math.round((secondary_value_tmc) * 100) / 100 },
-                    { label: "Lucro Galonagem", value: fuelProfit, secondary_label: "Lucro Bruto Operacional", secondary_value: Math.round((secondary_value_fuelProfit) * 100) },
+                    { label: "Lucro Galonagem", value: fuelProfit, secondary_label: "Lucro Bruto Operacional", secondary_value: Math.round((secondary_value_fuelProfit) * 100)/100 },
                     { label: "M/LT", value: Math.round(valueMLT * 100) / 100 },
                     { label: "Venda de Produto", value: Math.round(sumProductPrice * 100) / 100, secondary_label: "TMP", secondary_value: Math.round((secondary_value_produto) * 100) / 100 },
-                    { label: "Lucro Produto", value: productProfit, secondary_label: "Lucro Bruto Operacional", secondary_value: Math.round((secondary_value_productProfit) * 100) },
+                    { label: "Lucro Produto", value: productProfit, secondary_label: "Lucro Bruto Operacional", secondary_value: Math.round((secondary_value_productProfit) * 100)/100 },
                     { label: "Lucro Bruto Operacional", value: Math.round((secondary_value_bruto_operacional)) },
                     ]
                 })
