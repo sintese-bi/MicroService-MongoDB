@@ -368,6 +368,7 @@ class DataController {
         }
 
     }
+    //Galonagem
     public async dailyGraphicFuel(req: Request, res: Response) {
         try {
             const clientToken = req.headers.authorization;
