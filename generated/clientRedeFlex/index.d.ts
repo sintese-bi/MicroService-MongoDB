@@ -1340,10 +1340,7 @@ export namespace Prisma {
     long: number | null
     ibm_margin_AL: number | null
     ibm_margin_GC: number | null
-    ibm_margin_Total: number | null
-    ibm_volume_AL: number | null
-    ibm_volume_GC: number | null
-    ibm_volume_Total: number | null
+    ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL: number | null
   }
 
   export type Ibm_infoSumAggregateOutputType = {
@@ -1351,10 +1348,7 @@ export namespace Prisma {
     long: number | null
     ibm_margin_AL: number[]
     ibm_margin_GC: number[]
-    ibm_margin_Total: number[]
-    ibm_volume_AL: number[]
-    ibm_volume_GC: number[]
-    ibm_volume_Total: number[]
+    ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL: number[]
   }
 
   export type Ibm_infoMinAggregateOutputType = {
@@ -1396,10 +1390,7 @@ export namespace Prisma {
     regional: number
     ibm_margin_AL: number
     ibm_margin_GC: number
-    ibm_margin_Total: number
-    ibm_volume_AL: number
-    ibm_volume_GC: number
-    ibm_volume_Total: number
+    ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL: number
     _all: number
   }
 
@@ -1409,10 +1400,7 @@ export namespace Prisma {
     long?: true
     ibm_margin_AL?: true
     ibm_margin_GC?: true
-    ibm_margin_Total?: true
-    ibm_volume_AL?: true
-    ibm_volume_GC?: true
-    ibm_volume_Total?: true
+    ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
   }
 
   export type Ibm_infoSumAggregateInputType = {
@@ -1420,10 +1408,7 @@ export namespace Prisma {
     long?: true
     ibm_margin_AL?: true
     ibm_margin_GC?: true
-    ibm_margin_Total?: true
-    ibm_volume_AL?: true
-    ibm_volume_GC?: true
-    ibm_volume_Total?: true
+    ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
   }
 
   export type Ibm_infoMinAggregateInputType = {
@@ -1465,10 +1450,7 @@ export namespace Prisma {
     regional?: true
     ibm_margin_AL?: true
     ibm_margin_GC?: true
-    ibm_margin_Total?: true
-    ibm_volume_AL?: true
-    ibm_volume_GC?: true
-    ibm_volume_Total?: true
+    ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
     _all?: true
   }
 
@@ -1571,10 +1553,7 @@ export namespace Prisma {
     regional: string | null
     ibm_margin_AL: number[]
     ibm_margin_GC: number[]
-    ibm_margin_Total: number[]
-    ibm_volume_AL: number[]
-    ibm_volume_GC: number[]
-    ibm_volume_Total: number[]
+    ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL: number[]
     _count: Ibm_infoCountAggregateOutputType | null
     _avg: Ibm_infoAvgAggregateOutputType | null
     _sum: Ibm_infoSumAggregateOutputType | null
@@ -1609,10 +1588,7 @@ export namespace Prisma {
     regional?: boolean
     ibm_margin_AL?: boolean
     ibm_margin_GC?: boolean
-    ibm_margin_Total?: boolean
-    ibm_volume_AL?: boolean
-    ibm_volume_GC?: boolean
-    ibm_volume_Total?: boolean
+    ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
     gas_station_setvariables?: boolean | ibm_info$gas_station_setvariablesArgs<ExtArgs>
     _count?: boolean | Ibm_infoCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["ibm_info"]>
@@ -1630,10 +1606,7 @@ export namespace Prisma {
     regional?: boolean
     ibm_margin_AL?: boolean
     ibm_margin_GC?: boolean
-    ibm_margin_Total?: boolean
-    ibm_volume_AL?: boolean
-    ibm_volume_GC?: boolean
-    ibm_volume_Total?: boolean
+    ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
   }, ExtArgs["result"]["ibm_info"]>
 
   export type ibm_infoSelectScalar = {
@@ -1649,10 +1622,7 @@ export namespace Prisma {
     regional?: boolean
     ibm_margin_AL?: boolean
     ibm_margin_GC?: boolean
-    ibm_margin_Total?: boolean
-    ibm_volume_AL?: boolean
-    ibm_volume_GC?: boolean
-    ibm_volume_Total?: boolean
+    ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
   }
 
   export type ibm_infoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1679,10 +1649,7 @@ export namespace Prisma {
       regional: string | null
       ibm_margin_AL: number[]
       ibm_margin_GC: number[]
-      ibm_margin_Total: number[]
-      ibm_volume_AL: number[]
-      ibm_volume_GC: number[]
-      ibm_volume_Total: number[]
+      ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL: number[]
     }, ExtArgs["result"]["ibm_info"]>
     composites: {}
   }
@@ -2115,10 +2082,7 @@ export namespace Prisma {
     readonly regional: FieldRef<"ibm_info", 'String'>
     readonly ibm_margin_AL: FieldRef<"ibm_info", 'Float[]'>
     readonly ibm_margin_GC: FieldRef<"ibm_info", 'Float[]'>
-    readonly ibm_margin_Total: FieldRef<"ibm_info", 'Float[]'>
-    readonly ibm_volume_AL: FieldRef<"ibm_info", 'Float[]'>
-    readonly ibm_volume_GC: FieldRef<"ibm_info", 'Float[]'>
-    readonly ibm_volume_Total: FieldRef<"ibm_info", 'Float[]'>
+    readonly ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL: FieldRef<"ibm_info", 'Float[]'>
   }
     
 
@@ -3537,35 +3501,21 @@ export namespace Prisma {
   export type Gas_station_setvariablesAvgAggregateOutputType = {
     gas_station_marginGC: number | null
     gas_station_marginAL: number | null
-    gas_station_marginTotal: number | null
-    gas_station_volumeGC: number | null
-    gas_station_volumeAL: number | null
-    gas_station_volumeTotal: number | null
+    gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL: number | null
   }
 
   export type Gas_station_setvariablesSumAggregateOutputType = {
     gas_station_marginGC: number | null
     gas_station_marginAL: number | null
-    gas_station_marginTotal: number | null
-    gas_station_volumeGC: number | null
-    gas_station_volumeAL: number | null
-    gas_station_volumeTotal: number | null
+    gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL: number | null
   }
 
   export type Gas_station_setvariablesMinAggregateOutputType = {
     gas_station_uuid: string | null
     gas_station_marginGC: number | null
     gas_station_marginAL: number | null
-    gas_station_marginTotal: number | null
-    gas_station_volumeGC: number | null
-    gas_station_volumeAL: number | null
-    gas_station_volumeTotal: number | null
     gas_station_type_marginGC: boolean | null
     gas_station_type_marginAL: boolean | null
-    gas_station_type_marginTotal: boolean | null
-    gas_station_type_volumeGC: boolean | null
-    gas_station_type_volumeAL: boolean | null
-    gas_station_type_volumeTotal: boolean | null
     gas_station_created_at: Date | null
     gas_station_updated_at: Date | null
     ibm_info_id: string | null
@@ -3573,22 +3523,23 @@ export namespace Prisma {
     verification_msg_sent: boolean | null
     verification_hour_marginAL: Date | null
     verification_hour_marginGC: Date | null
+    gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL: number | null
+    gas_station_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL: boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL: Date | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL: Date | null
+    gas_station_sanado_hour_marginAL: Date | null
+    gas_station_sanado_hour_marginGC: Date | null
+    gas_station_sanado_marginAL: boolean | null
+    gas_station_sanado_marginGC: boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL: boolean | null
   }
 
   export type Gas_station_setvariablesMaxAggregateOutputType = {
     gas_station_uuid: string | null
     gas_station_marginGC: number | null
     gas_station_marginAL: number | null
-    gas_station_marginTotal: number | null
-    gas_station_volumeGC: number | null
-    gas_station_volumeAL: number | null
-    gas_station_volumeTotal: number | null
     gas_station_type_marginGC: boolean | null
     gas_station_type_marginAL: boolean | null
-    gas_station_type_marginTotal: boolean | null
-    gas_station_type_volumeGC: boolean | null
-    gas_station_type_volumeAL: boolean | null
-    gas_station_type_volumeTotal: boolean | null
     gas_station_created_at: Date | null
     gas_station_updated_at: Date | null
     ibm_info_id: string | null
@@ -3596,22 +3547,23 @@ export namespace Prisma {
     verification_msg_sent: boolean | null
     verification_hour_marginAL: Date | null
     verification_hour_marginGC: Date | null
+    gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL: number | null
+    gas_station_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL: boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL: Date | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL: Date | null
+    gas_station_sanado_hour_marginAL: Date | null
+    gas_station_sanado_hour_marginGC: Date | null
+    gas_station_sanado_marginAL: boolean | null
+    gas_station_sanado_marginGC: boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL: boolean | null
   }
 
   export type Gas_station_setvariablesCountAggregateOutputType = {
     gas_station_uuid: number
     gas_station_marginGC: number
     gas_station_marginAL: number
-    gas_station_marginTotal: number
-    gas_station_volumeGC: number
-    gas_station_volumeAL: number
-    gas_station_volumeTotal: number
     gas_station_type_marginGC: number
     gas_station_type_marginAL: number
-    gas_station_type_marginTotal: number
-    gas_station_type_volumeGC: number
-    gas_station_type_volumeAL: number
-    gas_station_type_volumeTotal: number
     gas_station_whats_app: number
     gas_station_created_at: number
     gas_station_updated_at: number
@@ -3620,6 +3572,15 @@ export namespace Prisma {
     verification_msg_sent: number
     verification_hour_marginAL: number
     verification_hour_marginGC: number
+    gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL: number
+    gas_station_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL: number
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL: number
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL: number
+    gas_station_sanado_hour_marginAL: number
+    gas_station_sanado_hour_marginGC: number
+    gas_station_sanado_marginAL: number
+    gas_station_sanado_marginGC: number
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL: number
     _all: number
   }
 
@@ -3627,35 +3588,21 @@ export namespace Prisma {
   export type Gas_station_setvariablesAvgAggregateInputType = {
     gas_station_marginGC?: true
     gas_station_marginAL?: true
-    gas_station_marginTotal?: true
-    gas_station_volumeGC?: true
-    gas_station_volumeAL?: true
-    gas_station_volumeTotal?: true
+    gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
   }
 
   export type Gas_station_setvariablesSumAggregateInputType = {
     gas_station_marginGC?: true
     gas_station_marginAL?: true
-    gas_station_marginTotal?: true
-    gas_station_volumeGC?: true
-    gas_station_volumeAL?: true
-    gas_station_volumeTotal?: true
+    gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
   }
 
   export type Gas_station_setvariablesMinAggregateInputType = {
     gas_station_uuid?: true
     gas_station_marginGC?: true
     gas_station_marginAL?: true
-    gas_station_marginTotal?: true
-    gas_station_volumeGC?: true
-    gas_station_volumeAL?: true
-    gas_station_volumeTotal?: true
     gas_station_type_marginGC?: true
     gas_station_type_marginAL?: true
-    gas_station_type_marginTotal?: true
-    gas_station_type_volumeGC?: true
-    gas_station_type_volumeAL?: true
-    gas_station_type_volumeTotal?: true
     gas_station_created_at?: true
     gas_station_updated_at?: true
     ibm_info_id?: true
@@ -3663,22 +3610,23 @@ export namespace Prisma {
     verification_msg_sent?: true
     verification_hour_marginAL?: true
     verification_hour_marginGC?: true
+    gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
+    gas_station_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: true
+    gas_station_sanado_hour_marginAL?: true
+    gas_station_sanado_hour_marginGC?: true
+    gas_station_sanado_marginAL?: true
+    gas_station_sanado_marginGC?: true
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
   }
 
   export type Gas_station_setvariablesMaxAggregateInputType = {
     gas_station_uuid?: true
     gas_station_marginGC?: true
     gas_station_marginAL?: true
-    gas_station_marginTotal?: true
-    gas_station_volumeGC?: true
-    gas_station_volumeAL?: true
-    gas_station_volumeTotal?: true
     gas_station_type_marginGC?: true
     gas_station_type_marginAL?: true
-    gas_station_type_marginTotal?: true
-    gas_station_type_volumeGC?: true
-    gas_station_type_volumeAL?: true
-    gas_station_type_volumeTotal?: true
     gas_station_created_at?: true
     gas_station_updated_at?: true
     ibm_info_id?: true
@@ -3686,22 +3634,23 @@ export namespace Prisma {
     verification_msg_sent?: true
     verification_hour_marginAL?: true
     verification_hour_marginGC?: true
+    gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
+    gas_station_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: true
+    gas_station_sanado_hour_marginAL?: true
+    gas_station_sanado_hour_marginGC?: true
+    gas_station_sanado_marginAL?: true
+    gas_station_sanado_marginGC?: true
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
   }
 
   export type Gas_station_setvariablesCountAggregateInputType = {
     gas_station_uuid?: true
     gas_station_marginGC?: true
     gas_station_marginAL?: true
-    gas_station_marginTotal?: true
-    gas_station_volumeGC?: true
-    gas_station_volumeAL?: true
-    gas_station_volumeTotal?: true
     gas_station_type_marginGC?: true
     gas_station_type_marginAL?: true
-    gas_station_type_marginTotal?: true
-    gas_station_type_volumeGC?: true
-    gas_station_type_volumeAL?: true
-    gas_station_type_volumeTotal?: true
     gas_station_whats_app?: true
     gas_station_created_at?: true
     gas_station_updated_at?: true
@@ -3710,6 +3659,15 @@ export namespace Prisma {
     verification_msg_sent?: true
     verification_hour_marginAL?: true
     verification_hour_marginGC?: true
+    gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
+    gas_station_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: true
+    gas_station_sanado_hour_marginAL?: true
+    gas_station_sanado_hour_marginGC?: true
+    gas_station_sanado_marginAL?: true
+    gas_station_sanado_marginGC?: true
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
     _all?: true
   }
 
@@ -3803,16 +3761,8 @@ export namespace Prisma {
     gas_station_uuid: string
     gas_station_marginGC: number | null
     gas_station_marginAL: number | null
-    gas_station_marginTotal: number | null
-    gas_station_volumeGC: number | null
-    gas_station_volumeAL: number | null
-    gas_station_volumeTotal: number | null
     gas_station_type_marginGC: boolean | null
     gas_station_type_marginAL: boolean | null
-    gas_station_type_marginTotal: boolean | null
-    gas_station_type_volumeGC: boolean | null
-    gas_station_type_volumeAL: boolean | null
-    gas_station_type_volumeTotal: boolean | null
     gas_station_whats_app: string[]
     gas_station_created_at: Date
     gas_station_updated_at: Date
@@ -3821,6 +3771,15 @@ export namespace Prisma {
     verification_msg_sent: boolean | null
     verification_hour_marginAL: Date | null
     verification_hour_marginGC: Date | null
+    gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL: number | null
+    gas_station_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL: boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL: Date | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL: Date | null
+    gas_station_sanado_hour_marginAL: Date | null
+    gas_station_sanado_hour_marginGC: Date | null
+    gas_station_sanado_marginAL: boolean | null
+    gas_station_sanado_marginGC: boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL: boolean | null
     _count: Gas_station_setvariablesCountAggregateOutputType | null
     _avg: Gas_station_setvariablesAvgAggregateOutputType | null
     _sum: Gas_station_setvariablesSumAggregateOutputType | null
@@ -3846,16 +3805,8 @@ export namespace Prisma {
     gas_station_uuid?: boolean
     gas_station_marginGC?: boolean
     gas_station_marginAL?: boolean
-    gas_station_marginTotal?: boolean
-    gas_station_volumeGC?: boolean
-    gas_station_volumeAL?: boolean
-    gas_station_volumeTotal?: boolean
     gas_station_type_marginGC?: boolean
     gas_station_type_marginAL?: boolean
-    gas_station_type_marginTotal?: boolean
-    gas_station_type_volumeGC?: boolean
-    gas_station_type_volumeAL?: boolean
-    gas_station_type_volumeTotal?: boolean
     gas_station_whats_app?: boolean
     gas_station_created_at?: boolean
     gas_station_updated_at?: boolean
@@ -3864,6 +3815,15 @@ export namespace Prisma {
     verification_msg_sent?: boolean
     verification_hour_marginAL?: boolean
     verification_hour_marginGC?: boolean
+    gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
+    gas_station_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
+    gas_station_sanado_hour_marginAL?: boolean
+    gas_station_sanado_hour_marginGC?: boolean
+    gas_station_sanado_marginAL?: boolean
+    gas_station_sanado_marginGC?: boolean
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
     ibm_info?: boolean | gas_station_setvariables$ibm_infoArgs<ExtArgs>
     users?: boolean | gas_station_setvariables$usersArgs<ExtArgs>
   }, ExtArgs["result"]["gas_station_setvariables"]>
@@ -3872,16 +3832,8 @@ export namespace Prisma {
     gas_station_uuid?: boolean
     gas_station_marginGC?: boolean
     gas_station_marginAL?: boolean
-    gas_station_marginTotal?: boolean
-    gas_station_volumeGC?: boolean
-    gas_station_volumeAL?: boolean
-    gas_station_volumeTotal?: boolean
     gas_station_type_marginGC?: boolean
     gas_station_type_marginAL?: boolean
-    gas_station_type_marginTotal?: boolean
-    gas_station_type_volumeGC?: boolean
-    gas_station_type_volumeAL?: boolean
-    gas_station_type_volumeTotal?: boolean
     gas_station_whats_app?: boolean
     gas_station_created_at?: boolean
     gas_station_updated_at?: boolean
@@ -3890,6 +3842,15 @@ export namespace Prisma {
     verification_msg_sent?: boolean
     verification_hour_marginAL?: boolean
     verification_hour_marginGC?: boolean
+    gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
+    gas_station_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
+    gas_station_sanado_hour_marginAL?: boolean
+    gas_station_sanado_hour_marginGC?: boolean
+    gas_station_sanado_marginAL?: boolean
+    gas_station_sanado_marginGC?: boolean
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
     ibm_info?: boolean | gas_station_setvariables$ibm_infoArgs<ExtArgs>
     users?: boolean | gas_station_setvariables$usersArgs<ExtArgs>
   }, ExtArgs["result"]["gas_station_setvariables"]>
@@ -3898,16 +3859,8 @@ export namespace Prisma {
     gas_station_uuid?: boolean
     gas_station_marginGC?: boolean
     gas_station_marginAL?: boolean
-    gas_station_marginTotal?: boolean
-    gas_station_volumeGC?: boolean
-    gas_station_volumeAL?: boolean
-    gas_station_volumeTotal?: boolean
     gas_station_type_marginGC?: boolean
     gas_station_type_marginAL?: boolean
-    gas_station_type_marginTotal?: boolean
-    gas_station_type_volumeGC?: boolean
-    gas_station_type_volumeAL?: boolean
-    gas_station_type_volumeTotal?: boolean
     gas_station_whats_app?: boolean
     gas_station_created_at?: boolean
     gas_station_updated_at?: boolean
@@ -3916,6 +3869,15 @@ export namespace Prisma {
     verification_msg_sent?: boolean
     verification_hour_marginAL?: boolean
     verification_hour_marginGC?: boolean
+    gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
+    gas_station_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
+    gas_station_sanado_hour_marginAL?: boolean
+    gas_station_sanado_hour_marginGC?: boolean
+    gas_station_sanado_marginAL?: boolean
+    gas_station_sanado_marginGC?: boolean
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
   }
 
   export type gas_station_setvariablesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3937,16 +3899,8 @@ export namespace Prisma {
       gas_station_uuid: string
       gas_station_marginGC: number | null
       gas_station_marginAL: number | null
-      gas_station_marginTotal: number | null
-      gas_station_volumeGC: number | null
-      gas_station_volumeAL: number | null
-      gas_station_volumeTotal: number | null
       gas_station_type_marginGC: boolean | null
       gas_station_type_marginAL: boolean | null
-      gas_station_type_marginTotal: boolean | null
-      gas_station_type_volumeGC: boolean | null
-      gas_station_type_volumeAL: boolean | null
-      gas_station_type_volumeTotal: boolean | null
       gas_station_whats_app: string[]
       gas_station_created_at: Date
       gas_station_updated_at: Date
@@ -3955,6 +3909,15 @@ export namespace Prisma {
       verification_msg_sent: boolean | null
       verification_hour_marginAL: Date | null
       verification_hour_marginGC: Date | null
+      gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL: number | null
+      gas_station_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL: boolean | null
+      verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL: Date | null
+      gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL: Date | null
+      gas_station_sanado_hour_marginAL: Date | null
+      gas_station_sanado_hour_marginGC: Date | null
+      gas_station_sanado_marginAL: boolean | null
+      gas_station_sanado_marginGC: boolean | null
+      gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL: boolean | null
     }, ExtArgs["result"]["gas_station_setvariables"]>
     composites: {}
   }
@@ -4380,16 +4343,8 @@ export namespace Prisma {
     readonly gas_station_uuid: FieldRef<"gas_station_setvariables", 'String'>
     readonly gas_station_marginGC: FieldRef<"gas_station_setvariables", 'Float'>
     readonly gas_station_marginAL: FieldRef<"gas_station_setvariables", 'Float'>
-    readonly gas_station_marginTotal: FieldRef<"gas_station_setvariables", 'Float'>
-    readonly gas_station_volumeGC: FieldRef<"gas_station_setvariables", 'Float'>
-    readonly gas_station_volumeAL: FieldRef<"gas_station_setvariables", 'Float'>
-    readonly gas_station_volumeTotal: FieldRef<"gas_station_setvariables", 'Float'>
     readonly gas_station_type_marginGC: FieldRef<"gas_station_setvariables", 'Boolean'>
     readonly gas_station_type_marginAL: FieldRef<"gas_station_setvariables", 'Boolean'>
-    readonly gas_station_type_marginTotal: FieldRef<"gas_station_setvariables", 'Boolean'>
-    readonly gas_station_type_volumeGC: FieldRef<"gas_station_setvariables", 'Boolean'>
-    readonly gas_station_type_volumeAL: FieldRef<"gas_station_setvariables", 'Boolean'>
-    readonly gas_station_type_volumeTotal: FieldRef<"gas_station_setvariables", 'Boolean'>
     readonly gas_station_whats_app: FieldRef<"gas_station_setvariables", 'String[]'>
     readonly gas_station_created_at: FieldRef<"gas_station_setvariables", 'DateTime'>
     readonly gas_station_updated_at: FieldRef<"gas_station_setvariables", 'DateTime'>
@@ -4398,6 +4353,15 @@ export namespace Prisma {
     readonly verification_msg_sent: FieldRef<"gas_station_setvariables", 'Boolean'>
     readonly verification_hour_marginAL: FieldRef<"gas_station_setvariables", 'DateTime'>
     readonly verification_hour_marginGC: FieldRef<"gas_station_setvariables", 'DateTime'>
+    readonly gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL: FieldRef<"gas_station_setvariables", 'Float'>
+    readonly gas_station_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL: FieldRef<"gas_station_setvariables", 'Boolean'>
+    readonly verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL: FieldRef<"gas_station_setvariables", 'DateTime'>
+    readonly gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL: FieldRef<"gas_station_setvariables", 'DateTime'>
+    readonly gas_station_sanado_hour_marginAL: FieldRef<"gas_station_setvariables", 'DateTime'>
+    readonly gas_station_sanado_hour_marginGC: FieldRef<"gas_station_setvariables", 'DateTime'>
+    readonly gas_station_sanado_marginAL: FieldRef<"gas_station_setvariables", 'Boolean'>
+    readonly gas_station_sanado_marginGC: FieldRef<"gas_station_setvariables", 'Boolean'>
+    readonly gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL: FieldRef<"gas_station_setvariables", 'Boolean'>
   }
     
 
@@ -4775,35 +4739,21 @@ export namespace Prisma {
   export type Region_setvariablesAvgAggregateOutputType = {
     region_marginGC: number | null
     region_marginAL: number | null
-    region_marginTotal: number | null
-    region_volumeGC: number | null
-    region_volumeAL: number | null
-    region_volumeTotal: number | null
+    region_margin_ETANOL_HIDRATADO_COMBUSTIVEL: number | null
   }
 
   export type Region_setvariablesSumAggregateOutputType = {
     region_marginGC: number | null
     region_marginAL: number | null
-    region_marginTotal: number | null
-    region_volumeGC: number | null
-    region_volumeAL: number | null
-    region_volumeTotal: number | null
+    region_margin_ETANOL_HIDRATADO_COMBUSTIVEL: number | null
   }
 
   export type Region_setvariablesMinAggregateOutputType = {
     region_uuid: string | null
     region_marginGC: number | null
     region_marginAL: number | null
-    region_marginTotal: number | null
-    region_volumeGC: number | null
-    region_volumeAL: number | null
-    region_volumeTotal: number | null
     region_type_marginGC: boolean | null
     region_type_marginAL: boolean | null
-    region_type_marginTotal: boolean | null
-    region_type_volumeGC: boolean | null
-    region_type_volumeAL: boolean | null
-    region_type_volumeTotal: boolean | null
     region_station_created_at: Date | null
     region_station_updated_at: Date | null
     use_uuid: string | null
@@ -4811,22 +4761,23 @@ export namespace Prisma {
     verification_msg_sent: boolean | null
     verification_hour_marginAL: Date | null
     verification_hour_marginGC: Date | null
+    region_margin_ETANOL_HIDRATADO_COMBUSTIVEL: number | null
+    region_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL: boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL: Date | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL: Date | null
+    gas_station_sanado_hour_marginAL: Date | null
+    gas_station_sanado_hour_marginGC: Date | null
+    gas_station_sanado_marginAL: boolean | null
+    gas_station_sanado_marginGC: boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL: boolean | null
   }
 
   export type Region_setvariablesMaxAggregateOutputType = {
     region_uuid: string | null
     region_marginGC: number | null
     region_marginAL: number | null
-    region_marginTotal: number | null
-    region_volumeGC: number | null
-    region_volumeAL: number | null
-    region_volumeTotal: number | null
     region_type_marginGC: boolean | null
     region_type_marginAL: boolean | null
-    region_type_marginTotal: boolean | null
-    region_type_volumeGC: boolean | null
-    region_type_volumeAL: boolean | null
-    region_type_volumeTotal: boolean | null
     region_station_created_at: Date | null
     region_station_updated_at: Date | null
     use_uuid: string | null
@@ -4834,22 +4785,23 @@ export namespace Prisma {
     verification_msg_sent: boolean | null
     verification_hour_marginAL: Date | null
     verification_hour_marginGC: Date | null
+    region_margin_ETANOL_HIDRATADO_COMBUSTIVEL: number | null
+    region_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL: boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL: Date | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL: Date | null
+    gas_station_sanado_hour_marginAL: Date | null
+    gas_station_sanado_hour_marginGC: Date | null
+    gas_station_sanado_marginAL: boolean | null
+    gas_station_sanado_marginGC: boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL: boolean | null
   }
 
   export type Region_setvariablesCountAggregateOutputType = {
     region_uuid: number
     region_marginGC: number
     region_marginAL: number
-    region_marginTotal: number
-    region_volumeGC: number
-    region_volumeAL: number
-    region_volumeTotal: number
     region_type_marginGC: number
     region_type_marginAL: number
-    region_type_marginTotal: number
-    region_type_volumeGC: number
-    region_type_volumeAL: number
-    region_type_volumeTotal: number
     region_whats_app: number
     region_station_created_at: number
     region_station_updated_at: number
@@ -4858,6 +4810,15 @@ export namespace Prisma {
     verification_msg_sent: number
     verification_hour_marginAL: number
     verification_hour_marginGC: number
+    region_margin_ETANOL_HIDRATADO_COMBUSTIVEL: number
+    region_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL: number
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL: number
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL: number
+    gas_station_sanado_hour_marginAL: number
+    gas_station_sanado_hour_marginGC: number
+    gas_station_sanado_marginAL: number
+    gas_station_sanado_marginGC: number
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL: number
     _all: number
   }
 
@@ -4865,35 +4826,21 @@ export namespace Prisma {
   export type Region_setvariablesAvgAggregateInputType = {
     region_marginGC?: true
     region_marginAL?: true
-    region_marginTotal?: true
-    region_volumeGC?: true
-    region_volumeAL?: true
-    region_volumeTotal?: true
+    region_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
   }
 
   export type Region_setvariablesSumAggregateInputType = {
     region_marginGC?: true
     region_marginAL?: true
-    region_marginTotal?: true
-    region_volumeGC?: true
-    region_volumeAL?: true
-    region_volumeTotal?: true
+    region_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
   }
 
   export type Region_setvariablesMinAggregateInputType = {
     region_uuid?: true
     region_marginGC?: true
     region_marginAL?: true
-    region_marginTotal?: true
-    region_volumeGC?: true
-    region_volumeAL?: true
-    region_volumeTotal?: true
     region_type_marginGC?: true
     region_type_marginAL?: true
-    region_type_marginTotal?: true
-    region_type_volumeGC?: true
-    region_type_volumeAL?: true
-    region_type_volumeTotal?: true
     region_station_created_at?: true
     region_station_updated_at?: true
     use_uuid?: true
@@ -4901,22 +4848,23 @@ export namespace Prisma {
     verification_msg_sent?: true
     verification_hour_marginAL?: true
     verification_hour_marginGC?: true
+    region_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
+    region_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: true
+    gas_station_sanado_hour_marginAL?: true
+    gas_station_sanado_hour_marginGC?: true
+    gas_station_sanado_marginAL?: true
+    gas_station_sanado_marginGC?: true
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
   }
 
   export type Region_setvariablesMaxAggregateInputType = {
     region_uuid?: true
     region_marginGC?: true
     region_marginAL?: true
-    region_marginTotal?: true
-    region_volumeGC?: true
-    region_volumeAL?: true
-    region_volumeTotal?: true
     region_type_marginGC?: true
     region_type_marginAL?: true
-    region_type_marginTotal?: true
-    region_type_volumeGC?: true
-    region_type_volumeAL?: true
-    region_type_volumeTotal?: true
     region_station_created_at?: true
     region_station_updated_at?: true
     use_uuid?: true
@@ -4924,22 +4872,23 @@ export namespace Prisma {
     verification_msg_sent?: true
     verification_hour_marginAL?: true
     verification_hour_marginGC?: true
+    region_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
+    region_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: true
+    gas_station_sanado_hour_marginAL?: true
+    gas_station_sanado_hour_marginGC?: true
+    gas_station_sanado_marginAL?: true
+    gas_station_sanado_marginGC?: true
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
   }
 
   export type Region_setvariablesCountAggregateInputType = {
     region_uuid?: true
     region_marginGC?: true
     region_marginAL?: true
-    region_marginTotal?: true
-    region_volumeGC?: true
-    region_volumeAL?: true
-    region_volumeTotal?: true
     region_type_marginGC?: true
     region_type_marginAL?: true
-    region_type_marginTotal?: true
-    region_type_volumeGC?: true
-    region_type_volumeAL?: true
-    region_type_volumeTotal?: true
     region_whats_app?: true
     region_station_created_at?: true
     region_station_updated_at?: true
@@ -4948,6 +4897,15 @@ export namespace Prisma {
     verification_msg_sent?: true
     verification_hour_marginAL?: true
     verification_hour_marginGC?: true
+    region_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
+    region_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: true
+    gas_station_sanado_hour_marginAL?: true
+    gas_station_sanado_hour_marginGC?: true
+    gas_station_sanado_marginAL?: true
+    gas_station_sanado_marginGC?: true
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
     _all?: true
   }
 
@@ -5041,16 +4999,8 @@ export namespace Prisma {
     region_uuid: string
     region_marginGC: number | null
     region_marginAL: number | null
-    region_marginTotal: number | null
-    region_volumeGC: number | null
-    region_volumeAL: number | null
-    region_volumeTotal: number | null
     region_type_marginGC: boolean | null
     region_type_marginAL: boolean | null
-    region_type_marginTotal: boolean | null
-    region_type_volumeGC: boolean | null
-    region_type_volumeAL: boolean | null
-    region_type_volumeTotal: boolean | null
     region_whats_app: string[]
     region_station_created_at: Date
     region_station_updated_at: Date
@@ -5059,6 +5009,15 @@ export namespace Prisma {
     verification_msg_sent: boolean | null
     verification_hour_marginAL: Date | null
     verification_hour_marginGC: Date | null
+    region_margin_ETANOL_HIDRATADO_COMBUSTIVEL: number | null
+    region_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL: boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL: Date | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL: Date | null
+    gas_station_sanado_hour_marginAL: Date | null
+    gas_station_sanado_hour_marginGC: Date | null
+    gas_station_sanado_marginAL: boolean | null
+    gas_station_sanado_marginGC: boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL: boolean | null
     _count: Region_setvariablesCountAggregateOutputType | null
     _avg: Region_setvariablesAvgAggregateOutputType | null
     _sum: Region_setvariablesSumAggregateOutputType | null
@@ -5084,16 +5043,8 @@ export namespace Prisma {
     region_uuid?: boolean
     region_marginGC?: boolean
     region_marginAL?: boolean
-    region_marginTotal?: boolean
-    region_volumeGC?: boolean
-    region_volumeAL?: boolean
-    region_volumeTotal?: boolean
     region_type_marginGC?: boolean
     region_type_marginAL?: boolean
-    region_type_marginTotal?: boolean
-    region_type_volumeGC?: boolean
-    region_type_volumeAL?: boolean
-    region_type_volumeTotal?: boolean
     region_whats_app?: boolean
     region_station_created_at?: boolean
     region_station_updated_at?: boolean
@@ -5102,6 +5053,15 @@ export namespace Prisma {
     verification_msg_sent?: boolean
     verification_hour_marginAL?: boolean
     verification_hour_marginGC?: boolean
+    region_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
+    region_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
+    gas_station_sanado_hour_marginAL?: boolean
+    gas_station_sanado_hour_marginGC?: boolean
+    gas_station_sanado_marginAL?: boolean
+    gas_station_sanado_marginGC?: boolean
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
     regions?: boolean | region_setvariables$regionsArgs<ExtArgs>
     users?: boolean | region_setvariables$usersArgs<ExtArgs>
   }, ExtArgs["result"]["region_setvariables"]>
@@ -5110,16 +5070,8 @@ export namespace Prisma {
     region_uuid?: boolean
     region_marginGC?: boolean
     region_marginAL?: boolean
-    region_marginTotal?: boolean
-    region_volumeGC?: boolean
-    region_volumeAL?: boolean
-    region_volumeTotal?: boolean
     region_type_marginGC?: boolean
     region_type_marginAL?: boolean
-    region_type_marginTotal?: boolean
-    region_type_volumeGC?: boolean
-    region_type_volumeAL?: boolean
-    region_type_volumeTotal?: boolean
     region_whats_app?: boolean
     region_station_created_at?: boolean
     region_station_updated_at?: boolean
@@ -5128,6 +5080,15 @@ export namespace Prisma {
     verification_msg_sent?: boolean
     verification_hour_marginAL?: boolean
     verification_hour_marginGC?: boolean
+    region_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
+    region_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
+    gas_station_sanado_hour_marginAL?: boolean
+    gas_station_sanado_hour_marginGC?: boolean
+    gas_station_sanado_marginAL?: boolean
+    gas_station_sanado_marginGC?: boolean
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
     regions?: boolean | region_setvariables$regionsArgs<ExtArgs>
     users?: boolean | region_setvariables$usersArgs<ExtArgs>
   }, ExtArgs["result"]["region_setvariables"]>
@@ -5136,16 +5097,8 @@ export namespace Prisma {
     region_uuid?: boolean
     region_marginGC?: boolean
     region_marginAL?: boolean
-    region_marginTotal?: boolean
-    region_volumeGC?: boolean
-    region_volumeAL?: boolean
-    region_volumeTotal?: boolean
     region_type_marginGC?: boolean
     region_type_marginAL?: boolean
-    region_type_marginTotal?: boolean
-    region_type_volumeGC?: boolean
-    region_type_volumeAL?: boolean
-    region_type_volumeTotal?: boolean
     region_whats_app?: boolean
     region_station_created_at?: boolean
     region_station_updated_at?: boolean
@@ -5154,6 +5107,15 @@ export namespace Prisma {
     verification_msg_sent?: boolean
     verification_hour_marginAL?: boolean
     verification_hour_marginGC?: boolean
+    region_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
+    region_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
+    gas_station_sanado_hour_marginAL?: boolean
+    gas_station_sanado_hour_marginGC?: boolean
+    gas_station_sanado_marginAL?: boolean
+    gas_station_sanado_marginGC?: boolean
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
   }
 
   export type region_setvariablesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5175,16 +5137,8 @@ export namespace Prisma {
       region_uuid: string
       region_marginGC: number | null
       region_marginAL: number | null
-      region_marginTotal: number | null
-      region_volumeGC: number | null
-      region_volumeAL: number | null
-      region_volumeTotal: number | null
       region_type_marginGC: boolean | null
       region_type_marginAL: boolean | null
-      region_type_marginTotal: boolean | null
-      region_type_volumeGC: boolean | null
-      region_type_volumeAL: boolean | null
-      region_type_volumeTotal: boolean | null
       region_whats_app: string[]
       region_station_created_at: Date
       region_station_updated_at: Date
@@ -5193,6 +5147,15 @@ export namespace Prisma {
       verification_msg_sent: boolean | null
       verification_hour_marginAL: Date | null
       verification_hour_marginGC: Date | null
+      region_margin_ETANOL_HIDRATADO_COMBUSTIVEL: number | null
+      region_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL: boolean | null
+      verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL: Date | null
+      gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL: Date | null
+      gas_station_sanado_hour_marginAL: Date | null
+      gas_station_sanado_hour_marginGC: Date | null
+      gas_station_sanado_marginAL: boolean | null
+      gas_station_sanado_marginGC: boolean | null
+      gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL: boolean | null
     }, ExtArgs["result"]["region_setvariables"]>
     composites: {}
   }
@@ -5618,16 +5581,8 @@ export namespace Prisma {
     readonly region_uuid: FieldRef<"region_setvariables", 'String'>
     readonly region_marginGC: FieldRef<"region_setvariables", 'Float'>
     readonly region_marginAL: FieldRef<"region_setvariables", 'Float'>
-    readonly region_marginTotal: FieldRef<"region_setvariables", 'Float'>
-    readonly region_volumeGC: FieldRef<"region_setvariables", 'Float'>
-    readonly region_volumeAL: FieldRef<"region_setvariables", 'Float'>
-    readonly region_volumeTotal: FieldRef<"region_setvariables", 'Float'>
     readonly region_type_marginGC: FieldRef<"region_setvariables", 'Boolean'>
     readonly region_type_marginAL: FieldRef<"region_setvariables", 'Boolean'>
-    readonly region_type_marginTotal: FieldRef<"region_setvariables", 'Boolean'>
-    readonly region_type_volumeGC: FieldRef<"region_setvariables", 'Boolean'>
-    readonly region_type_volumeAL: FieldRef<"region_setvariables", 'Boolean'>
-    readonly region_type_volumeTotal: FieldRef<"region_setvariables", 'Boolean'>
     readonly region_whats_app: FieldRef<"region_setvariables", 'String[]'>
     readonly region_station_created_at: FieldRef<"region_setvariables", 'DateTime'>
     readonly region_station_updated_at: FieldRef<"region_setvariables", 'DateTime'>
@@ -5636,6 +5591,15 @@ export namespace Prisma {
     readonly verification_msg_sent: FieldRef<"region_setvariables", 'Boolean'>
     readonly verification_hour_marginAL: FieldRef<"region_setvariables", 'DateTime'>
     readonly verification_hour_marginGC: FieldRef<"region_setvariables", 'DateTime'>
+    readonly region_margin_ETANOL_HIDRATADO_COMBUSTIVEL: FieldRef<"region_setvariables", 'Float'>
+    readonly region_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL: FieldRef<"region_setvariables", 'Boolean'>
+    readonly verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL: FieldRef<"region_setvariables", 'DateTime'>
+    readonly gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL: FieldRef<"region_setvariables", 'DateTime'>
+    readonly gas_station_sanado_hour_marginAL: FieldRef<"region_setvariables", 'DateTime'>
+    readonly gas_station_sanado_hour_marginGC: FieldRef<"region_setvariables", 'DateTime'>
+    readonly gas_station_sanado_marginAL: FieldRef<"region_setvariables", 'Boolean'>
+    readonly gas_station_sanado_marginGC: FieldRef<"region_setvariables", 'Boolean'>
+    readonly gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL: FieldRef<"region_setvariables", 'Boolean'>
   }
     
 
@@ -6013,19 +5977,13 @@ export namespace Prisma {
   export type RegionsAvgAggregateOutputType = {
     regions_margin_AL: number | null
     regions_margin_GC: number | null
-    regions_margin_Total: number | null
-    regions_volume_AL: number | null
-    regions_volume_GC: number | null
-    regions_volume_Total: number | null
+    regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL: number | null
   }
 
   export type RegionsSumAggregateOutputType = {
     regions_margin_AL: number[]
     regions_margin_GC: number[]
-    regions_margin_Total: number[]
-    regions_volume_AL: number[]
-    regions_volume_GC: number[]
-    regions_volume_Total: number[]
+    regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL: number[]
   }
 
   export type RegionsMinAggregateOutputType = {
@@ -6052,10 +6010,7 @@ export namespace Prisma {
     region_updated_at: number
     regions_margin_AL: number
     regions_margin_GC: number
-    regions_margin_Total: number
-    regions_volume_AL: number
-    regions_volume_GC: number
-    regions_volume_Total: number
+    regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL: number
     _all: number
   }
 
@@ -6063,19 +6018,13 @@ export namespace Prisma {
   export type RegionsAvgAggregateInputType = {
     regions_margin_AL?: true
     regions_margin_GC?: true
-    regions_margin_Total?: true
-    regions_volume_AL?: true
-    regions_volume_GC?: true
-    regions_volume_Total?: true
+    regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
   }
 
   export type RegionsSumAggregateInputType = {
     regions_margin_AL?: true
     regions_margin_GC?: true
-    regions_margin_Total?: true
-    regions_volume_AL?: true
-    regions_volume_GC?: true
-    regions_volume_Total?: true
+    regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
   }
 
   export type RegionsMinAggregateInputType = {
@@ -6102,10 +6051,7 @@ export namespace Prisma {
     region_updated_at?: true
     regions_margin_AL?: true
     regions_margin_GC?: true
-    regions_margin_Total?: true
-    regions_volume_AL?: true
-    regions_volume_GC?: true
-    regions_volume_Total?: true
+    regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
     _all?: true
   }
 
@@ -6203,10 +6149,7 @@ export namespace Prisma {
     region_updated_at: Date
     regions_margin_AL: number[]
     regions_margin_GC: number[]
-    regions_margin_Total: number[]
-    regions_volume_AL: number[]
-    regions_volume_GC: number[]
-    regions_volume_Total: number[]
+    regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL: number[]
     _count: RegionsCountAggregateOutputType | null
     _avg: RegionsAvgAggregateOutputType | null
     _sum: RegionsSumAggregateOutputType | null
@@ -6236,10 +6179,7 @@ export namespace Prisma {
     region_updated_at?: boolean
     regions_margin_AL?: boolean
     regions_margin_GC?: boolean
-    regions_margin_Total?: boolean
-    regions_volume_AL?: boolean
-    regions_volume_GC?: boolean
-    regions_volume_Total?: boolean
+    regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
     region_setvariables?: boolean | regions$region_setvariablesArgs<ExtArgs>
     _count?: boolean | RegionsCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["regions"]>
@@ -6252,10 +6192,7 @@ export namespace Prisma {
     region_updated_at?: boolean
     regions_margin_AL?: boolean
     regions_margin_GC?: boolean
-    regions_margin_Total?: boolean
-    regions_volume_AL?: boolean
-    regions_volume_GC?: boolean
-    regions_volume_Total?: boolean
+    regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
   }, ExtArgs["result"]["regions"]>
 
   export type regionsSelectScalar = {
@@ -6266,10 +6203,7 @@ export namespace Prisma {
     region_updated_at?: boolean
     regions_margin_AL?: boolean
     regions_margin_GC?: boolean
-    regions_margin_Total?: boolean
-    regions_volume_AL?: boolean
-    regions_volume_GC?: boolean
-    regions_volume_Total?: boolean
+    regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
   }
 
   export type regionsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6291,10 +6225,7 @@ export namespace Prisma {
       region_updated_at: Date
       regions_margin_AL: number[]
       regions_margin_GC: number[]
-      regions_margin_Total: number[]
-      regions_volume_AL: number[]
-      regions_volume_GC: number[]
-      regions_volume_Total: number[]
+      regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL: number[]
     }, ExtArgs["result"]["regions"]>
     composites: {}
   }
@@ -6722,10 +6653,7 @@ export namespace Prisma {
     readonly region_updated_at: FieldRef<"regions", 'DateTime'>
     readonly regions_margin_AL: FieldRef<"regions", 'Float[]'>
     readonly regions_margin_GC: FieldRef<"regions", 'Float[]'>
-    readonly regions_margin_Total: FieldRef<"regions", 'Float[]'>
-    readonly regions_volume_AL: FieldRef<"regions", 'Float[]'>
-    readonly regions_volume_GC: FieldRef<"regions", 'Float[]'>
-    readonly regions_volume_Total: FieldRef<"regions", 'Float[]'>
+    readonly regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL: FieldRef<"regions", 'Float[]'>
   }
     
 
@@ -7101,10 +7029,7 @@ export namespace Prisma {
     regional: 'regional',
     ibm_margin_AL: 'ibm_margin_AL',
     ibm_margin_GC: 'ibm_margin_GC',
-    ibm_margin_Total: 'ibm_margin_Total',
-    ibm_volume_AL: 'ibm_volume_AL',
-    ibm_volume_GC: 'ibm_volume_GC',
-    ibm_volume_Total: 'ibm_volume_Total'
+    ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL: 'ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL'
   };
 
   export type Ibm_infoScalarFieldEnum = (typeof Ibm_infoScalarFieldEnum)[keyof typeof Ibm_infoScalarFieldEnum]
@@ -7130,16 +7055,8 @@ export namespace Prisma {
     gas_station_uuid: 'gas_station_uuid',
     gas_station_marginGC: 'gas_station_marginGC',
     gas_station_marginAL: 'gas_station_marginAL',
-    gas_station_marginTotal: 'gas_station_marginTotal',
-    gas_station_volumeGC: 'gas_station_volumeGC',
-    gas_station_volumeAL: 'gas_station_volumeAL',
-    gas_station_volumeTotal: 'gas_station_volumeTotal',
     gas_station_type_marginGC: 'gas_station_type_marginGC',
     gas_station_type_marginAL: 'gas_station_type_marginAL',
-    gas_station_type_marginTotal: 'gas_station_type_marginTotal',
-    gas_station_type_volumeGC: 'gas_station_type_volumeGC',
-    gas_station_type_volumeAL: 'gas_station_type_volumeAL',
-    gas_station_type_volumeTotal: 'gas_station_type_volumeTotal',
     gas_station_whats_app: 'gas_station_whats_app',
     gas_station_created_at: 'gas_station_created_at',
     gas_station_updated_at: 'gas_station_updated_at',
@@ -7147,7 +7064,16 @@ export namespace Prisma {
     use_uuid: 'use_uuid',
     verification_msg_sent: 'verification_msg_sent',
     verification_hour_marginAL: 'verification_hour_marginAL',
-    verification_hour_marginGC: 'verification_hour_marginGC'
+    verification_hour_marginGC: 'verification_hour_marginGC',
+    gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL: 'gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL',
+    gas_station_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL: 'gas_station_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL',
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL: 'verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL',
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL: 'gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL',
+    gas_station_sanado_hour_marginAL: 'gas_station_sanado_hour_marginAL',
+    gas_station_sanado_hour_marginGC: 'gas_station_sanado_hour_marginGC',
+    gas_station_sanado_marginAL: 'gas_station_sanado_marginAL',
+    gas_station_sanado_marginGC: 'gas_station_sanado_marginGC',
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL: 'gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL'
   };
 
   export type Gas_station_setvariablesScalarFieldEnum = (typeof Gas_station_setvariablesScalarFieldEnum)[keyof typeof Gas_station_setvariablesScalarFieldEnum]
@@ -7157,16 +7083,8 @@ export namespace Prisma {
     region_uuid: 'region_uuid',
     region_marginGC: 'region_marginGC',
     region_marginAL: 'region_marginAL',
-    region_marginTotal: 'region_marginTotal',
-    region_volumeGC: 'region_volumeGC',
-    region_volumeAL: 'region_volumeAL',
-    region_volumeTotal: 'region_volumeTotal',
     region_type_marginGC: 'region_type_marginGC',
     region_type_marginAL: 'region_type_marginAL',
-    region_type_marginTotal: 'region_type_marginTotal',
-    region_type_volumeGC: 'region_type_volumeGC',
-    region_type_volumeAL: 'region_type_volumeAL',
-    region_type_volumeTotal: 'region_type_volumeTotal',
     region_whats_app: 'region_whats_app',
     region_station_created_at: 'region_station_created_at',
     region_station_updated_at: 'region_station_updated_at',
@@ -7174,7 +7092,16 @@ export namespace Prisma {
     regions_uuid: 'regions_uuid',
     verification_msg_sent: 'verification_msg_sent',
     verification_hour_marginAL: 'verification_hour_marginAL',
-    verification_hour_marginGC: 'verification_hour_marginGC'
+    verification_hour_marginGC: 'verification_hour_marginGC',
+    region_margin_ETANOL_HIDRATADO_COMBUSTIVEL: 'region_margin_ETANOL_HIDRATADO_COMBUSTIVEL',
+    region_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL: 'region_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL',
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL: 'verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL',
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL: 'gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL',
+    gas_station_sanado_hour_marginAL: 'gas_station_sanado_hour_marginAL',
+    gas_station_sanado_hour_marginGC: 'gas_station_sanado_hour_marginGC',
+    gas_station_sanado_marginAL: 'gas_station_sanado_marginAL',
+    gas_station_sanado_marginGC: 'gas_station_sanado_marginGC',
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL: 'gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL'
   };
 
   export type Region_setvariablesScalarFieldEnum = (typeof Region_setvariablesScalarFieldEnum)[keyof typeof Region_setvariablesScalarFieldEnum]
@@ -7188,10 +7115,7 @@ export namespace Prisma {
     region_updated_at: 'region_updated_at',
     regions_margin_AL: 'regions_margin_AL',
     regions_margin_GC: 'regions_margin_GC',
-    regions_margin_Total: 'regions_margin_Total',
-    regions_volume_AL: 'regions_volume_AL',
-    regions_volume_GC: 'regions_volume_GC',
-    regions_volume_Total: 'regions_volume_Total'
+    regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL: 'regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL'
   };
 
   export type RegionsScalarFieldEnum = (typeof RegionsScalarFieldEnum)[keyof typeof RegionsScalarFieldEnum]
@@ -7308,10 +7232,7 @@ export namespace Prisma {
     regional?: StringNullableFilter<"ibm_info"> | string | null
     ibm_margin_AL?: FloatNullableListFilter<"ibm_info">
     ibm_margin_GC?: FloatNullableListFilter<"ibm_info">
-    ibm_margin_Total?: FloatNullableListFilter<"ibm_info">
-    ibm_volume_AL?: FloatNullableListFilter<"ibm_info">
-    ibm_volume_GC?: FloatNullableListFilter<"ibm_info">
-    ibm_volume_Total?: FloatNullableListFilter<"ibm_info">
+    ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: FloatNullableListFilter<"ibm_info">
     gas_station_setvariables?: Gas_station_setvariablesListRelationFilter
   }
 
@@ -7328,10 +7249,7 @@ export namespace Prisma {
     regional?: SortOrderInput | SortOrder
     ibm_margin_AL?: SortOrder
     ibm_margin_GC?: SortOrder
-    ibm_margin_Total?: SortOrder
-    ibm_volume_AL?: SortOrder
-    ibm_volume_GC?: SortOrder
-    ibm_volume_Total?: SortOrder
+    ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
     gas_station_setvariables?: gas_station_setvariablesOrderByRelationAggregateInput
   }
 
@@ -7351,10 +7269,7 @@ export namespace Prisma {
     regional?: StringNullableFilter<"ibm_info"> | string | null
     ibm_margin_AL?: FloatNullableListFilter<"ibm_info">
     ibm_margin_GC?: FloatNullableListFilter<"ibm_info">
-    ibm_margin_Total?: FloatNullableListFilter<"ibm_info">
-    ibm_volume_AL?: FloatNullableListFilter<"ibm_info">
-    ibm_volume_GC?: FloatNullableListFilter<"ibm_info">
-    ibm_volume_Total?: FloatNullableListFilter<"ibm_info">
+    ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: FloatNullableListFilter<"ibm_info">
     gas_station_setvariables?: Gas_station_setvariablesListRelationFilter
   }, "id">
 
@@ -7371,10 +7286,7 @@ export namespace Prisma {
     regional?: SortOrderInput | SortOrder
     ibm_margin_AL?: SortOrder
     ibm_margin_GC?: SortOrder
-    ibm_margin_Total?: SortOrder
-    ibm_volume_AL?: SortOrder
-    ibm_volume_GC?: SortOrder
-    ibm_volume_Total?: SortOrder
+    ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
     _count?: ibm_infoCountOrderByAggregateInput
     _avg?: ibm_infoAvgOrderByAggregateInput
     _max?: ibm_infoMaxOrderByAggregateInput
@@ -7398,10 +7310,7 @@ export namespace Prisma {
     regional?: StringNullableWithAggregatesFilter<"ibm_info"> | string | null
     ibm_margin_AL?: FloatNullableListFilter<"ibm_info">
     ibm_margin_GC?: FloatNullableListFilter<"ibm_info">
-    ibm_margin_Total?: FloatNullableListFilter<"ibm_info">
-    ibm_volume_AL?: FloatNullableListFilter<"ibm_info">
-    ibm_volume_GC?: FloatNullableListFilter<"ibm_info">
-    ibm_volume_Total?: FloatNullableListFilter<"ibm_info">
+    ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: FloatNullableListFilter<"ibm_info">
   }
 
   export type usersWhereInput = {
@@ -7494,16 +7403,8 @@ export namespace Prisma {
     gas_station_uuid?: UuidFilter<"gas_station_setvariables"> | string
     gas_station_marginGC?: FloatNullableFilter<"gas_station_setvariables"> | number | null
     gas_station_marginAL?: FloatNullableFilter<"gas_station_setvariables"> | number | null
-    gas_station_marginTotal?: FloatNullableFilter<"gas_station_setvariables"> | number | null
-    gas_station_volumeGC?: FloatNullableFilter<"gas_station_setvariables"> | number | null
-    gas_station_volumeAL?: FloatNullableFilter<"gas_station_setvariables"> | number | null
-    gas_station_volumeTotal?: FloatNullableFilter<"gas_station_setvariables"> | number | null
     gas_station_type_marginGC?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
     gas_station_type_marginAL?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
-    gas_station_type_marginTotal?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
-    gas_station_type_volumeGC?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
-    gas_station_type_volumeAL?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
-    gas_station_type_volumeTotal?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
     gas_station_whats_app?: StringNullableListFilter<"gas_station_setvariables">
     gas_station_created_at?: DateTimeFilter<"gas_station_setvariables"> | Date | string
     gas_station_updated_at?: DateTimeFilter<"gas_station_setvariables"> | Date | string
@@ -7512,6 +7413,15 @@ export namespace Prisma {
     verification_msg_sent?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
     verification_hour_marginAL?: DateTimeNullableFilter<"gas_station_setvariables"> | Date | string | null
     verification_hour_marginGC?: DateTimeNullableFilter<"gas_station_setvariables"> | Date | string | null
+    gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: FloatNullableFilter<"gas_station_setvariables"> | number | null
+    gas_station_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: DateTimeNullableFilter<"gas_station_setvariables"> | Date | string | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: DateTimeNullableFilter<"gas_station_setvariables"> | Date | string | null
+    gas_station_sanado_hour_marginAL?: DateTimeNullableFilter<"gas_station_setvariables"> | Date | string | null
+    gas_station_sanado_hour_marginGC?: DateTimeNullableFilter<"gas_station_setvariables"> | Date | string | null
+    gas_station_sanado_marginAL?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
+    gas_station_sanado_marginGC?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
     ibm_info?: XOR<Ibm_infoNullableRelationFilter, ibm_infoWhereInput> | null
     users?: XOR<UsersNullableRelationFilter, usersWhereInput> | null
   }
@@ -7520,16 +7430,8 @@ export namespace Prisma {
     gas_station_uuid?: SortOrder
     gas_station_marginGC?: SortOrderInput | SortOrder
     gas_station_marginAL?: SortOrderInput | SortOrder
-    gas_station_marginTotal?: SortOrderInput | SortOrder
-    gas_station_volumeGC?: SortOrderInput | SortOrder
-    gas_station_volumeAL?: SortOrderInput | SortOrder
-    gas_station_volumeTotal?: SortOrderInput | SortOrder
     gas_station_type_marginGC?: SortOrderInput | SortOrder
     gas_station_type_marginAL?: SortOrderInput | SortOrder
-    gas_station_type_marginTotal?: SortOrderInput | SortOrder
-    gas_station_type_volumeGC?: SortOrderInput | SortOrder
-    gas_station_type_volumeAL?: SortOrderInput | SortOrder
-    gas_station_type_volumeTotal?: SortOrderInput | SortOrder
     gas_station_whats_app?: SortOrder
     gas_station_created_at?: SortOrder
     gas_station_updated_at?: SortOrder
@@ -7538,6 +7440,15 @@ export namespace Prisma {
     verification_msg_sent?: SortOrderInput | SortOrder
     verification_hour_marginAL?: SortOrderInput | SortOrder
     verification_hour_marginGC?: SortOrderInput | SortOrder
+    gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrderInput | SortOrder
+    gas_station_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrderInput | SortOrder
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrderInput | SortOrder
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrderInput | SortOrder
+    gas_station_sanado_hour_marginAL?: SortOrderInput | SortOrder
+    gas_station_sanado_hour_marginGC?: SortOrderInput | SortOrder
+    gas_station_sanado_marginAL?: SortOrderInput | SortOrder
+    gas_station_sanado_marginGC?: SortOrderInput | SortOrder
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrderInput | SortOrder
     ibm_info?: ibm_infoOrderByWithRelationInput
     users?: usersOrderByWithRelationInput
   }
@@ -7549,16 +7460,8 @@ export namespace Prisma {
     NOT?: gas_station_setvariablesWhereInput | gas_station_setvariablesWhereInput[]
     gas_station_marginGC?: FloatNullableFilter<"gas_station_setvariables"> | number | null
     gas_station_marginAL?: FloatNullableFilter<"gas_station_setvariables"> | number | null
-    gas_station_marginTotal?: FloatNullableFilter<"gas_station_setvariables"> | number | null
-    gas_station_volumeGC?: FloatNullableFilter<"gas_station_setvariables"> | number | null
-    gas_station_volumeAL?: FloatNullableFilter<"gas_station_setvariables"> | number | null
-    gas_station_volumeTotal?: FloatNullableFilter<"gas_station_setvariables"> | number | null
     gas_station_type_marginGC?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
     gas_station_type_marginAL?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
-    gas_station_type_marginTotal?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
-    gas_station_type_volumeGC?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
-    gas_station_type_volumeAL?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
-    gas_station_type_volumeTotal?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
     gas_station_whats_app?: StringNullableListFilter<"gas_station_setvariables">
     gas_station_created_at?: DateTimeFilter<"gas_station_setvariables"> | Date | string
     gas_station_updated_at?: DateTimeFilter<"gas_station_setvariables"> | Date | string
@@ -7567,6 +7470,15 @@ export namespace Prisma {
     verification_msg_sent?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
     verification_hour_marginAL?: DateTimeNullableFilter<"gas_station_setvariables"> | Date | string | null
     verification_hour_marginGC?: DateTimeNullableFilter<"gas_station_setvariables"> | Date | string | null
+    gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: FloatNullableFilter<"gas_station_setvariables"> | number | null
+    gas_station_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: DateTimeNullableFilter<"gas_station_setvariables"> | Date | string | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: DateTimeNullableFilter<"gas_station_setvariables"> | Date | string | null
+    gas_station_sanado_hour_marginAL?: DateTimeNullableFilter<"gas_station_setvariables"> | Date | string | null
+    gas_station_sanado_hour_marginGC?: DateTimeNullableFilter<"gas_station_setvariables"> | Date | string | null
+    gas_station_sanado_marginAL?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
+    gas_station_sanado_marginGC?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
     ibm_info?: XOR<Ibm_infoNullableRelationFilter, ibm_infoWhereInput> | null
     users?: XOR<UsersNullableRelationFilter, usersWhereInput> | null
   }, "gas_station_uuid">
@@ -7575,16 +7487,8 @@ export namespace Prisma {
     gas_station_uuid?: SortOrder
     gas_station_marginGC?: SortOrderInput | SortOrder
     gas_station_marginAL?: SortOrderInput | SortOrder
-    gas_station_marginTotal?: SortOrderInput | SortOrder
-    gas_station_volumeGC?: SortOrderInput | SortOrder
-    gas_station_volumeAL?: SortOrderInput | SortOrder
-    gas_station_volumeTotal?: SortOrderInput | SortOrder
     gas_station_type_marginGC?: SortOrderInput | SortOrder
     gas_station_type_marginAL?: SortOrderInput | SortOrder
-    gas_station_type_marginTotal?: SortOrderInput | SortOrder
-    gas_station_type_volumeGC?: SortOrderInput | SortOrder
-    gas_station_type_volumeAL?: SortOrderInput | SortOrder
-    gas_station_type_volumeTotal?: SortOrderInput | SortOrder
     gas_station_whats_app?: SortOrder
     gas_station_created_at?: SortOrder
     gas_station_updated_at?: SortOrder
@@ -7593,6 +7497,15 @@ export namespace Prisma {
     verification_msg_sent?: SortOrderInput | SortOrder
     verification_hour_marginAL?: SortOrderInput | SortOrder
     verification_hour_marginGC?: SortOrderInput | SortOrder
+    gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrderInput | SortOrder
+    gas_station_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrderInput | SortOrder
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrderInput | SortOrder
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrderInput | SortOrder
+    gas_station_sanado_hour_marginAL?: SortOrderInput | SortOrder
+    gas_station_sanado_hour_marginGC?: SortOrderInput | SortOrder
+    gas_station_sanado_marginAL?: SortOrderInput | SortOrder
+    gas_station_sanado_marginGC?: SortOrderInput | SortOrder
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrderInput | SortOrder
     _count?: gas_station_setvariablesCountOrderByAggregateInput
     _avg?: gas_station_setvariablesAvgOrderByAggregateInput
     _max?: gas_station_setvariablesMaxOrderByAggregateInput
@@ -7607,16 +7520,8 @@ export namespace Prisma {
     gas_station_uuid?: UuidWithAggregatesFilter<"gas_station_setvariables"> | string
     gas_station_marginGC?: FloatNullableWithAggregatesFilter<"gas_station_setvariables"> | number | null
     gas_station_marginAL?: FloatNullableWithAggregatesFilter<"gas_station_setvariables"> | number | null
-    gas_station_marginTotal?: FloatNullableWithAggregatesFilter<"gas_station_setvariables"> | number | null
-    gas_station_volumeGC?: FloatNullableWithAggregatesFilter<"gas_station_setvariables"> | number | null
-    gas_station_volumeAL?: FloatNullableWithAggregatesFilter<"gas_station_setvariables"> | number | null
-    gas_station_volumeTotal?: FloatNullableWithAggregatesFilter<"gas_station_setvariables"> | number | null
     gas_station_type_marginGC?: BoolNullableWithAggregatesFilter<"gas_station_setvariables"> | boolean | null
     gas_station_type_marginAL?: BoolNullableWithAggregatesFilter<"gas_station_setvariables"> | boolean | null
-    gas_station_type_marginTotal?: BoolNullableWithAggregatesFilter<"gas_station_setvariables"> | boolean | null
-    gas_station_type_volumeGC?: BoolNullableWithAggregatesFilter<"gas_station_setvariables"> | boolean | null
-    gas_station_type_volumeAL?: BoolNullableWithAggregatesFilter<"gas_station_setvariables"> | boolean | null
-    gas_station_type_volumeTotal?: BoolNullableWithAggregatesFilter<"gas_station_setvariables"> | boolean | null
     gas_station_whats_app?: StringNullableListFilter<"gas_station_setvariables">
     gas_station_created_at?: DateTimeWithAggregatesFilter<"gas_station_setvariables"> | Date | string
     gas_station_updated_at?: DateTimeWithAggregatesFilter<"gas_station_setvariables"> | Date | string
@@ -7625,6 +7530,15 @@ export namespace Prisma {
     verification_msg_sent?: BoolNullableWithAggregatesFilter<"gas_station_setvariables"> | boolean | null
     verification_hour_marginAL?: DateTimeNullableWithAggregatesFilter<"gas_station_setvariables"> | Date | string | null
     verification_hour_marginGC?: DateTimeNullableWithAggregatesFilter<"gas_station_setvariables"> | Date | string | null
+    gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: FloatNullableWithAggregatesFilter<"gas_station_setvariables"> | number | null
+    gas_station_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: BoolNullableWithAggregatesFilter<"gas_station_setvariables"> | boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: DateTimeNullableWithAggregatesFilter<"gas_station_setvariables"> | Date | string | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: DateTimeNullableWithAggregatesFilter<"gas_station_setvariables"> | Date | string | null
+    gas_station_sanado_hour_marginAL?: DateTimeNullableWithAggregatesFilter<"gas_station_setvariables"> | Date | string | null
+    gas_station_sanado_hour_marginGC?: DateTimeNullableWithAggregatesFilter<"gas_station_setvariables"> | Date | string | null
+    gas_station_sanado_marginAL?: BoolNullableWithAggregatesFilter<"gas_station_setvariables"> | boolean | null
+    gas_station_sanado_marginGC?: BoolNullableWithAggregatesFilter<"gas_station_setvariables"> | boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: BoolNullableWithAggregatesFilter<"gas_station_setvariables"> | boolean | null
   }
 
   export type region_setvariablesWhereInput = {
@@ -7634,16 +7548,8 @@ export namespace Prisma {
     region_uuid?: UuidFilter<"region_setvariables"> | string
     region_marginGC?: FloatNullableFilter<"region_setvariables"> | number | null
     region_marginAL?: FloatNullableFilter<"region_setvariables"> | number | null
-    region_marginTotal?: FloatNullableFilter<"region_setvariables"> | number | null
-    region_volumeGC?: FloatNullableFilter<"region_setvariables"> | number | null
-    region_volumeAL?: FloatNullableFilter<"region_setvariables"> | number | null
-    region_volumeTotal?: FloatNullableFilter<"region_setvariables"> | number | null
     region_type_marginGC?: BoolNullableFilter<"region_setvariables"> | boolean | null
     region_type_marginAL?: BoolNullableFilter<"region_setvariables"> | boolean | null
-    region_type_marginTotal?: BoolNullableFilter<"region_setvariables"> | boolean | null
-    region_type_volumeGC?: BoolNullableFilter<"region_setvariables"> | boolean | null
-    region_type_volumeAL?: BoolNullableFilter<"region_setvariables"> | boolean | null
-    region_type_volumeTotal?: BoolNullableFilter<"region_setvariables"> | boolean | null
     region_whats_app?: StringNullableListFilter<"region_setvariables">
     region_station_created_at?: DateTimeFilter<"region_setvariables"> | Date | string
     region_station_updated_at?: DateTimeFilter<"region_setvariables"> | Date | string
@@ -7652,6 +7558,15 @@ export namespace Prisma {
     verification_msg_sent?: BoolNullableFilter<"region_setvariables"> | boolean | null
     verification_hour_marginAL?: DateTimeNullableFilter<"region_setvariables"> | Date | string | null
     verification_hour_marginGC?: DateTimeNullableFilter<"region_setvariables"> | Date | string | null
+    region_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: FloatNullableFilter<"region_setvariables"> | number | null
+    region_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: BoolNullableFilter<"region_setvariables"> | boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: DateTimeNullableFilter<"region_setvariables"> | Date | string | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: DateTimeNullableFilter<"region_setvariables"> | Date | string | null
+    gas_station_sanado_hour_marginAL?: DateTimeNullableFilter<"region_setvariables"> | Date | string | null
+    gas_station_sanado_hour_marginGC?: DateTimeNullableFilter<"region_setvariables"> | Date | string | null
+    gas_station_sanado_marginAL?: BoolNullableFilter<"region_setvariables"> | boolean | null
+    gas_station_sanado_marginGC?: BoolNullableFilter<"region_setvariables"> | boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: BoolNullableFilter<"region_setvariables"> | boolean | null
     regions?: XOR<RegionsNullableRelationFilter, regionsWhereInput> | null
     users?: XOR<UsersNullableRelationFilter, usersWhereInput> | null
   }
@@ -7660,16 +7575,8 @@ export namespace Prisma {
     region_uuid?: SortOrder
     region_marginGC?: SortOrderInput | SortOrder
     region_marginAL?: SortOrderInput | SortOrder
-    region_marginTotal?: SortOrderInput | SortOrder
-    region_volumeGC?: SortOrderInput | SortOrder
-    region_volumeAL?: SortOrderInput | SortOrder
-    region_volumeTotal?: SortOrderInput | SortOrder
     region_type_marginGC?: SortOrderInput | SortOrder
     region_type_marginAL?: SortOrderInput | SortOrder
-    region_type_marginTotal?: SortOrderInput | SortOrder
-    region_type_volumeGC?: SortOrderInput | SortOrder
-    region_type_volumeAL?: SortOrderInput | SortOrder
-    region_type_volumeTotal?: SortOrderInput | SortOrder
     region_whats_app?: SortOrder
     region_station_created_at?: SortOrder
     region_station_updated_at?: SortOrder
@@ -7678,6 +7585,15 @@ export namespace Prisma {
     verification_msg_sent?: SortOrderInput | SortOrder
     verification_hour_marginAL?: SortOrderInput | SortOrder
     verification_hour_marginGC?: SortOrderInput | SortOrder
+    region_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrderInput | SortOrder
+    region_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrderInput | SortOrder
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrderInput | SortOrder
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrderInput | SortOrder
+    gas_station_sanado_hour_marginAL?: SortOrderInput | SortOrder
+    gas_station_sanado_hour_marginGC?: SortOrderInput | SortOrder
+    gas_station_sanado_marginAL?: SortOrderInput | SortOrder
+    gas_station_sanado_marginGC?: SortOrderInput | SortOrder
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrderInput | SortOrder
     regions?: regionsOrderByWithRelationInput
     users?: usersOrderByWithRelationInput
   }
@@ -7689,16 +7605,8 @@ export namespace Prisma {
     NOT?: region_setvariablesWhereInput | region_setvariablesWhereInput[]
     region_marginGC?: FloatNullableFilter<"region_setvariables"> | number | null
     region_marginAL?: FloatNullableFilter<"region_setvariables"> | number | null
-    region_marginTotal?: FloatNullableFilter<"region_setvariables"> | number | null
-    region_volumeGC?: FloatNullableFilter<"region_setvariables"> | number | null
-    region_volumeAL?: FloatNullableFilter<"region_setvariables"> | number | null
-    region_volumeTotal?: FloatNullableFilter<"region_setvariables"> | number | null
     region_type_marginGC?: BoolNullableFilter<"region_setvariables"> | boolean | null
     region_type_marginAL?: BoolNullableFilter<"region_setvariables"> | boolean | null
-    region_type_marginTotal?: BoolNullableFilter<"region_setvariables"> | boolean | null
-    region_type_volumeGC?: BoolNullableFilter<"region_setvariables"> | boolean | null
-    region_type_volumeAL?: BoolNullableFilter<"region_setvariables"> | boolean | null
-    region_type_volumeTotal?: BoolNullableFilter<"region_setvariables"> | boolean | null
     region_whats_app?: StringNullableListFilter<"region_setvariables">
     region_station_created_at?: DateTimeFilter<"region_setvariables"> | Date | string
     region_station_updated_at?: DateTimeFilter<"region_setvariables"> | Date | string
@@ -7707,6 +7615,15 @@ export namespace Prisma {
     verification_msg_sent?: BoolNullableFilter<"region_setvariables"> | boolean | null
     verification_hour_marginAL?: DateTimeNullableFilter<"region_setvariables"> | Date | string | null
     verification_hour_marginGC?: DateTimeNullableFilter<"region_setvariables"> | Date | string | null
+    region_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: FloatNullableFilter<"region_setvariables"> | number | null
+    region_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: BoolNullableFilter<"region_setvariables"> | boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: DateTimeNullableFilter<"region_setvariables"> | Date | string | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: DateTimeNullableFilter<"region_setvariables"> | Date | string | null
+    gas_station_sanado_hour_marginAL?: DateTimeNullableFilter<"region_setvariables"> | Date | string | null
+    gas_station_sanado_hour_marginGC?: DateTimeNullableFilter<"region_setvariables"> | Date | string | null
+    gas_station_sanado_marginAL?: BoolNullableFilter<"region_setvariables"> | boolean | null
+    gas_station_sanado_marginGC?: BoolNullableFilter<"region_setvariables"> | boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: BoolNullableFilter<"region_setvariables"> | boolean | null
     regions?: XOR<RegionsNullableRelationFilter, regionsWhereInput> | null
     users?: XOR<UsersNullableRelationFilter, usersWhereInput> | null
   }, "region_uuid">
@@ -7715,16 +7632,8 @@ export namespace Prisma {
     region_uuid?: SortOrder
     region_marginGC?: SortOrderInput | SortOrder
     region_marginAL?: SortOrderInput | SortOrder
-    region_marginTotal?: SortOrderInput | SortOrder
-    region_volumeGC?: SortOrderInput | SortOrder
-    region_volumeAL?: SortOrderInput | SortOrder
-    region_volumeTotal?: SortOrderInput | SortOrder
     region_type_marginGC?: SortOrderInput | SortOrder
     region_type_marginAL?: SortOrderInput | SortOrder
-    region_type_marginTotal?: SortOrderInput | SortOrder
-    region_type_volumeGC?: SortOrderInput | SortOrder
-    region_type_volumeAL?: SortOrderInput | SortOrder
-    region_type_volumeTotal?: SortOrderInput | SortOrder
     region_whats_app?: SortOrder
     region_station_created_at?: SortOrder
     region_station_updated_at?: SortOrder
@@ -7733,6 +7642,15 @@ export namespace Prisma {
     verification_msg_sent?: SortOrderInput | SortOrder
     verification_hour_marginAL?: SortOrderInput | SortOrder
     verification_hour_marginGC?: SortOrderInput | SortOrder
+    region_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrderInput | SortOrder
+    region_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrderInput | SortOrder
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrderInput | SortOrder
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrderInput | SortOrder
+    gas_station_sanado_hour_marginAL?: SortOrderInput | SortOrder
+    gas_station_sanado_hour_marginGC?: SortOrderInput | SortOrder
+    gas_station_sanado_marginAL?: SortOrderInput | SortOrder
+    gas_station_sanado_marginGC?: SortOrderInput | SortOrder
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrderInput | SortOrder
     _count?: region_setvariablesCountOrderByAggregateInput
     _avg?: region_setvariablesAvgOrderByAggregateInput
     _max?: region_setvariablesMaxOrderByAggregateInput
@@ -7747,16 +7665,8 @@ export namespace Prisma {
     region_uuid?: UuidWithAggregatesFilter<"region_setvariables"> | string
     region_marginGC?: FloatNullableWithAggregatesFilter<"region_setvariables"> | number | null
     region_marginAL?: FloatNullableWithAggregatesFilter<"region_setvariables"> | number | null
-    region_marginTotal?: FloatNullableWithAggregatesFilter<"region_setvariables"> | number | null
-    region_volumeGC?: FloatNullableWithAggregatesFilter<"region_setvariables"> | number | null
-    region_volumeAL?: FloatNullableWithAggregatesFilter<"region_setvariables"> | number | null
-    region_volumeTotal?: FloatNullableWithAggregatesFilter<"region_setvariables"> | number | null
     region_type_marginGC?: BoolNullableWithAggregatesFilter<"region_setvariables"> | boolean | null
     region_type_marginAL?: BoolNullableWithAggregatesFilter<"region_setvariables"> | boolean | null
-    region_type_marginTotal?: BoolNullableWithAggregatesFilter<"region_setvariables"> | boolean | null
-    region_type_volumeGC?: BoolNullableWithAggregatesFilter<"region_setvariables"> | boolean | null
-    region_type_volumeAL?: BoolNullableWithAggregatesFilter<"region_setvariables"> | boolean | null
-    region_type_volumeTotal?: BoolNullableWithAggregatesFilter<"region_setvariables"> | boolean | null
     region_whats_app?: StringNullableListFilter<"region_setvariables">
     region_station_created_at?: DateTimeWithAggregatesFilter<"region_setvariables"> | Date | string
     region_station_updated_at?: DateTimeWithAggregatesFilter<"region_setvariables"> | Date | string
@@ -7765,6 +7675,15 @@ export namespace Prisma {
     verification_msg_sent?: BoolNullableWithAggregatesFilter<"region_setvariables"> | boolean | null
     verification_hour_marginAL?: DateTimeNullableWithAggregatesFilter<"region_setvariables"> | Date | string | null
     verification_hour_marginGC?: DateTimeNullableWithAggregatesFilter<"region_setvariables"> | Date | string | null
+    region_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: FloatNullableWithAggregatesFilter<"region_setvariables"> | number | null
+    region_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: BoolNullableWithAggregatesFilter<"region_setvariables"> | boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: DateTimeNullableWithAggregatesFilter<"region_setvariables"> | Date | string | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: DateTimeNullableWithAggregatesFilter<"region_setvariables"> | Date | string | null
+    gas_station_sanado_hour_marginAL?: DateTimeNullableWithAggregatesFilter<"region_setvariables"> | Date | string | null
+    gas_station_sanado_hour_marginGC?: DateTimeNullableWithAggregatesFilter<"region_setvariables"> | Date | string | null
+    gas_station_sanado_marginAL?: BoolNullableWithAggregatesFilter<"region_setvariables"> | boolean | null
+    gas_station_sanado_marginGC?: BoolNullableWithAggregatesFilter<"region_setvariables"> | boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: BoolNullableWithAggregatesFilter<"region_setvariables"> | boolean | null
   }
 
   export type regionsWhereInput = {
@@ -7778,10 +7697,7 @@ export namespace Prisma {
     region_updated_at?: DateTimeFilter<"regions"> | Date | string
     regions_margin_AL?: FloatNullableListFilter<"regions">
     regions_margin_GC?: FloatNullableListFilter<"regions">
-    regions_margin_Total?: FloatNullableListFilter<"regions">
-    regions_volume_AL?: FloatNullableListFilter<"regions">
-    regions_volume_GC?: FloatNullableListFilter<"regions">
-    regions_volume_Total?: FloatNullableListFilter<"regions">
+    regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: FloatNullableListFilter<"regions">
     region_setvariables?: Region_setvariablesListRelationFilter
   }
 
@@ -7793,10 +7709,7 @@ export namespace Prisma {
     region_updated_at?: SortOrder
     regions_margin_AL?: SortOrder
     regions_margin_GC?: SortOrder
-    regions_margin_Total?: SortOrder
-    regions_volume_AL?: SortOrder
-    regions_volume_GC?: SortOrder
-    regions_volume_Total?: SortOrder
+    regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
     region_setvariables?: region_setvariablesOrderByRelationAggregateInput
   }
 
@@ -7811,10 +7724,7 @@ export namespace Prisma {
     region_updated_at?: DateTimeFilter<"regions"> | Date | string
     regions_margin_AL?: FloatNullableListFilter<"regions">
     regions_margin_GC?: FloatNullableListFilter<"regions">
-    regions_margin_Total?: FloatNullableListFilter<"regions">
-    regions_volume_AL?: FloatNullableListFilter<"regions">
-    regions_volume_GC?: FloatNullableListFilter<"regions">
-    regions_volume_Total?: FloatNullableListFilter<"regions">
+    regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: FloatNullableListFilter<"regions">
     region_setvariables?: Region_setvariablesListRelationFilter
   }, "regions_uuid">
 
@@ -7826,10 +7736,7 @@ export namespace Prisma {
     region_updated_at?: SortOrder
     regions_margin_AL?: SortOrder
     regions_margin_GC?: SortOrder
-    regions_margin_Total?: SortOrder
-    regions_volume_AL?: SortOrder
-    regions_volume_GC?: SortOrder
-    regions_volume_Total?: SortOrder
+    regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
     _count?: regionsCountOrderByAggregateInput
     _avg?: regionsAvgOrderByAggregateInput
     _max?: regionsMaxOrderByAggregateInput
@@ -7848,10 +7755,7 @@ export namespace Prisma {
     region_updated_at?: DateTimeWithAggregatesFilter<"regions"> | Date | string
     regions_margin_AL?: FloatNullableListFilter<"regions">
     regions_margin_GC?: FloatNullableListFilter<"regions">
-    regions_margin_Total?: FloatNullableListFilter<"regions">
-    regions_volume_AL?: FloatNullableListFilter<"regions">
-    regions_volume_GC?: FloatNullableListFilter<"regions">
-    regions_volume_Total?: FloatNullableListFilter<"regions">
+    regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: FloatNullableListFilter<"regions">
   }
 
   export type ibm_infoCreateInput = {
@@ -7867,10 +7771,7 @@ export namespace Prisma {
     regional?: string | null
     ibm_margin_AL?: ibm_infoCreateibm_margin_ALInput | number[]
     ibm_margin_GC?: ibm_infoCreateibm_margin_GCInput | number[]
-    ibm_margin_Total?: ibm_infoCreateibm_margin_TotalInput | number[]
-    ibm_volume_AL?: ibm_infoCreateibm_volume_ALInput | number[]
-    ibm_volume_GC?: ibm_infoCreateibm_volume_GCInput | number[]
-    ibm_volume_Total?: ibm_infoCreateibm_volume_TotalInput | number[]
+    ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: ibm_infoCreateibm_margin_ETANOL_HIDRATADO_COMBUSTIVELInput | number[]
     gas_station_setvariables?: gas_station_setvariablesCreateNestedManyWithoutIbm_infoInput
   }
 
@@ -7887,10 +7788,7 @@ export namespace Prisma {
     regional?: string | null
     ibm_margin_AL?: ibm_infoCreateibm_margin_ALInput | number[]
     ibm_margin_GC?: ibm_infoCreateibm_margin_GCInput | number[]
-    ibm_margin_Total?: ibm_infoCreateibm_margin_TotalInput | number[]
-    ibm_volume_AL?: ibm_infoCreateibm_volume_ALInput | number[]
-    ibm_volume_GC?: ibm_infoCreateibm_volume_GCInput | number[]
-    ibm_volume_Total?: ibm_infoCreateibm_volume_TotalInput | number[]
+    ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: ibm_infoCreateibm_margin_ETANOL_HIDRATADO_COMBUSTIVELInput | number[]
     gas_station_setvariables?: gas_station_setvariablesUncheckedCreateNestedManyWithoutIbm_infoInput
   }
 
@@ -7907,10 +7805,7 @@ export namespace Prisma {
     regional?: NullableStringFieldUpdateOperationsInput | string | null
     ibm_margin_AL?: ibm_infoUpdateibm_margin_ALInput | number[]
     ibm_margin_GC?: ibm_infoUpdateibm_margin_GCInput | number[]
-    ibm_margin_Total?: ibm_infoUpdateibm_margin_TotalInput | number[]
-    ibm_volume_AL?: ibm_infoUpdateibm_volume_ALInput | number[]
-    ibm_volume_GC?: ibm_infoUpdateibm_volume_GCInput | number[]
-    ibm_volume_Total?: ibm_infoUpdateibm_volume_TotalInput | number[]
+    ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: ibm_infoUpdateibm_margin_ETANOL_HIDRATADO_COMBUSTIVELInput | number[]
     gas_station_setvariables?: gas_station_setvariablesUpdateManyWithoutIbm_infoNestedInput
   }
 
@@ -7927,10 +7822,7 @@ export namespace Prisma {
     regional?: NullableStringFieldUpdateOperationsInput | string | null
     ibm_margin_AL?: ibm_infoUpdateibm_margin_ALInput | number[]
     ibm_margin_GC?: ibm_infoUpdateibm_margin_GCInput | number[]
-    ibm_margin_Total?: ibm_infoUpdateibm_margin_TotalInput | number[]
-    ibm_volume_AL?: ibm_infoUpdateibm_volume_ALInput | number[]
-    ibm_volume_GC?: ibm_infoUpdateibm_volume_GCInput | number[]
-    ibm_volume_Total?: ibm_infoUpdateibm_volume_TotalInput | number[]
+    ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: ibm_infoUpdateibm_margin_ETANOL_HIDRATADO_COMBUSTIVELInput | number[]
     gas_station_setvariables?: gas_station_setvariablesUncheckedUpdateManyWithoutIbm_infoNestedInput
   }
 
@@ -7947,10 +7839,7 @@ export namespace Prisma {
     regional?: string | null
     ibm_margin_AL?: ibm_infoCreateibm_margin_ALInput | number[]
     ibm_margin_GC?: ibm_infoCreateibm_margin_GCInput | number[]
-    ibm_margin_Total?: ibm_infoCreateibm_margin_TotalInput | number[]
-    ibm_volume_AL?: ibm_infoCreateibm_volume_ALInput | number[]
-    ibm_volume_GC?: ibm_infoCreateibm_volume_GCInput | number[]
-    ibm_volume_Total?: ibm_infoCreateibm_volume_TotalInput | number[]
+    ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: ibm_infoCreateibm_margin_ETANOL_HIDRATADO_COMBUSTIVELInput | number[]
   }
 
   export type ibm_infoUpdateManyMutationInput = {
@@ -7966,10 +7855,7 @@ export namespace Prisma {
     regional?: NullableStringFieldUpdateOperationsInput | string | null
     ibm_margin_AL?: ibm_infoUpdateibm_margin_ALInput | number[]
     ibm_margin_GC?: ibm_infoUpdateibm_margin_GCInput | number[]
-    ibm_margin_Total?: ibm_infoUpdateibm_margin_TotalInput | number[]
-    ibm_volume_AL?: ibm_infoUpdateibm_volume_ALInput | number[]
-    ibm_volume_GC?: ibm_infoUpdateibm_volume_GCInput | number[]
-    ibm_volume_Total?: ibm_infoUpdateibm_volume_TotalInput | number[]
+    ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: ibm_infoUpdateibm_margin_ETANOL_HIDRATADO_COMBUSTIVELInput | number[]
   }
 
   export type ibm_infoUncheckedUpdateManyInput = {
@@ -7985,10 +7871,7 @@ export namespace Prisma {
     regional?: NullableStringFieldUpdateOperationsInput | string | null
     ibm_margin_AL?: ibm_infoUpdateibm_margin_ALInput | number[]
     ibm_margin_GC?: ibm_infoUpdateibm_margin_GCInput | number[]
-    ibm_margin_Total?: ibm_infoUpdateibm_margin_TotalInput | number[]
-    ibm_volume_AL?: ibm_infoUpdateibm_volume_ALInput | number[]
-    ibm_volume_GC?: ibm_infoUpdateibm_volume_GCInput | number[]
-    ibm_volume_Total?: ibm_infoUpdateibm_volume_TotalInput | number[]
+    ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: ibm_infoUpdateibm_margin_ETANOL_HIDRATADO_COMBUSTIVELInput | number[]
   }
 
   export type usersCreateInput = {
@@ -8094,22 +7977,23 @@ export namespace Prisma {
     gas_station_uuid?: string
     gas_station_marginGC?: number | null
     gas_station_marginAL?: number | null
-    gas_station_marginTotal?: number | null
-    gas_station_volumeGC?: number | null
-    gas_station_volumeAL?: number | null
-    gas_station_volumeTotal?: number | null
     gas_station_type_marginGC?: boolean | null
     gas_station_type_marginAL?: boolean | null
-    gas_station_type_marginTotal?: boolean | null
-    gas_station_type_volumeGC?: boolean | null
-    gas_station_type_volumeAL?: boolean | null
-    gas_station_type_volumeTotal?: boolean | null
     gas_station_whats_app?: gas_station_setvariablesCreategas_station_whats_appInput | string[]
     gas_station_created_at?: Date | string
     gas_station_updated_at?: Date | string
     verification_msg_sent?: boolean | null
     verification_hour_marginAL?: Date | string | null
     verification_hour_marginGC?: Date | string | null
+    gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: number | null
+    gas_station_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: Date | string | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: Date | string | null
+    gas_station_sanado_hour_marginAL?: Date | string | null
+    gas_station_sanado_hour_marginGC?: Date | string | null
+    gas_station_sanado_marginAL?: boolean | null
+    gas_station_sanado_marginGC?: boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
     ibm_info?: ibm_infoCreateNestedOneWithoutGas_station_setvariablesInput
     users?: usersCreateNestedOneWithoutGas_station_setvariablesInput
   }
@@ -8118,16 +8002,8 @@ export namespace Prisma {
     gas_station_uuid?: string
     gas_station_marginGC?: number | null
     gas_station_marginAL?: number | null
-    gas_station_marginTotal?: number | null
-    gas_station_volumeGC?: number | null
-    gas_station_volumeAL?: number | null
-    gas_station_volumeTotal?: number | null
     gas_station_type_marginGC?: boolean | null
     gas_station_type_marginAL?: boolean | null
-    gas_station_type_marginTotal?: boolean | null
-    gas_station_type_volumeGC?: boolean | null
-    gas_station_type_volumeAL?: boolean | null
-    gas_station_type_volumeTotal?: boolean | null
     gas_station_whats_app?: gas_station_setvariablesCreategas_station_whats_appInput | string[]
     gas_station_created_at?: Date | string
     gas_station_updated_at?: Date | string
@@ -8136,28 +8012,38 @@ export namespace Prisma {
     verification_msg_sent?: boolean | null
     verification_hour_marginAL?: Date | string | null
     verification_hour_marginGC?: Date | string | null
+    gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: number | null
+    gas_station_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: Date | string | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: Date | string | null
+    gas_station_sanado_hour_marginAL?: Date | string | null
+    gas_station_sanado_hour_marginGC?: Date | string | null
+    gas_station_sanado_marginAL?: boolean | null
+    gas_station_sanado_marginGC?: boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
   }
 
   export type gas_station_setvariablesUpdateInput = {
     gas_station_uuid?: StringFieldUpdateOperationsInput | string
     gas_station_marginGC?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_marginAL?: NullableFloatFieldUpdateOperationsInput | number | null
-    gas_station_marginTotal?: NullableFloatFieldUpdateOperationsInput | number | null
-    gas_station_volumeGC?: NullableFloatFieldUpdateOperationsInput | number | null
-    gas_station_volumeAL?: NullableFloatFieldUpdateOperationsInput | number | null
-    gas_station_volumeTotal?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_type_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_type_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    gas_station_type_marginTotal?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    gas_station_type_volumeGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    gas_station_type_volumeAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    gas_station_type_volumeTotal?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_whats_app?: gas_station_setvariablesUpdategas_station_whats_appInput | string[]
     gas_station_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     gas_station_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     verification_msg_sent?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     verification_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_sanado_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
     ibm_info?: ibm_infoUpdateOneWithoutGas_station_setvariablesNestedInput
     users?: usersUpdateOneWithoutGas_station_setvariablesNestedInput
   }
@@ -8166,16 +8052,8 @@ export namespace Prisma {
     gas_station_uuid?: StringFieldUpdateOperationsInput | string
     gas_station_marginGC?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_marginAL?: NullableFloatFieldUpdateOperationsInput | number | null
-    gas_station_marginTotal?: NullableFloatFieldUpdateOperationsInput | number | null
-    gas_station_volumeGC?: NullableFloatFieldUpdateOperationsInput | number | null
-    gas_station_volumeAL?: NullableFloatFieldUpdateOperationsInput | number | null
-    gas_station_volumeTotal?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_type_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_type_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    gas_station_type_marginTotal?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    gas_station_type_volumeGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    gas_station_type_volumeAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    gas_station_type_volumeTotal?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_whats_app?: gas_station_setvariablesUpdategas_station_whats_appInput | string[]
     gas_station_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     gas_station_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8184,22 +8062,23 @@ export namespace Prisma {
     verification_msg_sent?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     verification_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_sanado_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
   }
 
   export type gas_station_setvariablesCreateManyInput = {
     gas_station_uuid?: string
     gas_station_marginGC?: number | null
     gas_station_marginAL?: number | null
-    gas_station_marginTotal?: number | null
-    gas_station_volumeGC?: number | null
-    gas_station_volumeAL?: number | null
-    gas_station_volumeTotal?: number | null
     gas_station_type_marginGC?: boolean | null
     gas_station_type_marginAL?: boolean | null
-    gas_station_type_marginTotal?: boolean | null
-    gas_station_type_volumeGC?: boolean | null
-    gas_station_type_volumeAL?: boolean | null
-    gas_station_type_volumeTotal?: boolean | null
     gas_station_whats_app?: gas_station_setvariablesCreategas_station_whats_appInput | string[]
     gas_station_created_at?: Date | string
     gas_station_updated_at?: Date | string
@@ -8208,44 +8087,46 @@ export namespace Prisma {
     verification_msg_sent?: boolean | null
     verification_hour_marginAL?: Date | string | null
     verification_hour_marginGC?: Date | string | null
+    gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: number | null
+    gas_station_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: Date | string | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: Date | string | null
+    gas_station_sanado_hour_marginAL?: Date | string | null
+    gas_station_sanado_hour_marginGC?: Date | string | null
+    gas_station_sanado_marginAL?: boolean | null
+    gas_station_sanado_marginGC?: boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
   }
 
   export type gas_station_setvariablesUpdateManyMutationInput = {
     gas_station_uuid?: StringFieldUpdateOperationsInput | string
     gas_station_marginGC?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_marginAL?: NullableFloatFieldUpdateOperationsInput | number | null
-    gas_station_marginTotal?: NullableFloatFieldUpdateOperationsInput | number | null
-    gas_station_volumeGC?: NullableFloatFieldUpdateOperationsInput | number | null
-    gas_station_volumeAL?: NullableFloatFieldUpdateOperationsInput | number | null
-    gas_station_volumeTotal?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_type_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_type_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    gas_station_type_marginTotal?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    gas_station_type_volumeGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    gas_station_type_volumeAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    gas_station_type_volumeTotal?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_whats_app?: gas_station_setvariablesUpdategas_station_whats_appInput | string[]
     gas_station_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     gas_station_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     verification_msg_sent?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     verification_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_sanado_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
   }
 
   export type gas_station_setvariablesUncheckedUpdateManyInput = {
     gas_station_uuid?: StringFieldUpdateOperationsInput | string
     gas_station_marginGC?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_marginAL?: NullableFloatFieldUpdateOperationsInput | number | null
-    gas_station_marginTotal?: NullableFloatFieldUpdateOperationsInput | number | null
-    gas_station_volumeGC?: NullableFloatFieldUpdateOperationsInput | number | null
-    gas_station_volumeAL?: NullableFloatFieldUpdateOperationsInput | number | null
-    gas_station_volumeTotal?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_type_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_type_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    gas_station_type_marginTotal?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    gas_station_type_volumeGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    gas_station_type_volumeAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    gas_station_type_volumeTotal?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_whats_app?: gas_station_setvariablesUpdategas_station_whats_appInput | string[]
     gas_station_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     gas_station_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8254,28 +8135,38 @@ export namespace Prisma {
     verification_msg_sent?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     verification_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_sanado_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
   }
 
   export type region_setvariablesCreateInput = {
     region_uuid?: string
     region_marginGC?: number | null
     region_marginAL?: number | null
-    region_marginTotal?: number | null
-    region_volumeGC?: number | null
-    region_volumeAL?: number | null
-    region_volumeTotal?: number | null
     region_type_marginGC?: boolean | null
     region_type_marginAL?: boolean | null
-    region_type_marginTotal?: boolean | null
-    region_type_volumeGC?: boolean | null
-    region_type_volumeAL?: boolean | null
-    region_type_volumeTotal?: boolean | null
     region_whats_app?: region_setvariablesCreateregion_whats_appInput | string[]
     region_station_created_at?: Date | string
     region_station_updated_at?: Date | string
     verification_msg_sent?: boolean | null
     verification_hour_marginAL?: Date | string | null
     verification_hour_marginGC?: Date | string | null
+    region_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: number | null
+    region_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: Date | string | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: Date | string | null
+    gas_station_sanado_hour_marginAL?: Date | string | null
+    gas_station_sanado_hour_marginGC?: Date | string | null
+    gas_station_sanado_marginAL?: boolean | null
+    gas_station_sanado_marginGC?: boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
     regions?: regionsCreateNestedOneWithoutRegion_setvariablesInput
     users?: usersCreateNestedOneWithoutRegion_setvariablesInput
   }
@@ -8284,16 +8175,8 @@ export namespace Prisma {
     region_uuid?: string
     region_marginGC?: number | null
     region_marginAL?: number | null
-    region_marginTotal?: number | null
-    region_volumeGC?: number | null
-    region_volumeAL?: number | null
-    region_volumeTotal?: number | null
     region_type_marginGC?: boolean | null
     region_type_marginAL?: boolean | null
-    region_type_marginTotal?: boolean | null
-    region_type_volumeGC?: boolean | null
-    region_type_volumeAL?: boolean | null
-    region_type_volumeTotal?: boolean | null
     region_whats_app?: region_setvariablesCreateregion_whats_appInput | string[]
     region_station_created_at?: Date | string
     region_station_updated_at?: Date | string
@@ -8302,28 +8185,38 @@ export namespace Prisma {
     verification_msg_sent?: boolean | null
     verification_hour_marginAL?: Date | string | null
     verification_hour_marginGC?: Date | string | null
+    region_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: number | null
+    region_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: Date | string | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: Date | string | null
+    gas_station_sanado_hour_marginAL?: Date | string | null
+    gas_station_sanado_hour_marginGC?: Date | string | null
+    gas_station_sanado_marginAL?: boolean | null
+    gas_station_sanado_marginGC?: boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
   }
 
   export type region_setvariablesUpdateInput = {
     region_uuid?: StringFieldUpdateOperationsInput | string
     region_marginGC?: NullableFloatFieldUpdateOperationsInput | number | null
     region_marginAL?: NullableFloatFieldUpdateOperationsInput | number | null
-    region_marginTotal?: NullableFloatFieldUpdateOperationsInput | number | null
-    region_volumeGC?: NullableFloatFieldUpdateOperationsInput | number | null
-    region_volumeAL?: NullableFloatFieldUpdateOperationsInput | number | null
-    region_volumeTotal?: NullableFloatFieldUpdateOperationsInput | number | null
     region_type_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_type_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    region_type_marginTotal?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    region_type_volumeGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    region_type_volumeAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    region_type_volumeTotal?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_whats_app?: region_setvariablesUpdateregion_whats_appInput | string[]
     region_station_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     region_station_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     verification_msg_sent?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     verification_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    region_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_sanado_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
     regions?: regionsUpdateOneWithoutRegion_setvariablesNestedInput
     users?: usersUpdateOneWithoutRegion_setvariablesNestedInput
   }
@@ -8332,16 +8225,8 @@ export namespace Prisma {
     region_uuid?: StringFieldUpdateOperationsInput | string
     region_marginGC?: NullableFloatFieldUpdateOperationsInput | number | null
     region_marginAL?: NullableFloatFieldUpdateOperationsInput | number | null
-    region_marginTotal?: NullableFloatFieldUpdateOperationsInput | number | null
-    region_volumeGC?: NullableFloatFieldUpdateOperationsInput | number | null
-    region_volumeAL?: NullableFloatFieldUpdateOperationsInput | number | null
-    region_volumeTotal?: NullableFloatFieldUpdateOperationsInput | number | null
     region_type_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_type_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    region_type_marginTotal?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    region_type_volumeGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    region_type_volumeAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    region_type_volumeTotal?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_whats_app?: region_setvariablesUpdateregion_whats_appInput | string[]
     region_station_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     region_station_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8350,22 +8235,23 @@ export namespace Prisma {
     verification_msg_sent?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     verification_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    region_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_sanado_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
   }
 
   export type region_setvariablesCreateManyInput = {
     region_uuid?: string
     region_marginGC?: number | null
     region_marginAL?: number | null
-    region_marginTotal?: number | null
-    region_volumeGC?: number | null
-    region_volumeAL?: number | null
-    region_volumeTotal?: number | null
     region_type_marginGC?: boolean | null
     region_type_marginAL?: boolean | null
-    region_type_marginTotal?: boolean | null
-    region_type_volumeGC?: boolean | null
-    region_type_volumeAL?: boolean | null
-    region_type_volumeTotal?: boolean | null
     region_whats_app?: region_setvariablesCreateregion_whats_appInput | string[]
     region_station_created_at?: Date | string
     region_station_updated_at?: Date | string
@@ -8374,44 +8260,46 @@ export namespace Prisma {
     verification_msg_sent?: boolean | null
     verification_hour_marginAL?: Date | string | null
     verification_hour_marginGC?: Date | string | null
+    region_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: number | null
+    region_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: Date | string | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: Date | string | null
+    gas_station_sanado_hour_marginAL?: Date | string | null
+    gas_station_sanado_hour_marginGC?: Date | string | null
+    gas_station_sanado_marginAL?: boolean | null
+    gas_station_sanado_marginGC?: boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
   }
 
   export type region_setvariablesUpdateManyMutationInput = {
     region_uuid?: StringFieldUpdateOperationsInput | string
     region_marginGC?: NullableFloatFieldUpdateOperationsInput | number | null
     region_marginAL?: NullableFloatFieldUpdateOperationsInput | number | null
-    region_marginTotal?: NullableFloatFieldUpdateOperationsInput | number | null
-    region_volumeGC?: NullableFloatFieldUpdateOperationsInput | number | null
-    region_volumeAL?: NullableFloatFieldUpdateOperationsInput | number | null
-    region_volumeTotal?: NullableFloatFieldUpdateOperationsInput | number | null
     region_type_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_type_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    region_type_marginTotal?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    region_type_volumeGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    region_type_volumeAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    region_type_volumeTotal?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_whats_app?: region_setvariablesUpdateregion_whats_appInput | string[]
     region_station_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     region_station_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     verification_msg_sent?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     verification_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    region_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_sanado_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
   }
 
   export type region_setvariablesUncheckedUpdateManyInput = {
     region_uuid?: StringFieldUpdateOperationsInput | string
     region_marginGC?: NullableFloatFieldUpdateOperationsInput | number | null
     region_marginAL?: NullableFloatFieldUpdateOperationsInput | number | null
-    region_marginTotal?: NullableFloatFieldUpdateOperationsInput | number | null
-    region_volumeGC?: NullableFloatFieldUpdateOperationsInput | number | null
-    region_volumeAL?: NullableFloatFieldUpdateOperationsInput | number | null
-    region_volumeTotal?: NullableFloatFieldUpdateOperationsInput | number | null
     region_type_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_type_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    region_type_marginTotal?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    region_type_volumeGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    region_type_volumeAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    region_type_volumeTotal?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_whats_app?: region_setvariablesUpdateregion_whats_appInput | string[]
     region_station_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     region_station_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8420,6 +8308,15 @@ export namespace Prisma {
     verification_msg_sent?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     verification_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    region_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_sanado_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
   }
 
   export type regionsCreateInput = {
@@ -8430,10 +8327,7 @@ export namespace Prisma {
     region_updated_at?: Date | string
     regions_margin_AL?: regionsCreateregions_margin_ALInput | number[]
     regions_margin_GC?: regionsCreateregions_margin_GCInput | number[]
-    regions_margin_Total?: regionsCreateregions_margin_TotalInput | number[]
-    regions_volume_AL?: regionsCreateregions_volume_ALInput | number[]
-    regions_volume_GC?: regionsCreateregions_volume_GCInput | number[]
-    regions_volume_Total?: regionsCreateregions_volume_TotalInput | number[]
+    regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: regionsCreateregions_margin_ETANOL_HIDRATADO_COMBUSTIVELInput | number[]
     region_setvariables?: region_setvariablesCreateNestedManyWithoutRegionsInput
   }
 
@@ -8445,10 +8339,7 @@ export namespace Prisma {
     region_updated_at?: Date | string
     regions_margin_AL?: regionsCreateregions_margin_ALInput | number[]
     regions_margin_GC?: regionsCreateregions_margin_GCInput | number[]
-    regions_margin_Total?: regionsCreateregions_margin_TotalInput | number[]
-    regions_volume_AL?: regionsCreateregions_volume_ALInput | number[]
-    regions_volume_GC?: regionsCreateregions_volume_GCInput | number[]
-    regions_volume_Total?: regionsCreateregions_volume_TotalInput | number[]
+    regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: regionsCreateregions_margin_ETANOL_HIDRATADO_COMBUSTIVELInput | number[]
     region_setvariables?: region_setvariablesUncheckedCreateNestedManyWithoutRegionsInput
   }
 
@@ -8460,10 +8351,7 @@ export namespace Prisma {
     region_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     regions_margin_AL?: regionsUpdateregions_margin_ALInput | number[]
     regions_margin_GC?: regionsUpdateregions_margin_GCInput | number[]
-    regions_margin_Total?: regionsUpdateregions_margin_TotalInput | number[]
-    regions_volume_AL?: regionsUpdateregions_volume_ALInput | number[]
-    regions_volume_GC?: regionsUpdateregions_volume_GCInput | number[]
-    regions_volume_Total?: regionsUpdateregions_volume_TotalInput | number[]
+    regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: regionsUpdateregions_margin_ETANOL_HIDRATADO_COMBUSTIVELInput | number[]
     region_setvariables?: region_setvariablesUpdateManyWithoutRegionsNestedInput
   }
 
@@ -8475,10 +8363,7 @@ export namespace Prisma {
     region_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     regions_margin_AL?: regionsUpdateregions_margin_ALInput | number[]
     regions_margin_GC?: regionsUpdateregions_margin_GCInput | number[]
-    regions_margin_Total?: regionsUpdateregions_margin_TotalInput | number[]
-    regions_volume_AL?: regionsUpdateregions_volume_ALInput | number[]
-    regions_volume_GC?: regionsUpdateregions_volume_GCInput | number[]
-    regions_volume_Total?: regionsUpdateregions_volume_TotalInput | number[]
+    regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: regionsUpdateregions_margin_ETANOL_HIDRATADO_COMBUSTIVELInput | number[]
     region_setvariables?: region_setvariablesUncheckedUpdateManyWithoutRegionsNestedInput
   }
 
@@ -8490,10 +8375,7 @@ export namespace Prisma {
     region_updated_at?: Date | string
     regions_margin_AL?: regionsCreateregions_margin_ALInput | number[]
     regions_margin_GC?: regionsCreateregions_margin_GCInput | number[]
-    regions_margin_Total?: regionsCreateregions_margin_TotalInput | number[]
-    regions_volume_AL?: regionsCreateregions_volume_ALInput | number[]
-    regions_volume_GC?: regionsCreateregions_volume_GCInput | number[]
-    regions_volume_Total?: regionsCreateregions_volume_TotalInput | number[]
+    regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: regionsCreateregions_margin_ETANOL_HIDRATADO_COMBUSTIVELInput | number[]
   }
 
   export type regionsUpdateManyMutationInput = {
@@ -8504,10 +8386,7 @@ export namespace Prisma {
     region_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     regions_margin_AL?: regionsUpdateregions_margin_ALInput | number[]
     regions_margin_GC?: regionsUpdateregions_margin_GCInput | number[]
-    regions_margin_Total?: regionsUpdateregions_margin_TotalInput | number[]
-    regions_volume_AL?: regionsUpdateregions_volume_ALInput | number[]
-    regions_volume_GC?: regionsUpdateregions_volume_GCInput | number[]
-    regions_volume_Total?: regionsUpdateregions_volume_TotalInput | number[]
+    regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: regionsUpdateregions_margin_ETANOL_HIDRATADO_COMBUSTIVELInput | number[]
   }
 
   export type regionsUncheckedUpdateManyInput = {
@@ -8518,10 +8397,7 @@ export namespace Prisma {
     region_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     regions_margin_AL?: regionsUpdateregions_margin_ALInput | number[]
     regions_margin_GC?: regionsUpdateregions_margin_GCInput | number[]
-    regions_margin_Total?: regionsUpdateregions_margin_TotalInput | number[]
-    regions_volume_AL?: regionsUpdateregions_volume_ALInput | number[]
-    regions_volume_GC?: regionsUpdateregions_volume_GCInput | number[]
-    regions_volume_Total?: regionsUpdateregions_volume_TotalInput | number[]
+    regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: regionsUpdateregions_margin_ETANOL_HIDRATADO_COMBUSTIVELInput | number[]
   }
 
   export type StringNullableFilter<$PrismaModel = never> = {
@@ -8598,10 +8474,7 @@ export namespace Prisma {
     regional?: SortOrder
     ibm_margin_AL?: SortOrder
     ibm_margin_GC?: SortOrder
-    ibm_margin_Total?: SortOrder
-    ibm_volume_AL?: SortOrder
-    ibm_volume_GC?: SortOrder
-    ibm_volume_Total?: SortOrder
+    ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
   }
 
   export type ibm_infoAvgOrderByAggregateInput = {
@@ -8609,10 +8482,7 @@ export namespace Prisma {
     long?: SortOrder
     ibm_margin_AL?: SortOrder
     ibm_margin_GC?: SortOrder
-    ibm_margin_Total?: SortOrder
-    ibm_volume_AL?: SortOrder
-    ibm_volume_GC?: SortOrder
-    ibm_volume_Total?: SortOrder
+    ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
   }
 
   export type ibm_infoMaxOrderByAggregateInput = {
@@ -8646,10 +8516,7 @@ export namespace Prisma {
     long?: SortOrder
     ibm_margin_AL?: SortOrder
     ibm_margin_GC?: SortOrder
-    ibm_margin_Total?: SortOrder
-    ibm_volume_AL?: SortOrder
-    ibm_volume_GC?: SortOrder
-    ibm_volume_Total?: SortOrder
+    ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
   }
 
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -8837,16 +8704,8 @@ export namespace Prisma {
     gas_station_uuid?: SortOrder
     gas_station_marginGC?: SortOrder
     gas_station_marginAL?: SortOrder
-    gas_station_marginTotal?: SortOrder
-    gas_station_volumeGC?: SortOrder
-    gas_station_volumeAL?: SortOrder
-    gas_station_volumeTotal?: SortOrder
     gas_station_type_marginGC?: SortOrder
     gas_station_type_marginAL?: SortOrder
-    gas_station_type_marginTotal?: SortOrder
-    gas_station_type_volumeGC?: SortOrder
-    gas_station_type_volumeAL?: SortOrder
-    gas_station_type_volumeTotal?: SortOrder
     gas_station_whats_app?: SortOrder
     gas_station_created_at?: SortOrder
     gas_station_updated_at?: SortOrder
@@ -8855,31 +8714,29 @@ export namespace Prisma {
     verification_msg_sent?: SortOrder
     verification_hour_marginAL?: SortOrder
     verification_hour_marginGC?: SortOrder
+    gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
+    gas_station_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
+    gas_station_sanado_hour_marginAL?: SortOrder
+    gas_station_sanado_hour_marginGC?: SortOrder
+    gas_station_sanado_marginAL?: SortOrder
+    gas_station_sanado_marginGC?: SortOrder
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
   }
 
   export type gas_station_setvariablesAvgOrderByAggregateInput = {
     gas_station_marginGC?: SortOrder
     gas_station_marginAL?: SortOrder
-    gas_station_marginTotal?: SortOrder
-    gas_station_volumeGC?: SortOrder
-    gas_station_volumeAL?: SortOrder
-    gas_station_volumeTotal?: SortOrder
+    gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
   }
 
   export type gas_station_setvariablesMaxOrderByAggregateInput = {
     gas_station_uuid?: SortOrder
     gas_station_marginGC?: SortOrder
     gas_station_marginAL?: SortOrder
-    gas_station_marginTotal?: SortOrder
-    gas_station_volumeGC?: SortOrder
-    gas_station_volumeAL?: SortOrder
-    gas_station_volumeTotal?: SortOrder
     gas_station_type_marginGC?: SortOrder
     gas_station_type_marginAL?: SortOrder
-    gas_station_type_marginTotal?: SortOrder
-    gas_station_type_volumeGC?: SortOrder
-    gas_station_type_volumeAL?: SortOrder
-    gas_station_type_volumeTotal?: SortOrder
     gas_station_created_at?: SortOrder
     gas_station_updated_at?: SortOrder
     ibm_info_id?: SortOrder
@@ -8887,22 +8744,23 @@ export namespace Prisma {
     verification_msg_sent?: SortOrder
     verification_hour_marginAL?: SortOrder
     verification_hour_marginGC?: SortOrder
+    gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
+    gas_station_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
+    gas_station_sanado_hour_marginAL?: SortOrder
+    gas_station_sanado_hour_marginGC?: SortOrder
+    gas_station_sanado_marginAL?: SortOrder
+    gas_station_sanado_marginGC?: SortOrder
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
   }
 
   export type gas_station_setvariablesMinOrderByAggregateInput = {
     gas_station_uuid?: SortOrder
     gas_station_marginGC?: SortOrder
     gas_station_marginAL?: SortOrder
-    gas_station_marginTotal?: SortOrder
-    gas_station_volumeGC?: SortOrder
-    gas_station_volumeAL?: SortOrder
-    gas_station_volumeTotal?: SortOrder
     gas_station_type_marginGC?: SortOrder
     gas_station_type_marginAL?: SortOrder
-    gas_station_type_marginTotal?: SortOrder
-    gas_station_type_volumeGC?: SortOrder
-    gas_station_type_volumeAL?: SortOrder
-    gas_station_type_volumeTotal?: SortOrder
     gas_station_created_at?: SortOrder
     gas_station_updated_at?: SortOrder
     ibm_info_id?: SortOrder
@@ -8910,15 +8768,21 @@ export namespace Prisma {
     verification_msg_sent?: SortOrder
     verification_hour_marginAL?: SortOrder
     verification_hour_marginGC?: SortOrder
+    gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
+    gas_station_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
+    gas_station_sanado_hour_marginAL?: SortOrder
+    gas_station_sanado_hour_marginGC?: SortOrder
+    gas_station_sanado_marginAL?: SortOrder
+    gas_station_sanado_marginGC?: SortOrder
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
   }
 
   export type gas_station_setvariablesSumOrderByAggregateInput = {
     gas_station_marginGC?: SortOrder
     gas_station_marginAL?: SortOrder
-    gas_station_marginTotal?: SortOrder
-    gas_station_volumeGC?: SortOrder
-    gas_station_volumeAL?: SortOrder
-    gas_station_volumeTotal?: SortOrder
+    gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
   }
 
   export type BoolNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -8953,16 +8817,8 @@ export namespace Prisma {
     region_uuid?: SortOrder
     region_marginGC?: SortOrder
     region_marginAL?: SortOrder
-    region_marginTotal?: SortOrder
-    region_volumeGC?: SortOrder
-    region_volumeAL?: SortOrder
-    region_volumeTotal?: SortOrder
     region_type_marginGC?: SortOrder
     region_type_marginAL?: SortOrder
-    region_type_marginTotal?: SortOrder
-    region_type_volumeGC?: SortOrder
-    region_type_volumeAL?: SortOrder
-    region_type_volumeTotal?: SortOrder
     region_whats_app?: SortOrder
     region_station_created_at?: SortOrder
     region_station_updated_at?: SortOrder
@@ -8971,31 +8827,29 @@ export namespace Prisma {
     verification_msg_sent?: SortOrder
     verification_hour_marginAL?: SortOrder
     verification_hour_marginGC?: SortOrder
+    region_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
+    region_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
+    gas_station_sanado_hour_marginAL?: SortOrder
+    gas_station_sanado_hour_marginGC?: SortOrder
+    gas_station_sanado_marginAL?: SortOrder
+    gas_station_sanado_marginGC?: SortOrder
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
   }
 
   export type region_setvariablesAvgOrderByAggregateInput = {
     region_marginGC?: SortOrder
     region_marginAL?: SortOrder
-    region_marginTotal?: SortOrder
-    region_volumeGC?: SortOrder
-    region_volumeAL?: SortOrder
-    region_volumeTotal?: SortOrder
+    region_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
   }
 
   export type region_setvariablesMaxOrderByAggregateInput = {
     region_uuid?: SortOrder
     region_marginGC?: SortOrder
     region_marginAL?: SortOrder
-    region_marginTotal?: SortOrder
-    region_volumeGC?: SortOrder
-    region_volumeAL?: SortOrder
-    region_volumeTotal?: SortOrder
     region_type_marginGC?: SortOrder
     region_type_marginAL?: SortOrder
-    region_type_marginTotal?: SortOrder
-    region_type_volumeGC?: SortOrder
-    region_type_volumeAL?: SortOrder
-    region_type_volumeTotal?: SortOrder
     region_station_created_at?: SortOrder
     region_station_updated_at?: SortOrder
     use_uuid?: SortOrder
@@ -9003,22 +8857,23 @@ export namespace Prisma {
     verification_msg_sent?: SortOrder
     verification_hour_marginAL?: SortOrder
     verification_hour_marginGC?: SortOrder
+    region_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
+    region_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
+    gas_station_sanado_hour_marginAL?: SortOrder
+    gas_station_sanado_hour_marginGC?: SortOrder
+    gas_station_sanado_marginAL?: SortOrder
+    gas_station_sanado_marginGC?: SortOrder
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
   }
 
   export type region_setvariablesMinOrderByAggregateInput = {
     region_uuid?: SortOrder
     region_marginGC?: SortOrder
     region_marginAL?: SortOrder
-    region_marginTotal?: SortOrder
-    region_volumeGC?: SortOrder
-    region_volumeAL?: SortOrder
-    region_volumeTotal?: SortOrder
     region_type_marginGC?: SortOrder
     region_type_marginAL?: SortOrder
-    region_type_marginTotal?: SortOrder
-    region_type_volumeGC?: SortOrder
-    region_type_volumeAL?: SortOrder
-    region_type_volumeTotal?: SortOrder
     region_station_created_at?: SortOrder
     region_station_updated_at?: SortOrder
     use_uuid?: SortOrder
@@ -9026,15 +8881,21 @@ export namespace Prisma {
     verification_msg_sent?: SortOrder
     verification_hour_marginAL?: SortOrder
     verification_hour_marginGC?: SortOrder
+    region_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
+    region_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
+    gas_station_sanado_hour_marginAL?: SortOrder
+    gas_station_sanado_hour_marginGC?: SortOrder
+    gas_station_sanado_marginAL?: SortOrder
+    gas_station_sanado_marginGC?: SortOrder
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
   }
 
   export type region_setvariablesSumOrderByAggregateInput = {
     region_marginGC?: SortOrder
     region_marginAL?: SortOrder
-    region_marginTotal?: SortOrder
-    region_volumeGC?: SortOrder
-    region_volumeAL?: SortOrder
-    region_volumeTotal?: SortOrder
+    region_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
   }
 
   export type regionsCountOrderByAggregateInput = {
@@ -9045,19 +8906,13 @@ export namespace Prisma {
     region_updated_at?: SortOrder
     regions_margin_AL?: SortOrder
     regions_margin_GC?: SortOrder
-    regions_margin_Total?: SortOrder
-    regions_volume_AL?: SortOrder
-    regions_volume_GC?: SortOrder
-    regions_volume_Total?: SortOrder
+    regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
   }
 
   export type regionsAvgOrderByAggregateInput = {
     regions_margin_AL?: SortOrder
     regions_margin_GC?: SortOrder
-    regions_margin_Total?: SortOrder
-    regions_volume_AL?: SortOrder
-    regions_volume_GC?: SortOrder
-    regions_volume_Total?: SortOrder
+    regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
   }
 
   export type regionsMaxOrderByAggregateInput = {
@@ -9079,10 +8934,7 @@ export namespace Prisma {
   export type regionsSumOrderByAggregateInput = {
     regions_margin_AL?: SortOrder
     regions_margin_GC?: SortOrder
-    regions_margin_Total?: SortOrder
-    regions_volume_AL?: SortOrder
-    regions_volume_GC?: SortOrder
-    regions_volume_Total?: SortOrder
+    regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
   }
 
   export type ibm_infoCreateibm_margin_ALInput = {
@@ -9093,19 +8945,7 @@ export namespace Prisma {
     set: number[]
   }
 
-  export type ibm_infoCreateibm_margin_TotalInput = {
-    set: number[]
-  }
-
-  export type ibm_infoCreateibm_volume_ALInput = {
-    set: number[]
-  }
-
-  export type ibm_infoCreateibm_volume_GCInput = {
-    set: number[]
-  }
-
-  export type ibm_infoCreateibm_volume_TotalInput = {
+  export type ibm_infoCreateibm_margin_ETANOL_HIDRATADO_COMBUSTIVELInput = {
     set: number[]
   }
 
@@ -9149,22 +8989,7 @@ export namespace Prisma {
     push?: number | number[]
   }
 
-  export type ibm_infoUpdateibm_margin_TotalInput = {
-    set?: number[]
-    push?: number | number[]
-  }
-
-  export type ibm_infoUpdateibm_volume_ALInput = {
-    set?: number[]
-    push?: number | number[]
-  }
-
-  export type ibm_infoUpdateibm_volume_GCInput = {
-    set?: number[]
-    push?: number | number[]
-  }
-
-  export type ibm_infoUpdateibm_volume_TotalInput = {
+  export type ibm_infoUpdateibm_margin_ETANOL_HIDRATADO_COMBUSTIVELInput = {
     set?: number[]
     push?: number | number[]
   }
@@ -9392,19 +9217,7 @@ export namespace Prisma {
     set: number[]
   }
 
-  export type regionsCreateregions_margin_TotalInput = {
-    set: number[]
-  }
-
-  export type regionsCreateregions_volume_ALInput = {
-    set: number[]
-  }
-
-  export type regionsCreateregions_volume_GCInput = {
-    set: number[]
-  }
-
-  export type regionsCreateregions_volume_TotalInput = {
+  export type regionsCreateregions_margin_ETANOL_HIDRATADO_COMBUSTIVELInput = {
     set: number[]
   }
 
@@ -9432,22 +9245,7 @@ export namespace Prisma {
     push?: number | number[]
   }
 
-  export type regionsUpdateregions_margin_TotalInput = {
-    set?: number[]
-    push?: number | number[]
-  }
-
-  export type regionsUpdateregions_volume_ALInput = {
-    set?: number[]
-    push?: number | number[]
-  }
-
-  export type regionsUpdateregions_volume_GCInput = {
-    set?: number[]
-    push?: number | number[]
-  }
-
-  export type regionsUpdateregions_volume_TotalInput = {
+  export type regionsUpdateregions_margin_ETANOL_HIDRATADO_COMBUSTIVELInput = {
     set?: number[]
     push?: number | number[]
   }
@@ -9691,22 +9489,23 @@ export namespace Prisma {
     gas_station_uuid?: string
     gas_station_marginGC?: number | null
     gas_station_marginAL?: number | null
-    gas_station_marginTotal?: number | null
-    gas_station_volumeGC?: number | null
-    gas_station_volumeAL?: number | null
-    gas_station_volumeTotal?: number | null
     gas_station_type_marginGC?: boolean | null
     gas_station_type_marginAL?: boolean | null
-    gas_station_type_marginTotal?: boolean | null
-    gas_station_type_volumeGC?: boolean | null
-    gas_station_type_volumeAL?: boolean | null
-    gas_station_type_volumeTotal?: boolean | null
     gas_station_whats_app?: gas_station_setvariablesCreategas_station_whats_appInput | string[]
     gas_station_created_at?: Date | string
     gas_station_updated_at?: Date | string
     verification_msg_sent?: boolean | null
     verification_hour_marginAL?: Date | string | null
     verification_hour_marginGC?: Date | string | null
+    gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: number | null
+    gas_station_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: Date | string | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: Date | string | null
+    gas_station_sanado_hour_marginAL?: Date | string | null
+    gas_station_sanado_hour_marginGC?: Date | string | null
+    gas_station_sanado_marginAL?: boolean | null
+    gas_station_sanado_marginGC?: boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
     users?: usersCreateNestedOneWithoutGas_station_setvariablesInput
   }
 
@@ -9714,16 +9513,8 @@ export namespace Prisma {
     gas_station_uuid?: string
     gas_station_marginGC?: number | null
     gas_station_marginAL?: number | null
-    gas_station_marginTotal?: number | null
-    gas_station_volumeGC?: number | null
-    gas_station_volumeAL?: number | null
-    gas_station_volumeTotal?: number | null
     gas_station_type_marginGC?: boolean | null
     gas_station_type_marginAL?: boolean | null
-    gas_station_type_marginTotal?: boolean | null
-    gas_station_type_volumeGC?: boolean | null
-    gas_station_type_volumeAL?: boolean | null
-    gas_station_type_volumeTotal?: boolean | null
     gas_station_whats_app?: gas_station_setvariablesCreategas_station_whats_appInput | string[]
     gas_station_created_at?: Date | string
     gas_station_updated_at?: Date | string
@@ -9731,6 +9522,15 @@ export namespace Prisma {
     verification_msg_sent?: boolean | null
     verification_hour_marginAL?: Date | string | null
     verification_hour_marginGC?: Date | string | null
+    gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: number | null
+    gas_station_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: Date | string | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: Date | string | null
+    gas_station_sanado_hour_marginAL?: Date | string | null
+    gas_station_sanado_hour_marginGC?: Date | string | null
+    gas_station_sanado_marginAL?: boolean | null
+    gas_station_sanado_marginGC?: boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
   }
 
   export type gas_station_setvariablesCreateOrConnectWithoutIbm_infoInput = {
@@ -9766,16 +9566,8 @@ export namespace Prisma {
     gas_station_uuid?: UuidFilter<"gas_station_setvariables"> | string
     gas_station_marginGC?: FloatNullableFilter<"gas_station_setvariables"> | number | null
     gas_station_marginAL?: FloatNullableFilter<"gas_station_setvariables"> | number | null
-    gas_station_marginTotal?: FloatNullableFilter<"gas_station_setvariables"> | number | null
-    gas_station_volumeGC?: FloatNullableFilter<"gas_station_setvariables"> | number | null
-    gas_station_volumeAL?: FloatNullableFilter<"gas_station_setvariables"> | number | null
-    gas_station_volumeTotal?: FloatNullableFilter<"gas_station_setvariables"> | number | null
     gas_station_type_marginGC?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
     gas_station_type_marginAL?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
-    gas_station_type_marginTotal?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
-    gas_station_type_volumeGC?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
-    gas_station_type_volumeAL?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
-    gas_station_type_volumeTotal?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
     gas_station_whats_app?: StringNullableListFilter<"gas_station_setvariables">
     gas_station_created_at?: DateTimeFilter<"gas_station_setvariables"> | Date | string
     gas_station_updated_at?: DateTimeFilter<"gas_station_setvariables"> | Date | string
@@ -9784,28 +9576,38 @@ export namespace Prisma {
     verification_msg_sent?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
     verification_hour_marginAL?: DateTimeNullableFilter<"gas_station_setvariables"> | Date | string | null
     verification_hour_marginGC?: DateTimeNullableFilter<"gas_station_setvariables"> | Date | string | null
+    gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: FloatNullableFilter<"gas_station_setvariables"> | number | null
+    gas_station_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: DateTimeNullableFilter<"gas_station_setvariables"> | Date | string | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: DateTimeNullableFilter<"gas_station_setvariables"> | Date | string | null
+    gas_station_sanado_hour_marginAL?: DateTimeNullableFilter<"gas_station_setvariables"> | Date | string | null
+    gas_station_sanado_hour_marginGC?: DateTimeNullableFilter<"gas_station_setvariables"> | Date | string | null
+    gas_station_sanado_marginAL?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
+    gas_station_sanado_marginGC?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
   }
 
   export type gas_station_setvariablesCreateWithoutUsersInput = {
     gas_station_uuid?: string
     gas_station_marginGC?: number | null
     gas_station_marginAL?: number | null
-    gas_station_marginTotal?: number | null
-    gas_station_volumeGC?: number | null
-    gas_station_volumeAL?: number | null
-    gas_station_volumeTotal?: number | null
     gas_station_type_marginGC?: boolean | null
     gas_station_type_marginAL?: boolean | null
-    gas_station_type_marginTotal?: boolean | null
-    gas_station_type_volumeGC?: boolean | null
-    gas_station_type_volumeAL?: boolean | null
-    gas_station_type_volumeTotal?: boolean | null
     gas_station_whats_app?: gas_station_setvariablesCreategas_station_whats_appInput | string[]
     gas_station_created_at?: Date | string
     gas_station_updated_at?: Date | string
     verification_msg_sent?: boolean | null
     verification_hour_marginAL?: Date | string | null
     verification_hour_marginGC?: Date | string | null
+    gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: number | null
+    gas_station_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: Date | string | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: Date | string | null
+    gas_station_sanado_hour_marginAL?: Date | string | null
+    gas_station_sanado_hour_marginGC?: Date | string | null
+    gas_station_sanado_marginAL?: boolean | null
+    gas_station_sanado_marginGC?: boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
     ibm_info?: ibm_infoCreateNestedOneWithoutGas_station_setvariablesInput
   }
 
@@ -9813,16 +9615,8 @@ export namespace Prisma {
     gas_station_uuid?: string
     gas_station_marginGC?: number | null
     gas_station_marginAL?: number | null
-    gas_station_marginTotal?: number | null
-    gas_station_volumeGC?: number | null
-    gas_station_volumeAL?: number | null
-    gas_station_volumeTotal?: number | null
     gas_station_type_marginGC?: boolean | null
     gas_station_type_marginAL?: boolean | null
-    gas_station_type_marginTotal?: boolean | null
-    gas_station_type_volumeGC?: boolean | null
-    gas_station_type_volumeAL?: boolean | null
-    gas_station_type_volumeTotal?: boolean | null
     gas_station_whats_app?: gas_station_setvariablesCreategas_station_whats_appInput | string[]
     gas_station_created_at?: Date | string
     gas_station_updated_at?: Date | string
@@ -9830,6 +9624,15 @@ export namespace Prisma {
     verification_msg_sent?: boolean | null
     verification_hour_marginAL?: Date | string | null
     verification_hour_marginGC?: Date | string | null
+    gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: number | null
+    gas_station_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: Date | string | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: Date | string | null
+    gas_station_sanado_hour_marginAL?: Date | string | null
+    gas_station_sanado_hour_marginGC?: Date | string | null
+    gas_station_sanado_marginAL?: boolean | null
+    gas_station_sanado_marginGC?: boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
   }
 
   export type gas_station_setvariablesCreateOrConnectWithoutUsersInput = {
@@ -9846,22 +9649,23 @@ export namespace Prisma {
     region_uuid?: string
     region_marginGC?: number | null
     region_marginAL?: number | null
-    region_marginTotal?: number | null
-    region_volumeGC?: number | null
-    region_volumeAL?: number | null
-    region_volumeTotal?: number | null
     region_type_marginGC?: boolean | null
     region_type_marginAL?: boolean | null
-    region_type_marginTotal?: boolean | null
-    region_type_volumeGC?: boolean | null
-    region_type_volumeAL?: boolean | null
-    region_type_volumeTotal?: boolean | null
     region_whats_app?: region_setvariablesCreateregion_whats_appInput | string[]
     region_station_created_at?: Date | string
     region_station_updated_at?: Date | string
     verification_msg_sent?: boolean | null
     verification_hour_marginAL?: Date | string | null
     verification_hour_marginGC?: Date | string | null
+    region_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: number | null
+    region_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: Date | string | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: Date | string | null
+    gas_station_sanado_hour_marginAL?: Date | string | null
+    gas_station_sanado_hour_marginGC?: Date | string | null
+    gas_station_sanado_marginAL?: boolean | null
+    gas_station_sanado_marginGC?: boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
     regions?: regionsCreateNestedOneWithoutRegion_setvariablesInput
   }
 
@@ -9869,16 +9673,8 @@ export namespace Prisma {
     region_uuid?: string
     region_marginGC?: number | null
     region_marginAL?: number | null
-    region_marginTotal?: number | null
-    region_volumeGC?: number | null
-    region_volumeAL?: number | null
-    region_volumeTotal?: number | null
     region_type_marginGC?: boolean | null
     region_type_marginAL?: boolean | null
-    region_type_marginTotal?: boolean | null
-    region_type_volumeGC?: boolean | null
-    region_type_volumeAL?: boolean | null
-    region_type_volumeTotal?: boolean | null
     region_whats_app?: region_setvariablesCreateregion_whats_appInput | string[]
     region_station_created_at?: Date | string
     region_station_updated_at?: Date | string
@@ -9886,6 +9682,15 @@ export namespace Prisma {
     verification_msg_sent?: boolean | null
     verification_hour_marginAL?: Date | string | null
     verification_hour_marginGC?: Date | string | null
+    region_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: number | null
+    region_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: Date | string | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: Date | string | null
+    gas_station_sanado_hour_marginAL?: Date | string | null
+    gas_station_sanado_hour_marginGC?: Date | string | null
+    gas_station_sanado_marginAL?: boolean | null
+    gas_station_sanado_marginGC?: boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
   }
 
   export type region_setvariablesCreateOrConnectWithoutUsersInput = {
@@ -9937,16 +9742,8 @@ export namespace Prisma {
     region_uuid?: UuidFilter<"region_setvariables"> | string
     region_marginGC?: FloatNullableFilter<"region_setvariables"> | number | null
     region_marginAL?: FloatNullableFilter<"region_setvariables"> | number | null
-    region_marginTotal?: FloatNullableFilter<"region_setvariables"> | number | null
-    region_volumeGC?: FloatNullableFilter<"region_setvariables"> | number | null
-    region_volumeAL?: FloatNullableFilter<"region_setvariables"> | number | null
-    region_volumeTotal?: FloatNullableFilter<"region_setvariables"> | number | null
     region_type_marginGC?: BoolNullableFilter<"region_setvariables"> | boolean | null
     region_type_marginAL?: BoolNullableFilter<"region_setvariables"> | boolean | null
-    region_type_marginTotal?: BoolNullableFilter<"region_setvariables"> | boolean | null
-    region_type_volumeGC?: BoolNullableFilter<"region_setvariables"> | boolean | null
-    region_type_volumeAL?: BoolNullableFilter<"region_setvariables"> | boolean | null
-    region_type_volumeTotal?: BoolNullableFilter<"region_setvariables"> | boolean | null
     region_whats_app?: StringNullableListFilter<"region_setvariables">
     region_station_created_at?: DateTimeFilter<"region_setvariables"> | Date | string
     region_station_updated_at?: DateTimeFilter<"region_setvariables"> | Date | string
@@ -9955,6 +9752,15 @@ export namespace Prisma {
     verification_msg_sent?: BoolNullableFilter<"region_setvariables"> | boolean | null
     verification_hour_marginAL?: DateTimeNullableFilter<"region_setvariables"> | Date | string | null
     verification_hour_marginGC?: DateTimeNullableFilter<"region_setvariables"> | Date | string | null
+    region_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: FloatNullableFilter<"region_setvariables"> | number | null
+    region_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: BoolNullableFilter<"region_setvariables"> | boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: DateTimeNullableFilter<"region_setvariables"> | Date | string | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: DateTimeNullableFilter<"region_setvariables"> | Date | string | null
+    gas_station_sanado_hour_marginAL?: DateTimeNullableFilter<"region_setvariables"> | Date | string | null
+    gas_station_sanado_hour_marginGC?: DateTimeNullableFilter<"region_setvariables"> | Date | string | null
+    gas_station_sanado_marginAL?: BoolNullableFilter<"region_setvariables"> | boolean | null
+    gas_station_sanado_marginGC?: BoolNullableFilter<"region_setvariables"> | boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: BoolNullableFilter<"region_setvariables"> | boolean | null
   }
 
   export type ibm_infoCreateWithoutGas_station_setvariablesInput = {
@@ -9970,10 +9776,7 @@ export namespace Prisma {
     regional?: string | null
     ibm_margin_AL?: ibm_infoCreateibm_margin_ALInput | number[]
     ibm_margin_GC?: ibm_infoCreateibm_margin_GCInput | number[]
-    ibm_margin_Total?: ibm_infoCreateibm_margin_TotalInput | number[]
-    ibm_volume_AL?: ibm_infoCreateibm_volume_ALInput | number[]
-    ibm_volume_GC?: ibm_infoCreateibm_volume_GCInput | number[]
-    ibm_volume_Total?: ibm_infoCreateibm_volume_TotalInput | number[]
+    ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: ibm_infoCreateibm_margin_ETANOL_HIDRATADO_COMBUSTIVELInput | number[]
   }
 
   export type ibm_infoUncheckedCreateWithoutGas_station_setvariablesInput = {
@@ -9989,10 +9792,7 @@ export namespace Prisma {
     regional?: string | null
     ibm_margin_AL?: ibm_infoCreateibm_margin_ALInput | number[]
     ibm_margin_GC?: ibm_infoCreateibm_margin_GCInput | number[]
-    ibm_margin_Total?: ibm_infoCreateibm_margin_TotalInput | number[]
-    ibm_volume_AL?: ibm_infoCreateibm_volume_ALInput | number[]
-    ibm_volume_GC?: ibm_infoCreateibm_volume_GCInput | number[]
-    ibm_volume_Total?: ibm_infoCreateibm_volume_TotalInput | number[]
+    ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: ibm_infoCreateibm_margin_ETANOL_HIDRATADO_COMBUSTIVELInput | number[]
   }
 
   export type ibm_infoCreateOrConnectWithoutGas_station_setvariablesInput = {
@@ -10057,10 +9857,7 @@ export namespace Prisma {
     regional?: NullableStringFieldUpdateOperationsInput | string | null
     ibm_margin_AL?: ibm_infoUpdateibm_margin_ALInput | number[]
     ibm_margin_GC?: ibm_infoUpdateibm_margin_GCInput | number[]
-    ibm_margin_Total?: ibm_infoUpdateibm_margin_TotalInput | number[]
-    ibm_volume_AL?: ibm_infoUpdateibm_volume_ALInput | number[]
-    ibm_volume_GC?: ibm_infoUpdateibm_volume_GCInput | number[]
-    ibm_volume_Total?: ibm_infoUpdateibm_volume_TotalInput | number[]
+    ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: ibm_infoUpdateibm_margin_ETANOL_HIDRATADO_COMBUSTIVELInput | number[]
   }
 
   export type ibm_infoUncheckedUpdateWithoutGas_station_setvariablesInput = {
@@ -10076,10 +9873,7 @@ export namespace Prisma {
     regional?: NullableStringFieldUpdateOperationsInput | string | null
     ibm_margin_AL?: ibm_infoUpdateibm_margin_ALInput | number[]
     ibm_margin_GC?: ibm_infoUpdateibm_margin_GCInput | number[]
-    ibm_margin_Total?: ibm_infoUpdateibm_margin_TotalInput | number[]
-    ibm_volume_AL?: ibm_infoUpdateibm_volume_ALInput | number[]
-    ibm_volume_GC?: ibm_infoUpdateibm_volume_GCInput | number[]
-    ibm_volume_Total?: ibm_infoUpdateibm_volume_TotalInput | number[]
+    ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: ibm_infoUpdateibm_margin_ETANOL_HIDRATADO_COMBUSTIVELInput | number[]
   }
 
   export type usersUpsertWithoutGas_station_setvariablesInput = {
@@ -10129,10 +9923,7 @@ export namespace Prisma {
     region_updated_at?: Date | string
     regions_margin_AL?: regionsCreateregions_margin_ALInput | number[]
     regions_margin_GC?: regionsCreateregions_margin_GCInput | number[]
-    regions_margin_Total?: regionsCreateregions_margin_TotalInput | number[]
-    regions_volume_AL?: regionsCreateregions_volume_ALInput | number[]
-    regions_volume_GC?: regionsCreateregions_volume_GCInput | number[]
-    regions_volume_Total?: regionsCreateregions_volume_TotalInput | number[]
+    regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: regionsCreateregions_margin_ETANOL_HIDRATADO_COMBUSTIVELInput | number[]
   }
 
   export type regionsUncheckedCreateWithoutRegion_setvariablesInput = {
@@ -10143,10 +9934,7 @@ export namespace Prisma {
     region_updated_at?: Date | string
     regions_margin_AL?: regionsCreateregions_margin_ALInput | number[]
     regions_margin_GC?: regionsCreateregions_margin_GCInput | number[]
-    regions_margin_Total?: regionsCreateregions_margin_TotalInput | number[]
-    regions_volume_AL?: regionsCreateregions_volume_ALInput | number[]
-    regions_volume_GC?: regionsCreateregions_volume_GCInput | number[]
-    regions_volume_Total?: regionsCreateregions_volume_TotalInput | number[]
+    regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: regionsCreateregions_margin_ETANOL_HIDRATADO_COMBUSTIVELInput | number[]
   }
 
   export type regionsCreateOrConnectWithoutRegion_setvariablesInput = {
@@ -10206,10 +9994,7 @@ export namespace Prisma {
     region_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     regions_margin_AL?: regionsUpdateregions_margin_ALInput | number[]
     regions_margin_GC?: regionsUpdateregions_margin_GCInput | number[]
-    regions_margin_Total?: regionsUpdateregions_margin_TotalInput | number[]
-    regions_volume_AL?: regionsUpdateregions_volume_ALInput | number[]
-    regions_volume_GC?: regionsUpdateregions_volume_GCInput | number[]
-    regions_volume_Total?: regionsUpdateregions_volume_TotalInput | number[]
+    regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: regionsUpdateregions_margin_ETANOL_HIDRATADO_COMBUSTIVELInput | number[]
   }
 
   export type regionsUncheckedUpdateWithoutRegion_setvariablesInput = {
@@ -10220,10 +10005,7 @@ export namespace Prisma {
     region_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     regions_margin_AL?: regionsUpdateregions_margin_ALInput | number[]
     regions_margin_GC?: regionsUpdateregions_margin_GCInput | number[]
-    regions_margin_Total?: regionsUpdateregions_margin_TotalInput | number[]
-    regions_volume_AL?: regionsUpdateregions_volume_ALInput | number[]
-    regions_volume_GC?: regionsUpdateregions_volume_GCInput | number[]
-    regions_volume_Total?: regionsUpdateregions_volume_TotalInput | number[]
+    regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: regionsUpdateregions_margin_ETANOL_HIDRATADO_COMBUSTIVELInput | number[]
   }
 
   export type usersUpsertWithoutRegion_setvariablesInput = {
@@ -10269,22 +10051,23 @@ export namespace Prisma {
     region_uuid?: string
     region_marginGC?: number | null
     region_marginAL?: number | null
-    region_marginTotal?: number | null
-    region_volumeGC?: number | null
-    region_volumeAL?: number | null
-    region_volumeTotal?: number | null
     region_type_marginGC?: boolean | null
     region_type_marginAL?: boolean | null
-    region_type_marginTotal?: boolean | null
-    region_type_volumeGC?: boolean | null
-    region_type_volumeAL?: boolean | null
-    region_type_volumeTotal?: boolean | null
     region_whats_app?: region_setvariablesCreateregion_whats_appInput | string[]
     region_station_created_at?: Date | string
     region_station_updated_at?: Date | string
     verification_msg_sent?: boolean | null
     verification_hour_marginAL?: Date | string | null
     verification_hour_marginGC?: Date | string | null
+    region_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: number | null
+    region_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: Date | string | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: Date | string | null
+    gas_station_sanado_hour_marginAL?: Date | string | null
+    gas_station_sanado_hour_marginGC?: Date | string | null
+    gas_station_sanado_marginAL?: boolean | null
+    gas_station_sanado_marginGC?: boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
     users?: usersCreateNestedOneWithoutRegion_setvariablesInput
   }
 
@@ -10292,16 +10075,8 @@ export namespace Prisma {
     region_uuid?: string
     region_marginGC?: number | null
     region_marginAL?: number | null
-    region_marginTotal?: number | null
-    region_volumeGC?: number | null
-    region_volumeAL?: number | null
-    region_volumeTotal?: number | null
     region_type_marginGC?: boolean | null
     region_type_marginAL?: boolean | null
-    region_type_marginTotal?: boolean | null
-    region_type_volumeGC?: boolean | null
-    region_type_volumeAL?: boolean | null
-    region_type_volumeTotal?: boolean | null
     region_whats_app?: region_setvariablesCreateregion_whats_appInput | string[]
     region_station_created_at?: Date | string
     region_station_updated_at?: Date | string
@@ -10309,6 +10084,15 @@ export namespace Prisma {
     verification_msg_sent?: boolean | null
     verification_hour_marginAL?: Date | string | null
     verification_hour_marginGC?: Date | string | null
+    region_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: number | null
+    region_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: Date | string | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: Date | string | null
+    gas_station_sanado_hour_marginAL?: Date | string | null
+    gas_station_sanado_hour_marginGC?: Date | string | null
+    gas_station_sanado_marginAL?: boolean | null
+    gas_station_sanado_marginGC?: boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
   }
 
   export type region_setvariablesCreateOrConnectWithoutRegionsInput = {
@@ -10341,16 +10125,8 @@ export namespace Prisma {
     gas_station_uuid?: string
     gas_station_marginGC?: number | null
     gas_station_marginAL?: number | null
-    gas_station_marginTotal?: number | null
-    gas_station_volumeGC?: number | null
-    gas_station_volumeAL?: number | null
-    gas_station_volumeTotal?: number | null
     gas_station_type_marginGC?: boolean | null
     gas_station_type_marginAL?: boolean | null
-    gas_station_type_marginTotal?: boolean | null
-    gas_station_type_volumeGC?: boolean | null
-    gas_station_type_volumeAL?: boolean | null
-    gas_station_type_volumeTotal?: boolean | null
     gas_station_whats_app?: gas_station_setvariablesCreategas_station_whats_appInput | string[]
     gas_station_created_at?: Date | string
     gas_station_updated_at?: Date | string
@@ -10358,28 +10134,38 @@ export namespace Prisma {
     verification_msg_sent?: boolean | null
     verification_hour_marginAL?: Date | string | null
     verification_hour_marginGC?: Date | string | null
+    gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: number | null
+    gas_station_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: Date | string | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: Date | string | null
+    gas_station_sanado_hour_marginAL?: Date | string | null
+    gas_station_sanado_hour_marginGC?: Date | string | null
+    gas_station_sanado_marginAL?: boolean | null
+    gas_station_sanado_marginGC?: boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
   }
 
   export type gas_station_setvariablesUpdateWithoutIbm_infoInput = {
     gas_station_uuid?: StringFieldUpdateOperationsInput | string
     gas_station_marginGC?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_marginAL?: NullableFloatFieldUpdateOperationsInput | number | null
-    gas_station_marginTotal?: NullableFloatFieldUpdateOperationsInput | number | null
-    gas_station_volumeGC?: NullableFloatFieldUpdateOperationsInput | number | null
-    gas_station_volumeAL?: NullableFloatFieldUpdateOperationsInput | number | null
-    gas_station_volumeTotal?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_type_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_type_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    gas_station_type_marginTotal?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    gas_station_type_volumeGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    gas_station_type_volumeAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    gas_station_type_volumeTotal?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_whats_app?: gas_station_setvariablesUpdategas_station_whats_appInput | string[]
     gas_station_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     gas_station_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     verification_msg_sent?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     verification_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_sanado_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
     users?: usersUpdateOneWithoutGas_station_setvariablesNestedInput
   }
 
@@ -10387,16 +10173,8 @@ export namespace Prisma {
     gas_station_uuid?: StringFieldUpdateOperationsInput | string
     gas_station_marginGC?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_marginAL?: NullableFloatFieldUpdateOperationsInput | number | null
-    gas_station_marginTotal?: NullableFloatFieldUpdateOperationsInput | number | null
-    gas_station_volumeGC?: NullableFloatFieldUpdateOperationsInput | number | null
-    gas_station_volumeAL?: NullableFloatFieldUpdateOperationsInput | number | null
-    gas_station_volumeTotal?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_type_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_type_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    gas_station_type_marginTotal?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    gas_station_type_volumeGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    gas_station_type_volumeAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    gas_station_type_volumeTotal?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_whats_app?: gas_station_setvariablesUpdategas_station_whats_appInput | string[]
     gas_station_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     gas_station_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10404,22 +10182,23 @@ export namespace Prisma {
     verification_msg_sent?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     verification_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_sanado_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
   }
 
   export type gas_station_setvariablesUncheckedUpdateManyWithoutIbm_infoInput = {
     gas_station_uuid?: StringFieldUpdateOperationsInput | string
     gas_station_marginGC?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_marginAL?: NullableFloatFieldUpdateOperationsInput | number | null
-    gas_station_marginTotal?: NullableFloatFieldUpdateOperationsInput | number | null
-    gas_station_volumeGC?: NullableFloatFieldUpdateOperationsInput | number | null
-    gas_station_volumeAL?: NullableFloatFieldUpdateOperationsInput | number | null
-    gas_station_volumeTotal?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_type_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_type_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    gas_station_type_marginTotal?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    gas_station_type_volumeGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    gas_station_type_volumeAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    gas_station_type_volumeTotal?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_whats_app?: gas_station_setvariablesUpdategas_station_whats_appInput | string[]
     gas_station_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     gas_station_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10427,22 +10206,23 @@ export namespace Prisma {
     verification_msg_sent?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     verification_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_sanado_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
   }
 
   export type gas_station_setvariablesCreateManyUsersInput = {
     gas_station_uuid?: string
     gas_station_marginGC?: number | null
     gas_station_marginAL?: number | null
-    gas_station_marginTotal?: number | null
-    gas_station_volumeGC?: number | null
-    gas_station_volumeAL?: number | null
-    gas_station_volumeTotal?: number | null
     gas_station_type_marginGC?: boolean | null
     gas_station_type_marginAL?: boolean | null
-    gas_station_type_marginTotal?: boolean | null
-    gas_station_type_volumeGC?: boolean | null
-    gas_station_type_volumeAL?: boolean | null
-    gas_station_type_volumeTotal?: boolean | null
     gas_station_whats_app?: gas_station_setvariablesCreategas_station_whats_appInput | string[]
     gas_station_created_at?: Date | string
     gas_station_updated_at?: Date | string
@@ -10450,22 +10230,23 @@ export namespace Prisma {
     verification_msg_sent?: boolean | null
     verification_hour_marginAL?: Date | string | null
     verification_hour_marginGC?: Date | string | null
+    gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: number | null
+    gas_station_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: Date | string | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: Date | string | null
+    gas_station_sanado_hour_marginAL?: Date | string | null
+    gas_station_sanado_hour_marginGC?: Date | string | null
+    gas_station_sanado_marginAL?: boolean | null
+    gas_station_sanado_marginGC?: boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
   }
 
   export type region_setvariablesCreateManyUsersInput = {
     region_uuid?: string
     region_marginGC?: number | null
     region_marginAL?: number | null
-    region_marginTotal?: number | null
-    region_volumeGC?: number | null
-    region_volumeAL?: number | null
-    region_volumeTotal?: number | null
     region_type_marginGC?: boolean | null
     region_type_marginAL?: boolean | null
-    region_type_marginTotal?: boolean | null
-    region_type_volumeGC?: boolean | null
-    region_type_volumeAL?: boolean | null
-    region_type_volumeTotal?: boolean | null
     region_whats_app?: region_setvariablesCreateregion_whats_appInput | string[]
     region_station_created_at?: Date | string
     region_station_updated_at?: Date | string
@@ -10473,28 +10254,38 @@ export namespace Prisma {
     verification_msg_sent?: boolean | null
     verification_hour_marginAL?: Date | string | null
     verification_hour_marginGC?: Date | string | null
+    region_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: number | null
+    region_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: Date | string | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: Date | string | null
+    gas_station_sanado_hour_marginAL?: Date | string | null
+    gas_station_sanado_hour_marginGC?: Date | string | null
+    gas_station_sanado_marginAL?: boolean | null
+    gas_station_sanado_marginGC?: boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
   }
 
   export type gas_station_setvariablesUpdateWithoutUsersInput = {
     gas_station_uuid?: StringFieldUpdateOperationsInput | string
     gas_station_marginGC?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_marginAL?: NullableFloatFieldUpdateOperationsInput | number | null
-    gas_station_marginTotal?: NullableFloatFieldUpdateOperationsInput | number | null
-    gas_station_volumeGC?: NullableFloatFieldUpdateOperationsInput | number | null
-    gas_station_volumeAL?: NullableFloatFieldUpdateOperationsInput | number | null
-    gas_station_volumeTotal?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_type_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_type_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    gas_station_type_marginTotal?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    gas_station_type_volumeGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    gas_station_type_volumeAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    gas_station_type_volumeTotal?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_whats_app?: gas_station_setvariablesUpdategas_station_whats_appInput | string[]
     gas_station_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     gas_station_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     verification_msg_sent?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     verification_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_sanado_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
     ibm_info?: ibm_infoUpdateOneWithoutGas_station_setvariablesNestedInput
   }
 
@@ -10502,16 +10293,8 @@ export namespace Prisma {
     gas_station_uuid?: StringFieldUpdateOperationsInput | string
     gas_station_marginGC?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_marginAL?: NullableFloatFieldUpdateOperationsInput | number | null
-    gas_station_marginTotal?: NullableFloatFieldUpdateOperationsInput | number | null
-    gas_station_volumeGC?: NullableFloatFieldUpdateOperationsInput | number | null
-    gas_station_volumeAL?: NullableFloatFieldUpdateOperationsInput | number | null
-    gas_station_volumeTotal?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_type_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_type_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    gas_station_type_marginTotal?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    gas_station_type_volumeGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    gas_station_type_volumeAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    gas_station_type_volumeTotal?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_whats_app?: gas_station_setvariablesUpdategas_station_whats_appInput | string[]
     gas_station_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     gas_station_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10519,22 +10302,23 @@ export namespace Prisma {
     verification_msg_sent?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     verification_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_sanado_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
   }
 
   export type gas_station_setvariablesUncheckedUpdateManyWithoutUsersInput = {
     gas_station_uuid?: StringFieldUpdateOperationsInput | string
     gas_station_marginGC?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_marginAL?: NullableFloatFieldUpdateOperationsInput | number | null
-    gas_station_marginTotal?: NullableFloatFieldUpdateOperationsInput | number | null
-    gas_station_volumeGC?: NullableFloatFieldUpdateOperationsInput | number | null
-    gas_station_volumeAL?: NullableFloatFieldUpdateOperationsInput | number | null
-    gas_station_volumeTotal?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_type_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_type_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    gas_station_type_marginTotal?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    gas_station_type_volumeGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    gas_station_type_volumeAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    gas_station_type_volumeTotal?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_whats_app?: gas_station_setvariablesUpdategas_station_whats_appInput | string[]
     gas_station_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     gas_station_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10542,28 +10326,38 @@ export namespace Prisma {
     verification_msg_sent?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     verification_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_sanado_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
   }
 
   export type region_setvariablesUpdateWithoutUsersInput = {
     region_uuid?: StringFieldUpdateOperationsInput | string
     region_marginGC?: NullableFloatFieldUpdateOperationsInput | number | null
     region_marginAL?: NullableFloatFieldUpdateOperationsInput | number | null
-    region_marginTotal?: NullableFloatFieldUpdateOperationsInput | number | null
-    region_volumeGC?: NullableFloatFieldUpdateOperationsInput | number | null
-    region_volumeAL?: NullableFloatFieldUpdateOperationsInput | number | null
-    region_volumeTotal?: NullableFloatFieldUpdateOperationsInput | number | null
     region_type_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_type_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    region_type_marginTotal?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    region_type_volumeGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    region_type_volumeAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    region_type_volumeTotal?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_whats_app?: region_setvariablesUpdateregion_whats_appInput | string[]
     region_station_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     region_station_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     verification_msg_sent?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     verification_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    region_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_sanado_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
     regions?: regionsUpdateOneWithoutRegion_setvariablesNestedInput
   }
 
@@ -10571,16 +10365,8 @@ export namespace Prisma {
     region_uuid?: StringFieldUpdateOperationsInput | string
     region_marginGC?: NullableFloatFieldUpdateOperationsInput | number | null
     region_marginAL?: NullableFloatFieldUpdateOperationsInput | number | null
-    region_marginTotal?: NullableFloatFieldUpdateOperationsInput | number | null
-    region_volumeGC?: NullableFloatFieldUpdateOperationsInput | number | null
-    region_volumeAL?: NullableFloatFieldUpdateOperationsInput | number | null
-    region_volumeTotal?: NullableFloatFieldUpdateOperationsInput | number | null
     region_type_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_type_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    region_type_marginTotal?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    region_type_volumeGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    region_type_volumeAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    region_type_volumeTotal?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_whats_app?: region_setvariablesUpdateregion_whats_appInput | string[]
     region_station_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     region_station_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10588,22 +10374,23 @@ export namespace Prisma {
     verification_msg_sent?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     verification_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    region_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_sanado_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
   }
 
   export type region_setvariablesUncheckedUpdateManyWithoutUsersInput = {
     region_uuid?: StringFieldUpdateOperationsInput | string
     region_marginGC?: NullableFloatFieldUpdateOperationsInput | number | null
     region_marginAL?: NullableFloatFieldUpdateOperationsInput | number | null
-    region_marginTotal?: NullableFloatFieldUpdateOperationsInput | number | null
-    region_volumeGC?: NullableFloatFieldUpdateOperationsInput | number | null
-    region_volumeAL?: NullableFloatFieldUpdateOperationsInput | number | null
-    region_volumeTotal?: NullableFloatFieldUpdateOperationsInput | number | null
     region_type_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_type_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    region_type_marginTotal?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    region_type_volumeGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    region_type_volumeAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    region_type_volumeTotal?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_whats_app?: region_setvariablesUpdateregion_whats_appInput | string[]
     region_station_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     region_station_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10611,22 +10398,23 @@ export namespace Prisma {
     verification_msg_sent?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     verification_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    region_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_sanado_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
   }
 
   export type region_setvariablesCreateManyRegionsInput = {
     region_uuid?: string
     region_marginGC?: number | null
     region_marginAL?: number | null
-    region_marginTotal?: number | null
-    region_volumeGC?: number | null
-    region_volumeAL?: number | null
-    region_volumeTotal?: number | null
     region_type_marginGC?: boolean | null
     region_type_marginAL?: boolean | null
-    region_type_marginTotal?: boolean | null
-    region_type_volumeGC?: boolean | null
-    region_type_volumeAL?: boolean | null
-    region_type_volumeTotal?: boolean | null
     region_whats_app?: region_setvariablesCreateregion_whats_appInput | string[]
     region_station_created_at?: Date | string
     region_station_updated_at?: Date | string
@@ -10634,28 +10422,38 @@ export namespace Prisma {
     verification_msg_sent?: boolean | null
     verification_hour_marginAL?: Date | string | null
     verification_hour_marginGC?: Date | string | null
+    region_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: number | null
+    region_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: Date | string | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: Date | string | null
+    gas_station_sanado_hour_marginAL?: Date | string | null
+    gas_station_sanado_hour_marginGC?: Date | string | null
+    gas_station_sanado_marginAL?: boolean | null
+    gas_station_sanado_marginGC?: boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
   }
 
   export type region_setvariablesUpdateWithoutRegionsInput = {
     region_uuid?: StringFieldUpdateOperationsInput | string
     region_marginGC?: NullableFloatFieldUpdateOperationsInput | number | null
     region_marginAL?: NullableFloatFieldUpdateOperationsInput | number | null
-    region_marginTotal?: NullableFloatFieldUpdateOperationsInput | number | null
-    region_volumeGC?: NullableFloatFieldUpdateOperationsInput | number | null
-    region_volumeAL?: NullableFloatFieldUpdateOperationsInput | number | null
-    region_volumeTotal?: NullableFloatFieldUpdateOperationsInput | number | null
     region_type_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_type_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    region_type_marginTotal?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    region_type_volumeGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    region_type_volumeAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    region_type_volumeTotal?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_whats_app?: region_setvariablesUpdateregion_whats_appInput | string[]
     region_station_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     region_station_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     verification_msg_sent?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     verification_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    region_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_sanado_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
     users?: usersUpdateOneWithoutRegion_setvariablesNestedInput
   }
 
@@ -10663,16 +10461,8 @@ export namespace Prisma {
     region_uuid?: StringFieldUpdateOperationsInput | string
     region_marginGC?: NullableFloatFieldUpdateOperationsInput | number | null
     region_marginAL?: NullableFloatFieldUpdateOperationsInput | number | null
-    region_marginTotal?: NullableFloatFieldUpdateOperationsInput | number | null
-    region_volumeGC?: NullableFloatFieldUpdateOperationsInput | number | null
-    region_volumeAL?: NullableFloatFieldUpdateOperationsInput | number | null
-    region_volumeTotal?: NullableFloatFieldUpdateOperationsInput | number | null
     region_type_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_type_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    region_type_marginTotal?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    region_type_volumeGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    region_type_volumeAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    region_type_volumeTotal?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_whats_app?: region_setvariablesUpdateregion_whats_appInput | string[]
     region_station_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     region_station_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10680,22 +10470,23 @@ export namespace Prisma {
     verification_msg_sent?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     verification_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    region_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_sanado_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
   }
 
   export type region_setvariablesUncheckedUpdateManyWithoutRegionsInput = {
     region_uuid?: StringFieldUpdateOperationsInput | string
     region_marginGC?: NullableFloatFieldUpdateOperationsInput | number | null
     region_marginAL?: NullableFloatFieldUpdateOperationsInput | number | null
-    region_marginTotal?: NullableFloatFieldUpdateOperationsInput | number | null
-    region_volumeGC?: NullableFloatFieldUpdateOperationsInput | number | null
-    region_volumeAL?: NullableFloatFieldUpdateOperationsInput | number | null
-    region_volumeTotal?: NullableFloatFieldUpdateOperationsInput | number | null
     region_type_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_type_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    region_type_marginTotal?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    region_type_volumeGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    region_type_volumeAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    region_type_volumeTotal?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_whats_app?: region_setvariablesUpdateregion_whats_appInput | string[]
     region_station_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     region_station_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10703,6 +10494,15 @@ export namespace Prisma {
     verification_msg_sent?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     verification_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    region_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_marginAL?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_hour_marginGC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_sanado_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
   }
 
 
