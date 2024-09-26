@@ -12,6 +12,7 @@ dataRouter.post("/regional-chart", DataController.regionalChart)
 dataRouter.post("/regional-chart-fuel", DataController.regionalChartFuel)
 dataRouter.post("/regional-chart-product", DataController.regionalChartProduct)
 dataRouter.post("/regional-station-fuel", DataController.regionalStateDataFrame)
+dataRouter.post("/regional-station-daily-fuel", DataController.regionalStateDailyDataFrame)
 dataRouter.get("/map-data", DataController.mapData)
 dataRouter.get("/fuel-types", DataController.fuelTypes)
 export default dataRouter

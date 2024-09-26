@@ -1178,9 +1178,112 @@ class DataController {
         } catch (error) {
             return res.status(500).json({ message: `Erro ao retornar os dados: ${error}` });
         }
+    }
+    //Gráfico por cada posto(de um dia do mês) quando usuário clica em um determinado dia
+    public async regionalStateDailyDataFrame(req: Request, res: Response) {
+        try {
+            const clientToken = req.headers.authorization;
+            if (!clientToken) {
+                return res.status(401).json({ message: "Token não fornecido." });
+            }
+            const { variable_type, week_day }: { variable_type: string, week_day: string } = req.body
 
 
+            const expectedToken = process.env.TOKEN;
+            if (clientToken !== `Bearer ${expectedToken}`) {
+                return res.status(401).json({ message: "Falha na autenticação: Token inválido." });
+            }
+            const timezone = 'America/Sao_Paulo';
+            const today = moment.tz(timezone).format('YYYY-MM-DD');
 
+            const result = await prismaSales.vendas.findMany({
+                select: {
+                    items: true,
+                    ibm: true
+                },
+                where: {
+                    dtHr: {
+                        gte: `${week_day}T00:00:00.000Z`,
+                        lte: `${week_day}T23:59:59.999Z`,
+                    }
+                }
+            });
+            let ibmObject: any = {}
+            //Concatenando valores
+            result.forEach(element => {
+                if (!ibmObject[element.ibm]) {
+                    ibmObject[element.ibm] = [...element.items];
+                } else {
+                    ibmObject[element.ibm] = ibmObject[element.ibm].concat(element.items);
+                }
+            });
+            let arrayIbm = []
+            let total = 0;
+            let quantity = 0;
+            for (const value in ibmObject) {
+                const sum = ibmObject[value].reduce((accumulate: any, initialValue: any) => {
+                    if (initialValue.iTip == "1") {
+                        const value = parseFloat(initialValue.tot);
+                        const quantityValue = parseFloat(initialValue.qd);
+                        const cost = parseFloat(initialValue.pC);
+
+                        if (variable_type == "invoicing") {
+                            return Math.round((accumulate + value) * 100) / 100;
+                        } else if (variable_type == "volume_sold") {
+                            return Math.round((accumulate + quantityValue) * 100) / 100;
+                        } else if (variable_type == "cost") {
+                            return Math.round((accumulate + quantityValue * cost) * 100) / 100;
+                        } else if (variable_type == "fuel_margin") {
+                            total += value;
+                            quantity += quantityValue;
+                            return Math.round((total / quantity) * 100) / 100;
+                        }
+                    }
+                    return accumulate;
+
+                }, 0);
+                arrayIbm.push({ [value]: sum })
+            }
+            const ibmNames = await prismaRedeFlex.ibm_info.findMany({
+                select: { ibm: true, nomefantasia: true }
+            })
+
+            arrayIbm.map(elementNumber => {
+                const propertyName = Object.keys(elementNumber)[0];
+
+                ibmNames.map(elementName => {
+                    if (propertyName === elementName.ibm) {
+
+                        const nomeFantasia = elementName.nomefantasia;
+                        if (nomeFantasia !== null) {
+                            elementNumber[nomeFantasia] = elementNumber[propertyName];
+                        } else {
+                            console.log(`Nome fantasia para ${propertyName} é null`);
+                        }
+                    }
+                });
+            });
+            interface ElementIbm {
+                [key: string]: number;
+            }
+            let objectIbm: { [key: string]: number } = {}
+            const updatedArray = arrayIbm.map(elementNumber => {
+                const propertyName = Object.keys(elementNumber)[0];
+                const { [propertyName]: _, ...rest } = elementNumber;
+                return rest;
+            });
+            updatedArray.forEach(element => {
+                const propertyName = Object.keys(element)[0];
+                const propertyValue = element[propertyName];
+                objectIbm[propertyName] = propertyValue;
+            });
+
+            return res.json(objectIbm)
+
+
+        } catch (error) {
+            return res.status(500).json({ message: `Erro ao retornar os dados: ${error}` });
+        }
     }
 }
 
