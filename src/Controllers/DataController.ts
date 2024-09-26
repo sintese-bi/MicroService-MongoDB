@@ -1188,7 +1188,10 @@ class DataController {
             }
             const { variable_type, week_day }: { variable_type: string, week_day: string } = req.body
 
-
+            const dayISO = week_day.split('-')[0]
+            const monthISO = week_day.split('-')[1]
+            const yearISO = week_day.split('-')[2]
+            const dateISO = `${yearISO}-${monthISO}-${dayISO}`
             const expectedToken = process.env.TOKEN;
             if (clientToken !== `Bearer ${expectedToken}`) {
                 return res.status(401).json({ message: "Falha na autenticação: Token inválido." });
@@ -1203,8 +1206,8 @@ class DataController {
                 },
                 where: {
                     dtHr: {
-                        gte: `${week_day}T00:00:00.000Z`,
-                        lte: `${week_day}T23:59:59.999Z`,
+                        gte: `${dateISO}T00:00:00.000Z`,
+                        lte: `${dateISO}T23:59:59.999Z`,
                     }
                 }
             });
