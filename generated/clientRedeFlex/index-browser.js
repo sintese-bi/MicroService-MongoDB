@@ -190,12 +190,12 @@ exports.Prisma.Region_setvariablesScalarFieldEnum = {
   region_margin_ETANOL_HIDRATADO_COMBUSTIVEL: 'region_margin_ETANOL_HIDRATADO_COMBUSTIVEL',
   region_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL: 'region_type_margin_ETANOL_HIDRATADO_COMBUSTIVEL',
   verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL: 'verification_hour_margin_ETANOL_HIDRATADO_COMBUSTIVEL',
-  gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL: 'gas_station_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL',
-  gas_station_sanado_hour_marginAL: 'gas_station_sanado_hour_marginAL',
-  gas_station_sanado_hour_marginGC: 'gas_station_sanado_hour_marginGC',
-  gas_station_sanado_marginAL: 'gas_station_sanado_marginAL',
-  gas_station_sanado_marginGC: 'gas_station_sanado_marginGC',
-  gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL: 'gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL'
+  region_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL: 'region_sanado_hour_ETANOL_HIDRATADO_COMBUSTIVEL',
+  region_sanado_hour_marginAL: 'region_sanado_hour_marginAL',
+  region_sanado_hour_marginGC: 'region_sanado_hour_marginGC',
+  region_sanado_marginAL: 'region_sanado_marginAL',
+  region_sanado_marginGC: 'region_sanado_marginGC',
+  region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL: 'region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL'
 };
 
 exports.Prisma.RegionsScalarFieldEnum = {
