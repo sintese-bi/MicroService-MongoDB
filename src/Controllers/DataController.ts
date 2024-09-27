@@ -985,6 +985,9 @@ class DataController {
                         }
                     }
                 })
+
+                // const quantSupply = supplyQuantity.length
+
                 //Agregando por IBM
                 let station: { [key: string]: Object[] } = {}
                 result.forEach(element => {
@@ -996,10 +999,11 @@ class DataController {
                     station[element.ibm].push(...element.items);
 
                 })
+
                 let ibmvalues = []
                 for (let ibm in station) {
                     let itemsArray = station[ibm];
-
+                    const quantSupply = itemsArray.length
                     const sumfuel = itemsArray.reduce((accumulate: number, initialValue: any) => {
                         if (initialValue.iTip == "1") {
                             const value = parseFloat(initialValue.tot);
@@ -1021,21 +1025,38 @@ class DataController {
                         }
                         return accumulate;
                     }, 0);
-                    const cost_price = itemsArray.reduce((accumulate: number, initialValue: any) => {
+                    const sumCostPrice = itemsArray.reduce((accumulate: number, initialValue: any) => {
                         if (initialValue.iTip == "1") {
-                            const value = parseFloat(initialValue.pC);
-                            return accumulate + value;
+                            return (accumulate || 0) + (initialValue.qd * initialValue.pC || 0);
                         }
-                        return accumulate;
+                        return accumulate
+                    }, 0);
+                    const sumProductPrice = itemsArray.reduce((accumulate: number, initialValue: any) => {
+                        if (initialValue.iTip == "0") {
+                            return (accumulate || 0) + (initialValue.qd * initialValue.pC || 0);
+                        }
+                        return accumulate
                     }, 0);
 
                     const roundedSum = Math.round(sumfuel * 100) / 100;
                     const roundedProduct = Math.round(sumproduct * 100) / 100;
                     const roundedLiterage = Math.round(literage * 100) / 100;
-
-
-
-                    ibmvalues.push({ ibm: ibm, "Venda de Combustível": roundedSum, "Produtos vendidos": roundedProduct, "Galonagem": roundedLiterage });
+                    //M/LT
+                    const valueMLT = literage !== 0 ? ((sumfuel - sumCostPrice) / literage) : 0
+                    //TMC
+                    const valueTMC = quantSupply !== 0 ? (sumCostPrice / quantSupply) : 0;
+                    //TM VOL
+                    const valueTMVOL = quantSupply !== 0 ? (literage / quantSupply) : 0
+                    //TMP
+                    const valueTMP = quantSupply !== 0 ? (sumProductPrice / quantSupply) : 0
+                    //TMF
+                    const valueTMF = quantSupply !== 0 ? ((sumproduct + sumfuel) / quantSupply) : 0
+                    // "Venda de Combustível": roundedSum, "Produtos vendidos": roundedProduct, "Galonagem": roundedLiterage,
+                    ibmvalues.push({
+                        ibm: ibm, "M/LT": Math.round(valueMLT * 100) / 100,
+                        "TMC": Math.round((valueTMC) * 100) / 100, "TM VOL": Math.round((valueTMVOL) * 100) / 100, "TMP": Math.round((valueTMP) * 100) / 100,
+                        "TMF": Math.round((valueTMF) * 100) / 100
+                    });
                 }
 
                 return res.status(200).json({ data: ibmvalues })
