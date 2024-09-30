@@ -1132,7 +1132,7 @@ class DataController {
         }
 
     }
-    //Gráfico por cada posto quando usuário clica em uma determinada região
+    //Gráfico por cada posto quando usuário clica em uma determinada região(combustível)
     public async regionalStateDataFrame(req: Request, res: Response) {
         try {
             const clientToken = req.headers.authorization;
@@ -1355,6 +1355,125 @@ class DataController {
 
             return res.json(objectIbm)
 
+
+        } catch (error) {
+            return res.status(500).json({ message: `Erro ao retornar os dados: ${error}` });
+        }
+    }
+    //Gráfico por cada posto quando usuário clica em uma determinada região(produto)
+    public async regionalStateDataFrameProduct(req: Request, res: Response) {
+        try {
+            const clientToken = req.headers.authorization;
+            if (!clientToken) {
+                return res.status(401).json({ message: "Token não fornecido." });
+            }
+
+            const { variable_type, regional_type }: { variable_type: string, regional_type: keyof typeof regionStation } = req.body;
+            const expectedToken = process.env.TOKEN;
+            if (clientToken !== `Bearer ${expectedToken}`) {
+                return res.status(401).json({ message: "Falha na autenticação: Token inválido." });
+            }
+
+            const ibmsInRegional = regionStation[regional_type];
+            if (!ibmsInRegional) {
+                return res.status(400).json({ message: `Regional inválida: ${regional_type}` });
+            }
+
+            const timezone = 'America/Sao_Paulo';
+            const today = moment.tz(timezone).format('YYYY-MM-DD');
+
+            const result = await prismaSales.vendas.findMany({
+                select: {
+                    items: true,
+                    ibm: true
+                },
+                where: {
+                    ibm: { in: ibmsInRegional }, // Filtrar apenas os IBMs da regional solicitada
+                    dtHr: {
+                        gte: `${today}T00:00:00.000Z`,
+                        lte: `${today}T23:59:59.999Z`,
+                    }
+                }
+            });
+
+            type IBMTotals = {
+                [key: string]: number;
+            };
+
+            const ibmTotals: IBMTotals = {};
+            const ibmQuantities: IBMTotals = {};
+
+            for (const entry of result) {
+                const ibm = entry.ibm;
+                if (!ibmTotals[ibm]) {
+                    ibmTotals[ibm] = 0;
+                    ibmQuantities[ibm] = 0;
+                }
+
+                for (const item of entry.items) {
+                    if (item.iTip === '0') {
+                        const tot = parseFloat(item.tot) || 0;
+                        const qd = parseFloat(item.qd) || 0;
+                        const pC = parseFloat(item.pC) || 0;
+
+                        switch (variable_type) {
+                            case 'invoicing':
+                                ibmTotals[ibm] += tot;
+                                break;
+                            case 'volume_sold':
+                                ibmTotals[ibm] += qd;
+                                break;
+                            case 'cost':
+                                ibmTotals[ibm] += pC;
+                                break;
+                            case 'fuel_margin':
+                                ibmTotals[ibm] += tot;
+                                ibmQuantities[ibm] += qd;
+                                break;
+                        }
+                    }
+                }
+            }
+
+            if (variable_type === 'fuel_margin') {
+                for (const ibm in ibmTotals) {
+                    if (ibmQuantities[ibm] > 0) {
+                        ibmTotals[ibm] = ibmTotals[ibm] / ibmQuantities[ibm];
+                    } else {
+                        ibmTotals[ibm] = 0;
+                    }
+                }
+            }
+
+            const finalIbmTotals: { [key: string]: number } = {};
+            for (const ibm in ibmTotals) {
+                finalIbmTotals[ibm] = Math.round(ibmTotals[ibm] * 100) / 100;
+            }
+
+
+            const finalIbmTotalsArray = Object.entries(finalIbmTotals).map(([ibm, total]) => ({
+                ibm,
+                total
+            }));
+
+            const returnIbmName = await Promise.all(
+                finalIbmTotalsArray.map(async (element) => {
+                    const value = await prismaRedeFlex.ibm_info.findFirst({
+                        select: { nomefantasia: true },
+                        where: { ibm: element.ibm }
+                    });
+                    element.ibm = value?.nomefantasia || element.ibm;
+                    return element;
+                })
+            );
+
+            const resultObject = returnIbmName.reduce((acc, element) => {
+                acc[element.ibm] = element.total;
+                return acc;
+            }, {} as { [key: string]: number });
+
+
+            return res.json(resultObject);
 
         } catch (error) {
             return res.status(500).json({ message: `Erro ao retornar os dados: ${error}` });
