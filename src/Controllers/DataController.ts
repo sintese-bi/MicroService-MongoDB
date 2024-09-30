@@ -985,6 +985,55 @@ class DataController {
                         }
                     }
                 })
+                //Fluxo para calcular média M/LT
+                const itemsArray = result.flatMap(element => {
+
+                    return element.items
+
+
+                })
+                const supplyQuantity = itemsArray.flatMap(element => {
+                    return element
+
+                })
+                const fuel = itemsArray
+                    .map(element => {
+                        if (element.iTip == "1") {
+                            return parseFloat(element.tot);
+                        }
+                        return undefined;
+                    })
+                    .filter((item): item is number => item !== undefined)
+
+                const sumFuel = fuel.reduce((accumulator, currentValue) => {
+                    return (accumulator || 0) + (currentValue || 0);
+                }, 0);
+                const cost_price = itemsArray
+                    .map(element => {
+                        if (element.iTip === "1") {
+                            return { pc: parseFloat(element.pC), qd: parseFloat(element.qd) };
+                        }
+                        return undefined;
+                    })
+                    .filter((item): item is { pc: number; qd: number } => item !== undefined);
+
+
+                const sumCostPrice = cost_price.reduce((accumulator, currentValue) => {
+                    return (accumulator || 0) + (currentValue.qd * currentValue.pc || 0);
+                }, 0);
+                const literage = itemsArray.map(element => {
+                    if (element.iTip == "1") { return parseFloat(element.qd) }
+                    return undefined;
+
+                }).filter((item): item is number => item !== undefined)
+
+                const sumLiterage = literage.reduce((accumulator, currentValue) => {
+                    return (accumulator || 0) + (currentValue || 0);
+                }, 0);
+                const fuelProfit = Math.round(((sumFuel - sumCostPrice)) * 100) / 100
+                const valueMLT = sumLiterage !== 0 ? ((fuelProfit / sumLiterage)) : 0
+                const averageMLT = Math.round(valueMLT * 100) / 100
+                //Fim
 
                 // const quantSupply = supplyQuantity.length
 
@@ -1051,11 +1100,13 @@ class DataController {
                     const valueTMP = quantSupply !== 0 ? (sumProductPrice / quantSupply) : 0
                     //TMF
                     const valueTMF = quantSupply !== 0 ? ((sumproduct + sumfuel) / quantSupply) : 0
+                    const averageReturn = (valueMLT < averageMLT) ? false : true
+
                     // "Venda de Combustível": roundedSum, "Produtos vendidos": roundedProduct, "Galonagem": roundedLiterage,
                     ibmvalues.push({
                         ibm: ibm, "M/LT": Math.round(valueMLT * 100) / 100,
                         "TMC": Math.round((valueTMC) * 100) / 100, "TM VOL": Math.round((valueTMVOL) * 100) / 100, "TMP": Math.round((valueTMP) * 100) / 100,
-                        "TMF": Math.round((valueTMF) * 100) / 100
+                        "TMF": Math.round((valueTMF) * 100) / 100, "averageComparison": averageReturn
                     });
                 }
 
