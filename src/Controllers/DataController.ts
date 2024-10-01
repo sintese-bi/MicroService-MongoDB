@@ -1101,7 +1101,7 @@ class DataController {
                     const valueTMP = quantSupply !== 0 ? (sumProductPrice / quantSupply) : 0
                     //TMF
                     const valueTMF = quantSupply !== 0 ? ((sumproduct + sumfuel) / quantSupply) : 0
-                    const averageReturn = (valueMLT < averageMLT) ? false : true
+                    const averageReturn = (valueMLT < averageMLT) ? true: false
 
                     // "Venda de Combustível": roundedSum, "Produtos vendidos": roundedProduct, "Galonagem": roundedLiterage,
                     ibmvalues.push({
