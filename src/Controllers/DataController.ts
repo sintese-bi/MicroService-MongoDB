@@ -859,6 +859,7 @@ class DataController {
     public async regionalChartProduct(req: Request, res: Response) {
         try {
             const clientToken = req.headers.authorization;
+
             if (!clientToken) {
                 return res.status(401).json({ message: "Token não fornecido." });
             }
@@ -1136,12 +1137,16 @@ class DataController {
     public async regionalStateDataFrame(req: Request, res: Response) {
         try {
             const clientToken = req.headers.authorization;
+            const { filter } = req.params;
+            const tip = filter === '0' ? '0' : '1';
+
             if (!clientToken) {
                 return res.status(401).json({ message: "Token não fornecido." });
             }
 
             const { variable_type, regional_type }: { variable_type: string, regional_type: keyof typeof regionStation } = req.body;
             const expectedToken = process.env.TOKEN;
+
             if (clientToken !== `Bearer ${expectedToken}`) {
                 return res.status(401).json({ message: "Falha na autenticação: Token inválido." });
             }
@@ -1154,58 +1159,71 @@ class DataController {
             const timezone = 'America/Sao_Paulo';
             const today = moment.tz(timezone).format('YYYY-MM-DD');
 
-            const result = await prismaSales.vendas.findMany({
-                select: {
-                    items: true,
-                    ibm: true
-                },
-                where: {
-                    ibm: { in: ibmsInRegional }, // Filtrar apenas os IBMs da regional solicitada
-                    dtHr: {
-                        gte: `${today}T00:00:00.000Z`,
-                        lte: `${today}T23:59:59.999Z`,
+            const [salesData, ibmNames] = await Promise.all([
+                prismaSales.vendas.findMany({
+                    select: {
+                        items: true,
+                        ibm: true,
+                    },
+                    where: {
+                        ibm: { in: ibmsInRegional },
+                        dtHr: {
+                            gte: `${today}T00:00:00.000Z`,
+                            lte: `${today}T23:59:59.999Z`,
+                        },
+                    },
+                }),
+                prismaRedeFlex.ibm_info.findMany({
+                    select: { ibm: true, nomefantasia: true },
+                    where: { ibm: { in: ibmsInRegional } },
+                }),
+            ]);
+
+
+            const ibmNameMap = ibmNames.reduce((map, { ibm, nomefantasia }) => {
+                if (ibm) {
+                    map[ibm] = nomefantasia || ibm;
+                }
+                return map;
+            }, {} as { [ibm: string]: string });
+
+            // Agrega os valores conforme o tipo de variável
+            const ibmTotals: { [ibm: string]: number } = {};
+            const ibmQuantities: { [ibm: string]: number } = {};
+
+            salesData.forEach(({ ibm, items }) => {
+
+                if (ibm) {
+                    if (!ibmTotals[ibm]) {
+                        ibmTotals[ibm] = 0;
+                        ibmQuantities[ibm] = 0;
                     }
+
+                    items.forEach(({ iTip, tot, qd, pC }) => {
+                        if (iTip === tip) {
+                            const totalValue = parseFloat(tot) || 0;
+                            const quantityValue = parseFloat(qd) || 0;
+                            const costValue = parseFloat(pC) || 0;
+
+                            switch (variable_type) {
+                                case 'invoicing':
+                                    ibmTotals[ibm] += totalValue;
+                                    break;
+                                case 'volume_sold':
+                                    ibmTotals[ibm] += quantityValue;
+                                    break;
+                                case 'cost':
+                                    ibmTotals[ibm] += costValue;
+                                    break;
+                                case 'fuel_margin':
+                                    ibmTotals[ibm] += totalValue;
+                                    ibmQuantities[ibm] += quantityValue;
+                                    break;
+                            }
+                        }
+                    });
                 }
             });
-
-            type IBMTotals = {
-                [key: string]: number;
-            };
-
-            const ibmTotals: IBMTotals = {};
-            const ibmQuantities: IBMTotals = {};
-
-            for (const entry of result) {
-                const ibm = entry.ibm;
-                if (!ibmTotals[ibm]) {
-                    ibmTotals[ibm] = 0;
-                    ibmQuantities[ibm] = 0;
-                }
-
-                for (const item of entry.items) {
-                    if (item.iTip === '1') {
-                        const tot = parseFloat(item.tot) || 0;
-                        const qd = parseFloat(item.qd) || 0;
-                        const pC = parseFloat(item.pC) || 0;
-
-                        switch (variable_type) {
-                            case 'invoicing':
-                                ibmTotals[ibm] += tot;
-                                break;
-                            case 'volume_sold':
-                                ibmTotals[ibm] += qd;
-                                break;
-                            case 'cost':
-                                ibmTotals[ibm] += pC;
-                                break;
-                            case 'fuel_margin':
-                                ibmTotals[ibm] += tot;
-                                ibmQuantities[ibm] += qd;
-                                break;
-                        }
-                    }
-                }
-            }
 
             if (variable_type === 'fuel_margin') {
                 for (const ibm in ibmTotals) {
@@ -1217,36 +1235,13 @@ class DataController {
                 }
             }
 
-            const finalIbmTotals: { [key: string]: number } = {};
-            for (const ibm in ibmTotals) {
-                finalIbmTotals[ibm] = Math.round(ibmTotals[ibm] * 100) / 100;
-            }
-
-
-            const finalIbmTotalsArray = Object.entries(finalIbmTotals).map(([ibm, total]) => ({
-                ibm,
-                total
-            }));
-
-            const returnIbmName = await Promise.all(
-                finalIbmTotalsArray.map(async (element) => {
-                    const value = await prismaRedeFlex.ibm_info.findFirst({
-                        select: { nomefantasia: true },
-                        where: { ibm: element.ibm }
-                    });
-                    element.ibm = value?.nomefantasia || element.ibm;
-                    return element;
-                })
-            );
-
-            const resultObject = returnIbmName.reduce((acc, element) => {
-                acc[element.ibm] = element.total;
+            const resultObject = Object.entries(ibmTotals).reduce((acc, [ibm, total]) => {
+                const formattedIbm = ibmNameMap[ibm];
+                acc[formattedIbm] = Math.round(total * 100) / 100;
                 return acc;
             }, {} as { [key: string]: number });
 
-
             return res.json(resultObject);
-
         } catch (error) {
             return res.status(500).json({ message: `Erro ao retornar os dados: ${error}` });
         }
@@ -1255,111 +1250,82 @@ class DataController {
     public async regionalStateDailyDataFrame(req: Request, res: Response) {
         try {
             const clientToken = req.headers.authorization;
-            if (!clientToken) {
-                return res.status(401).json({ message: "Token não fornecido." });
-            }
-            const { variable_type, week_day }: { variable_type: string, week_day: string } = req.body
+            const { filter } = req.params;
+            const tip = filter === '0' ? '0' : '1';
+            const { variable_type, week_day }: { variable_type: string, week_day: string } = req.body;
 
-            const dayISO = week_day.split('-')[0]
-            const monthISO = week_day.split('-')[1]
-            const yearISO = week_day.split('-')[2]
-            const dateISO = `${yearISO}-${monthISO}-${dayISO}`
+            if (!clientToken) return res.status(401).json({ message: "Token não fornecido." });
+
             const expectedToken = process.env.TOKEN;
             if (clientToken !== `Bearer ${expectedToken}`) {
                 return res.status(401).json({ message: "Falha na autenticação: Token inválido." });
             }
-            const timezone = 'America/Sao_Paulo';
-            const today = moment.tz(timezone).format('YYYY-MM-DD');
 
-            const result = await prismaSales.vendas.findMany({
-                select: {
-                    items: true,
-                    ibm: true
-                },
-                where: {
-                    dtHr: {
-                        gte: `${dateISO}T00:00:00.000Z`,
-                        lte: `${dateISO}T23:59:59.999Z`,
-                    }
-                }
-            });
-            let ibmObject: any = {}
-            //Concatenando valores
-            result.forEach(element => {
-                if (!ibmObject[element.ibm]) {
-                    ibmObject[element.ibm] = [...element.items];
-                } else {
-                    ibmObject[element.ibm] = ibmObject[element.ibm].concat(element.items);
-                }
-            });
-            let arrayIbm = []
-            let total = 0;
-            let quantity = 0;
-            for (const value in ibmObject) {
-                const sum = ibmObject[value].reduce((accumulate: any, initialValue: any) => {
-                    if (initialValue.iTip == "1") {
-                        const value = parseFloat(initialValue.tot);
-                        const quantityValue = parseFloat(initialValue.qd);
-                        const cost = parseFloat(initialValue.pC);
 
-                        if (variable_type == "invoicing") {
-                            return Math.round((accumulate + value) * 100) / 100;
-                        } else if (variable_type == "volume_sold") {
-                            return Math.round((accumulate + quantityValue) * 100) / 100;
-                        } else if (variable_type == "cost") {
-                            return Math.round((accumulate + quantityValue * cost) * 100) / 100;
-                        } else if (variable_type == "fuel_margin") {
-                            total += value;
-                            quantity += quantityValue;
-                            return Math.round((total / quantity) * 100) / 100;
+            const [dayISO, monthISO, yearISO] = week_day.split('-');
+            const dateISO = `${yearISO}-${monthISO}-${dayISO}`;
+
+            const [vendasResult, ibmNames] = await Promise.all([
+                prismaSales.vendas.findMany({
+                    select: { items: true, ibm: true },
+                    where: {
+                        dtHr: {
+                            gte: `${dateISO}T00:00:00.000Z`,
+                            lte: `${dateISO}T23:59:59.999Z`,
                         }
                     }
-                    return accumulate;
+                }),
+                prismaRedeFlex.ibm_info.findMany({ select: { ibm: true, nomefantasia: true } })
+            ]);
 
+
+            const ibmObject = vendasResult.reduce((acc, element) => {
+                if (!acc[element.ibm]) acc[element.ibm] = [];
+                acc[element.ibm] = acc[element.ibm].concat(element.items);
+                return acc;
+            }, {} as { [key: string]: any[] });
+
+
+            let total = 0, quantity = 0;
+            const arrayIbm = Object.entries(ibmObject).map(([ibm, items]) => {
+                const sum = items.reduce((acc, item) => {
+                    if (item.iTip === tip) {
+                        const value = parseFloat(item.tot);
+                        const quantityValue = parseFloat(item.qd);
+                        const cost = parseFloat(item.pC);
+
+                        switch (variable_type) {
+                            case "invoicing":
+                                return Math.round((acc + value) * 100) / 100;
+                            case "volume_sold":
+                                return Math.round((acc + quantityValue) * 100) / 100;
+                            case "cost":
+                                return Math.round((acc + quantityValue * cost) * 100) / 100;
+                            case "fuel_margin":
+                                total += value;
+                                quantity += quantityValue;
+                                return Math.round((total / quantity) * 100) / 100;
+                        }
+                    }
+                    return acc;
                 }, 0);
-                arrayIbm.push({ [value]: sum })
-            }
-            const ibmNames = await prismaRedeFlex.ibm_info.findMany({
-                select: { ibm: true, nomefantasia: true }
-            })
-
-            arrayIbm.map(elementNumber => {
-                const propertyName = Object.keys(elementNumber)[0];
-
-                ibmNames.map(elementName => {
-                    if (propertyName === elementName.ibm) {
-
-                        const nomeFantasia = elementName.nomefantasia;
-                        if (nomeFantasia !== null) {
-                            elementNumber[nomeFantasia] = elementNumber[propertyName];
-                        } else {
-                            console.log(`Nome fantasia para ${propertyName} é null`);
-                        }
-                    }
-                });
-            });
-            interface ElementIbm {
-                [key: string]: number;
-            }
-            let objectIbm: { [key: string]: number } = {}
-            const updatedArray = arrayIbm.map(elementNumber => {
-                const propertyName = Object.keys(elementNumber)[0];
-                const { [propertyName]: _, ...rest } = elementNumber;
-                return rest;
-            });
-            updatedArray.forEach(element => {
-                const propertyName = Object.keys(element)[0];
-                const propertyValue = element[propertyName];
-                objectIbm[propertyName] = propertyValue;
+                return { ibm, sum };
             });
 
-            return res.json(objectIbm)
 
+            const objectIbm = arrayIbm.reduce((acc, { ibm, sum }) => {
+                const ibmInfo = ibmNames.find(info => info.ibm === ibm);
+                const ibmName = ibmInfo?.nomefantasia ?? ibm;
+                acc[ibmName] = sum;
+                return acc;
+            }, {} as { [key: string]: number });
 
+            return res.json(objectIbm);
         } catch (error) {
             return res.status(500).json({ message: `Erro ao retornar os dados: ${error}` });
         }
     }
+
     //Gráfico por cada posto quando usuário clica em uma determinada região(produto)
     public async regionalStateDataFrameProduct(req: Request, res: Response) {
         try {
