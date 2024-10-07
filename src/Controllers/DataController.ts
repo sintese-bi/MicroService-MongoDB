@@ -63,7 +63,7 @@ class DataController {
             const actualdate = moment().tz("America/Sao_Paulo").format("YYYY-MM-DD");
 
             const clientToken = req.headers.authorization;
-            const { use_token }: any = req.headers;
+            const { use_token }: any = req.params;
             if (!clientToken) {
                 return res.status(401).json({ message: "Token não fornecido." });
             }
