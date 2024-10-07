@@ -2437,8 +2437,30 @@ export namespace Prisma {
 
   export type AggregateUsers = {
     _count: UsersCountAggregateOutputType | null
+    _avg: UsersAvgAggregateOutputType | null
+    _sum: UsersSumAggregateOutputType | null
     _min: UsersMinAggregateOutputType | null
     _max: UsersMaxAggregateOutputType | null
+  }
+
+  export type UsersAvgAggregateOutputType = {
+    use_mlt: number | null
+    use_tmc: number | null
+    use_tmf: number | null
+    use_tmp: number | null
+    use_tmvol: number | null
+    use_lucro_bruto_operacional_galonagem: number | null
+    use_lucro_bruto_operacional_produto: number | null
+  }
+
+  export type UsersSumAggregateOutputType = {
+    use_mlt: number | null
+    use_tmc: number | null
+    use_tmf: number | null
+    use_tmp: number | null
+    use_tmvol: number | null
+    use_lucro_bruto_operacional_galonagem: number | null
+    use_lucro_bruto_operacional_produto: number | null
   }
 
   export type UsersMinAggregateOutputType = {
@@ -2451,6 +2473,13 @@ export namespace Prisma {
     use_date_expire: Date | null
     use_token: string | null
     use_level: string | null
+    use_mlt: number | null
+    use_tmc: number | null
+    use_tmf: number | null
+    use_tmp: number | null
+    use_tmvol: number | null
+    use_lucro_bruto_operacional_galonagem: number | null
+    use_lucro_bruto_operacional_produto: number | null
   }
 
   export type UsersMaxAggregateOutputType = {
@@ -2463,6 +2492,13 @@ export namespace Prisma {
     use_date_expire: Date | null
     use_token: string | null
     use_level: string | null
+    use_mlt: number | null
+    use_tmc: number | null
+    use_tmf: number | null
+    use_tmp: number | null
+    use_tmvol: number | null
+    use_lucro_bruto_operacional_galonagem: number | null
+    use_lucro_bruto_operacional_produto: number | null
   }
 
   export type UsersCountAggregateOutputType = {
@@ -2476,9 +2512,36 @@ export namespace Prisma {
     use_token: number
     use_level: number
     use_whats_app: number
+    use_mlt: number
+    use_tmc: number
+    use_tmf: number
+    use_tmp: number
+    use_tmvol: number
+    use_lucro_bruto_operacional_galonagem: number
+    use_lucro_bruto_operacional_produto: number
     _all: number
   }
 
+
+  export type UsersAvgAggregateInputType = {
+    use_mlt?: true
+    use_tmc?: true
+    use_tmf?: true
+    use_tmp?: true
+    use_tmvol?: true
+    use_lucro_bruto_operacional_galonagem?: true
+    use_lucro_bruto_operacional_produto?: true
+  }
+
+  export type UsersSumAggregateInputType = {
+    use_mlt?: true
+    use_tmc?: true
+    use_tmf?: true
+    use_tmp?: true
+    use_tmvol?: true
+    use_lucro_bruto_operacional_galonagem?: true
+    use_lucro_bruto_operacional_produto?: true
+  }
 
   export type UsersMinAggregateInputType = {
     use_uuid?: true
@@ -2490,6 +2553,13 @@ export namespace Prisma {
     use_date_expire?: true
     use_token?: true
     use_level?: true
+    use_mlt?: true
+    use_tmc?: true
+    use_tmf?: true
+    use_tmp?: true
+    use_tmvol?: true
+    use_lucro_bruto_operacional_galonagem?: true
+    use_lucro_bruto_operacional_produto?: true
   }
 
   export type UsersMaxAggregateInputType = {
@@ -2502,6 +2572,13 @@ export namespace Prisma {
     use_date_expire?: true
     use_token?: true
     use_level?: true
+    use_mlt?: true
+    use_tmc?: true
+    use_tmf?: true
+    use_tmp?: true
+    use_tmvol?: true
+    use_lucro_bruto_operacional_galonagem?: true
+    use_lucro_bruto_operacional_produto?: true
   }
 
   export type UsersCountAggregateInputType = {
@@ -2515,6 +2592,13 @@ export namespace Prisma {
     use_token?: true
     use_level?: true
     use_whats_app?: true
+    use_mlt?: true
+    use_tmc?: true
+    use_tmf?: true
+    use_tmp?: true
+    use_tmvol?: true
+    use_lucro_bruto_operacional_galonagem?: true
+    use_lucro_bruto_operacional_produto?: true
     _all?: true
   }
 
@@ -2556,6 +2640,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: UsersAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: UsersSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: UsersMinAggregateInputType
@@ -2586,6 +2682,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: UsersCountAggregateInputType | true
+    _avg?: UsersAvgAggregateInputType
+    _sum?: UsersSumAggregateInputType
     _min?: UsersMinAggregateInputType
     _max?: UsersMaxAggregateInputType
   }
@@ -2601,7 +2699,16 @@ export namespace Prisma {
     use_token: string | null
     use_level: string | null
     use_whats_app: string[]
+    use_mlt: number | null
+    use_tmc: number | null
+    use_tmf: number | null
+    use_tmp: number | null
+    use_tmvol: number | null
+    use_lucro_bruto_operacional_galonagem: number | null
+    use_lucro_bruto_operacional_produto: number | null
     _count: UsersCountAggregateOutputType | null
+    _avg: UsersAvgAggregateOutputType | null
+    _sum: UsersSumAggregateOutputType | null
     _min: UsersMinAggregateOutputType | null
     _max: UsersMaxAggregateOutputType | null
   }
@@ -2631,6 +2738,13 @@ export namespace Prisma {
     use_token?: boolean
     use_level?: boolean
     use_whats_app?: boolean
+    use_mlt?: boolean
+    use_tmc?: boolean
+    use_tmf?: boolean
+    use_tmp?: boolean
+    use_tmvol?: boolean
+    use_lucro_bruto_operacional_galonagem?: boolean
+    use_lucro_bruto_operacional_produto?: boolean
     gas_station_setvariables?: boolean | users$gas_station_setvariablesArgs<ExtArgs>
     region_setvariables?: boolean | users$region_setvariablesArgs<ExtArgs>
     _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>
@@ -2647,6 +2761,13 @@ export namespace Prisma {
     use_token?: boolean
     use_level?: boolean
     use_whats_app?: boolean
+    use_mlt?: boolean
+    use_tmc?: boolean
+    use_tmf?: boolean
+    use_tmp?: boolean
+    use_tmvol?: boolean
+    use_lucro_bruto_operacional_galonagem?: boolean
+    use_lucro_bruto_operacional_produto?: boolean
   }, ExtArgs["result"]["users"]>
 
   export type usersSelectScalar = {
@@ -2660,6 +2781,13 @@ export namespace Prisma {
     use_token?: boolean
     use_level?: boolean
     use_whats_app?: boolean
+    use_mlt?: boolean
+    use_tmc?: boolean
+    use_tmf?: boolean
+    use_tmp?: boolean
+    use_tmvol?: boolean
+    use_lucro_bruto_operacional_galonagem?: boolean
+    use_lucro_bruto_operacional_produto?: boolean
   }
 
   export type usersInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2686,6 +2814,13 @@ export namespace Prisma {
       use_token: string | null
       use_level: string | null
       use_whats_app: string[]
+      use_mlt: number | null
+      use_tmc: number | null
+      use_tmf: number | null
+      use_tmp: number | null
+      use_tmvol: number | null
+      use_lucro_bruto_operacional_galonagem: number | null
+      use_lucro_bruto_operacional_produto: number | null
     }, ExtArgs["result"]["users"]>
     composites: {}
   }
@@ -3118,6 +3253,13 @@ export namespace Prisma {
     readonly use_token: FieldRef<"users", 'String'>
     readonly use_level: FieldRef<"users", 'String'>
     readonly use_whats_app: FieldRef<"users", 'String[]'>
+    readonly use_mlt: FieldRef<"users", 'Float'>
+    readonly use_tmc: FieldRef<"users", 'Float'>
+    readonly use_tmf: FieldRef<"users", 'Float'>
+    readonly use_tmp: FieldRef<"users", 'Float'>
+    readonly use_tmvol: FieldRef<"users", 'Float'>
+    readonly use_lucro_bruto_operacional_galonagem: FieldRef<"users", 'Float'>
+    readonly use_lucro_bruto_operacional_produto: FieldRef<"users", 'Float'>
   }
     
 
@@ -3502,12 +3644,16 @@ export namespace Prisma {
     gas_station_marginGC: number | null
     gas_station_marginAL: number | null
     gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL: number | null
+    gas_station_margin_MLT: number | null
+    gas_station_margin_TMP: number | null
   }
 
   export type Gas_station_setvariablesSumAggregateOutputType = {
     gas_station_marginGC: number | null
     gas_station_marginAL: number | null
     gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL: number | null
+    gas_station_margin_MLT: number | null
+    gas_station_margin_TMP: number | null
   }
 
   export type Gas_station_setvariablesMinAggregateOutputType = {
@@ -3532,6 +3678,8 @@ export namespace Prisma {
     gas_station_sanado_marginAL: boolean | null
     gas_station_sanado_marginGC: boolean | null
     gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL: boolean | null
+    gas_station_margin_MLT: number | null
+    gas_station_margin_TMP: number | null
   }
 
   export type Gas_station_setvariablesMaxAggregateOutputType = {
@@ -3556,6 +3704,8 @@ export namespace Prisma {
     gas_station_sanado_marginAL: boolean | null
     gas_station_sanado_marginGC: boolean | null
     gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL: boolean | null
+    gas_station_margin_MLT: number | null
+    gas_station_margin_TMP: number | null
   }
 
   export type Gas_station_setvariablesCountAggregateOutputType = {
@@ -3581,6 +3731,8 @@ export namespace Prisma {
     gas_station_sanado_marginAL: number
     gas_station_sanado_marginGC: number
     gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL: number
+    gas_station_margin_MLT: number
+    gas_station_margin_TMP: number
     _all: number
   }
 
@@ -3589,12 +3741,16 @@ export namespace Prisma {
     gas_station_marginGC?: true
     gas_station_marginAL?: true
     gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
+    gas_station_margin_MLT?: true
+    gas_station_margin_TMP?: true
   }
 
   export type Gas_station_setvariablesSumAggregateInputType = {
     gas_station_marginGC?: true
     gas_station_marginAL?: true
     gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
+    gas_station_margin_MLT?: true
+    gas_station_margin_TMP?: true
   }
 
   export type Gas_station_setvariablesMinAggregateInputType = {
@@ -3619,6 +3775,8 @@ export namespace Prisma {
     gas_station_sanado_marginAL?: true
     gas_station_sanado_marginGC?: true
     gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
+    gas_station_margin_MLT?: true
+    gas_station_margin_TMP?: true
   }
 
   export type Gas_station_setvariablesMaxAggregateInputType = {
@@ -3643,6 +3801,8 @@ export namespace Prisma {
     gas_station_sanado_marginAL?: true
     gas_station_sanado_marginGC?: true
     gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
+    gas_station_margin_MLT?: true
+    gas_station_margin_TMP?: true
   }
 
   export type Gas_station_setvariablesCountAggregateInputType = {
@@ -3668,6 +3828,8 @@ export namespace Prisma {
     gas_station_sanado_marginAL?: true
     gas_station_sanado_marginGC?: true
     gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
+    gas_station_margin_MLT?: true
+    gas_station_margin_TMP?: true
     _all?: true
   }
 
@@ -3780,6 +3942,8 @@ export namespace Prisma {
     gas_station_sanado_marginAL: boolean | null
     gas_station_sanado_marginGC: boolean | null
     gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL: boolean | null
+    gas_station_margin_MLT: number | null
+    gas_station_margin_TMP: number | null
     _count: Gas_station_setvariablesCountAggregateOutputType | null
     _avg: Gas_station_setvariablesAvgAggregateOutputType | null
     _sum: Gas_station_setvariablesSumAggregateOutputType | null
@@ -3824,6 +3988,8 @@ export namespace Prisma {
     gas_station_sanado_marginAL?: boolean
     gas_station_sanado_marginGC?: boolean
     gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
+    gas_station_margin_MLT?: boolean
+    gas_station_margin_TMP?: boolean
     ibm_info?: boolean | gas_station_setvariables$ibm_infoArgs<ExtArgs>
     users?: boolean | gas_station_setvariables$usersArgs<ExtArgs>
   }, ExtArgs["result"]["gas_station_setvariables"]>
@@ -3851,6 +4017,8 @@ export namespace Prisma {
     gas_station_sanado_marginAL?: boolean
     gas_station_sanado_marginGC?: boolean
     gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
+    gas_station_margin_MLT?: boolean
+    gas_station_margin_TMP?: boolean
     ibm_info?: boolean | gas_station_setvariables$ibm_infoArgs<ExtArgs>
     users?: boolean | gas_station_setvariables$usersArgs<ExtArgs>
   }, ExtArgs["result"]["gas_station_setvariables"]>
@@ -3878,6 +4046,8 @@ export namespace Prisma {
     gas_station_sanado_marginAL?: boolean
     gas_station_sanado_marginGC?: boolean
     gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
+    gas_station_margin_MLT?: boolean
+    gas_station_margin_TMP?: boolean
   }
 
   export type gas_station_setvariablesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3918,6 +4088,8 @@ export namespace Prisma {
       gas_station_sanado_marginAL: boolean | null
       gas_station_sanado_marginGC: boolean | null
       gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL: boolean | null
+      gas_station_margin_MLT: number | null
+      gas_station_margin_TMP: number | null
     }, ExtArgs["result"]["gas_station_setvariables"]>
     composites: {}
   }
@@ -4362,6 +4534,8 @@ export namespace Prisma {
     readonly gas_station_sanado_marginAL: FieldRef<"gas_station_setvariables", 'Boolean'>
     readonly gas_station_sanado_marginGC: FieldRef<"gas_station_setvariables", 'Boolean'>
     readonly gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL: FieldRef<"gas_station_setvariables", 'Boolean'>
+    readonly gas_station_margin_MLT: FieldRef<"gas_station_setvariables", 'Float'>
+    readonly gas_station_margin_TMP: FieldRef<"gas_station_setvariables", 'Float'>
   }
     
 
@@ -7045,7 +7219,14 @@ export namespace Prisma {
     use_date_expire: 'use_date_expire',
     use_token: 'use_token',
     use_level: 'use_level',
-    use_whats_app: 'use_whats_app'
+    use_whats_app: 'use_whats_app',
+    use_mlt: 'use_mlt',
+    use_tmc: 'use_tmc',
+    use_tmf: 'use_tmf',
+    use_tmp: 'use_tmp',
+    use_tmvol: 'use_tmvol',
+    use_lucro_bruto_operacional_galonagem: 'use_lucro_bruto_operacional_galonagem',
+    use_lucro_bruto_operacional_produto: 'use_lucro_bruto_operacional_produto'
   };
 
   export type UsersScalarFieldEnum = (typeof UsersScalarFieldEnum)[keyof typeof UsersScalarFieldEnum]
@@ -7073,7 +7254,9 @@ export namespace Prisma {
     gas_station_sanado_hour_marginGC: 'gas_station_sanado_hour_marginGC',
     gas_station_sanado_marginAL: 'gas_station_sanado_marginAL',
     gas_station_sanado_marginGC: 'gas_station_sanado_marginGC',
-    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL: 'gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL'
+    gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL: 'gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL',
+    gas_station_margin_MLT: 'gas_station_margin_MLT',
+    gas_station_margin_TMP: 'gas_station_margin_TMP'
   };
 
   export type Gas_station_setvariablesScalarFieldEnum = (typeof Gas_station_setvariablesScalarFieldEnum)[keyof typeof Gas_station_setvariablesScalarFieldEnum]
@@ -7327,6 +7510,13 @@ export namespace Prisma {
     use_token?: StringNullableFilter<"users"> | string | null
     use_level?: StringNullableFilter<"users"> | string | null
     use_whats_app?: StringNullableListFilter<"users">
+    use_mlt?: FloatNullableFilter<"users"> | number | null
+    use_tmc?: FloatNullableFilter<"users"> | number | null
+    use_tmf?: FloatNullableFilter<"users"> | number | null
+    use_tmp?: FloatNullableFilter<"users"> | number | null
+    use_tmvol?: FloatNullableFilter<"users"> | number | null
+    use_lucro_bruto_operacional_galonagem?: FloatNullableFilter<"users"> | number | null
+    use_lucro_bruto_operacional_produto?: FloatNullableFilter<"users"> | number | null
     gas_station_setvariables?: Gas_station_setvariablesListRelationFilter
     region_setvariables?: Region_setvariablesListRelationFilter
   }
@@ -7342,6 +7532,13 @@ export namespace Prisma {
     use_token?: SortOrderInput | SortOrder
     use_level?: SortOrderInput | SortOrder
     use_whats_app?: SortOrder
+    use_mlt?: SortOrderInput | SortOrder
+    use_tmc?: SortOrderInput | SortOrder
+    use_tmf?: SortOrderInput | SortOrder
+    use_tmp?: SortOrderInput | SortOrder
+    use_tmvol?: SortOrderInput | SortOrder
+    use_lucro_bruto_operacional_galonagem?: SortOrderInput | SortOrder
+    use_lucro_bruto_operacional_produto?: SortOrderInput | SortOrder
     gas_station_setvariables?: gas_station_setvariablesOrderByRelationAggregateInput
     region_setvariables?: region_setvariablesOrderByRelationAggregateInput
   }
@@ -7360,6 +7557,13 @@ export namespace Prisma {
     use_token?: StringNullableFilter<"users"> | string | null
     use_level?: StringNullableFilter<"users"> | string | null
     use_whats_app?: StringNullableListFilter<"users">
+    use_mlt?: FloatNullableFilter<"users"> | number | null
+    use_tmc?: FloatNullableFilter<"users"> | number | null
+    use_tmf?: FloatNullableFilter<"users"> | number | null
+    use_tmp?: FloatNullableFilter<"users"> | number | null
+    use_tmvol?: FloatNullableFilter<"users"> | number | null
+    use_lucro_bruto_operacional_galonagem?: FloatNullableFilter<"users"> | number | null
+    use_lucro_bruto_operacional_produto?: FloatNullableFilter<"users"> | number | null
     gas_station_setvariables?: Gas_station_setvariablesListRelationFilter
     region_setvariables?: Region_setvariablesListRelationFilter
   }, "use_uuid">
@@ -7375,9 +7579,18 @@ export namespace Prisma {
     use_token?: SortOrderInput | SortOrder
     use_level?: SortOrderInput | SortOrder
     use_whats_app?: SortOrder
+    use_mlt?: SortOrderInput | SortOrder
+    use_tmc?: SortOrderInput | SortOrder
+    use_tmf?: SortOrderInput | SortOrder
+    use_tmp?: SortOrderInput | SortOrder
+    use_tmvol?: SortOrderInput | SortOrder
+    use_lucro_bruto_operacional_galonagem?: SortOrderInput | SortOrder
+    use_lucro_bruto_operacional_produto?: SortOrderInput | SortOrder
     _count?: usersCountOrderByAggregateInput
+    _avg?: usersAvgOrderByAggregateInput
     _max?: usersMaxOrderByAggregateInput
     _min?: usersMinOrderByAggregateInput
+    _sum?: usersSumOrderByAggregateInput
   }
 
   export type usersScalarWhereWithAggregatesInput = {
@@ -7394,6 +7607,13 @@ export namespace Prisma {
     use_token?: StringNullableWithAggregatesFilter<"users"> | string | null
     use_level?: StringNullableWithAggregatesFilter<"users"> | string | null
     use_whats_app?: StringNullableListFilter<"users">
+    use_mlt?: FloatNullableWithAggregatesFilter<"users"> | number | null
+    use_tmc?: FloatNullableWithAggregatesFilter<"users"> | number | null
+    use_tmf?: FloatNullableWithAggregatesFilter<"users"> | number | null
+    use_tmp?: FloatNullableWithAggregatesFilter<"users"> | number | null
+    use_tmvol?: FloatNullableWithAggregatesFilter<"users"> | number | null
+    use_lucro_bruto_operacional_galonagem?: FloatNullableWithAggregatesFilter<"users"> | number | null
+    use_lucro_bruto_operacional_produto?: FloatNullableWithAggregatesFilter<"users"> | number | null
   }
 
   export type gas_station_setvariablesWhereInput = {
@@ -7422,6 +7642,8 @@ export namespace Prisma {
     gas_station_sanado_marginAL?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
     gas_station_sanado_marginGC?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
     gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
+    gas_station_margin_MLT?: FloatNullableFilter<"gas_station_setvariables"> | number | null
+    gas_station_margin_TMP?: FloatNullableFilter<"gas_station_setvariables"> | number | null
     ibm_info?: XOR<Ibm_infoNullableRelationFilter, ibm_infoWhereInput> | null
     users?: XOR<UsersNullableRelationFilter, usersWhereInput> | null
   }
@@ -7449,6 +7671,8 @@ export namespace Prisma {
     gas_station_sanado_marginAL?: SortOrderInput | SortOrder
     gas_station_sanado_marginGC?: SortOrderInput | SortOrder
     gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrderInput | SortOrder
+    gas_station_margin_MLT?: SortOrderInput | SortOrder
+    gas_station_margin_TMP?: SortOrderInput | SortOrder
     ibm_info?: ibm_infoOrderByWithRelationInput
     users?: usersOrderByWithRelationInput
   }
@@ -7479,6 +7703,8 @@ export namespace Prisma {
     gas_station_sanado_marginAL?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
     gas_station_sanado_marginGC?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
     gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
+    gas_station_margin_MLT?: FloatNullableFilter<"gas_station_setvariables"> | number | null
+    gas_station_margin_TMP?: FloatNullableFilter<"gas_station_setvariables"> | number | null
     ibm_info?: XOR<Ibm_infoNullableRelationFilter, ibm_infoWhereInput> | null
     users?: XOR<UsersNullableRelationFilter, usersWhereInput> | null
   }, "gas_station_uuid">
@@ -7506,6 +7732,8 @@ export namespace Prisma {
     gas_station_sanado_marginAL?: SortOrderInput | SortOrder
     gas_station_sanado_marginGC?: SortOrderInput | SortOrder
     gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrderInput | SortOrder
+    gas_station_margin_MLT?: SortOrderInput | SortOrder
+    gas_station_margin_TMP?: SortOrderInput | SortOrder
     _count?: gas_station_setvariablesCountOrderByAggregateInput
     _avg?: gas_station_setvariablesAvgOrderByAggregateInput
     _max?: gas_station_setvariablesMaxOrderByAggregateInput
@@ -7539,6 +7767,8 @@ export namespace Prisma {
     gas_station_sanado_marginAL?: BoolNullableWithAggregatesFilter<"gas_station_setvariables"> | boolean | null
     gas_station_sanado_marginGC?: BoolNullableWithAggregatesFilter<"gas_station_setvariables"> | boolean | null
     gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: BoolNullableWithAggregatesFilter<"gas_station_setvariables"> | boolean | null
+    gas_station_margin_MLT?: FloatNullableWithAggregatesFilter<"gas_station_setvariables"> | number | null
+    gas_station_margin_TMP?: FloatNullableWithAggregatesFilter<"gas_station_setvariables"> | number | null
   }
 
   export type region_setvariablesWhereInput = {
@@ -7885,6 +8115,13 @@ export namespace Prisma {
     use_token?: string | null
     use_level?: string | null
     use_whats_app?: usersCreateuse_whats_appInput | string[]
+    use_mlt?: number | null
+    use_tmc?: number | null
+    use_tmf?: number | null
+    use_tmp?: number | null
+    use_tmvol?: number | null
+    use_lucro_bruto_operacional_galonagem?: number | null
+    use_lucro_bruto_operacional_produto?: number | null
     gas_station_setvariables?: gas_station_setvariablesCreateNestedManyWithoutUsersInput
     region_setvariables?: region_setvariablesCreateNestedManyWithoutUsersInput
   }
@@ -7900,6 +8137,13 @@ export namespace Prisma {
     use_token?: string | null
     use_level?: string | null
     use_whats_app?: usersCreateuse_whats_appInput | string[]
+    use_mlt?: number | null
+    use_tmc?: number | null
+    use_tmf?: number | null
+    use_tmp?: number | null
+    use_tmvol?: number | null
+    use_lucro_bruto_operacional_galonagem?: number | null
+    use_lucro_bruto_operacional_produto?: number | null
     gas_station_setvariables?: gas_station_setvariablesUncheckedCreateNestedManyWithoutUsersInput
     region_setvariables?: region_setvariablesUncheckedCreateNestedManyWithoutUsersInput
   }
@@ -7915,6 +8159,13 @@ export namespace Prisma {
     use_token?: NullableStringFieldUpdateOperationsInput | string | null
     use_level?: NullableStringFieldUpdateOperationsInput | string | null
     use_whats_app?: usersUpdateuse_whats_appInput | string[]
+    use_mlt?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmc?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmf?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmp?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmvol?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_lucro_bruto_operacional_galonagem?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_lucro_bruto_operacional_produto?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_setvariables?: gas_station_setvariablesUpdateManyWithoutUsersNestedInput
     region_setvariables?: region_setvariablesUpdateManyWithoutUsersNestedInput
   }
@@ -7930,6 +8181,13 @@ export namespace Prisma {
     use_token?: NullableStringFieldUpdateOperationsInput | string | null
     use_level?: NullableStringFieldUpdateOperationsInput | string | null
     use_whats_app?: usersUpdateuse_whats_appInput | string[]
+    use_mlt?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmc?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmf?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmp?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmvol?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_lucro_bruto_operacional_galonagem?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_lucro_bruto_operacional_produto?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_setvariables?: gas_station_setvariablesUncheckedUpdateManyWithoutUsersNestedInput
     region_setvariables?: region_setvariablesUncheckedUpdateManyWithoutUsersNestedInput
   }
@@ -7945,6 +8203,13 @@ export namespace Prisma {
     use_token?: string | null
     use_level?: string | null
     use_whats_app?: usersCreateuse_whats_appInput | string[]
+    use_mlt?: number | null
+    use_tmc?: number | null
+    use_tmf?: number | null
+    use_tmp?: number | null
+    use_tmvol?: number | null
+    use_lucro_bruto_operacional_galonagem?: number | null
+    use_lucro_bruto_operacional_produto?: number | null
   }
 
   export type usersUpdateManyMutationInput = {
@@ -7958,6 +8223,13 @@ export namespace Prisma {
     use_token?: NullableStringFieldUpdateOperationsInput | string | null
     use_level?: NullableStringFieldUpdateOperationsInput | string | null
     use_whats_app?: usersUpdateuse_whats_appInput | string[]
+    use_mlt?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmc?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmf?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmp?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmvol?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_lucro_bruto_operacional_galonagem?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_lucro_bruto_operacional_produto?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type usersUncheckedUpdateManyInput = {
@@ -7971,6 +8243,13 @@ export namespace Prisma {
     use_token?: NullableStringFieldUpdateOperationsInput | string | null
     use_level?: NullableStringFieldUpdateOperationsInput | string | null
     use_whats_app?: usersUpdateuse_whats_appInput | string[]
+    use_mlt?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmc?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmf?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmp?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmvol?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_lucro_bruto_operacional_galonagem?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_lucro_bruto_operacional_produto?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type gas_station_setvariablesCreateInput = {
@@ -7994,6 +8273,8 @@ export namespace Prisma {
     gas_station_sanado_marginAL?: boolean | null
     gas_station_sanado_marginGC?: boolean | null
     gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
+    gas_station_margin_MLT?: number | null
+    gas_station_margin_TMP?: number | null
     ibm_info?: ibm_infoCreateNestedOneWithoutGas_station_setvariablesInput
     users?: usersCreateNestedOneWithoutGas_station_setvariablesInput
   }
@@ -8021,6 +8302,8 @@ export namespace Prisma {
     gas_station_sanado_marginAL?: boolean | null
     gas_station_sanado_marginGC?: boolean | null
     gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
+    gas_station_margin_MLT?: number | null
+    gas_station_margin_TMP?: number | null
   }
 
   export type gas_station_setvariablesUpdateInput = {
@@ -8044,6 +8327,8 @@ export namespace Prisma {
     gas_station_sanado_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_sanado_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_margin_MLT?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_margin_TMP?: NullableFloatFieldUpdateOperationsInput | number | null
     ibm_info?: ibm_infoUpdateOneWithoutGas_station_setvariablesNestedInput
     users?: usersUpdateOneWithoutGas_station_setvariablesNestedInput
   }
@@ -8071,6 +8356,8 @@ export namespace Prisma {
     gas_station_sanado_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_sanado_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_margin_MLT?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_margin_TMP?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type gas_station_setvariablesCreateManyInput = {
@@ -8096,6 +8383,8 @@ export namespace Prisma {
     gas_station_sanado_marginAL?: boolean | null
     gas_station_sanado_marginGC?: boolean | null
     gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
+    gas_station_margin_MLT?: number | null
+    gas_station_margin_TMP?: number | null
   }
 
   export type gas_station_setvariablesUpdateManyMutationInput = {
@@ -8119,6 +8408,8 @@ export namespace Prisma {
     gas_station_sanado_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_sanado_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_margin_MLT?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_margin_TMP?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type gas_station_setvariablesUncheckedUpdateManyInput = {
@@ -8144,6 +8435,8 @@ export namespace Prisma {
     gas_station_sanado_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_sanado_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_margin_MLT?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_margin_TMP?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type region_setvariablesCreateInput = {
@@ -8619,6 +8912,23 @@ export namespace Prisma {
     use_token?: SortOrder
     use_level?: SortOrder
     use_whats_app?: SortOrder
+    use_mlt?: SortOrder
+    use_tmc?: SortOrder
+    use_tmf?: SortOrder
+    use_tmp?: SortOrder
+    use_tmvol?: SortOrder
+    use_lucro_bruto_operacional_galonagem?: SortOrder
+    use_lucro_bruto_operacional_produto?: SortOrder
+  }
+
+  export type usersAvgOrderByAggregateInput = {
+    use_mlt?: SortOrder
+    use_tmc?: SortOrder
+    use_tmf?: SortOrder
+    use_tmp?: SortOrder
+    use_tmvol?: SortOrder
+    use_lucro_bruto_operacional_galonagem?: SortOrder
+    use_lucro_bruto_operacional_produto?: SortOrder
   }
 
   export type usersMaxOrderByAggregateInput = {
@@ -8631,6 +8941,13 @@ export namespace Prisma {
     use_date_expire?: SortOrder
     use_token?: SortOrder
     use_level?: SortOrder
+    use_mlt?: SortOrder
+    use_tmc?: SortOrder
+    use_tmf?: SortOrder
+    use_tmp?: SortOrder
+    use_tmvol?: SortOrder
+    use_lucro_bruto_operacional_galonagem?: SortOrder
+    use_lucro_bruto_operacional_produto?: SortOrder
   }
 
   export type usersMinOrderByAggregateInput = {
@@ -8643,6 +8960,23 @@ export namespace Prisma {
     use_date_expire?: SortOrder
     use_token?: SortOrder
     use_level?: SortOrder
+    use_mlt?: SortOrder
+    use_tmc?: SortOrder
+    use_tmf?: SortOrder
+    use_tmp?: SortOrder
+    use_tmvol?: SortOrder
+    use_lucro_bruto_operacional_galonagem?: SortOrder
+    use_lucro_bruto_operacional_produto?: SortOrder
+  }
+
+  export type usersSumOrderByAggregateInput = {
+    use_mlt?: SortOrder
+    use_tmc?: SortOrder
+    use_tmf?: SortOrder
+    use_tmp?: SortOrder
+    use_tmvol?: SortOrder
+    use_lucro_bruto_operacional_galonagem?: SortOrder
+    use_lucro_bruto_operacional_produto?: SortOrder
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -8723,12 +9057,16 @@ export namespace Prisma {
     gas_station_sanado_marginAL?: SortOrder
     gas_station_sanado_marginGC?: SortOrder
     gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
+    gas_station_margin_MLT?: SortOrder
+    gas_station_margin_TMP?: SortOrder
   }
 
   export type gas_station_setvariablesAvgOrderByAggregateInput = {
     gas_station_marginGC?: SortOrder
     gas_station_marginAL?: SortOrder
     gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
+    gas_station_margin_MLT?: SortOrder
+    gas_station_margin_TMP?: SortOrder
   }
 
   export type gas_station_setvariablesMaxOrderByAggregateInput = {
@@ -8753,6 +9091,8 @@ export namespace Prisma {
     gas_station_sanado_marginAL?: SortOrder
     gas_station_sanado_marginGC?: SortOrder
     gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
+    gas_station_margin_MLT?: SortOrder
+    gas_station_margin_TMP?: SortOrder
   }
 
   export type gas_station_setvariablesMinOrderByAggregateInput = {
@@ -8777,12 +9117,16 @@ export namespace Prisma {
     gas_station_sanado_marginAL?: SortOrder
     gas_station_sanado_marginGC?: SortOrder
     gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
+    gas_station_margin_MLT?: SortOrder
+    gas_station_margin_TMP?: SortOrder
   }
 
   export type gas_station_setvariablesSumOrderByAggregateInput = {
     gas_station_marginGC?: SortOrder
     gas_station_marginAL?: SortOrder
     gas_station_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
+    gas_station_margin_MLT?: SortOrder
+    gas_station_margin_TMP?: SortOrder
   }
 
   export type BoolNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -9506,6 +9850,8 @@ export namespace Prisma {
     gas_station_sanado_marginAL?: boolean | null
     gas_station_sanado_marginGC?: boolean | null
     gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
+    gas_station_margin_MLT?: number | null
+    gas_station_margin_TMP?: number | null
     users?: usersCreateNestedOneWithoutGas_station_setvariablesInput
   }
 
@@ -9531,6 +9877,8 @@ export namespace Prisma {
     gas_station_sanado_marginAL?: boolean | null
     gas_station_sanado_marginGC?: boolean | null
     gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
+    gas_station_margin_MLT?: number | null
+    gas_station_margin_TMP?: number | null
   }
 
   export type gas_station_setvariablesCreateOrConnectWithoutIbm_infoInput = {
@@ -9585,6 +9933,8 @@ export namespace Prisma {
     gas_station_sanado_marginAL?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
     gas_station_sanado_marginGC?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
     gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
+    gas_station_margin_MLT?: FloatNullableFilter<"gas_station_setvariables"> | number | null
+    gas_station_margin_TMP?: FloatNullableFilter<"gas_station_setvariables"> | number | null
   }
 
   export type gas_station_setvariablesCreateWithoutUsersInput = {
@@ -9608,6 +9958,8 @@ export namespace Prisma {
     gas_station_sanado_marginAL?: boolean | null
     gas_station_sanado_marginGC?: boolean | null
     gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
+    gas_station_margin_MLT?: number | null
+    gas_station_margin_TMP?: number | null
     ibm_info?: ibm_infoCreateNestedOneWithoutGas_station_setvariablesInput
   }
 
@@ -9633,6 +9985,8 @@ export namespace Prisma {
     gas_station_sanado_marginAL?: boolean | null
     gas_station_sanado_marginGC?: boolean | null
     gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
+    gas_station_margin_MLT?: number | null
+    gas_station_margin_TMP?: number | null
   }
 
   export type gas_station_setvariablesCreateOrConnectWithoutUsersInput = {
@@ -9811,6 +10165,13 @@ export namespace Prisma {
     use_token?: string | null
     use_level?: string | null
     use_whats_app?: usersCreateuse_whats_appInput | string[]
+    use_mlt?: number | null
+    use_tmc?: number | null
+    use_tmf?: number | null
+    use_tmp?: number | null
+    use_tmvol?: number | null
+    use_lucro_bruto_operacional_galonagem?: number | null
+    use_lucro_bruto_operacional_produto?: number | null
     region_setvariables?: region_setvariablesCreateNestedManyWithoutUsersInput
   }
 
@@ -9825,6 +10186,13 @@ export namespace Prisma {
     use_token?: string | null
     use_level?: string | null
     use_whats_app?: usersCreateuse_whats_appInput | string[]
+    use_mlt?: number | null
+    use_tmc?: number | null
+    use_tmf?: number | null
+    use_tmp?: number | null
+    use_tmvol?: number | null
+    use_lucro_bruto_operacional_galonagem?: number | null
+    use_lucro_bruto_operacional_produto?: number | null
     region_setvariables?: region_setvariablesUncheckedCreateNestedManyWithoutUsersInput
   }
 
@@ -9898,6 +10266,13 @@ export namespace Prisma {
     use_token?: NullableStringFieldUpdateOperationsInput | string | null
     use_level?: NullableStringFieldUpdateOperationsInput | string | null
     use_whats_app?: usersUpdateuse_whats_appInput | string[]
+    use_mlt?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmc?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmf?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmp?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmvol?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_lucro_bruto_operacional_galonagem?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_lucro_bruto_operacional_produto?: NullableFloatFieldUpdateOperationsInput | number | null
     region_setvariables?: region_setvariablesUpdateManyWithoutUsersNestedInput
   }
 
@@ -9912,6 +10287,13 @@ export namespace Prisma {
     use_token?: NullableStringFieldUpdateOperationsInput | string | null
     use_level?: NullableStringFieldUpdateOperationsInput | string | null
     use_whats_app?: usersUpdateuse_whats_appInput | string[]
+    use_mlt?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmc?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmf?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmp?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmvol?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_lucro_bruto_operacional_galonagem?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_lucro_bruto_operacional_produto?: NullableFloatFieldUpdateOperationsInput | number | null
     region_setvariables?: region_setvariablesUncheckedUpdateManyWithoutUsersNestedInput
   }
 
@@ -9953,6 +10335,13 @@ export namespace Prisma {
     use_token?: string | null
     use_level?: string | null
     use_whats_app?: usersCreateuse_whats_appInput | string[]
+    use_mlt?: number | null
+    use_tmc?: number | null
+    use_tmf?: number | null
+    use_tmp?: number | null
+    use_tmvol?: number | null
+    use_lucro_bruto_operacional_galonagem?: number | null
+    use_lucro_bruto_operacional_produto?: number | null
     gas_station_setvariables?: gas_station_setvariablesCreateNestedManyWithoutUsersInput
   }
 
@@ -9967,6 +10356,13 @@ export namespace Prisma {
     use_token?: string | null
     use_level?: string | null
     use_whats_app?: usersCreateuse_whats_appInput | string[]
+    use_mlt?: number | null
+    use_tmc?: number | null
+    use_tmf?: number | null
+    use_tmp?: number | null
+    use_tmvol?: number | null
+    use_lucro_bruto_operacional_galonagem?: number | null
+    use_lucro_bruto_operacional_produto?: number | null
     gas_station_setvariables?: gas_station_setvariablesUncheckedCreateNestedManyWithoutUsersInput
   }
 
@@ -10030,6 +10426,13 @@ export namespace Prisma {
     use_token?: NullableStringFieldUpdateOperationsInput | string | null
     use_level?: NullableStringFieldUpdateOperationsInput | string | null
     use_whats_app?: usersUpdateuse_whats_appInput | string[]
+    use_mlt?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmc?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmf?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmp?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmvol?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_lucro_bruto_operacional_galonagem?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_lucro_bruto_operacional_produto?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_setvariables?: gas_station_setvariablesUpdateManyWithoutUsersNestedInput
   }
 
@@ -10044,6 +10447,13 @@ export namespace Prisma {
     use_token?: NullableStringFieldUpdateOperationsInput | string | null
     use_level?: NullableStringFieldUpdateOperationsInput | string | null
     use_whats_app?: usersUpdateuse_whats_appInput | string[]
+    use_mlt?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmc?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmf?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmp?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmvol?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_lucro_bruto_operacional_galonagem?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_lucro_bruto_operacional_produto?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_setvariables?: gas_station_setvariablesUncheckedUpdateManyWithoutUsersNestedInput
   }
 
@@ -10143,6 +10553,8 @@ export namespace Prisma {
     gas_station_sanado_marginAL?: boolean | null
     gas_station_sanado_marginGC?: boolean | null
     gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
+    gas_station_margin_MLT?: number | null
+    gas_station_margin_TMP?: number | null
   }
 
   export type gas_station_setvariablesUpdateWithoutIbm_infoInput = {
@@ -10166,6 +10578,8 @@ export namespace Prisma {
     gas_station_sanado_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_sanado_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_margin_MLT?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_margin_TMP?: NullableFloatFieldUpdateOperationsInput | number | null
     users?: usersUpdateOneWithoutGas_station_setvariablesNestedInput
   }
 
@@ -10191,6 +10605,8 @@ export namespace Prisma {
     gas_station_sanado_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_sanado_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_margin_MLT?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_margin_TMP?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type gas_station_setvariablesUncheckedUpdateManyWithoutIbm_infoInput = {
@@ -10215,6 +10631,8 @@ export namespace Prisma {
     gas_station_sanado_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_sanado_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_margin_MLT?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_margin_TMP?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type gas_station_setvariablesCreateManyUsersInput = {
@@ -10239,6 +10657,8 @@ export namespace Prisma {
     gas_station_sanado_marginAL?: boolean | null
     gas_station_sanado_marginGC?: boolean | null
     gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
+    gas_station_margin_MLT?: number | null
+    gas_station_margin_TMP?: number | null
   }
 
   export type region_setvariablesCreateManyUsersInput = {
@@ -10286,6 +10706,8 @@ export namespace Prisma {
     gas_station_sanado_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_sanado_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_margin_MLT?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_margin_TMP?: NullableFloatFieldUpdateOperationsInput | number | null
     ibm_info?: ibm_infoUpdateOneWithoutGas_station_setvariablesNestedInput
   }
 
@@ -10311,6 +10733,8 @@ export namespace Prisma {
     gas_station_sanado_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_sanado_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_margin_MLT?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_margin_TMP?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type gas_station_setvariablesUncheckedUpdateManyWithoutUsersInput = {
@@ -10335,6 +10759,8 @@ export namespace Prisma {
     gas_station_sanado_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_sanado_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_margin_MLT?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_margin_TMP?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type region_setvariablesUpdateWithoutUsersInput = {

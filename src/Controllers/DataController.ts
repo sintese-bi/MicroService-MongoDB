@@ -7,6 +7,7 @@ import { PrismaClient as PrismaSales } from '../../generated/clientSales'
 import { PrismaClient as PrismaRedeFlex } from '../../generated/clientRedeFlex'
 import { MongoClient, ServerApiVersion } from 'mongodb';
 import moment from "moment";
+import extractUserIdFromToken from "../utils/extractUserID";
 import dotenv from 'dotenv'
 import { v4 as uuidv4 } from 'uuid';
 const prismaLBCBi = new PrismaLBCBi()
@@ -62,7 +63,7 @@ class DataController {
             const actualdate = moment().tz("America/Sao_Paulo").format("YYYY-MM-DD");
 
             const clientToken = req.headers.authorization;
-
+            const { use_token }: any = req.headers;
             if (!clientToken) {
                 return res.status(401).json({ message: "Token não fornecido." });
             }
@@ -209,15 +210,29 @@ class DataController {
                 const secondary_value_productProfit = sumFuelProd !== 0 ? ((productProfit / sumFuelProd) * 100) : 0;
                 const secondary_value_bruto_operacional = sumFuelTotal !== 0 ? ((productProfit + fuelProfit) / sumFuelTotal * 100) : 0;
                 const valueMLT = sumLiterage !== 0 ? ((fuelProfit / sumLiterage)) : 0
+                //Fluxo para comparação flags
+                const secret = process.env.SECRET;
+                if (!secret) {
+                    throw new Error('Chave secreta não definida. Verifique a variável de ambiente SECRET.');
+                }
+                const id = extractUserIdFromToken(use_token, secret)
+                const flags = await prismaRedeFlex.users.findUnique({ select: { use_tmc: true, use_mlt: true, use_tmf: true, use_tmp: true, use_tmvol: true, use_lucro_bruto_operacional_galonagem: true, use_lucro_bruto_operacional_produto: true }, where: { use_uuid: id } })
+                const tmc = (flags?.use_tmc ?? 0) < secondary_value_tmc;
+                const mlt = (flags?.use_mlt ?? 0) < valueMLT;
+                const use_tmf = (flags?.use_tmf ?? 0) < secondary_value_fuel;
+                const use_tmp = (flags?.use_tmp ?? 0) < secondary_value_produto;
+                const use_tmvol = (flags?.use_tmp ?? 0) < secondary_value_galonagem
+                const lucro_operacional_galonagem = (flags?.use_lucro_bruto_operacional_galonagem ?? 0) < secondary_value_fuelProfit
+                const lucro_operacional_produto = (flags?.use_lucro_bruto_operacional_produto ?? 0) < secondary_value_productProfit
                 return res.status(200).json({
-                    data: [{ label: "Galonagem", value: Math.round(sumLiterage * 100) / 100, secondary_label: "TM VOL", secondary_value: Math.round((secondary_value_galonagem) * 100) / 100 },
-                    { label: "Faturamento", value: Math.round(sumFuelTotal * 100) / 100, secondary_label: "TMF", secondary_value: Math.round((secondary_value_fuel) * 100) / 100 },
+                    data: [{ label: "Galonagem", value: Math.round(sumLiterage * 100) / 100, secondary_label: "TM VOL", secondary_value: Math.round((secondary_value_galonagem) * 100) / 100, third_label: "Status Margem", third_value: use_tmvol, fourth_label: "Margem definida", fourth_value: flags?.use_tmvol },
+                    { label: "Faturamento", value: Math.round(sumFuelTotal * 100) / 100, secondary_label: "TMF", secondary_value: Math.round((secondary_value_fuel) * 100) / 100, third_label: "Status Margem", third_value: use_tmf, fourth_label: "Margem definida", fourth_value: flags?.use_tmf },
                     { label: "Abastecimentos", value: Math.round(quantSupply * 100) / 100 },
-                    { label: "Venda Galonagem", value: Math.round(sumFuel * 100) / 100, secondary_label: "TMC", secondary_value: Math.round((secondary_value_tmc) * 100) / 100 },
-                    { label: "Lucro Galonagem", value: fuelProfit, secondary_label: "Lucro Bruto Operacional", secondary_value: Math.round((secondary_value_fuelProfit) * 100) / 100 },
-                    { label: "M/LT", value: Math.round(valueMLT * 100) / 100 },
-                    { label: "Venda de Produto", value: Math.round(sumFuelProd * 100) / 100, secondary_label: "TMP", secondary_value: Math.round((secondary_value_produto) * 100) / 100 },
-                    { label: "Lucro Produto", value: productProfit, secondary_label: "Lucro Bruto Operacional", secondary_value: Math.round((secondary_value_productProfit) * 100) / 100 },
+                    { label: "Venda Galonagem", value: Math.round(sumFuel * 100) / 100, secondary_label: "TMC", secondary_value: Math.round((secondary_value_tmc) * 100) / 100, third_label: "Status Margem", third_value: tmc, fourth_label: "Margem definida", fourth_value: flags?.use_tmc },
+                    { label: "Lucro Galonagem", value: fuelProfit, secondary_label: "Lucro Bruto Operacional", secondary_value: Math.round((secondary_value_fuelProfit) * 100) / 100, third_label: "Status Margem", third_value: lucro_operacional_galonagem, fourth_label: "Margem definida", fourth_value: flags?.use_lucro_bruto_operacional_galonagem },
+                    { label: "M/LT", value: Math.round(valueMLT * 100) / 100, third_label: "Status Margem", third_value: mlt, fourth_label: "Margem definida", fourth_value: flags?.use_mlt },
+                    { label: "Venda de Produto", value: Math.round(sumFuelProd * 100) / 100, secondary_label: "TMP", secondary_value: Math.round((secondary_value_produto) * 100) / 100, third_label: "Status Margem", third_value: use_tmp, fourth_label: "Margem definida", fourth_value: flags?.use_tmp },
+                    { label: "Lucro Produto", value: productProfit, secondary_label: "Lucro Bruto Operacional", secondary_value: Math.round((secondary_value_productProfit) * 100) / 100, third_label: "Status Margem", third_value: lucro_operacional_produto, fourth_label: "Margem definida", fourth_value: flags?.use_lucro_bruto_operacional_produto },
                     { label: "Lucro Bruto Operacional", value: Math.round((secondary_value_bruto_operacional)) },
                     ]
                 })
@@ -1101,7 +1116,7 @@ class DataController {
                     const valueTMP = quantSupply !== 0 ? (sumProductPrice / quantSupply) : 0
                     //TMF
                     const valueTMF = quantSupply !== 0 ? ((sumproduct + sumfuel) / quantSupply) : 0
-                    const averageReturn = (valueMLT < averageMLT) ? true: false
+                    const averageReturn = (valueMLT < averageMLT) ? true : false
 
                     // "Venda de Combustível": roundedSum, "Produtos vendidos": roundedProduct, "Galonagem": roundedLiterage,
                     ibmvalues.push({

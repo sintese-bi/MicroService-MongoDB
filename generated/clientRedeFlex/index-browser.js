@@ -145,7 +145,14 @@ exports.Prisma.UsersScalarFieldEnum = {
   use_date_expire: 'use_date_expire',
   use_token: 'use_token',
   use_level: 'use_level',
-  use_whats_app: 'use_whats_app'
+  use_whats_app: 'use_whats_app',
+  use_mlt: 'use_mlt',
+  use_tmc: 'use_tmc',
+  use_tmf: 'use_tmf',
+  use_tmp: 'use_tmp',
+  use_tmvol: 'use_tmvol',
+  use_lucro_bruto_operacional_galonagem: 'use_lucro_bruto_operacional_galonagem',
+  use_lucro_bruto_operacional_produto: 'use_lucro_bruto_operacional_produto'
 };
 
 exports.Prisma.Gas_station_setvariablesScalarFieldEnum = {
@@ -170,7 +177,9 @@ exports.Prisma.Gas_station_setvariablesScalarFieldEnum = {
   gas_station_sanado_hour_marginGC: 'gas_station_sanado_hour_marginGC',
   gas_station_sanado_marginAL: 'gas_station_sanado_marginAL',
   gas_station_sanado_marginGC: 'gas_station_sanado_marginGC',
-  gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL: 'gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL'
+  gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL: 'gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL',
+  gas_station_margin_MLT: 'gas_station_margin_MLT',
+  gas_station_margin_TMP: 'gas_station_margin_TMP'
 };
 
 exports.Prisma.Region_setvariablesScalarFieldEnum = {
