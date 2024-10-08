@@ -224,13 +224,14 @@ class DataController {
                 const use_tmvol = (flags?.use_tmp ?? 0) < secondary_value_galonagem
                 const lucro_operacional_galonagem = (flags?.use_lucro_bruto_operacional_galonagem ?? 0) < secondary_value_fuelProfit
                 const lucro_operacional_produto = (flags?.use_lucro_bruto_operacional_produto ?? 0) < secondary_value_productProfit
+                
                 return res.status(200).json({
                     data: [{ label: "Galonagem", value: Math.round(sumLiterage * 100) / 100, secondary_label: "TM VOL", secondary_value: Math.round((secondary_value_galonagem) * 100) / 100, third_label: "Status Margem", third_value: use_tmvol, fourth_label: "Margem definida", fourth_value: flags?.use_tmvol },
                     { label: "Faturamento", value: Math.round(sumFuelTotal * 100) / 100, secondary_label: "TMF", secondary_value: Math.round((secondary_value_fuel) * 100) / 100, third_label: "Status Margem", third_value: use_tmf, fourth_label: "Margem definida", fourth_value: flags?.use_tmf },
                     { label: "Abastecimentos", value: Math.round(quantSupply * 100) / 100 },
                     { label: "Venda Galonagem", value: Math.round(sumFuel * 100) / 100, secondary_label: "TMC", secondary_value: Math.round((secondary_value_tmc) * 100) / 100, third_label: "Status Margem", third_value: tmc, fourth_label: "Margem definida", fourth_value: flags?.use_tmc },
                     { label: "Lucro Galonagem", value: fuelProfit, secondary_label: "Lucro Bruto Operacional", secondary_value: Math.round((secondary_value_fuelProfit) * 100) / 100, third_label: "Status Margem", third_value: lucro_operacional_galonagem, fourth_label: "Margem definida", fourth_value: flags?.use_lucro_bruto_operacional_galonagem },
-                    { label: "M/LT", value: Math.round(valueMLT * 100) / 100, third_label: "Status Margem", third_value: mlt, fourth_label: "Margem definida", fourth_value: flags?.use_mlt },
+                    { label: "M/LT", value: Math.round(valueMLT * 100) / 100, fourth_label: "Margem definida", fourth_value: flags?.use_mlt },
                     { label: "Venda de Produto", value: Math.round(sumFuelProd * 100) / 100, secondary_label: "TMP", secondary_value: Math.round((secondary_value_produto) * 100) / 100, third_label: "Status Margem", third_value: use_tmp, fourth_label: "Margem definida", fourth_value: flags?.use_tmp },
                     { label: "Lucro Produto", value: productProfit, secondary_label: "Lucro Bruto Operacional", secondary_value: Math.round((secondary_value_productProfit) * 100) / 100, third_label: "Status Margem", third_value: lucro_operacional_produto, fourth_label: "Margem definida", fourth_value: flags?.use_lucro_bruto_operacional_produto },
                     { label: "Lucro Bruto Operacional", value: Math.round((secondary_value_bruto_operacional)) },
