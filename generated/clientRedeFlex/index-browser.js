@@ -152,7 +152,8 @@ exports.Prisma.UsersScalarFieldEnum = {
   use_tmp: 'use_tmp',
   use_tmvol: 'use_tmvol',
   use_lucro_bruto_operacional_galonagem: 'use_lucro_bruto_operacional_galonagem',
-  use_lucro_bruto_operacional_produto: 'use_lucro_bruto_operacional_produto'
+  use_lucro_bruto_operacional_produto: 'use_lucro_bruto_operacional_produto',
+  use_lucro_bruto_operacional: 'use_lucro_bruto_operacional'
 };
 
 exports.Prisma.Gas_station_setvariablesScalarFieldEnum = {
@@ -179,7 +180,15 @@ exports.Prisma.Gas_station_setvariablesScalarFieldEnum = {
   gas_station_sanado_marginGC: 'gas_station_sanado_marginGC',
   gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL: 'gas_station_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL',
   gas_station_margin_MLT: 'gas_station_margin_MLT',
-  gas_station_margin_TMP: 'gas_station_margin_TMP'
+  gas_station_margin_TMP: 'gas_station_margin_TMP',
+  gas_station_LUCRO_BRUTO_GALONAGEM_modal: 'gas_station_LUCRO_BRUTO_GALONAGEM_modal',
+  gas_station_LUCRO_BRUTO_OPERACIONAL_modal: 'gas_station_LUCRO_BRUTO_OPERACIONAL_modal',
+  gas_station_LUCRO_BRUTO_PRODUTO_modal: 'gas_station_LUCRO_BRUTO_PRODUTO_modal',
+  gas_station_MLT_modal: 'gas_station_MLT_modal',
+  gas_station_TMC_modal: 'gas_station_TMC_modal',
+  gas_station_TMF_modal: 'gas_station_TMF_modal',
+  gas_station_TMP_modal: 'gas_station_TMP_modal',
+  gas_station_TMVOL_modal: 'gas_station_TMVOL_modal'
 };
 
 exports.Prisma.Region_setvariablesScalarFieldEnum = {
