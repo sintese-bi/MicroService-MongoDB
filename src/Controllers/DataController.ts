@@ -1008,6 +1008,8 @@ class DataController {
                         gas_station_TMP_modal: true,
                         gas_station_TMVOL_modal: true,
                         gas_station_MLT_modal: true,
+                        ibm_info_id: true,
+                        ibm_info: { select: { ibm: true, nomefantasia: true, } }
                     }, where: { use_uuid: id_token }
                 })
                 const ibmsStations = await prismaRedeFlex.ibm_info.findMany({ select: { razaosocial: true, ibm: true, id: true } })
@@ -1083,8 +1085,24 @@ class DataController {
                     station[element.ibm].push(...element.items);
 
                 })
+                type ItemType = {
+                    ibm: string;
+                    "M/LT": number | null;
+                    TMC: number | null;
+                    "TM VOL": number | null;
+                    TMP: number | null;
+                    TMF: number | null;
+                    LBO: number | null;
+                    tmf_comparisson: number | null;
+                    lucro_bruto_operacional_comparisson: number | null;
+                    tmc_comparisson: number | null;
+                    tmp_comparisson: number | null;
+                    tmvol_comparisson: number | null;
+                    mlt_comparisson: number | null;
+                    averageComparison: boolean;
+                };
 
-                let ibmvalues = []
+                let ibmvalues: ItemType[] = []
                 for (let ibm in station) {
                     let itemsArray = station[ibm];
                     const quantSupply = itemsArray.length
@@ -1144,10 +1162,35 @@ class DataController {
                         ibm: ibm, "M/LT": Math.round(valueMLT * 100) / 100,
                         "TMC": Math.round((valueTMC) * 100) / 100, "TM VOL": Math.round((valueTMVOL) * 100) / 100, "TMP": Math.round((valueTMP) * 100) / 100,
                         "TMF": Math.round((valueTMF) * 100) / 100, "LBO": Math.round((valueLBO) * 100) / 100, "averageComparison": averageReturn,
+                        tmc_comparisson: 0, tmf_comparisson: 2, tmp_comparisson: 0, tmvol_comparisson: 0, mlt_comparisson: 0, lucro_bruto_operacional_comparisson: 0
                     });
                 }
 
-                return res.status(200).json({ data: ibmvalues })
+                marginsDefined.forEach(ibmNumber => {
+
+                    ibmvalues.forEach(item => {
+                        console.log(ibmNumber.ibm_info?.ibm, item.ibm)
+                        if (ibmNumber.ibm_info?.ibm === item.ibm) {
+
+                            item.tmc_comparisson = ibmNumber.gas_station_TMC_modal
+                            item.tmf_comparisson = ibmNumber.gas_station_TMF_modal
+                            item.tmp_comparisson = ibmNumber.gas_station_TMP_modal
+                            item.tmvol_comparisson = ibmNumber.gas_station_TMVOL_modal
+                            item.mlt_comparisson = ibmNumber.gas_station_MLT_modal
+                            item.lucro_bruto_operacional_comparisson = ibmNumber.gas_station_LUCRO_BRUTO_OPERACIONAL_modal
+                        } else {
+                            item.tmc_comparisson = 0
+                            item.tmf_comparisson = 0
+                            item.tmp_comparisson = 0
+                            item.tmvol_comparisson = 0
+                            item.mlt_comparisson = 0
+                            item.lucro_bruto_operacional_comparisson = 0
+
+                        }
+                    })
+
+                })
+                return res.status(200).json({ data: marginsDefined })
             } else {
                 return res
                     .status(401)

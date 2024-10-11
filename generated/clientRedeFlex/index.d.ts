@@ -2452,6 +2452,10 @@ export namespace Prisma {
     use_lucro_bruto_operacional_galonagem: number | null
     use_lucro_bruto_operacional_produto: number | null
     use_lucro_bruto_operacional: number | null
+    use_ETANOL_COMUM_comb: number | null
+    use_GASOLINA_COMUM_comb: number | null
+    use_OLEO_DIESEL_B_S10_COMUM_comb: number | null
+    use_OLEO_DIESEL_B_S500_COMUM_comb: number | null
   }
 
   export type UsersSumAggregateOutputType = {
@@ -2463,6 +2467,10 @@ export namespace Prisma {
     use_lucro_bruto_operacional_galonagem: number | null
     use_lucro_bruto_operacional_produto: number | null
     use_lucro_bruto_operacional: number | null
+    use_ETANOL_COMUM_comb: number | null
+    use_GASOLINA_COMUM_comb: number | null
+    use_OLEO_DIESEL_B_S10_COMUM_comb: number | null
+    use_OLEO_DIESEL_B_S500_COMUM_comb: number | null
   }
 
   export type UsersMinAggregateOutputType = {
@@ -2483,6 +2491,10 @@ export namespace Prisma {
     use_lucro_bruto_operacional_galonagem: number | null
     use_lucro_bruto_operacional_produto: number | null
     use_lucro_bruto_operacional: number | null
+    use_ETANOL_COMUM_comb: number | null
+    use_GASOLINA_COMUM_comb: number | null
+    use_OLEO_DIESEL_B_S10_COMUM_comb: number | null
+    use_OLEO_DIESEL_B_S500_COMUM_comb: number | null
   }
 
   export type UsersMaxAggregateOutputType = {
@@ -2503,6 +2515,10 @@ export namespace Prisma {
     use_lucro_bruto_operacional_galonagem: number | null
     use_lucro_bruto_operacional_produto: number | null
     use_lucro_bruto_operacional: number | null
+    use_ETANOL_COMUM_comb: number | null
+    use_GASOLINA_COMUM_comb: number | null
+    use_OLEO_DIESEL_B_S10_COMUM_comb: number | null
+    use_OLEO_DIESEL_B_S500_COMUM_comb: number | null
   }
 
   export type UsersCountAggregateOutputType = {
@@ -2524,6 +2540,10 @@ export namespace Prisma {
     use_lucro_bruto_operacional_galonagem: number
     use_lucro_bruto_operacional_produto: number
     use_lucro_bruto_operacional: number
+    use_ETANOL_COMUM_comb: number
+    use_GASOLINA_COMUM_comb: number
+    use_OLEO_DIESEL_B_S10_COMUM_comb: number
+    use_OLEO_DIESEL_B_S500_COMUM_comb: number
     _all: number
   }
 
@@ -2537,6 +2557,10 @@ export namespace Prisma {
     use_lucro_bruto_operacional_galonagem?: true
     use_lucro_bruto_operacional_produto?: true
     use_lucro_bruto_operacional?: true
+    use_ETANOL_COMUM_comb?: true
+    use_GASOLINA_COMUM_comb?: true
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: true
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: true
   }
 
   export type UsersSumAggregateInputType = {
@@ -2548,6 +2572,10 @@ export namespace Prisma {
     use_lucro_bruto_operacional_galonagem?: true
     use_lucro_bruto_operacional_produto?: true
     use_lucro_bruto_operacional?: true
+    use_ETANOL_COMUM_comb?: true
+    use_GASOLINA_COMUM_comb?: true
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: true
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: true
   }
 
   export type UsersMinAggregateInputType = {
@@ -2568,6 +2596,10 @@ export namespace Prisma {
     use_lucro_bruto_operacional_galonagem?: true
     use_lucro_bruto_operacional_produto?: true
     use_lucro_bruto_operacional?: true
+    use_ETANOL_COMUM_comb?: true
+    use_GASOLINA_COMUM_comb?: true
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: true
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: true
   }
 
   export type UsersMaxAggregateInputType = {
@@ -2588,6 +2620,10 @@ export namespace Prisma {
     use_lucro_bruto_operacional_galonagem?: true
     use_lucro_bruto_operacional_produto?: true
     use_lucro_bruto_operacional?: true
+    use_ETANOL_COMUM_comb?: true
+    use_GASOLINA_COMUM_comb?: true
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: true
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: true
   }
 
   export type UsersCountAggregateInputType = {
@@ -2609,6 +2645,10 @@ export namespace Prisma {
     use_lucro_bruto_operacional_galonagem?: true
     use_lucro_bruto_operacional_produto?: true
     use_lucro_bruto_operacional?: true
+    use_ETANOL_COMUM_comb?: true
+    use_GASOLINA_COMUM_comb?: true
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: true
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: true
     _all?: true
   }
 
@@ -2717,6 +2757,10 @@ export namespace Prisma {
     use_lucro_bruto_operacional_galonagem: number | null
     use_lucro_bruto_operacional_produto: number | null
     use_lucro_bruto_operacional: number | null
+    use_ETANOL_COMUM_comb: number | null
+    use_GASOLINA_COMUM_comb: number | null
+    use_OLEO_DIESEL_B_S10_COMUM_comb: number | null
+    use_OLEO_DIESEL_B_S500_COMUM_comb: number | null
     _count: UsersCountAggregateOutputType | null
     _avg: UsersAvgAggregateOutputType | null
     _sum: UsersSumAggregateOutputType | null
@@ -2757,6 +2801,10 @@ export namespace Prisma {
     use_lucro_bruto_operacional_galonagem?: boolean
     use_lucro_bruto_operacional_produto?: boolean
     use_lucro_bruto_operacional?: boolean
+    use_ETANOL_COMUM_comb?: boolean
+    use_GASOLINA_COMUM_comb?: boolean
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: boolean
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: boolean
     gas_station_setvariables?: boolean | users$gas_station_setvariablesArgs<ExtArgs>
     region_setvariables?: boolean | users$region_setvariablesArgs<ExtArgs>
     _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>
@@ -2781,6 +2829,10 @@ export namespace Prisma {
     use_lucro_bruto_operacional_galonagem?: boolean
     use_lucro_bruto_operacional_produto?: boolean
     use_lucro_bruto_operacional?: boolean
+    use_ETANOL_COMUM_comb?: boolean
+    use_GASOLINA_COMUM_comb?: boolean
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: boolean
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: boolean
   }, ExtArgs["result"]["users"]>
 
   export type usersSelectScalar = {
@@ -2802,6 +2854,10 @@ export namespace Prisma {
     use_lucro_bruto_operacional_galonagem?: boolean
     use_lucro_bruto_operacional_produto?: boolean
     use_lucro_bruto_operacional?: boolean
+    use_ETANOL_COMUM_comb?: boolean
+    use_GASOLINA_COMUM_comb?: boolean
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: boolean
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: boolean
   }
 
   export type usersInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2836,6 +2892,10 @@ export namespace Prisma {
       use_lucro_bruto_operacional_galonagem: number | null
       use_lucro_bruto_operacional_produto: number | null
       use_lucro_bruto_operacional: number | null
+      use_ETANOL_COMUM_comb: number | null
+      use_GASOLINA_COMUM_comb: number | null
+      use_OLEO_DIESEL_B_S10_COMUM_comb: number | null
+      use_OLEO_DIESEL_B_S500_COMUM_comb: number | null
     }, ExtArgs["result"]["users"]>
     composites: {}
   }
@@ -3276,6 +3336,10 @@ export namespace Prisma {
     readonly use_lucro_bruto_operacional_galonagem: FieldRef<"users", 'Float'>
     readonly use_lucro_bruto_operacional_produto: FieldRef<"users", 'Float'>
     readonly use_lucro_bruto_operacional: FieldRef<"users", 'Float'>
+    readonly use_ETANOL_COMUM_comb: FieldRef<"users", 'Float'>
+    readonly use_GASOLINA_COMUM_comb: FieldRef<"users", 'Float'>
+    readonly use_OLEO_DIESEL_B_S10_COMUM_comb: FieldRef<"users", 'Float'>
+    readonly use_OLEO_DIESEL_B_S500_COMUM_comb: FieldRef<"users", 'Float'>
   }
     
 
@@ -7371,7 +7435,11 @@ export namespace Prisma {
     use_tmvol: 'use_tmvol',
     use_lucro_bruto_operacional_galonagem: 'use_lucro_bruto_operacional_galonagem',
     use_lucro_bruto_operacional_produto: 'use_lucro_bruto_operacional_produto',
-    use_lucro_bruto_operacional: 'use_lucro_bruto_operacional'
+    use_lucro_bruto_operacional: 'use_lucro_bruto_operacional',
+    use_ETANOL_COMUM_comb: 'use_ETANOL_COMUM_comb',
+    use_GASOLINA_COMUM_comb: 'use_GASOLINA_COMUM_comb',
+    use_OLEO_DIESEL_B_S10_COMUM_comb: 'use_OLEO_DIESEL_B_S10_COMUM_comb',
+    use_OLEO_DIESEL_B_S500_COMUM_comb: 'use_OLEO_DIESEL_B_S500_COMUM_comb'
   };
 
   export type UsersScalarFieldEnum = (typeof UsersScalarFieldEnum)[keyof typeof UsersScalarFieldEnum]
@@ -7671,6 +7739,10 @@ export namespace Prisma {
     use_lucro_bruto_operacional_galonagem?: FloatNullableFilter<"users"> | number | null
     use_lucro_bruto_operacional_produto?: FloatNullableFilter<"users"> | number | null
     use_lucro_bruto_operacional?: FloatNullableFilter<"users"> | number | null
+    use_ETANOL_COMUM_comb?: FloatNullableFilter<"users"> | number | null
+    use_GASOLINA_COMUM_comb?: FloatNullableFilter<"users"> | number | null
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: FloatNullableFilter<"users"> | number | null
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: FloatNullableFilter<"users"> | number | null
     gas_station_setvariables?: Gas_station_setvariablesListRelationFilter
     region_setvariables?: Region_setvariablesListRelationFilter
   }
@@ -7694,6 +7766,10 @@ export namespace Prisma {
     use_lucro_bruto_operacional_galonagem?: SortOrderInput | SortOrder
     use_lucro_bruto_operacional_produto?: SortOrderInput | SortOrder
     use_lucro_bruto_operacional?: SortOrderInput | SortOrder
+    use_ETANOL_COMUM_comb?: SortOrderInput | SortOrder
+    use_GASOLINA_COMUM_comb?: SortOrderInput | SortOrder
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: SortOrderInput | SortOrder
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: SortOrderInput | SortOrder
     gas_station_setvariables?: gas_station_setvariablesOrderByRelationAggregateInput
     region_setvariables?: region_setvariablesOrderByRelationAggregateInput
   }
@@ -7720,6 +7796,10 @@ export namespace Prisma {
     use_lucro_bruto_operacional_galonagem?: FloatNullableFilter<"users"> | number | null
     use_lucro_bruto_operacional_produto?: FloatNullableFilter<"users"> | number | null
     use_lucro_bruto_operacional?: FloatNullableFilter<"users"> | number | null
+    use_ETANOL_COMUM_comb?: FloatNullableFilter<"users"> | number | null
+    use_GASOLINA_COMUM_comb?: FloatNullableFilter<"users"> | number | null
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: FloatNullableFilter<"users"> | number | null
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: FloatNullableFilter<"users"> | number | null
     gas_station_setvariables?: Gas_station_setvariablesListRelationFilter
     region_setvariables?: Region_setvariablesListRelationFilter
   }, "use_uuid">
@@ -7743,6 +7823,10 @@ export namespace Prisma {
     use_lucro_bruto_operacional_galonagem?: SortOrderInput | SortOrder
     use_lucro_bruto_operacional_produto?: SortOrderInput | SortOrder
     use_lucro_bruto_operacional?: SortOrderInput | SortOrder
+    use_ETANOL_COMUM_comb?: SortOrderInput | SortOrder
+    use_GASOLINA_COMUM_comb?: SortOrderInput | SortOrder
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: SortOrderInput | SortOrder
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: SortOrderInput | SortOrder
     _count?: usersCountOrderByAggregateInput
     _avg?: usersAvgOrderByAggregateInput
     _max?: usersMaxOrderByAggregateInput
@@ -7772,6 +7856,10 @@ export namespace Prisma {
     use_lucro_bruto_operacional_galonagem?: FloatNullableWithAggregatesFilter<"users"> | number | null
     use_lucro_bruto_operacional_produto?: FloatNullableWithAggregatesFilter<"users"> | number | null
     use_lucro_bruto_operacional?: FloatNullableWithAggregatesFilter<"users"> | number | null
+    use_ETANOL_COMUM_comb?: FloatNullableWithAggregatesFilter<"users"> | number | null
+    use_GASOLINA_COMUM_comb?: FloatNullableWithAggregatesFilter<"users"> | number | null
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: FloatNullableWithAggregatesFilter<"users"> | number | null
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: FloatNullableWithAggregatesFilter<"users"> | number | null
   }
 
   export type gas_station_setvariablesWhereInput = {
@@ -8321,6 +8409,10 @@ export namespace Prisma {
     use_lucro_bruto_operacional_galonagem?: number | null
     use_lucro_bruto_operacional_produto?: number | null
     use_lucro_bruto_operacional?: number | null
+    use_ETANOL_COMUM_comb?: number | null
+    use_GASOLINA_COMUM_comb?: number | null
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
     gas_station_setvariables?: gas_station_setvariablesCreateNestedManyWithoutUsersInput
     region_setvariables?: region_setvariablesCreateNestedManyWithoutUsersInput
   }
@@ -8344,6 +8436,10 @@ export namespace Prisma {
     use_lucro_bruto_operacional_galonagem?: number | null
     use_lucro_bruto_operacional_produto?: number | null
     use_lucro_bruto_operacional?: number | null
+    use_ETANOL_COMUM_comb?: number | null
+    use_GASOLINA_COMUM_comb?: number | null
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
     gas_station_setvariables?: gas_station_setvariablesUncheckedCreateNestedManyWithoutUsersInput
     region_setvariables?: region_setvariablesUncheckedCreateNestedManyWithoutUsersInput
   }
@@ -8367,6 +8463,10 @@ export namespace Prisma {
     use_lucro_bruto_operacional_galonagem?: NullableFloatFieldUpdateOperationsInput | number | null
     use_lucro_bruto_operacional_produto?: NullableFloatFieldUpdateOperationsInput | number | null
     use_lucro_bruto_operacional?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_ETANOL_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_GASOLINA_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_setvariables?: gas_station_setvariablesUpdateManyWithoutUsersNestedInput
     region_setvariables?: region_setvariablesUpdateManyWithoutUsersNestedInput
   }
@@ -8390,6 +8490,10 @@ export namespace Prisma {
     use_lucro_bruto_operacional_galonagem?: NullableFloatFieldUpdateOperationsInput | number | null
     use_lucro_bruto_operacional_produto?: NullableFloatFieldUpdateOperationsInput | number | null
     use_lucro_bruto_operacional?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_ETANOL_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_GASOLINA_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_setvariables?: gas_station_setvariablesUncheckedUpdateManyWithoutUsersNestedInput
     region_setvariables?: region_setvariablesUncheckedUpdateManyWithoutUsersNestedInput
   }
@@ -8413,6 +8517,10 @@ export namespace Prisma {
     use_lucro_bruto_operacional_galonagem?: number | null
     use_lucro_bruto_operacional_produto?: number | null
     use_lucro_bruto_operacional?: number | null
+    use_ETANOL_COMUM_comb?: number | null
+    use_GASOLINA_COMUM_comb?: number | null
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
   }
 
   export type usersUpdateManyMutationInput = {
@@ -8434,6 +8542,10 @@ export namespace Prisma {
     use_lucro_bruto_operacional_galonagem?: NullableFloatFieldUpdateOperationsInput | number | null
     use_lucro_bruto_operacional_produto?: NullableFloatFieldUpdateOperationsInput | number | null
     use_lucro_bruto_operacional?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_ETANOL_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_GASOLINA_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type usersUncheckedUpdateManyInput = {
@@ -8455,6 +8567,10 @@ export namespace Prisma {
     use_lucro_bruto_operacional_galonagem?: NullableFloatFieldUpdateOperationsInput | number | null
     use_lucro_bruto_operacional_produto?: NullableFloatFieldUpdateOperationsInput | number | null
     use_lucro_bruto_operacional?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_ETANOL_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_GASOLINA_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type gas_station_setvariablesCreateInput = {
@@ -9181,6 +9297,10 @@ export namespace Prisma {
     use_lucro_bruto_operacional_galonagem?: SortOrder
     use_lucro_bruto_operacional_produto?: SortOrder
     use_lucro_bruto_operacional?: SortOrder
+    use_ETANOL_COMUM_comb?: SortOrder
+    use_GASOLINA_COMUM_comb?: SortOrder
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: SortOrder
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: SortOrder
   }
 
   export type usersAvgOrderByAggregateInput = {
@@ -9192,6 +9312,10 @@ export namespace Prisma {
     use_lucro_bruto_operacional_galonagem?: SortOrder
     use_lucro_bruto_operacional_produto?: SortOrder
     use_lucro_bruto_operacional?: SortOrder
+    use_ETANOL_COMUM_comb?: SortOrder
+    use_GASOLINA_COMUM_comb?: SortOrder
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: SortOrder
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: SortOrder
   }
 
   export type usersMaxOrderByAggregateInput = {
@@ -9212,6 +9336,10 @@ export namespace Prisma {
     use_lucro_bruto_operacional_galonagem?: SortOrder
     use_lucro_bruto_operacional_produto?: SortOrder
     use_lucro_bruto_operacional?: SortOrder
+    use_ETANOL_COMUM_comb?: SortOrder
+    use_GASOLINA_COMUM_comb?: SortOrder
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: SortOrder
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: SortOrder
   }
 
   export type usersMinOrderByAggregateInput = {
@@ -9232,6 +9360,10 @@ export namespace Prisma {
     use_lucro_bruto_operacional_galonagem?: SortOrder
     use_lucro_bruto_operacional_produto?: SortOrder
     use_lucro_bruto_operacional?: SortOrder
+    use_ETANOL_COMUM_comb?: SortOrder
+    use_GASOLINA_COMUM_comb?: SortOrder
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: SortOrder
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: SortOrder
   }
 
   export type usersSumOrderByAggregateInput = {
@@ -9243,6 +9375,10 @@ export namespace Prisma {
     use_lucro_bruto_operacional_galonagem?: SortOrder
     use_lucro_bruto_operacional_produto?: SortOrder
     use_lucro_bruto_operacional?: SortOrder
+    use_ETANOL_COMUM_comb?: SortOrder
+    use_GASOLINA_COMUM_comb?: SortOrder
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: SortOrder
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: SortOrder
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -10519,6 +10655,10 @@ export namespace Prisma {
     use_lucro_bruto_operacional_galonagem?: number | null
     use_lucro_bruto_operacional_produto?: number | null
     use_lucro_bruto_operacional?: number | null
+    use_ETANOL_COMUM_comb?: number | null
+    use_GASOLINA_COMUM_comb?: number | null
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
     region_setvariables?: region_setvariablesCreateNestedManyWithoutUsersInput
   }
 
@@ -10541,6 +10681,10 @@ export namespace Prisma {
     use_lucro_bruto_operacional_galonagem?: number | null
     use_lucro_bruto_operacional_produto?: number | null
     use_lucro_bruto_operacional?: number | null
+    use_ETANOL_COMUM_comb?: number | null
+    use_GASOLINA_COMUM_comb?: number | null
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
     region_setvariables?: region_setvariablesUncheckedCreateNestedManyWithoutUsersInput
   }
 
@@ -10622,6 +10766,10 @@ export namespace Prisma {
     use_lucro_bruto_operacional_galonagem?: NullableFloatFieldUpdateOperationsInput | number | null
     use_lucro_bruto_operacional_produto?: NullableFloatFieldUpdateOperationsInput | number | null
     use_lucro_bruto_operacional?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_ETANOL_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_GASOLINA_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
     region_setvariables?: region_setvariablesUpdateManyWithoutUsersNestedInput
   }
 
@@ -10644,6 +10792,10 @@ export namespace Prisma {
     use_lucro_bruto_operacional_galonagem?: NullableFloatFieldUpdateOperationsInput | number | null
     use_lucro_bruto_operacional_produto?: NullableFloatFieldUpdateOperationsInput | number | null
     use_lucro_bruto_operacional?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_ETANOL_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_GASOLINA_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
     region_setvariables?: region_setvariablesUncheckedUpdateManyWithoutUsersNestedInput
   }
 
@@ -10693,6 +10845,10 @@ export namespace Prisma {
     use_lucro_bruto_operacional_galonagem?: number | null
     use_lucro_bruto_operacional_produto?: number | null
     use_lucro_bruto_operacional?: number | null
+    use_ETANOL_COMUM_comb?: number | null
+    use_GASOLINA_COMUM_comb?: number | null
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
     gas_station_setvariables?: gas_station_setvariablesCreateNestedManyWithoutUsersInput
   }
 
@@ -10715,6 +10871,10 @@ export namespace Prisma {
     use_lucro_bruto_operacional_galonagem?: number | null
     use_lucro_bruto_operacional_produto?: number | null
     use_lucro_bruto_operacional?: number | null
+    use_ETANOL_COMUM_comb?: number | null
+    use_GASOLINA_COMUM_comb?: number | null
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
     gas_station_setvariables?: gas_station_setvariablesUncheckedCreateNestedManyWithoutUsersInput
   }
 
@@ -10786,6 +10946,10 @@ export namespace Prisma {
     use_lucro_bruto_operacional_galonagem?: NullableFloatFieldUpdateOperationsInput | number | null
     use_lucro_bruto_operacional_produto?: NullableFloatFieldUpdateOperationsInput | number | null
     use_lucro_bruto_operacional?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_ETANOL_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_GASOLINA_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_setvariables?: gas_station_setvariablesUpdateManyWithoutUsersNestedInput
   }
 
@@ -10808,6 +10972,10 @@ export namespace Prisma {
     use_lucro_bruto_operacional_galonagem?: NullableFloatFieldUpdateOperationsInput | number | null
     use_lucro_bruto_operacional_produto?: NullableFloatFieldUpdateOperationsInput | number | null
     use_lucro_bruto_operacional?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_ETANOL_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_GASOLINA_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_setvariables?: gas_station_setvariablesUncheckedUpdateManyWithoutUsersNestedInput
   }
 
