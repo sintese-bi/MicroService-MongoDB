@@ -224,7 +224,9 @@ class DataController {
                 const use_tmvol = (flags?.use_tmp ?? 0) < secondary_value_galonagem
                 const lucro_operacional_galonagem = (flags?.use_lucro_bruto_operacional_galonagem ?? 0) < secondary_value_fuelProfit
                 const lucro_operacional_produto = (flags?.use_lucro_bruto_operacional_produto ?? 0) < secondary_value_productProfit
-                
+
+
+
                 return res.status(200).json({
                     data: [{ label: "Galonagem em Litros", value: Math.round(sumLiterage * 100) / 100, secondary_label: "TM VOL", secondary_value: Math.round((secondary_value_galonagem) * 100) / 100, third_label: "Status Margem", third_value: use_tmvol, fourth_label: "Margem definida", fourth_value: flags?.use_tmvol },
                     { label: "Faturamento da Rede", value: Math.round(sumFuelTotal * 100) / 100, secondary_label: "TMF", secondary_value: Math.round((secondary_value_fuel) * 100) / 100, third_label: "Status Margem", third_value: use_tmf, fourth_label: "Margem definida", fourth_value: flags?.use_tmf },
@@ -985,14 +987,34 @@ class DataController {
     public async mapData(req: Request, res: Response) {
         try {
             const clientToken = req.headers.authorization;
-
+            const { use_token }: any = req.params;
             if (!clientToken) {
                 return res.status(401).json({ message: "Token não fornecido." });
+            }
+            const secret = process.env.SECRET;
+            if (!secret) {
+                throw new Error('Chave secreta não definida. Verifique a variável de ambiente SECRET.');
+            }
+            const id_token = extractUserIdFromToken(use_token, secret)
+            if (!id_token) {
+                return res.status(400).json({ message: "Token de usuário inválido ou não fornecido." });
             }
             const expectedToken = process.env.TOKEN;
             if (clientToken == `Bearer ${expectedToken}`) {
                 const today = moment.tz('America/Sao_Paulo').format('YYYY-MM-DD')
-
+                const marginsDefined = await prismaRedeFlex.gas_station_setvariables.findMany({
+                    select: {
+                        gas_station_TMF_modal: true,
+                        gas_station_LUCRO_BRUTO_OPERACIONAL_modal: true,
+                        gas_station_TMC_modal: true,
+                        gas_station_TMP_modal: true,
+                        gas_station_TMVOL_modal: true,
+                        gas_station_MLT_modal: true,
+                        ibm_info_id: true,
+                        ibm_info: { select: { ibm: true, nomefantasia: true, } }
+                    }, where: { use_uuid: id_token }
+                })
+                const ibmsStations = await prismaRedeFlex.ibm_info.findMany({ select: { razaosocial: true, ibm: true, id: true } })
                 const result = await prismaSales.vendas.findMany({
                     select: { ibm: true, items: true },
                     where: {
@@ -1065,8 +1087,24 @@ class DataController {
                     station[element.ibm].push(...element.items);
 
                 })
+                type ItemType = {
+                    ibm: string;
+                    "M/LT": number;
+                    TMC: number;
+                    "TM VOL": number;
+                    TMP: number;
+                    TMF: number;
+                    LBO: number;
+                    tmf_comparisson: number;
+                    lucro_bruto_operacional_comparisson: number;
+                    tmc_comparisson: number;
+                    tmp_comparisson: number;
+                    tmvol_comparisson: number;
+                    mlt_comparisson: number;
+                    averageComparison: number;
+                };
 
-                let ibmvalues = []
+                let ibmvalues: ItemType[] = []
                 for (let ibm in station) {
                     let itemsArray = station[ibm];
                     const quantSupply = itemsArray.length
@@ -1117,17 +1155,55 @@ class DataController {
                     const valueTMP = quantSupply !== 0 ? (sumProductPrice / quantSupply) : 0
                     //TMF
                     const valueTMF = quantSupply !== 0 ? ((sumproduct + sumfuel) / quantSupply) : 0
-                    const averageReturn = (valueMLT < averageMLT) ? true : false
+                    //LBO
+                    const valueLBO = (sumproduct - sumProductPrice) !== 0 ? ((sumfuel - sumCostPrice) + (sumproduct - sumProductPrice)) / (sumproduct + sumfuel) : 0
+                    // const averageReturn = (valueMLT < averageMLT) ? true : false
 
                     // "Venda de Combustível": roundedSum, "Produtos vendidos": roundedProduct, "Galonagem": roundedLiterage,
                     ibmvalues.push({
                         ibm: ibm, "M/LT": Math.round(valueMLT * 100) / 100,
                         "TMC": Math.round((valueTMC) * 100) / 100, "TM VOL": Math.round((valueTMVOL) * 100) / 100, "TMP": Math.round((valueTMP) * 100) / 100,
-                        "TMF": Math.round((valueTMF) * 100) / 100, "averageComparison": averageReturn
+                        "TMF": Math.round((valueTMF) * 100) / 100, "LBO": Math.round((valueLBO) * 100) / 100, "averageComparison": 0,
+                        tmc_comparisson: 0, tmf_comparisson: 0, tmp_comparisson: 0, tmvol_comparisson: 0, mlt_comparisson: 0, lucro_bruto_operacional_comparisson: 0
                     });
                 }
 
-                return res.status(200).json({ data: ibmvalues })
+                marginsDefined.forEach(ibmNumber => {
+                    ibmvalues.forEach(item => {
+                        if (ibmNumber.ibm_info?.ibm === item.ibm) {
+                            item.tmc_comparisson = ibmNumber.gas_station_TMC_modal || 0;
+                            item.tmf_comparisson = ibmNumber.gas_station_TMF_modal || 0;
+                            item.tmp_comparisson = ibmNumber.gas_station_TMP_modal || 0;
+                            item.tmvol_comparisson = ibmNumber.gas_station_TMVOL_modal || 0;
+                            item.mlt_comparisson = ibmNumber.gas_station_MLT_modal || 0;
+                            item.lucro_bruto_operacional_comparisson = ibmNumber.gas_station_LUCRO_BRUTO_OPERACIONAL_modal || 0;
+                        }
+                    });
+                });
+
+
+                const ibmvaluesMap = ibmvalues.map(element => {
+
+                    if (element.LBO >= element.lucro_bruto_operacional_comparisson && element["M/LT"] >= element.mlt_comparisson
+                        && element["TM VOL"] >= element.tmvol_comparisson && element.TMC >= element.tmc_comparisson && element.TMF >= element.tmf_comparisson &&
+                        element.TMP >= element.tmp_comparisson) {
+                        element.averageComparison = 0
+                    } else if ((element["M/LT"] < element.mlt_comparisson ||
+                        element["TM VOL"] < element.tmvol_comparisson ||
+                        element.TMC < element.tmc_comparisson ||
+                        element.TMF < element.tmf_comparisson ||
+                        element.TMP < element.tmp_comparisson) &&
+                        element.LBO >= element.lucro_bruto_operacional_comparisson) {
+                        element.averageComparison = 1
+                    } else if (element.LBO < element.lucro_bruto_operacional_comparisson) {
+                        element.averageComparison = 2
+                    }
+                    return { ibm: element.ibm, "M/LT": element["M/LT"], TMC: element.TMC, "TM VOL": element["TM VOL"], TMP: element.TMP, TMF: element.TMF, LBO: element.LBO, averageComparison: element.averageComparison }
+                })
+
+
+
+                return res.status(200).json({ data: ibmvaluesMap })
             } else {
                 return res
                     .status(401)

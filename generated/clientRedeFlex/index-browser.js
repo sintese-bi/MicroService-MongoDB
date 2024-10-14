@@ -153,7 +153,11 @@ exports.Prisma.UsersScalarFieldEnum = {
   use_tmvol: 'use_tmvol',
   use_lucro_bruto_operacional_galonagem: 'use_lucro_bruto_operacional_galonagem',
   use_lucro_bruto_operacional_produto: 'use_lucro_bruto_operacional_produto',
-  use_lucro_bruto_operacional: 'use_lucro_bruto_operacional'
+  use_lucro_bruto_operacional: 'use_lucro_bruto_operacional',
+  use_ETANOL_COMUM_comb: 'use_ETANOL_COMUM_comb',
+  use_GASOLINA_COMUM_comb: 'use_GASOLINA_COMUM_comb',
+  use_OLEO_DIESEL_B_S10_COMUM_comb: 'use_OLEO_DIESEL_B_S10_COMUM_comb',
+  use_OLEO_DIESEL_B_S500_COMUM_comb: 'use_OLEO_DIESEL_B_S500_COMUM_comb'
 };
 
 exports.Prisma.Gas_station_setvariablesScalarFieldEnum = {
