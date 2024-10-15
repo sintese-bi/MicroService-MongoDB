@@ -3734,6 +3734,10 @@ export namespace Prisma {
     gas_station_TMF_modal: number | null
     gas_station_TMP_modal: number | null
     gas_station_TMVOL_modal: number | null
+    gas_station_ETANOL_COMUM_comb: number | null
+    gas_station_GASOLINA_COMUM_comb: number | null
+    gas_station_OLEO_DIESEL_B_S10_COMUM_comb: number | null
+    gas_station_OLEO_DIESEL_B_S500_COMUM_comb: number | null
   }
 
   export type Gas_station_setvariablesSumAggregateOutputType = {
@@ -3750,6 +3754,10 @@ export namespace Prisma {
     gas_station_TMF_modal: number | null
     gas_station_TMP_modal: number | null
     gas_station_TMVOL_modal: number | null
+    gas_station_ETANOL_COMUM_comb: number | null
+    gas_station_GASOLINA_COMUM_comb: number | null
+    gas_station_OLEO_DIESEL_B_S10_COMUM_comb: number | null
+    gas_station_OLEO_DIESEL_B_S500_COMUM_comb: number | null
   }
 
   export type Gas_station_setvariablesMinAggregateOutputType = {
@@ -3784,6 +3792,10 @@ export namespace Prisma {
     gas_station_TMF_modal: number | null
     gas_station_TMP_modal: number | null
     gas_station_TMVOL_modal: number | null
+    gas_station_ETANOL_COMUM_comb: number | null
+    gas_station_GASOLINA_COMUM_comb: number | null
+    gas_station_OLEO_DIESEL_B_S10_COMUM_comb: number | null
+    gas_station_OLEO_DIESEL_B_S500_COMUM_comb: number | null
   }
 
   export type Gas_station_setvariablesMaxAggregateOutputType = {
@@ -3818,6 +3830,10 @@ export namespace Prisma {
     gas_station_TMF_modal: number | null
     gas_station_TMP_modal: number | null
     gas_station_TMVOL_modal: number | null
+    gas_station_ETANOL_COMUM_comb: number | null
+    gas_station_GASOLINA_COMUM_comb: number | null
+    gas_station_OLEO_DIESEL_B_S10_COMUM_comb: number | null
+    gas_station_OLEO_DIESEL_B_S500_COMUM_comb: number | null
   }
 
   export type Gas_station_setvariablesCountAggregateOutputType = {
@@ -3853,6 +3869,10 @@ export namespace Prisma {
     gas_station_TMF_modal: number
     gas_station_TMP_modal: number
     gas_station_TMVOL_modal: number
+    gas_station_ETANOL_COMUM_comb: number
+    gas_station_GASOLINA_COMUM_comb: number
+    gas_station_OLEO_DIESEL_B_S10_COMUM_comb: number
+    gas_station_OLEO_DIESEL_B_S500_COMUM_comb: number
     _all: number
   }
 
@@ -3871,6 +3891,10 @@ export namespace Prisma {
     gas_station_TMF_modal?: true
     gas_station_TMP_modal?: true
     gas_station_TMVOL_modal?: true
+    gas_station_ETANOL_COMUM_comb?: true
+    gas_station_GASOLINA_COMUM_comb?: true
+    gas_station_OLEO_DIESEL_B_S10_COMUM_comb?: true
+    gas_station_OLEO_DIESEL_B_S500_COMUM_comb?: true
   }
 
   export type Gas_station_setvariablesSumAggregateInputType = {
@@ -3887,6 +3911,10 @@ export namespace Prisma {
     gas_station_TMF_modal?: true
     gas_station_TMP_modal?: true
     gas_station_TMVOL_modal?: true
+    gas_station_ETANOL_COMUM_comb?: true
+    gas_station_GASOLINA_COMUM_comb?: true
+    gas_station_OLEO_DIESEL_B_S10_COMUM_comb?: true
+    gas_station_OLEO_DIESEL_B_S500_COMUM_comb?: true
   }
 
   export type Gas_station_setvariablesMinAggregateInputType = {
@@ -3921,6 +3949,10 @@ export namespace Prisma {
     gas_station_TMF_modal?: true
     gas_station_TMP_modal?: true
     gas_station_TMVOL_modal?: true
+    gas_station_ETANOL_COMUM_comb?: true
+    gas_station_GASOLINA_COMUM_comb?: true
+    gas_station_OLEO_DIESEL_B_S10_COMUM_comb?: true
+    gas_station_OLEO_DIESEL_B_S500_COMUM_comb?: true
   }
 
   export type Gas_station_setvariablesMaxAggregateInputType = {
@@ -3955,6 +3987,10 @@ export namespace Prisma {
     gas_station_TMF_modal?: true
     gas_station_TMP_modal?: true
     gas_station_TMVOL_modal?: true
+    gas_station_ETANOL_COMUM_comb?: true
+    gas_station_GASOLINA_COMUM_comb?: true
+    gas_station_OLEO_DIESEL_B_S10_COMUM_comb?: true
+    gas_station_OLEO_DIESEL_B_S500_COMUM_comb?: true
   }
 
   export type Gas_station_setvariablesCountAggregateInputType = {
@@ -3990,6 +4026,10 @@ export namespace Prisma {
     gas_station_TMF_modal?: true
     gas_station_TMP_modal?: true
     gas_station_TMVOL_modal?: true
+    gas_station_ETANOL_COMUM_comb?: true
+    gas_station_GASOLINA_COMUM_comb?: true
+    gas_station_OLEO_DIESEL_B_S10_COMUM_comb?: true
+    gas_station_OLEO_DIESEL_B_S500_COMUM_comb?: true
     _all?: true
   }
 
@@ -4112,6 +4152,10 @@ export namespace Prisma {
     gas_station_TMF_modal: number | null
     gas_station_TMP_modal: number | null
     gas_station_TMVOL_modal: number | null
+    gas_station_ETANOL_COMUM_comb: number | null
+    gas_station_GASOLINA_COMUM_comb: number | null
+    gas_station_OLEO_DIESEL_B_S10_COMUM_comb: number | null
+    gas_station_OLEO_DIESEL_B_S500_COMUM_comb: number | null
     _count: Gas_station_setvariablesCountAggregateOutputType | null
     _avg: Gas_station_setvariablesAvgAggregateOutputType | null
     _sum: Gas_station_setvariablesSumAggregateOutputType | null
@@ -4166,6 +4210,10 @@ export namespace Prisma {
     gas_station_TMF_modal?: boolean
     gas_station_TMP_modal?: boolean
     gas_station_TMVOL_modal?: boolean
+    gas_station_ETANOL_COMUM_comb?: boolean
+    gas_station_GASOLINA_COMUM_comb?: boolean
+    gas_station_OLEO_DIESEL_B_S10_COMUM_comb?: boolean
+    gas_station_OLEO_DIESEL_B_S500_COMUM_comb?: boolean
     ibm_info?: boolean | gas_station_setvariables$ibm_infoArgs<ExtArgs>
     users?: boolean | gas_station_setvariables$usersArgs<ExtArgs>
   }, ExtArgs["result"]["gas_station_setvariables"]>
@@ -4203,6 +4251,10 @@ export namespace Prisma {
     gas_station_TMF_modal?: boolean
     gas_station_TMP_modal?: boolean
     gas_station_TMVOL_modal?: boolean
+    gas_station_ETANOL_COMUM_comb?: boolean
+    gas_station_GASOLINA_COMUM_comb?: boolean
+    gas_station_OLEO_DIESEL_B_S10_COMUM_comb?: boolean
+    gas_station_OLEO_DIESEL_B_S500_COMUM_comb?: boolean
     ibm_info?: boolean | gas_station_setvariables$ibm_infoArgs<ExtArgs>
     users?: boolean | gas_station_setvariables$usersArgs<ExtArgs>
   }, ExtArgs["result"]["gas_station_setvariables"]>
@@ -4240,6 +4292,10 @@ export namespace Prisma {
     gas_station_TMF_modal?: boolean
     gas_station_TMP_modal?: boolean
     gas_station_TMVOL_modal?: boolean
+    gas_station_ETANOL_COMUM_comb?: boolean
+    gas_station_GASOLINA_COMUM_comb?: boolean
+    gas_station_OLEO_DIESEL_B_S10_COMUM_comb?: boolean
+    gas_station_OLEO_DIESEL_B_S500_COMUM_comb?: boolean
   }
 
   export type gas_station_setvariablesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4290,6 +4346,10 @@ export namespace Prisma {
       gas_station_TMF_modal: number | null
       gas_station_TMP_modal: number | null
       gas_station_TMVOL_modal: number | null
+      gas_station_ETANOL_COMUM_comb: number | null
+      gas_station_GASOLINA_COMUM_comb: number | null
+      gas_station_OLEO_DIESEL_B_S10_COMUM_comb: number | null
+      gas_station_OLEO_DIESEL_B_S500_COMUM_comb: number | null
     }, ExtArgs["result"]["gas_station_setvariables"]>
     composites: {}
   }
@@ -4744,6 +4804,10 @@ export namespace Prisma {
     readonly gas_station_TMF_modal: FieldRef<"gas_station_setvariables", 'Float'>
     readonly gas_station_TMP_modal: FieldRef<"gas_station_setvariables", 'Float'>
     readonly gas_station_TMVOL_modal: FieldRef<"gas_station_setvariables", 'Float'>
+    readonly gas_station_ETANOL_COMUM_comb: FieldRef<"gas_station_setvariables", 'Float'>
+    readonly gas_station_GASOLINA_COMUM_comb: FieldRef<"gas_station_setvariables", 'Float'>
+    readonly gas_station_OLEO_DIESEL_B_S10_COMUM_comb: FieldRef<"gas_station_setvariables", 'Float'>
+    readonly gas_station_OLEO_DIESEL_B_S500_COMUM_comb: FieldRef<"gas_station_setvariables", 'Float'>
   }
     
 
@@ -7477,7 +7541,11 @@ export namespace Prisma {
     gas_station_TMC_modal: 'gas_station_TMC_modal',
     gas_station_TMF_modal: 'gas_station_TMF_modal',
     gas_station_TMP_modal: 'gas_station_TMP_modal',
-    gas_station_TMVOL_modal: 'gas_station_TMVOL_modal'
+    gas_station_TMVOL_modal: 'gas_station_TMVOL_modal',
+    gas_station_ETANOL_COMUM_comb: 'gas_station_ETANOL_COMUM_comb',
+    gas_station_GASOLINA_COMUM_comb: 'gas_station_GASOLINA_COMUM_comb',
+    gas_station_OLEO_DIESEL_B_S10_COMUM_comb: 'gas_station_OLEO_DIESEL_B_S10_COMUM_comb',
+    gas_station_OLEO_DIESEL_B_S500_COMUM_comb: 'gas_station_OLEO_DIESEL_B_S500_COMUM_comb'
   };
 
   export type Gas_station_setvariablesScalarFieldEnum = (typeof Gas_station_setvariablesScalarFieldEnum)[keyof typeof Gas_station_setvariablesScalarFieldEnum]
@@ -7898,6 +7966,10 @@ export namespace Prisma {
     gas_station_TMF_modal?: FloatNullableFilter<"gas_station_setvariables"> | number | null
     gas_station_TMP_modal?: FloatNullableFilter<"gas_station_setvariables"> | number | null
     gas_station_TMVOL_modal?: FloatNullableFilter<"gas_station_setvariables"> | number | null
+    gas_station_ETANOL_COMUM_comb?: FloatNullableFilter<"gas_station_setvariables"> | number | null
+    gas_station_GASOLINA_COMUM_comb?: FloatNullableFilter<"gas_station_setvariables"> | number | null
+    gas_station_OLEO_DIESEL_B_S10_COMUM_comb?: FloatNullableFilter<"gas_station_setvariables"> | number | null
+    gas_station_OLEO_DIESEL_B_S500_COMUM_comb?: FloatNullableFilter<"gas_station_setvariables"> | number | null
     ibm_info?: XOR<Ibm_infoNullableRelationFilter, ibm_infoWhereInput> | null
     users?: XOR<UsersNullableRelationFilter, usersWhereInput> | null
   }
@@ -7935,6 +8007,10 @@ export namespace Prisma {
     gas_station_TMF_modal?: SortOrderInput | SortOrder
     gas_station_TMP_modal?: SortOrderInput | SortOrder
     gas_station_TMVOL_modal?: SortOrderInput | SortOrder
+    gas_station_ETANOL_COMUM_comb?: SortOrderInput | SortOrder
+    gas_station_GASOLINA_COMUM_comb?: SortOrderInput | SortOrder
+    gas_station_OLEO_DIESEL_B_S10_COMUM_comb?: SortOrderInput | SortOrder
+    gas_station_OLEO_DIESEL_B_S500_COMUM_comb?: SortOrderInput | SortOrder
     ibm_info?: ibm_infoOrderByWithRelationInput
     users?: usersOrderByWithRelationInput
   }
@@ -7975,6 +8051,10 @@ export namespace Prisma {
     gas_station_TMF_modal?: FloatNullableFilter<"gas_station_setvariables"> | number | null
     gas_station_TMP_modal?: FloatNullableFilter<"gas_station_setvariables"> | number | null
     gas_station_TMVOL_modal?: FloatNullableFilter<"gas_station_setvariables"> | number | null
+    gas_station_ETANOL_COMUM_comb?: FloatNullableFilter<"gas_station_setvariables"> | number | null
+    gas_station_GASOLINA_COMUM_comb?: FloatNullableFilter<"gas_station_setvariables"> | number | null
+    gas_station_OLEO_DIESEL_B_S10_COMUM_comb?: FloatNullableFilter<"gas_station_setvariables"> | number | null
+    gas_station_OLEO_DIESEL_B_S500_COMUM_comb?: FloatNullableFilter<"gas_station_setvariables"> | number | null
     ibm_info?: XOR<Ibm_infoNullableRelationFilter, ibm_infoWhereInput> | null
     users?: XOR<UsersNullableRelationFilter, usersWhereInput> | null
   }, "gas_station_uuid">
@@ -8012,6 +8092,10 @@ export namespace Prisma {
     gas_station_TMF_modal?: SortOrderInput | SortOrder
     gas_station_TMP_modal?: SortOrderInput | SortOrder
     gas_station_TMVOL_modal?: SortOrderInput | SortOrder
+    gas_station_ETANOL_COMUM_comb?: SortOrderInput | SortOrder
+    gas_station_GASOLINA_COMUM_comb?: SortOrderInput | SortOrder
+    gas_station_OLEO_DIESEL_B_S10_COMUM_comb?: SortOrderInput | SortOrder
+    gas_station_OLEO_DIESEL_B_S500_COMUM_comb?: SortOrderInput | SortOrder
     _count?: gas_station_setvariablesCountOrderByAggregateInput
     _avg?: gas_station_setvariablesAvgOrderByAggregateInput
     _max?: gas_station_setvariablesMaxOrderByAggregateInput
@@ -8055,6 +8139,10 @@ export namespace Prisma {
     gas_station_TMF_modal?: FloatNullableWithAggregatesFilter<"gas_station_setvariables"> | number | null
     gas_station_TMP_modal?: FloatNullableWithAggregatesFilter<"gas_station_setvariables"> | number | null
     gas_station_TMVOL_modal?: FloatNullableWithAggregatesFilter<"gas_station_setvariables"> | number | null
+    gas_station_ETANOL_COMUM_comb?: FloatNullableWithAggregatesFilter<"gas_station_setvariables"> | number | null
+    gas_station_GASOLINA_COMUM_comb?: FloatNullableWithAggregatesFilter<"gas_station_setvariables"> | number | null
+    gas_station_OLEO_DIESEL_B_S10_COMUM_comb?: FloatNullableWithAggregatesFilter<"gas_station_setvariables"> | number | null
+    gas_station_OLEO_DIESEL_B_S500_COMUM_comb?: FloatNullableWithAggregatesFilter<"gas_station_setvariables"> | number | null
   }
 
   export type region_setvariablesWhereInput = {
@@ -8604,6 +8692,10 @@ export namespace Prisma {
     gas_station_TMF_modal?: number | null
     gas_station_TMP_modal?: number | null
     gas_station_TMVOL_modal?: number | null
+    gas_station_ETANOL_COMUM_comb?: number | null
+    gas_station_GASOLINA_COMUM_comb?: number | null
+    gas_station_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
+    gas_station_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
     ibm_info?: ibm_infoCreateNestedOneWithoutGas_station_setvariablesInput
     users?: usersCreateNestedOneWithoutGas_station_setvariablesInput
   }
@@ -8641,6 +8733,10 @@ export namespace Prisma {
     gas_station_TMF_modal?: number | null
     gas_station_TMP_modal?: number | null
     gas_station_TMVOL_modal?: number | null
+    gas_station_ETANOL_COMUM_comb?: number | null
+    gas_station_GASOLINA_COMUM_comb?: number | null
+    gas_station_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
+    gas_station_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
   }
 
   export type gas_station_setvariablesUpdateInput = {
@@ -8674,6 +8770,10 @@ export namespace Prisma {
     gas_station_TMF_modal?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_TMP_modal?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_TMVOL_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_ETANOL_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_GASOLINA_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
     ibm_info?: ibm_infoUpdateOneWithoutGas_station_setvariablesNestedInput
     users?: usersUpdateOneWithoutGas_station_setvariablesNestedInput
   }
@@ -8711,6 +8811,10 @@ export namespace Prisma {
     gas_station_TMF_modal?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_TMP_modal?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_TMVOL_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_ETANOL_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_GASOLINA_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type gas_station_setvariablesCreateManyInput = {
@@ -8746,6 +8850,10 @@ export namespace Prisma {
     gas_station_TMF_modal?: number | null
     gas_station_TMP_modal?: number | null
     gas_station_TMVOL_modal?: number | null
+    gas_station_ETANOL_COMUM_comb?: number | null
+    gas_station_GASOLINA_COMUM_comb?: number | null
+    gas_station_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
+    gas_station_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
   }
 
   export type gas_station_setvariablesUpdateManyMutationInput = {
@@ -8779,6 +8887,10 @@ export namespace Prisma {
     gas_station_TMF_modal?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_TMP_modal?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_TMVOL_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_ETANOL_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_GASOLINA_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type gas_station_setvariablesUncheckedUpdateManyInput = {
@@ -8814,6 +8926,10 @@ export namespace Prisma {
     gas_station_TMF_modal?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_TMP_modal?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_TMVOL_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_ETANOL_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_GASOLINA_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type region_setvariablesCreateInput = {
@@ -9469,6 +9585,10 @@ export namespace Prisma {
     gas_station_TMF_modal?: SortOrder
     gas_station_TMP_modal?: SortOrder
     gas_station_TMVOL_modal?: SortOrder
+    gas_station_ETANOL_COMUM_comb?: SortOrder
+    gas_station_GASOLINA_COMUM_comb?: SortOrder
+    gas_station_OLEO_DIESEL_B_S10_COMUM_comb?: SortOrder
+    gas_station_OLEO_DIESEL_B_S500_COMUM_comb?: SortOrder
   }
 
   export type gas_station_setvariablesAvgOrderByAggregateInput = {
@@ -9485,6 +9605,10 @@ export namespace Prisma {
     gas_station_TMF_modal?: SortOrder
     gas_station_TMP_modal?: SortOrder
     gas_station_TMVOL_modal?: SortOrder
+    gas_station_ETANOL_COMUM_comb?: SortOrder
+    gas_station_GASOLINA_COMUM_comb?: SortOrder
+    gas_station_OLEO_DIESEL_B_S10_COMUM_comb?: SortOrder
+    gas_station_OLEO_DIESEL_B_S500_COMUM_comb?: SortOrder
   }
 
   export type gas_station_setvariablesMaxOrderByAggregateInput = {
@@ -9519,6 +9643,10 @@ export namespace Prisma {
     gas_station_TMF_modal?: SortOrder
     gas_station_TMP_modal?: SortOrder
     gas_station_TMVOL_modal?: SortOrder
+    gas_station_ETANOL_COMUM_comb?: SortOrder
+    gas_station_GASOLINA_COMUM_comb?: SortOrder
+    gas_station_OLEO_DIESEL_B_S10_COMUM_comb?: SortOrder
+    gas_station_OLEO_DIESEL_B_S500_COMUM_comb?: SortOrder
   }
 
   export type gas_station_setvariablesMinOrderByAggregateInput = {
@@ -9553,6 +9681,10 @@ export namespace Prisma {
     gas_station_TMF_modal?: SortOrder
     gas_station_TMP_modal?: SortOrder
     gas_station_TMVOL_modal?: SortOrder
+    gas_station_ETANOL_COMUM_comb?: SortOrder
+    gas_station_GASOLINA_COMUM_comb?: SortOrder
+    gas_station_OLEO_DIESEL_B_S10_COMUM_comb?: SortOrder
+    gas_station_OLEO_DIESEL_B_S500_COMUM_comb?: SortOrder
   }
 
   export type gas_station_setvariablesSumOrderByAggregateInput = {
@@ -9569,6 +9701,10 @@ export namespace Prisma {
     gas_station_TMF_modal?: SortOrder
     gas_station_TMP_modal?: SortOrder
     gas_station_TMVOL_modal?: SortOrder
+    gas_station_ETANOL_COMUM_comb?: SortOrder
+    gas_station_GASOLINA_COMUM_comb?: SortOrder
+    gas_station_OLEO_DIESEL_B_S10_COMUM_comb?: SortOrder
+    gas_station_OLEO_DIESEL_B_S500_COMUM_comb?: SortOrder
   }
 
   export type BoolNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -10302,6 +10438,10 @@ export namespace Prisma {
     gas_station_TMF_modal?: number | null
     gas_station_TMP_modal?: number | null
     gas_station_TMVOL_modal?: number | null
+    gas_station_ETANOL_COMUM_comb?: number | null
+    gas_station_GASOLINA_COMUM_comb?: number | null
+    gas_station_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
+    gas_station_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
     users?: usersCreateNestedOneWithoutGas_station_setvariablesInput
   }
 
@@ -10337,6 +10477,10 @@ export namespace Prisma {
     gas_station_TMF_modal?: number | null
     gas_station_TMP_modal?: number | null
     gas_station_TMVOL_modal?: number | null
+    gas_station_ETANOL_COMUM_comb?: number | null
+    gas_station_GASOLINA_COMUM_comb?: number | null
+    gas_station_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
+    gas_station_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
   }
 
   export type gas_station_setvariablesCreateOrConnectWithoutIbm_infoInput = {
@@ -10401,6 +10545,10 @@ export namespace Prisma {
     gas_station_TMF_modal?: FloatNullableFilter<"gas_station_setvariables"> | number | null
     gas_station_TMP_modal?: FloatNullableFilter<"gas_station_setvariables"> | number | null
     gas_station_TMVOL_modal?: FloatNullableFilter<"gas_station_setvariables"> | number | null
+    gas_station_ETANOL_COMUM_comb?: FloatNullableFilter<"gas_station_setvariables"> | number | null
+    gas_station_GASOLINA_COMUM_comb?: FloatNullableFilter<"gas_station_setvariables"> | number | null
+    gas_station_OLEO_DIESEL_B_S10_COMUM_comb?: FloatNullableFilter<"gas_station_setvariables"> | number | null
+    gas_station_OLEO_DIESEL_B_S500_COMUM_comb?: FloatNullableFilter<"gas_station_setvariables"> | number | null
   }
 
   export type gas_station_setvariablesCreateWithoutUsersInput = {
@@ -10434,6 +10582,10 @@ export namespace Prisma {
     gas_station_TMF_modal?: number | null
     gas_station_TMP_modal?: number | null
     gas_station_TMVOL_modal?: number | null
+    gas_station_ETANOL_COMUM_comb?: number | null
+    gas_station_GASOLINA_COMUM_comb?: number | null
+    gas_station_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
+    gas_station_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
     ibm_info?: ibm_infoCreateNestedOneWithoutGas_station_setvariablesInput
   }
 
@@ -10469,6 +10621,10 @@ export namespace Prisma {
     gas_station_TMF_modal?: number | null
     gas_station_TMP_modal?: number | null
     gas_station_TMVOL_modal?: number | null
+    gas_station_ETANOL_COMUM_comb?: number | null
+    gas_station_GASOLINA_COMUM_comb?: number | null
+    gas_station_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
+    gas_station_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
   }
 
   export type gas_station_setvariablesCreateOrConnectWithoutUsersInput = {
@@ -11085,6 +11241,10 @@ export namespace Prisma {
     gas_station_TMF_modal?: number | null
     gas_station_TMP_modal?: number | null
     gas_station_TMVOL_modal?: number | null
+    gas_station_ETANOL_COMUM_comb?: number | null
+    gas_station_GASOLINA_COMUM_comb?: number | null
+    gas_station_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
+    gas_station_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
   }
 
   export type gas_station_setvariablesUpdateWithoutIbm_infoInput = {
@@ -11118,6 +11278,10 @@ export namespace Prisma {
     gas_station_TMF_modal?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_TMP_modal?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_TMVOL_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_ETANOL_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_GASOLINA_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
     users?: usersUpdateOneWithoutGas_station_setvariablesNestedInput
   }
 
@@ -11153,6 +11317,10 @@ export namespace Prisma {
     gas_station_TMF_modal?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_TMP_modal?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_TMVOL_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_ETANOL_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_GASOLINA_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type gas_station_setvariablesUncheckedUpdateManyWithoutIbm_infoInput = {
@@ -11187,6 +11355,10 @@ export namespace Prisma {
     gas_station_TMF_modal?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_TMP_modal?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_TMVOL_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_ETANOL_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_GASOLINA_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type gas_station_setvariablesCreateManyUsersInput = {
@@ -11221,6 +11393,10 @@ export namespace Prisma {
     gas_station_TMF_modal?: number | null
     gas_station_TMP_modal?: number | null
     gas_station_TMVOL_modal?: number | null
+    gas_station_ETANOL_COMUM_comb?: number | null
+    gas_station_GASOLINA_COMUM_comb?: number | null
+    gas_station_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
+    gas_station_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
   }
 
   export type region_setvariablesCreateManyUsersInput = {
@@ -11278,6 +11454,10 @@ export namespace Prisma {
     gas_station_TMF_modal?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_TMP_modal?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_TMVOL_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_ETANOL_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_GASOLINA_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
     ibm_info?: ibm_infoUpdateOneWithoutGas_station_setvariablesNestedInput
   }
 
@@ -11313,6 +11493,10 @@ export namespace Prisma {
     gas_station_TMF_modal?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_TMP_modal?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_TMVOL_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_ETANOL_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_GASOLINA_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type gas_station_setvariablesUncheckedUpdateManyWithoutUsersInput = {
@@ -11347,6 +11531,10 @@ export namespace Prisma {
     gas_station_TMF_modal?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_TMP_modal?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_TMVOL_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_ETANOL_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_GASOLINA_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type region_setvariablesUpdateWithoutUsersInput = {
