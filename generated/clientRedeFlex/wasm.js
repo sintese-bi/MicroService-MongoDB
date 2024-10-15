@@ -192,7 +192,11 @@ exports.Prisma.Gas_station_setvariablesScalarFieldEnum = {
   gas_station_TMC_modal: 'gas_station_TMC_modal',
   gas_station_TMF_modal: 'gas_station_TMF_modal',
   gas_station_TMP_modal: 'gas_station_TMP_modal',
-  gas_station_TMVOL_modal: 'gas_station_TMVOL_modal'
+  gas_station_TMVOL_modal: 'gas_station_TMVOL_modal',
+  gas_station_ETANOL_COMUM_comb: 'gas_station_ETANOL_COMUM_comb',
+  gas_station_GASOLINA_COMUM_comb: 'gas_station_GASOLINA_COMUM_comb',
+  gas_station_OLEO_DIESEL_B_S10_COMUM_comb: 'gas_station_OLEO_DIESEL_B_S10_COMUM_comb',
+  gas_station_OLEO_DIESEL_B_S500_COMUM_comb: 'gas_station_OLEO_DIESEL_B_S500_COMUM_comb'
 };
 
 exports.Prisma.Region_setvariablesScalarFieldEnum = {
