@@ -5186,12 +5186,36 @@ export namespace Prisma {
     region_marginGC: number | null
     region_marginAL: number | null
     region_margin_ETANOL_HIDRATADO_COMBUSTIVEL: number | null
+    region_station_ETANOL_COMUM_comb: number | null
+    region_station_GASOLINA_COMUM_comb: number | null
+    region_station_LUCRO_BRUTO_GALONAGEM_modal: number | null
+    region_station_LUCRO_BRUTO_OPERACIONAL_modal: number | null
+    region_station_LUCRO_BRUTO_PRODUTO_modal: number | null
+    region_station_MLT_modal: number | null
+    region_station_OLEO_DIESEL_B_S10_COMUM_comb: number | null
+    region_station_OLEO_DIESEL_B_S500_COMUM_comb: number | null
+    region_station_TMC_modal: number | null
+    region_station_TMF_modal: number | null
+    region_station_TMP_modal: number | null
+    region_station_TMVOL_modal: number | null
   }
 
   export type Region_setvariablesSumAggregateOutputType = {
     region_marginGC: number | null
     region_marginAL: number | null
     region_margin_ETANOL_HIDRATADO_COMBUSTIVEL: number | null
+    region_station_ETANOL_COMUM_comb: number | null
+    region_station_GASOLINA_COMUM_comb: number | null
+    region_station_LUCRO_BRUTO_GALONAGEM_modal: number | null
+    region_station_LUCRO_BRUTO_OPERACIONAL_modal: number | null
+    region_station_LUCRO_BRUTO_PRODUTO_modal: number | null
+    region_station_MLT_modal: number | null
+    region_station_OLEO_DIESEL_B_S10_COMUM_comb: number | null
+    region_station_OLEO_DIESEL_B_S500_COMUM_comb: number | null
+    region_station_TMC_modal: number | null
+    region_station_TMF_modal: number | null
+    region_station_TMP_modal: number | null
+    region_station_TMVOL_modal: number | null
   }
 
   export type Region_setvariablesMinAggregateOutputType = {
@@ -5216,6 +5240,18 @@ export namespace Prisma {
     region_sanado_marginAL: boolean | null
     region_sanado_marginGC: boolean | null
     region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL: boolean | null
+    region_station_ETANOL_COMUM_comb: number | null
+    region_station_GASOLINA_COMUM_comb: number | null
+    region_station_LUCRO_BRUTO_GALONAGEM_modal: number | null
+    region_station_LUCRO_BRUTO_OPERACIONAL_modal: number | null
+    region_station_LUCRO_BRUTO_PRODUTO_modal: number | null
+    region_station_MLT_modal: number | null
+    region_station_OLEO_DIESEL_B_S10_COMUM_comb: number | null
+    region_station_OLEO_DIESEL_B_S500_COMUM_comb: number | null
+    region_station_TMC_modal: number | null
+    region_station_TMF_modal: number | null
+    region_station_TMP_modal: number | null
+    region_station_TMVOL_modal: number | null
   }
 
   export type Region_setvariablesMaxAggregateOutputType = {
@@ -5240,6 +5276,18 @@ export namespace Prisma {
     region_sanado_marginAL: boolean | null
     region_sanado_marginGC: boolean | null
     region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL: boolean | null
+    region_station_ETANOL_COMUM_comb: number | null
+    region_station_GASOLINA_COMUM_comb: number | null
+    region_station_LUCRO_BRUTO_GALONAGEM_modal: number | null
+    region_station_LUCRO_BRUTO_OPERACIONAL_modal: number | null
+    region_station_LUCRO_BRUTO_PRODUTO_modal: number | null
+    region_station_MLT_modal: number | null
+    region_station_OLEO_DIESEL_B_S10_COMUM_comb: number | null
+    region_station_OLEO_DIESEL_B_S500_COMUM_comb: number | null
+    region_station_TMC_modal: number | null
+    region_station_TMF_modal: number | null
+    region_station_TMP_modal: number | null
+    region_station_TMVOL_modal: number | null
   }
 
   export type Region_setvariablesCountAggregateOutputType = {
@@ -5265,6 +5313,18 @@ export namespace Prisma {
     region_sanado_marginAL: number
     region_sanado_marginGC: number
     region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL: number
+    region_station_ETANOL_COMUM_comb: number
+    region_station_GASOLINA_COMUM_comb: number
+    region_station_LUCRO_BRUTO_GALONAGEM_modal: number
+    region_station_LUCRO_BRUTO_OPERACIONAL_modal: number
+    region_station_LUCRO_BRUTO_PRODUTO_modal: number
+    region_station_MLT_modal: number
+    region_station_OLEO_DIESEL_B_S10_COMUM_comb: number
+    region_station_OLEO_DIESEL_B_S500_COMUM_comb: number
+    region_station_TMC_modal: number
+    region_station_TMF_modal: number
+    region_station_TMP_modal: number
+    region_station_TMVOL_modal: number
     _all: number
   }
 
@@ -5273,12 +5333,36 @@ export namespace Prisma {
     region_marginGC?: true
     region_marginAL?: true
     region_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
+    region_station_ETANOL_COMUM_comb?: true
+    region_station_GASOLINA_COMUM_comb?: true
+    region_station_LUCRO_BRUTO_GALONAGEM_modal?: true
+    region_station_LUCRO_BRUTO_OPERACIONAL_modal?: true
+    region_station_LUCRO_BRUTO_PRODUTO_modal?: true
+    region_station_MLT_modal?: true
+    region_station_OLEO_DIESEL_B_S10_COMUM_comb?: true
+    region_station_OLEO_DIESEL_B_S500_COMUM_comb?: true
+    region_station_TMC_modal?: true
+    region_station_TMF_modal?: true
+    region_station_TMP_modal?: true
+    region_station_TMVOL_modal?: true
   }
 
   export type Region_setvariablesSumAggregateInputType = {
     region_marginGC?: true
     region_marginAL?: true
     region_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
+    region_station_ETANOL_COMUM_comb?: true
+    region_station_GASOLINA_COMUM_comb?: true
+    region_station_LUCRO_BRUTO_GALONAGEM_modal?: true
+    region_station_LUCRO_BRUTO_OPERACIONAL_modal?: true
+    region_station_LUCRO_BRUTO_PRODUTO_modal?: true
+    region_station_MLT_modal?: true
+    region_station_OLEO_DIESEL_B_S10_COMUM_comb?: true
+    region_station_OLEO_DIESEL_B_S500_COMUM_comb?: true
+    region_station_TMC_modal?: true
+    region_station_TMF_modal?: true
+    region_station_TMP_modal?: true
+    region_station_TMVOL_modal?: true
   }
 
   export type Region_setvariablesMinAggregateInputType = {
@@ -5303,6 +5387,18 @@ export namespace Prisma {
     region_sanado_marginAL?: true
     region_sanado_marginGC?: true
     region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
+    region_station_ETANOL_COMUM_comb?: true
+    region_station_GASOLINA_COMUM_comb?: true
+    region_station_LUCRO_BRUTO_GALONAGEM_modal?: true
+    region_station_LUCRO_BRUTO_OPERACIONAL_modal?: true
+    region_station_LUCRO_BRUTO_PRODUTO_modal?: true
+    region_station_MLT_modal?: true
+    region_station_OLEO_DIESEL_B_S10_COMUM_comb?: true
+    region_station_OLEO_DIESEL_B_S500_COMUM_comb?: true
+    region_station_TMC_modal?: true
+    region_station_TMF_modal?: true
+    region_station_TMP_modal?: true
+    region_station_TMVOL_modal?: true
   }
 
   export type Region_setvariablesMaxAggregateInputType = {
@@ -5327,6 +5423,18 @@ export namespace Prisma {
     region_sanado_marginAL?: true
     region_sanado_marginGC?: true
     region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
+    region_station_ETANOL_COMUM_comb?: true
+    region_station_GASOLINA_COMUM_comb?: true
+    region_station_LUCRO_BRUTO_GALONAGEM_modal?: true
+    region_station_LUCRO_BRUTO_OPERACIONAL_modal?: true
+    region_station_LUCRO_BRUTO_PRODUTO_modal?: true
+    region_station_MLT_modal?: true
+    region_station_OLEO_DIESEL_B_S10_COMUM_comb?: true
+    region_station_OLEO_DIESEL_B_S500_COMUM_comb?: true
+    region_station_TMC_modal?: true
+    region_station_TMF_modal?: true
+    region_station_TMP_modal?: true
+    region_station_TMVOL_modal?: true
   }
 
   export type Region_setvariablesCountAggregateInputType = {
@@ -5352,6 +5460,18 @@ export namespace Prisma {
     region_sanado_marginAL?: true
     region_sanado_marginGC?: true
     region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
+    region_station_ETANOL_COMUM_comb?: true
+    region_station_GASOLINA_COMUM_comb?: true
+    region_station_LUCRO_BRUTO_GALONAGEM_modal?: true
+    region_station_LUCRO_BRUTO_OPERACIONAL_modal?: true
+    region_station_LUCRO_BRUTO_PRODUTO_modal?: true
+    region_station_MLT_modal?: true
+    region_station_OLEO_DIESEL_B_S10_COMUM_comb?: true
+    region_station_OLEO_DIESEL_B_S500_COMUM_comb?: true
+    region_station_TMC_modal?: true
+    region_station_TMF_modal?: true
+    region_station_TMP_modal?: true
+    region_station_TMVOL_modal?: true
     _all?: true
   }
 
@@ -5464,6 +5584,18 @@ export namespace Prisma {
     region_sanado_marginAL: boolean | null
     region_sanado_marginGC: boolean | null
     region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL: boolean | null
+    region_station_ETANOL_COMUM_comb: number | null
+    region_station_GASOLINA_COMUM_comb: number | null
+    region_station_LUCRO_BRUTO_GALONAGEM_modal: number | null
+    region_station_LUCRO_BRUTO_OPERACIONAL_modal: number | null
+    region_station_LUCRO_BRUTO_PRODUTO_modal: number | null
+    region_station_MLT_modal: number | null
+    region_station_OLEO_DIESEL_B_S10_COMUM_comb: number | null
+    region_station_OLEO_DIESEL_B_S500_COMUM_comb: number | null
+    region_station_TMC_modal: number | null
+    region_station_TMF_modal: number | null
+    region_station_TMP_modal: number | null
+    region_station_TMVOL_modal: number | null
     _count: Region_setvariablesCountAggregateOutputType | null
     _avg: Region_setvariablesAvgAggregateOutputType | null
     _sum: Region_setvariablesSumAggregateOutputType | null
@@ -5508,6 +5640,18 @@ export namespace Prisma {
     region_sanado_marginAL?: boolean
     region_sanado_marginGC?: boolean
     region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
+    region_station_ETANOL_COMUM_comb?: boolean
+    region_station_GASOLINA_COMUM_comb?: boolean
+    region_station_LUCRO_BRUTO_GALONAGEM_modal?: boolean
+    region_station_LUCRO_BRUTO_OPERACIONAL_modal?: boolean
+    region_station_LUCRO_BRUTO_PRODUTO_modal?: boolean
+    region_station_MLT_modal?: boolean
+    region_station_OLEO_DIESEL_B_S10_COMUM_comb?: boolean
+    region_station_OLEO_DIESEL_B_S500_COMUM_comb?: boolean
+    region_station_TMC_modal?: boolean
+    region_station_TMF_modal?: boolean
+    region_station_TMP_modal?: boolean
+    region_station_TMVOL_modal?: boolean
     regions?: boolean | region_setvariables$regionsArgs<ExtArgs>
     users?: boolean | region_setvariables$usersArgs<ExtArgs>
   }, ExtArgs["result"]["region_setvariables"]>
@@ -5535,6 +5679,18 @@ export namespace Prisma {
     region_sanado_marginAL?: boolean
     region_sanado_marginGC?: boolean
     region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
+    region_station_ETANOL_COMUM_comb?: boolean
+    region_station_GASOLINA_COMUM_comb?: boolean
+    region_station_LUCRO_BRUTO_GALONAGEM_modal?: boolean
+    region_station_LUCRO_BRUTO_OPERACIONAL_modal?: boolean
+    region_station_LUCRO_BRUTO_PRODUTO_modal?: boolean
+    region_station_MLT_modal?: boolean
+    region_station_OLEO_DIESEL_B_S10_COMUM_comb?: boolean
+    region_station_OLEO_DIESEL_B_S500_COMUM_comb?: boolean
+    region_station_TMC_modal?: boolean
+    region_station_TMF_modal?: boolean
+    region_station_TMP_modal?: boolean
+    region_station_TMVOL_modal?: boolean
     regions?: boolean | region_setvariables$regionsArgs<ExtArgs>
     users?: boolean | region_setvariables$usersArgs<ExtArgs>
   }, ExtArgs["result"]["region_setvariables"]>
@@ -5562,6 +5718,18 @@ export namespace Prisma {
     region_sanado_marginAL?: boolean
     region_sanado_marginGC?: boolean
     region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
+    region_station_ETANOL_COMUM_comb?: boolean
+    region_station_GASOLINA_COMUM_comb?: boolean
+    region_station_LUCRO_BRUTO_GALONAGEM_modal?: boolean
+    region_station_LUCRO_BRUTO_OPERACIONAL_modal?: boolean
+    region_station_LUCRO_BRUTO_PRODUTO_modal?: boolean
+    region_station_MLT_modal?: boolean
+    region_station_OLEO_DIESEL_B_S10_COMUM_comb?: boolean
+    region_station_OLEO_DIESEL_B_S500_COMUM_comb?: boolean
+    region_station_TMC_modal?: boolean
+    region_station_TMF_modal?: boolean
+    region_station_TMP_modal?: boolean
+    region_station_TMVOL_modal?: boolean
   }
 
   export type region_setvariablesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5602,6 +5770,18 @@ export namespace Prisma {
       region_sanado_marginAL: boolean | null
       region_sanado_marginGC: boolean | null
       region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL: boolean | null
+      region_station_ETANOL_COMUM_comb: number | null
+      region_station_GASOLINA_COMUM_comb: number | null
+      region_station_LUCRO_BRUTO_GALONAGEM_modal: number | null
+      region_station_LUCRO_BRUTO_OPERACIONAL_modal: number | null
+      region_station_LUCRO_BRUTO_PRODUTO_modal: number | null
+      region_station_MLT_modal: number | null
+      region_station_OLEO_DIESEL_B_S10_COMUM_comb: number | null
+      region_station_OLEO_DIESEL_B_S500_COMUM_comb: number | null
+      region_station_TMC_modal: number | null
+      region_station_TMF_modal: number | null
+      region_station_TMP_modal: number | null
+      region_station_TMVOL_modal: number | null
     }, ExtArgs["result"]["region_setvariables"]>
     composites: {}
   }
@@ -6046,6 +6226,18 @@ export namespace Prisma {
     readonly region_sanado_marginAL: FieldRef<"region_setvariables", 'Boolean'>
     readonly region_sanado_marginGC: FieldRef<"region_setvariables", 'Boolean'>
     readonly region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL: FieldRef<"region_setvariables", 'Boolean'>
+    readonly region_station_ETANOL_COMUM_comb: FieldRef<"region_setvariables", 'Float'>
+    readonly region_station_GASOLINA_COMUM_comb: FieldRef<"region_setvariables", 'Float'>
+    readonly region_station_LUCRO_BRUTO_GALONAGEM_modal: FieldRef<"region_setvariables", 'Float'>
+    readonly region_station_LUCRO_BRUTO_OPERACIONAL_modal: FieldRef<"region_setvariables", 'Float'>
+    readonly region_station_LUCRO_BRUTO_PRODUTO_modal: FieldRef<"region_setvariables", 'Float'>
+    readonly region_station_MLT_modal: FieldRef<"region_setvariables", 'Float'>
+    readonly region_station_OLEO_DIESEL_B_S10_COMUM_comb: FieldRef<"region_setvariables", 'Float'>
+    readonly region_station_OLEO_DIESEL_B_S500_COMUM_comb: FieldRef<"region_setvariables", 'Float'>
+    readonly region_station_TMC_modal: FieldRef<"region_setvariables", 'Float'>
+    readonly region_station_TMF_modal: FieldRef<"region_setvariables", 'Float'>
+    readonly region_station_TMP_modal: FieldRef<"region_setvariables", 'Float'>
+    readonly region_station_TMVOL_modal: FieldRef<"region_setvariables", 'Float'>
   }
     
 
@@ -7573,7 +7765,19 @@ export namespace Prisma {
     region_sanado_hour_marginGC: 'region_sanado_hour_marginGC',
     region_sanado_marginAL: 'region_sanado_marginAL',
     region_sanado_marginGC: 'region_sanado_marginGC',
-    region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL: 'region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL'
+    region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL: 'region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL',
+    region_station_ETANOL_COMUM_comb: 'region_station_ETANOL_COMUM_comb',
+    region_station_GASOLINA_COMUM_comb: 'region_station_GASOLINA_COMUM_comb',
+    region_station_LUCRO_BRUTO_GALONAGEM_modal: 'region_station_LUCRO_BRUTO_GALONAGEM_modal',
+    region_station_LUCRO_BRUTO_OPERACIONAL_modal: 'region_station_LUCRO_BRUTO_OPERACIONAL_modal',
+    region_station_LUCRO_BRUTO_PRODUTO_modal: 'region_station_LUCRO_BRUTO_PRODUTO_modal',
+    region_station_MLT_modal: 'region_station_MLT_modal',
+    region_station_OLEO_DIESEL_B_S10_COMUM_comb: 'region_station_OLEO_DIESEL_B_S10_COMUM_comb',
+    region_station_OLEO_DIESEL_B_S500_COMUM_comb: 'region_station_OLEO_DIESEL_B_S500_COMUM_comb',
+    region_station_TMC_modal: 'region_station_TMC_modal',
+    region_station_TMF_modal: 'region_station_TMF_modal',
+    region_station_TMP_modal: 'region_station_TMP_modal',
+    region_station_TMVOL_modal: 'region_station_TMVOL_modal'
   };
 
   export type Region_setvariablesScalarFieldEnum = (typeof Region_setvariablesScalarFieldEnum)[keyof typeof Region_setvariablesScalarFieldEnum]
@@ -8171,6 +8375,18 @@ export namespace Prisma {
     region_sanado_marginAL?: BoolNullableFilter<"region_setvariables"> | boolean | null
     region_sanado_marginGC?: BoolNullableFilter<"region_setvariables"> | boolean | null
     region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: BoolNullableFilter<"region_setvariables"> | boolean | null
+    region_station_ETANOL_COMUM_comb?: FloatNullableFilter<"region_setvariables"> | number | null
+    region_station_GASOLINA_COMUM_comb?: FloatNullableFilter<"region_setvariables"> | number | null
+    region_station_LUCRO_BRUTO_GALONAGEM_modal?: FloatNullableFilter<"region_setvariables"> | number | null
+    region_station_LUCRO_BRUTO_OPERACIONAL_modal?: FloatNullableFilter<"region_setvariables"> | number | null
+    region_station_LUCRO_BRUTO_PRODUTO_modal?: FloatNullableFilter<"region_setvariables"> | number | null
+    region_station_MLT_modal?: FloatNullableFilter<"region_setvariables"> | number | null
+    region_station_OLEO_DIESEL_B_S10_COMUM_comb?: FloatNullableFilter<"region_setvariables"> | number | null
+    region_station_OLEO_DIESEL_B_S500_COMUM_comb?: FloatNullableFilter<"region_setvariables"> | number | null
+    region_station_TMC_modal?: FloatNullableFilter<"region_setvariables"> | number | null
+    region_station_TMF_modal?: FloatNullableFilter<"region_setvariables"> | number | null
+    region_station_TMP_modal?: FloatNullableFilter<"region_setvariables"> | number | null
+    region_station_TMVOL_modal?: FloatNullableFilter<"region_setvariables"> | number | null
     regions?: XOR<RegionsNullableRelationFilter, regionsWhereInput> | null
     users?: XOR<UsersNullableRelationFilter, usersWhereInput> | null
   }
@@ -8198,6 +8414,18 @@ export namespace Prisma {
     region_sanado_marginAL?: SortOrderInput | SortOrder
     region_sanado_marginGC?: SortOrderInput | SortOrder
     region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrderInput | SortOrder
+    region_station_ETANOL_COMUM_comb?: SortOrderInput | SortOrder
+    region_station_GASOLINA_COMUM_comb?: SortOrderInput | SortOrder
+    region_station_LUCRO_BRUTO_GALONAGEM_modal?: SortOrderInput | SortOrder
+    region_station_LUCRO_BRUTO_OPERACIONAL_modal?: SortOrderInput | SortOrder
+    region_station_LUCRO_BRUTO_PRODUTO_modal?: SortOrderInput | SortOrder
+    region_station_MLT_modal?: SortOrderInput | SortOrder
+    region_station_OLEO_DIESEL_B_S10_COMUM_comb?: SortOrderInput | SortOrder
+    region_station_OLEO_DIESEL_B_S500_COMUM_comb?: SortOrderInput | SortOrder
+    region_station_TMC_modal?: SortOrderInput | SortOrder
+    region_station_TMF_modal?: SortOrderInput | SortOrder
+    region_station_TMP_modal?: SortOrderInput | SortOrder
+    region_station_TMVOL_modal?: SortOrderInput | SortOrder
     regions?: regionsOrderByWithRelationInput
     users?: usersOrderByWithRelationInput
   }
@@ -8228,6 +8456,18 @@ export namespace Prisma {
     region_sanado_marginAL?: BoolNullableFilter<"region_setvariables"> | boolean | null
     region_sanado_marginGC?: BoolNullableFilter<"region_setvariables"> | boolean | null
     region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: BoolNullableFilter<"region_setvariables"> | boolean | null
+    region_station_ETANOL_COMUM_comb?: FloatNullableFilter<"region_setvariables"> | number | null
+    region_station_GASOLINA_COMUM_comb?: FloatNullableFilter<"region_setvariables"> | number | null
+    region_station_LUCRO_BRUTO_GALONAGEM_modal?: FloatNullableFilter<"region_setvariables"> | number | null
+    region_station_LUCRO_BRUTO_OPERACIONAL_modal?: FloatNullableFilter<"region_setvariables"> | number | null
+    region_station_LUCRO_BRUTO_PRODUTO_modal?: FloatNullableFilter<"region_setvariables"> | number | null
+    region_station_MLT_modal?: FloatNullableFilter<"region_setvariables"> | number | null
+    region_station_OLEO_DIESEL_B_S10_COMUM_comb?: FloatNullableFilter<"region_setvariables"> | number | null
+    region_station_OLEO_DIESEL_B_S500_COMUM_comb?: FloatNullableFilter<"region_setvariables"> | number | null
+    region_station_TMC_modal?: FloatNullableFilter<"region_setvariables"> | number | null
+    region_station_TMF_modal?: FloatNullableFilter<"region_setvariables"> | number | null
+    region_station_TMP_modal?: FloatNullableFilter<"region_setvariables"> | number | null
+    region_station_TMVOL_modal?: FloatNullableFilter<"region_setvariables"> | number | null
     regions?: XOR<RegionsNullableRelationFilter, regionsWhereInput> | null
     users?: XOR<UsersNullableRelationFilter, usersWhereInput> | null
   }, "region_uuid">
@@ -8255,6 +8495,18 @@ export namespace Prisma {
     region_sanado_marginAL?: SortOrderInput | SortOrder
     region_sanado_marginGC?: SortOrderInput | SortOrder
     region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrderInput | SortOrder
+    region_station_ETANOL_COMUM_comb?: SortOrderInput | SortOrder
+    region_station_GASOLINA_COMUM_comb?: SortOrderInput | SortOrder
+    region_station_LUCRO_BRUTO_GALONAGEM_modal?: SortOrderInput | SortOrder
+    region_station_LUCRO_BRUTO_OPERACIONAL_modal?: SortOrderInput | SortOrder
+    region_station_LUCRO_BRUTO_PRODUTO_modal?: SortOrderInput | SortOrder
+    region_station_MLT_modal?: SortOrderInput | SortOrder
+    region_station_OLEO_DIESEL_B_S10_COMUM_comb?: SortOrderInput | SortOrder
+    region_station_OLEO_DIESEL_B_S500_COMUM_comb?: SortOrderInput | SortOrder
+    region_station_TMC_modal?: SortOrderInput | SortOrder
+    region_station_TMF_modal?: SortOrderInput | SortOrder
+    region_station_TMP_modal?: SortOrderInput | SortOrder
+    region_station_TMVOL_modal?: SortOrderInput | SortOrder
     _count?: region_setvariablesCountOrderByAggregateInput
     _avg?: region_setvariablesAvgOrderByAggregateInput
     _max?: region_setvariablesMaxOrderByAggregateInput
@@ -8288,6 +8540,18 @@ export namespace Prisma {
     region_sanado_marginAL?: BoolNullableWithAggregatesFilter<"region_setvariables"> | boolean | null
     region_sanado_marginGC?: BoolNullableWithAggregatesFilter<"region_setvariables"> | boolean | null
     region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: BoolNullableWithAggregatesFilter<"region_setvariables"> | boolean | null
+    region_station_ETANOL_COMUM_comb?: FloatNullableWithAggregatesFilter<"region_setvariables"> | number | null
+    region_station_GASOLINA_COMUM_comb?: FloatNullableWithAggregatesFilter<"region_setvariables"> | number | null
+    region_station_LUCRO_BRUTO_GALONAGEM_modal?: FloatNullableWithAggregatesFilter<"region_setvariables"> | number | null
+    region_station_LUCRO_BRUTO_OPERACIONAL_modal?: FloatNullableWithAggregatesFilter<"region_setvariables"> | number | null
+    region_station_LUCRO_BRUTO_PRODUTO_modal?: FloatNullableWithAggregatesFilter<"region_setvariables"> | number | null
+    region_station_MLT_modal?: FloatNullableWithAggregatesFilter<"region_setvariables"> | number | null
+    region_station_OLEO_DIESEL_B_S10_COMUM_comb?: FloatNullableWithAggregatesFilter<"region_setvariables"> | number | null
+    region_station_OLEO_DIESEL_B_S500_COMUM_comb?: FloatNullableWithAggregatesFilter<"region_setvariables"> | number | null
+    region_station_TMC_modal?: FloatNullableWithAggregatesFilter<"region_setvariables"> | number | null
+    region_station_TMF_modal?: FloatNullableWithAggregatesFilter<"region_setvariables"> | number | null
+    region_station_TMP_modal?: FloatNullableWithAggregatesFilter<"region_setvariables"> | number | null
+    region_station_TMVOL_modal?: FloatNullableWithAggregatesFilter<"region_setvariables"> | number | null
   }
 
   export type regionsWhereInput = {
@@ -8953,6 +9217,18 @@ export namespace Prisma {
     region_sanado_marginAL?: boolean | null
     region_sanado_marginGC?: boolean | null
     region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
+    region_station_ETANOL_COMUM_comb?: number | null
+    region_station_GASOLINA_COMUM_comb?: number | null
+    region_station_LUCRO_BRUTO_GALONAGEM_modal?: number | null
+    region_station_LUCRO_BRUTO_OPERACIONAL_modal?: number | null
+    region_station_LUCRO_BRUTO_PRODUTO_modal?: number | null
+    region_station_MLT_modal?: number | null
+    region_station_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
+    region_station_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
+    region_station_TMC_modal?: number | null
+    region_station_TMF_modal?: number | null
+    region_station_TMP_modal?: number | null
+    region_station_TMVOL_modal?: number | null
     regions?: regionsCreateNestedOneWithoutRegion_setvariablesInput
     users?: usersCreateNestedOneWithoutRegion_setvariablesInput
   }
@@ -8980,6 +9256,18 @@ export namespace Prisma {
     region_sanado_marginAL?: boolean | null
     region_sanado_marginGC?: boolean | null
     region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
+    region_station_ETANOL_COMUM_comb?: number | null
+    region_station_GASOLINA_COMUM_comb?: number | null
+    region_station_LUCRO_BRUTO_GALONAGEM_modal?: number | null
+    region_station_LUCRO_BRUTO_OPERACIONAL_modal?: number | null
+    region_station_LUCRO_BRUTO_PRODUTO_modal?: number | null
+    region_station_MLT_modal?: number | null
+    region_station_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
+    region_station_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
+    region_station_TMC_modal?: number | null
+    region_station_TMF_modal?: number | null
+    region_station_TMP_modal?: number | null
+    region_station_TMVOL_modal?: number | null
   }
 
   export type region_setvariablesUpdateInput = {
@@ -9003,6 +9291,18 @@ export namespace Prisma {
     region_sanado_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_sanado_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    region_station_ETANOL_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_GASOLINA_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_LUCRO_BRUTO_GALONAGEM_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_LUCRO_BRUTO_OPERACIONAL_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_LUCRO_BRUTO_PRODUTO_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_MLT_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_TMC_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_TMF_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_TMP_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_TMVOL_modal?: NullableFloatFieldUpdateOperationsInput | number | null
     regions?: regionsUpdateOneWithoutRegion_setvariablesNestedInput
     users?: usersUpdateOneWithoutRegion_setvariablesNestedInput
   }
@@ -9030,6 +9330,18 @@ export namespace Prisma {
     region_sanado_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_sanado_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    region_station_ETANOL_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_GASOLINA_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_LUCRO_BRUTO_GALONAGEM_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_LUCRO_BRUTO_OPERACIONAL_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_LUCRO_BRUTO_PRODUTO_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_MLT_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_TMC_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_TMF_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_TMP_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_TMVOL_modal?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type region_setvariablesCreateManyInput = {
@@ -9055,6 +9367,18 @@ export namespace Prisma {
     region_sanado_marginAL?: boolean | null
     region_sanado_marginGC?: boolean | null
     region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
+    region_station_ETANOL_COMUM_comb?: number | null
+    region_station_GASOLINA_COMUM_comb?: number | null
+    region_station_LUCRO_BRUTO_GALONAGEM_modal?: number | null
+    region_station_LUCRO_BRUTO_OPERACIONAL_modal?: number | null
+    region_station_LUCRO_BRUTO_PRODUTO_modal?: number | null
+    region_station_MLT_modal?: number | null
+    region_station_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
+    region_station_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
+    region_station_TMC_modal?: number | null
+    region_station_TMF_modal?: number | null
+    region_station_TMP_modal?: number | null
+    region_station_TMVOL_modal?: number | null
   }
 
   export type region_setvariablesUpdateManyMutationInput = {
@@ -9078,6 +9402,18 @@ export namespace Prisma {
     region_sanado_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_sanado_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    region_station_ETANOL_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_GASOLINA_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_LUCRO_BRUTO_GALONAGEM_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_LUCRO_BRUTO_OPERACIONAL_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_LUCRO_BRUTO_PRODUTO_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_MLT_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_TMC_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_TMF_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_TMP_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_TMVOL_modal?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type region_setvariablesUncheckedUpdateManyInput = {
@@ -9103,6 +9439,18 @@ export namespace Prisma {
     region_sanado_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_sanado_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    region_station_ETANOL_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_GASOLINA_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_LUCRO_BRUTO_GALONAGEM_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_LUCRO_BRUTO_OPERACIONAL_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_LUCRO_BRUTO_PRODUTO_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_MLT_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_TMC_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_TMF_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_TMP_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_TMVOL_modal?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type regionsCreateInput = {
@@ -9758,12 +10106,36 @@ export namespace Prisma {
     region_sanado_marginAL?: SortOrder
     region_sanado_marginGC?: SortOrder
     region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
+    region_station_ETANOL_COMUM_comb?: SortOrder
+    region_station_GASOLINA_COMUM_comb?: SortOrder
+    region_station_LUCRO_BRUTO_GALONAGEM_modal?: SortOrder
+    region_station_LUCRO_BRUTO_OPERACIONAL_modal?: SortOrder
+    region_station_LUCRO_BRUTO_PRODUTO_modal?: SortOrder
+    region_station_MLT_modal?: SortOrder
+    region_station_OLEO_DIESEL_B_S10_COMUM_comb?: SortOrder
+    region_station_OLEO_DIESEL_B_S500_COMUM_comb?: SortOrder
+    region_station_TMC_modal?: SortOrder
+    region_station_TMF_modal?: SortOrder
+    region_station_TMP_modal?: SortOrder
+    region_station_TMVOL_modal?: SortOrder
   }
 
   export type region_setvariablesAvgOrderByAggregateInput = {
     region_marginGC?: SortOrder
     region_marginAL?: SortOrder
     region_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
+    region_station_ETANOL_COMUM_comb?: SortOrder
+    region_station_GASOLINA_COMUM_comb?: SortOrder
+    region_station_LUCRO_BRUTO_GALONAGEM_modal?: SortOrder
+    region_station_LUCRO_BRUTO_OPERACIONAL_modal?: SortOrder
+    region_station_LUCRO_BRUTO_PRODUTO_modal?: SortOrder
+    region_station_MLT_modal?: SortOrder
+    region_station_OLEO_DIESEL_B_S10_COMUM_comb?: SortOrder
+    region_station_OLEO_DIESEL_B_S500_COMUM_comb?: SortOrder
+    region_station_TMC_modal?: SortOrder
+    region_station_TMF_modal?: SortOrder
+    region_station_TMP_modal?: SortOrder
+    region_station_TMVOL_modal?: SortOrder
   }
 
   export type region_setvariablesMaxOrderByAggregateInput = {
@@ -9788,6 +10160,18 @@ export namespace Prisma {
     region_sanado_marginAL?: SortOrder
     region_sanado_marginGC?: SortOrder
     region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
+    region_station_ETANOL_COMUM_comb?: SortOrder
+    region_station_GASOLINA_COMUM_comb?: SortOrder
+    region_station_LUCRO_BRUTO_GALONAGEM_modal?: SortOrder
+    region_station_LUCRO_BRUTO_OPERACIONAL_modal?: SortOrder
+    region_station_LUCRO_BRUTO_PRODUTO_modal?: SortOrder
+    region_station_MLT_modal?: SortOrder
+    region_station_OLEO_DIESEL_B_S10_COMUM_comb?: SortOrder
+    region_station_OLEO_DIESEL_B_S500_COMUM_comb?: SortOrder
+    region_station_TMC_modal?: SortOrder
+    region_station_TMF_modal?: SortOrder
+    region_station_TMP_modal?: SortOrder
+    region_station_TMVOL_modal?: SortOrder
   }
 
   export type region_setvariablesMinOrderByAggregateInput = {
@@ -9812,12 +10196,36 @@ export namespace Prisma {
     region_sanado_marginAL?: SortOrder
     region_sanado_marginGC?: SortOrder
     region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
+    region_station_ETANOL_COMUM_comb?: SortOrder
+    region_station_GASOLINA_COMUM_comb?: SortOrder
+    region_station_LUCRO_BRUTO_GALONAGEM_modal?: SortOrder
+    region_station_LUCRO_BRUTO_OPERACIONAL_modal?: SortOrder
+    region_station_LUCRO_BRUTO_PRODUTO_modal?: SortOrder
+    region_station_MLT_modal?: SortOrder
+    region_station_OLEO_DIESEL_B_S10_COMUM_comb?: SortOrder
+    region_station_OLEO_DIESEL_B_S500_COMUM_comb?: SortOrder
+    region_station_TMC_modal?: SortOrder
+    region_station_TMF_modal?: SortOrder
+    region_station_TMP_modal?: SortOrder
+    region_station_TMVOL_modal?: SortOrder
   }
 
   export type region_setvariablesSumOrderByAggregateInput = {
     region_marginGC?: SortOrder
     region_marginAL?: SortOrder
     region_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
+    region_station_ETANOL_COMUM_comb?: SortOrder
+    region_station_GASOLINA_COMUM_comb?: SortOrder
+    region_station_LUCRO_BRUTO_GALONAGEM_modal?: SortOrder
+    region_station_LUCRO_BRUTO_OPERACIONAL_modal?: SortOrder
+    region_station_LUCRO_BRUTO_PRODUTO_modal?: SortOrder
+    region_station_MLT_modal?: SortOrder
+    region_station_OLEO_DIESEL_B_S10_COMUM_comb?: SortOrder
+    region_station_OLEO_DIESEL_B_S500_COMUM_comb?: SortOrder
+    region_station_TMC_modal?: SortOrder
+    region_station_TMF_modal?: SortOrder
+    region_station_TMP_modal?: SortOrder
+    region_station_TMVOL_modal?: SortOrder
   }
 
   export type regionsCountOrderByAggregateInput = {
@@ -10658,6 +11066,18 @@ export namespace Prisma {
     region_sanado_marginAL?: boolean | null
     region_sanado_marginGC?: boolean | null
     region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
+    region_station_ETANOL_COMUM_comb?: number | null
+    region_station_GASOLINA_COMUM_comb?: number | null
+    region_station_LUCRO_BRUTO_GALONAGEM_modal?: number | null
+    region_station_LUCRO_BRUTO_OPERACIONAL_modal?: number | null
+    region_station_LUCRO_BRUTO_PRODUTO_modal?: number | null
+    region_station_MLT_modal?: number | null
+    region_station_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
+    region_station_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
+    region_station_TMC_modal?: number | null
+    region_station_TMF_modal?: number | null
+    region_station_TMP_modal?: number | null
+    region_station_TMVOL_modal?: number | null
     regions?: regionsCreateNestedOneWithoutRegion_setvariablesInput
   }
 
@@ -10683,6 +11103,18 @@ export namespace Prisma {
     region_sanado_marginAL?: boolean | null
     region_sanado_marginGC?: boolean | null
     region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
+    region_station_ETANOL_COMUM_comb?: number | null
+    region_station_GASOLINA_COMUM_comb?: number | null
+    region_station_LUCRO_BRUTO_GALONAGEM_modal?: number | null
+    region_station_LUCRO_BRUTO_OPERACIONAL_modal?: number | null
+    region_station_LUCRO_BRUTO_PRODUTO_modal?: number | null
+    region_station_MLT_modal?: number | null
+    region_station_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
+    region_station_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
+    region_station_TMC_modal?: number | null
+    region_station_TMF_modal?: number | null
+    region_station_TMP_modal?: number | null
+    region_station_TMVOL_modal?: number | null
   }
 
   export type region_setvariablesCreateOrConnectWithoutUsersInput = {
@@ -10753,6 +11185,18 @@ export namespace Prisma {
     region_sanado_marginAL?: BoolNullableFilter<"region_setvariables"> | boolean | null
     region_sanado_marginGC?: BoolNullableFilter<"region_setvariables"> | boolean | null
     region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: BoolNullableFilter<"region_setvariables"> | boolean | null
+    region_station_ETANOL_COMUM_comb?: FloatNullableFilter<"region_setvariables"> | number | null
+    region_station_GASOLINA_COMUM_comb?: FloatNullableFilter<"region_setvariables"> | number | null
+    region_station_LUCRO_BRUTO_GALONAGEM_modal?: FloatNullableFilter<"region_setvariables"> | number | null
+    region_station_LUCRO_BRUTO_OPERACIONAL_modal?: FloatNullableFilter<"region_setvariables"> | number | null
+    region_station_LUCRO_BRUTO_PRODUTO_modal?: FloatNullableFilter<"region_setvariables"> | number | null
+    region_station_MLT_modal?: FloatNullableFilter<"region_setvariables"> | number | null
+    region_station_OLEO_DIESEL_B_S10_COMUM_comb?: FloatNullableFilter<"region_setvariables"> | number | null
+    region_station_OLEO_DIESEL_B_S500_COMUM_comb?: FloatNullableFilter<"region_setvariables"> | number | null
+    region_station_TMC_modal?: FloatNullableFilter<"region_setvariables"> | number | null
+    region_station_TMF_modal?: FloatNullableFilter<"region_setvariables"> | number | null
+    region_station_TMP_modal?: FloatNullableFilter<"region_setvariables"> | number | null
+    region_station_TMVOL_modal?: FloatNullableFilter<"region_setvariables"> | number | null
   }
 
   export type ibm_infoCreateWithoutGas_station_setvariablesInput = {
@@ -11156,6 +11600,18 @@ export namespace Prisma {
     region_sanado_marginAL?: boolean | null
     region_sanado_marginGC?: boolean | null
     region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
+    region_station_ETANOL_COMUM_comb?: number | null
+    region_station_GASOLINA_COMUM_comb?: number | null
+    region_station_LUCRO_BRUTO_GALONAGEM_modal?: number | null
+    region_station_LUCRO_BRUTO_OPERACIONAL_modal?: number | null
+    region_station_LUCRO_BRUTO_PRODUTO_modal?: number | null
+    region_station_MLT_modal?: number | null
+    region_station_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
+    region_station_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
+    region_station_TMC_modal?: number | null
+    region_station_TMF_modal?: number | null
+    region_station_TMP_modal?: number | null
+    region_station_TMVOL_modal?: number | null
     users?: usersCreateNestedOneWithoutRegion_setvariablesInput
   }
 
@@ -11181,6 +11637,18 @@ export namespace Prisma {
     region_sanado_marginAL?: boolean | null
     region_sanado_marginGC?: boolean | null
     region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
+    region_station_ETANOL_COMUM_comb?: number | null
+    region_station_GASOLINA_COMUM_comb?: number | null
+    region_station_LUCRO_BRUTO_GALONAGEM_modal?: number | null
+    region_station_LUCRO_BRUTO_OPERACIONAL_modal?: number | null
+    region_station_LUCRO_BRUTO_PRODUTO_modal?: number | null
+    region_station_MLT_modal?: number | null
+    region_station_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
+    region_station_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
+    region_station_TMC_modal?: number | null
+    region_station_TMF_modal?: number | null
+    region_station_TMP_modal?: number | null
+    region_station_TMVOL_modal?: number | null
   }
 
   export type region_setvariablesCreateOrConnectWithoutRegionsInput = {
@@ -11421,6 +11889,18 @@ export namespace Prisma {
     region_sanado_marginAL?: boolean | null
     region_sanado_marginGC?: boolean | null
     region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
+    region_station_ETANOL_COMUM_comb?: number | null
+    region_station_GASOLINA_COMUM_comb?: number | null
+    region_station_LUCRO_BRUTO_GALONAGEM_modal?: number | null
+    region_station_LUCRO_BRUTO_OPERACIONAL_modal?: number | null
+    region_station_LUCRO_BRUTO_PRODUTO_modal?: number | null
+    region_station_MLT_modal?: number | null
+    region_station_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
+    region_station_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
+    region_station_TMC_modal?: number | null
+    region_station_TMF_modal?: number | null
+    region_station_TMP_modal?: number | null
+    region_station_TMVOL_modal?: number | null
   }
 
   export type gas_station_setvariablesUpdateWithoutUsersInput = {
@@ -11558,6 +12038,18 @@ export namespace Prisma {
     region_sanado_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_sanado_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    region_station_ETANOL_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_GASOLINA_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_LUCRO_BRUTO_GALONAGEM_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_LUCRO_BRUTO_OPERACIONAL_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_LUCRO_BRUTO_PRODUTO_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_MLT_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_TMC_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_TMF_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_TMP_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_TMVOL_modal?: NullableFloatFieldUpdateOperationsInput | number | null
     regions?: regionsUpdateOneWithoutRegion_setvariablesNestedInput
   }
 
@@ -11583,6 +12075,18 @@ export namespace Prisma {
     region_sanado_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_sanado_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    region_station_ETANOL_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_GASOLINA_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_LUCRO_BRUTO_GALONAGEM_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_LUCRO_BRUTO_OPERACIONAL_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_LUCRO_BRUTO_PRODUTO_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_MLT_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_TMC_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_TMF_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_TMP_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_TMVOL_modal?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type region_setvariablesUncheckedUpdateManyWithoutUsersInput = {
@@ -11607,6 +12111,18 @@ export namespace Prisma {
     region_sanado_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_sanado_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    region_station_ETANOL_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_GASOLINA_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_LUCRO_BRUTO_GALONAGEM_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_LUCRO_BRUTO_OPERACIONAL_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_LUCRO_BRUTO_PRODUTO_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_MLT_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_TMC_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_TMF_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_TMP_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_TMVOL_modal?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type region_setvariablesCreateManyRegionsInput = {
@@ -11631,6 +12147,18 @@ export namespace Prisma {
     region_sanado_marginAL?: boolean | null
     region_sanado_marginGC?: boolean | null
     region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean | null
+    region_station_ETANOL_COMUM_comb?: number | null
+    region_station_GASOLINA_COMUM_comb?: number | null
+    region_station_LUCRO_BRUTO_GALONAGEM_modal?: number | null
+    region_station_LUCRO_BRUTO_OPERACIONAL_modal?: number | null
+    region_station_LUCRO_BRUTO_PRODUTO_modal?: number | null
+    region_station_MLT_modal?: number | null
+    region_station_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
+    region_station_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
+    region_station_TMC_modal?: number | null
+    region_station_TMF_modal?: number | null
+    region_station_TMP_modal?: number | null
+    region_station_TMVOL_modal?: number | null
   }
 
   export type region_setvariablesUpdateWithoutRegionsInput = {
@@ -11654,6 +12182,18 @@ export namespace Prisma {
     region_sanado_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_sanado_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    region_station_ETANOL_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_GASOLINA_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_LUCRO_BRUTO_GALONAGEM_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_LUCRO_BRUTO_OPERACIONAL_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_LUCRO_BRUTO_PRODUTO_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_MLT_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_TMC_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_TMF_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_TMP_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_TMVOL_modal?: NullableFloatFieldUpdateOperationsInput | number | null
     users?: usersUpdateOneWithoutRegion_setvariablesNestedInput
   }
 
@@ -11679,6 +12219,18 @@ export namespace Prisma {
     region_sanado_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_sanado_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    region_station_ETANOL_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_GASOLINA_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_LUCRO_BRUTO_GALONAGEM_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_LUCRO_BRUTO_OPERACIONAL_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_LUCRO_BRUTO_PRODUTO_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_MLT_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_TMC_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_TMF_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_TMP_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_TMVOL_modal?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type region_setvariablesUncheckedUpdateManyWithoutRegionsInput = {
@@ -11703,6 +12255,18 @@ export namespace Prisma {
     region_sanado_marginAL?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_sanado_marginGC?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    region_station_ETANOL_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_GASOLINA_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_LUCRO_BRUTO_GALONAGEM_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_LUCRO_BRUTO_OPERACIONAL_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_LUCRO_BRUTO_PRODUTO_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_MLT_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_TMC_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_TMF_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_TMP_modal?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_station_TMVOL_modal?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
 

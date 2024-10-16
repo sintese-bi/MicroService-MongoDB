@@ -221,7 +221,19 @@ exports.Prisma.Region_setvariablesScalarFieldEnum = {
   region_sanado_hour_marginGC: 'region_sanado_hour_marginGC',
   region_sanado_marginAL: 'region_sanado_marginAL',
   region_sanado_marginGC: 'region_sanado_marginGC',
-  region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL: 'region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL'
+  region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL: 'region_sanado_margin_ETANOL_HIDRATADO_COMBUSTIVEL',
+  region_station_ETANOL_COMUM_comb: 'region_station_ETANOL_COMUM_comb',
+  region_station_GASOLINA_COMUM_comb: 'region_station_GASOLINA_COMUM_comb',
+  region_station_LUCRO_BRUTO_GALONAGEM_modal: 'region_station_LUCRO_BRUTO_GALONAGEM_modal',
+  region_station_LUCRO_BRUTO_OPERACIONAL_modal: 'region_station_LUCRO_BRUTO_OPERACIONAL_modal',
+  region_station_LUCRO_BRUTO_PRODUTO_modal: 'region_station_LUCRO_BRUTO_PRODUTO_modal',
+  region_station_MLT_modal: 'region_station_MLT_modal',
+  region_station_OLEO_DIESEL_B_S10_COMUM_comb: 'region_station_OLEO_DIESEL_B_S10_COMUM_comb',
+  region_station_OLEO_DIESEL_B_S500_COMUM_comb: 'region_station_OLEO_DIESEL_B_S500_COMUM_comb',
+  region_station_TMC_modal: 'region_station_TMC_modal',
+  region_station_TMF_modal: 'region_station_TMF_modal',
+  region_station_TMP_modal: 'region_station_TMP_modal',
+  region_station_TMVOL_modal: 'region_station_TMVOL_modal'
 };
 
 exports.Prisma.RegionsScalarFieldEnum = {
