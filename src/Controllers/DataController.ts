@@ -1006,6 +1006,8 @@ class DataController {
                     select: {
                         gas_station_TMF_modal: true,
                         gas_station_LUCRO_BRUTO_OPERACIONAL_modal: true,
+                        gas_station_LUCRO_BRUTO_GALONAGEM_modal: true,
+                        gas_station_LUCRO_BRUTO_PRODUTO_modal: true,
                         gas_station_TMC_modal: true,
                         gas_station_TMP_modal: true,
                         gas_station_TMVOL_modal: true,
@@ -1097,6 +1099,9 @@ class DataController {
                     LBO: number;
                     tmf_comparisson: number;
                     lucro_bruto_operacional_comparisson: number;
+                    lucro_bruto_operacional: number
+                    lucro_bruto_operacional_produto: number;
+                    lucro_bruto_operacional_galonagem: number;
                     tmc_comparisson: number;
                     tmp_comparisson: number;
                     tmvol_comparisson: number;
@@ -1157,15 +1162,20 @@ class DataController {
                     const valueTMF = quantSupply !== 0 ? ((sumproduct + sumfuel) / quantSupply) : 0
                     //LBO
                     const valueLBO = (sumproduct - sumProductPrice) !== 0 ? ((sumfuel - sumCostPrice) + (sumproduct - sumProductPrice)) / (sumproduct + sumfuel) : 0
-                    // const averageReturn = (valueMLT < averageMLT) ? true : false
+                    const valueLBOProduct =
+                        // const averageReturn = (valueMLT < averageMLT) ? true : false
 
-                    // "Venda de Combustível": roundedSum, "Produtos vendidos": roundedProduct, "Galonagem": roundedLiterage,
-                    ibmvalues.push({
-                        ibm: ibm, "M/LT": Math.round(valueMLT * 100) / 100,
-                        "TMC": Math.round((valueTMC) * 100) / 100, "TM VOL": Math.round((valueTMVOL) * 100) / 100, "TMP": Math.round((valueTMP) * 100) / 100,
-                        "TMF": Math.round((valueTMF) * 100) / 100, "LBO": Math.round((valueLBO) * 100) / 100, "averageComparison": 0,
-                        tmc_comparisson: 0, tmf_comparisson: 0, tmp_comparisson: 0, tmvol_comparisson: 0, mlt_comparisson: 0, lucro_bruto_operacional_comparisson: 0
-                    });
+                        // "Venda de Combustível": roundedSum, "Produtos vendidos": roundedProduct, "Galonagem": roundedLiterage,
+                        ibmvalues.push({
+                            ibm: ibm, "M/LT": Math.round(valueMLT * 100) / 100,
+                            "TMC": Math.round((valueTMC) * 100) / 100, "TM VOL": Math.round((valueTMVOL) * 100) / 100, "TMP": Math.round((valueTMP) * 100) / 100,
+                            "TMF": Math.round((valueTMF) * 100) / 100, "LBO": Math.round((valueLBO) * 100) / 100, "averageComparison": 0,
+                            tmc_comparisson: 0, tmf_comparisson: 0, tmp_comparisson: 0, tmvol_comparisson: 0, mlt_comparisson: 0,
+                            lucro_bruto_operacional_comparisson: 0,
+                            lucro_bruto_operacional: 0,
+                            lucro_bruto_operacional_produto: 0,
+                            lucro_bruto_operacional_galonagem: 0
+                        });
                 }
 
                 marginsDefined.forEach(ibmNumber => {
@@ -1177,10 +1187,13 @@ class DataController {
                             item.tmvol_comparisson = ibmNumber.gas_station_TMVOL_modal || 0;
                             item.mlt_comparisson = ibmNumber.gas_station_MLT_modal || 0;
                             item.lucro_bruto_operacional_comparisson = ibmNumber.gas_station_LUCRO_BRUTO_OPERACIONAL_modal || 0;
+                            //Os 3 debaixos sao os lbos definidos
+                            item.lucro_bruto_operacional = ibmNumber.gas_station_LUCRO_BRUTO_OPERACIONAL_modal || 0;
+                            item.lucro_bruto_operacional_galonagem = ibmNumber.gas_station_LUCRO_BRUTO_GALONAGEM_modal || 0
+                            item.lucro_bruto_operacional_produto = ibmNumber.gas_station_LUCRO_BRUTO_PRODUTO_modal || 0
                         }
                     });
                 });
-
 
                 const ibmvaluesMap = ibmvalues.map(element => {
 
@@ -1198,7 +1211,14 @@ class DataController {
                     } else if (element.LBO < element.lucro_bruto_operacional_comparisson) {
                         element.averageComparison = 2
                     }
-                    return { ibm: element.ibm, "M/LT": element["M/LT"], TMC: element.TMC, "TM VOL": element["TM VOL"], TMP: element.TMP, TMF: element.TMF, LBO: element.LBO, averageComparison: element.averageComparison }
+                    return {
+                        ibm: element.ibm, "M/LT": element["M/LT"], TMC: element.TMC, "TM VOL": element["TM VOL"],
+                        TMP: element.TMP, TMF: element.TMF, LBO: element.LBO,
+                        // LBO_definido:element.lucro_bruto_operacional,
+                        // LBO_Produto_Definido: element.lucro_bruto_operacional_produto,
+                        // LBO_Galonagem_Definido: element.lucro_bruto_operacional_galonagem,
+                        averageComparison: element.averageComparison
+                    }
                 })
 
 
