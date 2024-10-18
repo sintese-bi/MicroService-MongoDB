@@ -216,7 +216,7 @@ class DataController {
                     throw new Error('Chave secreta não definida. Verifique a variável de ambiente SECRET.');
                 }
                 const id = extractUserIdFromToken(use_token, secret)
-                const flags = await prismaRedeFlex.users.findUnique({ select: { use_tmc: true, use_mlt: true, use_tmf: true, use_tmp: true, use_tmvol: true, use_lucro_bruto_operacional_galonagem: true, use_lucro_bruto_operacional_produto: true }, where: { use_uuid: id } })
+                const flags = await prismaRedeFlex.users.findUnique({ select: { use_tmc: true, use_mlt: true, use_tmf: true, use_tmp: true, use_tmvol: true, use_lucro_bruto_operacional_galonagem: true, use_lucro_bruto_operacional_produto: true, use_lucro_bruto_operacional: true }, where: { use_uuid: id } })
                 const tmc = (flags?.use_tmc ?? 0) < secondary_value_tmc;
                 const mlt = (flags?.use_mlt ?? 0) < valueMLT;
                 const use_tmf = (flags?.use_tmf ?? 0) < secondary_value_fuel;
@@ -236,7 +236,7 @@ class DataController {
                     { label: "M/LT", value: Math.round(valueMLT * 100) / 100, fourth_label: "Margem definida", fourth_value: flags?.use_mlt },
                     { label: "Venda de Produtos", value: Math.round(sumFuelProd * 100) / 100, secondary_label: "TMP", secondary_value: Math.round((secondary_value_produto) * 100) / 100, third_label: "Status Margem", third_value: use_tmp, fourth_label: "Margem definida", fourth_value: flags?.use_tmp },
                     { label: "Lucro de Produtos", value: productProfit, secondary_label: "Lucro Bruto Operacional", secondary_value: Math.round((secondary_value_productProfit) * 100) / 100, third_label: "Status Margem", third_value: lucro_operacional_produto, fourth_label: "Margem definida", fourth_value: flags?.use_lucro_bruto_operacional_produto },
-                    { label: "Lucro Bruto Operacional", value: Math.round((secondary_value_bruto_operacional)) },
+                    { label: "Lucro Bruto Operacional", value: Math.round((secondary_value_bruto_operacional)), fourth_label: "Margem definida", fourth_value: flags?.use_lucro_bruto_operacional },
                     ]
                 })
             } else {
@@ -1097,6 +1097,8 @@ class DataController {
                     TMP: number;
                     TMF: number;
                     LBO: number;
+                    LBOProduto: number,
+                    LBOGalonagem: number,
                     tmf_comparisson: number;
                     lucro_bruto_operacional_comparisson: number;
                     lucro_bruto_operacional: number
@@ -1160,22 +1162,25 @@ class DataController {
                     const valueTMP = quantSupply !== 0 ? (sumProductPrice / quantSupply) : 0
                     //TMF
                     const valueTMF = quantSupply !== 0 ? ((sumproduct + sumfuel) / quantSupply) : 0
-                    //LBO
+                    //LBO's calculadas
                     const valueLBO = (sumproduct - sumProductPrice) !== 0 ? ((sumfuel - sumCostPrice) + (sumproduct - sumProductPrice)) / (sumproduct + sumfuel) : 0
-                    const valueLBOProduct =
-                        // const averageReturn = (valueMLT < averageMLT) ? true : false
+                    const valueLBOProduto = sumproduct !== 0 ? (sumproduct - sumProductPrice) / sumproduct : 0
+                    const valueLBOGalonagem = sumfuel !== 0 ? (sumfuel - sumCostPrice) / sumfuel : 0
+                    // const averageReturn = (valueMLT < averageMLT) ? true : false
 
-                        // "Venda de Combustível": roundedSum, "Produtos vendidos": roundedProduct, "Galonagem": roundedLiterage,
-                        ibmvalues.push({
-                            ibm: ibm, "M/LT": Math.round(valueMLT * 100) / 100,
-                            "TMC": Math.round((valueTMC) * 100) / 100, "TM VOL": Math.round((valueTMVOL) * 100) / 100, "TMP": Math.round((valueTMP) * 100) / 100,
-                            "TMF": Math.round((valueTMF) * 100) / 100, "LBO": Math.round((valueLBO) * 100) / 100, "averageComparison": 0,
-                            tmc_comparisson: 0, tmf_comparisson: 0, tmp_comparisson: 0, tmvol_comparisson: 0, mlt_comparisson: 0,
-                            lucro_bruto_operacional_comparisson: 0,
-                            lucro_bruto_operacional: 0,
-                            lucro_bruto_operacional_produto: 0,
-                            lucro_bruto_operacional_galonagem: 0
-                        });
+                    // "Venda de Combustível": roundedSum, "Produtos vendidos": roundedProduct, "Galonagem": roundedLiterage,
+                    ibmvalues.push({
+                        ibm: ibm, "M/LT": Math.round(valueMLT * 100) / 100,
+                        "TMC": Math.round((valueTMC) * 100) / 100, "TM VOL": Math.round((valueTMVOL) * 100) / 100, "TMP": Math.round((valueTMP) * 100) / 100,
+                        "TMF": Math.round((valueTMF) * 100) / 100, "LBO": Math.round((valueLBO) * 100) / 100,
+                        LBOProduto: Math.round((valueLBOProduto) * 100) / 100, "averageComparison": 0,
+                        LBOGalonagem: Math.round((valueLBOGalonagem) * 100) / 100,
+                        tmc_comparisson: 0, tmf_comparisson: 0, tmp_comparisson: 0, tmvol_comparisson: 0, mlt_comparisson: 0,
+                        lucro_bruto_operacional_comparisson: 0,
+                        lucro_bruto_operacional: 0,
+                        lucro_bruto_operacional_produto: 0,
+                        lucro_bruto_operacional_galonagem: 0
+                    });
                 }
 
                 marginsDefined.forEach(ibmNumber => {
@@ -1214,9 +1219,11 @@ class DataController {
                     return {
                         ibm: element.ibm, "M/LT": element["M/LT"], TMC: element.TMC, "TM VOL": element["TM VOL"],
                         TMP: element.TMP, TMF: element.TMF, LBO: element.LBO,
-                        // LBO_definido:element.lucro_bruto_operacional,
-                        // LBO_Produto_Definido: element.lucro_bruto_operacional_produto,
-                        // LBO_Galonagem_Definido: element.lucro_bruto_operacional_galonagem,
+                        LBOProduto: element.LBOProduto,
+                        LBOGalonagem: element.LBOGalonagem,
+                        LBO_Definido: element.lucro_bruto_operacional,
+                        LBO_Produto_Definido: element.lucro_bruto_operacional_produto,
+                        LBO_Galonagem_Definido: element.lucro_bruto_operacional_galonagem,
                         averageComparison: element.averageComparison
                     }
                 })
