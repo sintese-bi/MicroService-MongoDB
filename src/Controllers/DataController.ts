@@ -71,7 +71,16 @@ class DataController {
             if (clientToken == `Bearer ${expectedToken}`) {
 
                 const fuelliterageSell = await prismaSales.vendas.findMany({
-                    select: { items: true, ibm: true },
+                    select: {
+                        items: {
+                            select: {
+                                iTip: true,
+                                tot: true,
+                                qd: true,
+                                pC: true
+                            }
+                        }, ibm: true
+                    },
                     where: {
                         dtHr: {
                             gte: `${actualdate}T00:00:00.000Z`,
@@ -224,7 +233,7 @@ class DataController {
                 const use_tmvol = (flags?.use_tmp ?? 0) < secondary_value_galonagem
                 const lucro_operacional_galonagem = (flags?.use_lucro_bruto_operacional_galonagem ?? 0) < secondary_value_fuelProfit
                 const lucro_operacional_produto = (flags?.use_lucro_bruto_operacional_produto ?? 0) < secondary_value_productProfit
-
+                const lucro_operacional_geral = (flags?.use_lucro_bruto_operacional ?? 0) < secondary_value_bruto_operacional
 
 
                 return res.status(200).json({
@@ -233,10 +242,10 @@ class DataController {
                     { label: "Abastecimentos a Rede", value: Math.round(quantSupply * 100) / 100 },
                     { label: "Venda de Combustíveis", value: Math.round(sumFuel * 100) / 100, secondary_label: "TMC", secondary_value: Math.round((secondary_value_tmc) * 100) / 100, third_label: "Status Margem", third_value: tmc, fourth_label: "Margem definida", fourth_value: flags?.use_tmc },
                     { label: "Lucro de Combustíveis", value: fuelProfit, secondary_label: "Lucro Bruto Operacional", secondary_value: Math.round((secondary_value_fuelProfit) * 100) / 100, third_label: "Status Margem", third_value: lucro_operacional_galonagem, fourth_label: "Margem definida", fourth_value: flags?.use_lucro_bruto_operacional_galonagem },
-                    { label: "M/LT", value: Math.round(valueMLT * 100) / 100, fourth_label: "Margem definida", fourth_value: flags?.use_mlt },
+                    { label: "M/LT", value: Math.round(valueMLT * 100) / 100, fourth_label: "Margem definida", third_label: "Status Margem", third_value: mlt, fourth_value: flags?.use_mlt },
                     { label: "Venda de Produtos", value: Math.round(sumFuelProd * 100) / 100, secondary_label: "TMP", secondary_value: Math.round((secondary_value_produto) * 100) / 100, third_label: "Status Margem", third_value: use_tmp, fourth_label: "Margem definida", fourth_value: flags?.use_tmp },
                     { label: "Lucro de Produtos", value: productProfit, secondary_label: "Lucro Bruto Operacional", secondary_value: Math.round((secondary_value_productProfit) * 100) / 100, third_label: "Status Margem", third_value: lucro_operacional_produto, fourth_label: "Margem definida", fourth_value: flags?.use_lucro_bruto_operacional_produto },
-                    { label: "Lucro Bruto Operacional", value: Math.round((secondary_value_bruto_operacional)), fourth_label: "Margem definida", fourth_value: flags?.use_lucro_bruto_operacional },
+                    { label: "Lucro Bruto Operacional", value: Math.round((secondary_value_bruto_operacional)), third_label: "Status Margem", third_value: lucro_operacional_geral, fourth_label: "Margem definida", fourth_value: flags?.use_lucro_bruto_operacional },
                     ]
                 })
             } else {
@@ -433,7 +442,6 @@ class DataController {
                     }
 
                 }
-
                 const multiplesInterval: any = dateRanges?.map(element => {
                     return {
                         dtHr: {
@@ -442,14 +450,22 @@ class DataController {
                         }
                     }
                 })
-
                 const fuelliterageSell = await prismaSales.vendas.findMany({
-                    select: { items: true, dtHr: true },
+                    select: {
+                        dtHr: true,
+                        items: {
+                            select: {
+                                iTip: true,
+                                tot: true,
+                                qd: true,
+                                pC: true
+                            }
+                        }
+                    },
                     where: {
                         OR: multiplesInterval
                     }
                 });
-
                 let dateSeparation: any = {}
                 dateRanges?.forEach(element => {
 
@@ -577,7 +593,16 @@ class DataController {
                 })
 
                 const fuelliterageSell = await prismaSales.vendas.findMany({
-                    select: { items: true, dtHr: true },
+                    select: {
+                        items: {
+                            select: {
+                                iTip: true,
+                                tot: true,
+                                qd: true,
+                                pC: true
+                            }
+                        }, dtHr: true
+                    },
                     where: {
                         OR: multiplesInterval
                     }
@@ -683,7 +708,14 @@ class DataController {
 
             const result = await prismaSales.vendas.findMany({
                 select: {
-                    items: true,
+                    items: {
+                        select: {
+                            iTip: true,
+                            tot: true,
+                            qd: true,
+                            pC: true
+                        }
+                    },
                     ibm: true
                 },
                 where: {
@@ -1018,7 +1050,16 @@ class DataController {
                 })
                 const ibmsStations = await prismaRedeFlex.ibm_info.findMany({ select: { razaosocial: true, ibm: true, id: true } })
                 const result = await prismaSales.vendas.findMany({
-                    select: { ibm: true, items: true },
+                    select: {
+                        ibm: true, items: {
+                            select: {
+                                iTip: true,
+                                tot: true,
+                                qd: true,
+                                pC: true
+                            }
+                        }
+                    },
                     where: {
                         dtHr: {
                             gte: `${today}T00:00:00.000Z`,
@@ -1217,13 +1258,23 @@ class DataController {
                         element.averageComparison = 2
                     }
                     return {
-                        ibm: element.ibm, "M/LT": element["M/LT"], TMC: element.TMC, "TM VOL": element["TM VOL"],
-                        TMP: element.TMP, TMF: element.TMF, LBO: element.LBO,
-                        LBOProduto: element.LBOProduto,
-                        LBOGalonagem: element.LBOGalonagem,
-                        LBO_Definido: element.lucro_bruto_operacional,
-                        LBO_Produto_Definido: element.lucro_bruto_operacional_produto,
-                        LBO_Galonagem_Definido: element.lucro_bruto_operacional_galonagem,
+                        ibm: element.ibm,
+                        "M/LT": element["M/LT"],
+                        TMC: element.TMC,
+                        "TM VOL": element["TM VOL"],
+                        TMP: element.TMP,
+                        TMF: element.TMF,
+                        "M/LT_Definido": element.mlt_comparisson,
+                        TMC_Definido: element.tmc_comparisson,
+                        "TM VOL_Definido": element.tmvol_comparisson,
+                        TMP_Definido: element.tmp_comparisson,
+                        TMF_Definido: element.tmf_comparisson,
+                        LBO: Math.round(((element.LBO) * 100) * 100) / 100,
+                        LBOProduto: Math.round(((element.LBOProduto) * 100) * 100) / 100,
+                        LBOGalonagem: Math.round(((element.LBOGalonagem) * 100) * 100) / 100,
+                        LBO_Definido: element.lucro_bruto_operacional * 100,
+                        LBO_Produto_Definido: element.lucro_bruto_operacional_produto * 100,
+                        LBO_Galonagem_Definido: element.lucro_bruto_operacional_galonagem * 100,
                         averageComparison: element.averageComparison
                     }
                 })
@@ -1281,7 +1332,14 @@ class DataController {
             const [salesData, ibmNames] = await Promise.all([
                 prismaSales.vendas.findMany({
                     select: {
-                        items: true,
+                        items: {
+                            select: {
+                                iTip: true,
+                                tot: true,
+                                qd: true,
+                                pC: true
+                            }
+                        },
                         ibm: true,
                     },
                     where: {
@@ -1386,7 +1444,16 @@ class DataController {
 
             const [vendasResult, ibmNames] = await Promise.all([
                 prismaSales.vendas.findMany({
-                    select: { items: true, ibm: true },
+                    select: {
+                        items: {
+                            select: {
+                                iTip: true,
+                                tot: true,
+                                qd: true,
+                                pC: true
+                            }
+                        }, ibm: true
+                    },
                     where: {
                         dtHr: {
                             gte: `${dateISO}T00:00:00.000Z`,
