@@ -9,6 +9,7 @@ import { MongoClient, ServerApiVersion } from 'mongodb';
 import moment from "moment";
 import extractUserIdFromToken from "../utils/extractUserID";
 import dotenv from 'dotenv'
+import cron from "node-cron"
 import { v4 as uuidv4 } from 'uuid';
 const prismaLBCBi = new PrismaLBCBi()
 const prismaSales = new PrismaSales()
@@ -61,7 +62,8 @@ class DataController {
 
         try {
             const actualdate = moment().tz("America/Sao_Paulo").format("YYYY-MM-DD");
-
+            const firstDayOfMonth = moment().tz("America/Sao_Paulo").startOf('month').format("YYYY-MM-DD");
+            console.log(actualdate, firstDayOfMonth)
             const clientToken = req.headers.authorization;
             const { use_token }: any = req.params;
             if (!clientToken) {
@@ -89,7 +91,6 @@ class DataController {
                     }
 
                 })
-
                 //Construção array de items
                 const itemsArray = fuelliterageSell.flatMap(element => {
 
@@ -1631,7 +1632,181 @@ class DataController {
             return res.status(500).json({ message: `Erro ao retornar os dados: ${error}` });
         }
     }
+    public async BigNumbersMonth(req?: Request, res?: Response) {
+        try {
+            const actualdate = moment().tz("America/Sao_Paulo").format("YYYY-MM-DD");
+            const firstDayOfMonth = moment().tz("America/Sao_Paulo").startOf('month').format("YYYY-MM-DD");
+
+            const fuelliterageSell = await prismaSales.vendas.findMany({
+                select: {
+                    items: {
+                        select: {
+                            iTip: true,
+                            tot: true,
+                            qd: true,
+                            pC: true
+                        }
+                    }, ibm: true
+                },
+                where: {
+                    dtHr: {
+                        gte: `${firstDayOfMonth}T00:00:00.000Z`,
+                        lte: `${actualdate}T23:59:59.999Z`
+                    }
+                }
+
+            })
+
+            //Construção array de items
+            const itemsArray = fuelliterageSell.flatMap(element => {
+
+                return element.items
+
+
+            })
+            //Quantas vezes foi abastecido combustível nos postos
+            const supplyQuantity = itemsArray.flatMap(element => {
+                return element
+
+            })
+            //Quantas vezes entraram carros e compraram no posto
+            const quantTotal = itemsArray.length
+            const quantSupply = supplyQuantity.length
+
+            //Soma combustíveis tipo combustivel
+            const fuel = itemsArray
+                .map(element => {
+                    if (element.iTip == "1") {
+                        return parseFloat(element.tot);
+                    }
+                    return undefined;
+                })
+                .filter((item): item is number => item !== undefined)
+
+            const sumFuel = fuel.reduce((accumulator, currentValue) => {
+                return (accumulator || 0) + (currentValue || 0);
+            }, 0);
+
+            //Faturamento total combustível+produto
+            const fuelTotal = itemsArray
+                .map(element => {
+
+                    return parseFloat(element.tot);
+
+                })
+                .filter((item): item is number => item !== undefined)
+
+            const sumFuelTotal = fuelTotal.reduce((accumulator, currentValue) => {
+                return (accumulator || 0) + (currentValue || 0);
+            }, 0);
+
+
+
+
+            //Soma da litragem tipo combustível
+            const literage = itemsArray.map(element => {
+                if (element.iTip == "1") { return parseFloat(element.qd) }
+                return undefined;
+
+            }).filter((item): item is number => item !== undefined)
+
+            //Carros que entraram no posto
+            const supply = itemsArray.map(element => {
+                return parseFloat(element.qd)
+
+            }, 0)
+            const sumSupply = supply.reduce((accumulator, currentValue) => {
+                return (accumulator || 0) + (currentValue || 0);
+            }, 0);
+            const sumLiterage = literage.reduce((accumulator, currentValue) => {
+                return (accumulator || 0) + (currentValue || 0);
+            }, 0);
+            //Soma do preço de custo do combustível
+            const cost_price = itemsArray
+                .map(element => {
+                    if (element.iTip === "1") {
+                        return { pc: parseFloat(element.pC), qd: parseFloat(element.qd) };
+                    }
+                    return undefined;
+                })
+                .filter((item): item is { pc: number; qd: number } => item !== undefined);
+
+
+            const sumCostPrice = cost_price.reduce((accumulator, currentValue) => {
+                return (accumulator || 0) + (currentValue.qd * currentValue.pc || 0);
+            }, 0);
+
+
+            //Soma combustíveis tipo produto
+            const fuelProd = itemsArray.map(element => {
+                if (element.iTip == "0") { return parseFloat(element.tot) }
+                return undefined
+
+            }).filter((item): item is number => item !== undefined)
+
+            const sumFuelProd = fuelProd.reduce((accumulator, currentValue) => {
+                return (accumulator || 0) + (currentValue || 0);
+            }, 0);
+
+            //Soma da litragem tipo produto
+            const literageProd = itemsArray.map(element => {
+                if (element.iTip == "0") { return parseFloat(element.qd) }
+                return undefined
+
+            }).filter((item): item is number => item !== undefined)
+
+            const sumLiterageProd = literageProd.reduce((accumulator, currentValue) => {
+                return (accumulator || 0) + (currentValue || 0);
+            }, 0);
+            //Soma do preço de custo do produto
+            const product_price = itemsArray
+                .map(element => {
+                    if (element.iTip === "0") {
+                        return { pc: parseFloat(element.pC), qd: parseFloat(element.qd) };
+                    }
+                    return undefined;
+                })
+                .filter((item): item is { pc: number; qd: number } => item !== undefined);
+
+
+            const sumProductPrice = product_price.reduce((accumulator, currentValue) => {
+                return (accumulator || 0) + (currentValue.pc * currentValue.qd || 0);
+            }, 0);
+            //Diferença faturamento de combustível pelo custo que é o lucro
+            const fuelProfit = Math.round(((sumFuel - sumCostPrice)) * 100) / 100
+            //Diferença faturamento de produto pelo custo que é o lucro
+            const productProfit = Math.round(((sumFuelProd - sumProductPrice)) * 100) / 100
+
+
+            await prismaRedeFlex.big_numbers_values.update({
+                data: {
+                    bignumbers_fuelProfit: fuelProfit,
+                    bignumbers_fuelSales: Math.round(sumFuel * 100) / 100,
+                    bignumbers_invoicing: Math.round(sumFuelTotal * 100) / 100,
+                    bignumbers_productProfit: productProfit,
+                    bignumbers_productSales: Math.round(sumFuelProd * 100) / 100,
+                    bignumbers_sumliterage: Math.round(sumLiterage * 100) / 100,
+                    bignumbers_Supplies: Math.round(quantSupply * 100) / 100,
+
+                },
+                where: { bignumbers_uuid: "0e10f272-8a0e-43f2-a1d3-fcebd68dd59e" }
+            })
+            return res?.status(200).json({ message: "Dados atualizados com sucesso!" });
+
+        } catch (error) {
+            return res?.status(500).json({ message: `Erro ao retornar os dados: ${error}` });
+        }
+    }
+    public scheduleMonthlyBigNumberUpdate() {
+        cron.schedule("0 17 * * *", async () => {
+            try {
+                await this.BigNumbersMonth();
+            } catch (error) {
+                console.error("Erro durante a verificação de alertas:", error);
+            }
+        });
+    }
 }
-
-
+const dataController = new DataController();
+// dataController.scheduleMonthlyBigNumberUpdate()
 export default new DataController()
