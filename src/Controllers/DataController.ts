@@ -9,6 +9,7 @@ import { MongoClient, ServerApiVersion } from 'mongodb';
 import moment from "moment";
 import extractUserIdFromToken from "../utils/extractUserID";
 import dotenv from 'dotenv'
+import axios from "axios";
 import cron from "node-cron"
 import { v4 as uuidv4 } from 'uuid';
 const prismaLBCBi = new PrismaLBCBi()
@@ -63,7 +64,6 @@ class DataController {
         try {
             const actualdate = moment().tz("America/Sao_Paulo").format("YYYY-MM-DD");
             const firstDayOfMonth = moment().tz("America/Sao_Paulo").startOf('month').format("YYYY-MM-DD");
-            console.log(actualdate, firstDayOfMonth)
             const clientToken = req.headers.authorization;
             const { use_token }: any = req.params;
             if (!clientToken) {
@@ -98,7 +98,7 @@ class DataController {
 
 
                 })
-                console.log(itemsArray.length)
+
                 //Quantas vezes foi abastecido combustível nos postos
                 const supplyQuantity = itemsArray.flatMap(element => {
                     return element
@@ -235,17 +235,60 @@ class DataController {
                 const lucro_operacional_galonagem = (flags?.use_lucro_bruto_operacional_galonagem ?? 0) < secondary_value_fuelProfit
                 const lucro_operacional_produto = (flags?.use_lucro_bruto_operacional_produto ?? 0) < secondary_value_productProfit
                 const lucro_operacional_geral = (flags?.use_lucro_bruto_operacional ?? 0) < secondary_value_bruto_operacional
+                const monthBigNumbers = await prismaRedeFlex.big_numbers_values.findFirst({
+                    select: {
+                        bignumbers_fuelProfit: true, bignumbers_fuelSales: true, bignumbers_invoicing: true, bignumbers_productProfit: true,
+                        bignumbers_productSales: true, bignumbers_sumliterage: true, bignumbers_Supplies: true,
+                    },
+                    where: { bignumbers_uuid: "650f5af0-b341-4980-aad0-8617e53c41ec" }
+                })
 
 
                 return res.status(200).json({
-                    data: [{ label: "Galonagem em Litros", value: Math.round(sumLiterage * 100) / 100, secondary_label: "TM VOL", secondary_value: Math.round((secondary_value_galonagem) * 100) / 100, third_label: "Status Margem", third_value: use_tmvol, fourth_label: "Margem definida", fourth_value: flags?.use_tmvol },
-                    { label: "Faturamento da Rede", value: Math.round(sumFuelTotal * 100) / 100, secondary_label: "TMF", secondary_value: Math.round((secondary_value_fuel) * 100) / 100, third_label: "Status Margem", third_value: use_tmf, fourth_label: "Margem definida", fourth_value: flags?.use_tmf },
-                    { label: "Abastecimentos a Rede", value: Math.round(quantSupply * 100) / 100 },
-                    { label: "Venda de Combustíveis", value: Math.round(sumFuel * 100) / 100, secondary_label: "TMC", secondary_value: Math.round((secondary_value_tmc) * 100) / 100, third_label: "Status Margem", third_value: tmc, fourth_label: "Margem definida", fourth_value: flags?.use_tmc },
-                    { label: "Lucro de Combustíveis", value: fuelProfit, secondary_label: "Lucro Bruto Operacional", secondary_value: Math.round((secondary_value_fuelProfit) * 100) / 100, third_label: "Status Margem", third_value: lucro_operacional_galonagem, fourth_label: "Margem definida", fourth_value: flags?.use_lucro_bruto_operacional_galonagem },
+                    data: [{
+                        label: "Galonagem em Litros", value: Math.round(sumLiterage * 100) / 100, secondary_label: "TM VOL",
+                        secondary_value: Math.round((secondary_value_galonagem) * 100) / 100, third_label: "Status Margem",
+                        third_value: use_tmvol, fourth_label: "Margem definida", fourth_value: flags?.use_tmvol,
+                        fifth_label: "Valor Mensal", fifth_value: monthBigNumbers?.bignumbers_sumliterage
+                    },
+                    {
+                        label: "Faturamento da Rede", value: Math.round(sumFuelTotal * 100) / 100, secondary_label: "TMF",
+                        secondary_value: Math.round((secondary_value_fuel) * 100) / 100, third_label: "Status Margem",
+                        third_value: use_tmf, fourth_label: "Margem definida", fourth_value: flags?.use_tmf,
+                        fifth_label: "Valor Mensal", fifth_value: monthBigNumbers?.bignumbers_invoicing
+                    },
+                    {
+                        label: "Abastecimentos a Rede", value: Math.round(quantSupply * 100) / 100,
+                        fifth_label: "Valor Mensal", fifth_value: monthBigNumbers?.bignumbers_Supplies
+                    },
+                    {
+                        label: "Venda de Combustíveis", value: Math.round(sumFuel * 100) / 100,
+                        secondary_label: "TMC", secondary_value: Math.round((secondary_value_tmc) * 100) / 100,
+                        third_label: "Status Margem", third_value: tmc, fourth_label: "Margem definida", fourth_value: flags?.use_tmc,
+                        fifth_label: "Valor Mensal", fifth_value: monthBigNumbers?.bignumbers_fuelSales
+                    },
+                    {
+                        label: "Lucro de Combustíveis", value: fuelProfit,
+                        secondary_label: "Lucro Bruto Operacional", secondary_value: Math.round((secondary_value_fuelProfit) * 100) / 100,
+                        third_label: "Status Margem", third_value: lucro_operacional_galonagem, fourth_label: "Margem definida",
+                        fourth_value: flags?.use_lucro_bruto_operacional_galonagem,
+                        fifth_label: "Valor Mensal", fifth_value: monthBigNumbers?.bignumbers_fuelProfit
+                    },
                     { label: "M/LT", value: Math.round(valueMLT * 100) / 100, fourth_label: "Margem definida", third_label: "Status Margem", third_value: mlt, fourth_value: (flags?.use_mlt ?? 0) * 100 },
-                    { label: "Venda de Produtos", value: Math.round(sumFuelProd * 100) / 100, secondary_label: "TMP", secondary_value: Math.round((secondary_value_produto) * 100) / 100, third_label: "Status Margem", third_value: use_tmp, fourth_label: "Margem definida", fourth_value: flags?.use_tmp },
-                    { label: "Lucro de Produtos", value: productProfit, secondary_label: "Lucro Bruto Operacional", secondary_value: Math.round((secondary_value_productProfit) * 100) / 100, third_label: "Status Margem", third_value: lucro_operacional_produto, fourth_label: "Margem definida", fourth_value: flags?.use_lucro_bruto_operacional_produto },
+                    {
+                        label: "Venda de Produtos", value: Math.round(sumFuelProd * 100) / 100,
+                        secondary_label: "TMP", secondary_value: Math.round((secondary_value_produto) * 100) / 100,
+                        third_label: "Status Margem", third_value: use_tmp,
+                        fourth_label: "Margem definida", fourth_value: flags?.use_tmp,
+                        fifth_label: "Valor Mensal", fifth_value: monthBigNumbers?.bignumbers_productSales
+                    },
+                    {
+                        label: "Lucro de Produtos", value: productProfit,
+                        secondary_label: "Lucro Bruto Operacional", secondary_value: Math.round((secondary_value_productProfit) * 100) / 100,
+                        third_label: "Status Margem", third_value: lucro_operacional_produto,
+                        fourth_label: "Margem definida", fourth_value: flags?.use_lucro_bruto_operacional_produto,
+                        fifth_label: "Valor Mensal", fifth_value: monthBigNumbers?.bignumbers_productProfit
+                    },
                     { label: "Lucro Bruto Operacional", value: Math.round((secondary_value_bruto_operacional)), third_label: "Status Margem", third_value: lucro_operacional_geral, fourth_label: "Margem definida", fourth_value: (flags?.use_lucro_bruto_operacional ?? 0) * 100 },
                     ]
                 })
@@ -1636,7 +1679,7 @@ class DataController {
         try {
             const actualdate = moment().tz("America/Sao_Paulo").format("YYYY-MM-DD");
             const firstDayOfMonth = moment().tz("America/Sao_Paulo").startOf('month').format("YYYY-MM-DD");
-
+            console.log("oi")
             const fuelliterageSell = await prismaSales.vendas.findMany({
                 select: {
                     items: {
@@ -1789,16 +1832,43 @@ class DataController {
                     bignumbers_Supplies: Math.round(quantSupply * 100) / 100,
 
                 },
-                where: { bignumbers_uuid: "0e10f272-8a0e-43f2-a1d3-fcebd68dd59e" }
+                where: { bignumbers_uuid: "650f5af0-b341-4980-aad0-8617e53c41ec" }
             })
             return res?.status(200).json({ message: "Dados atualizados com sucesso!" });
 
         } catch (error) {
-            return res?.status(500).json({ message: `Erro ao retornar os dados: ${error}` });
+            return res?.status(500).json({ message: `Erro ao atualizar os dados: ${error}` });
         }
     }
+    public async profitProductSum(req?: Request, res?: Response) {
+        try {
+            const productValue = await axios.get(
+                "http://159.65.42.225:3053/v2/dataframes?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM3MmJmYTExLTM2MzItNDZmOC1hOTM1LTRhODMyYTExMTFjMCIsImlhdCI6MTcyOTA4NzA5MX0.3Y1td1RhYijC5vZoRpe-4ojEftzHmKXDws4ugYZ2rDs",
+
+            );
+
+            const sumProductGroup = productValue.data.grupo.reduce(
+                (accumulator: number, currentValue: any) => {
+                    return accumulator + (currentValue.Lucro || 0);
+                },
+                0
+            );
+            //Salvar na tabela dos bignumbers como a soma de produto diario
+            await prismaRedeFlex.big_numbers_values.update({
+                data: {
+                    bignumbers_fuelSales: Math.round(sumProductGroup * 100) / 100,
+
+                },
+                where: { bignumbers_uuid: "650f5af0-b341-4980-aad0-8617e53c41ec" }
+            })
+            return res?.status(200).json({ message: "Dados atualizados com sucesso!" });
+        } catch (error) {
+            return res?.status(500).json({ message: `Erro ao atualizar os dados: ${error}` });
+        }
+    }
+
     public scheduleMonthlyBigNumberUpdate() {
-        cron.schedule("0 17 * * *", async () => {
+        cron.schedule("*/2 * * * *", async () => {
             try {
                 await this.BigNumbersMonth();
             } catch (error) {
@@ -1808,5 +1878,5 @@ class DataController {
     }
 }
 const dataController = new DataController();
-// dataController.scheduleMonthlyBigNumberUpdate()
+dataController.scheduleMonthlyBigNumberUpdate()
 export default new DataController()
