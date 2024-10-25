@@ -243,10 +243,10 @@ class DataController {
                     { label: "Abastecimentos a Rede", value: Math.round(quantSupply * 100) / 100 },
                     { label: "Venda de Combustíveis", value: Math.round(sumFuel * 100) / 100, secondary_label: "TMC", secondary_value: Math.round((secondary_value_tmc) * 100) / 100, third_label: "Status Margem", third_value: tmc, fourth_label: "Margem definida", fourth_value: flags?.use_tmc },
                     { label: "Lucro de Combustíveis", value: fuelProfit, secondary_label: "Lucro Bruto Operacional", secondary_value: Math.round((secondary_value_fuelProfit) * 100) / 100, third_label: "Status Margem", third_value: lucro_operacional_galonagem, fourth_label: "Margem definida", fourth_value: flags?.use_lucro_bruto_operacional_galonagem },
-                    { label: "M/LT", value: Math.round(valueMLT * 100) / 100, fourth_label: "Margem definida", third_label: "Status Margem", third_value: mlt, fourth_value: flags?.use_mlt },
+                    { label: "M/LT", value: Math.round(valueMLT * 100) / 100, fourth_label: "Margem definida", third_label: "Status Margem", third_value: mlt, fourth_value: (flags?.use_mlt ?? 0) * 100 },
                     { label: "Venda de Produtos", value: Math.round(sumFuelProd * 100) / 100, secondary_label: "TMP", secondary_value: Math.round((secondary_value_produto) * 100) / 100, third_label: "Status Margem", third_value: use_tmp, fourth_label: "Margem definida", fourth_value: flags?.use_tmp },
                     { label: "Lucro de Produtos", value: productProfit, secondary_label: "Lucro Bruto Operacional", secondary_value: Math.round((secondary_value_productProfit) * 100) / 100, third_label: "Status Margem", third_value: lucro_operacional_produto, fourth_label: "Margem definida", fourth_value: flags?.use_lucro_bruto_operacional_produto },
-                    { label: "Lucro Bruto Operacional", value: Math.round((secondary_value_bruto_operacional)), third_label: "Status Margem", third_value: lucro_operacional_geral, fourth_label: "Margem definida", fourth_value: flags?.use_lucro_bruto_operacional },
+                    { label: "Lucro Bruto Operacional", value: Math.round((secondary_value_bruto_operacional)), third_label: "Status Margem", third_value: lucro_operacional_geral, fourth_label: "Margem definida", fourth_value: (flags?.use_lucro_bruto_operacional ?? 0) * 100 },
                     ]
                 })
             } else {
