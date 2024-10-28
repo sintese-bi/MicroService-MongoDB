@@ -232,13 +232,13 @@ class DataController {
                 const use_tmf = (flags?.use_tmf ?? 0) < secondary_value_fuel;
                 const use_tmp = (flags?.use_tmp ?? 0) < secondary_value_produto;
                 const use_tmvol = (flags?.use_tmp ?? 0) < secondary_value_galonagem
-                const lucro_operacional_galonagem = (flags?.use_lucro_bruto_operacional_galonagem ?? 0) < secondary_value_fuelProfit
-                const lucro_operacional_produto = (flags?.use_lucro_bruto_operacional_produto ?? 0) < secondary_value_productProfit
-                const lucro_operacional_geral = (flags?.use_lucro_bruto_operacional ?? 0) < secondary_value_bruto_operacional
+                const lucro_operacional_galonagem = (flags?.use_lucro_bruto_operacional_galonagem ?? 0) * 100 < secondary_value_fuelProfit
+                const lucro_operacional_produto = (flags?.use_lucro_bruto_operacional_produto ?? 0) * 100 < secondary_value_productProfit
+                const lucro_operacional_geral = (flags?.use_lucro_bruto_operacional ?? 0) * 100 < secondary_value_bruto_operacional
                 const monthBigNumbers = await prismaRedeFlex.big_numbers_values.findFirst({
                     select: {
                         bignumbers_fuelProfit: true, bignumbers_fuelSales: true, bignumbers_invoicing: true, bignumbers_productProfit: true,
-                        bignumbers_productSales: true, bignumbers_sumliterage: true, bignumbers_Supplies: true,
+                        bignumbers_productSales: true, bignumbers_sumliterage: true, bignumbers_Supplies: true, bignumbers_dailyProductProfit: true
                     },
                     where: { bignumbers_uuid: "650f5af0-b341-4980-aad0-8617e53c41ec" }
                 })
@@ -271,10 +271,10 @@ class DataController {
                         label: "Lucro de Combustíveis", value: fuelProfit,
                         secondary_label: "Lucro Bruto Operacional", secondary_value: Math.round((secondary_value_fuelProfit) * 100) / 100,
                         third_label: "Status Margem", third_value: lucro_operacional_galonagem, fourth_label: "Margem definida",
-                        fourth_value: flags?.use_lucro_bruto_operacional_galonagem,
+                        fourth_value: (flags?.use_lucro_bruto_operacional_galonagem ?? 0) * 100,
                         fifth_label: "Valor Mensal", fifth_value: monthBigNumbers?.bignumbers_fuelProfit
                     },
-                    { label: "M/LT", value: Math.round(valueMLT * 100) / 100, fourth_label: "Margem definida", third_label: "Status Margem", third_value: mlt, fourth_value: (flags?.use_mlt ?? 0) * 100 },
+                    { label: "M/LT", value: Math.round(valueMLT * 100) / 100, fourth_label: "Margem definida", third_label: "Status Margem", third_value: mlt, fourth_value: flags?.use_mlt ?? 0 },
                     {
                         label: "Venda de Produtos", value: Math.round(sumFuelProd * 100) / 100,
                         secondary_label: "TMP", secondary_value: Math.round((secondary_value_produto) * 100) / 100,
@@ -283,10 +283,10 @@ class DataController {
                         fifth_label: "Valor Mensal", fifth_value: monthBigNumbers?.bignumbers_productSales
                     },
                     {
-                        label: "Lucro de Produtos", value: productProfit,
+                        label: "Lucro de Produtos", value: monthBigNumbers?.bignumbers_dailyProductProfit,
                         secondary_label: "Lucro Bruto Operacional", secondary_value: Math.round((secondary_value_productProfit) * 100) / 100,
                         third_label: "Status Margem", third_value: lucro_operacional_produto,
-                        fourth_label: "Margem definida", fourth_value: flags?.use_lucro_bruto_operacional_produto,
+                        fourth_label: "Margem definida", fourth_value: (flags?.use_lucro_bruto_operacional_produto ?? 0) * 100,
                         fifth_label: "Valor Mensal", fifth_value: monthBigNumbers?.bignumbers_productProfit
                     },
                     { label: "Lucro Bruto Operacional", value: Math.round((secondary_value_bruto_operacional)), third_label: "Status Margem", third_value: lucro_operacional_geral, fourth_label: "Margem definida", fourth_value: (flags?.use_lucro_bruto_operacional ?? 0) * 100 },
@@ -1841,12 +1841,14 @@ class DataController {
         }
     }
     public async profitProductSum(req?: Request, res?: Response) {
+
         try {
+            const token = process.env.SAULOAPI
             const productValue = await axios.get(
-                "http://159.65.42.225:3053/v2/dataframes?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM3MmJmYTExLTM2MzItNDZmOC1hOTM1LTRhODMyYTExMTFjMCIsImlhdCI6MTcyOTA4NzA5MX0.3Y1td1RhYijC5vZoRpe-4ojEftzHmKXDws4ugYZ2rDs",
+                `http://159.65.42.225:3053/v2/dataframes?token=${token}`,
 
             );
-
+            console.log("teste")
             const sumProductGroup = productValue.data.grupo.reduce(
                 (accumulator: number, currentValue: any) => {
                     return accumulator + (currentValue.Lucro || 0);
@@ -1856,7 +1858,7 @@ class DataController {
             //Salvar na tabela dos bignumbers como a soma de produto diario
             await prismaRedeFlex.big_numbers_values.update({
                 data: {
-                    bignumbers_fuelSales: Math.round(sumProductGroup * 100) / 100,
+                    bignumbers_dailyProductProfit: Math.round(sumProductGroup * 100) / 100,
 
                 },
                 where: { bignumbers_uuid: "650f5af0-b341-4980-aad0-8617e53c41ec" }
@@ -1876,7 +1878,17 @@ class DataController {
             }
         });
     }
+    public scheduledailyProductProfitUpdate() {
+        cron.schedule("*/2 * * * *", async () => {
+            try {
+                await this.profitProductSum();
+            } catch (error) {
+                console.error("Erro durante a verificação de alertas:", error);
+            }
+        });
+    }
 }
 const dataController = new DataController();
-dataController.scheduleMonthlyBigNumberUpdate()
+// dataController.scheduleMonthlyBigNumberUpdate()
+dataController.scheduledailyProductProfitUpdate()
 export default new DataController()
