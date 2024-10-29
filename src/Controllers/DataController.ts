@@ -1886,7 +1886,7 @@ class DataController {
     }
 
     public scheduleMonthlyBigNumberUpdate() {
-        cron.schedule("*/2 * * * *", async () => {
+        cron.schedule("0 17 * * *", async () => {
             try {
                 await this.BigNumbersMonth();
             } catch (error) {
