@@ -274,7 +274,13 @@ class DataController {
                         fourth_value: (flags?.use_lucro_bruto_operacional_galonagem ?? 0) * 100,
                         fifth_label: "Valor Mensal", fifth_value: monthBigNumbers?.bignumbers_fuelProfit
                     },
-                    { label: "M/LT", value: Math.round(valueMLT * 100) / 100, fourth_label: "Margem definida", third_label: "Status Margem", third_value: mlt, fourth_value: flags?.use_mlt ?? 0 },
+                    {
+                        label: "M/LT", value: Math.round(valueMLT * 100) / 100,
+                        third_label: "Status Margem", third_value: mlt,
+                        fourth_label: "Margem definida",
+                        fourth_value: flags?.use_mlt ?? 0,
+
+                    },
                     {
                         label: "Venda de Produtos", value: Math.round(sumFuelProd * 100) / 100,
                         secondary_label: "TMP", secondary_value: Math.round((secondary_value_produto) * 100) / 100,
@@ -1677,6 +1683,17 @@ class DataController {
     }
     public async BigNumbersMonth(req?: Request, res?: Response) {
         try {
+            const token = process.env.SAULOAPI
+            const monthProduct = await axios.get(
+                `http://159.65.42.225:3053/v2/dataframes?token=${token}`,
+
+            );
+            const sumProductGroup = monthProduct.data.grupo.reduce(
+                (accumulator: number, currentValue: any) => {
+                    return accumulator + (currentValue.Lucro || 0);
+                },
+                0
+            );
             const actualdate = moment().tz("America/Sao_Paulo").format("YYYY-MM-DD");
             const firstDayOfMonth = moment().tz("America/Sao_Paulo").startOf('month').format("YYYY-MM-DD");
             console.log("oi")
@@ -1818,7 +1835,7 @@ class DataController {
             //Diferença faturamento de combustível pelo custo que é o lucro
             const fuelProfit = Math.round(((sumFuel - sumCostPrice)) * 100) / 100
             //Diferença faturamento de produto pelo custo que é o lucro
-            const productProfit = Math.round(((sumFuelProd - sumProductPrice)) * 100) / 100
+            // const productProfit = Math.round(((sumFuelProd - sumProductPrice)) * 100) / 100
 
 
             await prismaRedeFlex.big_numbers_values.update({
@@ -1826,7 +1843,7 @@ class DataController {
                     bignumbers_fuelProfit: fuelProfit,
                     bignumbers_fuelSales: Math.round(sumFuel * 100) / 100,
                     bignumbers_invoicing: Math.round(sumFuelTotal * 100) / 100,
-                    bignumbers_productProfit: productProfit,
+                    bignumbers_productProfit: sumProductGroup,
                     bignumbers_productSales: Math.round(sumFuelProd * 100) / 100,
                     bignumbers_sumliterage: Math.round(sumLiterage * 100) / 100,
                     bignumbers_Supplies: Math.round(quantSupply * 100) / 100,
@@ -1848,7 +1865,6 @@ class DataController {
                 `http://159.65.42.225:3053/v2/dataframes?token=${token}`,
 
             );
-            console.log("teste")
             const sumProductGroup = productValue.data.grupo.reduce(
                 (accumulator: number, currentValue: any) => {
                     return accumulator + (currentValue.Lucro || 0);
