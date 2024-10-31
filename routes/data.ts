@@ -15,7 +15,7 @@ dataRouter.post("/regional-graph/:filter", DataController.regionalStateDataFrame
 dataRouter.post("/daily-graph/:filter", DataController.regionalStateDailyDataFrame)
 // dataRouter.post("/regional-station-daily-fuel-product", DataController.regionalStateDataFrameProduct)
 dataRouter.get("/map-data/:use_token", DataController.mapData)
-dataRouter.get("/teste", DataController.profitProductSum)
+dataRouter.get("/teste", DataController.BigNumbersMonth)
 dataRouter.get("/fuel-types", DataController.fuelTypes)
 export default dataRouter
 
