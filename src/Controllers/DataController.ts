@@ -1683,20 +1683,11 @@ class DataController {
     }
     public async BigNumbersMonth(req?: Request, res?: Response) {
         try {
-            const token = process.env.SAULOAPI
-            const monthProduct = await axios.get(
-                `http://159.65.42.225:3053/v2/dataframes?token=${token}`,
 
-            );
-            const sumProductGroup = monthProduct.data.grupo.reduce(
-                (accumulator: number, currentValue: any) => {
-                    return accumulator + (currentValue.Lucro || 0);
-                },
-                0
-            );
+
             const actualdate = moment().tz("America/Sao_Paulo").format("YYYY-MM-DD");
             const firstDayOfMonth = moment().tz("America/Sao_Paulo").startOf('month').format("YYYY-MM-DD");
-            console.log("oi")
+
             const fuelliterageSell = await prismaSales.vendas.findMany({
                 select: {
                     items: {
@@ -1716,7 +1707,12 @@ class DataController {
                 }
 
             })
+            //API Saulo
+            const monthProduct = await axios.get(
+                `http://159.65.42.225:3053/v2/dataframes_month`,
 
+            );
+            console.log(monthProduct.data.month_Prod)
             //Construção array de items
             const itemsArray = fuelliterageSell.flatMap(element => {
 
@@ -1840,10 +1836,10 @@ class DataController {
 
             await prismaRedeFlex.big_numbers_values.update({
                 data: {
-                    bignumbers_fuelProfit: fuelProfit,
+                    bignumbers_fuelProfit: parseFloat(monthProduct.data.month_combs),
                     bignumbers_fuelSales: Math.round(sumFuel * 100) / 100,
                     bignumbers_invoicing: Math.round(sumFuelTotal * 100) / 100,
-                    bignumbers_productProfit: sumProductGroup,
+                    bignumbers_productProfit: parseFloat(monthProduct.data.month_Prod),
                     bignumbers_productSales: Math.round(sumFuelProd * 100) / 100,
                     bignumbers_sumliterage: Math.round(sumLiterage * 100) / 100,
                     bignumbers_Supplies: Math.round(quantSupply * 100) / 100,
@@ -1886,7 +1882,7 @@ class DataController {
     }
 
     public scheduleMonthlyBigNumberUpdate() {
-        cron.schedule("0 17 * * *", async () => {
+        cron.schedule("0 22 * * *", async () => {
             try {
                 await this.BigNumbersMonth();
             } catch (error) {
@@ -1905,6 +1901,6 @@ class DataController {
     }
 }
 const dataController = new DataController();
-// dataController.scheduleMonthlyBigNumberUpdate()
+dataController.scheduleMonthlyBigNumberUpdate()
 dataController.scheduledailyProductProfitUpdate()
 export default new DataController()

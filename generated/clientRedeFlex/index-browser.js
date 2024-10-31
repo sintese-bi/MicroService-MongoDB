@@ -133,7 +133,7 @@ exports.Prisma.Ibm_infoScalarFieldEnum = {
   ibm_margin_AL: 'ibm_margin_AL',
   ibm_margin_GC: 'ibm_margin_GC',
   ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL: 'ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL',
-  ibm_margin_ETANOL_COMUM: 'ibm_margin_ETANOL_COMUM'
+  ibm_margin_GASOLINA_PODIUM: 'ibm_margin_GASOLINA_PODIUM'
 };
 
 exports.Prisma.UsersScalarFieldEnum = {
@@ -198,16 +198,16 @@ exports.Prisma.Gas_station_setvariablesScalarFieldEnum = {
   gas_station_GASOLINA_COMUM_comb: 'gas_station_GASOLINA_COMUM_comb',
   gas_station_OLEO_DIESEL_B_S10_COMUM_comb: 'gas_station_OLEO_DIESEL_B_S10_COMUM_comb',
   gas_station_OLEO_DIESEL_B_S500_COMUM_comb: 'gas_station_OLEO_DIESEL_B_S500_COMUM_comb',
-  gas_station_margin_ETANOL_COMUM: 'gas_station_margin_ETANOL_COMUM',
-  gas_station_sanado_hour_margin_ETANOL_COMUM: 'gas_station_sanado_hour_margin_ETANOL_COMUM',
-  gas_station_sanado_margin_ETANOL_COMUM: 'gas_station_sanado_margin_ETANOL_COMUM',
-  gas_station_type_margin_ETANOL_COMUM: 'gas_station_type_margin_ETANOL_COMUM',
-  verification_hour_margin_ETANOLCOMUM: 'verification_hour_margin_ETANOLCOMUM',
-  gas_station_margin_GASOLINE_GROUP2: 'gas_station_margin_GASOLINE_GROUP2',
-  gas_station_sanado_hour_margin_GASOLINE_GROUP2: 'gas_station_sanado_hour_margin_GASOLINE_GROUP2',
-  gas_station_sanado_margin_GASOLINE_GROUP2: 'gas_station_sanado_margin_GASOLINE_GROUP2',
-  gas_station_type_margin_GASOLINE_GROUP2: 'gas_station_type_margin_GASOLINE_GROUP2',
-  verification_hour_margin_GASOLINE_GROUP2: 'verification_hour_margin_GASOLINE_GROUP2'
+  gas_station_margin_DIESEL_GROUP: 'gas_station_margin_DIESEL_GROUP',
+  gas_station_sanado_hour_margin_DIESEL_GROUP: 'gas_station_sanado_hour_margin_DIESEL_GROUP',
+  gas_station_sanado_margin_DIESEL_GROUP: 'gas_station_sanado_margin_DIESEL_GROUP',
+  gas_station_type_margin_DIESEL_GROUP: 'gas_station_type_margin_DIESEL_GROUP',
+  verification_hour_margin_DIESEL_GROUP: 'verification_hour_margin_DIESEL_GROUP',
+  gas_station_margin_GASOLINA_PODIUM: 'gas_station_margin_GASOLINA_PODIUM',
+  gas_station_sanado_hour_margin_GASOLINA_PODIUM: 'gas_station_sanado_hour_margin_GASOLINA_PODIUM',
+  gas_station_sanado_margin_GASOLINA_PODIUM: 'gas_station_sanado_margin_GASOLINA_PODIUM',
+  gas_station_type_margin_GASOLINA_PODIUM: 'gas_station_type_margin_GASOLINA_PODIUM',
+  verification_hour_margin_GASOLINA_PODIUM: 'verification_hour_margin_GASOLINA_PODIUM'
 };
 
 exports.Prisma.Region_setvariablesScalarFieldEnum = {
@@ -245,16 +245,16 @@ exports.Prisma.Region_setvariablesScalarFieldEnum = {
   region_station_TMF_modal: 'region_station_TMF_modal',
   region_station_TMP_modal: 'region_station_TMP_modal',
   region_station_TMVOL_modal: 'region_station_TMVOL_modal',
-  region_margin_ETANOL_COMUM: 'region_margin_ETANOL_COMUM',
-  region_sanado_hour_ETANOL_COMUM: 'region_sanado_hour_ETANOL_COMUM',
-  region_sanado_margin_ETANOL_COMUM: 'region_sanado_margin_ETANOL_COMUM',
-  region_type_margin_ETANOL_COMUM: 'region_type_margin_ETANOL_COMUM',
-  verification_hour_margin_ETANOL_COMUM: 'verification_hour_margin_ETANOL_COMUM',
-  region_margin_GASOLINE_GROUP2: 'region_margin_GASOLINE_GROUP2',
-  region_sanado_hour_margin_GASOLINE_GROUP2: 'region_sanado_hour_margin_GASOLINE_GROUP2',
-  region_sanado_margin_GASOLINE_GROUP2: 'region_sanado_margin_GASOLINE_GROUP2',
-  region_type_margin_GASOLINE_GROUP2: 'region_type_margin_GASOLINE_GROUP2',
-  verification_hour_margin_GASOLINE_GROUP2: 'verification_hour_margin_GASOLINE_GROUP2'
+  region_margin_DIESEL_GROUP: 'region_margin_DIESEL_GROUP',
+  region_sanado_hour_margin_DIESEL_GROUP: 'region_sanado_hour_margin_DIESEL_GROUP',
+  region_sanado_margin_DIESEL_GROUP: 'region_sanado_margin_DIESEL_GROUP',
+  region_type_margin_DIESEL_GROUP: 'region_type_margin_DIESEL_GROUP',
+  verification_hour_margin_DIESEL_GROUP: 'verification_hour_margin_DIESEL_GROUP',
+  region_margin_GASOLINA_PODIUM: 'region_margin_GASOLINA_PODIUM',
+  region_sanado_hour_GASOLINA_PODIUM: 'region_sanado_hour_GASOLINA_PODIUM',
+  region_sanado_margin_GASOLINA_PODIUM: 'region_sanado_margin_GASOLINA_PODIUM',
+  region_type_margin_GASOLINA_PODIUM: 'region_type_margin_GASOLINA_PODIUM',
+  verification_hour_margin_GASOLINA_PODIUM: 'verification_hour_margin_GASOLINA_PODIUM'
 };
 
 exports.Prisma.RegionsScalarFieldEnum = {
@@ -266,7 +266,7 @@ exports.Prisma.RegionsScalarFieldEnum = {
   regions_margin_AL: 'regions_margin_AL',
   regions_margin_GC: 'regions_margin_GC',
   regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL: 'regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL',
-  regions_margin_ETANOL_COMUM: 'regions_margin_ETANOL_COMUM'
+  regions_margin_GASOLINA_PODIUM: 'regions_margin_GASOLINA_PODIUM'
 };
 
 exports.Prisma.Big_numbers_valuesScalarFieldEnum = {
