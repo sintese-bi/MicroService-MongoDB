@@ -249,30 +249,30 @@ class DataController {
                         label: "Galonagem em Litros", value: Math.round(sumLiterage * 100) / 100, secondary_label: "TM VOL",
                         secondary_value: Math.round((secondary_value_galonagem) * 100) / 100, third_label: "Status Margem",
                         third_value: use_tmvol, fourth_label: "Margem definida", fourth_value: flags?.use_tmvol,
-                        fifth_label: "Valor Mensal", fifth_value: monthBigNumbers?.bignumbers_sumliterage
+                        fifth_label: "Acumulado Mensal", fifth_value: monthBigNumbers?.bignumbers_sumliterage
                     },
                     {
                         label: "Faturamento da Rede", value: Math.round(sumFuelTotal * 100) / 100, secondary_label: "TMF",
                         secondary_value: Math.round((secondary_value_fuel) * 100) / 100, third_label: "Status Margem",
                         third_value: use_tmf, fourth_label: "Margem definida", fourth_value: flags?.use_tmf,
-                        fifth_label: "Valor Mensal", fifth_value: monthBigNumbers?.bignumbers_invoicing
+                        fifth_label: "Acumulado Mensal", fifth_value: monthBigNumbers?.bignumbers_invoicing
                     },
                     {
                         label: "Abastecimentos a Rede", value: Math.round(quantSupply * 100) / 100,
-                        fifth_label: "Valor Mensal", fifth_value: monthBigNumbers?.bignumbers_Supplies
+                        fifth_label: "Acumulado Mensal", fifth_value: monthBigNumbers?.bignumbers_Supplies
                     },
                     {
                         label: "Venda de Combustíveis", value: Math.round(sumFuel * 100) / 100,
                         secondary_label: "TMC", secondary_value: Math.round((secondary_value_tmc) * 100) / 100,
                         third_label: "Status Margem", third_value: tmc, fourth_label: "Margem definida", fourth_value: flags?.use_tmc,
-                        fifth_label: "Valor Mensal", fifth_value: monthBigNumbers?.bignumbers_fuelSales
+                        fifth_label: "Acumulado Mensal", fifth_value: monthBigNumbers?.bignumbers_fuelSales
                     },
                     {
                         label: "Lucro de Combustíveis", value: fuelProfit,
                         secondary_label: "Lucro Bruto Operacional", secondary_value: Math.round((secondary_value_fuelProfit) * 100) / 100,
                         third_label: "Status Margem", third_value: lucro_operacional_galonagem, fourth_label: "Margem definida",
                         fourth_value: (flags?.use_lucro_bruto_operacional_galonagem ?? 0) * 100,
-                        fifth_label: "Valor Mensal", fifth_value: monthBigNumbers?.bignumbers_fuelProfit
+                        fifth_label: "Acumulado Mensal", fifth_value: monthBigNumbers?.bignumbers_fuelProfit
                     },
                     {
                         label: "M/LT", value: Math.round(valueMLT * 100) / 100,
@@ -286,14 +286,14 @@ class DataController {
                         secondary_label: "TMP", secondary_value: Math.round((secondary_value_produto) * 100) / 100,
                         third_label: "Status Margem", third_value: use_tmp,
                         fourth_label: "Margem definida", fourth_value: flags?.use_tmp,
-                        fifth_label: "Valor Mensal", fifth_value: monthBigNumbers?.bignumbers_productSales
+                        fifth_label: "Acumulado Mensal", fifth_value: monthBigNumbers?.bignumbers_productSales
                     },
                     {
                         label: "Lucro de Produtos", value: monthBigNumbers?.bignumbers_dailyProductProfit,
                         secondary_label: "Lucro Bruto Operacional", secondary_value: Math.round((secondary_value_productProfit) * 100) / 100,
                         third_label: "Status Margem", third_value: lucro_operacional_produto,
                         fourth_label: "Margem definida", fourth_value: (flags?.use_lucro_bruto_operacional_produto ?? 0) * 100,
-                        fifth_label: "Valor Mensal", fifth_value: monthBigNumbers?.bignumbers_productProfit
+                        fifth_label: "Acumulado Mensal", fifth_value: monthBigNumbers?.bignumbers_productProfit
                     },
                     { label: "Lucro Bruto Operacional", value: Math.round((secondary_value_bruto_operacional)), third_label: "Status Margem", third_value: lucro_operacional_geral, fourth_label: "Margem definida", fourth_value: (flags?.use_lucro_bruto_operacional ?? 0) * 100 },
                     ]
@@ -1712,7 +1712,6 @@ class DataController {
                 `http://159.65.42.225:3053/v2/dataframes_month`,
 
             );
-            console.log(monthProduct.data.month_Prod)
             //Construção array de items
             const itemsArray = fuelliterageSell.flatMap(element => {
 
@@ -1882,7 +1881,7 @@ class DataController {
     }
 
     public scheduleMonthlyBigNumberUpdate() {
-        cron.schedule("0 22 * * *", async () => {
+        cron.schedule("0 0 * * *", async () => {
             try {
                 await this.BigNumbersMonth();
             } catch (error) {
