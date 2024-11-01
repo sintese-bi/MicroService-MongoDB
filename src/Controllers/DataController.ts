@@ -1884,9 +1884,12 @@ class DataController {
         cron.schedule("0 0 * * *", async () => {
             try {
                 await this.BigNumbersMonth();
+
             } catch (error) {
                 console.error("Erro durante a verificação de alertas:", error);
             }
+        }, {
+            timezone: "America/Sao_Paulo",
         });
     }
     public scheduledailyProductProfitUpdate() {
