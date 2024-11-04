@@ -66,6 +66,8 @@ class DataController {
             const firstDayOfMonth = moment().tz("America/Sao_Paulo").startOf('month').format("YYYY-MM-DD");
             const clientToken = req.headers.authorization;
             const { use_token }: any = req.params;
+            const actualDay = parseFloat(actualdate.split('-')[2])
+
             if (!clientToken) {
                 return res.status(401).json({ message: "Token não fornecido." });
             }
@@ -227,58 +229,81 @@ class DataController {
                 }
                 const id = extractUserIdFromToken(use_token, secret)
                 const flags = await prismaRedeFlex.users.findUnique({ select: { use_tmc: true, use_mlt: true, use_tmf: true, use_tmp: true, use_tmvol: true, use_lucro_bruto_operacional_galonagem: true, use_lucro_bruto_operacional_produto: true, use_lucro_bruto_operacional: true }, where: { use_uuid: id } })
-                const tmc = (flags?.use_tmc ?? 0) < secondary_value_tmc;
-                const mlt = (flags?.use_mlt ?? 0) < valueMLT;
-                const use_tmf = (flags?.use_tmf ?? 0) < secondary_value_fuel;
-                const use_tmp = (flags?.use_tmp ?? 0) < secondary_value_produto;
-                const use_tmvol = (flags?.use_tmp ?? 0) < secondary_value_galonagem
-                const lucro_operacional_galonagem = (flags?.use_lucro_bruto_operacional_galonagem ?? 0) * 100 < secondary_value_fuelProfit
-                const lucro_operacional_produto = (flags?.use_lucro_bruto_operacional_produto ?? 0) * 100 < secondary_value_productProfit
-                const lucro_operacional_geral = (flags?.use_lucro_bruto_operacional ?? 0) * 100 < secondary_value_bruto_operacional
+                const tmc = (flags?.use_tmc ?? 0) <= secondary_value_tmc;
+                const mlt = (flags?.use_mlt ?? 0) <= valueMLT;
+                const use_tmf = (flags?.use_tmf ?? 0) <= secondary_value_fuel;
+                const use_tmp = (flags?.use_tmp ?? 0) <= secondary_value_produto;
+                const use_tmvol = (flags?.use_tmp ?? 0) <= secondary_value_galonagem
+                const lucro_operacional_galonagem = (flags?.use_lucro_bruto_operacional_galonagem ?? 0) * 100 <= secondary_value_fuelProfit
+                const lucro_operacional_produto = (flags?.use_lucro_bruto_operacional_produto ?? 0) * 100 <= secondary_value_productProfit
+                const lucro_operacional_geral = (flags?.use_lucro_bruto_operacional ?? 0) * 100 <= secondary_value_bruto_operacional
                 const monthBigNumbers = await prismaRedeFlex.big_numbers_values.findFirst({
                     select: {
                         bignumbers_fuelProfit: true, bignumbers_fuelSales: true, bignumbers_invoicing: true, bignumbers_productProfit: true,
                         bignumbers_productSales: true, bignumbers_sumliterage: true, bignumbers_Supplies: true, bignumbers_dailyProductProfit: true
                     },
-                    where: { bignumbers_uuid: "650f5af0-b341-4980-aad0-8617e53c41ec" }
+                    where: { bignumbers_uuid: "0e10f272-8a0e-43f2-a1d3-fcebd68dd59e" }
                 })
-
+                //Produção: 650f5af0-b341-4980-aad0-8617e53c41ec
+                //Fluxo comparação média mensal
+                const galonagemLitrosCondição = (Math.round(sumLiterage * 100) / 100) >= (Math.round((monthBigNumbers?.bignumbers_sumliterage ?? 0) * 100) / 100) / actualDay;
+                const faturamentoRedeCondição = Math.round(sumFuelTotal * 100) / 100 >= (Math.round((monthBigNumbers?.bignumbers_invoicing ?? 0) * 100) / 100) / actualDay;
+                const abastecimentoRedeCondição = Math.round(quantSupply * 100) / 100 >= (Math.round((monthBigNumbers?.bignumbers_Supplies ?? 0) * 100) / 100) / actualDay
+                const vendaCombustíveisCondição = Math.round(sumFuel * 100) / 100 >= (Math.round((monthBigNumbers?.bignumbers_fuelSales ?? 0) * 100) / 100) / actualDay
+                const lucroCombustíveisCondição = fuelProfit >= (Math.round((monthBigNumbers?.bignumbers_fuelProfit ?? 0) * 100) / 100) / actualDay
+                const vendaProdutosCondição = Math.round(sumFuelProd * 100) / 100 >= (Math.round((monthBigNumbers?.bignumbers_productSales ?? 0) * 100) / 100) / actualDay
+                const lucroProdutosCondição = monthBigNumbers?.bignumbers_dailyProductProfit ?? 0 >= (Math.round((monthBigNumbers?.bignumbers_productProfit ?? 0) * 100) / 100) / actualDay
 
                 return res.status(200).json({
                     data: [{
                         label: "Galonagem em Litros", value: Math.round(sumLiterage * 100) / 100, secondary_label: "TM VOL",
                         secondary_value: Math.round((secondary_value_galonagem) * 100) / 100, third_label: "Status Margem",
                         third_value: use_tmvol, fourth_label: "Margem definida", fourth_value: flags?.use_tmvol,
-                        fifth_label: "Acumulado Mensal", fifth_value: monthBigNumbers?.bignumbers_sumliterage
+                        fifth_label: "Acumulado Mensal", fifth_value: monthBigNumbers?.bignumbers_sumliterage,
+                        sixth_label: "Status Média", sixth_value: galonagemLitrosCondição,
+                        seventh_label: "Média Mensal", seventh_value: (Math.round((monthBigNumbers?.bignumbers_sumliterage ?? 0) * 100) / 100) / actualDay
                     },
                     {
                         label: "Faturamento da Rede", value: Math.round(sumFuelTotal * 100) / 100, secondary_label: "TMF",
                         secondary_value: Math.round((secondary_value_fuel) * 100) / 100, third_label: "Status Margem",
                         third_value: use_tmf, fourth_label: "Margem definida", fourth_value: flags?.use_tmf,
-                        fifth_label: "Acumulado Mensal", fifth_value: monthBigNumbers?.bignumbers_invoicing
+                        fifth_label: "Acumulado Mensal", fifth_value: monthBigNumbers?.bignumbers_invoicing,
+                        sixth_label: "Status Média", sixth_value: faturamentoRedeCondição,
+                        seventh_label: "Média Mensal", seventh_value: (Math.round((monthBigNumbers?.bignumbers_invoicing ?? 0) * 100) / 100) / actualDay
                     },
                     {
-                        label: "Abastecimentos a Rede", value: Math.round(quantSupply * 100) / 100,
-                        fifth_label: "Acumulado Mensal", fifth_value: monthBigNumbers?.bignumbers_Supplies
+                        label: "Abastecimentos a Rede", value: Math.round(quantSupply * 100) / 100, secondary_label: "",
+                        secondary_value: 0, third_label: "",
+                        third_value: 0, fourth_label: "", fourth_value: 0,
+                        fifth_label: "Acumulado Mensal", fifth_value: monthBigNumbers?.bignumbers_Supplies,
+                        sixth_label: "Status Média", sixth_value: abastecimentoRedeCondição,
+                        seventh_label: "Média Mensal", seventh_value: (Math.round((monthBigNumbers?.bignumbers_Supplies ?? 0) * 100) / 100) / actualDay
                     },
                     {
                         label: "Venda de Combustíveis", value: Math.round(sumFuel * 100) / 100,
                         secondary_label: "TMC", secondary_value: Math.round((secondary_value_tmc) * 100) / 100,
                         third_label: "Status Margem", third_value: tmc, fourth_label: "Margem definida", fourth_value: flags?.use_tmc,
-                        fifth_label: "Acumulado Mensal", fifth_value: monthBigNumbers?.bignumbers_fuelSales
+                        fifth_label: "Acumulado Mensal", fifth_value: monthBigNumbers?.bignumbers_fuelSales,
+                        sixth_label: "Status Média", sixth_value: vendaCombustíveisCondição,
+                        seventh_label: "Média Mensal", seventh_value: (Math.round((monthBigNumbers?.bignumbers_fuelSales ?? 0) * 100) / 100) / actualDay
                     },
                     {
                         label: "Lucro de Combustíveis", value: fuelProfit,
                         secondary_label: "Lucro Bruto Operacional", secondary_value: Math.round((secondary_value_fuelProfit) * 100) / 100,
                         third_label: "Status Margem", third_value: lucro_operacional_galonagem, fourth_label: "Margem definida",
                         fourth_value: (flags?.use_lucro_bruto_operacional_galonagem ?? 0) * 100,
-                        fifth_label: "Acumulado Mensal", fifth_value: monthBigNumbers?.bignumbers_fuelProfit
+                        fifth_label: "Acumulado Mensal", fifth_value: monthBigNumbers?.bignumbers_fuelProfit,
+                        sixth_label: "Status Média", sixth_value: lucroCombustíveisCondição,
+                        seventh_label: "Média Mensal", seventh_value: (Math.round((monthBigNumbers?.bignumbers_fuelProfit ?? 0) * 100) / 100) / actualDay
                     },
                     {
                         label: "M/LT", value: Math.round(valueMLT * 100) / 100,
+                        secondary_label: "", secondary_value: 0,
                         third_label: "Status Margem", third_value: mlt,
                         fourth_label: "Margem definida",
                         fourth_value: flags?.use_mlt ?? 0,
+                        fifth_label: "", fifth_value: 0, sixth_label: "", sixth_value: 0,
+                        seventh_label: "", seventh_value: 0
 
                     },
                     {
@@ -286,16 +311,28 @@ class DataController {
                         secondary_label: "TMP", secondary_value: Math.round((secondary_value_produto) * 100) / 100,
                         third_label: "Status Margem", third_value: use_tmp,
                         fourth_label: "Margem definida", fourth_value: flags?.use_tmp,
-                        fifth_label: "Acumulado Mensal", fifth_value: monthBigNumbers?.bignumbers_productSales
+                        fifth_label: "Acumulado Mensal", fifth_value: monthBigNumbers?.bignumbers_productSales,
+                        sixth_label: "Status Média", sixth_value: vendaProdutosCondição,
+                        seventh_label: "Média Mensal", seventh_value: (Math.round((monthBigNumbers?.bignumbers_productSales ?? 0) * 100) / 100) / actualDay
                     },
                     {
                         label: "Lucro de Produtos", value: monthBigNumbers?.bignumbers_dailyProductProfit,
                         secondary_label: "Lucro Bruto Operacional", secondary_value: Math.round((secondary_value_productProfit) * 100) / 100,
                         third_label: "Status Margem", third_value: lucro_operacional_produto,
                         fourth_label: "Margem definida", fourth_value: (flags?.use_lucro_bruto_operacional_produto ?? 0) * 100,
-                        fifth_label: "Acumulado Mensal", fifth_value: monthBigNumbers?.bignumbers_productProfit
+                        fifth_label: "Acumulado Mensal", fifth_value: monthBigNumbers?.bignumbers_productProfit,
+                        sixth_label: "Status Média", sixth_value: lucroProdutosCondição,
+                        seventh_label: "Média Mensal", seventh_value: (Math.round((monthBigNumbers?.bignumbers_productProfit ?? 0) * 100) / 100) / actualDay
                     },
-                    { label: "Lucro Bruto Operacional", value: Math.round((secondary_value_bruto_operacional)), third_label: "Status Margem", third_value: lucro_operacional_geral, fourth_label: "Margem definida", fourth_value: (flags?.use_lucro_bruto_operacional ?? 0) * 100 },
+                    {
+                        label: "Lucro Bruto Operacional", value: Math.round((secondary_value_bruto_operacional)),
+                        secondary_label: "", secondary_value: 0,
+                        third_label: "Status Margem", third_value: lucro_operacional_geral,
+                        fourth_label: "Margem definida", fourth_value: (flags?.use_lucro_bruto_operacional ?? 0) * 100,
+                        fifth_label: "", fifth_value: 0,
+                        sixth_label: "", sixth_value: 0,
+                        seventh_label: "", seventh_value: 0
+                    },
                     ]
                 })
             } else {
