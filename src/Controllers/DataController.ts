@@ -242,7 +242,7 @@ class DataController {
                         bignumbers_fuelProfit: true, bignumbers_fuelSales: true, bignumbers_invoicing: true, bignumbers_productProfit: true,
                         bignumbers_productSales: true, bignumbers_sumliterage: true, bignumbers_Supplies: true, bignumbers_dailyProductProfit: true
                     },
-                    where: { bignumbers_uuid: "0e10f272-8a0e-43f2-a1d3-fcebd68dd59e" }
+                    where: { bignumbers_uuid: "650f5af0-b341-4980-aad0-8617e53c41ec" }
                 })
                 //Produção: 650f5af0-b341-4980-aad0-8617e53c41ec
                 //Fluxo comparação média mensal
