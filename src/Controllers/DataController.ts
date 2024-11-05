@@ -217,7 +217,7 @@ class DataController {
                 const secondary_value_fuel = quantSupply !== 0 ? (sumFuelTotal / quantSupply) : 0;
                 const secondary_value_galonagem = quantSupply !== 0 ? (sumLiterage / quantSupply) : 0;
                 const secondary_value_tmc = quantSupply !== 0 ? (sumFuel / quantSupply) : 0;
-                const secondary_value_produto = quantSupply !== 0 ? (sumProductPrice / quantSupply) : 0;
+                const secondary_value_produto = quantSupply !== 0 ? (sumFuelProd / quantSupply) : 0;
                 const secondary_value_fuelProfit = sumFuel !== 0 ? ((fuelProfit / sumFuel) * 100) : 0;
                 const secondary_value_productProfit = sumFuelProd !== 0 ? ((productProfit / sumFuelProd) * 100) : 0;
                 const secondary_value_bruto_operacional = sumFuelTotal !== 0 ? ((productProfit + fuelProfit) / sumFuelTotal * 100) : 0;
