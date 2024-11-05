@@ -245,14 +245,16 @@ class DataController {
                     where: { bignumbers_uuid: "650f5af0-b341-4980-aad0-8617e53c41ec" }
                 })
                 //Produção: 650f5af0-b341-4980-aad0-8617e53c41ec
+                //Desenvolvimento:0e10f272-8a0e-43f2-a1d3-fcebd68dd59e
                 //Fluxo comparação média mensal
-                const galonagemLitrosCondição = (Math.round(sumLiterage * 100) / 100) >= (Math.round((monthBigNumbers?.bignumbers_sumliterage ?? 0) * 100) / 100) / actualDay;
-                const faturamentoRedeCondição = Math.round(sumFuelTotal * 100) / 100 >= (Math.round((monthBigNumbers?.bignumbers_invoicing ?? 0) * 100) / 100) / actualDay;
-                const abastecimentoRedeCondição = Math.round(quantSupply * 100) / 100 >= (Math.round((monthBigNumbers?.bignumbers_Supplies ?? 0) * 100) / 100) / actualDay
-                const vendaCombustíveisCondição = Math.round(sumFuel * 100) / 100 >= (Math.round((monthBigNumbers?.bignumbers_fuelSales ?? 0) * 100) / 100) / actualDay
-                const lucroCombustíveisCondição = fuelProfit >= (Math.round((monthBigNumbers?.bignumbers_fuelProfit ?? 0) * 100) / 100) / actualDay
-                const vendaProdutosCondição = Math.round(sumFuelProd * 100) / 100 >= (Math.round((monthBigNumbers?.bignumbers_productSales ?? 0) * 100) / 100) / actualDay
-                const lucroProdutosCondição = monthBigNumbers?.bignumbers_dailyProductProfit ?? 0 >= (Math.round((monthBigNumbers?.bignumbers_productProfit ?? 0) * 100) / 100) / actualDay
+                const galonagemLitrosCondição = (Math.round(sumLiterage * 100) / 100) >= Math.round(((monthBigNumbers?.bignumbers_sumliterage ?? 0) / actualDay) * 100) / 100;;
+                const faturamentoRedeCondição = Math.round(sumFuelTotal * 100) / 100 >= Math.round(((monthBigNumbers?.bignumbers_invoicing ?? 0) / actualDay) * 100) / 100;
+                const abastecimentoRedeCondição = Math.round(quantSupply * 100) / 100 >= Math.round(((monthBigNumbers?.bignumbers_Supplies ?? 0) / actualDay) * 100) / 100;
+                const vendaCombustíveisCondição = Math.round(sumFuel * 100) / 100 >= Math.round(((monthBigNumbers?.bignumbers_fuelSales ?? 0) / actualDay) * 100) / 100;
+                const lucroCombustíveisCondição = fuelProfit >= Math.round(((monthBigNumbers?.bignumbers_fuelProfit ?? 0) / actualDay) * 100) / 100;
+                const vendaProdutosCondição = Math.round(sumFuelProd * 100) / 100 >= Math.round(((monthBigNumbers?.bignumbers_productSales ?? 0) / actualDay) * 100) / 100;
+                const lucroProdutosCondição = (monthBigNumbers?.bignumbers_dailyProductProfit ?? 0) >= (Math.round(((monthBigNumbers?.bignumbers_productProfit ?? 0) / actualDay) * 100) / 100);
+
 
                 return res.status(200).json({
                     data: [{
@@ -261,7 +263,7 @@ class DataController {
                         third_value: use_tmvol, fourth_label: "Margem definida", fourth_value: flags?.use_tmvol,
                         fifth_label: "Acumulado Mensal", fifth_value: monthBigNumbers?.bignumbers_sumliterage,
                         sixth_label: "Status Média", sixth_value: galonagemLitrosCondição,
-                        seventh_label: "Média Mensal", seventh_value: (Math.round((monthBigNumbers?.bignumbers_sumliterage ?? 0) * 100) / 100) / actualDay
+                        seventh_label: "Média Mensal", seventh_value: Math.round(((monthBigNumbers?.bignumbers_sumliterage ?? 0) / actualDay) * 100) / 100
                     },
                     {
                         label: "Faturamento da Rede", value: Math.round(sumFuelTotal * 100) / 100, secondary_label: "TMF",
@@ -269,7 +271,7 @@ class DataController {
                         third_value: use_tmf, fourth_label: "Margem definida", fourth_value: flags?.use_tmf,
                         fifth_label: "Acumulado Mensal", fifth_value: monthBigNumbers?.bignumbers_invoicing,
                         sixth_label: "Status Média", sixth_value: faturamentoRedeCondição,
-                        seventh_label: "Média Mensal", seventh_value: (Math.round((monthBigNumbers?.bignumbers_invoicing ?? 0) * 100) / 100) / actualDay
+                        seventh_label: "Média Mensal", seventh_value: Math.round(((monthBigNumbers?.bignumbers_invoicing ?? 0) / actualDay) * 100) / 100
                     },
                     {
                         label: "Abastecimentos a Rede", value: Math.round(quantSupply * 100) / 100, secondary_label: "",
@@ -277,7 +279,7 @@ class DataController {
                         third_value: 0, fourth_label: "", fourth_value: 0,
                         fifth_label: "Acumulado Mensal", fifth_value: monthBigNumbers?.bignumbers_Supplies,
                         sixth_label: "Status Média", sixth_value: abastecimentoRedeCondição,
-                        seventh_label: "Média Mensal", seventh_value: (Math.round((monthBigNumbers?.bignumbers_Supplies ?? 0) * 100) / 100) / actualDay
+                        seventh_label: "Média Mensal", seventh_value: Math.round(((monthBigNumbers?.bignumbers_Supplies ?? 0) / actualDay) * 100) / 100
                     },
                     {
                         label: "Venda de Combustíveis", value: Math.round(sumFuel * 100) / 100,
@@ -285,7 +287,7 @@ class DataController {
                         third_label: "Status Margem", third_value: tmc, fourth_label: "Margem definida", fourth_value: flags?.use_tmc,
                         fifth_label: "Acumulado Mensal", fifth_value: monthBigNumbers?.bignumbers_fuelSales,
                         sixth_label: "Status Média", sixth_value: vendaCombustíveisCondição,
-                        seventh_label: "Média Mensal", seventh_value: (Math.round((monthBigNumbers?.bignumbers_fuelSales ?? 0) * 100) / 100) / actualDay
+                        seventh_label: "Média Mensal", seventh_value: Math.round(((monthBigNumbers?.bignumbers_fuelSales ?? 0) / actualDay) * 100) / 100
                     },
                     {
                         label: "Lucro de Combustíveis", value: fuelProfit,
@@ -294,7 +296,7 @@ class DataController {
                         fourth_value: (flags?.use_lucro_bruto_operacional_galonagem ?? 0) * 100,
                         fifth_label: "Acumulado Mensal", fifth_value: monthBigNumbers?.bignumbers_fuelProfit,
                         sixth_label: "Status Média", sixth_value: lucroCombustíveisCondição,
-                        seventh_label: "Média Mensal", seventh_value: (Math.round((monthBigNumbers?.bignumbers_fuelProfit ?? 0) * 100) / 100) / actualDay
+                        seventh_label: "Média Mensal", seventh_value: Math.round(((monthBigNumbers?.bignumbers_fuelProfit ?? 0) / actualDay) * 100) / 100
                     },
                     {
                         label: "M/LT", value: Math.round(valueMLT * 100) / 100,
@@ -313,7 +315,7 @@ class DataController {
                         fourth_label: "Margem definida", fourth_value: flags?.use_tmp,
                         fifth_label: "Acumulado Mensal", fifth_value: monthBigNumbers?.bignumbers_productSales,
                         sixth_label: "Status Média", sixth_value: vendaProdutosCondição,
-                        seventh_label: "Média Mensal", seventh_value: (Math.round((monthBigNumbers?.bignumbers_productSales ?? 0) * 100) / 100) / actualDay
+                        seventh_label: "Média Mensal", seventh_value: Math.round(((monthBigNumbers?.bignumbers_productSales ?? 0) / actualDay) * 100) / 100
                     },
                     {
                         label: "Lucro de Produtos", value: monthBigNumbers?.bignumbers_dailyProductProfit,
@@ -322,7 +324,8 @@ class DataController {
                         fourth_label: "Margem definida", fourth_value: (flags?.use_lucro_bruto_operacional_produto ?? 0) * 100,
                         fifth_label: "Acumulado Mensal", fifth_value: monthBigNumbers?.bignumbers_productProfit,
                         sixth_label: "Status Média", sixth_value: lucroProdutosCondição,
-                        seventh_label: "Média Mensal", seventh_value: (Math.round((monthBigNumbers?.bignumbers_productProfit ?? 0) * 100) / 100) / actualDay
+                        seventh_label: "Média Mensal", seventh_value: Math.round(((monthBigNumbers?.bignumbers_productProfit ?? 0) / actualDay) * 100) / 100
+
                     },
                     {
                         label: "Lucro Bruto Operacional", value: Math.round((secondary_value_bruto_operacional)),
