@@ -254,7 +254,8 @@ exports.Prisma.Region_setvariablesScalarFieldEnum = {
   region_sanado_hour_margin_GASOLINA_PREMIUM: 'region_sanado_hour_margin_GASOLINA_PREMIUM',
   region_sanado_margin_GASOLINA_PREMIUM: 'region_sanado_margin_GASOLINA_PREMIUM',
   region_type_margin_GASOLINA_PREMIUM: 'region_type_margin_GASOLINA_PREMIUM',
-  verification_hour_margin_GASOLINA_PREMIUM: 'verification_hour_margin_GASOLINA_PREMIUM'
+  verification_hour_margin_GASOLINA_PREMIUM: 'verification_hour_margin_GASOLINA_PREMIUM',
+  region_sanado_hour_GASOLINA_PREMIUM: 'region_sanado_hour_GASOLINA_PREMIUM'
 };
 
 exports.Prisma.RegionsScalarFieldEnum = {
