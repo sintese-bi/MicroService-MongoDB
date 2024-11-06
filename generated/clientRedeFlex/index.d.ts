@@ -5492,6 +5492,7 @@ export namespace Prisma {
     region_sanado_margin_GASOLINA_PREMIUM: boolean | null
     region_type_margin_GASOLINA_PREMIUM: boolean | null
     verification_hour_margin_GASOLINA_PREMIUM: Date | null
+    region_sanado_hour_GASOLINA_PREMIUM: Date | null
   }
 
   export type Region_setvariablesMaxAggregateOutputType = {
@@ -5538,6 +5539,7 @@ export namespace Prisma {
     region_sanado_margin_GASOLINA_PREMIUM: boolean | null
     region_type_margin_GASOLINA_PREMIUM: boolean | null
     verification_hour_margin_GASOLINA_PREMIUM: Date | null
+    region_sanado_hour_GASOLINA_PREMIUM: Date | null
   }
 
   export type Region_setvariablesCountAggregateOutputType = {
@@ -5585,6 +5587,7 @@ export namespace Prisma {
     region_sanado_margin_GASOLINA_PREMIUM: number
     region_type_margin_GASOLINA_PREMIUM: number
     verification_hour_margin_GASOLINA_PREMIUM: number
+    region_sanado_hour_GASOLINA_PREMIUM: number
     _all: number
   }
 
@@ -5673,6 +5676,7 @@ export namespace Prisma {
     region_sanado_margin_GASOLINA_PREMIUM?: true
     region_type_margin_GASOLINA_PREMIUM?: true
     verification_hour_margin_GASOLINA_PREMIUM?: true
+    region_sanado_hour_GASOLINA_PREMIUM?: true
   }
 
   export type Region_setvariablesMaxAggregateInputType = {
@@ -5719,6 +5723,7 @@ export namespace Prisma {
     region_sanado_margin_GASOLINA_PREMIUM?: true
     region_type_margin_GASOLINA_PREMIUM?: true
     verification_hour_margin_GASOLINA_PREMIUM?: true
+    region_sanado_hour_GASOLINA_PREMIUM?: true
   }
 
   export type Region_setvariablesCountAggregateInputType = {
@@ -5766,6 +5771,7 @@ export namespace Prisma {
     region_sanado_margin_GASOLINA_PREMIUM?: true
     region_type_margin_GASOLINA_PREMIUM?: true
     verification_hour_margin_GASOLINA_PREMIUM?: true
+    region_sanado_hour_GASOLINA_PREMIUM?: true
     _all?: true
   }
 
@@ -5900,6 +5906,7 @@ export namespace Prisma {
     region_sanado_margin_GASOLINA_PREMIUM: boolean | null
     region_type_margin_GASOLINA_PREMIUM: boolean | null
     verification_hour_margin_GASOLINA_PREMIUM: Date | null
+    region_sanado_hour_GASOLINA_PREMIUM: Date | null
     _count: Region_setvariablesCountAggregateOutputType | null
     _avg: Region_setvariablesAvgAggregateOutputType | null
     _sum: Region_setvariablesSumAggregateOutputType | null
@@ -5966,6 +5973,7 @@ export namespace Prisma {
     region_sanado_margin_GASOLINA_PREMIUM?: boolean
     region_type_margin_GASOLINA_PREMIUM?: boolean
     verification_hour_margin_GASOLINA_PREMIUM?: boolean
+    region_sanado_hour_GASOLINA_PREMIUM?: boolean
     regions?: boolean | region_setvariables$regionsArgs<ExtArgs>
     users?: boolean | region_setvariables$usersArgs<ExtArgs>
   }, ExtArgs["result"]["region_setvariables"]>
@@ -6015,6 +6023,7 @@ export namespace Prisma {
     region_sanado_margin_GASOLINA_PREMIUM?: boolean
     region_type_margin_GASOLINA_PREMIUM?: boolean
     verification_hour_margin_GASOLINA_PREMIUM?: boolean
+    region_sanado_hour_GASOLINA_PREMIUM?: boolean
     regions?: boolean | region_setvariables$regionsArgs<ExtArgs>
     users?: boolean | region_setvariables$usersArgs<ExtArgs>
   }, ExtArgs["result"]["region_setvariables"]>
@@ -6064,6 +6073,7 @@ export namespace Prisma {
     region_sanado_margin_GASOLINA_PREMIUM?: boolean
     region_type_margin_GASOLINA_PREMIUM?: boolean
     verification_hour_margin_GASOLINA_PREMIUM?: boolean
+    region_sanado_hour_GASOLINA_PREMIUM?: boolean
   }
 
   export type region_setvariablesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6126,6 +6136,7 @@ export namespace Prisma {
       region_sanado_margin_GASOLINA_PREMIUM: boolean | null
       region_type_margin_GASOLINA_PREMIUM: boolean | null
       verification_hour_margin_GASOLINA_PREMIUM: Date | null
+      region_sanado_hour_GASOLINA_PREMIUM: Date | null
     }, ExtArgs["result"]["region_setvariables"]>
     composites: {}
   }
@@ -6592,6 +6603,7 @@ export namespace Prisma {
     readonly region_sanado_margin_GASOLINA_PREMIUM: FieldRef<"region_setvariables", 'Boolean'>
     readonly region_type_margin_GASOLINA_PREMIUM: FieldRef<"region_setvariables", 'Boolean'>
     readonly verification_hour_margin_GASOLINA_PREMIUM: FieldRef<"region_setvariables", 'DateTime'>
+    readonly region_sanado_hour_GASOLINA_PREMIUM: FieldRef<"region_setvariables", 'DateTime'>
   }
     
 
@@ -9178,7 +9190,8 @@ export namespace Prisma {
     region_sanado_hour_margin_GASOLINA_PREMIUM: 'region_sanado_hour_margin_GASOLINA_PREMIUM',
     region_sanado_margin_GASOLINA_PREMIUM: 'region_sanado_margin_GASOLINA_PREMIUM',
     region_type_margin_GASOLINA_PREMIUM: 'region_type_margin_GASOLINA_PREMIUM',
-    verification_hour_margin_GASOLINA_PREMIUM: 'verification_hour_margin_GASOLINA_PREMIUM'
+    verification_hour_margin_GASOLINA_PREMIUM: 'verification_hour_margin_GASOLINA_PREMIUM',
+    region_sanado_hour_GASOLINA_PREMIUM: 'region_sanado_hour_GASOLINA_PREMIUM'
   };
 
   export type Region_setvariablesScalarFieldEnum = (typeof Region_setvariablesScalarFieldEnum)[keyof typeof Region_setvariablesScalarFieldEnum]
@@ -9869,6 +9882,7 @@ export namespace Prisma {
     region_sanado_margin_GASOLINA_PREMIUM?: BoolNullableFilter<"region_setvariables"> | boolean | null
     region_type_margin_GASOLINA_PREMIUM?: BoolNullableFilter<"region_setvariables"> | boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: DateTimeNullableFilter<"region_setvariables"> | Date | string | null
+    region_sanado_hour_GASOLINA_PREMIUM?: DateTimeNullableFilter<"region_setvariables"> | Date | string | null
     regions?: XOR<RegionsNullableRelationFilter, regionsWhereInput> | null
     users?: XOR<UsersNullableRelationFilter, usersWhereInput> | null
   }
@@ -9918,6 +9932,7 @@ export namespace Prisma {
     region_sanado_margin_GASOLINA_PREMIUM?: SortOrderInput | SortOrder
     region_type_margin_GASOLINA_PREMIUM?: SortOrderInput | SortOrder
     verification_hour_margin_GASOLINA_PREMIUM?: SortOrderInput | SortOrder
+    region_sanado_hour_GASOLINA_PREMIUM?: SortOrderInput | SortOrder
     regions?: regionsOrderByWithRelationInput
     users?: usersOrderByWithRelationInput
   }
@@ -9970,6 +9985,7 @@ export namespace Prisma {
     region_sanado_margin_GASOLINA_PREMIUM?: BoolNullableFilter<"region_setvariables"> | boolean | null
     region_type_margin_GASOLINA_PREMIUM?: BoolNullableFilter<"region_setvariables"> | boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: DateTimeNullableFilter<"region_setvariables"> | Date | string | null
+    region_sanado_hour_GASOLINA_PREMIUM?: DateTimeNullableFilter<"region_setvariables"> | Date | string | null
     regions?: XOR<RegionsNullableRelationFilter, regionsWhereInput> | null
     users?: XOR<UsersNullableRelationFilter, usersWhereInput> | null
   }, "region_uuid">
@@ -10019,6 +10035,7 @@ export namespace Prisma {
     region_sanado_margin_GASOLINA_PREMIUM?: SortOrderInput | SortOrder
     region_type_margin_GASOLINA_PREMIUM?: SortOrderInput | SortOrder
     verification_hour_margin_GASOLINA_PREMIUM?: SortOrderInput | SortOrder
+    region_sanado_hour_GASOLINA_PREMIUM?: SortOrderInput | SortOrder
     _count?: region_setvariablesCountOrderByAggregateInput
     _avg?: region_setvariablesAvgOrderByAggregateInput
     _max?: region_setvariablesMaxOrderByAggregateInput
@@ -10074,6 +10091,7 @@ export namespace Prisma {
     region_sanado_margin_GASOLINA_PREMIUM?: BoolNullableWithAggregatesFilter<"region_setvariables"> | boolean | null
     region_type_margin_GASOLINA_PREMIUM?: BoolNullableWithAggregatesFilter<"region_setvariables"> | boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: DateTimeNullableWithAggregatesFilter<"region_setvariables"> | Date | string | null
+    region_sanado_hour_GASOLINA_PREMIUM?: DateTimeNullableWithAggregatesFilter<"region_setvariables"> | Date | string | null
   }
 
   export type regionsWhereInput = {
@@ -10917,6 +10935,7 @@ export namespace Prisma {
     region_sanado_margin_GASOLINA_PREMIUM?: boolean | null
     region_type_margin_GASOLINA_PREMIUM?: boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: Date | string | null
+    region_sanado_hour_GASOLINA_PREMIUM?: Date | string | null
     regions?: regionsCreateNestedOneWithoutRegion_setvariablesInput
     users?: usersCreateNestedOneWithoutRegion_setvariablesInput
   }
@@ -10966,6 +10985,7 @@ export namespace Prisma {
     region_sanado_margin_GASOLINA_PREMIUM?: boolean | null
     region_type_margin_GASOLINA_PREMIUM?: boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: Date | string | null
+    region_sanado_hour_GASOLINA_PREMIUM?: Date | string | null
   }
 
   export type region_setvariablesUpdateInput = {
@@ -11011,6 +11031,7 @@ export namespace Prisma {
     region_sanado_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_type_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    region_sanado_hour_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     regions?: regionsUpdateOneWithoutRegion_setvariablesNestedInput
     users?: usersUpdateOneWithoutRegion_setvariablesNestedInput
   }
@@ -11060,6 +11081,7 @@ export namespace Prisma {
     region_sanado_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_type_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    region_sanado_hour_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type region_setvariablesCreateManyInput = {
@@ -11107,6 +11129,7 @@ export namespace Prisma {
     region_sanado_margin_GASOLINA_PREMIUM?: boolean | null
     region_type_margin_GASOLINA_PREMIUM?: boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: Date | string | null
+    region_sanado_hour_GASOLINA_PREMIUM?: Date | string | null
   }
 
   export type region_setvariablesUpdateManyMutationInput = {
@@ -11152,6 +11175,7 @@ export namespace Prisma {
     region_sanado_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_type_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    region_sanado_hour_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type region_setvariablesUncheckedUpdateManyInput = {
@@ -11199,6 +11223,7 @@ export namespace Prisma {
     region_sanado_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_type_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    region_sanado_hour_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type regionsCreateInput = {
@@ -12004,6 +12029,7 @@ export namespace Prisma {
     region_sanado_margin_GASOLINA_PREMIUM?: SortOrder
     region_type_margin_GASOLINA_PREMIUM?: SortOrder
     verification_hour_margin_GASOLINA_PREMIUM?: SortOrder
+    region_sanado_hour_GASOLINA_PREMIUM?: SortOrder
   }
 
   export type region_setvariablesAvgOrderByAggregateInput = {
@@ -12070,6 +12096,7 @@ export namespace Prisma {
     region_sanado_margin_GASOLINA_PREMIUM?: SortOrder
     region_type_margin_GASOLINA_PREMIUM?: SortOrder
     verification_hour_margin_GASOLINA_PREMIUM?: SortOrder
+    region_sanado_hour_GASOLINA_PREMIUM?: SortOrder
   }
 
   export type region_setvariablesMinOrderByAggregateInput = {
@@ -12116,6 +12143,7 @@ export namespace Prisma {
     region_sanado_margin_GASOLINA_PREMIUM?: SortOrder
     region_type_margin_GASOLINA_PREMIUM?: SortOrder
     verification_hour_margin_GASOLINA_PREMIUM?: SortOrder
+    region_sanado_hour_GASOLINA_PREMIUM?: SortOrder
   }
 
   export type region_setvariablesSumOrderByAggregateInput = {
@@ -13127,6 +13155,7 @@ export namespace Prisma {
     region_sanado_margin_GASOLINA_PREMIUM?: boolean | null
     region_type_margin_GASOLINA_PREMIUM?: boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: Date | string | null
+    region_sanado_hour_GASOLINA_PREMIUM?: Date | string | null
     regions?: regionsCreateNestedOneWithoutRegion_setvariablesInput
   }
 
@@ -13174,6 +13203,7 @@ export namespace Prisma {
     region_sanado_margin_GASOLINA_PREMIUM?: boolean | null
     region_type_margin_GASOLINA_PREMIUM?: boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: Date | string | null
+    region_sanado_hour_GASOLINA_PREMIUM?: Date | string | null
   }
 
   export type region_setvariablesCreateOrConnectWithoutUsersInput = {
@@ -13266,6 +13296,7 @@ export namespace Prisma {
     region_sanado_margin_GASOLINA_PREMIUM?: BoolNullableFilter<"region_setvariables"> | boolean | null
     region_type_margin_GASOLINA_PREMIUM?: BoolNullableFilter<"region_setvariables"> | boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: DateTimeNullableFilter<"region_setvariables"> | Date | string | null
+    region_sanado_hour_GASOLINA_PREMIUM?: DateTimeNullableFilter<"region_setvariables"> | Date | string | null
   }
 
   export type ibm_infoCreateWithoutGas_station_setvariablesInput = {
@@ -13699,6 +13730,7 @@ export namespace Prisma {
     region_sanado_margin_GASOLINA_PREMIUM?: boolean | null
     region_type_margin_GASOLINA_PREMIUM?: boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: Date | string | null
+    region_sanado_hour_GASOLINA_PREMIUM?: Date | string | null
     users?: usersCreateNestedOneWithoutRegion_setvariablesInput
   }
 
@@ -13746,6 +13778,7 @@ export namespace Prisma {
     region_sanado_margin_GASOLINA_PREMIUM?: boolean | null
     region_type_margin_GASOLINA_PREMIUM?: boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: Date | string | null
+    region_sanado_hour_GASOLINA_PREMIUM?: Date | string | null
   }
 
   export type region_setvariablesCreateOrConnectWithoutRegionsInput = {
@@ -14058,6 +14091,7 @@ export namespace Prisma {
     region_sanado_margin_GASOLINA_PREMIUM?: boolean | null
     region_type_margin_GASOLINA_PREMIUM?: boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: Date | string | null
+    region_sanado_hour_GASOLINA_PREMIUM?: Date | string | null
   }
 
   export type gas_station_setvariablesUpdateWithoutUsersInput = {
@@ -14247,6 +14281,7 @@ export namespace Prisma {
     region_sanado_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_type_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    region_sanado_hour_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     regions?: regionsUpdateOneWithoutRegion_setvariablesNestedInput
   }
 
@@ -14294,6 +14329,7 @@ export namespace Prisma {
     region_sanado_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_type_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    region_sanado_hour_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type region_setvariablesUncheckedUpdateManyWithoutUsersInput = {
@@ -14340,6 +14376,7 @@ export namespace Prisma {
     region_sanado_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_type_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    region_sanado_hour_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type region_setvariablesCreateManyRegionsInput = {
@@ -14386,6 +14423,7 @@ export namespace Prisma {
     region_sanado_margin_GASOLINA_PREMIUM?: boolean | null
     region_type_margin_GASOLINA_PREMIUM?: boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: Date | string | null
+    region_sanado_hour_GASOLINA_PREMIUM?: Date | string | null
   }
 
   export type region_setvariablesUpdateWithoutRegionsInput = {
@@ -14431,6 +14469,7 @@ export namespace Prisma {
     region_sanado_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_type_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    region_sanado_hour_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     users?: usersUpdateOneWithoutRegion_setvariablesNestedInput
   }
 
@@ -14478,6 +14517,7 @@ export namespace Prisma {
     region_sanado_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_type_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    region_sanado_hour_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type region_setvariablesUncheckedUpdateManyWithoutRegionsInput = {
@@ -14524,6 +14564,7 @@ export namespace Prisma {
     region_sanado_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     region_type_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    region_sanado_hour_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
 
