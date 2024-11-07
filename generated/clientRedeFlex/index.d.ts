@@ -1428,6 +1428,7 @@ export namespace Prisma {
     ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL: number | null
     ibm_margin_GASOLINA_PODIUM: number | null
     ibm_margin_GASOLINA_PREMIUM: number | null
+    ibm_margin_DIESEL_GROUP: number | null
   }
 
   export type Ibm_infoSumAggregateOutputType = {
@@ -1437,6 +1438,7 @@ export namespace Prisma {
     ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL: number[]
     ibm_margin_GASOLINA_PODIUM: number[]
     ibm_margin_GASOLINA_PREMIUM: number[]
+    ibm_margin_DIESEL_GROUP: number[]
   }
 
   export type Ibm_infoMinAggregateOutputType = {
@@ -1480,6 +1482,7 @@ export namespace Prisma {
     ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL: number
     ibm_margin_GASOLINA_PODIUM: number
     ibm_margin_GASOLINA_PREMIUM: number
+    ibm_margin_DIESEL_GROUP: number
     _all: number
   }
 
@@ -1491,6 +1494,7 @@ export namespace Prisma {
     ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
     ibm_margin_GASOLINA_PODIUM?: true
     ibm_margin_GASOLINA_PREMIUM?: true
+    ibm_margin_DIESEL_GROUP?: true
   }
 
   export type Ibm_infoSumAggregateInputType = {
@@ -1500,6 +1504,7 @@ export namespace Prisma {
     ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
     ibm_margin_GASOLINA_PODIUM?: true
     ibm_margin_GASOLINA_PREMIUM?: true
+    ibm_margin_DIESEL_GROUP?: true
   }
 
   export type Ibm_infoMinAggregateInputType = {
@@ -1543,6 +1548,7 @@ export namespace Prisma {
     ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
     ibm_margin_GASOLINA_PODIUM?: true
     ibm_margin_GASOLINA_PREMIUM?: true
+    ibm_margin_DIESEL_GROUP?: true
     _all?: true
   }
 
@@ -1647,6 +1653,7 @@ export namespace Prisma {
     ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL: number[]
     ibm_margin_GASOLINA_PODIUM: number[]
     ibm_margin_GASOLINA_PREMIUM: number[]
+    ibm_margin_DIESEL_GROUP: number[]
     _count: Ibm_infoCountAggregateOutputType | null
     _avg: Ibm_infoAvgAggregateOutputType | null
     _sum: Ibm_infoSumAggregateOutputType | null
@@ -1683,6 +1690,7 @@ export namespace Prisma {
     ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
     ibm_margin_GASOLINA_PODIUM?: boolean
     ibm_margin_GASOLINA_PREMIUM?: boolean
+    ibm_margin_DIESEL_GROUP?: boolean
     gas_station_setvariables?: boolean | ibm_info$gas_station_setvariablesArgs<ExtArgs>
     _count?: boolean | Ibm_infoCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["ibm_info"]>
@@ -1702,6 +1710,7 @@ export namespace Prisma {
     ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
     ibm_margin_GASOLINA_PODIUM?: boolean
     ibm_margin_GASOLINA_PREMIUM?: boolean
+    ibm_margin_DIESEL_GROUP?: boolean
   }, ExtArgs["result"]["ibm_info"]>
 
   export type ibm_infoSelectScalar = {
@@ -1719,6 +1728,7 @@ export namespace Prisma {
     ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
     ibm_margin_GASOLINA_PODIUM?: boolean
     ibm_margin_GASOLINA_PREMIUM?: boolean
+    ibm_margin_DIESEL_GROUP?: boolean
   }
 
   export type ibm_infoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1747,6 +1757,7 @@ export namespace Prisma {
       ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL: number[]
       ibm_margin_GASOLINA_PODIUM: number[]
       ibm_margin_GASOLINA_PREMIUM: number[]
+      ibm_margin_DIESEL_GROUP: number[]
     }, ExtArgs["result"]["ibm_info"]>
     composites: {}
   }
@@ -2181,6 +2192,7 @@ export namespace Prisma {
     readonly ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL: FieldRef<"ibm_info", 'Float[]'>
     readonly ibm_margin_GASOLINA_PODIUM: FieldRef<"ibm_info", 'Float[]'>
     readonly ibm_margin_GASOLINA_PREMIUM: FieldRef<"ibm_info", 'Float[]'>
+    readonly ibm_margin_DIESEL_GROUP: FieldRef<"ibm_info", 'Float[]'>
   }
     
 
@@ -6983,6 +6995,7 @@ export namespace Prisma {
     regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL: number | null
     regions_margin_GASOLINA_PODIUM: number | null
     regions_margin_GASOLINA_PREMIUM: number | null
+    regions_margin_DIESEL_GROUP: number | null
   }
 
   export type RegionsSumAggregateOutputType = {
@@ -6990,6 +7003,7 @@ export namespace Prisma {
     regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL: number[]
     regions_margin_GASOLINA_PODIUM: number[]
     regions_margin_GASOLINA_PREMIUM: number[]
+    regions_margin_DIESEL_GROUP: number[]
   }
 
   export type RegionsMinAggregateOutputType = {
@@ -7018,6 +7032,7 @@ export namespace Prisma {
     regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL: number
     regions_margin_GASOLINA_PODIUM: number
     regions_margin_GASOLINA_PREMIUM: number
+    regions_margin_DIESEL_GROUP: number
     _all: number
   }
 
@@ -7027,6 +7042,7 @@ export namespace Prisma {
     regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
     regions_margin_GASOLINA_PODIUM?: true
     regions_margin_GASOLINA_PREMIUM?: true
+    regions_margin_DIESEL_GROUP?: true
   }
 
   export type RegionsSumAggregateInputType = {
@@ -7034,6 +7050,7 @@ export namespace Prisma {
     regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
     regions_margin_GASOLINA_PODIUM?: true
     regions_margin_GASOLINA_PREMIUM?: true
+    regions_margin_DIESEL_GROUP?: true
   }
 
   export type RegionsMinAggregateInputType = {
@@ -7062,6 +7079,7 @@ export namespace Prisma {
     regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: true
     regions_margin_GASOLINA_PODIUM?: true
     regions_margin_GASOLINA_PREMIUM?: true
+    regions_margin_DIESEL_GROUP?: true
     _all?: true
   }
 
@@ -7161,6 +7179,7 @@ export namespace Prisma {
     regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL: number[]
     regions_margin_GASOLINA_PODIUM: number[]
     regions_margin_GASOLINA_PREMIUM: number[]
+    regions_margin_DIESEL_GROUP: number[]
     _count: RegionsCountAggregateOutputType | null
     _avg: RegionsAvgAggregateOutputType | null
     _sum: RegionsSumAggregateOutputType | null
@@ -7192,6 +7211,7 @@ export namespace Prisma {
     regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
     regions_margin_GASOLINA_PODIUM?: boolean
     regions_margin_GASOLINA_PREMIUM?: boolean
+    regions_margin_DIESEL_GROUP?: boolean
     region_setvariables?: boolean | regions$region_setvariablesArgs<ExtArgs>
     _count?: boolean | RegionsCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["regions"]>
@@ -7206,6 +7226,7 @@ export namespace Prisma {
     regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
     regions_margin_GASOLINA_PODIUM?: boolean
     regions_margin_GASOLINA_PREMIUM?: boolean
+    regions_margin_DIESEL_GROUP?: boolean
   }, ExtArgs["result"]["regions"]>
 
   export type regionsSelectScalar = {
@@ -7218,6 +7239,7 @@ export namespace Prisma {
     regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: boolean
     regions_margin_GASOLINA_PODIUM?: boolean
     regions_margin_GASOLINA_PREMIUM?: boolean
+    regions_margin_DIESEL_GROUP?: boolean
   }
 
   export type regionsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7241,6 +7263,7 @@ export namespace Prisma {
       regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL: number[]
       regions_margin_GASOLINA_PODIUM: number[]
       regions_margin_GASOLINA_PREMIUM: number[]
+      regions_margin_DIESEL_GROUP: number[]
     }, ExtArgs["result"]["regions"]>
     composites: {}
   }
@@ -7670,6 +7693,7 @@ export namespace Prisma {
     readonly regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL: FieldRef<"regions", 'Float[]'>
     readonly regions_margin_GASOLINA_PODIUM: FieldRef<"regions", 'Float[]'>
     readonly regions_margin_GASOLINA_PREMIUM: FieldRef<"regions", 'Float[]'>
+    readonly regions_margin_DIESEL_GROUP: FieldRef<"regions", 'Float[]'>
   }
     
 
@@ -9060,7 +9084,8 @@ export namespace Prisma {
     ibm_margin_GC: 'ibm_margin_GC',
     ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL: 'ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL',
     ibm_margin_GASOLINA_PODIUM: 'ibm_margin_GASOLINA_PODIUM',
-    ibm_margin_GASOLINA_PREMIUM: 'ibm_margin_GASOLINA_PREMIUM'
+    ibm_margin_GASOLINA_PREMIUM: 'ibm_margin_GASOLINA_PREMIUM',
+    ibm_margin_DIESEL_GROUP: 'ibm_margin_DIESEL_GROUP'
   };
 
   export type Ibm_infoScalarFieldEnum = (typeof Ibm_infoScalarFieldEnum)[keyof typeof Ibm_infoScalarFieldEnum]
@@ -9206,7 +9231,8 @@ export namespace Prisma {
     regions_margin_GC: 'regions_margin_GC',
     regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL: 'regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL',
     regions_margin_GASOLINA_PODIUM: 'regions_margin_GASOLINA_PODIUM',
-    regions_margin_GASOLINA_PREMIUM: 'regions_margin_GASOLINA_PREMIUM'
+    regions_margin_GASOLINA_PREMIUM: 'regions_margin_GASOLINA_PREMIUM',
+    regions_margin_DIESEL_GROUP: 'regions_margin_DIESEL_GROUP'
   };
 
   export type RegionsScalarFieldEnum = (typeof RegionsScalarFieldEnum)[keyof typeof RegionsScalarFieldEnum]
@@ -9340,6 +9366,7 @@ export namespace Prisma {
     ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: FloatNullableListFilter<"ibm_info">
     ibm_margin_GASOLINA_PODIUM?: FloatNullableListFilter<"ibm_info">
     ibm_margin_GASOLINA_PREMIUM?: FloatNullableListFilter<"ibm_info">
+    ibm_margin_DIESEL_GROUP?: FloatNullableListFilter<"ibm_info">
     gas_station_setvariables?: Gas_station_setvariablesListRelationFilter
   }
 
@@ -9358,6 +9385,7 @@ export namespace Prisma {
     ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
     ibm_margin_GASOLINA_PODIUM?: SortOrder
     ibm_margin_GASOLINA_PREMIUM?: SortOrder
+    ibm_margin_DIESEL_GROUP?: SortOrder
     gas_station_setvariables?: gas_station_setvariablesOrderByRelationAggregateInput
   }
 
@@ -9379,6 +9407,7 @@ export namespace Prisma {
     ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: FloatNullableListFilter<"ibm_info">
     ibm_margin_GASOLINA_PODIUM?: FloatNullableListFilter<"ibm_info">
     ibm_margin_GASOLINA_PREMIUM?: FloatNullableListFilter<"ibm_info">
+    ibm_margin_DIESEL_GROUP?: FloatNullableListFilter<"ibm_info">
     gas_station_setvariables?: Gas_station_setvariablesListRelationFilter
   }, "id">
 
@@ -9397,6 +9426,7 @@ export namespace Prisma {
     ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
     ibm_margin_GASOLINA_PODIUM?: SortOrder
     ibm_margin_GASOLINA_PREMIUM?: SortOrder
+    ibm_margin_DIESEL_GROUP?: SortOrder
     _count?: ibm_infoCountOrderByAggregateInput
     _avg?: ibm_infoAvgOrderByAggregateInput
     _max?: ibm_infoMaxOrderByAggregateInput
@@ -9422,6 +9452,7 @@ export namespace Prisma {
     ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: FloatNullableListFilter<"ibm_info">
     ibm_margin_GASOLINA_PODIUM?: FloatNullableListFilter<"ibm_info">
     ibm_margin_GASOLINA_PREMIUM?: FloatNullableListFilter<"ibm_info">
+    ibm_margin_DIESEL_GROUP?: FloatNullableListFilter<"ibm_info">
   }
 
   export type usersWhereInput = {
@@ -10107,6 +10138,7 @@ export namespace Prisma {
     regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: FloatNullableListFilter<"regions">
     regions_margin_GASOLINA_PODIUM?: FloatNullableListFilter<"regions">
     regions_margin_GASOLINA_PREMIUM?: FloatNullableListFilter<"regions">
+    regions_margin_DIESEL_GROUP?: FloatNullableListFilter<"regions">
     region_setvariables?: Region_setvariablesListRelationFilter
   }
 
@@ -10120,6 +10152,7 @@ export namespace Prisma {
     regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
     regions_margin_GASOLINA_PODIUM?: SortOrder
     regions_margin_GASOLINA_PREMIUM?: SortOrder
+    regions_margin_DIESEL_GROUP?: SortOrder
     region_setvariables?: region_setvariablesOrderByRelationAggregateInput
   }
 
@@ -10136,6 +10169,7 @@ export namespace Prisma {
     regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: FloatNullableListFilter<"regions">
     regions_margin_GASOLINA_PODIUM?: FloatNullableListFilter<"regions">
     regions_margin_GASOLINA_PREMIUM?: FloatNullableListFilter<"regions">
+    regions_margin_DIESEL_GROUP?: FloatNullableListFilter<"regions">
     region_setvariables?: Region_setvariablesListRelationFilter
   }, "regions_uuid">
 
@@ -10149,6 +10183,7 @@ export namespace Prisma {
     regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
     regions_margin_GASOLINA_PODIUM?: SortOrder
     regions_margin_GASOLINA_PREMIUM?: SortOrder
+    regions_margin_DIESEL_GROUP?: SortOrder
     _count?: regionsCountOrderByAggregateInput
     _avg?: regionsAvgOrderByAggregateInput
     _max?: regionsMaxOrderByAggregateInput
@@ -10169,6 +10204,7 @@ export namespace Prisma {
     regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: FloatNullableListFilter<"regions">
     regions_margin_GASOLINA_PODIUM?: FloatNullableListFilter<"regions">
     regions_margin_GASOLINA_PREMIUM?: FloatNullableListFilter<"regions">
+    regions_margin_DIESEL_GROUP?: FloatNullableListFilter<"regions">
   }
 
   export type big_numbers_valuesWhereInput = {
@@ -10260,6 +10296,7 @@ export namespace Prisma {
     ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: ibm_infoCreateibm_margin_ETANOL_HIDRATADO_COMBUSTIVELInput | number[]
     ibm_margin_GASOLINA_PODIUM?: ibm_infoCreateibm_margin_GASOLINA_PODIUMInput | number[]
     ibm_margin_GASOLINA_PREMIUM?: ibm_infoCreateibm_margin_GASOLINA_PREMIUMInput | number[]
+    ibm_margin_DIESEL_GROUP?: ibm_infoCreateibm_margin_DIESEL_GROUPInput | number[]
     gas_station_setvariables?: gas_station_setvariablesCreateNestedManyWithoutIbm_infoInput
   }
 
@@ -10278,6 +10315,7 @@ export namespace Prisma {
     ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: ibm_infoCreateibm_margin_ETANOL_HIDRATADO_COMBUSTIVELInput | number[]
     ibm_margin_GASOLINA_PODIUM?: ibm_infoCreateibm_margin_GASOLINA_PODIUMInput | number[]
     ibm_margin_GASOLINA_PREMIUM?: ibm_infoCreateibm_margin_GASOLINA_PREMIUMInput | number[]
+    ibm_margin_DIESEL_GROUP?: ibm_infoCreateibm_margin_DIESEL_GROUPInput | number[]
     gas_station_setvariables?: gas_station_setvariablesUncheckedCreateNestedManyWithoutIbm_infoInput
   }
 
@@ -10296,6 +10334,7 @@ export namespace Prisma {
     ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: ibm_infoUpdateibm_margin_ETANOL_HIDRATADO_COMBUSTIVELInput | number[]
     ibm_margin_GASOLINA_PODIUM?: ibm_infoUpdateibm_margin_GASOLINA_PODIUMInput | number[]
     ibm_margin_GASOLINA_PREMIUM?: ibm_infoUpdateibm_margin_GASOLINA_PREMIUMInput | number[]
+    ibm_margin_DIESEL_GROUP?: ibm_infoUpdateibm_margin_DIESEL_GROUPInput | number[]
     gas_station_setvariables?: gas_station_setvariablesUpdateManyWithoutIbm_infoNestedInput
   }
 
@@ -10314,6 +10353,7 @@ export namespace Prisma {
     ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: ibm_infoUpdateibm_margin_ETANOL_HIDRATADO_COMBUSTIVELInput | number[]
     ibm_margin_GASOLINA_PODIUM?: ibm_infoUpdateibm_margin_GASOLINA_PODIUMInput | number[]
     ibm_margin_GASOLINA_PREMIUM?: ibm_infoUpdateibm_margin_GASOLINA_PREMIUMInput | number[]
+    ibm_margin_DIESEL_GROUP?: ibm_infoUpdateibm_margin_DIESEL_GROUPInput | number[]
     gas_station_setvariables?: gas_station_setvariablesUncheckedUpdateManyWithoutIbm_infoNestedInput
   }
 
@@ -10332,6 +10372,7 @@ export namespace Prisma {
     ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: ibm_infoCreateibm_margin_ETANOL_HIDRATADO_COMBUSTIVELInput | number[]
     ibm_margin_GASOLINA_PODIUM?: ibm_infoCreateibm_margin_GASOLINA_PODIUMInput | number[]
     ibm_margin_GASOLINA_PREMIUM?: ibm_infoCreateibm_margin_GASOLINA_PREMIUMInput | number[]
+    ibm_margin_DIESEL_GROUP?: ibm_infoCreateibm_margin_DIESEL_GROUPInput | number[]
   }
 
   export type ibm_infoUpdateManyMutationInput = {
@@ -10349,6 +10390,7 @@ export namespace Prisma {
     ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: ibm_infoUpdateibm_margin_ETANOL_HIDRATADO_COMBUSTIVELInput | number[]
     ibm_margin_GASOLINA_PODIUM?: ibm_infoUpdateibm_margin_GASOLINA_PODIUMInput | number[]
     ibm_margin_GASOLINA_PREMIUM?: ibm_infoUpdateibm_margin_GASOLINA_PREMIUMInput | number[]
+    ibm_margin_DIESEL_GROUP?: ibm_infoUpdateibm_margin_DIESEL_GROUPInput | number[]
   }
 
   export type ibm_infoUncheckedUpdateManyInput = {
@@ -10366,6 +10408,7 @@ export namespace Prisma {
     ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: ibm_infoUpdateibm_margin_ETANOL_HIDRATADO_COMBUSTIVELInput | number[]
     ibm_margin_GASOLINA_PODIUM?: ibm_infoUpdateibm_margin_GASOLINA_PODIUMInput | number[]
     ibm_margin_GASOLINA_PREMIUM?: ibm_infoUpdateibm_margin_GASOLINA_PREMIUMInput | number[]
+    ibm_margin_DIESEL_GROUP?: ibm_infoUpdateibm_margin_DIESEL_GROUPInput | number[]
   }
 
   export type usersCreateInput = {
@@ -11236,6 +11279,7 @@ export namespace Prisma {
     regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: regionsCreateregions_margin_ETANOL_HIDRATADO_COMBUSTIVELInput | number[]
     regions_margin_GASOLINA_PODIUM?: regionsCreateregions_margin_GASOLINA_PODIUMInput | number[]
     regions_margin_GASOLINA_PREMIUM?: regionsCreateregions_margin_GASOLINA_PREMIUMInput | number[]
+    regions_margin_DIESEL_GROUP?: regionsCreateregions_margin_DIESEL_GROUPInput | number[]
     region_setvariables?: region_setvariablesCreateNestedManyWithoutRegionsInput
   }
 
@@ -11249,6 +11293,7 @@ export namespace Prisma {
     regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: regionsCreateregions_margin_ETANOL_HIDRATADO_COMBUSTIVELInput | number[]
     regions_margin_GASOLINA_PODIUM?: regionsCreateregions_margin_GASOLINA_PODIUMInput | number[]
     regions_margin_GASOLINA_PREMIUM?: regionsCreateregions_margin_GASOLINA_PREMIUMInput | number[]
+    regions_margin_DIESEL_GROUP?: regionsCreateregions_margin_DIESEL_GROUPInput | number[]
     region_setvariables?: region_setvariablesUncheckedCreateNestedManyWithoutRegionsInput
   }
 
@@ -11262,6 +11307,7 @@ export namespace Prisma {
     regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: regionsUpdateregions_margin_ETANOL_HIDRATADO_COMBUSTIVELInput | number[]
     regions_margin_GASOLINA_PODIUM?: regionsUpdateregions_margin_GASOLINA_PODIUMInput | number[]
     regions_margin_GASOLINA_PREMIUM?: regionsUpdateregions_margin_GASOLINA_PREMIUMInput | number[]
+    regions_margin_DIESEL_GROUP?: regionsUpdateregions_margin_DIESEL_GROUPInput | number[]
     region_setvariables?: region_setvariablesUpdateManyWithoutRegionsNestedInput
   }
 
@@ -11275,6 +11321,7 @@ export namespace Prisma {
     regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: regionsUpdateregions_margin_ETANOL_HIDRATADO_COMBUSTIVELInput | number[]
     regions_margin_GASOLINA_PODIUM?: regionsUpdateregions_margin_GASOLINA_PODIUMInput | number[]
     regions_margin_GASOLINA_PREMIUM?: regionsUpdateregions_margin_GASOLINA_PREMIUMInput | number[]
+    regions_margin_DIESEL_GROUP?: regionsUpdateregions_margin_DIESEL_GROUPInput | number[]
     region_setvariables?: region_setvariablesUncheckedUpdateManyWithoutRegionsNestedInput
   }
 
@@ -11288,6 +11335,7 @@ export namespace Prisma {
     regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: regionsCreateregions_margin_ETANOL_HIDRATADO_COMBUSTIVELInput | number[]
     regions_margin_GASOLINA_PODIUM?: regionsCreateregions_margin_GASOLINA_PODIUMInput | number[]
     regions_margin_GASOLINA_PREMIUM?: regionsCreateregions_margin_GASOLINA_PREMIUMInput | number[]
+    regions_margin_DIESEL_GROUP?: regionsCreateregions_margin_DIESEL_GROUPInput | number[]
   }
 
   export type regionsUpdateManyMutationInput = {
@@ -11300,6 +11348,7 @@ export namespace Prisma {
     regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: regionsUpdateregions_margin_ETANOL_HIDRATADO_COMBUSTIVELInput | number[]
     regions_margin_GASOLINA_PODIUM?: regionsUpdateregions_margin_GASOLINA_PODIUMInput | number[]
     regions_margin_GASOLINA_PREMIUM?: regionsUpdateregions_margin_GASOLINA_PREMIUMInput | number[]
+    regions_margin_DIESEL_GROUP?: regionsUpdateregions_margin_DIESEL_GROUPInput | number[]
   }
 
   export type regionsUncheckedUpdateManyInput = {
@@ -11312,6 +11361,7 @@ export namespace Prisma {
     regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: regionsUpdateregions_margin_ETANOL_HIDRATADO_COMBUSTIVELInput | number[]
     regions_margin_GASOLINA_PODIUM?: regionsUpdateregions_margin_GASOLINA_PODIUMInput | number[]
     regions_margin_GASOLINA_PREMIUM?: regionsUpdateregions_margin_GASOLINA_PREMIUMInput | number[]
+    regions_margin_DIESEL_GROUP?: regionsUpdateregions_margin_DIESEL_GROUPInput | number[]
   }
 
   export type big_numbers_valuesCreateInput = {
@@ -11474,6 +11524,7 @@ export namespace Prisma {
     ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
     ibm_margin_GASOLINA_PODIUM?: SortOrder
     ibm_margin_GASOLINA_PREMIUM?: SortOrder
+    ibm_margin_DIESEL_GROUP?: SortOrder
   }
 
   export type ibm_infoAvgOrderByAggregateInput = {
@@ -11483,6 +11534,7 @@ export namespace Prisma {
     ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
     ibm_margin_GASOLINA_PODIUM?: SortOrder
     ibm_margin_GASOLINA_PREMIUM?: SortOrder
+    ibm_margin_DIESEL_GROUP?: SortOrder
   }
 
   export type ibm_infoMaxOrderByAggregateInput = {
@@ -11518,6 +11570,7 @@ export namespace Prisma {
     ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
     ibm_margin_GASOLINA_PODIUM?: SortOrder
     ibm_margin_GASOLINA_PREMIUM?: SortOrder
+    ibm_margin_DIESEL_GROUP?: SortOrder
   }
 
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -12176,6 +12229,7 @@ export namespace Prisma {
     regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
     regions_margin_GASOLINA_PODIUM?: SortOrder
     regions_margin_GASOLINA_PREMIUM?: SortOrder
+    regions_margin_DIESEL_GROUP?: SortOrder
   }
 
   export type regionsAvgOrderByAggregateInput = {
@@ -12183,6 +12237,7 @@ export namespace Prisma {
     regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
     regions_margin_GASOLINA_PODIUM?: SortOrder
     regions_margin_GASOLINA_PREMIUM?: SortOrder
+    regions_margin_DIESEL_GROUP?: SortOrder
   }
 
   export type regionsMaxOrderByAggregateInput = {
@@ -12206,6 +12261,7 @@ export namespace Prisma {
     regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: SortOrder
     regions_margin_GASOLINA_PODIUM?: SortOrder
     regions_margin_GASOLINA_PREMIUM?: SortOrder
+    regions_margin_DIESEL_GROUP?: SortOrder
   }
 
   export type big_numbers_valuesCountOrderByAggregateInput = {
@@ -12282,6 +12338,10 @@ export namespace Prisma {
     set: number[]
   }
 
+  export type ibm_infoCreateibm_margin_DIESEL_GROUPInput = {
+    set: number[]
+  }
+
   export type gas_station_setvariablesCreateNestedManyWithoutIbm_infoInput = {
     create?: XOR<gas_station_setvariablesCreateWithoutIbm_infoInput, gas_station_setvariablesUncheckedCreateWithoutIbm_infoInput> | gas_station_setvariablesCreateWithoutIbm_infoInput[] | gas_station_setvariablesUncheckedCreateWithoutIbm_infoInput[]
     connectOrCreate?: gas_station_setvariablesCreateOrConnectWithoutIbm_infoInput | gas_station_setvariablesCreateOrConnectWithoutIbm_infoInput[]
@@ -12328,6 +12388,11 @@ export namespace Prisma {
   }
 
   export type ibm_infoUpdateibm_margin_GASOLINA_PREMIUMInput = {
+    set?: number[]
+    push?: number | number[]
+  }
+
+  export type ibm_infoUpdateibm_margin_DIESEL_GROUPInput = {
     set?: number[]
     push?: number | number[]
   }
@@ -12563,6 +12628,10 @@ export namespace Prisma {
     set: number[]
   }
 
+  export type regionsCreateregions_margin_DIESEL_GROUPInput = {
+    set: number[]
+  }
+
   export type region_setvariablesCreateNestedManyWithoutRegionsInput = {
     create?: XOR<region_setvariablesCreateWithoutRegionsInput, region_setvariablesUncheckedCreateWithoutRegionsInput> | region_setvariablesCreateWithoutRegionsInput[] | region_setvariablesUncheckedCreateWithoutRegionsInput[]
     connectOrCreate?: region_setvariablesCreateOrConnectWithoutRegionsInput | region_setvariablesCreateOrConnectWithoutRegionsInput[]
@@ -12593,6 +12662,11 @@ export namespace Prisma {
   }
 
   export type regionsUpdateregions_margin_GASOLINA_PREMIUMInput = {
+    set?: number[]
+    push?: number | number[]
+  }
+
+  export type regionsUpdateregions_margin_DIESEL_GROUPInput = {
     set?: number[]
     push?: number | number[]
   }
@@ -13314,6 +13388,7 @@ export namespace Prisma {
     ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: ibm_infoCreateibm_margin_ETANOL_HIDRATADO_COMBUSTIVELInput | number[]
     ibm_margin_GASOLINA_PODIUM?: ibm_infoCreateibm_margin_GASOLINA_PODIUMInput | number[]
     ibm_margin_GASOLINA_PREMIUM?: ibm_infoCreateibm_margin_GASOLINA_PREMIUMInput | number[]
+    ibm_margin_DIESEL_GROUP?: ibm_infoCreateibm_margin_DIESEL_GROUPInput | number[]
   }
 
   export type ibm_infoUncheckedCreateWithoutGas_station_setvariablesInput = {
@@ -13331,6 +13406,7 @@ export namespace Prisma {
     ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: ibm_infoCreateibm_margin_ETANOL_HIDRATADO_COMBUSTIVELInput | number[]
     ibm_margin_GASOLINA_PODIUM?: ibm_infoCreateibm_margin_GASOLINA_PODIUMInput | number[]
     ibm_margin_GASOLINA_PREMIUM?: ibm_infoCreateibm_margin_GASOLINA_PREMIUMInput | number[]
+    ibm_margin_DIESEL_GROUP?: ibm_infoCreateibm_margin_DIESEL_GROUPInput | number[]
   }
 
   export type ibm_infoCreateOrConnectWithoutGas_station_setvariablesInput = {
@@ -13421,6 +13497,7 @@ export namespace Prisma {
     ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: ibm_infoUpdateibm_margin_ETANOL_HIDRATADO_COMBUSTIVELInput | number[]
     ibm_margin_GASOLINA_PODIUM?: ibm_infoUpdateibm_margin_GASOLINA_PODIUMInput | number[]
     ibm_margin_GASOLINA_PREMIUM?: ibm_infoUpdateibm_margin_GASOLINA_PREMIUMInput | number[]
+    ibm_margin_DIESEL_GROUP?: ibm_infoUpdateibm_margin_DIESEL_GROUPInput | number[]
   }
 
   export type ibm_infoUncheckedUpdateWithoutGas_station_setvariablesInput = {
@@ -13438,6 +13515,7 @@ export namespace Prisma {
     ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: ibm_infoUpdateibm_margin_ETANOL_HIDRATADO_COMBUSTIVELInput | number[]
     ibm_margin_GASOLINA_PODIUM?: ibm_infoUpdateibm_margin_GASOLINA_PODIUMInput | number[]
     ibm_margin_GASOLINA_PREMIUM?: ibm_infoUpdateibm_margin_GASOLINA_PREMIUMInput | number[]
+    ibm_margin_DIESEL_GROUP?: ibm_infoUpdateibm_margin_DIESEL_GROUPInput | number[]
   }
 
   export type usersUpsertWithoutGas_station_setvariablesInput = {
@@ -13513,6 +13591,7 @@ export namespace Prisma {
     regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: regionsCreateregions_margin_ETANOL_HIDRATADO_COMBUSTIVELInput | number[]
     regions_margin_GASOLINA_PODIUM?: regionsCreateregions_margin_GASOLINA_PODIUMInput | number[]
     regions_margin_GASOLINA_PREMIUM?: regionsCreateregions_margin_GASOLINA_PREMIUMInput | number[]
+    regions_margin_DIESEL_GROUP?: regionsCreateregions_margin_DIESEL_GROUPInput | number[]
   }
 
   export type regionsUncheckedCreateWithoutRegion_setvariablesInput = {
@@ -13525,6 +13604,7 @@ export namespace Prisma {
     regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: regionsCreateregions_margin_ETANOL_HIDRATADO_COMBUSTIVELInput | number[]
     regions_margin_GASOLINA_PODIUM?: regionsCreateregions_margin_GASOLINA_PODIUMInput | number[]
     regions_margin_GASOLINA_PREMIUM?: regionsCreateregions_margin_GASOLINA_PREMIUMInput | number[]
+    regions_margin_DIESEL_GROUP?: regionsCreateregions_margin_DIESEL_GROUPInput | number[]
   }
 
   export type regionsCreateOrConnectWithoutRegion_setvariablesInput = {
@@ -13610,6 +13690,7 @@ export namespace Prisma {
     regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: regionsUpdateregions_margin_ETANOL_HIDRATADO_COMBUSTIVELInput | number[]
     regions_margin_GASOLINA_PODIUM?: regionsUpdateregions_margin_GASOLINA_PODIUMInput | number[]
     regions_margin_GASOLINA_PREMIUM?: regionsUpdateregions_margin_GASOLINA_PREMIUMInput | number[]
+    regions_margin_DIESEL_GROUP?: regionsUpdateregions_margin_DIESEL_GROUPInput | number[]
   }
 
   export type regionsUncheckedUpdateWithoutRegion_setvariablesInput = {
@@ -13622,6 +13703,7 @@ export namespace Prisma {
     regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL?: regionsUpdateregions_margin_ETANOL_HIDRATADO_COMBUSTIVELInput | number[]
     regions_margin_GASOLINA_PODIUM?: regionsUpdateregions_margin_GASOLINA_PODIUMInput | number[]
     regions_margin_GASOLINA_PREMIUM?: regionsUpdateregions_margin_GASOLINA_PREMIUMInput | number[]
+    regions_margin_DIESEL_GROUP?: regionsUpdateregions_margin_DIESEL_GROUPInput | number[]
   }
 
   export type usersUpsertWithoutRegion_setvariablesInput = {

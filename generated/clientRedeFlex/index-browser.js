@@ -133,7 +133,8 @@ exports.Prisma.Ibm_infoScalarFieldEnum = {
   ibm_margin_GC: 'ibm_margin_GC',
   ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL: 'ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL',
   ibm_margin_GASOLINA_PODIUM: 'ibm_margin_GASOLINA_PODIUM',
-  ibm_margin_GASOLINA_PREMIUM: 'ibm_margin_GASOLINA_PREMIUM'
+  ibm_margin_GASOLINA_PREMIUM: 'ibm_margin_GASOLINA_PREMIUM',
+  ibm_margin_DIESEL_GROUP: 'ibm_margin_DIESEL_GROUP'
 };
 
 exports.Prisma.UsersScalarFieldEnum = {
@@ -267,7 +268,8 @@ exports.Prisma.RegionsScalarFieldEnum = {
   regions_margin_GC: 'regions_margin_GC',
   regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL: 'regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL',
   regions_margin_GASOLINA_PODIUM: 'regions_margin_GASOLINA_PODIUM',
-  regions_margin_GASOLINA_PREMIUM: 'regions_margin_GASOLINA_PREMIUM'
+  regions_margin_GASOLINA_PREMIUM: 'regions_margin_GASOLINA_PREMIUM',
+  regions_margin_DIESEL_GROUP: 'regions_margin_DIESEL_GROUP'
 };
 
 exports.Prisma.Big_numbers_valuesScalarFieldEnum = {

@@ -1138,6 +1138,7 @@ class DataController {
                         ibm_info: { select: { ibm: true, nomefantasia: true, } }
                     }, where: { use_uuid: id_token }
                 })
+
                 const ibmsStations = await prismaRedeFlex.ibm_info.findMany({ select: { razaosocial: true, ibm: true, id: true } })
                 const result = await prismaSales.vendas.findMany({
                     select: {
@@ -1164,6 +1165,7 @@ class DataController {
 
 
                 })
+
                 const supplyQuantity = itemsArray.flatMap(element => {
                     return element
 
@@ -1220,6 +1222,7 @@ class DataController {
                     station[element.ibm].push(...element.items);
 
                 })
+                return res.status(200).json({ data: station })
                 type ItemType = {
                     ibm: string;
                     "M/LT": number;
@@ -1553,7 +1556,7 @@ class DataController {
                 }),
                 prismaRedeFlex.ibm_info.findMany({ select: { ibm: true, nomefantasia: true } })
             ]);
-
+           
 
             const ibmObject = vendasResult.reduce((acc, element) => {
                 if (!acc[element.ibm]) acc[element.ibm] = [];
@@ -1561,7 +1564,7 @@ class DataController {
                 return acc;
             }, {} as { [key: string]: any[] });
 
-
+         
             let total = 0, quantity = 0;
             const arrayIbm = Object.entries(ibmObject).map(([ibm, items]) => {
                 const sum = items.reduce((acc, item) => {
