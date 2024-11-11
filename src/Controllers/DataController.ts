@@ -230,13 +230,13 @@ class DataController {
                 const id = extractUserIdFromToken(use_token, secret)
                 const flags = await prismaRedeFlex.users.findUnique({ select: { use_tmc: true, use_mlt: true, use_tmf: true, use_tmp: true, use_tmvol: true, use_lucro_bruto_operacional_galonagem: true, use_lucro_bruto_operacional_produto: true, use_lucro_bruto_operacional: true }, where: { use_uuid: id } })
                 const tmc = (flags?.use_tmc ?? 0) <= secondary_value_tmc;
-                const mlt = (flags?.use_mlt ?? 0) <= valueMLT;
+                const mlt = (flags?.use_mlt ?? 0) <= Math.round((valueMLT)*100)/100;
                 const use_tmf = (flags?.use_tmf ?? 0) <= secondary_value_fuel;
                 const use_tmp = (flags?.use_tmp ?? 0) <= secondary_value_produto;
                 const use_tmvol = (flags?.use_tmp ?? 0) <= secondary_value_galonagem
                 const lucro_operacional_galonagem = (flags?.use_lucro_bruto_operacional_galonagem ?? 0) * 100 <= secondary_value_fuelProfit
                 const lucro_operacional_produto = (flags?.use_lucro_bruto_operacional_produto ?? 0) * 100 <= secondary_value_productProfit
-                const lucro_operacional_geral = (flags?.use_lucro_bruto_operacional ?? 0) * 100 <= Math.round((secondary_value_bruto_operacional))
+                const lucro_operacional_geral = (flags?.use_lucro_bruto_operacional ?? 0) * 100 <= Math.round((secondary_value_bruto_operacional)*100)/100
                 const monthBigNumbers = await prismaRedeFlex.big_numbers_values.findFirst({
                     select: {
                         bignumbers_fuelProfit: true, bignumbers_fuelSales: true, bignumbers_invoicing: true, bignumbers_productProfit: true,
@@ -1556,7 +1556,7 @@ class DataController {
                 }),
                 prismaRedeFlex.ibm_info.findMany({ select: { ibm: true, nomefantasia: true } })
             ]);
-           
+
 
             const ibmObject = vendasResult.reduce((acc, element) => {
                 if (!acc[element.ibm]) acc[element.ibm] = [];
@@ -1564,7 +1564,7 @@ class DataController {
                 return acc;
             }, {} as { [key: string]: any[] });
 
-         
+
             let total = 0, quantity = 0;
             const arrayIbm = Object.entries(ibmObject).map(([ibm, items]) => {
                 const sum = items.reduce((acc, item) => {
