@@ -16,6 +16,7 @@ const prismaLBCBi = new PrismaLBCBi()
 const prismaSales = new PrismaSales()
 const prismaRedeFlex = new PrismaRedeFlex()
 import regionStation from '../utils/regionsstation.json';
+import { Vendas } from "@prisma/client";
 // import regionstation from "../utils/region";
 class DataController {
     //Listagem dos nomes de tipos de combustível e produtos
@@ -230,13 +231,13 @@ class DataController {
                 const id = extractUserIdFromToken(use_token, secret)
                 const flags = await prismaRedeFlex.users.findUnique({ select: { use_tmc: true, use_mlt: true, use_tmf: true, use_tmp: true, use_tmvol: true, use_lucro_bruto_operacional_galonagem: true, use_lucro_bruto_operacional_produto: true, use_lucro_bruto_operacional: true }, where: { use_uuid: id } })
                 const tmc = (flags?.use_tmc ?? 0) <= secondary_value_tmc;
-                const mlt = (flags?.use_mlt ?? 0) <= Math.round((valueMLT)*100)/100;
+                const mlt = (flags?.use_mlt ?? 0) <= Math.round((valueMLT) * 100) / 100;
                 const use_tmf = (flags?.use_tmf ?? 0) <= secondary_value_fuel;
                 const use_tmp = (flags?.use_tmp ?? 0) <= secondary_value_produto;
                 const use_tmvol = (flags?.use_tmp ?? 0) <= secondary_value_galonagem
                 const lucro_operacional_galonagem = (flags?.use_lucro_bruto_operacional_galonagem ?? 0) * 100 <= secondary_value_fuelProfit
                 const lucro_operacional_produto = (flags?.use_lucro_bruto_operacional_produto ?? 0) * 100 <= secondary_value_productProfit
-                const lucro_operacional_geral = (flags?.use_lucro_bruto_operacional ?? 0) * 100 <= Math.round((secondary_value_bruto_operacional)*100)/100
+                const lucro_operacional_geral = (flags?.use_lucro_bruto_operacional ?? 0) * 100 <= Math.round((secondary_value_bruto_operacional) * 100) / 100
                 const monthBigNumbers = await prismaRedeFlex.big_numbers_values.findFirst({
                     select: {
                         bignumbers_fuelProfit: true, bignumbers_fuelSales: true, bignumbers_invoicing: true, bignumbers_productProfit: true,
@@ -1222,7 +1223,7 @@ class DataController {
                     station[element.ibm].push(...element.items);
 
                 })
-                return res.status(200).json({ data: station })
+
                 type ItemType = {
                     ibm: string;
                     "M/LT": number;
@@ -1922,6 +1923,82 @@ class DataController {
             return res?.status(500).json({ message: `Erro ao atualizar os dados: ${error}` });
         }
     }
+
+    // public async tests(req?: Request, res?: Response) {
+    //     const fuelliterageSell = await prismaSales.vendas.findMany({
+    //         select: {
+    //             items: {
+    //                 select: {
+    //                     iTip: true,
+    //                     tot: true,
+    //                     qd: true,
+    //                     pC: true,
+    //                     dI: true
+    //                 }
+    //             },
+    //             ibm: true
+    //         },
+    //         where: {
+    //             dtHr: {
+    //                 gte: `2024-11-12T00:00:00.000Z`,
+    //                 lte: `2024-11-12T23:59:59.999Z`
+    //             }
+    //         }
+    //     });
+
+    //     type VendasItems = {
+    //         iTip: string; 
+    //         tot: string;   
+    //         qd: string;   
+    //         pC: string;   
+    //         dI: string;    
+    //     };
+
+    //     const fuelGroupedByCategory = {
+    //         dieselS10: [
+    //             "OLEO DIESEL B S10 COMUM",
+    //             "O.D. B S10 ADITIVADO",
+    //             "OLEO DIESEL B S10 ADITIVADO ",
+    //             "OLEO DIESEL B S-10",
+    //             "OLEO DIESEL B S10 ",
+    //             "O.D B S10 ADITIVADO ",
+    //         ]
+    //     };
+
+
+    //     const groupedByIbm = fuelliterageSell.reduce((acc: any, venda) => {
+    //         venda.items.forEach((item: VendasItems) => {
+    //             if (fuelGroupedByCategory.dieselS10.includes(item.dI)) {
+    //                 if (!acc[venda.ibm]) {
+    //                     acc[venda.ibm] = []; 
+    //                 }
+    //                 acc[venda.ibm].push(item);
+    //             }
+    //         });
+    //         return acc;
+    //     }, {});
+
+
+    //     const fuelCalculations = Object.keys(groupedByIbm).map((ibmKey) => {
+    //         const stationItems = groupedByIbm[ibmKey];
+
+    //         const sumFuelNumerator = stationItems.reduce((accumulator: number, currentValue: VendasItems) => {
+    //             return accumulator + (parseFloat(currentValue.tot) - (parseFloat(currentValue.qd) * parseFloat(currentValue.pC)));
+    //         }, 0);
+
+    //         const sumFuelDenominator = stationItems.reduce((accumulator: number, currentValue: VendasItems) => {
+    //             return accumulator + parseFloat(currentValue.qd);
+    //         }, 0);
+
+    //         return {
+    //             ibm: ibmKey,
+    //             sumFuelNumerator,
+    //             sumFuelDenominator
+    //         };
+    //     });
+    //     return res?.status(200).json({data:fuelCalculations})
+
+    // }
 
     public scheduleMonthlyBigNumberUpdate() {
         cron.schedule("0 0 * * *", async () => {
