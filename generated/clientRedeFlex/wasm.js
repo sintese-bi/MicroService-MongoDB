@@ -134,7 +134,8 @@ exports.Prisma.Ibm_infoScalarFieldEnum = {
   ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL: 'ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL',
   ibm_margin_GASOLINA_PODIUM: 'ibm_margin_GASOLINA_PODIUM',
   ibm_margin_GASOLINA_PREMIUM: 'ibm_margin_GASOLINA_PREMIUM',
-  ibm_margin_DIESEL_GROUP: 'ibm_margin_DIESEL_GROUP'
+  ibm_margin_DIESEL_GROUP: 'ibm_margin_DIESEL_GROUP',
+  ibm_margin_DIESEL_GROUP_S500: 'ibm_margin_DIESEL_GROUP_S500'
 };
 
 exports.Prisma.UsersScalarFieldEnum = {
@@ -208,7 +209,12 @@ exports.Prisma.Gas_station_setvariablesScalarFieldEnum = {
   gas_station_sanado_hour_margin_GASOLINA_PREMIUM: 'gas_station_sanado_hour_margin_GASOLINA_PREMIUM',
   gas_station_sanado_margin_GASOLINA_PREMIUM: 'gas_station_sanado_margin_GASOLINA_PREMIUM',
   gas_station_type_margin_GASOLINA_PREMIUM: 'gas_station_type_margin_GASOLINA_PREMIUM',
-  verification_hour_margin_GASOLINA_PREMIUM: 'verification_hour_margin_GASOLINA_PREMIUM'
+  verification_hour_margin_GASOLINA_PREMIUM: 'verification_hour_margin_GASOLINA_PREMIUM',
+  gas_station_margin_DIESEL_GROUP_S500: 'gas_station_margin_DIESEL_GROUP_S500',
+  gas_station_sanado_hour_margin_DIESEL_GROUP_S500: 'gas_station_sanado_hour_margin_DIESEL_GROUP_S500',
+  gas_station_sanado_margin_DIESEL_GROUP_S500: 'gas_station_sanado_margin_DIESEL_GROUP_S500',
+  gas_station_type_margin_DIESEL_GROUP_S500: 'gas_station_type_margin_DIESEL_GROUP_S500',
+  verification_hour_margin_DIESEL_GROUP_S500: 'verification_hour_margin_DIESEL_GROUP_S500'
 };
 
 exports.Prisma.Region_setvariablesScalarFieldEnum = {
@@ -256,7 +262,12 @@ exports.Prisma.Region_setvariablesScalarFieldEnum = {
   region_sanado_margin_GASOLINA_PREMIUM: 'region_sanado_margin_GASOLINA_PREMIUM',
   region_type_margin_GASOLINA_PREMIUM: 'region_type_margin_GASOLINA_PREMIUM',
   verification_hour_margin_GASOLINA_PREMIUM: 'verification_hour_margin_GASOLINA_PREMIUM',
-  region_sanado_hour_GASOLINA_PREMIUM: 'region_sanado_hour_GASOLINA_PREMIUM'
+  region_sanado_hour_GASOLINA_PREMIUM: 'region_sanado_hour_GASOLINA_PREMIUM',
+  region_margin_DIESEL_GROUP_S500: 'region_margin_DIESEL_GROUP_S500',
+  region_sanado_hour_margin_DIESEL_GROUP_S500: 'region_sanado_hour_margin_DIESEL_GROUP_S500',
+  region_sanado_margin_DIESEL_GROUP_S500: 'region_sanado_margin_DIESEL_GROUP_S500',
+  region_type_margin_DIESEL_GROUP_S500: 'region_type_margin_DIESEL_GROUP_S500',
+  verification_hour_margin_DIESEL_GROUP_S500: 'verification_hour_margin_DIESEL_GROUP_S500'
 };
 
 exports.Prisma.RegionsScalarFieldEnum = {
@@ -269,7 +280,8 @@ exports.Prisma.RegionsScalarFieldEnum = {
   regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL: 'regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL',
   regions_margin_GASOLINA_PODIUM: 'regions_margin_GASOLINA_PODIUM',
   regions_margin_GASOLINA_PREMIUM: 'regions_margin_GASOLINA_PREMIUM',
-  regions_margin_DIESEL_GROUP: 'regions_margin_DIESEL_GROUP'
+  regions_margin_DIESEL_GROUP: 'regions_margin_DIESEL_GROUP',
+  regions_margin_DIESEL_GROUP_S500: 'regions_margin_DIESEL_GROUP_S500'
 };
 
 exports.Prisma.Big_numbers_valuesScalarFieldEnum = {

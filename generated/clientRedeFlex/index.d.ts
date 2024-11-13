@@ -1429,6 +1429,7 @@ export namespace Prisma {
     ibm_margin_GASOLINA_PODIUM: number | null
     ibm_margin_GASOLINA_PREMIUM: number | null
     ibm_margin_DIESEL_GROUP: number | null
+    ibm_margin_DIESEL_GROUP_S500: number | null
   }
 
   export type Ibm_infoSumAggregateOutputType = {
@@ -1439,6 +1440,7 @@ export namespace Prisma {
     ibm_margin_GASOLINA_PODIUM: number[]
     ibm_margin_GASOLINA_PREMIUM: number[]
     ibm_margin_DIESEL_GROUP: number[]
+    ibm_margin_DIESEL_GROUP_S500: number[]
   }
 
   export type Ibm_infoMinAggregateOutputType = {
@@ -1483,6 +1485,7 @@ export namespace Prisma {
     ibm_margin_GASOLINA_PODIUM: number
     ibm_margin_GASOLINA_PREMIUM: number
     ibm_margin_DIESEL_GROUP: number
+    ibm_margin_DIESEL_GROUP_S500: number
     _all: number
   }
 
@@ -1495,6 +1498,7 @@ export namespace Prisma {
     ibm_margin_GASOLINA_PODIUM?: true
     ibm_margin_GASOLINA_PREMIUM?: true
     ibm_margin_DIESEL_GROUP?: true
+    ibm_margin_DIESEL_GROUP_S500?: true
   }
 
   export type Ibm_infoSumAggregateInputType = {
@@ -1505,6 +1509,7 @@ export namespace Prisma {
     ibm_margin_GASOLINA_PODIUM?: true
     ibm_margin_GASOLINA_PREMIUM?: true
     ibm_margin_DIESEL_GROUP?: true
+    ibm_margin_DIESEL_GROUP_S500?: true
   }
 
   export type Ibm_infoMinAggregateInputType = {
@@ -1549,6 +1554,7 @@ export namespace Prisma {
     ibm_margin_GASOLINA_PODIUM?: true
     ibm_margin_GASOLINA_PREMIUM?: true
     ibm_margin_DIESEL_GROUP?: true
+    ibm_margin_DIESEL_GROUP_S500?: true
     _all?: true
   }
 
@@ -1654,6 +1660,7 @@ export namespace Prisma {
     ibm_margin_GASOLINA_PODIUM: number[]
     ibm_margin_GASOLINA_PREMIUM: number[]
     ibm_margin_DIESEL_GROUP: number[]
+    ibm_margin_DIESEL_GROUP_S500: number[]
     _count: Ibm_infoCountAggregateOutputType | null
     _avg: Ibm_infoAvgAggregateOutputType | null
     _sum: Ibm_infoSumAggregateOutputType | null
@@ -1691,6 +1698,7 @@ export namespace Prisma {
     ibm_margin_GASOLINA_PODIUM?: boolean
     ibm_margin_GASOLINA_PREMIUM?: boolean
     ibm_margin_DIESEL_GROUP?: boolean
+    ibm_margin_DIESEL_GROUP_S500?: boolean
     gas_station_setvariables?: boolean | ibm_info$gas_station_setvariablesArgs<ExtArgs>
     _count?: boolean | Ibm_infoCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["ibm_info"]>
@@ -1711,6 +1719,7 @@ export namespace Prisma {
     ibm_margin_GASOLINA_PODIUM?: boolean
     ibm_margin_GASOLINA_PREMIUM?: boolean
     ibm_margin_DIESEL_GROUP?: boolean
+    ibm_margin_DIESEL_GROUP_S500?: boolean
   }, ExtArgs["result"]["ibm_info"]>
 
   export type ibm_infoSelectScalar = {
@@ -1729,6 +1738,7 @@ export namespace Prisma {
     ibm_margin_GASOLINA_PODIUM?: boolean
     ibm_margin_GASOLINA_PREMIUM?: boolean
     ibm_margin_DIESEL_GROUP?: boolean
+    ibm_margin_DIESEL_GROUP_S500?: boolean
   }
 
   export type ibm_infoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1758,6 +1768,7 @@ export namespace Prisma {
       ibm_margin_GASOLINA_PODIUM: number[]
       ibm_margin_GASOLINA_PREMIUM: number[]
       ibm_margin_DIESEL_GROUP: number[]
+      ibm_margin_DIESEL_GROUP_S500: number[]
     }, ExtArgs["result"]["ibm_info"]>
     composites: {}
   }
@@ -2193,6 +2204,7 @@ export namespace Prisma {
     readonly ibm_margin_GASOLINA_PODIUM: FieldRef<"ibm_info", 'Float[]'>
     readonly ibm_margin_GASOLINA_PREMIUM: FieldRef<"ibm_info", 'Float[]'>
     readonly ibm_margin_DIESEL_GROUP: FieldRef<"ibm_info", 'Float[]'>
+    readonly ibm_margin_DIESEL_GROUP_S500: FieldRef<"ibm_info", 'Float[]'>
   }
     
 
@@ -3850,6 +3862,7 @@ export namespace Prisma {
     gas_station_margin_DIESEL_GROUP: number | null
     gas_station_margin_GASOLINA_PODIUM: number | null
     gas_station_margin_GASOLINA_PREMIUM: number | null
+    gas_station_margin_DIESEL_GROUP_S500: number | null
   }
 
   export type Gas_station_setvariablesSumAggregateOutputType = {
@@ -3872,6 +3885,7 @@ export namespace Prisma {
     gas_station_margin_DIESEL_GROUP: number | null
     gas_station_margin_GASOLINA_PODIUM: number | null
     gas_station_margin_GASOLINA_PREMIUM: number | null
+    gas_station_margin_DIESEL_GROUP_S500: number | null
   }
 
   export type Gas_station_setvariablesMinAggregateOutputType = {
@@ -3920,6 +3934,11 @@ export namespace Prisma {
     gas_station_sanado_margin_GASOLINA_PREMIUM: boolean | null
     gas_station_type_margin_GASOLINA_PREMIUM: boolean | null
     verification_hour_margin_GASOLINA_PREMIUM: Date | null
+    gas_station_margin_DIESEL_GROUP_S500: number | null
+    gas_station_sanado_hour_margin_DIESEL_GROUP_S500: Date | null
+    gas_station_sanado_margin_DIESEL_GROUP_S500: boolean | null
+    gas_station_type_margin_DIESEL_GROUP_S500: boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500: Date | null
   }
 
   export type Gas_station_setvariablesMaxAggregateOutputType = {
@@ -3968,6 +3987,11 @@ export namespace Prisma {
     gas_station_sanado_margin_GASOLINA_PREMIUM: boolean | null
     gas_station_type_margin_GASOLINA_PREMIUM: boolean | null
     verification_hour_margin_GASOLINA_PREMIUM: Date | null
+    gas_station_margin_DIESEL_GROUP_S500: number | null
+    gas_station_sanado_hour_margin_DIESEL_GROUP_S500: Date | null
+    gas_station_sanado_margin_DIESEL_GROUP_S500: boolean | null
+    gas_station_type_margin_DIESEL_GROUP_S500: boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500: Date | null
   }
 
   export type Gas_station_setvariablesCountAggregateOutputType = {
@@ -4017,6 +4041,11 @@ export namespace Prisma {
     gas_station_sanado_margin_GASOLINA_PREMIUM: number
     gas_station_type_margin_GASOLINA_PREMIUM: number
     verification_hour_margin_GASOLINA_PREMIUM: number
+    gas_station_margin_DIESEL_GROUP_S500: number
+    gas_station_sanado_hour_margin_DIESEL_GROUP_S500: number
+    gas_station_sanado_margin_DIESEL_GROUP_S500: number
+    gas_station_type_margin_DIESEL_GROUP_S500: number
+    verification_hour_margin_DIESEL_GROUP_S500: number
     _all: number
   }
 
@@ -4041,6 +4070,7 @@ export namespace Prisma {
     gas_station_margin_DIESEL_GROUP?: true
     gas_station_margin_GASOLINA_PODIUM?: true
     gas_station_margin_GASOLINA_PREMIUM?: true
+    gas_station_margin_DIESEL_GROUP_S500?: true
   }
 
   export type Gas_station_setvariablesSumAggregateInputType = {
@@ -4063,6 +4093,7 @@ export namespace Prisma {
     gas_station_margin_DIESEL_GROUP?: true
     gas_station_margin_GASOLINA_PODIUM?: true
     gas_station_margin_GASOLINA_PREMIUM?: true
+    gas_station_margin_DIESEL_GROUP_S500?: true
   }
 
   export type Gas_station_setvariablesMinAggregateInputType = {
@@ -4111,6 +4142,11 @@ export namespace Prisma {
     gas_station_sanado_margin_GASOLINA_PREMIUM?: true
     gas_station_type_margin_GASOLINA_PREMIUM?: true
     verification_hour_margin_GASOLINA_PREMIUM?: true
+    gas_station_margin_DIESEL_GROUP_S500?: true
+    gas_station_sanado_hour_margin_DIESEL_GROUP_S500?: true
+    gas_station_sanado_margin_DIESEL_GROUP_S500?: true
+    gas_station_type_margin_DIESEL_GROUP_S500?: true
+    verification_hour_margin_DIESEL_GROUP_S500?: true
   }
 
   export type Gas_station_setvariablesMaxAggregateInputType = {
@@ -4159,6 +4195,11 @@ export namespace Prisma {
     gas_station_sanado_margin_GASOLINA_PREMIUM?: true
     gas_station_type_margin_GASOLINA_PREMIUM?: true
     verification_hour_margin_GASOLINA_PREMIUM?: true
+    gas_station_margin_DIESEL_GROUP_S500?: true
+    gas_station_sanado_hour_margin_DIESEL_GROUP_S500?: true
+    gas_station_sanado_margin_DIESEL_GROUP_S500?: true
+    gas_station_type_margin_DIESEL_GROUP_S500?: true
+    verification_hour_margin_DIESEL_GROUP_S500?: true
   }
 
   export type Gas_station_setvariablesCountAggregateInputType = {
@@ -4208,6 +4249,11 @@ export namespace Prisma {
     gas_station_sanado_margin_GASOLINA_PREMIUM?: true
     gas_station_type_margin_GASOLINA_PREMIUM?: true
     verification_hour_margin_GASOLINA_PREMIUM?: true
+    gas_station_margin_DIESEL_GROUP_S500?: true
+    gas_station_sanado_hour_margin_DIESEL_GROUP_S500?: true
+    gas_station_sanado_margin_DIESEL_GROUP_S500?: true
+    gas_station_type_margin_DIESEL_GROUP_S500?: true
+    verification_hour_margin_DIESEL_GROUP_S500?: true
     _all?: true
   }
 
@@ -4344,6 +4390,11 @@ export namespace Prisma {
     gas_station_sanado_margin_GASOLINA_PREMIUM: boolean | null
     gas_station_type_margin_GASOLINA_PREMIUM: boolean | null
     verification_hour_margin_GASOLINA_PREMIUM: Date | null
+    gas_station_margin_DIESEL_GROUP_S500: number | null
+    gas_station_sanado_hour_margin_DIESEL_GROUP_S500: Date | null
+    gas_station_sanado_margin_DIESEL_GROUP_S500: boolean | null
+    gas_station_type_margin_DIESEL_GROUP_S500: boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500: Date | null
     _count: Gas_station_setvariablesCountAggregateOutputType | null
     _avg: Gas_station_setvariablesAvgAggregateOutputType | null
     _sum: Gas_station_setvariablesSumAggregateOutputType | null
@@ -4412,6 +4463,11 @@ export namespace Prisma {
     gas_station_sanado_margin_GASOLINA_PREMIUM?: boolean
     gas_station_type_margin_GASOLINA_PREMIUM?: boolean
     verification_hour_margin_GASOLINA_PREMIUM?: boolean
+    gas_station_margin_DIESEL_GROUP_S500?: boolean
+    gas_station_sanado_hour_margin_DIESEL_GROUP_S500?: boolean
+    gas_station_sanado_margin_DIESEL_GROUP_S500?: boolean
+    gas_station_type_margin_DIESEL_GROUP_S500?: boolean
+    verification_hour_margin_DIESEL_GROUP_S500?: boolean
     ibm_info?: boolean | gas_station_setvariables$ibm_infoArgs<ExtArgs>
     users?: boolean | gas_station_setvariables$usersArgs<ExtArgs>
   }, ExtArgs["result"]["gas_station_setvariables"]>
@@ -4463,6 +4519,11 @@ export namespace Prisma {
     gas_station_sanado_margin_GASOLINA_PREMIUM?: boolean
     gas_station_type_margin_GASOLINA_PREMIUM?: boolean
     verification_hour_margin_GASOLINA_PREMIUM?: boolean
+    gas_station_margin_DIESEL_GROUP_S500?: boolean
+    gas_station_sanado_hour_margin_DIESEL_GROUP_S500?: boolean
+    gas_station_sanado_margin_DIESEL_GROUP_S500?: boolean
+    gas_station_type_margin_DIESEL_GROUP_S500?: boolean
+    verification_hour_margin_DIESEL_GROUP_S500?: boolean
     ibm_info?: boolean | gas_station_setvariables$ibm_infoArgs<ExtArgs>
     users?: boolean | gas_station_setvariables$usersArgs<ExtArgs>
   }, ExtArgs["result"]["gas_station_setvariables"]>
@@ -4514,6 +4575,11 @@ export namespace Prisma {
     gas_station_sanado_margin_GASOLINA_PREMIUM?: boolean
     gas_station_type_margin_GASOLINA_PREMIUM?: boolean
     verification_hour_margin_GASOLINA_PREMIUM?: boolean
+    gas_station_margin_DIESEL_GROUP_S500?: boolean
+    gas_station_sanado_hour_margin_DIESEL_GROUP_S500?: boolean
+    gas_station_sanado_margin_DIESEL_GROUP_S500?: boolean
+    gas_station_type_margin_DIESEL_GROUP_S500?: boolean
+    verification_hour_margin_DIESEL_GROUP_S500?: boolean
   }
 
   export type gas_station_setvariablesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4578,6 +4644,11 @@ export namespace Prisma {
       gas_station_sanado_margin_GASOLINA_PREMIUM: boolean | null
       gas_station_type_margin_GASOLINA_PREMIUM: boolean | null
       verification_hour_margin_GASOLINA_PREMIUM: Date | null
+      gas_station_margin_DIESEL_GROUP_S500: number | null
+      gas_station_sanado_hour_margin_DIESEL_GROUP_S500: Date | null
+      gas_station_sanado_margin_DIESEL_GROUP_S500: boolean | null
+      gas_station_type_margin_DIESEL_GROUP_S500: boolean | null
+      verification_hour_margin_DIESEL_GROUP_S500: Date | null
     }, ExtArgs["result"]["gas_station_setvariables"]>
     composites: {}
   }
@@ -5046,6 +5117,11 @@ export namespace Prisma {
     readonly gas_station_sanado_margin_GASOLINA_PREMIUM: FieldRef<"gas_station_setvariables", 'Boolean'>
     readonly gas_station_type_margin_GASOLINA_PREMIUM: FieldRef<"gas_station_setvariables", 'Boolean'>
     readonly verification_hour_margin_GASOLINA_PREMIUM: FieldRef<"gas_station_setvariables", 'DateTime'>
+    readonly gas_station_margin_DIESEL_GROUP_S500: FieldRef<"gas_station_setvariables", 'Float'>
+    readonly gas_station_sanado_hour_margin_DIESEL_GROUP_S500: FieldRef<"gas_station_setvariables", 'DateTime'>
+    readonly gas_station_sanado_margin_DIESEL_GROUP_S500: FieldRef<"gas_station_setvariables", 'Boolean'>
+    readonly gas_station_type_margin_DIESEL_GROUP_S500: FieldRef<"gas_station_setvariables", 'Boolean'>
+    readonly verification_hour_margin_DIESEL_GROUP_S500: FieldRef<"gas_station_setvariables", 'DateTime'>
   }
     
 
@@ -5438,6 +5514,7 @@ export namespace Prisma {
     region_margin_DIESEL_GROUP: number | null
     region_margin_GASOLINA_PODIUM: number | null
     region_margin_GASOLINA_PREMIUM: number | null
+    region_margin_DIESEL_GROUP_S500: number | null
   }
 
   export type Region_setvariablesSumAggregateOutputType = {
@@ -5458,6 +5535,7 @@ export namespace Prisma {
     region_margin_DIESEL_GROUP: number | null
     region_margin_GASOLINA_PODIUM: number | null
     region_margin_GASOLINA_PREMIUM: number | null
+    region_margin_DIESEL_GROUP_S500: number | null
   }
 
   export type Region_setvariablesMinAggregateOutputType = {
@@ -5505,6 +5583,11 @@ export namespace Prisma {
     region_type_margin_GASOLINA_PREMIUM: boolean | null
     verification_hour_margin_GASOLINA_PREMIUM: Date | null
     region_sanado_hour_GASOLINA_PREMIUM: Date | null
+    region_margin_DIESEL_GROUP_S500: number | null
+    region_sanado_hour_margin_DIESEL_GROUP_S500: Date | null
+    region_sanado_margin_DIESEL_GROUP_S500: boolean | null
+    region_type_margin_DIESEL_GROUP_S500: boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500: Date | null
   }
 
   export type Region_setvariablesMaxAggregateOutputType = {
@@ -5552,6 +5635,11 @@ export namespace Prisma {
     region_type_margin_GASOLINA_PREMIUM: boolean | null
     verification_hour_margin_GASOLINA_PREMIUM: Date | null
     region_sanado_hour_GASOLINA_PREMIUM: Date | null
+    region_margin_DIESEL_GROUP_S500: number | null
+    region_sanado_hour_margin_DIESEL_GROUP_S500: Date | null
+    region_sanado_margin_DIESEL_GROUP_S500: boolean | null
+    region_type_margin_DIESEL_GROUP_S500: boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500: Date | null
   }
 
   export type Region_setvariablesCountAggregateOutputType = {
@@ -5600,6 +5688,11 @@ export namespace Prisma {
     region_type_margin_GASOLINA_PREMIUM: number
     verification_hour_margin_GASOLINA_PREMIUM: number
     region_sanado_hour_GASOLINA_PREMIUM: number
+    region_margin_DIESEL_GROUP_S500: number
+    region_sanado_hour_margin_DIESEL_GROUP_S500: number
+    region_sanado_margin_DIESEL_GROUP_S500: number
+    region_type_margin_DIESEL_GROUP_S500: number
+    verification_hour_margin_DIESEL_GROUP_S500: number
     _all: number
   }
 
@@ -5622,6 +5715,7 @@ export namespace Prisma {
     region_margin_DIESEL_GROUP?: true
     region_margin_GASOLINA_PODIUM?: true
     region_margin_GASOLINA_PREMIUM?: true
+    region_margin_DIESEL_GROUP_S500?: true
   }
 
   export type Region_setvariablesSumAggregateInputType = {
@@ -5642,6 +5736,7 @@ export namespace Prisma {
     region_margin_DIESEL_GROUP?: true
     region_margin_GASOLINA_PODIUM?: true
     region_margin_GASOLINA_PREMIUM?: true
+    region_margin_DIESEL_GROUP_S500?: true
   }
 
   export type Region_setvariablesMinAggregateInputType = {
@@ -5689,6 +5784,11 @@ export namespace Prisma {
     region_type_margin_GASOLINA_PREMIUM?: true
     verification_hour_margin_GASOLINA_PREMIUM?: true
     region_sanado_hour_GASOLINA_PREMIUM?: true
+    region_margin_DIESEL_GROUP_S500?: true
+    region_sanado_hour_margin_DIESEL_GROUP_S500?: true
+    region_sanado_margin_DIESEL_GROUP_S500?: true
+    region_type_margin_DIESEL_GROUP_S500?: true
+    verification_hour_margin_DIESEL_GROUP_S500?: true
   }
 
   export type Region_setvariablesMaxAggregateInputType = {
@@ -5736,6 +5836,11 @@ export namespace Prisma {
     region_type_margin_GASOLINA_PREMIUM?: true
     verification_hour_margin_GASOLINA_PREMIUM?: true
     region_sanado_hour_GASOLINA_PREMIUM?: true
+    region_margin_DIESEL_GROUP_S500?: true
+    region_sanado_hour_margin_DIESEL_GROUP_S500?: true
+    region_sanado_margin_DIESEL_GROUP_S500?: true
+    region_type_margin_DIESEL_GROUP_S500?: true
+    verification_hour_margin_DIESEL_GROUP_S500?: true
   }
 
   export type Region_setvariablesCountAggregateInputType = {
@@ -5784,6 +5889,11 @@ export namespace Prisma {
     region_type_margin_GASOLINA_PREMIUM?: true
     verification_hour_margin_GASOLINA_PREMIUM?: true
     region_sanado_hour_GASOLINA_PREMIUM?: true
+    region_margin_DIESEL_GROUP_S500?: true
+    region_sanado_hour_margin_DIESEL_GROUP_S500?: true
+    region_sanado_margin_DIESEL_GROUP_S500?: true
+    region_type_margin_DIESEL_GROUP_S500?: true
+    verification_hour_margin_DIESEL_GROUP_S500?: true
     _all?: true
   }
 
@@ -5919,6 +6029,11 @@ export namespace Prisma {
     region_type_margin_GASOLINA_PREMIUM: boolean | null
     verification_hour_margin_GASOLINA_PREMIUM: Date | null
     region_sanado_hour_GASOLINA_PREMIUM: Date | null
+    region_margin_DIESEL_GROUP_S500: number | null
+    region_sanado_hour_margin_DIESEL_GROUP_S500: Date | null
+    region_sanado_margin_DIESEL_GROUP_S500: boolean | null
+    region_type_margin_DIESEL_GROUP_S500: boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500: Date | null
     _count: Region_setvariablesCountAggregateOutputType | null
     _avg: Region_setvariablesAvgAggregateOutputType | null
     _sum: Region_setvariablesSumAggregateOutputType | null
@@ -5986,6 +6101,11 @@ export namespace Prisma {
     region_type_margin_GASOLINA_PREMIUM?: boolean
     verification_hour_margin_GASOLINA_PREMIUM?: boolean
     region_sanado_hour_GASOLINA_PREMIUM?: boolean
+    region_margin_DIESEL_GROUP_S500?: boolean
+    region_sanado_hour_margin_DIESEL_GROUP_S500?: boolean
+    region_sanado_margin_DIESEL_GROUP_S500?: boolean
+    region_type_margin_DIESEL_GROUP_S500?: boolean
+    verification_hour_margin_DIESEL_GROUP_S500?: boolean
     regions?: boolean | region_setvariables$regionsArgs<ExtArgs>
     users?: boolean | region_setvariables$usersArgs<ExtArgs>
   }, ExtArgs["result"]["region_setvariables"]>
@@ -6036,6 +6156,11 @@ export namespace Prisma {
     region_type_margin_GASOLINA_PREMIUM?: boolean
     verification_hour_margin_GASOLINA_PREMIUM?: boolean
     region_sanado_hour_GASOLINA_PREMIUM?: boolean
+    region_margin_DIESEL_GROUP_S500?: boolean
+    region_sanado_hour_margin_DIESEL_GROUP_S500?: boolean
+    region_sanado_margin_DIESEL_GROUP_S500?: boolean
+    region_type_margin_DIESEL_GROUP_S500?: boolean
+    verification_hour_margin_DIESEL_GROUP_S500?: boolean
     regions?: boolean | region_setvariables$regionsArgs<ExtArgs>
     users?: boolean | region_setvariables$usersArgs<ExtArgs>
   }, ExtArgs["result"]["region_setvariables"]>
@@ -6086,6 +6211,11 @@ export namespace Prisma {
     region_type_margin_GASOLINA_PREMIUM?: boolean
     verification_hour_margin_GASOLINA_PREMIUM?: boolean
     region_sanado_hour_GASOLINA_PREMIUM?: boolean
+    region_margin_DIESEL_GROUP_S500?: boolean
+    region_sanado_hour_margin_DIESEL_GROUP_S500?: boolean
+    region_sanado_margin_DIESEL_GROUP_S500?: boolean
+    region_type_margin_DIESEL_GROUP_S500?: boolean
+    verification_hour_margin_DIESEL_GROUP_S500?: boolean
   }
 
   export type region_setvariablesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6149,6 +6279,11 @@ export namespace Prisma {
       region_type_margin_GASOLINA_PREMIUM: boolean | null
       verification_hour_margin_GASOLINA_PREMIUM: Date | null
       region_sanado_hour_GASOLINA_PREMIUM: Date | null
+      region_margin_DIESEL_GROUP_S500: number | null
+      region_sanado_hour_margin_DIESEL_GROUP_S500: Date | null
+      region_sanado_margin_DIESEL_GROUP_S500: boolean | null
+      region_type_margin_DIESEL_GROUP_S500: boolean | null
+      verification_hour_margin_DIESEL_GROUP_S500: Date | null
     }, ExtArgs["result"]["region_setvariables"]>
     composites: {}
   }
@@ -6616,6 +6751,11 @@ export namespace Prisma {
     readonly region_type_margin_GASOLINA_PREMIUM: FieldRef<"region_setvariables", 'Boolean'>
     readonly verification_hour_margin_GASOLINA_PREMIUM: FieldRef<"region_setvariables", 'DateTime'>
     readonly region_sanado_hour_GASOLINA_PREMIUM: FieldRef<"region_setvariables", 'DateTime'>
+    readonly region_margin_DIESEL_GROUP_S500: FieldRef<"region_setvariables", 'Float'>
+    readonly region_sanado_hour_margin_DIESEL_GROUP_S500: FieldRef<"region_setvariables", 'DateTime'>
+    readonly region_sanado_margin_DIESEL_GROUP_S500: FieldRef<"region_setvariables", 'Boolean'>
+    readonly region_type_margin_DIESEL_GROUP_S500: FieldRef<"region_setvariables", 'Boolean'>
+    readonly verification_hour_margin_DIESEL_GROUP_S500: FieldRef<"region_setvariables", 'DateTime'>
   }
     
 
@@ -6996,6 +7136,7 @@ export namespace Prisma {
     regions_margin_GASOLINA_PODIUM: number | null
     regions_margin_GASOLINA_PREMIUM: number | null
     regions_margin_DIESEL_GROUP: number | null
+    regions_margin_DIESEL_GROUP_S500: number | null
   }
 
   export type RegionsSumAggregateOutputType = {
@@ -7004,6 +7145,7 @@ export namespace Prisma {
     regions_margin_GASOLINA_PODIUM: number[]
     regions_margin_GASOLINA_PREMIUM: number[]
     regions_margin_DIESEL_GROUP: number[]
+    regions_margin_DIESEL_GROUP_S500: number[]
   }
 
   export type RegionsMinAggregateOutputType = {
@@ -7033,6 +7175,7 @@ export namespace Prisma {
     regions_margin_GASOLINA_PODIUM: number
     regions_margin_GASOLINA_PREMIUM: number
     regions_margin_DIESEL_GROUP: number
+    regions_margin_DIESEL_GROUP_S500: number
     _all: number
   }
 
@@ -7043,6 +7186,7 @@ export namespace Prisma {
     regions_margin_GASOLINA_PODIUM?: true
     regions_margin_GASOLINA_PREMIUM?: true
     regions_margin_DIESEL_GROUP?: true
+    regions_margin_DIESEL_GROUP_S500?: true
   }
 
   export type RegionsSumAggregateInputType = {
@@ -7051,6 +7195,7 @@ export namespace Prisma {
     regions_margin_GASOLINA_PODIUM?: true
     regions_margin_GASOLINA_PREMIUM?: true
     regions_margin_DIESEL_GROUP?: true
+    regions_margin_DIESEL_GROUP_S500?: true
   }
 
   export type RegionsMinAggregateInputType = {
@@ -7080,6 +7225,7 @@ export namespace Prisma {
     regions_margin_GASOLINA_PODIUM?: true
     regions_margin_GASOLINA_PREMIUM?: true
     regions_margin_DIESEL_GROUP?: true
+    regions_margin_DIESEL_GROUP_S500?: true
     _all?: true
   }
 
@@ -7180,6 +7326,7 @@ export namespace Prisma {
     regions_margin_GASOLINA_PODIUM: number[]
     regions_margin_GASOLINA_PREMIUM: number[]
     regions_margin_DIESEL_GROUP: number[]
+    regions_margin_DIESEL_GROUP_S500: number[]
     _count: RegionsCountAggregateOutputType | null
     _avg: RegionsAvgAggregateOutputType | null
     _sum: RegionsSumAggregateOutputType | null
@@ -7212,6 +7359,7 @@ export namespace Prisma {
     regions_margin_GASOLINA_PODIUM?: boolean
     regions_margin_GASOLINA_PREMIUM?: boolean
     regions_margin_DIESEL_GROUP?: boolean
+    regions_margin_DIESEL_GROUP_S500?: boolean
     region_setvariables?: boolean | regions$region_setvariablesArgs<ExtArgs>
     _count?: boolean | RegionsCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["regions"]>
@@ -7227,6 +7375,7 @@ export namespace Prisma {
     regions_margin_GASOLINA_PODIUM?: boolean
     regions_margin_GASOLINA_PREMIUM?: boolean
     regions_margin_DIESEL_GROUP?: boolean
+    regions_margin_DIESEL_GROUP_S500?: boolean
   }, ExtArgs["result"]["regions"]>
 
   export type regionsSelectScalar = {
@@ -7240,6 +7389,7 @@ export namespace Prisma {
     regions_margin_GASOLINA_PODIUM?: boolean
     regions_margin_GASOLINA_PREMIUM?: boolean
     regions_margin_DIESEL_GROUP?: boolean
+    regions_margin_DIESEL_GROUP_S500?: boolean
   }
 
   export type regionsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7264,6 +7414,7 @@ export namespace Prisma {
       regions_margin_GASOLINA_PODIUM: number[]
       regions_margin_GASOLINA_PREMIUM: number[]
       regions_margin_DIESEL_GROUP: number[]
+      regions_margin_DIESEL_GROUP_S500: number[]
     }, ExtArgs["result"]["regions"]>
     composites: {}
   }
@@ -7694,6 +7845,7 @@ export namespace Prisma {
     readonly regions_margin_GASOLINA_PODIUM: FieldRef<"regions", 'Float[]'>
     readonly regions_margin_GASOLINA_PREMIUM: FieldRef<"regions", 'Float[]'>
     readonly regions_margin_DIESEL_GROUP: FieldRef<"regions", 'Float[]'>
+    readonly regions_margin_DIESEL_GROUP_S500: FieldRef<"regions", 'Float[]'>
   }
     
 
@@ -9085,7 +9237,8 @@ export namespace Prisma {
     ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL: 'ibm_margin_ETANOL_HIDRATADO_COMBUSTIVEL',
     ibm_margin_GASOLINA_PODIUM: 'ibm_margin_GASOLINA_PODIUM',
     ibm_margin_GASOLINA_PREMIUM: 'ibm_margin_GASOLINA_PREMIUM',
-    ibm_margin_DIESEL_GROUP: 'ibm_margin_DIESEL_GROUP'
+    ibm_margin_DIESEL_GROUP: 'ibm_margin_DIESEL_GROUP',
+    ibm_margin_DIESEL_GROUP_S500: 'ibm_margin_DIESEL_GROUP_S500'
   };
 
   export type Ibm_infoScalarFieldEnum = (typeof Ibm_infoScalarFieldEnum)[keyof typeof Ibm_infoScalarFieldEnum]
@@ -9165,7 +9318,12 @@ export namespace Prisma {
     gas_station_sanado_hour_margin_GASOLINA_PREMIUM: 'gas_station_sanado_hour_margin_GASOLINA_PREMIUM',
     gas_station_sanado_margin_GASOLINA_PREMIUM: 'gas_station_sanado_margin_GASOLINA_PREMIUM',
     gas_station_type_margin_GASOLINA_PREMIUM: 'gas_station_type_margin_GASOLINA_PREMIUM',
-    verification_hour_margin_GASOLINA_PREMIUM: 'verification_hour_margin_GASOLINA_PREMIUM'
+    verification_hour_margin_GASOLINA_PREMIUM: 'verification_hour_margin_GASOLINA_PREMIUM',
+    gas_station_margin_DIESEL_GROUP_S500: 'gas_station_margin_DIESEL_GROUP_S500',
+    gas_station_sanado_hour_margin_DIESEL_GROUP_S500: 'gas_station_sanado_hour_margin_DIESEL_GROUP_S500',
+    gas_station_sanado_margin_DIESEL_GROUP_S500: 'gas_station_sanado_margin_DIESEL_GROUP_S500',
+    gas_station_type_margin_DIESEL_GROUP_S500: 'gas_station_type_margin_DIESEL_GROUP_S500',
+    verification_hour_margin_DIESEL_GROUP_S500: 'verification_hour_margin_DIESEL_GROUP_S500'
   };
 
   export type Gas_station_setvariablesScalarFieldEnum = (typeof Gas_station_setvariablesScalarFieldEnum)[keyof typeof Gas_station_setvariablesScalarFieldEnum]
@@ -9216,7 +9374,12 @@ export namespace Prisma {
     region_sanado_margin_GASOLINA_PREMIUM: 'region_sanado_margin_GASOLINA_PREMIUM',
     region_type_margin_GASOLINA_PREMIUM: 'region_type_margin_GASOLINA_PREMIUM',
     verification_hour_margin_GASOLINA_PREMIUM: 'verification_hour_margin_GASOLINA_PREMIUM',
-    region_sanado_hour_GASOLINA_PREMIUM: 'region_sanado_hour_GASOLINA_PREMIUM'
+    region_sanado_hour_GASOLINA_PREMIUM: 'region_sanado_hour_GASOLINA_PREMIUM',
+    region_margin_DIESEL_GROUP_S500: 'region_margin_DIESEL_GROUP_S500',
+    region_sanado_hour_margin_DIESEL_GROUP_S500: 'region_sanado_hour_margin_DIESEL_GROUP_S500',
+    region_sanado_margin_DIESEL_GROUP_S500: 'region_sanado_margin_DIESEL_GROUP_S500',
+    region_type_margin_DIESEL_GROUP_S500: 'region_type_margin_DIESEL_GROUP_S500',
+    verification_hour_margin_DIESEL_GROUP_S500: 'verification_hour_margin_DIESEL_GROUP_S500'
   };
 
   export type Region_setvariablesScalarFieldEnum = (typeof Region_setvariablesScalarFieldEnum)[keyof typeof Region_setvariablesScalarFieldEnum]
@@ -9232,7 +9395,8 @@ export namespace Prisma {
     regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL: 'regions_margin_ETANOL_HIDRATADO_COMBUSTIVEL',
     regions_margin_GASOLINA_PODIUM: 'regions_margin_GASOLINA_PODIUM',
     regions_margin_GASOLINA_PREMIUM: 'regions_margin_GASOLINA_PREMIUM',
-    regions_margin_DIESEL_GROUP: 'regions_margin_DIESEL_GROUP'
+    regions_margin_DIESEL_GROUP: 'regions_margin_DIESEL_GROUP',
+    regions_margin_DIESEL_GROUP_S500: 'regions_margin_DIESEL_GROUP_S500'
   };
 
   export type RegionsScalarFieldEnum = (typeof RegionsScalarFieldEnum)[keyof typeof RegionsScalarFieldEnum]
@@ -9367,6 +9531,7 @@ export namespace Prisma {
     ibm_margin_GASOLINA_PODIUM?: FloatNullableListFilter<"ibm_info">
     ibm_margin_GASOLINA_PREMIUM?: FloatNullableListFilter<"ibm_info">
     ibm_margin_DIESEL_GROUP?: FloatNullableListFilter<"ibm_info">
+    ibm_margin_DIESEL_GROUP_S500?: FloatNullableListFilter<"ibm_info">
     gas_station_setvariables?: Gas_station_setvariablesListRelationFilter
   }
 
@@ -9386,6 +9551,7 @@ export namespace Prisma {
     ibm_margin_GASOLINA_PODIUM?: SortOrder
     ibm_margin_GASOLINA_PREMIUM?: SortOrder
     ibm_margin_DIESEL_GROUP?: SortOrder
+    ibm_margin_DIESEL_GROUP_S500?: SortOrder
     gas_station_setvariables?: gas_station_setvariablesOrderByRelationAggregateInput
   }
 
@@ -9408,6 +9574,7 @@ export namespace Prisma {
     ibm_margin_GASOLINA_PODIUM?: FloatNullableListFilter<"ibm_info">
     ibm_margin_GASOLINA_PREMIUM?: FloatNullableListFilter<"ibm_info">
     ibm_margin_DIESEL_GROUP?: FloatNullableListFilter<"ibm_info">
+    ibm_margin_DIESEL_GROUP_S500?: FloatNullableListFilter<"ibm_info">
     gas_station_setvariables?: Gas_station_setvariablesListRelationFilter
   }, "id">
 
@@ -9427,6 +9594,7 @@ export namespace Prisma {
     ibm_margin_GASOLINA_PODIUM?: SortOrder
     ibm_margin_GASOLINA_PREMIUM?: SortOrder
     ibm_margin_DIESEL_GROUP?: SortOrder
+    ibm_margin_DIESEL_GROUP_S500?: SortOrder
     _count?: ibm_infoCountOrderByAggregateInput
     _avg?: ibm_infoAvgOrderByAggregateInput
     _max?: ibm_infoMaxOrderByAggregateInput
@@ -9453,6 +9621,7 @@ export namespace Prisma {
     ibm_margin_GASOLINA_PODIUM?: FloatNullableListFilter<"ibm_info">
     ibm_margin_GASOLINA_PREMIUM?: FloatNullableListFilter<"ibm_info">
     ibm_margin_DIESEL_GROUP?: FloatNullableListFilter<"ibm_info">
+    ibm_margin_DIESEL_GROUP_S500?: FloatNullableListFilter<"ibm_info">
   }
 
   export type usersWhereInput = {
@@ -9650,6 +9819,11 @@ export namespace Prisma {
     gas_station_sanado_margin_GASOLINA_PREMIUM?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
     gas_station_type_margin_GASOLINA_PREMIUM?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: DateTimeNullableFilter<"gas_station_setvariables"> | Date | string | null
+    gas_station_margin_DIESEL_GROUP_S500?: FloatNullableFilter<"gas_station_setvariables"> | number | null
+    gas_station_sanado_hour_margin_DIESEL_GROUP_S500?: DateTimeNullableFilter<"gas_station_setvariables"> | Date | string | null
+    gas_station_sanado_margin_DIESEL_GROUP_S500?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
+    gas_station_type_margin_DIESEL_GROUP_S500?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500?: DateTimeNullableFilter<"gas_station_setvariables"> | Date | string | null
     ibm_info?: XOR<Ibm_infoNullableRelationFilter, ibm_infoWhereInput> | null
     users?: XOR<UsersNullableRelationFilter, usersWhereInput> | null
   }
@@ -9701,6 +9875,11 @@ export namespace Prisma {
     gas_station_sanado_margin_GASOLINA_PREMIUM?: SortOrderInput | SortOrder
     gas_station_type_margin_GASOLINA_PREMIUM?: SortOrderInput | SortOrder
     verification_hour_margin_GASOLINA_PREMIUM?: SortOrderInput | SortOrder
+    gas_station_margin_DIESEL_GROUP_S500?: SortOrderInput | SortOrder
+    gas_station_sanado_hour_margin_DIESEL_GROUP_S500?: SortOrderInput | SortOrder
+    gas_station_sanado_margin_DIESEL_GROUP_S500?: SortOrderInput | SortOrder
+    gas_station_type_margin_DIESEL_GROUP_S500?: SortOrderInput | SortOrder
+    verification_hour_margin_DIESEL_GROUP_S500?: SortOrderInput | SortOrder
     ibm_info?: ibm_infoOrderByWithRelationInput
     users?: usersOrderByWithRelationInput
   }
@@ -9755,6 +9934,11 @@ export namespace Prisma {
     gas_station_sanado_margin_GASOLINA_PREMIUM?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
     gas_station_type_margin_GASOLINA_PREMIUM?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: DateTimeNullableFilter<"gas_station_setvariables"> | Date | string | null
+    gas_station_margin_DIESEL_GROUP_S500?: FloatNullableFilter<"gas_station_setvariables"> | number | null
+    gas_station_sanado_hour_margin_DIESEL_GROUP_S500?: DateTimeNullableFilter<"gas_station_setvariables"> | Date | string | null
+    gas_station_sanado_margin_DIESEL_GROUP_S500?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
+    gas_station_type_margin_DIESEL_GROUP_S500?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500?: DateTimeNullableFilter<"gas_station_setvariables"> | Date | string | null
     ibm_info?: XOR<Ibm_infoNullableRelationFilter, ibm_infoWhereInput> | null
     users?: XOR<UsersNullableRelationFilter, usersWhereInput> | null
   }, "gas_station_uuid">
@@ -9806,6 +9990,11 @@ export namespace Prisma {
     gas_station_sanado_margin_GASOLINA_PREMIUM?: SortOrderInput | SortOrder
     gas_station_type_margin_GASOLINA_PREMIUM?: SortOrderInput | SortOrder
     verification_hour_margin_GASOLINA_PREMIUM?: SortOrderInput | SortOrder
+    gas_station_margin_DIESEL_GROUP_S500?: SortOrderInput | SortOrder
+    gas_station_sanado_hour_margin_DIESEL_GROUP_S500?: SortOrderInput | SortOrder
+    gas_station_sanado_margin_DIESEL_GROUP_S500?: SortOrderInput | SortOrder
+    gas_station_type_margin_DIESEL_GROUP_S500?: SortOrderInput | SortOrder
+    verification_hour_margin_DIESEL_GROUP_S500?: SortOrderInput | SortOrder
     _count?: gas_station_setvariablesCountOrderByAggregateInput
     _avg?: gas_station_setvariablesAvgOrderByAggregateInput
     _max?: gas_station_setvariablesMaxOrderByAggregateInput
@@ -9863,6 +10052,11 @@ export namespace Prisma {
     gas_station_sanado_margin_GASOLINA_PREMIUM?: BoolNullableWithAggregatesFilter<"gas_station_setvariables"> | boolean | null
     gas_station_type_margin_GASOLINA_PREMIUM?: BoolNullableWithAggregatesFilter<"gas_station_setvariables"> | boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: DateTimeNullableWithAggregatesFilter<"gas_station_setvariables"> | Date | string | null
+    gas_station_margin_DIESEL_GROUP_S500?: FloatNullableWithAggregatesFilter<"gas_station_setvariables"> | number | null
+    gas_station_sanado_hour_margin_DIESEL_GROUP_S500?: DateTimeNullableWithAggregatesFilter<"gas_station_setvariables"> | Date | string | null
+    gas_station_sanado_margin_DIESEL_GROUP_S500?: BoolNullableWithAggregatesFilter<"gas_station_setvariables"> | boolean | null
+    gas_station_type_margin_DIESEL_GROUP_S500?: BoolNullableWithAggregatesFilter<"gas_station_setvariables"> | boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500?: DateTimeNullableWithAggregatesFilter<"gas_station_setvariables"> | Date | string | null
   }
 
   export type region_setvariablesWhereInput = {
@@ -9914,6 +10108,11 @@ export namespace Prisma {
     region_type_margin_GASOLINA_PREMIUM?: BoolNullableFilter<"region_setvariables"> | boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: DateTimeNullableFilter<"region_setvariables"> | Date | string | null
     region_sanado_hour_GASOLINA_PREMIUM?: DateTimeNullableFilter<"region_setvariables"> | Date | string | null
+    region_margin_DIESEL_GROUP_S500?: FloatNullableFilter<"region_setvariables"> | number | null
+    region_sanado_hour_margin_DIESEL_GROUP_S500?: DateTimeNullableFilter<"region_setvariables"> | Date | string | null
+    region_sanado_margin_DIESEL_GROUP_S500?: BoolNullableFilter<"region_setvariables"> | boolean | null
+    region_type_margin_DIESEL_GROUP_S500?: BoolNullableFilter<"region_setvariables"> | boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500?: DateTimeNullableFilter<"region_setvariables"> | Date | string | null
     regions?: XOR<RegionsNullableRelationFilter, regionsWhereInput> | null
     users?: XOR<UsersNullableRelationFilter, usersWhereInput> | null
   }
@@ -9964,6 +10163,11 @@ export namespace Prisma {
     region_type_margin_GASOLINA_PREMIUM?: SortOrderInput | SortOrder
     verification_hour_margin_GASOLINA_PREMIUM?: SortOrderInput | SortOrder
     region_sanado_hour_GASOLINA_PREMIUM?: SortOrderInput | SortOrder
+    region_margin_DIESEL_GROUP_S500?: SortOrderInput | SortOrder
+    region_sanado_hour_margin_DIESEL_GROUP_S500?: SortOrderInput | SortOrder
+    region_sanado_margin_DIESEL_GROUP_S500?: SortOrderInput | SortOrder
+    region_type_margin_DIESEL_GROUP_S500?: SortOrderInput | SortOrder
+    verification_hour_margin_DIESEL_GROUP_S500?: SortOrderInput | SortOrder
     regions?: regionsOrderByWithRelationInput
     users?: usersOrderByWithRelationInput
   }
@@ -10017,6 +10221,11 @@ export namespace Prisma {
     region_type_margin_GASOLINA_PREMIUM?: BoolNullableFilter<"region_setvariables"> | boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: DateTimeNullableFilter<"region_setvariables"> | Date | string | null
     region_sanado_hour_GASOLINA_PREMIUM?: DateTimeNullableFilter<"region_setvariables"> | Date | string | null
+    region_margin_DIESEL_GROUP_S500?: FloatNullableFilter<"region_setvariables"> | number | null
+    region_sanado_hour_margin_DIESEL_GROUP_S500?: DateTimeNullableFilter<"region_setvariables"> | Date | string | null
+    region_sanado_margin_DIESEL_GROUP_S500?: BoolNullableFilter<"region_setvariables"> | boolean | null
+    region_type_margin_DIESEL_GROUP_S500?: BoolNullableFilter<"region_setvariables"> | boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500?: DateTimeNullableFilter<"region_setvariables"> | Date | string | null
     regions?: XOR<RegionsNullableRelationFilter, regionsWhereInput> | null
     users?: XOR<UsersNullableRelationFilter, usersWhereInput> | null
   }, "region_uuid">
@@ -10067,6 +10276,11 @@ export namespace Prisma {
     region_type_margin_GASOLINA_PREMIUM?: SortOrderInput | SortOrder
     verification_hour_margin_GASOLINA_PREMIUM?: SortOrderInput | SortOrder
     region_sanado_hour_GASOLINA_PREMIUM?: SortOrderInput | SortOrder
+    region_margin_DIESEL_GROUP_S500?: SortOrderInput | SortOrder
+    region_sanado_hour_margin_DIESEL_GROUP_S500?: SortOrderInput | SortOrder
+    region_sanado_margin_DIESEL_GROUP_S500?: SortOrderInput | SortOrder
+    region_type_margin_DIESEL_GROUP_S500?: SortOrderInput | SortOrder
+    verification_hour_margin_DIESEL_GROUP_S500?: SortOrderInput | SortOrder
     _count?: region_setvariablesCountOrderByAggregateInput
     _avg?: region_setvariablesAvgOrderByAggregateInput
     _max?: region_setvariablesMaxOrderByAggregateInput
@@ -10123,6 +10337,11 @@ export namespace Prisma {
     region_type_margin_GASOLINA_PREMIUM?: BoolNullableWithAggregatesFilter<"region_setvariables"> | boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: DateTimeNullableWithAggregatesFilter<"region_setvariables"> | Date | string | null
     region_sanado_hour_GASOLINA_PREMIUM?: DateTimeNullableWithAggregatesFilter<"region_setvariables"> | Date | string | null
+    region_margin_DIESEL_GROUP_S500?: FloatNullableWithAggregatesFilter<"region_setvariables"> | number | null
+    region_sanado_hour_margin_DIESEL_GROUP_S500?: DateTimeNullableWithAggregatesFilter<"region_setvariables"> | Date | string | null
+    region_sanado_margin_DIESEL_GROUP_S500?: BoolNullableWithAggregatesFilter<"region_setvariables"> | boolean | null
+    region_type_margin_DIESEL_GROUP_S500?: BoolNullableWithAggregatesFilter<"region_setvariables"> | boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500?: DateTimeNullableWithAggregatesFilter<"region_setvariables"> | Date | string | null
   }
 
   export type regionsWhereInput = {
@@ -10139,6 +10358,7 @@ export namespace Prisma {
     regions_margin_GASOLINA_PODIUM?: FloatNullableListFilter<"regions">
     regions_margin_GASOLINA_PREMIUM?: FloatNullableListFilter<"regions">
     regions_margin_DIESEL_GROUP?: FloatNullableListFilter<"regions">
+    regions_margin_DIESEL_GROUP_S500?: FloatNullableListFilter<"regions">
     region_setvariables?: Region_setvariablesListRelationFilter
   }
 
@@ -10153,6 +10373,7 @@ export namespace Prisma {
     regions_margin_GASOLINA_PODIUM?: SortOrder
     regions_margin_GASOLINA_PREMIUM?: SortOrder
     regions_margin_DIESEL_GROUP?: SortOrder
+    regions_margin_DIESEL_GROUP_S500?: SortOrder
     region_setvariables?: region_setvariablesOrderByRelationAggregateInput
   }
 
@@ -10170,6 +10391,7 @@ export namespace Prisma {
     regions_margin_GASOLINA_PODIUM?: FloatNullableListFilter<"regions">
     regions_margin_GASOLINA_PREMIUM?: FloatNullableListFilter<"regions">
     regions_margin_DIESEL_GROUP?: FloatNullableListFilter<"regions">
+    regions_margin_DIESEL_GROUP_S500?: FloatNullableListFilter<"regions">
     region_setvariables?: Region_setvariablesListRelationFilter
   }, "regions_uuid">
 
@@ -10184,6 +10406,7 @@ export namespace Prisma {
     regions_margin_GASOLINA_PODIUM?: SortOrder
     regions_margin_GASOLINA_PREMIUM?: SortOrder
     regions_margin_DIESEL_GROUP?: SortOrder
+    regions_margin_DIESEL_GROUP_S500?: SortOrder
     _count?: regionsCountOrderByAggregateInput
     _avg?: regionsAvgOrderByAggregateInput
     _max?: regionsMaxOrderByAggregateInput
@@ -10205,6 +10428,7 @@ export namespace Prisma {
     regions_margin_GASOLINA_PODIUM?: FloatNullableListFilter<"regions">
     regions_margin_GASOLINA_PREMIUM?: FloatNullableListFilter<"regions">
     regions_margin_DIESEL_GROUP?: FloatNullableListFilter<"regions">
+    regions_margin_DIESEL_GROUP_S500?: FloatNullableListFilter<"regions">
   }
 
   export type big_numbers_valuesWhereInput = {
@@ -10297,6 +10521,7 @@ export namespace Prisma {
     ibm_margin_GASOLINA_PODIUM?: ibm_infoCreateibm_margin_GASOLINA_PODIUMInput | number[]
     ibm_margin_GASOLINA_PREMIUM?: ibm_infoCreateibm_margin_GASOLINA_PREMIUMInput | number[]
     ibm_margin_DIESEL_GROUP?: ibm_infoCreateibm_margin_DIESEL_GROUPInput | number[]
+    ibm_margin_DIESEL_GROUP_S500?: ibm_infoCreateibm_margin_DIESEL_GROUP_S500Input | number[]
     gas_station_setvariables?: gas_station_setvariablesCreateNestedManyWithoutIbm_infoInput
   }
 
@@ -10316,6 +10541,7 @@ export namespace Prisma {
     ibm_margin_GASOLINA_PODIUM?: ibm_infoCreateibm_margin_GASOLINA_PODIUMInput | number[]
     ibm_margin_GASOLINA_PREMIUM?: ibm_infoCreateibm_margin_GASOLINA_PREMIUMInput | number[]
     ibm_margin_DIESEL_GROUP?: ibm_infoCreateibm_margin_DIESEL_GROUPInput | number[]
+    ibm_margin_DIESEL_GROUP_S500?: ibm_infoCreateibm_margin_DIESEL_GROUP_S500Input | number[]
     gas_station_setvariables?: gas_station_setvariablesUncheckedCreateNestedManyWithoutIbm_infoInput
   }
 
@@ -10335,6 +10561,7 @@ export namespace Prisma {
     ibm_margin_GASOLINA_PODIUM?: ibm_infoUpdateibm_margin_GASOLINA_PODIUMInput | number[]
     ibm_margin_GASOLINA_PREMIUM?: ibm_infoUpdateibm_margin_GASOLINA_PREMIUMInput | number[]
     ibm_margin_DIESEL_GROUP?: ibm_infoUpdateibm_margin_DIESEL_GROUPInput | number[]
+    ibm_margin_DIESEL_GROUP_S500?: ibm_infoUpdateibm_margin_DIESEL_GROUP_S500Input | number[]
     gas_station_setvariables?: gas_station_setvariablesUpdateManyWithoutIbm_infoNestedInput
   }
 
@@ -10354,6 +10581,7 @@ export namespace Prisma {
     ibm_margin_GASOLINA_PODIUM?: ibm_infoUpdateibm_margin_GASOLINA_PODIUMInput | number[]
     ibm_margin_GASOLINA_PREMIUM?: ibm_infoUpdateibm_margin_GASOLINA_PREMIUMInput | number[]
     ibm_margin_DIESEL_GROUP?: ibm_infoUpdateibm_margin_DIESEL_GROUPInput | number[]
+    ibm_margin_DIESEL_GROUP_S500?: ibm_infoUpdateibm_margin_DIESEL_GROUP_S500Input | number[]
     gas_station_setvariables?: gas_station_setvariablesUncheckedUpdateManyWithoutIbm_infoNestedInput
   }
 
@@ -10373,6 +10601,7 @@ export namespace Prisma {
     ibm_margin_GASOLINA_PODIUM?: ibm_infoCreateibm_margin_GASOLINA_PODIUMInput | number[]
     ibm_margin_GASOLINA_PREMIUM?: ibm_infoCreateibm_margin_GASOLINA_PREMIUMInput | number[]
     ibm_margin_DIESEL_GROUP?: ibm_infoCreateibm_margin_DIESEL_GROUPInput | number[]
+    ibm_margin_DIESEL_GROUP_S500?: ibm_infoCreateibm_margin_DIESEL_GROUP_S500Input | number[]
   }
 
   export type ibm_infoUpdateManyMutationInput = {
@@ -10391,6 +10620,7 @@ export namespace Prisma {
     ibm_margin_GASOLINA_PODIUM?: ibm_infoUpdateibm_margin_GASOLINA_PODIUMInput | number[]
     ibm_margin_GASOLINA_PREMIUM?: ibm_infoUpdateibm_margin_GASOLINA_PREMIUMInput | number[]
     ibm_margin_DIESEL_GROUP?: ibm_infoUpdateibm_margin_DIESEL_GROUPInput | number[]
+    ibm_margin_DIESEL_GROUP_S500?: ibm_infoUpdateibm_margin_DIESEL_GROUP_S500Input | number[]
   }
 
   export type ibm_infoUncheckedUpdateManyInput = {
@@ -10409,6 +10639,7 @@ export namespace Prisma {
     ibm_margin_GASOLINA_PODIUM?: ibm_infoUpdateibm_margin_GASOLINA_PODIUMInput | number[]
     ibm_margin_GASOLINA_PREMIUM?: ibm_infoUpdateibm_margin_GASOLINA_PREMIUMInput | number[]
     ibm_margin_DIESEL_GROUP?: ibm_infoUpdateibm_margin_DIESEL_GROUPInput | number[]
+    ibm_margin_DIESEL_GROUP_S500?: ibm_infoUpdateibm_margin_DIESEL_GROUP_S500Input | number[]
   }
 
   export type usersCreateInput = {
@@ -10639,6 +10870,11 @@ export namespace Prisma {
     gas_station_sanado_margin_GASOLINA_PREMIUM?: boolean | null
     gas_station_type_margin_GASOLINA_PREMIUM?: boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: Date | string | null
+    gas_station_margin_DIESEL_GROUP_S500?: number | null
+    gas_station_sanado_hour_margin_DIESEL_GROUP_S500?: Date | string | null
+    gas_station_sanado_margin_DIESEL_GROUP_S500?: boolean | null
+    gas_station_type_margin_DIESEL_GROUP_S500?: boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500?: Date | string | null
     ibm_info?: ibm_infoCreateNestedOneWithoutGas_station_setvariablesInput
     users?: usersCreateNestedOneWithoutGas_station_setvariablesInput
   }
@@ -10690,6 +10926,11 @@ export namespace Prisma {
     gas_station_sanado_margin_GASOLINA_PREMIUM?: boolean | null
     gas_station_type_margin_GASOLINA_PREMIUM?: boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: Date | string | null
+    gas_station_margin_DIESEL_GROUP_S500?: number | null
+    gas_station_sanado_hour_margin_DIESEL_GROUP_S500?: Date | string | null
+    gas_station_sanado_margin_DIESEL_GROUP_S500?: boolean | null
+    gas_station_type_margin_DIESEL_GROUP_S500?: boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500?: Date | string | null
   }
 
   export type gas_station_setvariablesUpdateInput = {
@@ -10737,6 +10978,11 @@ export namespace Prisma {
     gas_station_sanado_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_type_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_margin_DIESEL_GROUP_S500?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_sanado_hour_margin_DIESEL_GROUP_S500?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_margin_DIESEL_GROUP_S500?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_type_margin_DIESEL_GROUP_S500?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     ibm_info?: ibm_infoUpdateOneWithoutGas_station_setvariablesNestedInput
     users?: usersUpdateOneWithoutGas_station_setvariablesNestedInput
   }
@@ -10788,6 +11034,11 @@ export namespace Prisma {
     gas_station_sanado_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_type_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_margin_DIESEL_GROUP_S500?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_sanado_hour_margin_DIESEL_GROUP_S500?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_margin_DIESEL_GROUP_S500?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_type_margin_DIESEL_GROUP_S500?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type gas_station_setvariablesCreateManyInput = {
@@ -10837,6 +11088,11 @@ export namespace Prisma {
     gas_station_sanado_margin_GASOLINA_PREMIUM?: boolean | null
     gas_station_type_margin_GASOLINA_PREMIUM?: boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: Date | string | null
+    gas_station_margin_DIESEL_GROUP_S500?: number | null
+    gas_station_sanado_hour_margin_DIESEL_GROUP_S500?: Date | string | null
+    gas_station_sanado_margin_DIESEL_GROUP_S500?: boolean | null
+    gas_station_type_margin_DIESEL_GROUP_S500?: boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500?: Date | string | null
   }
 
   export type gas_station_setvariablesUpdateManyMutationInput = {
@@ -10884,6 +11140,11 @@ export namespace Prisma {
     gas_station_sanado_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_type_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_margin_DIESEL_GROUP_S500?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_sanado_hour_margin_DIESEL_GROUP_S500?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_margin_DIESEL_GROUP_S500?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_type_margin_DIESEL_GROUP_S500?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type gas_station_setvariablesUncheckedUpdateManyInput = {
@@ -10933,6 +11194,11 @@ export namespace Prisma {
     gas_station_sanado_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_type_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_margin_DIESEL_GROUP_S500?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_sanado_hour_margin_DIESEL_GROUP_S500?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_margin_DIESEL_GROUP_S500?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_type_margin_DIESEL_GROUP_S500?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type region_setvariablesCreateInput = {
@@ -10979,6 +11245,11 @@ export namespace Prisma {
     region_type_margin_GASOLINA_PREMIUM?: boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: Date | string | null
     region_sanado_hour_GASOLINA_PREMIUM?: Date | string | null
+    region_margin_DIESEL_GROUP_S500?: number | null
+    region_sanado_hour_margin_DIESEL_GROUP_S500?: Date | string | null
+    region_sanado_margin_DIESEL_GROUP_S500?: boolean | null
+    region_type_margin_DIESEL_GROUP_S500?: boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500?: Date | string | null
     regions?: regionsCreateNestedOneWithoutRegion_setvariablesInput
     users?: usersCreateNestedOneWithoutRegion_setvariablesInput
   }
@@ -11029,6 +11300,11 @@ export namespace Prisma {
     region_type_margin_GASOLINA_PREMIUM?: boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: Date | string | null
     region_sanado_hour_GASOLINA_PREMIUM?: Date | string | null
+    region_margin_DIESEL_GROUP_S500?: number | null
+    region_sanado_hour_margin_DIESEL_GROUP_S500?: Date | string | null
+    region_sanado_margin_DIESEL_GROUP_S500?: boolean | null
+    region_type_margin_DIESEL_GROUP_S500?: boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500?: Date | string | null
   }
 
   export type region_setvariablesUpdateInput = {
@@ -11075,6 +11351,11 @@ export namespace Prisma {
     region_type_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     region_sanado_hour_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    region_margin_DIESEL_GROUP_S500?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_sanado_hour_margin_DIESEL_GROUP_S500?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    region_sanado_margin_DIESEL_GROUP_S500?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    region_type_margin_DIESEL_GROUP_S500?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     regions?: regionsUpdateOneWithoutRegion_setvariablesNestedInput
     users?: usersUpdateOneWithoutRegion_setvariablesNestedInput
   }
@@ -11125,6 +11406,11 @@ export namespace Prisma {
     region_type_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     region_sanado_hour_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    region_margin_DIESEL_GROUP_S500?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_sanado_hour_margin_DIESEL_GROUP_S500?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    region_sanado_margin_DIESEL_GROUP_S500?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    region_type_margin_DIESEL_GROUP_S500?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type region_setvariablesCreateManyInput = {
@@ -11173,6 +11459,11 @@ export namespace Prisma {
     region_type_margin_GASOLINA_PREMIUM?: boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: Date | string | null
     region_sanado_hour_GASOLINA_PREMIUM?: Date | string | null
+    region_margin_DIESEL_GROUP_S500?: number | null
+    region_sanado_hour_margin_DIESEL_GROUP_S500?: Date | string | null
+    region_sanado_margin_DIESEL_GROUP_S500?: boolean | null
+    region_type_margin_DIESEL_GROUP_S500?: boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500?: Date | string | null
   }
 
   export type region_setvariablesUpdateManyMutationInput = {
@@ -11219,6 +11510,11 @@ export namespace Prisma {
     region_type_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     region_sanado_hour_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    region_margin_DIESEL_GROUP_S500?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_sanado_hour_margin_DIESEL_GROUP_S500?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    region_sanado_margin_DIESEL_GROUP_S500?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    region_type_margin_DIESEL_GROUP_S500?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type region_setvariablesUncheckedUpdateManyInput = {
@@ -11267,6 +11563,11 @@ export namespace Prisma {
     region_type_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     region_sanado_hour_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    region_margin_DIESEL_GROUP_S500?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_sanado_hour_margin_DIESEL_GROUP_S500?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    region_sanado_margin_DIESEL_GROUP_S500?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    region_type_margin_DIESEL_GROUP_S500?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type regionsCreateInput = {
@@ -11280,6 +11581,7 @@ export namespace Prisma {
     regions_margin_GASOLINA_PODIUM?: regionsCreateregions_margin_GASOLINA_PODIUMInput | number[]
     regions_margin_GASOLINA_PREMIUM?: regionsCreateregions_margin_GASOLINA_PREMIUMInput | number[]
     regions_margin_DIESEL_GROUP?: regionsCreateregions_margin_DIESEL_GROUPInput | number[]
+    regions_margin_DIESEL_GROUP_S500?: regionsCreateregions_margin_DIESEL_GROUP_S500Input | number[]
     region_setvariables?: region_setvariablesCreateNestedManyWithoutRegionsInput
   }
 
@@ -11294,6 +11596,7 @@ export namespace Prisma {
     regions_margin_GASOLINA_PODIUM?: regionsCreateregions_margin_GASOLINA_PODIUMInput | number[]
     regions_margin_GASOLINA_PREMIUM?: regionsCreateregions_margin_GASOLINA_PREMIUMInput | number[]
     regions_margin_DIESEL_GROUP?: regionsCreateregions_margin_DIESEL_GROUPInput | number[]
+    regions_margin_DIESEL_GROUP_S500?: regionsCreateregions_margin_DIESEL_GROUP_S500Input | number[]
     region_setvariables?: region_setvariablesUncheckedCreateNestedManyWithoutRegionsInput
   }
 
@@ -11308,6 +11611,7 @@ export namespace Prisma {
     regions_margin_GASOLINA_PODIUM?: regionsUpdateregions_margin_GASOLINA_PODIUMInput | number[]
     regions_margin_GASOLINA_PREMIUM?: regionsUpdateregions_margin_GASOLINA_PREMIUMInput | number[]
     regions_margin_DIESEL_GROUP?: regionsUpdateregions_margin_DIESEL_GROUPInput | number[]
+    regions_margin_DIESEL_GROUP_S500?: regionsUpdateregions_margin_DIESEL_GROUP_S500Input | number[]
     region_setvariables?: region_setvariablesUpdateManyWithoutRegionsNestedInput
   }
 
@@ -11322,6 +11626,7 @@ export namespace Prisma {
     regions_margin_GASOLINA_PODIUM?: regionsUpdateregions_margin_GASOLINA_PODIUMInput | number[]
     regions_margin_GASOLINA_PREMIUM?: regionsUpdateregions_margin_GASOLINA_PREMIUMInput | number[]
     regions_margin_DIESEL_GROUP?: regionsUpdateregions_margin_DIESEL_GROUPInput | number[]
+    regions_margin_DIESEL_GROUP_S500?: regionsUpdateregions_margin_DIESEL_GROUP_S500Input | number[]
     region_setvariables?: region_setvariablesUncheckedUpdateManyWithoutRegionsNestedInput
   }
 
@@ -11336,6 +11641,7 @@ export namespace Prisma {
     regions_margin_GASOLINA_PODIUM?: regionsCreateregions_margin_GASOLINA_PODIUMInput | number[]
     regions_margin_GASOLINA_PREMIUM?: regionsCreateregions_margin_GASOLINA_PREMIUMInput | number[]
     regions_margin_DIESEL_GROUP?: regionsCreateregions_margin_DIESEL_GROUPInput | number[]
+    regions_margin_DIESEL_GROUP_S500?: regionsCreateregions_margin_DIESEL_GROUP_S500Input | number[]
   }
 
   export type regionsUpdateManyMutationInput = {
@@ -11349,6 +11655,7 @@ export namespace Prisma {
     regions_margin_GASOLINA_PODIUM?: regionsUpdateregions_margin_GASOLINA_PODIUMInput | number[]
     regions_margin_GASOLINA_PREMIUM?: regionsUpdateregions_margin_GASOLINA_PREMIUMInput | number[]
     regions_margin_DIESEL_GROUP?: regionsUpdateregions_margin_DIESEL_GROUPInput | number[]
+    regions_margin_DIESEL_GROUP_S500?: regionsUpdateregions_margin_DIESEL_GROUP_S500Input | number[]
   }
 
   export type regionsUncheckedUpdateManyInput = {
@@ -11362,6 +11669,7 @@ export namespace Prisma {
     regions_margin_GASOLINA_PODIUM?: regionsUpdateregions_margin_GASOLINA_PODIUMInput | number[]
     regions_margin_GASOLINA_PREMIUM?: regionsUpdateregions_margin_GASOLINA_PREMIUMInput | number[]
     regions_margin_DIESEL_GROUP?: regionsUpdateregions_margin_DIESEL_GROUPInput | number[]
+    regions_margin_DIESEL_GROUP_S500?: regionsUpdateregions_margin_DIESEL_GROUP_S500Input | number[]
   }
 
   export type big_numbers_valuesCreateInput = {
@@ -11525,6 +11833,7 @@ export namespace Prisma {
     ibm_margin_GASOLINA_PODIUM?: SortOrder
     ibm_margin_GASOLINA_PREMIUM?: SortOrder
     ibm_margin_DIESEL_GROUP?: SortOrder
+    ibm_margin_DIESEL_GROUP_S500?: SortOrder
   }
 
   export type ibm_infoAvgOrderByAggregateInput = {
@@ -11535,6 +11844,7 @@ export namespace Prisma {
     ibm_margin_GASOLINA_PODIUM?: SortOrder
     ibm_margin_GASOLINA_PREMIUM?: SortOrder
     ibm_margin_DIESEL_GROUP?: SortOrder
+    ibm_margin_DIESEL_GROUP_S500?: SortOrder
   }
 
   export type ibm_infoMaxOrderByAggregateInput = {
@@ -11571,6 +11881,7 @@ export namespace Prisma {
     ibm_margin_GASOLINA_PODIUM?: SortOrder
     ibm_margin_GASOLINA_PREMIUM?: SortOrder
     ibm_margin_DIESEL_GROUP?: SortOrder
+    ibm_margin_DIESEL_GROUP_S500?: SortOrder
   }
 
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -11867,6 +12178,11 @@ export namespace Prisma {
     gas_station_sanado_margin_GASOLINA_PREMIUM?: SortOrder
     gas_station_type_margin_GASOLINA_PREMIUM?: SortOrder
     verification_hour_margin_GASOLINA_PREMIUM?: SortOrder
+    gas_station_margin_DIESEL_GROUP_S500?: SortOrder
+    gas_station_sanado_hour_margin_DIESEL_GROUP_S500?: SortOrder
+    gas_station_sanado_margin_DIESEL_GROUP_S500?: SortOrder
+    gas_station_type_margin_DIESEL_GROUP_S500?: SortOrder
+    verification_hour_margin_DIESEL_GROUP_S500?: SortOrder
   }
 
   export type gas_station_setvariablesAvgOrderByAggregateInput = {
@@ -11889,6 +12205,7 @@ export namespace Prisma {
     gas_station_margin_DIESEL_GROUP?: SortOrder
     gas_station_margin_GASOLINA_PODIUM?: SortOrder
     gas_station_margin_GASOLINA_PREMIUM?: SortOrder
+    gas_station_margin_DIESEL_GROUP_S500?: SortOrder
   }
 
   export type gas_station_setvariablesMaxOrderByAggregateInput = {
@@ -11937,6 +12254,11 @@ export namespace Prisma {
     gas_station_sanado_margin_GASOLINA_PREMIUM?: SortOrder
     gas_station_type_margin_GASOLINA_PREMIUM?: SortOrder
     verification_hour_margin_GASOLINA_PREMIUM?: SortOrder
+    gas_station_margin_DIESEL_GROUP_S500?: SortOrder
+    gas_station_sanado_hour_margin_DIESEL_GROUP_S500?: SortOrder
+    gas_station_sanado_margin_DIESEL_GROUP_S500?: SortOrder
+    gas_station_type_margin_DIESEL_GROUP_S500?: SortOrder
+    verification_hour_margin_DIESEL_GROUP_S500?: SortOrder
   }
 
   export type gas_station_setvariablesMinOrderByAggregateInput = {
@@ -11985,6 +12307,11 @@ export namespace Prisma {
     gas_station_sanado_margin_GASOLINA_PREMIUM?: SortOrder
     gas_station_type_margin_GASOLINA_PREMIUM?: SortOrder
     verification_hour_margin_GASOLINA_PREMIUM?: SortOrder
+    gas_station_margin_DIESEL_GROUP_S500?: SortOrder
+    gas_station_sanado_hour_margin_DIESEL_GROUP_S500?: SortOrder
+    gas_station_sanado_margin_DIESEL_GROUP_S500?: SortOrder
+    gas_station_type_margin_DIESEL_GROUP_S500?: SortOrder
+    verification_hour_margin_DIESEL_GROUP_S500?: SortOrder
   }
 
   export type gas_station_setvariablesSumOrderByAggregateInput = {
@@ -12007,6 +12334,7 @@ export namespace Prisma {
     gas_station_margin_DIESEL_GROUP?: SortOrder
     gas_station_margin_GASOLINA_PODIUM?: SortOrder
     gas_station_margin_GASOLINA_PREMIUM?: SortOrder
+    gas_station_margin_DIESEL_GROUP_S500?: SortOrder
   }
 
   export type BoolNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -12083,6 +12411,11 @@ export namespace Prisma {
     region_type_margin_GASOLINA_PREMIUM?: SortOrder
     verification_hour_margin_GASOLINA_PREMIUM?: SortOrder
     region_sanado_hour_GASOLINA_PREMIUM?: SortOrder
+    region_margin_DIESEL_GROUP_S500?: SortOrder
+    region_sanado_hour_margin_DIESEL_GROUP_S500?: SortOrder
+    region_sanado_margin_DIESEL_GROUP_S500?: SortOrder
+    region_type_margin_DIESEL_GROUP_S500?: SortOrder
+    verification_hour_margin_DIESEL_GROUP_S500?: SortOrder
   }
 
   export type region_setvariablesAvgOrderByAggregateInput = {
@@ -12103,6 +12436,7 @@ export namespace Prisma {
     region_margin_DIESEL_GROUP?: SortOrder
     region_margin_GASOLINA_PODIUM?: SortOrder
     region_margin_GASOLINA_PREMIUM?: SortOrder
+    region_margin_DIESEL_GROUP_S500?: SortOrder
   }
 
   export type region_setvariablesMaxOrderByAggregateInput = {
@@ -12150,6 +12484,11 @@ export namespace Prisma {
     region_type_margin_GASOLINA_PREMIUM?: SortOrder
     verification_hour_margin_GASOLINA_PREMIUM?: SortOrder
     region_sanado_hour_GASOLINA_PREMIUM?: SortOrder
+    region_margin_DIESEL_GROUP_S500?: SortOrder
+    region_sanado_hour_margin_DIESEL_GROUP_S500?: SortOrder
+    region_sanado_margin_DIESEL_GROUP_S500?: SortOrder
+    region_type_margin_DIESEL_GROUP_S500?: SortOrder
+    verification_hour_margin_DIESEL_GROUP_S500?: SortOrder
   }
 
   export type region_setvariablesMinOrderByAggregateInput = {
@@ -12197,6 +12536,11 @@ export namespace Prisma {
     region_type_margin_GASOLINA_PREMIUM?: SortOrder
     verification_hour_margin_GASOLINA_PREMIUM?: SortOrder
     region_sanado_hour_GASOLINA_PREMIUM?: SortOrder
+    region_margin_DIESEL_GROUP_S500?: SortOrder
+    region_sanado_hour_margin_DIESEL_GROUP_S500?: SortOrder
+    region_sanado_margin_DIESEL_GROUP_S500?: SortOrder
+    region_type_margin_DIESEL_GROUP_S500?: SortOrder
+    verification_hour_margin_DIESEL_GROUP_S500?: SortOrder
   }
 
   export type region_setvariablesSumOrderByAggregateInput = {
@@ -12217,6 +12561,7 @@ export namespace Prisma {
     region_margin_DIESEL_GROUP?: SortOrder
     region_margin_GASOLINA_PODIUM?: SortOrder
     region_margin_GASOLINA_PREMIUM?: SortOrder
+    region_margin_DIESEL_GROUP_S500?: SortOrder
   }
 
   export type regionsCountOrderByAggregateInput = {
@@ -12230,6 +12575,7 @@ export namespace Prisma {
     regions_margin_GASOLINA_PODIUM?: SortOrder
     regions_margin_GASOLINA_PREMIUM?: SortOrder
     regions_margin_DIESEL_GROUP?: SortOrder
+    regions_margin_DIESEL_GROUP_S500?: SortOrder
   }
 
   export type regionsAvgOrderByAggregateInput = {
@@ -12238,6 +12584,7 @@ export namespace Prisma {
     regions_margin_GASOLINA_PODIUM?: SortOrder
     regions_margin_GASOLINA_PREMIUM?: SortOrder
     regions_margin_DIESEL_GROUP?: SortOrder
+    regions_margin_DIESEL_GROUP_S500?: SortOrder
   }
 
   export type regionsMaxOrderByAggregateInput = {
@@ -12262,6 +12609,7 @@ export namespace Prisma {
     regions_margin_GASOLINA_PODIUM?: SortOrder
     regions_margin_GASOLINA_PREMIUM?: SortOrder
     regions_margin_DIESEL_GROUP?: SortOrder
+    regions_margin_DIESEL_GROUP_S500?: SortOrder
   }
 
   export type big_numbers_valuesCountOrderByAggregateInput = {
@@ -12342,6 +12690,10 @@ export namespace Prisma {
     set: number[]
   }
 
+  export type ibm_infoCreateibm_margin_DIESEL_GROUP_S500Input = {
+    set: number[]
+  }
+
   export type gas_station_setvariablesCreateNestedManyWithoutIbm_infoInput = {
     create?: XOR<gas_station_setvariablesCreateWithoutIbm_infoInput, gas_station_setvariablesUncheckedCreateWithoutIbm_infoInput> | gas_station_setvariablesCreateWithoutIbm_infoInput[] | gas_station_setvariablesUncheckedCreateWithoutIbm_infoInput[]
     connectOrCreate?: gas_station_setvariablesCreateOrConnectWithoutIbm_infoInput | gas_station_setvariablesCreateOrConnectWithoutIbm_infoInput[]
@@ -12393,6 +12745,11 @@ export namespace Prisma {
   }
 
   export type ibm_infoUpdateibm_margin_DIESEL_GROUPInput = {
+    set?: number[]
+    push?: number | number[]
+  }
+
+  export type ibm_infoUpdateibm_margin_DIESEL_GROUP_S500Input = {
     set?: number[]
     push?: number | number[]
   }
@@ -12632,6 +12989,10 @@ export namespace Prisma {
     set: number[]
   }
 
+  export type regionsCreateregions_margin_DIESEL_GROUP_S500Input = {
+    set: number[]
+  }
+
   export type region_setvariablesCreateNestedManyWithoutRegionsInput = {
     create?: XOR<region_setvariablesCreateWithoutRegionsInput, region_setvariablesUncheckedCreateWithoutRegionsInput> | region_setvariablesCreateWithoutRegionsInput[] | region_setvariablesUncheckedCreateWithoutRegionsInput[]
     connectOrCreate?: region_setvariablesCreateOrConnectWithoutRegionsInput | region_setvariablesCreateOrConnectWithoutRegionsInput[]
@@ -12667,6 +13028,11 @@ export namespace Prisma {
   }
 
   export type regionsUpdateregions_margin_DIESEL_GROUPInput = {
+    set?: number[]
+    push?: number | number[]
+  }
+
+  export type regionsUpdateregions_margin_DIESEL_GROUP_S500Input = {
     set?: number[]
     push?: number | number[]
   }
@@ -12951,6 +13317,11 @@ export namespace Prisma {
     gas_station_sanado_margin_GASOLINA_PREMIUM?: boolean | null
     gas_station_type_margin_GASOLINA_PREMIUM?: boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: Date | string | null
+    gas_station_margin_DIESEL_GROUP_S500?: number | null
+    gas_station_sanado_hour_margin_DIESEL_GROUP_S500?: Date | string | null
+    gas_station_sanado_margin_DIESEL_GROUP_S500?: boolean | null
+    gas_station_type_margin_DIESEL_GROUP_S500?: boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500?: Date | string | null
     users?: usersCreateNestedOneWithoutGas_station_setvariablesInput
   }
 
@@ -13000,6 +13371,11 @@ export namespace Prisma {
     gas_station_sanado_margin_GASOLINA_PREMIUM?: boolean | null
     gas_station_type_margin_GASOLINA_PREMIUM?: boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: Date | string | null
+    gas_station_margin_DIESEL_GROUP_S500?: number | null
+    gas_station_sanado_hour_margin_DIESEL_GROUP_S500?: Date | string | null
+    gas_station_sanado_margin_DIESEL_GROUP_S500?: boolean | null
+    gas_station_type_margin_DIESEL_GROUP_S500?: boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500?: Date | string | null
   }
 
   export type gas_station_setvariablesCreateOrConnectWithoutIbm_infoInput = {
@@ -13078,6 +13454,11 @@ export namespace Prisma {
     gas_station_sanado_margin_GASOLINA_PREMIUM?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
     gas_station_type_margin_GASOLINA_PREMIUM?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: DateTimeNullableFilter<"gas_station_setvariables"> | Date | string | null
+    gas_station_margin_DIESEL_GROUP_S500?: FloatNullableFilter<"gas_station_setvariables"> | number | null
+    gas_station_sanado_hour_margin_DIESEL_GROUP_S500?: DateTimeNullableFilter<"gas_station_setvariables"> | Date | string | null
+    gas_station_sanado_margin_DIESEL_GROUP_S500?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
+    gas_station_type_margin_DIESEL_GROUP_S500?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500?: DateTimeNullableFilter<"gas_station_setvariables"> | Date | string | null
   }
 
   export type gas_station_setvariablesCreateWithoutUsersInput = {
@@ -13125,6 +13506,11 @@ export namespace Prisma {
     gas_station_sanado_margin_GASOLINA_PREMIUM?: boolean | null
     gas_station_type_margin_GASOLINA_PREMIUM?: boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: Date | string | null
+    gas_station_margin_DIESEL_GROUP_S500?: number | null
+    gas_station_sanado_hour_margin_DIESEL_GROUP_S500?: Date | string | null
+    gas_station_sanado_margin_DIESEL_GROUP_S500?: boolean | null
+    gas_station_type_margin_DIESEL_GROUP_S500?: boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500?: Date | string | null
     ibm_info?: ibm_infoCreateNestedOneWithoutGas_station_setvariablesInput
   }
 
@@ -13174,6 +13560,11 @@ export namespace Prisma {
     gas_station_sanado_margin_GASOLINA_PREMIUM?: boolean | null
     gas_station_type_margin_GASOLINA_PREMIUM?: boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: Date | string | null
+    gas_station_margin_DIESEL_GROUP_S500?: number | null
+    gas_station_sanado_hour_margin_DIESEL_GROUP_S500?: Date | string | null
+    gas_station_sanado_margin_DIESEL_GROUP_S500?: boolean | null
+    gas_station_type_margin_DIESEL_GROUP_S500?: boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500?: Date | string | null
   }
 
   export type gas_station_setvariablesCreateOrConnectWithoutUsersInput = {
@@ -13230,6 +13621,11 @@ export namespace Prisma {
     region_type_margin_GASOLINA_PREMIUM?: boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: Date | string | null
     region_sanado_hour_GASOLINA_PREMIUM?: Date | string | null
+    region_margin_DIESEL_GROUP_S500?: number | null
+    region_sanado_hour_margin_DIESEL_GROUP_S500?: Date | string | null
+    region_sanado_margin_DIESEL_GROUP_S500?: boolean | null
+    region_type_margin_DIESEL_GROUP_S500?: boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500?: Date | string | null
     regions?: regionsCreateNestedOneWithoutRegion_setvariablesInput
   }
 
@@ -13278,6 +13674,11 @@ export namespace Prisma {
     region_type_margin_GASOLINA_PREMIUM?: boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: Date | string | null
     region_sanado_hour_GASOLINA_PREMIUM?: Date | string | null
+    region_margin_DIESEL_GROUP_S500?: number | null
+    region_sanado_hour_margin_DIESEL_GROUP_S500?: Date | string | null
+    region_sanado_margin_DIESEL_GROUP_S500?: boolean | null
+    region_type_margin_DIESEL_GROUP_S500?: boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500?: Date | string | null
   }
 
   export type region_setvariablesCreateOrConnectWithoutUsersInput = {
@@ -13371,6 +13772,11 @@ export namespace Prisma {
     region_type_margin_GASOLINA_PREMIUM?: BoolNullableFilter<"region_setvariables"> | boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: DateTimeNullableFilter<"region_setvariables"> | Date | string | null
     region_sanado_hour_GASOLINA_PREMIUM?: DateTimeNullableFilter<"region_setvariables"> | Date | string | null
+    region_margin_DIESEL_GROUP_S500?: FloatNullableFilter<"region_setvariables"> | number | null
+    region_sanado_hour_margin_DIESEL_GROUP_S500?: DateTimeNullableFilter<"region_setvariables"> | Date | string | null
+    region_sanado_margin_DIESEL_GROUP_S500?: BoolNullableFilter<"region_setvariables"> | boolean | null
+    region_type_margin_DIESEL_GROUP_S500?: BoolNullableFilter<"region_setvariables"> | boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500?: DateTimeNullableFilter<"region_setvariables"> | Date | string | null
   }
 
   export type ibm_infoCreateWithoutGas_station_setvariablesInput = {
@@ -13389,6 +13795,7 @@ export namespace Prisma {
     ibm_margin_GASOLINA_PODIUM?: ibm_infoCreateibm_margin_GASOLINA_PODIUMInput | number[]
     ibm_margin_GASOLINA_PREMIUM?: ibm_infoCreateibm_margin_GASOLINA_PREMIUMInput | number[]
     ibm_margin_DIESEL_GROUP?: ibm_infoCreateibm_margin_DIESEL_GROUPInput | number[]
+    ibm_margin_DIESEL_GROUP_S500?: ibm_infoCreateibm_margin_DIESEL_GROUP_S500Input | number[]
   }
 
   export type ibm_infoUncheckedCreateWithoutGas_station_setvariablesInput = {
@@ -13407,6 +13814,7 @@ export namespace Prisma {
     ibm_margin_GASOLINA_PODIUM?: ibm_infoCreateibm_margin_GASOLINA_PODIUMInput | number[]
     ibm_margin_GASOLINA_PREMIUM?: ibm_infoCreateibm_margin_GASOLINA_PREMIUMInput | number[]
     ibm_margin_DIESEL_GROUP?: ibm_infoCreateibm_margin_DIESEL_GROUPInput | number[]
+    ibm_margin_DIESEL_GROUP_S500?: ibm_infoCreateibm_margin_DIESEL_GROUP_S500Input | number[]
   }
 
   export type ibm_infoCreateOrConnectWithoutGas_station_setvariablesInput = {
@@ -13498,6 +13906,7 @@ export namespace Prisma {
     ibm_margin_GASOLINA_PODIUM?: ibm_infoUpdateibm_margin_GASOLINA_PODIUMInput | number[]
     ibm_margin_GASOLINA_PREMIUM?: ibm_infoUpdateibm_margin_GASOLINA_PREMIUMInput | number[]
     ibm_margin_DIESEL_GROUP?: ibm_infoUpdateibm_margin_DIESEL_GROUPInput | number[]
+    ibm_margin_DIESEL_GROUP_S500?: ibm_infoUpdateibm_margin_DIESEL_GROUP_S500Input | number[]
   }
 
   export type ibm_infoUncheckedUpdateWithoutGas_station_setvariablesInput = {
@@ -13516,6 +13925,7 @@ export namespace Prisma {
     ibm_margin_GASOLINA_PODIUM?: ibm_infoUpdateibm_margin_GASOLINA_PODIUMInput | number[]
     ibm_margin_GASOLINA_PREMIUM?: ibm_infoUpdateibm_margin_GASOLINA_PREMIUMInput | number[]
     ibm_margin_DIESEL_GROUP?: ibm_infoUpdateibm_margin_DIESEL_GROUPInput | number[]
+    ibm_margin_DIESEL_GROUP_S500?: ibm_infoUpdateibm_margin_DIESEL_GROUP_S500Input | number[]
   }
 
   export type usersUpsertWithoutGas_station_setvariablesInput = {
@@ -13592,6 +14002,7 @@ export namespace Prisma {
     regions_margin_GASOLINA_PODIUM?: regionsCreateregions_margin_GASOLINA_PODIUMInput | number[]
     regions_margin_GASOLINA_PREMIUM?: regionsCreateregions_margin_GASOLINA_PREMIUMInput | number[]
     regions_margin_DIESEL_GROUP?: regionsCreateregions_margin_DIESEL_GROUPInput | number[]
+    regions_margin_DIESEL_GROUP_S500?: regionsCreateregions_margin_DIESEL_GROUP_S500Input | number[]
   }
 
   export type regionsUncheckedCreateWithoutRegion_setvariablesInput = {
@@ -13605,6 +14016,7 @@ export namespace Prisma {
     regions_margin_GASOLINA_PODIUM?: regionsCreateregions_margin_GASOLINA_PODIUMInput | number[]
     regions_margin_GASOLINA_PREMIUM?: regionsCreateregions_margin_GASOLINA_PREMIUMInput | number[]
     regions_margin_DIESEL_GROUP?: regionsCreateregions_margin_DIESEL_GROUPInput | number[]
+    regions_margin_DIESEL_GROUP_S500?: regionsCreateregions_margin_DIESEL_GROUP_S500Input | number[]
   }
 
   export type regionsCreateOrConnectWithoutRegion_setvariablesInput = {
@@ -13691,6 +14103,7 @@ export namespace Prisma {
     regions_margin_GASOLINA_PODIUM?: regionsUpdateregions_margin_GASOLINA_PODIUMInput | number[]
     regions_margin_GASOLINA_PREMIUM?: regionsUpdateregions_margin_GASOLINA_PREMIUMInput | number[]
     regions_margin_DIESEL_GROUP?: regionsUpdateregions_margin_DIESEL_GROUPInput | number[]
+    regions_margin_DIESEL_GROUP_S500?: regionsUpdateregions_margin_DIESEL_GROUP_S500Input | number[]
   }
 
   export type regionsUncheckedUpdateWithoutRegion_setvariablesInput = {
@@ -13704,6 +14117,7 @@ export namespace Prisma {
     regions_margin_GASOLINA_PODIUM?: regionsUpdateregions_margin_GASOLINA_PODIUMInput | number[]
     regions_margin_GASOLINA_PREMIUM?: regionsUpdateregions_margin_GASOLINA_PREMIUMInput | number[]
     regions_margin_DIESEL_GROUP?: regionsUpdateregions_margin_DIESEL_GROUPInput | number[]
+    regions_margin_DIESEL_GROUP_S500?: regionsUpdateregions_margin_DIESEL_GROUP_S500Input | number[]
   }
 
   export type usersUpsertWithoutRegion_setvariablesInput = {
@@ -13813,6 +14227,11 @@ export namespace Prisma {
     region_type_margin_GASOLINA_PREMIUM?: boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: Date | string | null
     region_sanado_hour_GASOLINA_PREMIUM?: Date | string | null
+    region_margin_DIESEL_GROUP_S500?: number | null
+    region_sanado_hour_margin_DIESEL_GROUP_S500?: Date | string | null
+    region_sanado_margin_DIESEL_GROUP_S500?: boolean | null
+    region_type_margin_DIESEL_GROUP_S500?: boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500?: Date | string | null
     users?: usersCreateNestedOneWithoutRegion_setvariablesInput
   }
 
@@ -13861,6 +14280,11 @@ export namespace Prisma {
     region_type_margin_GASOLINA_PREMIUM?: boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: Date | string | null
     region_sanado_hour_GASOLINA_PREMIUM?: Date | string | null
+    region_margin_DIESEL_GROUP_S500?: number | null
+    region_sanado_hour_margin_DIESEL_GROUP_S500?: Date | string | null
+    region_sanado_margin_DIESEL_GROUP_S500?: boolean | null
+    region_type_margin_DIESEL_GROUP_S500?: boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500?: Date | string | null
   }
 
   export type region_setvariablesCreateOrConnectWithoutRegionsInput = {
@@ -13935,6 +14359,11 @@ export namespace Prisma {
     gas_station_sanado_margin_GASOLINA_PREMIUM?: boolean | null
     gas_station_type_margin_GASOLINA_PREMIUM?: boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: Date | string | null
+    gas_station_margin_DIESEL_GROUP_S500?: number | null
+    gas_station_sanado_hour_margin_DIESEL_GROUP_S500?: Date | string | null
+    gas_station_sanado_margin_DIESEL_GROUP_S500?: boolean | null
+    gas_station_type_margin_DIESEL_GROUP_S500?: boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500?: Date | string | null
   }
 
   export type gas_station_setvariablesUpdateWithoutIbm_infoInput = {
@@ -13982,6 +14411,11 @@ export namespace Prisma {
     gas_station_sanado_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_type_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_margin_DIESEL_GROUP_S500?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_sanado_hour_margin_DIESEL_GROUP_S500?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_margin_DIESEL_GROUP_S500?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_type_margin_DIESEL_GROUP_S500?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     users?: usersUpdateOneWithoutGas_station_setvariablesNestedInput
   }
 
@@ -14031,6 +14465,11 @@ export namespace Prisma {
     gas_station_sanado_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_type_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_margin_DIESEL_GROUP_S500?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_sanado_hour_margin_DIESEL_GROUP_S500?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_margin_DIESEL_GROUP_S500?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_type_margin_DIESEL_GROUP_S500?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type gas_station_setvariablesUncheckedUpdateManyWithoutIbm_infoInput = {
@@ -14079,6 +14518,11 @@ export namespace Prisma {
     gas_station_sanado_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_type_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_margin_DIESEL_GROUP_S500?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_sanado_hour_margin_DIESEL_GROUP_S500?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_margin_DIESEL_GROUP_S500?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_type_margin_DIESEL_GROUP_S500?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type gas_station_setvariablesCreateManyUsersInput = {
@@ -14127,6 +14571,11 @@ export namespace Prisma {
     gas_station_sanado_margin_GASOLINA_PREMIUM?: boolean | null
     gas_station_type_margin_GASOLINA_PREMIUM?: boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: Date | string | null
+    gas_station_margin_DIESEL_GROUP_S500?: number | null
+    gas_station_sanado_hour_margin_DIESEL_GROUP_S500?: Date | string | null
+    gas_station_sanado_margin_DIESEL_GROUP_S500?: boolean | null
+    gas_station_type_margin_DIESEL_GROUP_S500?: boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500?: Date | string | null
   }
 
   export type region_setvariablesCreateManyUsersInput = {
@@ -14174,6 +14623,11 @@ export namespace Prisma {
     region_type_margin_GASOLINA_PREMIUM?: boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: Date | string | null
     region_sanado_hour_GASOLINA_PREMIUM?: Date | string | null
+    region_margin_DIESEL_GROUP_S500?: number | null
+    region_sanado_hour_margin_DIESEL_GROUP_S500?: Date | string | null
+    region_sanado_margin_DIESEL_GROUP_S500?: boolean | null
+    region_type_margin_DIESEL_GROUP_S500?: boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500?: Date | string | null
   }
 
   export type gas_station_setvariablesUpdateWithoutUsersInput = {
@@ -14221,6 +14675,11 @@ export namespace Prisma {
     gas_station_sanado_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_type_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_margin_DIESEL_GROUP_S500?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_sanado_hour_margin_DIESEL_GROUP_S500?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_margin_DIESEL_GROUP_S500?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_type_margin_DIESEL_GROUP_S500?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     ibm_info?: ibm_infoUpdateOneWithoutGas_station_setvariablesNestedInput
   }
 
@@ -14270,6 +14729,11 @@ export namespace Prisma {
     gas_station_sanado_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_type_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_margin_DIESEL_GROUP_S500?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_sanado_hour_margin_DIESEL_GROUP_S500?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_margin_DIESEL_GROUP_S500?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_type_margin_DIESEL_GROUP_S500?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type gas_station_setvariablesUncheckedUpdateManyWithoutUsersInput = {
@@ -14318,6 +14782,11 @@ export namespace Prisma {
     gas_station_sanado_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_type_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_margin_DIESEL_GROUP_S500?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_sanado_hour_margin_DIESEL_GROUP_S500?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_margin_DIESEL_GROUP_S500?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_type_margin_DIESEL_GROUP_S500?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type region_setvariablesUpdateWithoutUsersInput = {
@@ -14364,6 +14833,11 @@ export namespace Prisma {
     region_type_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     region_sanado_hour_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    region_margin_DIESEL_GROUP_S500?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_sanado_hour_margin_DIESEL_GROUP_S500?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    region_sanado_margin_DIESEL_GROUP_S500?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    region_type_margin_DIESEL_GROUP_S500?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     regions?: regionsUpdateOneWithoutRegion_setvariablesNestedInput
   }
 
@@ -14412,6 +14886,11 @@ export namespace Prisma {
     region_type_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     region_sanado_hour_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    region_margin_DIESEL_GROUP_S500?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_sanado_hour_margin_DIESEL_GROUP_S500?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    region_sanado_margin_DIESEL_GROUP_S500?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    region_type_margin_DIESEL_GROUP_S500?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type region_setvariablesUncheckedUpdateManyWithoutUsersInput = {
@@ -14459,6 +14938,11 @@ export namespace Prisma {
     region_type_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     region_sanado_hour_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    region_margin_DIESEL_GROUP_S500?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_sanado_hour_margin_DIESEL_GROUP_S500?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    region_sanado_margin_DIESEL_GROUP_S500?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    region_type_margin_DIESEL_GROUP_S500?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type region_setvariablesCreateManyRegionsInput = {
@@ -14506,6 +14990,11 @@ export namespace Prisma {
     region_type_margin_GASOLINA_PREMIUM?: boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: Date | string | null
     region_sanado_hour_GASOLINA_PREMIUM?: Date | string | null
+    region_margin_DIESEL_GROUP_S500?: number | null
+    region_sanado_hour_margin_DIESEL_GROUP_S500?: Date | string | null
+    region_sanado_margin_DIESEL_GROUP_S500?: boolean | null
+    region_type_margin_DIESEL_GROUP_S500?: boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500?: Date | string | null
   }
 
   export type region_setvariablesUpdateWithoutRegionsInput = {
@@ -14552,6 +15041,11 @@ export namespace Prisma {
     region_type_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     region_sanado_hour_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    region_margin_DIESEL_GROUP_S500?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_sanado_hour_margin_DIESEL_GROUP_S500?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    region_sanado_margin_DIESEL_GROUP_S500?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    region_type_margin_DIESEL_GROUP_S500?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     users?: usersUpdateOneWithoutRegion_setvariablesNestedInput
   }
 
@@ -14600,6 +15094,11 @@ export namespace Prisma {
     region_type_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     region_sanado_hour_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    region_margin_DIESEL_GROUP_S500?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_sanado_hour_margin_DIESEL_GROUP_S500?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    region_sanado_margin_DIESEL_GROUP_S500?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    region_type_margin_DIESEL_GROUP_S500?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type region_setvariablesUncheckedUpdateManyWithoutRegionsInput = {
@@ -14647,6 +15146,11 @@ export namespace Prisma {
     region_type_margin_GASOLINA_PREMIUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_margin_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     region_sanado_hour_GASOLINA_PREMIUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    region_margin_DIESEL_GROUP_S500?: NullableFloatFieldUpdateOperationsInput | number | null
+    region_sanado_hour_margin_DIESEL_GROUP_S500?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    region_sanado_margin_DIESEL_GROUP_S500?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    region_type_margin_DIESEL_GROUP_S500?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_DIESEL_GROUP_S500?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
 

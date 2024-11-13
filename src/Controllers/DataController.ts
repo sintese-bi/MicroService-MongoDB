@@ -329,7 +329,7 @@ class DataController {
 
                     },
                     {
-                        label: "Lucro Bruto Operacional", value: Math.round((secondary_value_bruto_operacional)),
+                        label: "Lucro Bruto Operacional", value: Math.round((secondary_value_bruto_operacional) * 100) / 100,
                         secondary_label: "", secondary_value: 0,
                         third_label: "Status Margem", third_value: lucro_operacional_geral,
                         fourth_label: "Alvo", fourth_value: (flags?.use_lucro_bruto_operacional ?? 0) * 100,
