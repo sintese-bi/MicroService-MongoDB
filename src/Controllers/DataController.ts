@@ -1373,8 +1373,6 @@ class DataController {
                     }
                 })
 
-
-
                 return res.status(200).json({ data: ibmvaluesMap })
             } else {
                 return res
