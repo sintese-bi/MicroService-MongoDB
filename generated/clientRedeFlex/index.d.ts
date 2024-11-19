@@ -3863,6 +3863,8 @@ export namespace Prisma {
     gas_station_margin_GASOLINA_PREMIUM: number | null
     gas_station_margin_DIESEL_GROUP_S500: number | null
     gas_station_margin_ETANOL_COMUM: number | null
+    gas_station_invoice_comb: number | null
+    gas_station_invoice_prod: number | null
   }
 
   export type Gas_station_setvariablesSumAggregateOutputType = {
@@ -3886,6 +3888,8 @@ export namespace Prisma {
     gas_station_margin_GASOLINA_PREMIUM: number | null
     gas_station_margin_DIESEL_GROUP_S500: number | null
     gas_station_margin_ETANOL_COMUM: number | null
+    gas_station_invoice_comb: number | null
+    gas_station_invoice_prod: number | null
   }
 
   export type Gas_station_setvariablesMinAggregateOutputType = {
@@ -3939,6 +3943,8 @@ export namespace Prisma {
     gas_station_sanado_margin_ETANOL_COMUM: boolean | null
     gas_station_type_margin_ETANOL_COMUM: boolean | null
     verification_hour_margin_ETANOL_COMUM: Date | null
+    gas_station_invoice_comb: number | null
+    gas_station_invoice_prod: number | null
   }
 
   export type Gas_station_setvariablesMaxAggregateOutputType = {
@@ -3992,6 +3998,8 @@ export namespace Prisma {
     gas_station_sanado_margin_ETANOL_COMUM: boolean | null
     gas_station_type_margin_ETANOL_COMUM: boolean | null
     verification_hour_margin_ETANOL_COMUM: Date | null
+    gas_station_invoice_comb: number | null
+    gas_station_invoice_prod: number | null
   }
 
   export type Gas_station_setvariablesCountAggregateOutputType = {
@@ -4046,6 +4054,8 @@ export namespace Prisma {
     gas_station_sanado_margin_ETANOL_COMUM: number
     gas_station_type_margin_ETANOL_COMUM: number
     verification_hour_margin_ETANOL_COMUM: number
+    gas_station_invoice_comb: number
+    gas_station_invoice_prod: number
     _all: number
   }
 
@@ -4071,6 +4081,8 @@ export namespace Prisma {
     gas_station_margin_GASOLINA_PREMIUM?: true
     gas_station_margin_DIESEL_GROUP_S500?: true
     gas_station_margin_ETANOL_COMUM?: true
+    gas_station_invoice_comb?: true
+    gas_station_invoice_prod?: true
   }
 
   export type Gas_station_setvariablesSumAggregateInputType = {
@@ -4094,6 +4106,8 @@ export namespace Prisma {
     gas_station_margin_GASOLINA_PREMIUM?: true
     gas_station_margin_DIESEL_GROUP_S500?: true
     gas_station_margin_ETANOL_COMUM?: true
+    gas_station_invoice_comb?: true
+    gas_station_invoice_prod?: true
   }
 
   export type Gas_station_setvariablesMinAggregateInputType = {
@@ -4147,6 +4161,8 @@ export namespace Prisma {
     gas_station_sanado_margin_ETANOL_COMUM?: true
     gas_station_type_margin_ETANOL_COMUM?: true
     verification_hour_margin_ETANOL_COMUM?: true
+    gas_station_invoice_comb?: true
+    gas_station_invoice_prod?: true
   }
 
   export type Gas_station_setvariablesMaxAggregateInputType = {
@@ -4200,6 +4216,8 @@ export namespace Prisma {
     gas_station_sanado_margin_ETANOL_COMUM?: true
     gas_station_type_margin_ETANOL_COMUM?: true
     verification_hour_margin_ETANOL_COMUM?: true
+    gas_station_invoice_comb?: true
+    gas_station_invoice_prod?: true
   }
 
   export type Gas_station_setvariablesCountAggregateInputType = {
@@ -4254,6 +4272,8 @@ export namespace Prisma {
     gas_station_sanado_margin_ETANOL_COMUM?: true
     gas_station_type_margin_ETANOL_COMUM?: true
     verification_hour_margin_ETANOL_COMUM?: true
+    gas_station_invoice_comb?: true
+    gas_station_invoice_prod?: true
     _all?: true
   }
 
@@ -4395,6 +4415,8 @@ export namespace Prisma {
     gas_station_sanado_margin_ETANOL_COMUM: boolean | null
     gas_station_type_margin_ETANOL_COMUM: boolean | null
     verification_hour_margin_ETANOL_COMUM: Date | null
+    gas_station_invoice_comb: number | null
+    gas_station_invoice_prod: number | null
     _count: Gas_station_setvariablesCountAggregateOutputType | null
     _avg: Gas_station_setvariablesAvgAggregateOutputType | null
     _sum: Gas_station_setvariablesSumAggregateOutputType | null
@@ -4468,6 +4490,8 @@ export namespace Prisma {
     gas_station_sanado_margin_ETANOL_COMUM?: boolean
     gas_station_type_margin_ETANOL_COMUM?: boolean
     verification_hour_margin_ETANOL_COMUM?: boolean
+    gas_station_invoice_comb?: boolean
+    gas_station_invoice_prod?: boolean
     ibm_info?: boolean | gas_station_setvariables$ibm_infoArgs<ExtArgs>
     users?: boolean | gas_station_setvariables$usersArgs<ExtArgs>
   }, ExtArgs["result"]["gas_station_setvariables"]>
@@ -4524,6 +4548,8 @@ export namespace Prisma {
     gas_station_sanado_margin_ETANOL_COMUM?: boolean
     gas_station_type_margin_ETANOL_COMUM?: boolean
     verification_hour_margin_ETANOL_COMUM?: boolean
+    gas_station_invoice_comb?: boolean
+    gas_station_invoice_prod?: boolean
     ibm_info?: boolean | gas_station_setvariables$ibm_infoArgs<ExtArgs>
     users?: boolean | gas_station_setvariables$usersArgs<ExtArgs>
   }, ExtArgs["result"]["gas_station_setvariables"]>
@@ -4580,6 +4606,8 @@ export namespace Prisma {
     gas_station_sanado_margin_ETANOL_COMUM?: boolean
     gas_station_type_margin_ETANOL_COMUM?: boolean
     verification_hour_margin_ETANOL_COMUM?: boolean
+    gas_station_invoice_comb?: boolean
+    gas_station_invoice_prod?: boolean
   }
 
   export type gas_station_setvariablesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4649,6 +4677,8 @@ export namespace Prisma {
       gas_station_sanado_margin_ETANOL_COMUM: boolean | null
       gas_station_type_margin_ETANOL_COMUM: boolean | null
       verification_hour_margin_ETANOL_COMUM: Date | null
+      gas_station_invoice_comb: number | null
+      gas_station_invoice_prod: number | null
     }, ExtArgs["result"]["gas_station_setvariables"]>
     composites: {}
   }
@@ -5122,6 +5152,8 @@ export namespace Prisma {
     readonly gas_station_sanado_margin_ETANOL_COMUM: FieldRef<"gas_station_setvariables", 'Boolean'>
     readonly gas_station_type_margin_ETANOL_COMUM: FieldRef<"gas_station_setvariables", 'Boolean'>
     readonly verification_hour_margin_ETANOL_COMUM: FieldRef<"gas_station_setvariables", 'DateTime'>
+    readonly gas_station_invoice_comb: FieldRef<"gas_station_setvariables", 'Float'>
+    readonly gas_station_invoice_prod: FieldRef<"gas_station_setvariables", 'Float'>
   }
     
 
@@ -9323,7 +9355,9 @@ export namespace Prisma {
     gas_station_sanado_hour_ETANOL_COMUM: 'gas_station_sanado_hour_ETANOL_COMUM',
     gas_station_sanado_margin_ETANOL_COMUM: 'gas_station_sanado_margin_ETANOL_COMUM',
     gas_station_type_margin_ETANOL_COMUM: 'gas_station_type_margin_ETANOL_COMUM',
-    verification_hour_margin_ETANOL_COMUM: 'verification_hour_margin_ETANOL_COMUM'
+    verification_hour_margin_ETANOL_COMUM: 'verification_hour_margin_ETANOL_COMUM',
+    gas_station_invoice_comb: 'gas_station_invoice_comb',
+    gas_station_invoice_prod: 'gas_station_invoice_prod'
   };
 
   export type Gas_station_setvariablesScalarFieldEnum = (typeof Gas_station_setvariablesScalarFieldEnum)[keyof typeof Gas_station_setvariablesScalarFieldEnum]
@@ -9824,6 +9858,8 @@ export namespace Prisma {
     gas_station_sanado_margin_ETANOL_COMUM?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
     gas_station_type_margin_ETANOL_COMUM?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
     verification_hour_margin_ETANOL_COMUM?: DateTimeNullableFilter<"gas_station_setvariables"> | Date | string | null
+    gas_station_invoice_comb?: FloatNullableFilter<"gas_station_setvariables"> | number | null
+    gas_station_invoice_prod?: FloatNullableFilter<"gas_station_setvariables"> | number | null
     ibm_info?: XOR<Ibm_infoNullableRelationFilter, ibm_infoWhereInput> | null
     users?: XOR<UsersNullableRelationFilter, usersWhereInput> | null
   }
@@ -9880,6 +9916,8 @@ export namespace Prisma {
     gas_station_sanado_margin_ETANOL_COMUM?: SortOrderInput | SortOrder
     gas_station_type_margin_ETANOL_COMUM?: SortOrderInput | SortOrder
     verification_hour_margin_ETANOL_COMUM?: SortOrderInput | SortOrder
+    gas_station_invoice_comb?: SortOrderInput | SortOrder
+    gas_station_invoice_prod?: SortOrderInput | SortOrder
     ibm_info?: ibm_infoOrderByWithRelationInput
     users?: usersOrderByWithRelationInput
   }
@@ -9939,6 +9977,8 @@ export namespace Prisma {
     gas_station_sanado_margin_ETANOL_COMUM?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
     gas_station_type_margin_ETANOL_COMUM?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
     verification_hour_margin_ETANOL_COMUM?: DateTimeNullableFilter<"gas_station_setvariables"> | Date | string | null
+    gas_station_invoice_comb?: FloatNullableFilter<"gas_station_setvariables"> | number | null
+    gas_station_invoice_prod?: FloatNullableFilter<"gas_station_setvariables"> | number | null
     ibm_info?: XOR<Ibm_infoNullableRelationFilter, ibm_infoWhereInput> | null
     users?: XOR<UsersNullableRelationFilter, usersWhereInput> | null
   }, "gas_station_uuid">
@@ -9995,6 +10035,8 @@ export namespace Prisma {
     gas_station_sanado_margin_ETANOL_COMUM?: SortOrderInput | SortOrder
     gas_station_type_margin_ETANOL_COMUM?: SortOrderInput | SortOrder
     verification_hour_margin_ETANOL_COMUM?: SortOrderInput | SortOrder
+    gas_station_invoice_comb?: SortOrderInput | SortOrder
+    gas_station_invoice_prod?: SortOrderInput | SortOrder
     _count?: gas_station_setvariablesCountOrderByAggregateInput
     _avg?: gas_station_setvariablesAvgOrderByAggregateInput
     _max?: gas_station_setvariablesMaxOrderByAggregateInput
@@ -10057,6 +10099,8 @@ export namespace Prisma {
     gas_station_sanado_margin_ETANOL_COMUM?: BoolNullableWithAggregatesFilter<"gas_station_setvariables"> | boolean | null
     gas_station_type_margin_ETANOL_COMUM?: BoolNullableWithAggregatesFilter<"gas_station_setvariables"> | boolean | null
     verification_hour_margin_ETANOL_COMUM?: DateTimeNullableWithAggregatesFilter<"gas_station_setvariables"> | Date | string | null
+    gas_station_invoice_comb?: FloatNullableWithAggregatesFilter<"gas_station_setvariables"> | number | null
+    gas_station_invoice_prod?: FloatNullableWithAggregatesFilter<"gas_station_setvariables"> | number | null
   }
 
   export type region_setvariablesWhereInput = {
@@ -10875,6 +10919,8 @@ export namespace Prisma {
     gas_station_sanado_margin_ETANOL_COMUM?: boolean | null
     gas_station_type_margin_ETANOL_COMUM?: boolean | null
     verification_hour_margin_ETANOL_COMUM?: Date | string | null
+    gas_station_invoice_comb?: number | null
+    gas_station_invoice_prod?: number | null
     ibm_info?: ibm_infoCreateNestedOneWithoutGas_station_setvariablesInput
     users?: usersCreateNestedOneWithoutGas_station_setvariablesInput
   }
@@ -10931,6 +10977,8 @@ export namespace Prisma {
     gas_station_sanado_margin_ETANOL_COMUM?: boolean | null
     gas_station_type_margin_ETANOL_COMUM?: boolean | null
     verification_hour_margin_ETANOL_COMUM?: Date | string | null
+    gas_station_invoice_comb?: number | null
+    gas_station_invoice_prod?: number | null
   }
 
   export type gas_station_setvariablesUpdateInput = {
@@ -10983,6 +11031,8 @@ export namespace Prisma {
     gas_station_sanado_margin_ETANOL_COMUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_type_margin_ETANOL_COMUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_margin_ETANOL_COMUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_invoice_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_invoice_prod?: NullableFloatFieldUpdateOperationsInput | number | null
     ibm_info?: ibm_infoUpdateOneWithoutGas_station_setvariablesNestedInput
     users?: usersUpdateOneWithoutGas_station_setvariablesNestedInput
   }
@@ -11039,6 +11089,8 @@ export namespace Prisma {
     gas_station_sanado_margin_ETANOL_COMUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_type_margin_ETANOL_COMUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_margin_ETANOL_COMUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_invoice_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_invoice_prod?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type gas_station_setvariablesCreateManyInput = {
@@ -11093,6 +11145,8 @@ export namespace Prisma {
     gas_station_sanado_margin_ETANOL_COMUM?: boolean | null
     gas_station_type_margin_ETANOL_COMUM?: boolean | null
     verification_hour_margin_ETANOL_COMUM?: Date | string | null
+    gas_station_invoice_comb?: number | null
+    gas_station_invoice_prod?: number | null
   }
 
   export type gas_station_setvariablesUpdateManyMutationInput = {
@@ -11145,6 +11199,8 @@ export namespace Prisma {
     gas_station_sanado_margin_ETANOL_COMUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_type_margin_ETANOL_COMUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_margin_ETANOL_COMUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_invoice_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_invoice_prod?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type gas_station_setvariablesUncheckedUpdateManyInput = {
@@ -11199,6 +11255,8 @@ export namespace Prisma {
     gas_station_sanado_margin_ETANOL_COMUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_type_margin_ETANOL_COMUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_margin_ETANOL_COMUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_invoice_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_invoice_prod?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type region_setvariablesCreateInput = {
@@ -12183,6 +12241,8 @@ export namespace Prisma {
     gas_station_sanado_margin_ETANOL_COMUM?: SortOrder
     gas_station_type_margin_ETANOL_COMUM?: SortOrder
     verification_hour_margin_ETANOL_COMUM?: SortOrder
+    gas_station_invoice_comb?: SortOrder
+    gas_station_invoice_prod?: SortOrder
   }
 
   export type gas_station_setvariablesAvgOrderByAggregateInput = {
@@ -12206,6 +12266,8 @@ export namespace Prisma {
     gas_station_margin_GASOLINA_PREMIUM?: SortOrder
     gas_station_margin_DIESEL_GROUP_S500?: SortOrder
     gas_station_margin_ETANOL_COMUM?: SortOrder
+    gas_station_invoice_comb?: SortOrder
+    gas_station_invoice_prod?: SortOrder
   }
 
   export type gas_station_setvariablesMaxOrderByAggregateInput = {
@@ -12259,6 +12321,8 @@ export namespace Prisma {
     gas_station_sanado_margin_ETANOL_COMUM?: SortOrder
     gas_station_type_margin_ETANOL_COMUM?: SortOrder
     verification_hour_margin_ETANOL_COMUM?: SortOrder
+    gas_station_invoice_comb?: SortOrder
+    gas_station_invoice_prod?: SortOrder
   }
 
   export type gas_station_setvariablesMinOrderByAggregateInput = {
@@ -12312,6 +12376,8 @@ export namespace Prisma {
     gas_station_sanado_margin_ETANOL_COMUM?: SortOrder
     gas_station_type_margin_ETANOL_COMUM?: SortOrder
     verification_hour_margin_ETANOL_COMUM?: SortOrder
+    gas_station_invoice_comb?: SortOrder
+    gas_station_invoice_prod?: SortOrder
   }
 
   export type gas_station_setvariablesSumOrderByAggregateInput = {
@@ -12335,6 +12401,8 @@ export namespace Prisma {
     gas_station_margin_GASOLINA_PREMIUM?: SortOrder
     gas_station_margin_DIESEL_GROUP_S500?: SortOrder
     gas_station_margin_ETANOL_COMUM?: SortOrder
+    gas_station_invoice_comb?: SortOrder
+    gas_station_invoice_prod?: SortOrder
   }
 
   export type BoolNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -13322,6 +13390,8 @@ export namespace Prisma {
     gas_station_sanado_margin_ETANOL_COMUM?: boolean | null
     gas_station_type_margin_ETANOL_COMUM?: boolean | null
     verification_hour_margin_ETANOL_COMUM?: Date | string | null
+    gas_station_invoice_comb?: number | null
+    gas_station_invoice_prod?: number | null
     users?: usersCreateNestedOneWithoutGas_station_setvariablesInput
   }
 
@@ -13376,6 +13446,8 @@ export namespace Prisma {
     gas_station_sanado_margin_ETANOL_COMUM?: boolean | null
     gas_station_type_margin_ETANOL_COMUM?: boolean | null
     verification_hour_margin_ETANOL_COMUM?: Date | string | null
+    gas_station_invoice_comb?: number | null
+    gas_station_invoice_prod?: number | null
   }
 
   export type gas_station_setvariablesCreateOrConnectWithoutIbm_infoInput = {
@@ -13459,6 +13531,8 @@ export namespace Prisma {
     gas_station_sanado_margin_ETANOL_COMUM?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
     gas_station_type_margin_ETANOL_COMUM?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
     verification_hour_margin_ETANOL_COMUM?: DateTimeNullableFilter<"gas_station_setvariables"> | Date | string | null
+    gas_station_invoice_comb?: FloatNullableFilter<"gas_station_setvariables"> | number | null
+    gas_station_invoice_prod?: FloatNullableFilter<"gas_station_setvariables"> | number | null
   }
 
   export type gas_station_setvariablesCreateWithoutUsersInput = {
@@ -13511,6 +13585,8 @@ export namespace Prisma {
     gas_station_sanado_margin_ETANOL_COMUM?: boolean | null
     gas_station_type_margin_ETANOL_COMUM?: boolean | null
     verification_hour_margin_ETANOL_COMUM?: Date | string | null
+    gas_station_invoice_comb?: number | null
+    gas_station_invoice_prod?: number | null
     ibm_info?: ibm_infoCreateNestedOneWithoutGas_station_setvariablesInput
   }
 
@@ -13565,6 +13641,8 @@ export namespace Prisma {
     gas_station_sanado_margin_ETANOL_COMUM?: boolean | null
     gas_station_type_margin_ETANOL_COMUM?: boolean | null
     verification_hour_margin_ETANOL_COMUM?: Date | string | null
+    gas_station_invoice_comb?: number | null
+    gas_station_invoice_prod?: number | null
   }
 
   export type gas_station_setvariablesCreateOrConnectWithoutUsersInput = {
@@ -14364,6 +14442,8 @@ export namespace Prisma {
     gas_station_sanado_margin_ETANOL_COMUM?: boolean | null
     gas_station_type_margin_ETANOL_COMUM?: boolean | null
     verification_hour_margin_ETANOL_COMUM?: Date | string | null
+    gas_station_invoice_comb?: number | null
+    gas_station_invoice_prod?: number | null
   }
 
   export type gas_station_setvariablesUpdateWithoutIbm_infoInput = {
@@ -14416,6 +14496,8 @@ export namespace Prisma {
     gas_station_sanado_margin_ETANOL_COMUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_type_margin_ETANOL_COMUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_margin_ETANOL_COMUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_invoice_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_invoice_prod?: NullableFloatFieldUpdateOperationsInput | number | null
     users?: usersUpdateOneWithoutGas_station_setvariablesNestedInput
   }
 
@@ -14470,6 +14552,8 @@ export namespace Prisma {
     gas_station_sanado_margin_ETANOL_COMUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_type_margin_ETANOL_COMUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_margin_ETANOL_COMUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_invoice_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_invoice_prod?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type gas_station_setvariablesUncheckedUpdateManyWithoutIbm_infoInput = {
@@ -14523,6 +14607,8 @@ export namespace Prisma {
     gas_station_sanado_margin_ETANOL_COMUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_type_margin_ETANOL_COMUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_margin_ETANOL_COMUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_invoice_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_invoice_prod?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type gas_station_setvariablesCreateManyUsersInput = {
@@ -14576,6 +14662,8 @@ export namespace Prisma {
     gas_station_sanado_margin_ETANOL_COMUM?: boolean | null
     gas_station_type_margin_ETANOL_COMUM?: boolean | null
     verification_hour_margin_ETANOL_COMUM?: Date | string | null
+    gas_station_invoice_comb?: number | null
+    gas_station_invoice_prod?: number | null
   }
 
   export type region_setvariablesCreateManyUsersInput = {
@@ -14680,6 +14768,8 @@ export namespace Prisma {
     gas_station_sanado_margin_ETANOL_COMUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_type_margin_ETANOL_COMUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_margin_ETANOL_COMUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_invoice_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_invoice_prod?: NullableFloatFieldUpdateOperationsInput | number | null
     ibm_info?: ibm_infoUpdateOneWithoutGas_station_setvariablesNestedInput
   }
 
@@ -14734,6 +14824,8 @@ export namespace Prisma {
     gas_station_sanado_margin_ETANOL_COMUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_type_margin_ETANOL_COMUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_margin_ETANOL_COMUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_invoice_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_invoice_prod?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type gas_station_setvariablesUncheckedUpdateManyWithoutUsersInput = {
@@ -14787,6 +14879,8 @@ export namespace Prisma {
     gas_station_sanado_margin_ETANOL_COMUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_type_margin_ETANOL_COMUM?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_margin_ETANOL_COMUM?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_invoice_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_invoice_prod?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type region_setvariablesUpdateWithoutUsersInput = {
