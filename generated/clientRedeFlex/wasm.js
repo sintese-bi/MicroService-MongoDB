@@ -216,7 +216,9 @@ exports.Prisma.Gas_station_setvariablesScalarFieldEnum = {
   gas_station_type_margin_ETANOL_COMUM: 'gas_station_type_margin_ETANOL_COMUM',
   verification_hour_margin_ETANOL_COMUM: 'verification_hour_margin_ETANOL_COMUM',
   gas_station_invoice_comb: 'gas_station_invoice_comb',
-  gas_station_invoice_prod: 'gas_station_invoice_prod'
+  gas_station_invoice_prod: 'gas_station_invoice_prod',
+  gas_station_invoice_comb_daily: 'gas_station_invoice_comb_daily',
+  gas_station_invoice_prod_daily: 'gas_station_invoice_prod_daily'
 };
 
 exports.Prisma.Region_setvariablesScalarFieldEnum = {
