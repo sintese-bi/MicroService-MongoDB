@@ -135,7 +135,8 @@ exports.Prisma.Ibm_infoScalarFieldEnum = {
   ibm_margin_GASOLINA_PREMIUM: 'ibm_margin_GASOLINA_PREMIUM',
   ibm_margin_DIESEL_GROUP: 'ibm_margin_DIESEL_GROUP',
   ibm_margin_DIESEL_GROUP_S500: 'ibm_margin_DIESEL_GROUP_S500',
-  ibm_margin_ETANOL_COMUM: 'ibm_margin_ETANOL_COMUM'
+  ibm_margin_ETANOL_COMUM: 'ibm_margin_ETANOL_COMUM',
+  ibm_margin_TOTAL_PRODUCT: 'ibm_margin_TOTAL_PRODUCT'
 };
 
 exports.Prisma.UsersScalarFieldEnum = {
@@ -218,7 +219,12 @@ exports.Prisma.Gas_station_setvariablesScalarFieldEnum = {
   gas_station_invoice_comb: 'gas_station_invoice_comb',
   gas_station_invoice_prod: 'gas_station_invoice_prod',
   gas_station_invoice_comb_daily: 'gas_station_invoice_comb_daily',
-  gas_station_invoice_prod_daily: 'gas_station_invoice_prod_daily'
+  gas_station_invoice_prod_daily: 'gas_station_invoice_prod_daily',
+  gas_station_margin_TOTAL_PRODUCT: 'gas_station_margin_TOTAL_PRODUCT',
+  gas_station_sanado_hour_margin_TOTAL_PRODUCT: 'gas_station_sanado_hour_margin_TOTAL_PRODUCT',
+  gas_station_sanado_margin_TOTAL_PRODUCT: 'gas_station_sanado_margin_TOTAL_PRODUCT',
+  gas_station_type_margin_TOTAL_PRODUCT: 'gas_station_type_margin_TOTAL_PRODUCT',
+  verification_hour_margin_TOTAL_PRODUCT: 'verification_hour_margin_TOTAL_PRODUCT'
 };
 
 exports.Prisma.Region_setvariablesScalarFieldEnum = {
