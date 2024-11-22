@@ -1430,6 +1430,7 @@ export namespace Prisma {
     ibm_margin_DIESEL_GROUP: number | null
     ibm_margin_DIESEL_GROUP_S500: number | null
     ibm_margin_ETANOL_COMUM: number | null
+    ibm_margin_TOTAL_PRODUCT: number | null
   }
 
   export type Ibm_infoSumAggregateOutputType = {
@@ -1441,6 +1442,7 @@ export namespace Prisma {
     ibm_margin_DIESEL_GROUP: number[]
     ibm_margin_DIESEL_GROUP_S500: number[]
     ibm_margin_ETANOL_COMUM: number[]
+    ibm_margin_TOTAL_PRODUCT: number[]
   }
 
   export type Ibm_infoMinAggregateOutputType = {
@@ -1486,6 +1488,7 @@ export namespace Prisma {
     ibm_margin_DIESEL_GROUP: number
     ibm_margin_DIESEL_GROUP_S500: number
     ibm_margin_ETANOL_COMUM: number
+    ibm_margin_TOTAL_PRODUCT: number
     _all: number
   }
 
@@ -1499,6 +1502,7 @@ export namespace Prisma {
     ibm_margin_DIESEL_GROUP?: true
     ibm_margin_DIESEL_GROUP_S500?: true
     ibm_margin_ETANOL_COMUM?: true
+    ibm_margin_TOTAL_PRODUCT?: true
   }
 
   export type Ibm_infoSumAggregateInputType = {
@@ -1510,6 +1514,7 @@ export namespace Prisma {
     ibm_margin_DIESEL_GROUP?: true
     ibm_margin_DIESEL_GROUP_S500?: true
     ibm_margin_ETANOL_COMUM?: true
+    ibm_margin_TOTAL_PRODUCT?: true
   }
 
   export type Ibm_infoMinAggregateInputType = {
@@ -1555,6 +1560,7 @@ export namespace Prisma {
     ibm_margin_DIESEL_GROUP?: true
     ibm_margin_DIESEL_GROUP_S500?: true
     ibm_margin_ETANOL_COMUM?: true
+    ibm_margin_TOTAL_PRODUCT?: true
     _all?: true
   }
 
@@ -1661,6 +1667,7 @@ export namespace Prisma {
     ibm_margin_DIESEL_GROUP: number[]
     ibm_margin_DIESEL_GROUP_S500: number[]
     ibm_margin_ETANOL_COMUM: number[]
+    ibm_margin_TOTAL_PRODUCT: number[]
     _count: Ibm_infoCountAggregateOutputType | null
     _avg: Ibm_infoAvgAggregateOutputType | null
     _sum: Ibm_infoSumAggregateOutputType | null
@@ -1699,6 +1706,7 @@ export namespace Prisma {
     ibm_margin_DIESEL_GROUP?: boolean
     ibm_margin_DIESEL_GROUP_S500?: boolean
     ibm_margin_ETANOL_COMUM?: boolean
+    ibm_margin_TOTAL_PRODUCT?: boolean
     gas_station_setvariables?: boolean | ibm_info$gas_station_setvariablesArgs<ExtArgs>
     _count?: boolean | Ibm_infoCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["ibm_info"]>
@@ -1720,6 +1728,7 @@ export namespace Prisma {
     ibm_margin_DIESEL_GROUP?: boolean
     ibm_margin_DIESEL_GROUP_S500?: boolean
     ibm_margin_ETANOL_COMUM?: boolean
+    ibm_margin_TOTAL_PRODUCT?: boolean
   }, ExtArgs["result"]["ibm_info"]>
 
   export type ibm_infoSelectScalar = {
@@ -1739,6 +1748,7 @@ export namespace Prisma {
     ibm_margin_DIESEL_GROUP?: boolean
     ibm_margin_DIESEL_GROUP_S500?: boolean
     ibm_margin_ETANOL_COMUM?: boolean
+    ibm_margin_TOTAL_PRODUCT?: boolean
   }
 
   export type ibm_infoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1769,6 +1779,7 @@ export namespace Prisma {
       ibm_margin_DIESEL_GROUP: number[]
       ibm_margin_DIESEL_GROUP_S500: number[]
       ibm_margin_ETANOL_COMUM: number[]
+      ibm_margin_TOTAL_PRODUCT: number[]
     }, ExtArgs["result"]["ibm_info"]>
     composites: {}
   }
@@ -2205,6 +2216,7 @@ export namespace Prisma {
     readonly ibm_margin_DIESEL_GROUP: FieldRef<"ibm_info", 'Float[]'>
     readonly ibm_margin_DIESEL_GROUP_S500: FieldRef<"ibm_info", 'Float[]'>
     readonly ibm_margin_ETANOL_COMUM: FieldRef<"ibm_info", 'Float[]'>
+    readonly ibm_margin_TOTAL_PRODUCT: FieldRef<"ibm_info", 'Float[]'>
   }
     
 
@@ -3867,6 +3879,7 @@ export namespace Prisma {
     gas_station_invoice_prod: number | null
     gas_station_invoice_comb_daily: number | null
     gas_station_invoice_prod_daily: number | null
+    gas_station_margin_TOTAL_PRODUCT: number | null
   }
 
   export type Gas_station_setvariablesSumAggregateOutputType = {
@@ -3894,6 +3907,7 @@ export namespace Prisma {
     gas_station_invoice_prod: number | null
     gas_station_invoice_comb_daily: number | null
     gas_station_invoice_prod_daily: number | null
+    gas_station_margin_TOTAL_PRODUCT: number | null
   }
 
   export type Gas_station_setvariablesMinAggregateOutputType = {
@@ -3951,6 +3965,11 @@ export namespace Prisma {
     gas_station_invoice_prod: number | null
     gas_station_invoice_comb_daily: number | null
     gas_station_invoice_prod_daily: number | null
+    gas_station_margin_TOTAL_PRODUCT: number | null
+    gas_station_sanado_hour_margin_TOTAL_PRODUCT: Date | null
+    gas_station_sanado_margin_TOTAL_PRODUCT: boolean | null
+    gas_station_type_margin_TOTAL_PRODUCT: boolean | null
+    verification_hour_margin_TOTAL_PRODUCT: Date | null
   }
 
   export type Gas_station_setvariablesMaxAggregateOutputType = {
@@ -4008,6 +4027,11 @@ export namespace Prisma {
     gas_station_invoice_prod: number | null
     gas_station_invoice_comb_daily: number | null
     gas_station_invoice_prod_daily: number | null
+    gas_station_margin_TOTAL_PRODUCT: number | null
+    gas_station_sanado_hour_margin_TOTAL_PRODUCT: Date | null
+    gas_station_sanado_margin_TOTAL_PRODUCT: boolean | null
+    gas_station_type_margin_TOTAL_PRODUCT: boolean | null
+    verification_hour_margin_TOTAL_PRODUCT: Date | null
   }
 
   export type Gas_station_setvariablesCountAggregateOutputType = {
@@ -4066,6 +4090,11 @@ export namespace Prisma {
     gas_station_invoice_prod: number
     gas_station_invoice_comb_daily: number
     gas_station_invoice_prod_daily: number
+    gas_station_margin_TOTAL_PRODUCT: number
+    gas_station_sanado_hour_margin_TOTAL_PRODUCT: number
+    gas_station_sanado_margin_TOTAL_PRODUCT: number
+    gas_station_type_margin_TOTAL_PRODUCT: number
+    verification_hour_margin_TOTAL_PRODUCT: number
     _all: number
   }
 
@@ -4095,6 +4124,7 @@ export namespace Prisma {
     gas_station_invoice_prod?: true
     gas_station_invoice_comb_daily?: true
     gas_station_invoice_prod_daily?: true
+    gas_station_margin_TOTAL_PRODUCT?: true
   }
 
   export type Gas_station_setvariablesSumAggregateInputType = {
@@ -4122,6 +4152,7 @@ export namespace Prisma {
     gas_station_invoice_prod?: true
     gas_station_invoice_comb_daily?: true
     gas_station_invoice_prod_daily?: true
+    gas_station_margin_TOTAL_PRODUCT?: true
   }
 
   export type Gas_station_setvariablesMinAggregateInputType = {
@@ -4179,6 +4210,11 @@ export namespace Prisma {
     gas_station_invoice_prod?: true
     gas_station_invoice_comb_daily?: true
     gas_station_invoice_prod_daily?: true
+    gas_station_margin_TOTAL_PRODUCT?: true
+    gas_station_sanado_hour_margin_TOTAL_PRODUCT?: true
+    gas_station_sanado_margin_TOTAL_PRODUCT?: true
+    gas_station_type_margin_TOTAL_PRODUCT?: true
+    verification_hour_margin_TOTAL_PRODUCT?: true
   }
 
   export type Gas_station_setvariablesMaxAggregateInputType = {
@@ -4236,6 +4272,11 @@ export namespace Prisma {
     gas_station_invoice_prod?: true
     gas_station_invoice_comb_daily?: true
     gas_station_invoice_prod_daily?: true
+    gas_station_margin_TOTAL_PRODUCT?: true
+    gas_station_sanado_hour_margin_TOTAL_PRODUCT?: true
+    gas_station_sanado_margin_TOTAL_PRODUCT?: true
+    gas_station_type_margin_TOTAL_PRODUCT?: true
+    verification_hour_margin_TOTAL_PRODUCT?: true
   }
 
   export type Gas_station_setvariablesCountAggregateInputType = {
@@ -4294,6 +4335,11 @@ export namespace Prisma {
     gas_station_invoice_prod?: true
     gas_station_invoice_comb_daily?: true
     gas_station_invoice_prod_daily?: true
+    gas_station_margin_TOTAL_PRODUCT?: true
+    gas_station_sanado_hour_margin_TOTAL_PRODUCT?: true
+    gas_station_sanado_margin_TOTAL_PRODUCT?: true
+    gas_station_type_margin_TOTAL_PRODUCT?: true
+    verification_hour_margin_TOTAL_PRODUCT?: true
     _all?: true
   }
 
@@ -4439,6 +4485,11 @@ export namespace Prisma {
     gas_station_invoice_prod: number | null
     gas_station_invoice_comb_daily: number | null
     gas_station_invoice_prod_daily: number | null
+    gas_station_margin_TOTAL_PRODUCT: number | null
+    gas_station_sanado_hour_margin_TOTAL_PRODUCT: Date | null
+    gas_station_sanado_margin_TOTAL_PRODUCT: boolean | null
+    gas_station_type_margin_TOTAL_PRODUCT: boolean | null
+    verification_hour_margin_TOTAL_PRODUCT: Date | null
     _count: Gas_station_setvariablesCountAggregateOutputType | null
     _avg: Gas_station_setvariablesAvgAggregateOutputType | null
     _sum: Gas_station_setvariablesSumAggregateOutputType | null
@@ -4516,6 +4567,11 @@ export namespace Prisma {
     gas_station_invoice_prod?: boolean
     gas_station_invoice_comb_daily?: boolean
     gas_station_invoice_prod_daily?: boolean
+    gas_station_margin_TOTAL_PRODUCT?: boolean
+    gas_station_sanado_hour_margin_TOTAL_PRODUCT?: boolean
+    gas_station_sanado_margin_TOTAL_PRODUCT?: boolean
+    gas_station_type_margin_TOTAL_PRODUCT?: boolean
+    verification_hour_margin_TOTAL_PRODUCT?: boolean
     ibm_info?: boolean | gas_station_setvariables$ibm_infoArgs<ExtArgs>
     users?: boolean | gas_station_setvariables$usersArgs<ExtArgs>
   }, ExtArgs["result"]["gas_station_setvariables"]>
@@ -4576,6 +4632,11 @@ export namespace Prisma {
     gas_station_invoice_prod?: boolean
     gas_station_invoice_comb_daily?: boolean
     gas_station_invoice_prod_daily?: boolean
+    gas_station_margin_TOTAL_PRODUCT?: boolean
+    gas_station_sanado_hour_margin_TOTAL_PRODUCT?: boolean
+    gas_station_sanado_margin_TOTAL_PRODUCT?: boolean
+    gas_station_type_margin_TOTAL_PRODUCT?: boolean
+    verification_hour_margin_TOTAL_PRODUCT?: boolean
     ibm_info?: boolean | gas_station_setvariables$ibm_infoArgs<ExtArgs>
     users?: boolean | gas_station_setvariables$usersArgs<ExtArgs>
   }, ExtArgs["result"]["gas_station_setvariables"]>
@@ -4636,6 +4697,11 @@ export namespace Prisma {
     gas_station_invoice_prod?: boolean
     gas_station_invoice_comb_daily?: boolean
     gas_station_invoice_prod_daily?: boolean
+    gas_station_margin_TOTAL_PRODUCT?: boolean
+    gas_station_sanado_hour_margin_TOTAL_PRODUCT?: boolean
+    gas_station_sanado_margin_TOTAL_PRODUCT?: boolean
+    gas_station_type_margin_TOTAL_PRODUCT?: boolean
+    verification_hour_margin_TOTAL_PRODUCT?: boolean
   }
 
   export type gas_station_setvariablesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4709,6 +4775,11 @@ export namespace Prisma {
       gas_station_invoice_prod: number | null
       gas_station_invoice_comb_daily: number | null
       gas_station_invoice_prod_daily: number | null
+      gas_station_margin_TOTAL_PRODUCT: number | null
+      gas_station_sanado_hour_margin_TOTAL_PRODUCT: Date | null
+      gas_station_sanado_margin_TOTAL_PRODUCT: boolean | null
+      gas_station_type_margin_TOTAL_PRODUCT: boolean | null
+      verification_hour_margin_TOTAL_PRODUCT: Date | null
     }, ExtArgs["result"]["gas_station_setvariables"]>
     composites: {}
   }
@@ -5186,6 +5257,11 @@ export namespace Prisma {
     readonly gas_station_invoice_prod: FieldRef<"gas_station_setvariables", 'Float'>
     readonly gas_station_invoice_comb_daily: FieldRef<"gas_station_setvariables", 'Float'>
     readonly gas_station_invoice_prod_daily: FieldRef<"gas_station_setvariables", 'Float'>
+    readonly gas_station_margin_TOTAL_PRODUCT: FieldRef<"gas_station_setvariables", 'Float'>
+    readonly gas_station_sanado_hour_margin_TOTAL_PRODUCT: FieldRef<"gas_station_setvariables", 'DateTime'>
+    readonly gas_station_sanado_margin_TOTAL_PRODUCT: FieldRef<"gas_station_setvariables", 'Boolean'>
+    readonly gas_station_type_margin_TOTAL_PRODUCT: FieldRef<"gas_station_setvariables", 'Boolean'>
+    readonly verification_hour_margin_TOTAL_PRODUCT: FieldRef<"gas_station_setvariables", 'DateTime'>
   }
     
 
@@ -9302,7 +9378,8 @@ export namespace Prisma {
     ibm_margin_GASOLINA_PREMIUM: 'ibm_margin_GASOLINA_PREMIUM',
     ibm_margin_DIESEL_GROUP: 'ibm_margin_DIESEL_GROUP',
     ibm_margin_DIESEL_GROUP_S500: 'ibm_margin_DIESEL_GROUP_S500',
-    ibm_margin_ETANOL_COMUM: 'ibm_margin_ETANOL_COMUM'
+    ibm_margin_ETANOL_COMUM: 'ibm_margin_ETANOL_COMUM',
+    ibm_margin_TOTAL_PRODUCT: 'ibm_margin_TOTAL_PRODUCT'
   };
 
   export type Ibm_infoScalarFieldEnum = (typeof Ibm_infoScalarFieldEnum)[keyof typeof Ibm_infoScalarFieldEnum]
@@ -9391,7 +9468,12 @@ export namespace Prisma {
     gas_station_invoice_comb: 'gas_station_invoice_comb',
     gas_station_invoice_prod: 'gas_station_invoice_prod',
     gas_station_invoice_comb_daily: 'gas_station_invoice_comb_daily',
-    gas_station_invoice_prod_daily: 'gas_station_invoice_prod_daily'
+    gas_station_invoice_prod_daily: 'gas_station_invoice_prod_daily',
+    gas_station_margin_TOTAL_PRODUCT: 'gas_station_margin_TOTAL_PRODUCT',
+    gas_station_sanado_hour_margin_TOTAL_PRODUCT: 'gas_station_sanado_hour_margin_TOTAL_PRODUCT',
+    gas_station_sanado_margin_TOTAL_PRODUCT: 'gas_station_sanado_margin_TOTAL_PRODUCT',
+    gas_station_type_margin_TOTAL_PRODUCT: 'gas_station_type_margin_TOTAL_PRODUCT',
+    verification_hour_margin_TOTAL_PRODUCT: 'verification_hour_margin_TOTAL_PRODUCT'
   };
 
   export type Gas_station_setvariablesScalarFieldEnum = (typeof Gas_station_setvariablesScalarFieldEnum)[keyof typeof Gas_station_setvariablesScalarFieldEnum]
@@ -9600,6 +9682,7 @@ export namespace Prisma {
     ibm_margin_DIESEL_GROUP?: FloatNullableListFilter<"ibm_info">
     ibm_margin_DIESEL_GROUP_S500?: FloatNullableListFilter<"ibm_info">
     ibm_margin_ETANOL_COMUM?: FloatNullableListFilter<"ibm_info">
+    ibm_margin_TOTAL_PRODUCT?: FloatNullableListFilter<"ibm_info">
     gas_station_setvariables?: Gas_station_setvariablesListRelationFilter
   }
 
@@ -9620,6 +9703,7 @@ export namespace Prisma {
     ibm_margin_DIESEL_GROUP?: SortOrder
     ibm_margin_DIESEL_GROUP_S500?: SortOrder
     ibm_margin_ETANOL_COMUM?: SortOrder
+    ibm_margin_TOTAL_PRODUCT?: SortOrder
     gas_station_setvariables?: gas_station_setvariablesOrderByRelationAggregateInput
   }
 
@@ -9643,6 +9727,7 @@ export namespace Prisma {
     ibm_margin_DIESEL_GROUP?: FloatNullableListFilter<"ibm_info">
     ibm_margin_DIESEL_GROUP_S500?: FloatNullableListFilter<"ibm_info">
     ibm_margin_ETANOL_COMUM?: FloatNullableListFilter<"ibm_info">
+    ibm_margin_TOTAL_PRODUCT?: FloatNullableListFilter<"ibm_info">
     gas_station_setvariables?: Gas_station_setvariablesListRelationFilter
   }, "id">
 
@@ -9663,6 +9748,7 @@ export namespace Prisma {
     ibm_margin_DIESEL_GROUP?: SortOrder
     ibm_margin_DIESEL_GROUP_S500?: SortOrder
     ibm_margin_ETANOL_COMUM?: SortOrder
+    ibm_margin_TOTAL_PRODUCT?: SortOrder
     _count?: ibm_infoCountOrderByAggregateInput
     _avg?: ibm_infoAvgOrderByAggregateInput
     _max?: ibm_infoMaxOrderByAggregateInput
@@ -9690,6 +9776,7 @@ export namespace Prisma {
     ibm_margin_DIESEL_GROUP?: FloatNullableListFilter<"ibm_info">
     ibm_margin_DIESEL_GROUP_S500?: FloatNullableListFilter<"ibm_info">
     ibm_margin_ETANOL_COMUM?: FloatNullableListFilter<"ibm_info">
+    ibm_margin_TOTAL_PRODUCT?: FloatNullableListFilter<"ibm_info">
   }
 
   export type usersWhereInput = {
@@ -9896,6 +9983,11 @@ export namespace Prisma {
     gas_station_invoice_prod?: FloatNullableFilter<"gas_station_setvariables"> | number | null
     gas_station_invoice_comb_daily?: FloatNullableFilter<"gas_station_setvariables"> | number | null
     gas_station_invoice_prod_daily?: FloatNullableFilter<"gas_station_setvariables"> | number | null
+    gas_station_margin_TOTAL_PRODUCT?: FloatNullableFilter<"gas_station_setvariables"> | number | null
+    gas_station_sanado_hour_margin_TOTAL_PRODUCT?: DateTimeNullableFilter<"gas_station_setvariables"> | Date | string | null
+    gas_station_sanado_margin_TOTAL_PRODUCT?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
+    gas_station_type_margin_TOTAL_PRODUCT?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
+    verification_hour_margin_TOTAL_PRODUCT?: DateTimeNullableFilter<"gas_station_setvariables"> | Date | string | null
     ibm_info?: XOR<Ibm_infoNullableRelationFilter, ibm_infoWhereInput> | null
     users?: XOR<UsersNullableRelationFilter, usersWhereInput> | null
   }
@@ -9956,6 +10048,11 @@ export namespace Prisma {
     gas_station_invoice_prod?: SortOrderInput | SortOrder
     gas_station_invoice_comb_daily?: SortOrderInput | SortOrder
     gas_station_invoice_prod_daily?: SortOrderInput | SortOrder
+    gas_station_margin_TOTAL_PRODUCT?: SortOrderInput | SortOrder
+    gas_station_sanado_hour_margin_TOTAL_PRODUCT?: SortOrderInput | SortOrder
+    gas_station_sanado_margin_TOTAL_PRODUCT?: SortOrderInput | SortOrder
+    gas_station_type_margin_TOTAL_PRODUCT?: SortOrderInput | SortOrder
+    verification_hour_margin_TOTAL_PRODUCT?: SortOrderInput | SortOrder
     ibm_info?: ibm_infoOrderByWithRelationInput
     users?: usersOrderByWithRelationInput
   }
@@ -10019,6 +10116,11 @@ export namespace Prisma {
     gas_station_invoice_prod?: FloatNullableFilter<"gas_station_setvariables"> | number | null
     gas_station_invoice_comb_daily?: FloatNullableFilter<"gas_station_setvariables"> | number | null
     gas_station_invoice_prod_daily?: FloatNullableFilter<"gas_station_setvariables"> | number | null
+    gas_station_margin_TOTAL_PRODUCT?: FloatNullableFilter<"gas_station_setvariables"> | number | null
+    gas_station_sanado_hour_margin_TOTAL_PRODUCT?: DateTimeNullableFilter<"gas_station_setvariables"> | Date | string | null
+    gas_station_sanado_margin_TOTAL_PRODUCT?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
+    gas_station_type_margin_TOTAL_PRODUCT?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
+    verification_hour_margin_TOTAL_PRODUCT?: DateTimeNullableFilter<"gas_station_setvariables"> | Date | string | null
     ibm_info?: XOR<Ibm_infoNullableRelationFilter, ibm_infoWhereInput> | null
     users?: XOR<UsersNullableRelationFilter, usersWhereInput> | null
   }, "gas_station_uuid">
@@ -10079,6 +10181,11 @@ export namespace Prisma {
     gas_station_invoice_prod?: SortOrderInput | SortOrder
     gas_station_invoice_comb_daily?: SortOrderInput | SortOrder
     gas_station_invoice_prod_daily?: SortOrderInput | SortOrder
+    gas_station_margin_TOTAL_PRODUCT?: SortOrderInput | SortOrder
+    gas_station_sanado_hour_margin_TOTAL_PRODUCT?: SortOrderInput | SortOrder
+    gas_station_sanado_margin_TOTAL_PRODUCT?: SortOrderInput | SortOrder
+    gas_station_type_margin_TOTAL_PRODUCT?: SortOrderInput | SortOrder
+    verification_hour_margin_TOTAL_PRODUCT?: SortOrderInput | SortOrder
     _count?: gas_station_setvariablesCountOrderByAggregateInput
     _avg?: gas_station_setvariablesAvgOrderByAggregateInput
     _max?: gas_station_setvariablesMaxOrderByAggregateInput
@@ -10145,6 +10252,11 @@ export namespace Prisma {
     gas_station_invoice_prod?: FloatNullableWithAggregatesFilter<"gas_station_setvariables"> | number | null
     gas_station_invoice_comb_daily?: FloatNullableWithAggregatesFilter<"gas_station_setvariables"> | number | null
     gas_station_invoice_prod_daily?: FloatNullableWithAggregatesFilter<"gas_station_setvariables"> | number | null
+    gas_station_margin_TOTAL_PRODUCT?: FloatNullableWithAggregatesFilter<"gas_station_setvariables"> | number | null
+    gas_station_sanado_hour_margin_TOTAL_PRODUCT?: DateTimeNullableWithAggregatesFilter<"gas_station_setvariables"> | Date | string | null
+    gas_station_sanado_margin_TOTAL_PRODUCT?: BoolNullableWithAggregatesFilter<"gas_station_setvariables"> | boolean | null
+    gas_station_type_margin_TOTAL_PRODUCT?: BoolNullableWithAggregatesFilter<"gas_station_setvariables"> | boolean | null
+    verification_hour_margin_TOTAL_PRODUCT?: DateTimeNullableWithAggregatesFilter<"gas_station_setvariables"> | Date | string | null
   }
 
   export type region_setvariablesWhereInput = {
@@ -10610,6 +10722,7 @@ export namespace Prisma {
     ibm_margin_DIESEL_GROUP?: ibm_infoCreateibm_margin_DIESEL_GROUPInput | number[]
     ibm_margin_DIESEL_GROUP_S500?: ibm_infoCreateibm_margin_DIESEL_GROUP_S500Input | number[]
     ibm_margin_ETANOL_COMUM?: ibm_infoCreateibm_margin_ETANOL_COMUMInput | number[]
+    ibm_margin_TOTAL_PRODUCT?: ibm_infoCreateibm_margin_TOTAL_PRODUCTInput | number[]
     gas_station_setvariables?: gas_station_setvariablesCreateNestedManyWithoutIbm_infoInput
   }
 
@@ -10630,6 +10743,7 @@ export namespace Prisma {
     ibm_margin_DIESEL_GROUP?: ibm_infoCreateibm_margin_DIESEL_GROUPInput | number[]
     ibm_margin_DIESEL_GROUP_S500?: ibm_infoCreateibm_margin_DIESEL_GROUP_S500Input | number[]
     ibm_margin_ETANOL_COMUM?: ibm_infoCreateibm_margin_ETANOL_COMUMInput | number[]
+    ibm_margin_TOTAL_PRODUCT?: ibm_infoCreateibm_margin_TOTAL_PRODUCTInput | number[]
     gas_station_setvariables?: gas_station_setvariablesUncheckedCreateNestedManyWithoutIbm_infoInput
   }
 
@@ -10650,6 +10764,7 @@ export namespace Prisma {
     ibm_margin_DIESEL_GROUP?: ibm_infoUpdateibm_margin_DIESEL_GROUPInput | number[]
     ibm_margin_DIESEL_GROUP_S500?: ibm_infoUpdateibm_margin_DIESEL_GROUP_S500Input | number[]
     ibm_margin_ETANOL_COMUM?: ibm_infoUpdateibm_margin_ETANOL_COMUMInput | number[]
+    ibm_margin_TOTAL_PRODUCT?: ibm_infoUpdateibm_margin_TOTAL_PRODUCTInput | number[]
     gas_station_setvariables?: gas_station_setvariablesUpdateManyWithoutIbm_infoNestedInput
   }
 
@@ -10670,6 +10785,7 @@ export namespace Prisma {
     ibm_margin_DIESEL_GROUP?: ibm_infoUpdateibm_margin_DIESEL_GROUPInput | number[]
     ibm_margin_DIESEL_GROUP_S500?: ibm_infoUpdateibm_margin_DIESEL_GROUP_S500Input | number[]
     ibm_margin_ETANOL_COMUM?: ibm_infoUpdateibm_margin_ETANOL_COMUMInput | number[]
+    ibm_margin_TOTAL_PRODUCT?: ibm_infoUpdateibm_margin_TOTAL_PRODUCTInput | number[]
     gas_station_setvariables?: gas_station_setvariablesUncheckedUpdateManyWithoutIbm_infoNestedInput
   }
 
@@ -10690,6 +10806,7 @@ export namespace Prisma {
     ibm_margin_DIESEL_GROUP?: ibm_infoCreateibm_margin_DIESEL_GROUPInput | number[]
     ibm_margin_DIESEL_GROUP_S500?: ibm_infoCreateibm_margin_DIESEL_GROUP_S500Input | number[]
     ibm_margin_ETANOL_COMUM?: ibm_infoCreateibm_margin_ETANOL_COMUMInput | number[]
+    ibm_margin_TOTAL_PRODUCT?: ibm_infoCreateibm_margin_TOTAL_PRODUCTInput | number[]
   }
 
   export type ibm_infoUpdateManyMutationInput = {
@@ -10709,6 +10826,7 @@ export namespace Prisma {
     ibm_margin_DIESEL_GROUP?: ibm_infoUpdateibm_margin_DIESEL_GROUPInput | number[]
     ibm_margin_DIESEL_GROUP_S500?: ibm_infoUpdateibm_margin_DIESEL_GROUP_S500Input | number[]
     ibm_margin_ETANOL_COMUM?: ibm_infoUpdateibm_margin_ETANOL_COMUMInput | number[]
+    ibm_margin_TOTAL_PRODUCT?: ibm_infoUpdateibm_margin_TOTAL_PRODUCTInput | number[]
   }
 
   export type ibm_infoUncheckedUpdateManyInput = {
@@ -10728,6 +10846,7 @@ export namespace Prisma {
     ibm_margin_DIESEL_GROUP?: ibm_infoUpdateibm_margin_DIESEL_GROUPInput | number[]
     ibm_margin_DIESEL_GROUP_S500?: ibm_infoUpdateibm_margin_DIESEL_GROUP_S500Input | number[]
     ibm_margin_ETANOL_COMUM?: ibm_infoUpdateibm_margin_ETANOL_COMUMInput | number[]
+    ibm_margin_TOTAL_PRODUCT?: ibm_infoUpdateibm_margin_TOTAL_PRODUCTInput | number[]
   }
 
   export type usersCreateInput = {
@@ -10967,6 +11086,11 @@ export namespace Prisma {
     gas_station_invoice_prod?: number | null
     gas_station_invoice_comb_daily?: number | null
     gas_station_invoice_prod_daily?: number | null
+    gas_station_margin_TOTAL_PRODUCT?: number | null
+    gas_station_sanado_hour_margin_TOTAL_PRODUCT?: Date | string | null
+    gas_station_sanado_margin_TOTAL_PRODUCT?: boolean | null
+    gas_station_type_margin_TOTAL_PRODUCT?: boolean | null
+    verification_hour_margin_TOTAL_PRODUCT?: Date | string | null
     ibm_info?: ibm_infoCreateNestedOneWithoutGas_station_setvariablesInput
     users?: usersCreateNestedOneWithoutGas_station_setvariablesInput
   }
@@ -11027,6 +11151,11 @@ export namespace Prisma {
     gas_station_invoice_prod?: number | null
     gas_station_invoice_comb_daily?: number | null
     gas_station_invoice_prod_daily?: number | null
+    gas_station_margin_TOTAL_PRODUCT?: number | null
+    gas_station_sanado_hour_margin_TOTAL_PRODUCT?: Date | string | null
+    gas_station_sanado_margin_TOTAL_PRODUCT?: boolean | null
+    gas_station_type_margin_TOTAL_PRODUCT?: boolean | null
+    verification_hour_margin_TOTAL_PRODUCT?: Date | string | null
   }
 
   export type gas_station_setvariablesUpdateInput = {
@@ -11083,6 +11212,11 @@ export namespace Prisma {
     gas_station_invoice_prod?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_invoice_comb_daily?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_invoice_prod_daily?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_margin_TOTAL_PRODUCT?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_sanado_hour_margin_TOTAL_PRODUCT?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_margin_TOTAL_PRODUCT?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_type_margin_TOTAL_PRODUCT?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_TOTAL_PRODUCT?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     ibm_info?: ibm_infoUpdateOneWithoutGas_station_setvariablesNestedInput
     users?: usersUpdateOneWithoutGas_station_setvariablesNestedInput
   }
@@ -11143,6 +11277,11 @@ export namespace Prisma {
     gas_station_invoice_prod?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_invoice_comb_daily?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_invoice_prod_daily?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_margin_TOTAL_PRODUCT?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_sanado_hour_margin_TOTAL_PRODUCT?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_margin_TOTAL_PRODUCT?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_type_margin_TOTAL_PRODUCT?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_TOTAL_PRODUCT?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type gas_station_setvariablesCreateManyInput = {
@@ -11201,6 +11340,11 @@ export namespace Prisma {
     gas_station_invoice_prod?: number | null
     gas_station_invoice_comb_daily?: number | null
     gas_station_invoice_prod_daily?: number | null
+    gas_station_margin_TOTAL_PRODUCT?: number | null
+    gas_station_sanado_hour_margin_TOTAL_PRODUCT?: Date | string | null
+    gas_station_sanado_margin_TOTAL_PRODUCT?: boolean | null
+    gas_station_type_margin_TOTAL_PRODUCT?: boolean | null
+    verification_hour_margin_TOTAL_PRODUCT?: Date | string | null
   }
 
   export type gas_station_setvariablesUpdateManyMutationInput = {
@@ -11257,6 +11401,11 @@ export namespace Prisma {
     gas_station_invoice_prod?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_invoice_comb_daily?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_invoice_prod_daily?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_margin_TOTAL_PRODUCT?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_sanado_hour_margin_TOTAL_PRODUCT?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_margin_TOTAL_PRODUCT?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_type_margin_TOTAL_PRODUCT?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_TOTAL_PRODUCT?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type gas_station_setvariablesUncheckedUpdateManyInput = {
@@ -11315,6 +11464,11 @@ export namespace Prisma {
     gas_station_invoice_prod?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_invoice_comb_daily?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_invoice_prod_daily?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_margin_TOTAL_PRODUCT?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_sanado_hour_margin_TOTAL_PRODUCT?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_margin_TOTAL_PRODUCT?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_type_margin_TOTAL_PRODUCT?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_TOTAL_PRODUCT?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type region_setvariablesCreateInput = {
@@ -11950,6 +12104,7 @@ export namespace Prisma {
     ibm_margin_DIESEL_GROUP?: SortOrder
     ibm_margin_DIESEL_GROUP_S500?: SortOrder
     ibm_margin_ETANOL_COMUM?: SortOrder
+    ibm_margin_TOTAL_PRODUCT?: SortOrder
   }
 
   export type ibm_infoAvgOrderByAggregateInput = {
@@ -11961,6 +12116,7 @@ export namespace Prisma {
     ibm_margin_DIESEL_GROUP?: SortOrder
     ibm_margin_DIESEL_GROUP_S500?: SortOrder
     ibm_margin_ETANOL_COMUM?: SortOrder
+    ibm_margin_TOTAL_PRODUCT?: SortOrder
   }
 
   export type ibm_infoMaxOrderByAggregateInput = {
@@ -11998,6 +12154,7 @@ export namespace Prisma {
     ibm_margin_DIESEL_GROUP?: SortOrder
     ibm_margin_DIESEL_GROUP_S500?: SortOrder
     ibm_margin_ETANOL_COMUM?: SortOrder
+    ibm_margin_TOTAL_PRODUCT?: SortOrder
   }
 
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -12303,6 +12460,11 @@ export namespace Prisma {
     gas_station_invoice_prod?: SortOrder
     gas_station_invoice_comb_daily?: SortOrder
     gas_station_invoice_prod_daily?: SortOrder
+    gas_station_margin_TOTAL_PRODUCT?: SortOrder
+    gas_station_sanado_hour_margin_TOTAL_PRODUCT?: SortOrder
+    gas_station_sanado_margin_TOTAL_PRODUCT?: SortOrder
+    gas_station_type_margin_TOTAL_PRODUCT?: SortOrder
+    verification_hour_margin_TOTAL_PRODUCT?: SortOrder
   }
 
   export type gas_station_setvariablesAvgOrderByAggregateInput = {
@@ -12330,6 +12492,7 @@ export namespace Prisma {
     gas_station_invoice_prod?: SortOrder
     gas_station_invoice_comb_daily?: SortOrder
     gas_station_invoice_prod_daily?: SortOrder
+    gas_station_margin_TOTAL_PRODUCT?: SortOrder
   }
 
   export type gas_station_setvariablesMaxOrderByAggregateInput = {
@@ -12387,6 +12550,11 @@ export namespace Prisma {
     gas_station_invoice_prod?: SortOrder
     gas_station_invoice_comb_daily?: SortOrder
     gas_station_invoice_prod_daily?: SortOrder
+    gas_station_margin_TOTAL_PRODUCT?: SortOrder
+    gas_station_sanado_hour_margin_TOTAL_PRODUCT?: SortOrder
+    gas_station_sanado_margin_TOTAL_PRODUCT?: SortOrder
+    gas_station_type_margin_TOTAL_PRODUCT?: SortOrder
+    verification_hour_margin_TOTAL_PRODUCT?: SortOrder
   }
 
   export type gas_station_setvariablesMinOrderByAggregateInput = {
@@ -12444,6 +12612,11 @@ export namespace Prisma {
     gas_station_invoice_prod?: SortOrder
     gas_station_invoice_comb_daily?: SortOrder
     gas_station_invoice_prod_daily?: SortOrder
+    gas_station_margin_TOTAL_PRODUCT?: SortOrder
+    gas_station_sanado_hour_margin_TOTAL_PRODUCT?: SortOrder
+    gas_station_sanado_margin_TOTAL_PRODUCT?: SortOrder
+    gas_station_type_margin_TOTAL_PRODUCT?: SortOrder
+    verification_hour_margin_TOTAL_PRODUCT?: SortOrder
   }
 
   export type gas_station_setvariablesSumOrderByAggregateInput = {
@@ -12471,6 +12644,7 @@ export namespace Prisma {
     gas_station_invoice_prod?: SortOrder
     gas_station_invoice_comb_daily?: SortOrder
     gas_station_invoice_prod_daily?: SortOrder
+    gas_station_margin_TOTAL_PRODUCT?: SortOrder
   }
 
   export type BoolNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -12830,6 +13004,10 @@ export namespace Prisma {
     set: number[]
   }
 
+  export type ibm_infoCreateibm_margin_TOTAL_PRODUCTInput = {
+    set: number[]
+  }
+
   export type gas_station_setvariablesCreateNestedManyWithoutIbm_infoInput = {
     create?: XOR<gas_station_setvariablesCreateWithoutIbm_infoInput, gas_station_setvariablesUncheckedCreateWithoutIbm_infoInput> | gas_station_setvariablesCreateWithoutIbm_infoInput[] | gas_station_setvariablesUncheckedCreateWithoutIbm_infoInput[]
     connectOrCreate?: gas_station_setvariablesCreateOrConnectWithoutIbm_infoInput | gas_station_setvariablesCreateOrConnectWithoutIbm_infoInput[]
@@ -12886,6 +13064,11 @@ export namespace Prisma {
   }
 
   export type ibm_infoUpdateibm_margin_ETANOL_COMUMInput = {
+    set?: number[]
+    push?: number | number[]
+  }
+
+  export type ibm_infoUpdateibm_margin_TOTAL_PRODUCTInput = {
     set?: number[]
     push?: number | number[]
   }
@@ -13462,6 +13645,11 @@ export namespace Prisma {
     gas_station_invoice_prod?: number | null
     gas_station_invoice_comb_daily?: number | null
     gas_station_invoice_prod_daily?: number | null
+    gas_station_margin_TOTAL_PRODUCT?: number | null
+    gas_station_sanado_hour_margin_TOTAL_PRODUCT?: Date | string | null
+    gas_station_sanado_margin_TOTAL_PRODUCT?: boolean | null
+    gas_station_type_margin_TOTAL_PRODUCT?: boolean | null
+    verification_hour_margin_TOTAL_PRODUCT?: Date | string | null
     users?: usersCreateNestedOneWithoutGas_station_setvariablesInput
   }
 
@@ -13520,6 +13708,11 @@ export namespace Prisma {
     gas_station_invoice_prod?: number | null
     gas_station_invoice_comb_daily?: number | null
     gas_station_invoice_prod_daily?: number | null
+    gas_station_margin_TOTAL_PRODUCT?: number | null
+    gas_station_sanado_hour_margin_TOTAL_PRODUCT?: Date | string | null
+    gas_station_sanado_margin_TOTAL_PRODUCT?: boolean | null
+    gas_station_type_margin_TOTAL_PRODUCT?: boolean | null
+    verification_hour_margin_TOTAL_PRODUCT?: Date | string | null
   }
 
   export type gas_station_setvariablesCreateOrConnectWithoutIbm_infoInput = {
@@ -13607,6 +13800,11 @@ export namespace Prisma {
     gas_station_invoice_prod?: FloatNullableFilter<"gas_station_setvariables"> | number | null
     gas_station_invoice_comb_daily?: FloatNullableFilter<"gas_station_setvariables"> | number | null
     gas_station_invoice_prod_daily?: FloatNullableFilter<"gas_station_setvariables"> | number | null
+    gas_station_margin_TOTAL_PRODUCT?: FloatNullableFilter<"gas_station_setvariables"> | number | null
+    gas_station_sanado_hour_margin_TOTAL_PRODUCT?: DateTimeNullableFilter<"gas_station_setvariables"> | Date | string | null
+    gas_station_sanado_margin_TOTAL_PRODUCT?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
+    gas_station_type_margin_TOTAL_PRODUCT?: BoolNullableFilter<"gas_station_setvariables"> | boolean | null
+    verification_hour_margin_TOTAL_PRODUCT?: DateTimeNullableFilter<"gas_station_setvariables"> | Date | string | null
   }
 
   export type gas_station_setvariablesCreateWithoutUsersInput = {
@@ -13663,6 +13861,11 @@ export namespace Prisma {
     gas_station_invoice_prod?: number | null
     gas_station_invoice_comb_daily?: number | null
     gas_station_invoice_prod_daily?: number | null
+    gas_station_margin_TOTAL_PRODUCT?: number | null
+    gas_station_sanado_hour_margin_TOTAL_PRODUCT?: Date | string | null
+    gas_station_sanado_margin_TOTAL_PRODUCT?: boolean | null
+    gas_station_type_margin_TOTAL_PRODUCT?: boolean | null
+    verification_hour_margin_TOTAL_PRODUCT?: Date | string | null
     ibm_info?: ibm_infoCreateNestedOneWithoutGas_station_setvariablesInput
   }
 
@@ -13721,6 +13924,11 @@ export namespace Prisma {
     gas_station_invoice_prod?: number | null
     gas_station_invoice_comb_daily?: number | null
     gas_station_invoice_prod_daily?: number | null
+    gas_station_margin_TOTAL_PRODUCT?: number | null
+    gas_station_sanado_hour_margin_TOTAL_PRODUCT?: Date | string | null
+    gas_station_sanado_margin_TOTAL_PRODUCT?: boolean | null
+    gas_station_type_margin_TOTAL_PRODUCT?: boolean | null
+    verification_hour_margin_TOTAL_PRODUCT?: Date | string | null
   }
 
   export type gas_station_setvariablesCreateOrConnectWithoutUsersInput = {
@@ -13952,6 +14160,7 @@ export namespace Prisma {
     ibm_margin_DIESEL_GROUP?: ibm_infoCreateibm_margin_DIESEL_GROUPInput | number[]
     ibm_margin_DIESEL_GROUP_S500?: ibm_infoCreateibm_margin_DIESEL_GROUP_S500Input | number[]
     ibm_margin_ETANOL_COMUM?: ibm_infoCreateibm_margin_ETANOL_COMUMInput | number[]
+    ibm_margin_TOTAL_PRODUCT?: ibm_infoCreateibm_margin_TOTAL_PRODUCTInput | number[]
   }
 
   export type ibm_infoUncheckedCreateWithoutGas_station_setvariablesInput = {
@@ -13971,6 +14180,7 @@ export namespace Prisma {
     ibm_margin_DIESEL_GROUP?: ibm_infoCreateibm_margin_DIESEL_GROUPInput | number[]
     ibm_margin_DIESEL_GROUP_S500?: ibm_infoCreateibm_margin_DIESEL_GROUP_S500Input | number[]
     ibm_margin_ETANOL_COMUM?: ibm_infoCreateibm_margin_ETANOL_COMUMInput | number[]
+    ibm_margin_TOTAL_PRODUCT?: ibm_infoCreateibm_margin_TOTAL_PRODUCTInput | number[]
   }
 
   export type ibm_infoCreateOrConnectWithoutGas_station_setvariablesInput = {
@@ -14063,6 +14273,7 @@ export namespace Prisma {
     ibm_margin_DIESEL_GROUP?: ibm_infoUpdateibm_margin_DIESEL_GROUPInput | number[]
     ibm_margin_DIESEL_GROUP_S500?: ibm_infoUpdateibm_margin_DIESEL_GROUP_S500Input | number[]
     ibm_margin_ETANOL_COMUM?: ibm_infoUpdateibm_margin_ETANOL_COMUMInput | number[]
+    ibm_margin_TOTAL_PRODUCT?: ibm_infoUpdateibm_margin_TOTAL_PRODUCTInput | number[]
   }
 
   export type ibm_infoUncheckedUpdateWithoutGas_station_setvariablesInput = {
@@ -14082,6 +14293,7 @@ export namespace Prisma {
     ibm_margin_DIESEL_GROUP?: ibm_infoUpdateibm_margin_DIESEL_GROUPInput | number[]
     ibm_margin_DIESEL_GROUP_S500?: ibm_infoUpdateibm_margin_DIESEL_GROUP_S500Input | number[]
     ibm_margin_ETANOL_COMUM?: ibm_infoUpdateibm_margin_ETANOL_COMUMInput | number[]
+    ibm_margin_TOTAL_PRODUCT?: ibm_infoUpdateibm_margin_TOTAL_PRODUCTInput | number[]
   }
 
   export type usersUpsertWithoutGas_station_setvariablesInput = {
@@ -14524,6 +14736,11 @@ export namespace Prisma {
     gas_station_invoice_prod?: number | null
     gas_station_invoice_comb_daily?: number | null
     gas_station_invoice_prod_daily?: number | null
+    gas_station_margin_TOTAL_PRODUCT?: number | null
+    gas_station_sanado_hour_margin_TOTAL_PRODUCT?: Date | string | null
+    gas_station_sanado_margin_TOTAL_PRODUCT?: boolean | null
+    gas_station_type_margin_TOTAL_PRODUCT?: boolean | null
+    verification_hour_margin_TOTAL_PRODUCT?: Date | string | null
   }
 
   export type gas_station_setvariablesUpdateWithoutIbm_infoInput = {
@@ -14580,6 +14797,11 @@ export namespace Prisma {
     gas_station_invoice_prod?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_invoice_comb_daily?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_invoice_prod_daily?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_margin_TOTAL_PRODUCT?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_sanado_hour_margin_TOTAL_PRODUCT?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_margin_TOTAL_PRODUCT?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_type_margin_TOTAL_PRODUCT?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_TOTAL_PRODUCT?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     users?: usersUpdateOneWithoutGas_station_setvariablesNestedInput
   }
 
@@ -14638,6 +14860,11 @@ export namespace Prisma {
     gas_station_invoice_prod?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_invoice_comb_daily?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_invoice_prod_daily?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_margin_TOTAL_PRODUCT?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_sanado_hour_margin_TOTAL_PRODUCT?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_margin_TOTAL_PRODUCT?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_type_margin_TOTAL_PRODUCT?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_TOTAL_PRODUCT?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type gas_station_setvariablesUncheckedUpdateManyWithoutIbm_infoInput = {
@@ -14695,6 +14922,11 @@ export namespace Prisma {
     gas_station_invoice_prod?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_invoice_comb_daily?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_invoice_prod_daily?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_margin_TOTAL_PRODUCT?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_sanado_hour_margin_TOTAL_PRODUCT?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_margin_TOTAL_PRODUCT?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_type_margin_TOTAL_PRODUCT?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_TOTAL_PRODUCT?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type gas_station_setvariablesCreateManyUsersInput = {
@@ -14752,6 +14984,11 @@ export namespace Prisma {
     gas_station_invoice_prod?: number | null
     gas_station_invoice_comb_daily?: number | null
     gas_station_invoice_prod_daily?: number | null
+    gas_station_margin_TOTAL_PRODUCT?: number | null
+    gas_station_sanado_hour_margin_TOTAL_PRODUCT?: Date | string | null
+    gas_station_sanado_margin_TOTAL_PRODUCT?: boolean | null
+    gas_station_type_margin_TOTAL_PRODUCT?: boolean | null
+    verification_hour_margin_TOTAL_PRODUCT?: Date | string | null
   }
 
   export type region_setvariablesCreateManyUsersInput = {
@@ -14860,6 +15097,11 @@ export namespace Prisma {
     gas_station_invoice_prod?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_invoice_comb_daily?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_invoice_prod_daily?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_margin_TOTAL_PRODUCT?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_sanado_hour_margin_TOTAL_PRODUCT?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_margin_TOTAL_PRODUCT?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_type_margin_TOTAL_PRODUCT?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_TOTAL_PRODUCT?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     ibm_info?: ibm_infoUpdateOneWithoutGas_station_setvariablesNestedInput
   }
 
@@ -14918,6 +15160,11 @@ export namespace Prisma {
     gas_station_invoice_prod?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_invoice_comb_daily?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_invoice_prod_daily?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_margin_TOTAL_PRODUCT?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_sanado_hour_margin_TOTAL_PRODUCT?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_margin_TOTAL_PRODUCT?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_type_margin_TOTAL_PRODUCT?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_TOTAL_PRODUCT?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type gas_station_setvariablesUncheckedUpdateManyWithoutUsersInput = {
@@ -14975,6 +15222,11 @@ export namespace Prisma {
     gas_station_invoice_prod?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_invoice_comb_daily?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_invoice_prod_daily?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_margin_TOTAL_PRODUCT?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_sanado_hour_margin_TOTAL_PRODUCT?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gas_station_sanado_margin_TOTAL_PRODUCT?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    gas_station_type_margin_TOTAL_PRODUCT?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    verification_hour_margin_TOTAL_PRODUCT?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type region_setvariablesUpdateWithoutUsersInput = {
