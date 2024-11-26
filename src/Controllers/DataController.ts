@@ -211,7 +211,7 @@ class DataController {
                     return (accumulator || 0) + (currentValue.pc * currentValue.qd || 0);
                 }, 0);
                 //Diferença faturamento de combustível pelo custo que é o lucro
-                const fuelProfit = Math.round(((sumFuel - sumCostPrice)) * 100) / 100
+                const fuelProfit = Math.round(((sumFuel - sumCostPrice - sumLiterage * 0.04)) * 100) / 100
                 //Diferença faturamento de produto pelo custo que é o lucro
                 const productProfit = Math.round(((sumFuelProd - sumProductPrice)) * 100) / 100
                 // Exemplo de verificação antes da divisão:
@@ -291,7 +291,7 @@ class DataController {
                         seventh_label: "Média Mensal", seventh_value: Math.round(((monthBigNumbers?.bignumbers_fuelSales ?? 0) / actualDay) * 100) / 100
                     },
                     {
-                        label: "Lucro de Combustíveis", value: fuelProfit,
+                        label: "Resultado Bruto da Galonagem", value: fuelProfit,
                         secondary_label: "Lucro Bruto Operacional", secondary_value: Math.round((secondary_value_fuelProfit) * 100) / 100,
                         third_label: "Status Margem", third_value: lucro_operacional_galonagem, fourth_label: "Alvo",
                         fourth_value: (flags?.use_lucro_bruto_operacional_galonagem ?? 0) * 100,
@@ -319,7 +319,7 @@ class DataController {
                         seventh_label: "Média Mensal", seventh_value: Math.round(((monthBigNumbers?.bignumbers_productSales ?? 0) / actualDay) * 100) / 100
                     },
                     {
-                        label: "Lucro de Produtos", value: monthBigNumbers?.bignumbers_dailyProductProfit,
+                        label: "Resultado Bruto de Produto", value: monthBigNumbers?.bignumbers_dailyProductProfit,
                         secondary_label: "Lucro Bruto Operacional", secondary_value: Math.round((secondary_value_productProfit) * 100) / 100,
                         third_label: "Status Margem", third_value: lucro_operacional_produto,
                         fourth_label: "Alvo", fourth_value: (flags?.use_lucro_bruto_operacional_produto ?? 0) * 100,
