@@ -230,7 +230,10 @@ exports.Prisma.Gas_station_setvariablesScalarFieldEnum = {
   gas_station_sanado_hour_margin_ADITIVOS_AUTOMOVEIS_PRODUCT: 'gas_station_sanado_hour_margin_ADITIVOS_AUTOMOVEIS_PRODUCT',
   gas_station_sanado_margin_ADITIVOS_AUTOMOVEIS_PRODUCT: 'gas_station_sanado_margin_ADITIVOS_AUTOMOVEIS_PRODUCT',
   gas_station_type_margin_ADITIVOS_AUTOMOVEIS_PRODUCT: 'gas_station_type_margin_ADITIVOS_AUTOMOVEIS_PRODUCT',
-  verification_hour_margin_ADITIVOS_AUTOMOVEIS_PRODUCT: 'verification_hour_margin_ADITIVOS_AUTOMOVEIS_PRODUCT'
+  verification_hour_margin_ADITIVOS_AUTOMOVEIS_PRODUCT: 'verification_hour_margin_ADITIVOS_AUTOMOVEIS_PRODUCT',
+  gas_station_freight_value: 'gas_station_freight_value',
+  gas_station_gross_result_literage: 'gas_station_gross_result_literage',
+  gas_station_gross_result_product: 'gas_station_gross_result_product'
 };
 
 exports.Prisma.Region_setvariablesScalarFieldEnum = {
