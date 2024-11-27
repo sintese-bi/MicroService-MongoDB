@@ -241,7 +241,7 @@ class DataController {
                 const monthBigNumbers = await prismaRedeFlex.big_numbers_values.findFirst({
                     select: {
                         bignumbers_fuelProfit: true, bignumbers_fuelSales: true, bignumbers_invoicing: true, bignumbers_productProfit: true,
-                        bignumbers_productSales: true, bignumbers_sumliterage: true, bignumbers_Supplies: true, bignumbers_dailyProductProfit: true
+                        bignumbers_productSales: true, bignumbers_sumliterage: true, bignumbers_Supplies: true, bignumbers_dailyProductProfit: true, bignumbers_dailyLiterageProfit: true
                     },
                     where: { bignumbers_uuid: "650f5af0-b341-4980-aad0-8617e53c41ec" }
                 })
@@ -255,21 +255,7 @@ class DataController {
                 const lucroCombustíveisCondição = fuelProfit >= Math.round(((monthBigNumbers?.bignumbers_fuelProfit ?? 0) / actualDay) * 100) / 100;
                 const vendaProdutosCondição = Math.round(sumFuelProd * 100) / 100 >= Math.round(((monthBigNumbers?.bignumbers_productSales ?? 0) / actualDay) * 100) / 100;
                 const lucroProdutosCondição = (monthBigNumbers?.bignumbers_dailyProductProfit ?? 0) >= (Math.round(((monthBigNumbers?.bignumbers_productProfit ?? 0) / actualDay) * 100) / 100);
-                const token = process.env.SAULOAPI
-                const tableData = await axios.get(`http://159.65.42.225:3053/v2/dataframes?token=${token}`)
-                //Fluxo resultado bruto galonagem/produto api externa
-                const sumLiterageResult = await tableData.data['galonagem'].reduce((accumulator: number, currentValue: any) => {
 
-                    return (accumulator || 0) + (currentValue['Resultado Bruto'] || 0);
-
-
-                }, 0)
-                const sumProductResult = await tableData.data['produto'].reduce((accumulator: number, currentValue: any) => {
-
-                    return (accumulator || 0) + (currentValue['Resultado Bruto'] || 0);
-
-
-                }, 0)
 
                 return res.status(200).json({
                     data: [{
@@ -305,7 +291,7 @@ class DataController {
                         seventh_label: "Média Mensal", seventh_value: Math.round(((monthBigNumbers?.bignumbers_fuelSales ?? 0) / actualDay) * 100) / 100
                     },
                     {
-                        label: "Resultado Bruto da Galonagem", value: Math.round(sumLiterageResult * 100) / 100,
+                        label: "Resultado Bruto da Galonagem", value: monthBigNumbers?.bignumbers_dailyLiterageProfit,
                         secondary_label: "Lucro Bruto Operacional", secondary_value: Math.round((secondary_value_fuelProfit) * 100) / 100,
                         third_label: "Status Margem", third_value: lucro_operacional_galonagem, fourth_label: "Alvo",
                         fourth_value: (flags?.use_lucro_bruto_operacional_galonagem ?? 0) * 100,
@@ -333,7 +319,7 @@ class DataController {
                         seventh_label: "Média Mensal", seventh_value: Math.round(((monthBigNumbers?.bignumbers_productSales ?? 0) / actualDay) * 100) / 100
                     },
                     {
-                        label: "Resultado Bruto de Produto", value: Math.round(sumProductResult * 100) / 100,
+                        label: "Resultado Bruto de Produto", value: monthBigNumbers?.bignumbers_dailyProductProfit,
                         secondary_label: "Lucro Bruto Operacional", secondary_value: Math.round((secondary_value_productProfit) * 100) / 100,
                         third_label: "Status Margem", third_value: lucro_operacional_produto,
                         fourth_label: "Alvo", fourth_value: (flags?.use_lucro_bruto_operacional_produto ?? 0) * 100,
@@ -1912,21 +1898,28 @@ class DataController {
 
         try {
             const token = process.env.SAULOAPI
-            const productValue = await axios.get(
+            const tableData = await axios.get(
                 `http://159.65.42.225:3053/v2/dataframes?token=${token}`,
 
             );
-            const sumProductGroup = productValue.data.grupo.reduce(
-                (accumulator: number, currentValue: any) => {
-                    return accumulator + (currentValue.Lucro || 0);
-                },
-                0
-            );
-            //Salvar na tabela dos bignumbers como a soma de produto diario
+            const sumLiterageResult = await tableData.data['galonagem'].reduce((accumulator: number, currentValue: any) => {
+
+                return (accumulator || 0) + (currentValue['Resultado Bruto'] || 0);
+
+
+            }, 0)
+            const sumProductResult = await tableData.data['produto'].reduce((accumulator: number, currentValue: any) => {
+
+                return (accumulator || 0) + (currentValue['Resultado Bruto'] || 0);
+
+
+            }, 0)
+            
+            //Salvar na tabela dos bignumbers como a soma de produto diario e soma galonagem diária
             await prismaRedeFlex.big_numbers_values.update({
                 data: {
-                    bignumbers_dailyProductProfit: Math.round(sumProductGroup * 100) / 100,
-
+                    bignumbers_dailyProductProfit: Math.round(sumProductResult * 100) / 100,
+                    bignumbers_dailyLiterageProfit: Math.round(sumLiterageResult * 100) / 100,
                 },
                 where: { bignumbers_uuid: "650f5af0-b341-4980-aad0-8617e53c41ec" }
             })
