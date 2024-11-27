@@ -8479,6 +8479,7 @@ export namespace Prisma {
     bignumbers_productSales: number | null
     bignumbers_productProfit: number | null
     bignumbers_dailyProductProfit: number | null
+    bignumbers_dailyLiterageProfit: number | null
   }
 
   export type Big_numbers_valuesSumAggregateOutputType = {
@@ -8490,6 +8491,7 @@ export namespace Prisma {
     bignumbers_productSales: number | null
     bignumbers_productProfit: number | null
     bignumbers_dailyProductProfit: number | null
+    bignumbers_dailyLiterageProfit: number | null
   }
 
   export type Big_numbers_valuesMinAggregateOutputType = {
@@ -8502,6 +8504,7 @@ export namespace Prisma {
     bignumbers_productSales: number | null
     bignumbers_productProfit: number | null
     bignumbers_dailyProductProfit: number | null
+    bignumbers_dailyLiterageProfit: number | null
   }
 
   export type Big_numbers_valuesMaxAggregateOutputType = {
@@ -8514,6 +8517,7 @@ export namespace Prisma {
     bignumbers_productSales: number | null
     bignumbers_productProfit: number | null
     bignumbers_dailyProductProfit: number | null
+    bignumbers_dailyLiterageProfit: number | null
   }
 
   export type Big_numbers_valuesCountAggregateOutputType = {
@@ -8526,6 +8530,7 @@ export namespace Prisma {
     bignumbers_productSales: number
     bignumbers_productProfit: number
     bignumbers_dailyProductProfit: number
+    bignumbers_dailyLiterageProfit: number
     _all: number
   }
 
@@ -8539,6 +8544,7 @@ export namespace Prisma {
     bignumbers_productSales?: true
     bignumbers_productProfit?: true
     bignumbers_dailyProductProfit?: true
+    bignumbers_dailyLiterageProfit?: true
   }
 
   export type Big_numbers_valuesSumAggregateInputType = {
@@ -8550,6 +8556,7 @@ export namespace Prisma {
     bignumbers_productSales?: true
     bignumbers_productProfit?: true
     bignumbers_dailyProductProfit?: true
+    bignumbers_dailyLiterageProfit?: true
   }
 
   export type Big_numbers_valuesMinAggregateInputType = {
@@ -8562,6 +8569,7 @@ export namespace Prisma {
     bignumbers_productSales?: true
     bignumbers_productProfit?: true
     bignumbers_dailyProductProfit?: true
+    bignumbers_dailyLiterageProfit?: true
   }
 
   export type Big_numbers_valuesMaxAggregateInputType = {
@@ -8574,6 +8582,7 @@ export namespace Prisma {
     bignumbers_productSales?: true
     bignumbers_productProfit?: true
     bignumbers_dailyProductProfit?: true
+    bignumbers_dailyLiterageProfit?: true
   }
 
   export type Big_numbers_valuesCountAggregateInputType = {
@@ -8586,6 +8595,7 @@ export namespace Prisma {
     bignumbers_productSales?: true
     bignumbers_productProfit?: true
     bignumbers_dailyProductProfit?: true
+    bignumbers_dailyLiterageProfit?: true
     _all?: true
   }
 
@@ -8685,6 +8695,7 @@ export namespace Prisma {
     bignumbers_productSales: number | null
     bignumbers_productProfit: number | null
     bignumbers_dailyProductProfit: number | null
+    bignumbers_dailyLiterageProfit: number | null
     _count: Big_numbers_valuesCountAggregateOutputType | null
     _avg: Big_numbers_valuesAvgAggregateOutputType | null
     _sum: Big_numbers_valuesSumAggregateOutputType | null
@@ -8716,6 +8727,7 @@ export namespace Prisma {
     bignumbers_productSales?: boolean
     bignumbers_productProfit?: boolean
     bignumbers_dailyProductProfit?: boolean
+    bignumbers_dailyLiterageProfit?: boolean
   }, ExtArgs["result"]["big_numbers_values"]>
 
   export type big_numbers_valuesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -8728,6 +8740,7 @@ export namespace Prisma {
     bignumbers_productSales?: boolean
     bignumbers_productProfit?: boolean
     bignumbers_dailyProductProfit?: boolean
+    bignumbers_dailyLiterageProfit?: boolean
   }, ExtArgs["result"]["big_numbers_values"]>
 
   export type big_numbers_valuesSelectScalar = {
@@ -8740,6 +8753,7 @@ export namespace Prisma {
     bignumbers_productSales?: boolean
     bignumbers_productProfit?: boolean
     bignumbers_dailyProductProfit?: boolean
+    bignumbers_dailyLiterageProfit?: boolean
   }
 
 
@@ -8756,6 +8770,7 @@ export namespace Prisma {
       bignumbers_productSales: number | null
       bignumbers_productProfit: number | null
       bignumbers_dailyProductProfit: number | null
+      bignumbers_dailyLiterageProfit: number | null
     }, ExtArgs["result"]["big_numbers_values"]>
     composites: {}
   }
@@ -9184,6 +9199,7 @@ export namespace Prisma {
     readonly bignumbers_productSales: FieldRef<"big_numbers_values", 'Float'>
     readonly bignumbers_productProfit: FieldRef<"big_numbers_values", 'Float'>
     readonly bignumbers_dailyProductProfit: FieldRef<"big_numbers_values", 'Float'>
+    readonly bignumbers_dailyLiterageProfit: FieldRef<"big_numbers_values", 'Float'>
   }
     
 
@@ -9694,7 +9710,8 @@ export namespace Prisma {
     bignumbers_fuelProfit: 'bignumbers_fuelProfit',
     bignumbers_productSales: 'bignumbers_productSales',
     bignumbers_productProfit: 'bignumbers_productProfit',
-    bignumbers_dailyProductProfit: 'bignumbers_dailyProductProfit'
+    bignumbers_dailyProductProfit: 'bignumbers_dailyProductProfit',
+    bignumbers_dailyLiterageProfit: 'bignumbers_dailyLiterageProfit'
   };
 
   export type Big_numbers_valuesScalarFieldEnum = (typeof Big_numbers_valuesScalarFieldEnum)[keyof typeof Big_numbers_valuesScalarFieldEnum]
@@ -10822,6 +10839,7 @@ export namespace Prisma {
     bignumbers_productSales?: FloatNullableFilter<"big_numbers_values"> | number | null
     bignumbers_productProfit?: FloatNullableFilter<"big_numbers_values"> | number | null
     bignumbers_dailyProductProfit?: FloatNullableFilter<"big_numbers_values"> | number | null
+    bignumbers_dailyLiterageProfit?: FloatNullableFilter<"big_numbers_values"> | number | null
   }
 
   export type big_numbers_valuesOrderByWithRelationInput = {
@@ -10834,6 +10852,7 @@ export namespace Prisma {
     bignumbers_productSales?: SortOrderInput | SortOrder
     bignumbers_productProfit?: SortOrderInput | SortOrder
     bignumbers_dailyProductProfit?: SortOrderInput | SortOrder
+    bignumbers_dailyLiterageProfit?: SortOrderInput | SortOrder
   }
 
   export type big_numbers_valuesWhereUniqueInput = Prisma.AtLeast<{
@@ -10849,6 +10868,7 @@ export namespace Prisma {
     bignumbers_productSales?: FloatNullableFilter<"big_numbers_values"> | number | null
     bignumbers_productProfit?: FloatNullableFilter<"big_numbers_values"> | number | null
     bignumbers_dailyProductProfit?: FloatNullableFilter<"big_numbers_values"> | number | null
+    bignumbers_dailyLiterageProfit?: FloatNullableFilter<"big_numbers_values"> | number | null
   }, "bignumbers_uuid">
 
   export type big_numbers_valuesOrderByWithAggregationInput = {
@@ -10861,6 +10881,7 @@ export namespace Prisma {
     bignumbers_productSales?: SortOrderInput | SortOrder
     bignumbers_productProfit?: SortOrderInput | SortOrder
     bignumbers_dailyProductProfit?: SortOrderInput | SortOrder
+    bignumbers_dailyLiterageProfit?: SortOrderInput | SortOrder
     _count?: big_numbers_valuesCountOrderByAggregateInput
     _avg?: big_numbers_valuesAvgOrderByAggregateInput
     _max?: big_numbers_valuesMaxOrderByAggregateInput
@@ -10881,6 +10902,7 @@ export namespace Prisma {
     bignumbers_productSales?: FloatNullableWithAggregatesFilter<"big_numbers_values"> | number | null
     bignumbers_productProfit?: FloatNullableWithAggregatesFilter<"big_numbers_values"> | number | null
     bignumbers_dailyProductProfit?: FloatNullableWithAggregatesFilter<"big_numbers_values"> | number | null
+    bignumbers_dailyLiterageProfit?: FloatNullableWithAggregatesFilter<"big_numbers_values"> | number | null
   }
 
   export type ibm_infoCreateInput = {
@@ -12193,6 +12215,7 @@ export namespace Prisma {
     bignumbers_productSales?: number | null
     bignumbers_productProfit?: number | null
     bignumbers_dailyProductProfit?: number | null
+    bignumbers_dailyLiterageProfit?: number | null
   }
 
   export type big_numbers_valuesUncheckedCreateInput = {
@@ -12205,6 +12228,7 @@ export namespace Prisma {
     bignumbers_productSales?: number | null
     bignumbers_productProfit?: number | null
     bignumbers_dailyProductProfit?: number | null
+    bignumbers_dailyLiterageProfit?: number | null
   }
 
   export type big_numbers_valuesUpdateInput = {
@@ -12217,6 +12241,7 @@ export namespace Prisma {
     bignumbers_productSales?: NullableFloatFieldUpdateOperationsInput | number | null
     bignumbers_productProfit?: NullableFloatFieldUpdateOperationsInput | number | null
     bignumbers_dailyProductProfit?: NullableFloatFieldUpdateOperationsInput | number | null
+    bignumbers_dailyLiterageProfit?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type big_numbers_valuesUncheckedUpdateInput = {
@@ -12229,6 +12254,7 @@ export namespace Prisma {
     bignumbers_productSales?: NullableFloatFieldUpdateOperationsInput | number | null
     bignumbers_productProfit?: NullableFloatFieldUpdateOperationsInput | number | null
     bignumbers_dailyProductProfit?: NullableFloatFieldUpdateOperationsInput | number | null
+    bignumbers_dailyLiterageProfit?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type big_numbers_valuesCreateManyInput = {
@@ -12241,6 +12267,7 @@ export namespace Prisma {
     bignumbers_productSales?: number | null
     bignumbers_productProfit?: number | null
     bignumbers_dailyProductProfit?: number | null
+    bignumbers_dailyLiterageProfit?: number | null
   }
 
   export type big_numbers_valuesUpdateManyMutationInput = {
@@ -12253,6 +12280,7 @@ export namespace Prisma {
     bignumbers_productSales?: NullableFloatFieldUpdateOperationsInput | number | null
     bignumbers_productProfit?: NullableFloatFieldUpdateOperationsInput | number | null
     bignumbers_dailyProductProfit?: NullableFloatFieldUpdateOperationsInput | number | null
+    bignumbers_dailyLiterageProfit?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type big_numbers_valuesUncheckedUpdateManyInput = {
@@ -12265,6 +12293,7 @@ export namespace Prisma {
     bignumbers_productSales?: NullableFloatFieldUpdateOperationsInput | number | null
     bignumbers_productProfit?: NullableFloatFieldUpdateOperationsInput | number | null
     bignumbers_dailyProductProfit?: NullableFloatFieldUpdateOperationsInput | number | null
+    bignumbers_dailyLiterageProfit?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type StringNullableFilter<$PrismaModel = never> = {
@@ -13208,6 +13237,7 @@ export namespace Prisma {
     bignumbers_productSales?: SortOrder
     bignumbers_productProfit?: SortOrder
     bignumbers_dailyProductProfit?: SortOrder
+    bignumbers_dailyLiterageProfit?: SortOrder
   }
 
   export type big_numbers_valuesAvgOrderByAggregateInput = {
@@ -13219,6 +13249,7 @@ export namespace Prisma {
     bignumbers_productSales?: SortOrder
     bignumbers_productProfit?: SortOrder
     bignumbers_dailyProductProfit?: SortOrder
+    bignumbers_dailyLiterageProfit?: SortOrder
   }
 
   export type big_numbers_valuesMaxOrderByAggregateInput = {
@@ -13231,6 +13262,7 @@ export namespace Prisma {
     bignumbers_productSales?: SortOrder
     bignumbers_productProfit?: SortOrder
     bignumbers_dailyProductProfit?: SortOrder
+    bignumbers_dailyLiterageProfit?: SortOrder
   }
 
   export type big_numbers_valuesMinOrderByAggregateInput = {
@@ -13243,6 +13275,7 @@ export namespace Prisma {
     bignumbers_productSales?: SortOrder
     bignumbers_productProfit?: SortOrder
     bignumbers_dailyProductProfit?: SortOrder
+    bignumbers_dailyLiterageProfit?: SortOrder
   }
 
   export type big_numbers_valuesSumOrderByAggregateInput = {
@@ -13254,6 +13287,7 @@ export namespace Prisma {
     bignumbers_productSales?: SortOrder
     bignumbers_productProfit?: SortOrder
     bignumbers_dailyProductProfit?: SortOrder
+    bignumbers_dailyLiterageProfit?: SortOrder
   }
 
   export type ibm_infoCreateibm_margin_GCInput = {

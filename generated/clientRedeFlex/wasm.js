@@ -312,7 +312,8 @@ exports.Prisma.Big_numbers_valuesScalarFieldEnum = {
   bignumbers_fuelProfit: 'bignumbers_fuelProfit',
   bignumbers_productSales: 'bignumbers_productSales',
   bignumbers_productProfit: 'bignumbers_productProfit',
-  bignumbers_dailyProductProfit: 'bignumbers_dailyProductProfit'
+  bignumbers_dailyProductProfit: 'bignumbers_dailyProductProfit',
+  bignumbers_dailyLiterageProfit: 'bignumbers_dailyLiterageProfit'
 };
 
 exports.Prisma.SortOrder = {
