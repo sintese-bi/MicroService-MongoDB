@@ -255,7 +255,21 @@ class DataController {
                 const lucroCombustíveisCondição = fuelProfit >= Math.round(((monthBigNumbers?.bignumbers_fuelProfit ?? 0) / actualDay) * 100) / 100;
                 const vendaProdutosCondição = Math.round(sumFuelProd * 100) / 100 >= Math.round(((monthBigNumbers?.bignumbers_productSales ?? 0) / actualDay) * 100) / 100;
                 const lucroProdutosCondição = (monthBigNumbers?.bignumbers_dailyProductProfit ?? 0) >= (Math.round(((monthBigNumbers?.bignumbers_productProfit ?? 0) / actualDay) * 100) / 100);
+                const token = process.env.SAULOAPI
+                const tableData = await axios.get(`http://159.65.42.225:3053/v2/dataframes?token=${token}`)
+                //Fluxo resultado bruto galonagem/produto api externa
+                const sumLiterageResult = await tableData.data['galonagem'].reduce((accumulator: number, currentValue: any) => {
 
+                    return (accumulator || 0) + (currentValue['Resultado Bruto'] || 0);
+
+
+                }, 0)
+                const sumProductResult = await tableData.data['produto'].reduce((accumulator: number, currentValue: any) => {
+
+                    return (accumulator || 0) + (currentValue['Resultado Bruto'] || 0);
+
+
+                }, 0)
 
                 return res.status(200).json({
                     data: [{
@@ -291,7 +305,7 @@ class DataController {
                         seventh_label: "Média Mensal", seventh_value: Math.round(((monthBigNumbers?.bignumbers_fuelSales ?? 0) / actualDay) * 100) / 100
                     },
                     {
-                        label: "Resultado Bruto da Galonagem", value: fuelProfit,
+                        label: "Resultado Bruto da Galonagem", value: Math.round(sumLiterageResult * 100) / 100,
                         secondary_label: "Lucro Bruto Operacional", secondary_value: Math.round((secondary_value_fuelProfit) * 100) / 100,
                         third_label: "Status Margem", third_value: lucro_operacional_galonagem, fourth_label: "Alvo",
                         fourth_value: (flags?.use_lucro_bruto_operacional_galonagem ?? 0) * 100,
@@ -319,7 +333,7 @@ class DataController {
                         seventh_label: "Média Mensal", seventh_value: Math.round(((monthBigNumbers?.bignumbers_productSales ?? 0) / actualDay) * 100) / 100
                     },
                     {
-                        label: "Resultado Bruto de Produto", value: monthBigNumbers?.bignumbers_dailyProductProfit,
+                        label: "Resultado Bruto de Produto", value: Math.round(sumProductResult * 100) / 100,
                         secondary_label: "Lucro Bruto Operacional", secondary_value: Math.round((secondary_value_productProfit) * 100) / 100,
                         third_label: "Status Margem", third_value: lucro_operacional_produto,
                         fourth_label: "Alvo", fourth_value: (flags?.use_lucro_bruto_operacional_produto ?? 0) * 100,
