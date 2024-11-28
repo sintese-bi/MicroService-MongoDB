@@ -17,6 +17,7 @@ dataRouter.post("/daily-graph/:filter", DataController.regionalStateDailyDataFra
 dataRouter.get("/map-data/:use_token", DataController.mapData)
 dataRouter.get("/teste", DataController.BigNumbersMonth)
 dataRouter.get("/fuel-types", DataController.fuelTypes)
+dataRouter.get("/gross-history", DataController.grossHistory)
 // dataRouter.get("/tests",DataController.tests)
 export default dataRouter
 

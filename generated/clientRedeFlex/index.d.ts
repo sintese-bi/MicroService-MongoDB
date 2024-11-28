@@ -43,6 +43,16 @@ export type regions = $Result.DefaultSelection<Prisma.$regionsPayload>
  * 
  */
 export type big_numbers_values = $Result.DefaultSelection<Prisma.$big_numbers_valuesPayload>
+/**
+ * Model gallon_gross_history
+ * 
+ */
+export type gallon_gross_history = $Result.DefaultSelection<Prisma.$gallon_gross_historyPayload>
+/**
+ * Model product_gross_history
+ * 
+ */
+export type product_gross_history = $Result.DefaultSelection<Prisma.$product_gross_historyPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -225,6 +235,26 @@ export class PrismaClient<
     * ```
     */
   get big_numbers_values(): Prisma.big_numbers_valuesDelegate<ExtArgs>;
+
+  /**
+   * `prisma.gallon_gross_history`: Exposes CRUD operations for the **gallon_gross_history** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Gallon_gross_histories
+    * const gallon_gross_histories = await prisma.gallon_gross_history.findMany()
+    * ```
+    */
+  get gallon_gross_history(): Prisma.gallon_gross_historyDelegate<ExtArgs>;
+
+  /**
+   * `prisma.product_gross_history`: Exposes CRUD operations for the **product_gross_history** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Product_gross_histories
+    * const product_gross_histories = await prisma.product_gross_history.findMany()
+    * ```
+    */
+  get product_gross_history(): Prisma.product_gross_historyDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -707,7 +737,9 @@ export namespace Prisma {
     gas_station_setvariables: 'gas_station_setvariables',
     region_setvariables: 'region_setvariables',
     regions: 'regions',
-    big_numbers_values: 'big_numbers_values'
+    big_numbers_values: 'big_numbers_values',
+    gallon_gross_history: 'gallon_gross_history',
+    product_gross_history: 'product_gross_history'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -724,7 +756,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'ibm_info' | 'users' | 'gas_station_setvariables' | 'region_setvariables' | 'regions' | 'big_numbers_values'
+      modelProps: 'ibm_info' | 'users' | 'gas_station_setvariables' | 'region_setvariables' | 'regions' | 'big_numbers_values' | 'gallon_gross_history' | 'product_gross_history'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
@@ -1148,6 +1180,146 @@ export namespace Prisma {
           }
         }
       }
+      gallon_gross_history: {
+        payload: Prisma.$gallon_gross_historyPayload<ExtArgs>
+        fields: Prisma.gallon_gross_historyFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.gallon_gross_historyFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$gallon_gross_historyPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.gallon_gross_historyFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$gallon_gross_historyPayload>
+          }
+          findFirst: {
+            args: Prisma.gallon_gross_historyFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$gallon_gross_historyPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.gallon_gross_historyFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$gallon_gross_historyPayload>
+          }
+          findMany: {
+            args: Prisma.gallon_gross_historyFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$gallon_gross_historyPayload>[]
+          }
+          create: {
+            args: Prisma.gallon_gross_historyCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$gallon_gross_historyPayload>
+          }
+          createMany: {
+            args: Prisma.gallon_gross_historyCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.gallon_gross_historyCreateManyAndReturnArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$gallon_gross_historyPayload>[]
+          }
+          delete: {
+            args: Prisma.gallon_gross_historyDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$gallon_gross_historyPayload>
+          }
+          update: {
+            args: Prisma.gallon_gross_historyUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$gallon_gross_historyPayload>
+          }
+          deleteMany: {
+            args: Prisma.gallon_gross_historyDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.gallon_gross_historyUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.gallon_gross_historyUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$gallon_gross_historyPayload>
+          }
+          aggregate: {
+            args: Prisma.Gallon_gross_historyAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateGallon_gross_history>
+          }
+          groupBy: {
+            args: Prisma.gallon_gross_historyGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<Gallon_gross_historyGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.gallon_gross_historyCountArgs<ExtArgs>,
+            result: $Utils.Optional<Gallon_gross_historyCountAggregateOutputType> | number
+          }
+        }
+      }
+      product_gross_history: {
+        payload: Prisma.$product_gross_historyPayload<ExtArgs>
+        fields: Prisma.product_gross_historyFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.product_gross_historyFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$product_gross_historyPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.product_gross_historyFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$product_gross_historyPayload>
+          }
+          findFirst: {
+            args: Prisma.product_gross_historyFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$product_gross_historyPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.product_gross_historyFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$product_gross_historyPayload>
+          }
+          findMany: {
+            args: Prisma.product_gross_historyFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$product_gross_historyPayload>[]
+          }
+          create: {
+            args: Prisma.product_gross_historyCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$product_gross_historyPayload>
+          }
+          createMany: {
+            args: Prisma.product_gross_historyCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.product_gross_historyCreateManyAndReturnArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$product_gross_historyPayload>[]
+          }
+          delete: {
+            args: Prisma.product_gross_historyDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$product_gross_historyPayload>
+          }
+          update: {
+            args: Prisma.product_gross_historyUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$product_gross_historyPayload>
+          }
+          deleteMany: {
+            args: Prisma.product_gross_historyDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.product_gross_historyUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.product_gross_historyUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$product_gross_historyPayload>
+          }
+          aggregate: {
+            args: Prisma.Product_gross_historyAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateProduct_gross_history>
+          }
+          groupBy: {
+            args: Prisma.product_gross_historyGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<Product_gross_historyGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.product_gross_historyCountArgs<ExtArgs>,
+            result: $Utils.Optional<Product_gross_historyCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1308,11 +1480,15 @@ export namespace Prisma {
    */
 
   export type Ibm_infoCountOutputType = {
+    gallon_gross_history: number
     gas_station_setvariables: number
+    product_gross_history: number
   }
 
   export type Ibm_infoCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    gallon_gross_history?: boolean | Ibm_infoCountOutputTypeCountGallon_gross_historyArgs
     gas_station_setvariables?: boolean | Ibm_infoCountOutputTypeCountGas_station_setvariablesArgs
+    product_gross_history?: boolean | Ibm_infoCountOutputTypeCountProduct_gross_historyArgs
   }
 
   // Custom InputTypes
@@ -1329,8 +1505,22 @@ export namespace Prisma {
   /**
    * Ibm_infoCountOutputType without action
    */
+  export type Ibm_infoCountOutputTypeCountGallon_gross_historyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: gallon_gross_historyWhereInput
+  }
+
+  /**
+   * Ibm_infoCountOutputType without action
+   */
   export type Ibm_infoCountOutputTypeCountGas_station_setvariablesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: gas_station_setvariablesWhereInput
+  }
+
+  /**
+   * Ibm_infoCountOutputType without action
+   */
+  export type Ibm_infoCountOutputTypeCountProduct_gross_historyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: product_gross_historyWhereInput
   }
 
 
@@ -1339,12 +1529,16 @@ export namespace Prisma {
    */
 
   export type UsersCountOutputType = {
+    gallon_gross_history: number
     gas_station_setvariables: number
+    product_gross_history: number
     region_setvariables: number
   }
 
   export type UsersCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    gallon_gross_history?: boolean | UsersCountOutputTypeCountGallon_gross_historyArgs
     gas_station_setvariables?: boolean | UsersCountOutputTypeCountGas_station_setvariablesArgs
+    product_gross_history?: boolean | UsersCountOutputTypeCountProduct_gross_historyArgs
     region_setvariables?: boolean | UsersCountOutputTypeCountRegion_setvariablesArgs
   }
 
@@ -1362,8 +1556,22 @@ export namespace Prisma {
   /**
    * UsersCountOutputType without action
    */
+  export type UsersCountOutputTypeCountGallon_gross_historyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: gallon_gross_historyWhereInput
+  }
+
+  /**
+   * UsersCountOutputType without action
+   */
   export type UsersCountOutputTypeCountGas_station_setvariablesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: gas_station_setvariablesWhereInput
+  }
+
+  /**
+   * UsersCountOutputType without action
+   */
+  export type UsersCountOutputTypeCountProduct_gross_historyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: product_gross_historyWhereInput
   }
 
   /**
@@ -1715,7 +1923,9 @@ export namespace Prisma {
     ibm_margin_ETANOL_COMUM?: boolean
     ibm_margin_TOTAL_PRODUCT?: boolean
     ibm_margin_ADITIVOS_AUTOMOVEIS_PRODUCT?: boolean
+    gallon_gross_history?: boolean | ibm_info$gallon_gross_historyArgs<ExtArgs>
     gas_station_setvariables?: boolean | ibm_info$gas_station_setvariablesArgs<ExtArgs>
+    product_gross_history?: boolean | ibm_info$product_gross_historyArgs<ExtArgs>
     _count?: boolean | Ibm_infoCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["ibm_info"]>
 
@@ -1762,7 +1972,9 @@ export namespace Prisma {
   }
 
   export type ibm_infoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    gallon_gross_history?: boolean | ibm_info$gallon_gross_historyArgs<ExtArgs>
     gas_station_setvariables?: boolean | ibm_info$gas_station_setvariablesArgs<ExtArgs>
+    product_gross_history?: boolean | ibm_info$product_gross_historyArgs<ExtArgs>
     _count?: boolean | Ibm_infoCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ibm_infoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1770,7 +1982,9 @@ export namespace Prisma {
   export type $ibm_infoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "ibm_info"
     objects: {
+      gallon_gross_history: Prisma.$gallon_gross_historyPayload<ExtArgs>[]
       gas_station_setvariables: Prisma.$gas_station_setvariablesPayload<ExtArgs>[]
+      product_gross_history: Prisma.$product_gross_historyPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       ibm: string | null
@@ -2181,7 +2395,11 @@ export namespace Prisma {
   export interface Prisma__ibm_infoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
+    gallon_gross_history<T extends ibm_info$gallon_gross_historyArgs<ExtArgs> = {}>(args?: Subset<T, ibm_info$gallon_gross_historyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, 'findMany'> | Null>;
+
     gas_station_setvariables<T extends ibm_info$gas_station_setvariablesArgs<ExtArgs> = {}>(args?: Subset<T, ibm_info$gas_station_setvariablesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    product_gross_history<T extends ibm_info$product_gross_historyArgs<ExtArgs> = {}>(args?: Subset<T, ibm_info$product_gross_historyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2543,6 +2761,26 @@ export namespace Prisma {
   }
 
   /**
+   * ibm_info.gallon_gross_history
+   */
+  export type ibm_info$gallon_gross_historyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the gallon_gross_history
+     */
+    select?: gallon_gross_historySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: gallon_gross_historyInclude<ExtArgs> | null
+    where?: gallon_gross_historyWhereInput
+    orderBy?: gallon_gross_historyOrderByWithRelationInput | gallon_gross_historyOrderByWithRelationInput[]
+    cursor?: gallon_gross_historyWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Gallon_gross_historyScalarFieldEnum | Gallon_gross_historyScalarFieldEnum[]
+  }
+
+  /**
    * ibm_info.gas_station_setvariables
    */
   export type ibm_info$gas_station_setvariablesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2560,6 +2798,26 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: Gas_station_setvariablesScalarFieldEnum | Gas_station_setvariablesScalarFieldEnum[]
+  }
+
+  /**
+   * ibm_info.product_gross_history
+   */
+  export type ibm_info$product_gross_historyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the product_gross_history
+     */
+    select?: product_gross_historySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: product_gross_historyInclude<ExtArgs> | null
+    where?: product_gross_historyWhereInput
+    orderBy?: product_gross_historyOrderByWithRelationInput | product_gross_historyOrderByWithRelationInput[]
+    cursor?: product_gross_historyWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Product_gross_historyScalarFieldEnum | Product_gross_historyScalarFieldEnum[]
   }
 
   /**
@@ -2951,7 +3209,9 @@ export namespace Prisma {
     use_GASOLINA_COMUM_comb?: boolean
     use_OLEO_DIESEL_B_S10_COMUM_comb?: boolean
     use_OLEO_DIESEL_B_S500_COMUM_comb?: boolean
+    gallon_gross_history?: boolean | users$gallon_gross_historyArgs<ExtArgs>
     gas_station_setvariables?: boolean | users$gas_station_setvariablesArgs<ExtArgs>
+    product_gross_history?: boolean | users$product_gross_historyArgs<ExtArgs>
     region_setvariables?: boolean | users$region_setvariablesArgs<ExtArgs>
     _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["users"]>
@@ -3007,7 +3267,9 @@ export namespace Prisma {
   }
 
   export type usersInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    gallon_gross_history?: boolean | users$gallon_gross_historyArgs<ExtArgs>
     gas_station_setvariables?: boolean | users$gas_station_setvariablesArgs<ExtArgs>
+    product_gross_history?: boolean | users$product_gross_historyArgs<ExtArgs>
     region_setvariables?: boolean | users$region_setvariablesArgs<ExtArgs>
     _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -3016,7 +3278,9 @@ export namespace Prisma {
   export type $usersPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "users"
     objects: {
+      gallon_gross_history: Prisma.$gallon_gross_historyPayload<ExtArgs>[]
       gas_station_setvariables: Prisma.$gas_station_setvariablesPayload<ExtArgs>[]
+      product_gross_history: Prisma.$product_gross_historyPayload<ExtArgs>[]
       region_setvariables: Prisma.$region_setvariablesPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -3432,7 +3696,11 @@ export namespace Prisma {
   export interface Prisma__usersClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
+    gallon_gross_history<T extends users$gallon_gross_historyArgs<ExtArgs> = {}>(args?: Subset<T, users$gallon_gross_historyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, 'findMany'> | Null>;
+
     gas_station_setvariables<T extends users$gas_station_setvariablesArgs<ExtArgs> = {}>(args?: Subset<T, users$gas_station_setvariablesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    product_gross_history<T extends users$product_gross_historyArgs<ExtArgs> = {}>(args?: Subset<T, users$product_gross_historyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     region_setvariables<T extends users$region_setvariablesArgs<ExtArgs> = {}>(args?: Subset<T, users$region_setvariablesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, 'findMany'> | Null>;
 
@@ -3800,6 +4068,26 @@ export namespace Prisma {
   }
 
   /**
+   * users.gallon_gross_history
+   */
+  export type users$gallon_gross_historyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the gallon_gross_history
+     */
+    select?: gallon_gross_historySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: gallon_gross_historyInclude<ExtArgs> | null
+    where?: gallon_gross_historyWhereInput
+    orderBy?: gallon_gross_historyOrderByWithRelationInput | gallon_gross_historyOrderByWithRelationInput[]
+    cursor?: gallon_gross_historyWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Gallon_gross_historyScalarFieldEnum | Gallon_gross_historyScalarFieldEnum[]
+  }
+
+  /**
    * users.gas_station_setvariables
    */
   export type users$gas_station_setvariablesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3817,6 +4105,26 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: Gas_station_setvariablesScalarFieldEnum | Gas_station_setvariablesScalarFieldEnum[]
+  }
+
+  /**
+   * users.product_gross_history
+   */
+  export type users$product_gross_historyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the product_gross_history
+     */
+    select?: product_gross_historySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: product_gross_historyInclude<ExtArgs> | null
+    where?: product_gross_historyWhereInput
+    orderBy?: product_gross_historyOrderByWithRelationInput | product_gross_historyOrderByWithRelationInput[]
+    cursor?: product_gross_historyWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Product_gross_historyScalarFieldEnum | Product_gross_historyScalarFieldEnum[]
   }
 
   /**
@@ -9489,6 +9797,2114 @@ export namespace Prisma {
 
 
   /**
+   * Model gallon_gross_history
+   */
+
+  export type AggregateGallon_gross_history = {
+    _count: Gallon_gross_historyCountAggregateOutputType | null
+    _avg: Gallon_gross_historyAvgAggregateOutputType | null
+    _sum: Gallon_gross_historySumAggregateOutputType | null
+    _min: Gallon_gross_historyMinAggregateOutputType | null
+    _max: Gallon_gross_historyMaxAggregateOutputType | null
+  }
+
+  export type Gallon_gross_historyAvgAggregateOutputType = {
+    gallon_history_gross: number | null
+  }
+
+  export type Gallon_gross_historySumAggregateOutputType = {
+    gallon_history_gross: number | null
+  }
+
+  export type Gallon_gross_historyMinAggregateOutputType = {
+    gallon_history_uuid: string | null
+    ibm_info_id: string | null
+    use_uuid: string | null
+    gallon_history_gross: number | null
+    gallon_history_date: Date | null
+    gallon_history_created_at: Date | null
+    gallon_history_updated_at: Date | null
+  }
+
+  export type Gallon_gross_historyMaxAggregateOutputType = {
+    gallon_history_uuid: string | null
+    ibm_info_id: string | null
+    use_uuid: string | null
+    gallon_history_gross: number | null
+    gallon_history_date: Date | null
+    gallon_history_created_at: Date | null
+    gallon_history_updated_at: Date | null
+  }
+
+  export type Gallon_gross_historyCountAggregateOutputType = {
+    gallon_history_uuid: number
+    ibm_info_id: number
+    use_uuid: number
+    gallon_history_gross: number
+    gallon_history_date: number
+    gallon_history_created_at: number
+    gallon_history_updated_at: number
+    _all: number
+  }
+
+
+  export type Gallon_gross_historyAvgAggregateInputType = {
+    gallon_history_gross?: true
+  }
+
+  export type Gallon_gross_historySumAggregateInputType = {
+    gallon_history_gross?: true
+  }
+
+  export type Gallon_gross_historyMinAggregateInputType = {
+    gallon_history_uuid?: true
+    ibm_info_id?: true
+    use_uuid?: true
+    gallon_history_gross?: true
+    gallon_history_date?: true
+    gallon_history_created_at?: true
+    gallon_history_updated_at?: true
+  }
+
+  export type Gallon_gross_historyMaxAggregateInputType = {
+    gallon_history_uuid?: true
+    ibm_info_id?: true
+    use_uuid?: true
+    gallon_history_gross?: true
+    gallon_history_date?: true
+    gallon_history_created_at?: true
+    gallon_history_updated_at?: true
+  }
+
+  export type Gallon_gross_historyCountAggregateInputType = {
+    gallon_history_uuid?: true
+    ibm_info_id?: true
+    use_uuid?: true
+    gallon_history_gross?: true
+    gallon_history_date?: true
+    gallon_history_created_at?: true
+    gallon_history_updated_at?: true
+    _all?: true
+  }
+
+  export type Gallon_gross_historyAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which gallon_gross_history to aggregate.
+     */
+    where?: gallon_gross_historyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of gallon_gross_histories to fetch.
+     */
+    orderBy?: gallon_gross_historyOrderByWithRelationInput | gallon_gross_historyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: gallon_gross_historyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` gallon_gross_histories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` gallon_gross_histories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned gallon_gross_histories
+    **/
+    _count?: true | Gallon_gross_historyCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Gallon_gross_historyAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Gallon_gross_historySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Gallon_gross_historyMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Gallon_gross_historyMaxAggregateInputType
+  }
+
+  export type GetGallon_gross_historyAggregateType<T extends Gallon_gross_historyAggregateArgs> = {
+        [P in keyof T & keyof AggregateGallon_gross_history]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateGallon_gross_history[P]>
+      : GetScalarType<T[P], AggregateGallon_gross_history[P]>
+  }
+
+
+
+
+  export type gallon_gross_historyGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: gallon_gross_historyWhereInput
+    orderBy?: gallon_gross_historyOrderByWithAggregationInput | gallon_gross_historyOrderByWithAggregationInput[]
+    by: Gallon_gross_historyScalarFieldEnum[] | Gallon_gross_historyScalarFieldEnum
+    having?: gallon_gross_historyScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Gallon_gross_historyCountAggregateInputType | true
+    _avg?: Gallon_gross_historyAvgAggregateInputType
+    _sum?: Gallon_gross_historySumAggregateInputType
+    _min?: Gallon_gross_historyMinAggregateInputType
+    _max?: Gallon_gross_historyMaxAggregateInputType
+  }
+
+  export type Gallon_gross_historyGroupByOutputType = {
+    gallon_history_uuid: string
+    ibm_info_id: string | null
+    use_uuid: string | null
+    gallon_history_gross: number | null
+    gallon_history_date: Date | null
+    gallon_history_created_at: Date
+    gallon_history_updated_at: Date
+    _count: Gallon_gross_historyCountAggregateOutputType | null
+    _avg: Gallon_gross_historyAvgAggregateOutputType | null
+    _sum: Gallon_gross_historySumAggregateOutputType | null
+    _min: Gallon_gross_historyMinAggregateOutputType | null
+    _max: Gallon_gross_historyMaxAggregateOutputType | null
+  }
+
+  type GetGallon_gross_historyGroupByPayload<T extends gallon_gross_historyGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Gallon_gross_historyGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Gallon_gross_historyGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Gallon_gross_historyGroupByOutputType[P]>
+            : GetScalarType<T[P], Gallon_gross_historyGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type gallon_gross_historySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    gallon_history_uuid?: boolean
+    ibm_info_id?: boolean
+    use_uuid?: boolean
+    gallon_history_gross?: boolean
+    gallon_history_date?: boolean
+    gallon_history_created_at?: boolean
+    gallon_history_updated_at?: boolean
+    ibm_info?: boolean | gallon_gross_history$ibm_infoArgs<ExtArgs>
+    users?: boolean | gallon_gross_history$usersArgs<ExtArgs>
+  }, ExtArgs["result"]["gallon_gross_history"]>
+
+  export type gallon_gross_historySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    gallon_history_uuid?: boolean
+    ibm_info_id?: boolean
+    use_uuid?: boolean
+    gallon_history_gross?: boolean
+    gallon_history_date?: boolean
+    gallon_history_created_at?: boolean
+    gallon_history_updated_at?: boolean
+    ibm_info?: boolean | gallon_gross_history$ibm_infoArgs<ExtArgs>
+    users?: boolean | gallon_gross_history$usersArgs<ExtArgs>
+  }, ExtArgs["result"]["gallon_gross_history"]>
+
+  export type gallon_gross_historySelectScalar = {
+    gallon_history_uuid?: boolean
+    ibm_info_id?: boolean
+    use_uuid?: boolean
+    gallon_history_gross?: boolean
+    gallon_history_date?: boolean
+    gallon_history_created_at?: boolean
+    gallon_history_updated_at?: boolean
+  }
+
+  export type gallon_gross_historyInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ibm_info?: boolean | gallon_gross_history$ibm_infoArgs<ExtArgs>
+    users?: boolean | gallon_gross_history$usersArgs<ExtArgs>
+  }
+  export type gallon_gross_historyIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ibm_info?: boolean | gallon_gross_history$ibm_infoArgs<ExtArgs>
+    users?: boolean | gallon_gross_history$usersArgs<ExtArgs>
+  }
+
+  export type $gallon_gross_historyPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "gallon_gross_history"
+    objects: {
+      ibm_info: Prisma.$ibm_infoPayload<ExtArgs> | null
+      users: Prisma.$usersPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      gallon_history_uuid: string
+      ibm_info_id: string | null
+      use_uuid: string | null
+      gallon_history_gross: number | null
+      gallon_history_date: Date | null
+      gallon_history_created_at: Date
+      gallon_history_updated_at: Date
+    }, ExtArgs["result"]["gallon_gross_history"]>
+    composites: {}
+  }
+
+  type gallon_gross_historyGetPayload<S extends boolean | null | undefined | gallon_gross_historyDefaultArgs> = $Result.GetResult<Prisma.$gallon_gross_historyPayload, S>
+
+  type gallon_gross_historyCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<gallon_gross_historyFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: Gallon_gross_historyCountAggregateInputType | true
+    }
+
+  export interface gallon_gross_historyDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['gallon_gross_history'], meta: { name: 'gallon_gross_history' } }
+    /**
+     * Find zero or one Gallon_gross_history that matches the filter.
+     * @param {gallon_gross_historyFindUniqueArgs} args - Arguments to find a Gallon_gross_history
+     * @example
+     * // Get one Gallon_gross_history
+     * const gallon_gross_history = await prisma.gallon_gross_history.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends gallon_gross_historyFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, gallon_gross_historyFindUniqueArgs<ExtArgs>>
+    ): Prisma__gallon_gross_historyClient<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one Gallon_gross_history that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {gallon_gross_historyFindUniqueOrThrowArgs} args - Arguments to find a Gallon_gross_history
+     * @example
+     * // Get one Gallon_gross_history
+     * const gallon_gross_history = await prisma.gallon_gross_history.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends gallon_gross_historyFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, gallon_gross_historyFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__gallon_gross_historyClient<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first Gallon_gross_history that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {gallon_gross_historyFindFirstArgs} args - Arguments to find a Gallon_gross_history
+     * @example
+     * // Get one Gallon_gross_history
+     * const gallon_gross_history = await prisma.gallon_gross_history.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends gallon_gross_historyFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, gallon_gross_historyFindFirstArgs<ExtArgs>>
+    ): Prisma__gallon_gross_historyClient<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first Gallon_gross_history that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {gallon_gross_historyFindFirstOrThrowArgs} args - Arguments to find a Gallon_gross_history
+     * @example
+     * // Get one Gallon_gross_history
+     * const gallon_gross_history = await prisma.gallon_gross_history.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends gallon_gross_historyFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, gallon_gross_historyFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__gallon_gross_historyClient<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more Gallon_gross_histories that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {gallon_gross_historyFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Gallon_gross_histories
+     * const gallon_gross_histories = await prisma.gallon_gross_history.findMany()
+     * 
+     * // Get first 10 Gallon_gross_histories
+     * const gallon_gross_histories = await prisma.gallon_gross_history.findMany({ take: 10 })
+     * 
+     * // Only select the `gallon_history_uuid`
+     * const gallon_gross_historyWithGallon_history_uuidOnly = await prisma.gallon_gross_history.findMany({ select: { gallon_history_uuid: true } })
+     * 
+    **/
+    findMany<T extends gallon_gross_historyFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, gallon_gross_historyFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a Gallon_gross_history.
+     * @param {gallon_gross_historyCreateArgs} args - Arguments to create a Gallon_gross_history.
+     * @example
+     * // Create one Gallon_gross_history
+     * const Gallon_gross_history = await prisma.gallon_gross_history.create({
+     *   data: {
+     *     // ... data to create a Gallon_gross_history
+     *   }
+     * })
+     * 
+    **/
+    create<T extends gallon_gross_historyCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, gallon_gross_historyCreateArgs<ExtArgs>>
+    ): Prisma__gallon_gross_historyClient<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many Gallon_gross_histories.
+     * @param {gallon_gross_historyCreateManyArgs} args - Arguments to create many Gallon_gross_histories.
+     * @example
+     * // Create many Gallon_gross_histories
+     * const gallon_gross_history = await prisma.gallon_gross_history.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+    **/
+    createMany<T extends gallon_gross_historyCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, gallon_gross_historyCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Gallon_gross_histories and returns the data saved in the database.
+     * @param {gallon_gross_historyCreateManyAndReturnArgs} args - Arguments to create many Gallon_gross_histories.
+     * @example
+     * // Create many Gallon_gross_histories
+     * const gallon_gross_history = await prisma.gallon_gross_history.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Gallon_gross_histories and only return the `gallon_history_uuid`
+     * const gallon_gross_historyWithGallon_history_uuidOnly = await prisma.gallon_gross_history.createManyAndReturn({ 
+     *   select: { gallon_history_uuid: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+    **/
+    createManyAndReturn<T extends gallon_gross_historyCreateManyAndReturnArgs<ExtArgs>>(
+      args?: SelectSubset<T, gallon_gross_historyCreateManyAndReturnArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, 'createManyAndReturn'>>
+
+    /**
+     * Delete a Gallon_gross_history.
+     * @param {gallon_gross_historyDeleteArgs} args - Arguments to delete one Gallon_gross_history.
+     * @example
+     * // Delete one Gallon_gross_history
+     * const Gallon_gross_history = await prisma.gallon_gross_history.delete({
+     *   where: {
+     *     // ... filter to delete one Gallon_gross_history
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends gallon_gross_historyDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, gallon_gross_historyDeleteArgs<ExtArgs>>
+    ): Prisma__gallon_gross_historyClient<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one Gallon_gross_history.
+     * @param {gallon_gross_historyUpdateArgs} args - Arguments to update one Gallon_gross_history.
+     * @example
+     * // Update one Gallon_gross_history
+     * const gallon_gross_history = await prisma.gallon_gross_history.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends gallon_gross_historyUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, gallon_gross_historyUpdateArgs<ExtArgs>>
+    ): Prisma__gallon_gross_historyClient<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more Gallon_gross_histories.
+     * @param {gallon_gross_historyDeleteManyArgs} args - Arguments to filter Gallon_gross_histories to delete.
+     * @example
+     * // Delete a few Gallon_gross_histories
+     * const { count } = await prisma.gallon_gross_history.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends gallon_gross_historyDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, gallon_gross_historyDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Gallon_gross_histories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {gallon_gross_historyUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Gallon_gross_histories
+     * const gallon_gross_history = await prisma.gallon_gross_history.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends gallon_gross_historyUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, gallon_gross_historyUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Gallon_gross_history.
+     * @param {gallon_gross_historyUpsertArgs} args - Arguments to update or create a Gallon_gross_history.
+     * @example
+     * // Update or create a Gallon_gross_history
+     * const gallon_gross_history = await prisma.gallon_gross_history.upsert({
+     *   create: {
+     *     // ... data to create a Gallon_gross_history
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Gallon_gross_history we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends gallon_gross_historyUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, gallon_gross_historyUpsertArgs<ExtArgs>>
+    ): Prisma__gallon_gross_historyClient<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of Gallon_gross_histories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {gallon_gross_historyCountArgs} args - Arguments to filter Gallon_gross_histories to count.
+     * @example
+     * // Count the number of Gallon_gross_histories
+     * const count = await prisma.gallon_gross_history.count({
+     *   where: {
+     *     // ... the filter for the Gallon_gross_histories we want to count
+     *   }
+     * })
+    **/
+    count<T extends gallon_gross_historyCountArgs>(
+      args?: Subset<T, gallon_gross_historyCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Gallon_gross_historyCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Gallon_gross_history.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Gallon_gross_historyAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Gallon_gross_historyAggregateArgs>(args: Subset<T, Gallon_gross_historyAggregateArgs>): Prisma.PrismaPromise<GetGallon_gross_historyAggregateType<T>>
+
+    /**
+     * Group by Gallon_gross_history.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {gallon_gross_historyGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends gallon_gross_historyGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: gallon_gross_historyGroupByArgs['orderBy'] }
+        : { orderBy?: gallon_gross_historyGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, gallon_gross_historyGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetGallon_gross_historyGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the gallon_gross_history model
+   */
+  readonly fields: gallon_gross_historyFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for gallon_gross_history.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__gallon_gross_historyClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    ibm_info<T extends gallon_gross_history$ibm_infoArgs<ExtArgs> = {}>(args?: Subset<T, gallon_gross_history$ibm_infoArgs<ExtArgs>>): Prisma__ibm_infoClient<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
+
+    users<T extends gallon_gross_history$usersArgs<ExtArgs> = {}>(args?: Subset<T, gallon_gross_history$usersArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the gallon_gross_history model
+   */ 
+  interface gallon_gross_historyFieldRefs {
+    readonly gallon_history_uuid: FieldRef<"gallon_gross_history", 'String'>
+    readonly ibm_info_id: FieldRef<"gallon_gross_history", 'String'>
+    readonly use_uuid: FieldRef<"gallon_gross_history", 'String'>
+    readonly gallon_history_gross: FieldRef<"gallon_gross_history", 'Float'>
+    readonly gallon_history_date: FieldRef<"gallon_gross_history", 'DateTime'>
+    readonly gallon_history_created_at: FieldRef<"gallon_gross_history", 'DateTime'>
+    readonly gallon_history_updated_at: FieldRef<"gallon_gross_history", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * gallon_gross_history findUnique
+   */
+  export type gallon_gross_historyFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the gallon_gross_history
+     */
+    select?: gallon_gross_historySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: gallon_gross_historyInclude<ExtArgs> | null
+    /**
+     * Filter, which gallon_gross_history to fetch.
+     */
+    where: gallon_gross_historyWhereUniqueInput
+  }
+
+  /**
+   * gallon_gross_history findUniqueOrThrow
+   */
+  export type gallon_gross_historyFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the gallon_gross_history
+     */
+    select?: gallon_gross_historySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: gallon_gross_historyInclude<ExtArgs> | null
+    /**
+     * Filter, which gallon_gross_history to fetch.
+     */
+    where: gallon_gross_historyWhereUniqueInput
+  }
+
+  /**
+   * gallon_gross_history findFirst
+   */
+  export type gallon_gross_historyFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the gallon_gross_history
+     */
+    select?: gallon_gross_historySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: gallon_gross_historyInclude<ExtArgs> | null
+    /**
+     * Filter, which gallon_gross_history to fetch.
+     */
+    where?: gallon_gross_historyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of gallon_gross_histories to fetch.
+     */
+    orderBy?: gallon_gross_historyOrderByWithRelationInput | gallon_gross_historyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for gallon_gross_histories.
+     */
+    cursor?: gallon_gross_historyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` gallon_gross_histories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` gallon_gross_histories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of gallon_gross_histories.
+     */
+    distinct?: Gallon_gross_historyScalarFieldEnum | Gallon_gross_historyScalarFieldEnum[]
+  }
+
+  /**
+   * gallon_gross_history findFirstOrThrow
+   */
+  export type gallon_gross_historyFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the gallon_gross_history
+     */
+    select?: gallon_gross_historySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: gallon_gross_historyInclude<ExtArgs> | null
+    /**
+     * Filter, which gallon_gross_history to fetch.
+     */
+    where?: gallon_gross_historyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of gallon_gross_histories to fetch.
+     */
+    orderBy?: gallon_gross_historyOrderByWithRelationInput | gallon_gross_historyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for gallon_gross_histories.
+     */
+    cursor?: gallon_gross_historyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` gallon_gross_histories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` gallon_gross_histories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of gallon_gross_histories.
+     */
+    distinct?: Gallon_gross_historyScalarFieldEnum | Gallon_gross_historyScalarFieldEnum[]
+  }
+
+  /**
+   * gallon_gross_history findMany
+   */
+  export type gallon_gross_historyFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the gallon_gross_history
+     */
+    select?: gallon_gross_historySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: gallon_gross_historyInclude<ExtArgs> | null
+    /**
+     * Filter, which gallon_gross_histories to fetch.
+     */
+    where?: gallon_gross_historyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of gallon_gross_histories to fetch.
+     */
+    orderBy?: gallon_gross_historyOrderByWithRelationInput | gallon_gross_historyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing gallon_gross_histories.
+     */
+    cursor?: gallon_gross_historyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` gallon_gross_histories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` gallon_gross_histories.
+     */
+    skip?: number
+    distinct?: Gallon_gross_historyScalarFieldEnum | Gallon_gross_historyScalarFieldEnum[]
+  }
+
+  /**
+   * gallon_gross_history create
+   */
+  export type gallon_gross_historyCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the gallon_gross_history
+     */
+    select?: gallon_gross_historySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: gallon_gross_historyInclude<ExtArgs> | null
+    /**
+     * The data needed to create a gallon_gross_history.
+     */
+    data?: XOR<gallon_gross_historyCreateInput, gallon_gross_historyUncheckedCreateInput>
+  }
+
+  /**
+   * gallon_gross_history createMany
+   */
+  export type gallon_gross_historyCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many gallon_gross_histories.
+     */
+    data: gallon_gross_historyCreateManyInput | gallon_gross_historyCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * gallon_gross_history createManyAndReturn
+   */
+  export type gallon_gross_historyCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the gallon_gross_history
+     */
+    select?: gallon_gross_historySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many gallon_gross_histories.
+     */
+    data: gallon_gross_historyCreateManyInput | gallon_gross_historyCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: gallon_gross_historyIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * gallon_gross_history update
+   */
+  export type gallon_gross_historyUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the gallon_gross_history
+     */
+    select?: gallon_gross_historySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: gallon_gross_historyInclude<ExtArgs> | null
+    /**
+     * The data needed to update a gallon_gross_history.
+     */
+    data: XOR<gallon_gross_historyUpdateInput, gallon_gross_historyUncheckedUpdateInput>
+    /**
+     * Choose, which gallon_gross_history to update.
+     */
+    where: gallon_gross_historyWhereUniqueInput
+  }
+
+  /**
+   * gallon_gross_history updateMany
+   */
+  export type gallon_gross_historyUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update gallon_gross_histories.
+     */
+    data: XOR<gallon_gross_historyUpdateManyMutationInput, gallon_gross_historyUncheckedUpdateManyInput>
+    /**
+     * Filter which gallon_gross_histories to update
+     */
+    where?: gallon_gross_historyWhereInput
+  }
+
+  /**
+   * gallon_gross_history upsert
+   */
+  export type gallon_gross_historyUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the gallon_gross_history
+     */
+    select?: gallon_gross_historySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: gallon_gross_historyInclude<ExtArgs> | null
+    /**
+     * The filter to search for the gallon_gross_history to update in case it exists.
+     */
+    where: gallon_gross_historyWhereUniqueInput
+    /**
+     * In case the gallon_gross_history found by the `where` argument doesn't exist, create a new gallon_gross_history with this data.
+     */
+    create: XOR<gallon_gross_historyCreateInput, gallon_gross_historyUncheckedCreateInput>
+    /**
+     * In case the gallon_gross_history was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<gallon_gross_historyUpdateInput, gallon_gross_historyUncheckedUpdateInput>
+  }
+
+  /**
+   * gallon_gross_history delete
+   */
+  export type gallon_gross_historyDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the gallon_gross_history
+     */
+    select?: gallon_gross_historySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: gallon_gross_historyInclude<ExtArgs> | null
+    /**
+     * Filter which gallon_gross_history to delete.
+     */
+    where: gallon_gross_historyWhereUniqueInput
+  }
+
+  /**
+   * gallon_gross_history deleteMany
+   */
+  export type gallon_gross_historyDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which gallon_gross_histories to delete
+     */
+    where?: gallon_gross_historyWhereInput
+  }
+
+  /**
+   * gallon_gross_history.ibm_info
+   */
+  export type gallon_gross_history$ibm_infoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ibm_info
+     */
+    select?: ibm_infoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ibm_infoInclude<ExtArgs> | null
+    where?: ibm_infoWhereInput
+  }
+
+  /**
+   * gallon_gross_history.users
+   */
+  export type gallon_gross_history$usersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the users
+     */
+    select?: usersSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: usersInclude<ExtArgs> | null
+    where?: usersWhereInput
+  }
+
+  /**
+   * gallon_gross_history without action
+   */
+  export type gallon_gross_historyDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the gallon_gross_history
+     */
+    select?: gallon_gross_historySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: gallon_gross_historyInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model product_gross_history
+   */
+
+  export type AggregateProduct_gross_history = {
+    _count: Product_gross_historyCountAggregateOutputType | null
+    _avg: Product_gross_historyAvgAggregateOutputType | null
+    _sum: Product_gross_historySumAggregateOutputType | null
+    _min: Product_gross_historyMinAggregateOutputType | null
+    _max: Product_gross_historyMaxAggregateOutputType | null
+  }
+
+  export type Product_gross_historyAvgAggregateOutputType = {
+    product_history_gross: number | null
+  }
+
+  export type Product_gross_historySumAggregateOutputType = {
+    product_history_gross: number | null
+  }
+
+  export type Product_gross_historyMinAggregateOutputType = {
+    product_history_uuid: string | null
+    ibm_info_id: string | null
+    use_uuid: string | null
+    product_history_gross: number | null
+    product_history_date: Date | null
+    product_history_created_at: Date | null
+    product_history_updated_at: Date | null
+  }
+
+  export type Product_gross_historyMaxAggregateOutputType = {
+    product_history_uuid: string | null
+    ibm_info_id: string | null
+    use_uuid: string | null
+    product_history_gross: number | null
+    product_history_date: Date | null
+    product_history_created_at: Date | null
+    product_history_updated_at: Date | null
+  }
+
+  export type Product_gross_historyCountAggregateOutputType = {
+    product_history_uuid: number
+    ibm_info_id: number
+    use_uuid: number
+    product_history_gross: number
+    product_history_date: number
+    product_history_created_at: number
+    product_history_updated_at: number
+    _all: number
+  }
+
+
+  export type Product_gross_historyAvgAggregateInputType = {
+    product_history_gross?: true
+  }
+
+  export type Product_gross_historySumAggregateInputType = {
+    product_history_gross?: true
+  }
+
+  export type Product_gross_historyMinAggregateInputType = {
+    product_history_uuid?: true
+    ibm_info_id?: true
+    use_uuid?: true
+    product_history_gross?: true
+    product_history_date?: true
+    product_history_created_at?: true
+    product_history_updated_at?: true
+  }
+
+  export type Product_gross_historyMaxAggregateInputType = {
+    product_history_uuid?: true
+    ibm_info_id?: true
+    use_uuid?: true
+    product_history_gross?: true
+    product_history_date?: true
+    product_history_created_at?: true
+    product_history_updated_at?: true
+  }
+
+  export type Product_gross_historyCountAggregateInputType = {
+    product_history_uuid?: true
+    ibm_info_id?: true
+    use_uuid?: true
+    product_history_gross?: true
+    product_history_date?: true
+    product_history_created_at?: true
+    product_history_updated_at?: true
+    _all?: true
+  }
+
+  export type Product_gross_historyAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which product_gross_history to aggregate.
+     */
+    where?: product_gross_historyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of product_gross_histories to fetch.
+     */
+    orderBy?: product_gross_historyOrderByWithRelationInput | product_gross_historyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: product_gross_historyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` product_gross_histories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` product_gross_histories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned product_gross_histories
+    **/
+    _count?: true | Product_gross_historyCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Product_gross_historyAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Product_gross_historySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Product_gross_historyMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Product_gross_historyMaxAggregateInputType
+  }
+
+  export type GetProduct_gross_historyAggregateType<T extends Product_gross_historyAggregateArgs> = {
+        [P in keyof T & keyof AggregateProduct_gross_history]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateProduct_gross_history[P]>
+      : GetScalarType<T[P], AggregateProduct_gross_history[P]>
+  }
+
+
+
+
+  export type product_gross_historyGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: product_gross_historyWhereInput
+    orderBy?: product_gross_historyOrderByWithAggregationInput | product_gross_historyOrderByWithAggregationInput[]
+    by: Product_gross_historyScalarFieldEnum[] | Product_gross_historyScalarFieldEnum
+    having?: product_gross_historyScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Product_gross_historyCountAggregateInputType | true
+    _avg?: Product_gross_historyAvgAggregateInputType
+    _sum?: Product_gross_historySumAggregateInputType
+    _min?: Product_gross_historyMinAggregateInputType
+    _max?: Product_gross_historyMaxAggregateInputType
+  }
+
+  export type Product_gross_historyGroupByOutputType = {
+    product_history_uuid: string
+    ibm_info_id: string | null
+    use_uuid: string | null
+    product_history_gross: number | null
+    product_history_date: Date | null
+    product_history_created_at: Date
+    product_history_updated_at: Date
+    _count: Product_gross_historyCountAggregateOutputType | null
+    _avg: Product_gross_historyAvgAggregateOutputType | null
+    _sum: Product_gross_historySumAggregateOutputType | null
+    _min: Product_gross_historyMinAggregateOutputType | null
+    _max: Product_gross_historyMaxAggregateOutputType | null
+  }
+
+  type GetProduct_gross_historyGroupByPayload<T extends product_gross_historyGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Product_gross_historyGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Product_gross_historyGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Product_gross_historyGroupByOutputType[P]>
+            : GetScalarType<T[P], Product_gross_historyGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type product_gross_historySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    product_history_uuid?: boolean
+    ibm_info_id?: boolean
+    use_uuid?: boolean
+    product_history_gross?: boolean
+    product_history_date?: boolean
+    product_history_created_at?: boolean
+    product_history_updated_at?: boolean
+    ibm_info?: boolean | product_gross_history$ibm_infoArgs<ExtArgs>
+    users?: boolean | product_gross_history$usersArgs<ExtArgs>
+  }, ExtArgs["result"]["product_gross_history"]>
+
+  export type product_gross_historySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    product_history_uuid?: boolean
+    ibm_info_id?: boolean
+    use_uuid?: boolean
+    product_history_gross?: boolean
+    product_history_date?: boolean
+    product_history_created_at?: boolean
+    product_history_updated_at?: boolean
+    ibm_info?: boolean | product_gross_history$ibm_infoArgs<ExtArgs>
+    users?: boolean | product_gross_history$usersArgs<ExtArgs>
+  }, ExtArgs["result"]["product_gross_history"]>
+
+  export type product_gross_historySelectScalar = {
+    product_history_uuid?: boolean
+    ibm_info_id?: boolean
+    use_uuid?: boolean
+    product_history_gross?: boolean
+    product_history_date?: boolean
+    product_history_created_at?: boolean
+    product_history_updated_at?: boolean
+  }
+
+  export type product_gross_historyInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ibm_info?: boolean | product_gross_history$ibm_infoArgs<ExtArgs>
+    users?: boolean | product_gross_history$usersArgs<ExtArgs>
+  }
+  export type product_gross_historyIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ibm_info?: boolean | product_gross_history$ibm_infoArgs<ExtArgs>
+    users?: boolean | product_gross_history$usersArgs<ExtArgs>
+  }
+
+  export type $product_gross_historyPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "product_gross_history"
+    objects: {
+      ibm_info: Prisma.$ibm_infoPayload<ExtArgs> | null
+      users: Prisma.$usersPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      product_history_uuid: string
+      ibm_info_id: string | null
+      use_uuid: string | null
+      product_history_gross: number | null
+      product_history_date: Date | null
+      product_history_created_at: Date
+      product_history_updated_at: Date
+    }, ExtArgs["result"]["product_gross_history"]>
+    composites: {}
+  }
+
+  type product_gross_historyGetPayload<S extends boolean | null | undefined | product_gross_historyDefaultArgs> = $Result.GetResult<Prisma.$product_gross_historyPayload, S>
+
+  type product_gross_historyCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<product_gross_historyFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: Product_gross_historyCountAggregateInputType | true
+    }
+
+  export interface product_gross_historyDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['product_gross_history'], meta: { name: 'product_gross_history' } }
+    /**
+     * Find zero or one Product_gross_history that matches the filter.
+     * @param {product_gross_historyFindUniqueArgs} args - Arguments to find a Product_gross_history
+     * @example
+     * // Get one Product_gross_history
+     * const product_gross_history = await prisma.product_gross_history.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends product_gross_historyFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, product_gross_historyFindUniqueArgs<ExtArgs>>
+    ): Prisma__product_gross_historyClient<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one Product_gross_history that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {product_gross_historyFindUniqueOrThrowArgs} args - Arguments to find a Product_gross_history
+     * @example
+     * // Get one Product_gross_history
+     * const product_gross_history = await prisma.product_gross_history.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends product_gross_historyFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, product_gross_historyFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__product_gross_historyClient<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first Product_gross_history that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {product_gross_historyFindFirstArgs} args - Arguments to find a Product_gross_history
+     * @example
+     * // Get one Product_gross_history
+     * const product_gross_history = await prisma.product_gross_history.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends product_gross_historyFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, product_gross_historyFindFirstArgs<ExtArgs>>
+    ): Prisma__product_gross_historyClient<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first Product_gross_history that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {product_gross_historyFindFirstOrThrowArgs} args - Arguments to find a Product_gross_history
+     * @example
+     * // Get one Product_gross_history
+     * const product_gross_history = await prisma.product_gross_history.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends product_gross_historyFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, product_gross_historyFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__product_gross_historyClient<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more Product_gross_histories that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {product_gross_historyFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Product_gross_histories
+     * const product_gross_histories = await prisma.product_gross_history.findMany()
+     * 
+     * // Get first 10 Product_gross_histories
+     * const product_gross_histories = await prisma.product_gross_history.findMany({ take: 10 })
+     * 
+     * // Only select the `product_history_uuid`
+     * const product_gross_historyWithProduct_history_uuidOnly = await prisma.product_gross_history.findMany({ select: { product_history_uuid: true } })
+     * 
+    **/
+    findMany<T extends product_gross_historyFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, product_gross_historyFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a Product_gross_history.
+     * @param {product_gross_historyCreateArgs} args - Arguments to create a Product_gross_history.
+     * @example
+     * // Create one Product_gross_history
+     * const Product_gross_history = await prisma.product_gross_history.create({
+     *   data: {
+     *     // ... data to create a Product_gross_history
+     *   }
+     * })
+     * 
+    **/
+    create<T extends product_gross_historyCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, product_gross_historyCreateArgs<ExtArgs>>
+    ): Prisma__product_gross_historyClient<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many Product_gross_histories.
+     * @param {product_gross_historyCreateManyArgs} args - Arguments to create many Product_gross_histories.
+     * @example
+     * // Create many Product_gross_histories
+     * const product_gross_history = await prisma.product_gross_history.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+    **/
+    createMany<T extends product_gross_historyCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, product_gross_historyCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Product_gross_histories and returns the data saved in the database.
+     * @param {product_gross_historyCreateManyAndReturnArgs} args - Arguments to create many Product_gross_histories.
+     * @example
+     * // Create many Product_gross_histories
+     * const product_gross_history = await prisma.product_gross_history.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Product_gross_histories and only return the `product_history_uuid`
+     * const product_gross_historyWithProduct_history_uuidOnly = await prisma.product_gross_history.createManyAndReturn({ 
+     *   select: { product_history_uuid: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+    **/
+    createManyAndReturn<T extends product_gross_historyCreateManyAndReturnArgs<ExtArgs>>(
+      args?: SelectSubset<T, product_gross_historyCreateManyAndReturnArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, 'createManyAndReturn'>>
+
+    /**
+     * Delete a Product_gross_history.
+     * @param {product_gross_historyDeleteArgs} args - Arguments to delete one Product_gross_history.
+     * @example
+     * // Delete one Product_gross_history
+     * const Product_gross_history = await prisma.product_gross_history.delete({
+     *   where: {
+     *     // ... filter to delete one Product_gross_history
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends product_gross_historyDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, product_gross_historyDeleteArgs<ExtArgs>>
+    ): Prisma__product_gross_historyClient<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one Product_gross_history.
+     * @param {product_gross_historyUpdateArgs} args - Arguments to update one Product_gross_history.
+     * @example
+     * // Update one Product_gross_history
+     * const product_gross_history = await prisma.product_gross_history.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends product_gross_historyUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, product_gross_historyUpdateArgs<ExtArgs>>
+    ): Prisma__product_gross_historyClient<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more Product_gross_histories.
+     * @param {product_gross_historyDeleteManyArgs} args - Arguments to filter Product_gross_histories to delete.
+     * @example
+     * // Delete a few Product_gross_histories
+     * const { count } = await prisma.product_gross_history.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends product_gross_historyDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, product_gross_historyDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Product_gross_histories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {product_gross_historyUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Product_gross_histories
+     * const product_gross_history = await prisma.product_gross_history.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends product_gross_historyUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, product_gross_historyUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Product_gross_history.
+     * @param {product_gross_historyUpsertArgs} args - Arguments to update or create a Product_gross_history.
+     * @example
+     * // Update or create a Product_gross_history
+     * const product_gross_history = await prisma.product_gross_history.upsert({
+     *   create: {
+     *     // ... data to create a Product_gross_history
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Product_gross_history we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends product_gross_historyUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, product_gross_historyUpsertArgs<ExtArgs>>
+    ): Prisma__product_gross_historyClient<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of Product_gross_histories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {product_gross_historyCountArgs} args - Arguments to filter Product_gross_histories to count.
+     * @example
+     * // Count the number of Product_gross_histories
+     * const count = await prisma.product_gross_history.count({
+     *   where: {
+     *     // ... the filter for the Product_gross_histories we want to count
+     *   }
+     * })
+    **/
+    count<T extends product_gross_historyCountArgs>(
+      args?: Subset<T, product_gross_historyCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Product_gross_historyCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Product_gross_history.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Product_gross_historyAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Product_gross_historyAggregateArgs>(args: Subset<T, Product_gross_historyAggregateArgs>): Prisma.PrismaPromise<GetProduct_gross_historyAggregateType<T>>
+
+    /**
+     * Group by Product_gross_history.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {product_gross_historyGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends product_gross_historyGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: product_gross_historyGroupByArgs['orderBy'] }
+        : { orderBy?: product_gross_historyGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, product_gross_historyGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProduct_gross_historyGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the product_gross_history model
+   */
+  readonly fields: product_gross_historyFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for product_gross_history.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__product_gross_historyClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    ibm_info<T extends product_gross_history$ibm_infoArgs<ExtArgs> = {}>(args?: Subset<T, product_gross_history$ibm_infoArgs<ExtArgs>>): Prisma__ibm_infoClient<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
+
+    users<T extends product_gross_history$usersArgs<ExtArgs> = {}>(args?: Subset<T, product_gross_history$usersArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the product_gross_history model
+   */ 
+  interface product_gross_historyFieldRefs {
+    readonly product_history_uuid: FieldRef<"product_gross_history", 'String'>
+    readonly ibm_info_id: FieldRef<"product_gross_history", 'String'>
+    readonly use_uuid: FieldRef<"product_gross_history", 'String'>
+    readonly product_history_gross: FieldRef<"product_gross_history", 'Float'>
+    readonly product_history_date: FieldRef<"product_gross_history", 'DateTime'>
+    readonly product_history_created_at: FieldRef<"product_gross_history", 'DateTime'>
+    readonly product_history_updated_at: FieldRef<"product_gross_history", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * product_gross_history findUnique
+   */
+  export type product_gross_historyFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the product_gross_history
+     */
+    select?: product_gross_historySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: product_gross_historyInclude<ExtArgs> | null
+    /**
+     * Filter, which product_gross_history to fetch.
+     */
+    where: product_gross_historyWhereUniqueInput
+  }
+
+  /**
+   * product_gross_history findUniqueOrThrow
+   */
+  export type product_gross_historyFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the product_gross_history
+     */
+    select?: product_gross_historySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: product_gross_historyInclude<ExtArgs> | null
+    /**
+     * Filter, which product_gross_history to fetch.
+     */
+    where: product_gross_historyWhereUniqueInput
+  }
+
+  /**
+   * product_gross_history findFirst
+   */
+  export type product_gross_historyFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the product_gross_history
+     */
+    select?: product_gross_historySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: product_gross_historyInclude<ExtArgs> | null
+    /**
+     * Filter, which product_gross_history to fetch.
+     */
+    where?: product_gross_historyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of product_gross_histories to fetch.
+     */
+    orderBy?: product_gross_historyOrderByWithRelationInput | product_gross_historyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for product_gross_histories.
+     */
+    cursor?: product_gross_historyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` product_gross_histories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` product_gross_histories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of product_gross_histories.
+     */
+    distinct?: Product_gross_historyScalarFieldEnum | Product_gross_historyScalarFieldEnum[]
+  }
+
+  /**
+   * product_gross_history findFirstOrThrow
+   */
+  export type product_gross_historyFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the product_gross_history
+     */
+    select?: product_gross_historySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: product_gross_historyInclude<ExtArgs> | null
+    /**
+     * Filter, which product_gross_history to fetch.
+     */
+    where?: product_gross_historyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of product_gross_histories to fetch.
+     */
+    orderBy?: product_gross_historyOrderByWithRelationInput | product_gross_historyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for product_gross_histories.
+     */
+    cursor?: product_gross_historyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` product_gross_histories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` product_gross_histories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of product_gross_histories.
+     */
+    distinct?: Product_gross_historyScalarFieldEnum | Product_gross_historyScalarFieldEnum[]
+  }
+
+  /**
+   * product_gross_history findMany
+   */
+  export type product_gross_historyFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the product_gross_history
+     */
+    select?: product_gross_historySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: product_gross_historyInclude<ExtArgs> | null
+    /**
+     * Filter, which product_gross_histories to fetch.
+     */
+    where?: product_gross_historyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of product_gross_histories to fetch.
+     */
+    orderBy?: product_gross_historyOrderByWithRelationInput | product_gross_historyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing product_gross_histories.
+     */
+    cursor?: product_gross_historyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` product_gross_histories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` product_gross_histories.
+     */
+    skip?: number
+    distinct?: Product_gross_historyScalarFieldEnum | Product_gross_historyScalarFieldEnum[]
+  }
+
+  /**
+   * product_gross_history create
+   */
+  export type product_gross_historyCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the product_gross_history
+     */
+    select?: product_gross_historySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: product_gross_historyInclude<ExtArgs> | null
+    /**
+     * The data needed to create a product_gross_history.
+     */
+    data?: XOR<product_gross_historyCreateInput, product_gross_historyUncheckedCreateInput>
+  }
+
+  /**
+   * product_gross_history createMany
+   */
+  export type product_gross_historyCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many product_gross_histories.
+     */
+    data: product_gross_historyCreateManyInput | product_gross_historyCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * product_gross_history createManyAndReturn
+   */
+  export type product_gross_historyCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the product_gross_history
+     */
+    select?: product_gross_historySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many product_gross_histories.
+     */
+    data: product_gross_historyCreateManyInput | product_gross_historyCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: product_gross_historyIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * product_gross_history update
+   */
+  export type product_gross_historyUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the product_gross_history
+     */
+    select?: product_gross_historySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: product_gross_historyInclude<ExtArgs> | null
+    /**
+     * The data needed to update a product_gross_history.
+     */
+    data: XOR<product_gross_historyUpdateInput, product_gross_historyUncheckedUpdateInput>
+    /**
+     * Choose, which product_gross_history to update.
+     */
+    where: product_gross_historyWhereUniqueInput
+  }
+
+  /**
+   * product_gross_history updateMany
+   */
+  export type product_gross_historyUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update product_gross_histories.
+     */
+    data: XOR<product_gross_historyUpdateManyMutationInput, product_gross_historyUncheckedUpdateManyInput>
+    /**
+     * Filter which product_gross_histories to update
+     */
+    where?: product_gross_historyWhereInput
+  }
+
+  /**
+   * product_gross_history upsert
+   */
+  export type product_gross_historyUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the product_gross_history
+     */
+    select?: product_gross_historySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: product_gross_historyInclude<ExtArgs> | null
+    /**
+     * The filter to search for the product_gross_history to update in case it exists.
+     */
+    where: product_gross_historyWhereUniqueInput
+    /**
+     * In case the product_gross_history found by the `where` argument doesn't exist, create a new product_gross_history with this data.
+     */
+    create: XOR<product_gross_historyCreateInput, product_gross_historyUncheckedCreateInput>
+    /**
+     * In case the product_gross_history was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<product_gross_historyUpdateInput, product_gross_historyUncheckedUpdateInput>
+  }
+
+  /**
+   * product_gross_history delete
+   */
+  export type product_gross_historyDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the product_gross_history
+     */
+    select?: product_gross_historySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: product_gross_historyInclude<ExtArgs> | null
+    /**
+     * Filter which product_gross_history to delete.
+     */
+    where: product_gross_historyWhereUniqueInput
+  }
+
+  /**
+   * product_gross_history deleteMany
+   */
+  export type product_gross_historyDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which product_gross_histories to delete
+     */
+    where?: product_gross_historyWhereInput
+  }
+
+  /**
+   * product_gross_history.ibm_info
+   */
+  export type product_gross_history$ibm_infoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ibm_info
+     */
+    select?: ibm_infoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ibm_infoInclude<ExtArgs> | null
+    where?: ibm_infoWhereInput
+  }
+
+  /**
+   * product_gross_history.users
+   */
+  export type product_gross_history$usersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the users
+     */
+    select?: usersSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: usersInclude<ExtArgs> | null
+    where?: usersWhereInput
+  }
+
+  /**
+   * product_gross_history without action
+   */
+  export type product_gross_historyDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the product_gross_history
+     */
+    select?: product_gross_historySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: product_gross_historyInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -9717,6 +12133,32 @@ export namespace Prisma {
   export type Big_numbers_valuesScalarFieldEnum = (typeof Big_numbers_valuesScalarFieldEnum)[keyof typeof Big_numbers_valuesScalarFieldEnum]
 
 
+  export const Gallon_gross_historyScalarFieldEnum: {
+    gallon_history_uuid: 'gallon_history_uuid',
+    ibm_info_id: 'ibm_info_id',
+    use_uuid: 'use_uuid',
+    gallon_history_gross: 'gallon_history_gross',
+    gallon_history_date: 'gallon_history_date',
+    gallon_history_created_at: 'gallon_history_created_at',
+    gallon_history_updated_at: 'gallon_history_updated_at'
+  };
+
+  export type Gallon_gross_historyScalarFieldEnum = (typeof Gallon_gross_historyScalarFieldEnum)[keyof typeof Gallon_gross_historyScalarFieldEnum]
+
+
+  export const Product_gross_historyScalarFieldEnum: {
+    product_history_uuid: 'product_history_uuid',
+    ibm_info_id: 'ibm_info_id',
+    use_uuid: 'use_uuid',
+    product_history_gross: 'product_history_gross',
+    product_history_date: 'product_history_date',
+    product_history_created_at: 'product_history_created_at',
+    product_history_updated_at: 'product_history_updated_at'
+  };
+
+  export type Product_gross_historyScalarFieldEnum = (typeof Product_gross_historyScalarFieldEnum)[keyof typeof Product_gross_historyScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -9834,7 +12276,9 @@ export namespace Prisma {
     ibm_margin_ETANOL_COMUM?: FloatNullableListFilter<"ibm_info">
     ibm_margin_TOTAL_PRODUCT?: FloatNullableListFilter<"ibm_info">
     ibm_margin_ADITIVOS_AUTOMOVEIS_PRODUCT?: FloatNullableListFilter<"ibm_info">
+    gallon_gross_history?: Gallon_gross_historyListRelationFilter
     gas_station_setvariables?: Gas_station_setvariablesListRelationFilter
+    product_gross_history?: Product_gross_historyListRelationFilter
   }
 
   export type ibm_infoOrderByWithRelationInput = {
@@ -9856,7 +12300,9 @@ export namespace Prisma {
     ibm_margin_ETANOL_COMUM?: SortOrder
     ibm_margin_TOTAL_PRODUCT?: SortOrder
     ibm_margin_ADITIVOS_AUTOMOVEIS_PRODUCT?: SortOrder
+    gallon_gross_history?: gallon_gross_historyOrderByRelationAggregateInput
     gas_station_setvariables?: gas_station_setvariablesOrderByRelationAggregateInput
+    product_gross_history?: product_gross_historyOrderByRelationAggregateInput
   }
 
   export type ibm_infoWhereUniqueInput = Prisma.AtLeast<{
@@ -9881,7 +12327,9 @@ export namespace Prisma {
     ibm_margin_ETANOL_COMUM?: FloatNullableListFilter<"ibm_info">
     ibm_margin_TOTAL_PRODUCT?: FloatNullableListFilter<"ibm_info">
     ibm_margin_ADITIVOS_AUTOMOVEIS_PRODUCT?: FloatNullableListFilter<"ibm_info">
+    gallon_gross_history?: Gallon_gross_historyListRelationFilter
     gas_station_setvariables?: Gas_station_setvariablesListRelationFilter
+    product_gross_history?: Product_gross_historyListRelationFilter
   }, "id">
 
   export type ibm_infoOrderByWithAggregationInput = {
@@ -9960,7 +12408,9 @@ export namespace Prisma {
     use_GASOLINA_COMUM_comb?: FloatNullableFilter<"users"> | number | null
     use_OLEO_DIESEL_B_S10_COMUM_comb?: FloatNullableFilter<"users"> | number | null
     use_OLEO_DIESEL_B_S500_COMUM_comb?: FloatNullableFilter<"users"> | number | null
+    gallon_gross_history?: Gallon_gross_historyListRelationFilter
     gas_station_setvariables?: Gas_station_setvariablesListRelationFilter
+    product_gross_history?: Product_gross_historyListRelationFilter
     region_setvariables?: Region_setvariablesListRelationFilter
   }
 
@@ -9987,7 +12437,9 @@ export namespace Prisma {
     use_GASOLINA_COMUM_comb?: SortOrderInput | SortOrder
     use_OLEO_DIESEL_B_S10_COMUM_comb?: SortOrderInput | SortOrder
     use_OLEO_DIESEL_B_S500_COMUM_comb?: SortOrderInput | SortOrder
+    gallon_gross_history?: gallon_gross_historyOrderByRelationAggregateInput
     gas_station_setvariables?: gas_station_setvariablesOrderByRelationAggregateInput
+    product_gross_history?: product_gross_historyOrderByRelationAggregateInput
     region_setvariables?: region_setvariablesOrderByRelationAggregateInput
   }
 
@@ -10017,7 +12469,9 @@ export namespace Prisma {
     use_GASOLINA_COMUM_comb?: FloatNullableFilter<"users"> | number | null
     use_OLEO_DIESEL_B_S10_COMUM_comb?: FloatNullableFilter<"users"> | number | null
     use_OLEO_DIESEL_B_S500_COMUM_comb?: FloatNullableFilter<"users"> | number | null
+    gallon_gross_history?: Gallon_gross_historyListRelationFilter
     gas_station_setvariables?: Gas_station_setvariablesListRelationFilter
+    product_gross_history?: Product_gross_historyListRelationFilter
     region_setvariables?: Region_setvariablesListRelationFilter
   }, "use_uuid">
 
@@ -10905,6 +13359,146 @@ export namespace Prisma {
     bignumbers_dailyLiterageProfit?: FloatNullableWithAggregatesFilter<"big_numbers_values"> | number | null
   }
 
+  export type gallon_gross_historyWhereInput = {
+    AND?: gallon_gross_historyWhereInput | gallon_gross_historyWhereInput[]
+    OR?: gallon_gross_historyWhereInput[]
+    NOT?: gallon_gross_historyWhereInput | gallon_gross_historyWhereInput[]
+    gallon_history_uuid?: UuidFilter<"gallon_gross_history"> | string
+    ibm_info_id?: UuidNullableFilter<"gallon_gross_history"> | string | null
+    use_uuid?: UuidNullableFilter<"gallon_gross_history"> | string | null
+    gallon_history_gross?: FloatNullableFilter<"gallon_gross_history"> | number | null
+    gallon_history_date?: DateTimeNullableFilter<"gallon_gross_history"> | Date | string | null
+    gallon_history_created_at?: DateTimeFilter<"gallon_gross_history"> | Date | string
+    gallon_history_updated_at?: DateTimeFilter<"gallon_gross_history"> | Date | string
+    ibm_info?: XOR<Ibm_infoNullableRelationFilter, ibm_infoWhereInput> | null
+    users?: XOR<UsersNullableRelationFilter, usersWhereInput> | null
+  }
+
+  export type gallon_gross_historyOrderByWithRelationInput = {
+    gallon_history_uuid?: SortOrder
+    ibm_info_id?: SortOrderInput | SortOrder
+    use_uuid?: SortOrderInput | SortOrder
+    gallon_history_gross?: SortOrderInput | SortOrder
+    gallon_history_date?: SortOrderInput | SortOrder
+    gallon_history_created_at?: SortOrder
+    gallon_history_updated_at?: SortOrder
+    ibm_info?: ibm_infoOrderByWithRelationInput
+    users?: usersOrderByWithRelationInput
+  }
+
+  export type gallon_gross_historyWhereUniqueInput = Prisma.AtLeast<{
+    gallon_history_uuid?: string
+    AND?: gallon_gross_historyWhereInput | gallon_gross_historyWhereInput[]
+    OR?: gallon_gross_historyWhereInput[]
+    NOT?: gallon_gross_historyWhereInput | gallon_gross_historyWhereInput[]
+    ibm_info_id?: UuidNullableFilter<"gallon_gross_history"> | string | null
+    use_uuid?: UuidNullableFilter<"gallon_gross_history"> | string | null
+    gallon_history_gross?: FloatNullableFilter<"gallon_gross_history"> | number | null
+    gallon_history_date?: DateTimeNullableFilter<"gallon_gross_history"> | Date | string | null
+    gallon_history_created_at?: DateTimeFilter<"gallon_gross_history"> | Date | string
+    gallon_history_updated_at?: DateTimeFilter<"gallon_gross_history"> | Date | string
+    ibm_info?: XOR<Ibm_infoNullableRelationFilter, ibm_infoWhereInput> | null
+    users?: XOR<UsersNullableRelationFilter, usersWhereInput> | null
+  }, "gallon_history_uuid">
+
+  export type gallon_gross_historyOrderByWithAggregationInput = {
+    gallon_history_uuid?: SortOrder
+    ibm_info_id?: SortOrderInput | SortOrder
+    use_uuid?: SortOrderInput | SortOrder
+    gallon_history_gross?: SortOrderInput | SortOrder
+    gallon_history_date?: SortOrderInput | SortOrder
+    gallon_history_created_at?: SortOrder
+    gallon_history_updated_at?: SortOrder
+    _count?: gallon_gross_historyCountOrderByAggregateInput
+    _avg?: gallon_gross_historyAvgOrderByAggregateInput
+    _max?: gallon_gross_historyMaxOrderByAggregateInput
+    _min?: gallon_gross_historyMinOrderByAggregateInput
+    _sum?: gallon_gross_historySumOrderByAggregateInput
+  }
+
+  export type gallon_gross_historyScalarWhereWithAggregatesInput = {
+    AND?: gallon_gross_historyScalarWhereWithAggregatesInput | gallon_gross_historyScalarWhereWithAggregatesInput[]
+    OR?: gallon_gross_historyScalarWhereWithAggregatesInput[]
+    NOT?: gallon_gross_historyScalarWhereWithAggregatesInput | gallon_gross_historyScalarWhereWithAggregatesInput[]
+    gallon_history_uuid?: UuidWithAggregatesFilter<"gallon_gross_history"> | string
+    ibm_info_id?: UuidNullableWithAggregatesFilter<"gallon_gross_history"> | string | null
+    use_uuid?: UuidNullableWithAggregatesFilter<"gallon_gross_history"> | string | null
+    gallon_history_gross?: FloatNullableWithAggregatesFilter<"gallon_gross_history"> | number | null
+    gallon_history_date?: DateTimeNullableWithAggregatesFilter<"gallon_gross_history"> | Date | string | null
+    gallon_history_created_at?: DateTimeWithAggregatesFilter<"gallon_gross_history"> | Date | string
+    gallon_history_updated_at?: DateTimeWithAggregatesFilter<"gallon_gross_history"> | Date | string
+  }
+
+  export type product_gross_historyWhereInput = {
+    AND?: product_gross_historyWhereInput | product_gross_historyWhereInput[]
+    OR?: product_gross_historyWhereInput[]
+    NOT?: product_gross_historyWhereInput | product_gross_historyWhereInput[]
+    product_history_uuid?: UuidFilter<"product_gross_history"> | string
+    ibm_info_id?: UuidNullableFilter<"product_gross_history"> | string | null
+    use_uuid?: UuidNullableFilter<"product_gross_history"> | string | null
+    product_history_gross?: FloatNullableFilter<"product_gross_history"> | number | null
+    product_history_date?: DateTimeNullableFilter<"product_gross_history"> | Date | string | null
+    product_history_created_at?: DateTimeFilter<"product_gross_history"> | Date | string
+    product_history_updated_at?: DateTimeFilter<"product_gross_history"> | Date | string
+    ibm_info?: XOR<Ibm_infoNullableRelationFilter, ibm_infoWhereInput> | null
+    users?: XOR<UsersNullableRelationFilter, usersWhereInput> | null
+  }
+
+  export type product_gross_historyOrderByWithRelationInput = {
+    product_history_uuid?: SortOrder
+    ibm_info_id?: SortOrderInput | SortOrder
+    use_uuid?: SortOrderInput | SortOrder
+    product_history_gross?: SortOrderInput | SortOrder
+    product_history_date?: SortOrderInput | SortOrder
+    product_history_created_at?: SortOrder
+    product_history_updated_at?: SortOrder
+    ibm_info?: ibm_infoOrderByWithRelationInput
+    users?: usersOrderByWithRelationInput
+  }
+
+  export type product_gross_historyWhereUniqueInput = Prisma.AtLeast<{
+    product_history_uuid?: string
+    AND?: product_gross_historyWhereInput | product_gross_historyWhereInput[]
+    OR?: product_gross_historyWhereInput[]
+    NOT?: product_gross_historyWhereInput | product_gross_historyWhereInput[]
+    ibm_info_id?: UuidNullableFilter<"product_gross_history"> | string | null
+    use_uuid?: UuidNullableFilter<"product_gross_history"> | string | null
+    product_history_gross?: FloatNullableFilter<"product_gross_history"> | number | null
+    product_history_date?: DateTimeNullableFilter<"product_gross_history"> | Date | string | null
+    product_history_created_at?: DateTimeFilter<"product_gross_history"> | Date | string
+    product_history_updated_at?: DateTimeFilter<"product_gross_history"> | Date | string
+    ibm_info?: XOR<Ibm_infoNullableRelationFilter, ibm_infoWhereInput> | null
+    users?: XOR<UsersNullableRelationFilter, usersWhereInput> | null
+  }, "product_history_uuid">
+
+  export type product_gross_historyOrderByWithAggregationInput = {
+    product_history_uuid?: SortOrder
+    ibm_info_id?: SortOrderInput | SortOrder
+    use_uuid?: SortOrderInput | SortOrder
+    product_history_gross?: SortOrderInput | SortOrder
+    product_history_date?: SortOrderInput | SortOrder
+    product_history_created_at?: SortOrder
+    product_history_updated_at?: SortOrder
+    _count?: product_gross_historyCountOrderByAggregateInput
+    _avg?: product_gross_historyAvgOrderByAggregateInput
+    _max?: product_gross_historyMaxOrderByAggregateInput
+    _min?: product_gross_historyMinOrderByAggregateInput
+    _sum?: product_gross_historySumOrderByAggregateInput
+  }
+
+  export type product_gross_historyScalarWhereWithAggregatesInput = {
+    AND?: product_gross_historyScalarWhereWithAggregatesInput | product_gross_historyScalarWhereWithAggregatesInput[]
+    OR?: product_gross_historyScalarWhereWithAggregatesInput[]
+    NOT?: product_gross_historyScalarWhereWithAggregatesInput | product_gross_historyScalarWhereWithAggregatesInput[]
+    product_history_uuid?: UuidWithAggregatesFilter<"product_gross_history"> | string
+    ibm_info_id?: UuidNullableWithAggregatesFilter<"product_gross_history"> | string | null
+    use_uuid?: UuidNullableWithAggregatesFilter<"product_gross_history"> | string | null
+    product_history_gross?: FloatNullableWithAggregatesFilter<"product_gross_history"> | number | null
+    product_history_date?: DateTimeNullableWithAggregatesFilter<"product_gross_history"> | Date | string | null
+    product_history_created_at?: DateTimeWithAggregatesFilter<"product_gross_history"> | Date | string
+    product_history_updated_at?: DateTimeWithAggregatesFilter<"product_gross_history"> | Date | string
+  }
+
   export type ibm_infoCreateInput = {
     ibm?: string | null
     nomefantasia?: string | null
@@ -10924,7 +13518,9 @@ export namespace Prisma {
     ibm_margin_ETANOL_COMUM?: ibm_infoCreateibm_margin_ETANOL_COMUMInput | number[]
     ibm_margin_TOTAL_PRODUCT?: ibm_infoCreateibm_margin_TOTAL_PRODUCTInput | number[]
     ibm_margin_ADITIVOS_AUTOMOVEIS_PRODUCT?: ibm_infoCreateibm_margin_ADITIVOS_AUTOMOVEIS_PRODUCTInput | number[]
+    gallon_gross_history?: gallon_gross_historyCreateNestedManyWithoutIbm_infoInput
     gas_station_setvariables?: gas_station_setvariablesCreateNestedManyWithoutIbm_infoInput
+    product_gross_history?: product_gross_historyCreateNestedManyWithoutIbm_infoInput
   }
 
   export type ibm_infoUncheckedCreateInput = {
@@ -10946,7 +13542,9 @@ export namespace Prisma {
     ibm_margin_ETANOL_COMUM?: ibm_infoCreateibm_margin_ETANOL_COMUMInput | number[]
     ibm_margin_TOTAL_PRODUCT?: ibm_infoCreateibm_margin_TOTAL_PRODUCTInput | number[]
     ibm_margin_ADITIVOS_AUTOMOVEIS_PRODUCT?: ibm_infoCreateibm_margin_ADITIVOS_AUTOMOVEIS_PRODUCTInput | number[]
+    gallon_gross_history?: gallon_gross_historyUncheckedCreateNestedManyWithoutIbm_infoInput
     gas_station_setvariables?: gas_station_setvariablesUncheckedCreateNestedManyWithoutIbm_infoInput
+    product_gross_history?: product_gross_historyUncheckedCreateNestedManyWithoutIbm_infoInput
   }
 
   export type ibm_infoUpdateInput = {
@@ -10968,7 +13566,9 @@ export namespace Prisma {
     ibm_margin_ETANOL_COMUM?: ibm_infoUpdateibm_margin_ETANOL_COMUMInput | number[]
     ibm_margin_TOTAL_PRODUCT?: ibm_infoUpdateibm_margin_TOTAL_PRODUCTInput | number[]
     ibm_margin_ADITIVOS_AUTOMOVEIS_PRODUCT?: ibm_infoUpdateibm_margin_ADITIVOS_AUTOMOVEIS_PRODUCTInput | number[]
+    gallon_gross_history?: gallon_gross_historyUpdateManyWithoutIbm_infoNestedInput
     gas_station_setvariables?: gas_station_setvariablesUpdateManyWithoutIbm_infoNestedInput
+    product_gross_history?: product_gross_historyUpdateManyWithoutIbm_infoNestedInput
   }
 
   export type ibm_infoUncheckedUpdateInput = {
@@ -10990,7 +13590,9 @@ export namespace Prisma {
     ibm_margin_ETANOL_COMUM?: ibm_infoUpdateibm_margin_ETANOL_COMUMInput | number[]
     ibm_margin_TOTAL_PRODUCT?: ibm_infoUpdateibm_margin_TOTAL_PRODUCTInput | number[]
     ibm_margin_ADITIVOS_AUTOMOVEIS_PRODUCT?: ibm_infoUpdateibm_margin_ADITIVOS_AUTOMOVEIS_PRODUCTInput | number[]
+    gallon_gross_history?: gallon_gross_historyUncheckedUpdateManyWithoutIbm_infoNestedInput
     gas_station_setvariables?: gas_station_setvariablesUncheckedUpdateManyWithoutIbm_infoNestedInput
+    product_gross_history?: product_gross_historyUncheckedUpdateManyWithoutIbm_infoNestedInput
   }
 
   export type ibm_infoCreateManyInput = {
@@ -11079,7 +13681,9 @@ export namespace Prisma {
     use_GASOLINA_COMUM_comb?: number | null
     use_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
     use_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
+    gallon_gross_history?: gallon_gross_historyCreateNestedManyWithoutUsersInput
     gas_station_setvariables?: gas_station_setvariablesCreateNestedManyWithoutUsersInput
+    product_gross_history?: product_gross_historyCreateNestedManyWithoutUsersInput
     region_setvariables?: region_setvariablesCreateNestedManyWithoutUsersInput
   }
 
@@ -11106,7 +13710,9 @@ export namespace Prisma {
     use_GASOLINA_COMUM_comb?: number | null
     use_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
     use_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
+    gallon_gross_history?: gallon_gross_historyUncheckedCreateNestedManyWithoutUsersInput
     gas_station_setvariables?: gas_station_setvariablesUncheckedCreateNestedManyWithoutUsersInput
+    product_gross_history?: product_gross_historyUncheckedCreateNestedManyWithoutUsersInput
     region_setvariables?: region_setvariablesUncheckedCreateNestedManyWithoutUsersInput
   }
 
@@ -11133,7 +13739,9 @@ export namespace Prisma {
     use_GASOLINA_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
     use_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
     use_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gallon_gross_history?: gallon_gross_historyUpdateManyWithoutUsersNestedInput
     gas_station_setvariables?: gas_station_setvariablesUpdateManyWithoutUsersNestedInput
+    product_gross_history?: product_gross_historyUpdateManyWithoutUsersNestedInput
     region_setvariables?: region_setvariablesUpdateManyWithoutUsersNestedInput
   }
 
@@ -11160,7 +13768,9 @@ export namespace Prisma {
     use_GASOLINA_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
     use_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
     use_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gallon_gross_history?: gallon_gross_historyUncheckedUpdateManyWithoutUsersNestedInput
     gas_station_setvariables?: gas_station_setvariablesUncheckedUpdateManyWithoutUsersNestedInput
+    product_gross_history?: product_gross_historyUncheckedUpdateManyWithoutUsersNestedInput
     region_setvariables?: region_setvariablesUncheckedUpdateManyWithoutUsersNestedInput
   }
 
@@ -12296,6 +14906,142 @@ export namespace Prisma {
     bignumbers_dailyLiterageProfit?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
+  export type gallon_gross_historyCreateInput = {
+    gallon_history_uuid?: string
+    gallon_history_gross?: number | null
+    gallon_history_date?: Date | string | null
+    gallon_history_created_at?: Date | string
+    gallon_history_updated_at?: Date | string
+    ibm_info?: ibm_infoCreateNestedOneWithoutGallon_gross_historyInput
+    users?: usersCreateNestedOneWithoutGallon_gross_historyInput
+  }
+
+  export type gallon_gross_historyUncheckedCreateInput = {
+    gallon_history_uuid?: string
+    ibm_info_id?: string | null
+    use_uuid?: string | null
+    gallon_history_gross?: number | null
+    gallon_history_date?: Date | string | null
+    gallon_history_created_at?: Date | string
+    gallon_history_updated_at?: Date | string
+  }
+
+  export type gallon_gross_historyUpdateInput = {
+    gallon_history_uuid?: StringFieldUpdateOperationsInput | string
+    gallon_history_gross?: NullableFloatFieldUpdateOperationsInput | number | null
+    gallon_history_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gallon_history_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    gallon_history_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    ibm_info?: ibm_infoUpdateOneWithoutGallon_gross_historyNestedInput
+    users?: usersUpdateOneWithoutGallon_gross_historyNestedInput
+  }
+
+  export type gallon_gross_historyUncheckedUpdateInput = {
+    gallon_history_uuid?: StringFieldUpdateOperationsInput | string
+    ibm_info_id?: NullableStringFieldUpdateOperationsInput | string | null
+    use_uuid?: NullableStringFieldUpdateOperationsInput | string | null
+    gallon_history_gross?: NullableFloatFieldUpdateOperationsInput | number | null
+    gallon_history_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gallon_history_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    gallon_history_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type gallon_gross_historyCreateManyInput = {
+    gallon_history_uuid?: string
+    ibm_info_id?: string | null
+    use_uuid?: string | null
+    gallon_history_gross?: number | null
+    gallon_history_date?: Date | string | null
+    gallon_history_created_at?: Date | string
+    gallon_history_updated_at?: Date | string
+  }
+
+  export type gallon_gross_historyUpdateManyMutationInput = {
+    gallon_history_uuid?: StringFieldUpdateOperationsInput | string
+    gallon_history_gross?: NullableFloatFieldUpdateOperationsInput | number | null
+    gallon_history_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gallon_history_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    gallon_history_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type gallon_gross_historyUncheckedUpdateManyInput = {
+    gallon_history_uuid?: StringFieldUpdateOperationsInput | string
+    ibm_info_id?: NullableStringFieldUpdateOperationsInput | string | null
+    use_uuid?: NullableStringFieldUpdateOperationsInput | string | null
+    gallon_history_gross?: NullableFloatFieldUpdateOperationsInput | number | null
+    gallon_history_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gallon_history_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    gallon_history_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type product_gross_historyCreateInput = {
+    product_history_uuid?: string
+    product_history_gross?: number | null
+    product_history_date?: Date | string | null
+    product_history_created_at?: Date | string
+    product_history_updated_at?: Date | string
+    ibm_info?: ibm_infoCreateNestedOneWithoutProduct_gross_historyInput
+    users?: usersCreateNestedOneWithoutProduct_gross_historyInput
+  }
+
+  export type product_gross_historyUncheckedCreateInput = {
+    product_history_uuid?: string
+    ibm_info_id?: string | null
+    use_uuid?: string | null
+    product_history_gross?: number | null
+    product_history_date?: Date | string | null
+    product_history_created_at?: Date | string
+    product_history_updated_at?: Date | string
+  }
+
+  export type product_gross_historyUpdateInput = {
+    product_history_uuid?: StringFieldUpdateOperationsInput | string
+    product_history_gross?: NullableFloatFieldUpdateOperationsInput | number | null
+    product_history_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    product_history_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    product_history_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    ibm_info?: ibm_infoUpdateOneWithoutProduct_gross_historyNestedInput
+    users?: usersUpdateOneWithoutProduct_gross_historyNestedInput
+  }
+
+  export type product_gross_historyUncheckedUpdateInput = {
+    product_history_uuid?: StringFieldUpdateOperationsInput | string
+    ibm_info_id?: NullableStringFieldUpdateOperationsInput | string | null
+    use_uuid?: NullableStringFieldUpdateOperationsInput | string | null
+    product_history_gross?: NullableFloatFieldUpdateOperationsInput | number | null
+    product_history_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    product_history_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    product_history_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type product_gross_historyCreateManyInput = {
+    product_history_uuid?: string
+    ibm_info_id?: string | null
+    use_uuid?: string | null
+    product_history_gross?: number | null
+    product_history_date?: Date | string | null
+    product_history_created_at?: Date | string
+    product_history_updated_at?: Date | string
+  }
+
+  export type product_gross_historyUpdateManyMutationInput = {
+    product_history_uuid?: StringFieldUpdateOperationsInput | string
+    product_history_gross?: NullableFloatFieldUpdateOperationsInput | number | null
+    product_history_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    product_history_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    product_history_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type product_gross_historyUncheckedUpdateManyInput = {
+    product_history_uuid?: StringFieldUpdateOperationsInput | string
+    ibm_info_id?: NullableStringFieldUpdateOperationsInput | string | null
+    use_uuid?: NullableStringFieldUpdateOperationsInput | string | null
+    product_history_gross?: NullableFloatFieldUpdateOperationsInput | number | null
+    product_history_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    product_history_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    product_history_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -12342,10 +15088,22 @@ export namespace Prisma {
     isEmpty?: boolean
   }
 
+  export type Gallon_gross_historyListRelationFilter = {
+    every?: gallon_gross_historyWhereInput
+    some?: gallon_gross_historyWhereInput
+    none?: gallon_gross_historyWhereInput
+  }
+
   export type Gas_station_setvariablesListRelationFilter = {
     every?: gas_station_setvariablesWhereInput
     some?: gas_station_setvariablesWhereInput
     none?: gas_station_setvariablesWhereInput
+  }
+
+  export type Product_gross_historyListRelationFilter = {
+    every?: product_gross_historyWhereInput
+    some?: product_gross_historyWhereInput
+    none?: product_gross_historyWhereInput
   }
 
   export type SortOrderInput = {
@@ -12353,7 +15111,15 @@ export namespace Prisma {
     nulls?: NullsOrder
   }
 
+  export type gallon_gross_historyOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type gas_station_setvariablesOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type product_gross_historyOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -13290,6 +16056,82 @@ export namespace Prisma {
     bignumbers_dailyLiterageProfit?: SortOrder
   }
 
+  export type gallon_gross_historyCountOrderByAggregateInput = {
+    gallon_history_uuid?: SortOrder
+    ibm_info_id?: SortOrder
+    use_uuid?: SortOrder
+    gallon_history_gross?: SortOrder
+    gallon_history_date?: SortOrder
+    gallon_history_created_at?: SortOrder
+    gallon_history_updated_at?: SortOrder
+  }
+
+  export type gallon_gross_historyAvgOrderByAggregateInput = {
+    gallon_history_gross?: SortOrder
+  }
+
+  export type gallon_gross_historyMaxOrderByAggregateInput = {
+    gallon_history_uuid?: SortOrder
+    ibm_info_id?: SortOrder
+    use_uuid?: SortOrder
+    gallon_history_gross?: SortOrder
+    gallon_history_date?: SortOrder
+    gallon_history_created_at?: SortOrder
+    gallon_history_updated_at?: SortOrder
+  }
+
+  export type gallon_gross_historyMinOrderByAggregateInput = {
+    gallon_history_uuid?: SortOrder
+    ibm_info_id?: SortOrder
+    use_uuid?: SortOrder
+    gallon_history_gross?: SortOrder
+    gallon_history_date?: SortOrder
+    gallon_history_created_at?: SortOrder
+    gallon_history_updated_at?: SortOrder
+  }
+
+  export type gallon_gross_historySumOrderByAggregateInput = {
+    gallon_history_gross?: SortOrder
+  }
+
+  export type product_gross_historyCountOrderByAggregateInput = {
+    product_history_uuid?: SortOrder
+    ibm_info_id?: SortOrder
+    use_uuid?: SortOrder
+    product_history_gross?: SortOrder
+    product_history_date?: SortOrder
+    product_history_created_at?: SortOrder
+    product_history_updated_at?: SortOrder
+  }
+
+  export type product_gross_historyAvgOrderByAggregateInput = {
+    product_history_gross?: SortOrder
+  }
+
+  export type product_gross_historyMaxOrderByAggregateInput = {
+    product_history_uuid?: SortOrder
+    ibm_info_id?: SortOrder
+    use_uuid?: SortOrder
+    product_history_gross?: SortOrder
+    product_history_date?: SortOrder
+    product_history_created_at?: SortOrder
+    product_history_updated_at?: SortOrder
+  }
+
+  export type product_gross_historyMinOrderByAggregateInput = {
+    product_history_uuid?: SortOrder
+    ibm_info_id?: SortOrder
+    use_uuid?: SortOrder
+    product_history_gross?: SortOrder
+    product_history_date?: SortOrder
+    product_history_created_at?: SortOrder
+    product_history_updated_at?: SortOrder
+  }
+
+  export type product_gross_historySumOrderByAggregateInput = {
+    product_history_gross?: SortOrder
+  }
+
   export type ibm_infoCreateibm_margin_GCInput = {
     set: number[]
   }
@@ -13322,6 +16164,13 @@ export namespace Prisma {
     set: number[]
   }
 
+  export type gallon_gross_historyCreateNestedManyWithoutIbm_infoInput = {
+    create?: XOR<gallon_gross_historyCreateWithoutIbm_infoInput, gallon_gross_historyUncheckedCreateWithoutIbm_infoInput> | gallon_gross_historyCreateWithoutIbm_infoInput[] | gallon_gross_historyUncheckedCreateWithoutIbm_infoInput[]
+    connectOrCreate?: gallon_gross_historyCreateOrConnectWithoutIbm_infoInput | gallon_gross_historyCreateOrConnectWithoutIbm_infoInput[]
+    createMany?: gallon_gross_historyCreateManyIbm_infoInputEnvelope
+    connect?: gallon_gross_historyWhereUniqueInput | gallon_gross_historyWhereUniqueInput[]
+  }
+
   export type gas_station_setvariablesCreateNestedManyWithoutIbm_infoInput = {
     create?: XOR<gas_station_setvariablesCreateWithoutIbm_infoInput, gas_station_setvariablesUncheckedCreateWithoutIbm_infoInput> | gas_station_setvariablesCreateWithoutIbm_infoInput[] | gas_station_setvariablesUncheckedCreateWithoutIbm_infoInput[]
     connectOrCreate?: gas_station_setvariablesCreateOrConnectWithoutIbm_infoInput | gas_station_setvariablesCreateOrConnectWithoutIbm_infoInput[]
@@ -13329,11 +16178,32 @@ export namespace Prisma {
     connect?: gas_station_setvariablesWhereUniqueInput | gas_station_setvariablesWhereUniqueInput[]
   }
 
+  export type product_gross_historyCreateNestedManyWithoutIbm_infoInput = {
+    create?: XOR<product_gross_historyCreateWithoutIbm_infoInput, product_gross_historyUncheckedCreateWithoutIbm_infoInput> | product_gross_historyCreateWithoutIbm_infoInput[] | product_gross_historyUncheckedCreateWithoutIbm_infoInput[]
+    connectOrCreate?: product_gross_historyCreateOrConnectWithoutIbm_infoInput | product_gross_historyCreateOrConnectWithoutIbm_infoInput[]
+    createMany?: product_gross_historyCreateManyIbm_infoInputEnvelope
+    connect?: product_gross_historyWhereUniqueInput | product_gross_historyWhereUniqueInput[]
+  }
+
+  export type gallon_gross_historyUncheckedCreateNestedManyWithoutIbm_infoInput = {
+    create?: XOR<gallon_gross_historyCreateWithoutIbm_infoInput, gallon_gross_historyUncheckedCreateWithoutIbm_infoInput> | gallon_gross_historyCreateWithoutIbm_infoInput[] | gallon_gross_historyUncheckedCreateWithoutIbm_infoInput[]
+    connectOrCreate?: gallon_gross_historyCreateOrConnectWithoutIbm_infoInput | gallon_gross_historyCreateOrConnectWithoutIbm_infoInput[]
+    createMany?: gallon_gross_historyCreateManyIbm_infoInputEnvelope
+    connect?: gallon_gross_historyWhereUniqueInput | gallon_gross_historyWhereUniqueInput[]
+  }
+
   export type gas_station_setvariablesUncheckedCreateNestedManyWithoutIbm_infoInput = {
     create?: XOR<gas_station_setvariablesCreateWithoutIbm_infoInput, gas_station_setvariablesUncheckedCreateWithoutIbm_infoInput> | gas_station_setvariablesCreateWithoutIbm_infoInput[] | gas_station_setvariablesUncheckedCreateWithoutIbm_infoInput[]
     connectOrCreate?: gas_station_setvariablesCreateOrConnectWithoutIbm_infoInput | gas_station_setvariablesCreateOrConnectWithoutIbm_infoInput[]
     createMany?: gas_station_setvariablesCreateManyIbm_infoInputEnvelope
     connect?: gas_station_setvariablesWhereUniqueInput | gas_station_setvariablesWhereUniqueInput[]
+  }
+
+  export type product_gross_historyUncheckedCreateNestedManyWithoutIbm_infoInput = {
+    create?: XOR<product_gross_historyCreateWithoutIbm_infoInput, product_gross_historyUncheckedCreateWithoutIbm_infoInput> | product_gross_historyCreateWithoutIbm_infoInput[] | product_gross_historyUncheckedCreateWithoutIbm_infoInput[]
+    connectOrCreate?: product_gross_historyCreateOrConnectWithoutIbm_infoInput | product_gross_historyCreateOrConnectWithoutIbm_infoInput[]
+    createMany?: product_gross_historyCreateManyIbm_infoInputEnvelope
+    connect?: product_gross_historyWhereUniqueInput | product_gross_historyWhereUniqueInput[]
   }
 
   export type NullableStringFieldUpdateOperationsInput = {
@@ -13392,6 +16262,20 @@ export namespace Prisma {
     push?: number | number[]
   }
 
+  export type gallon_gross_historyUpdateManyWithoutIbm_infoNestedInput = {
+    create?: XOR<gallon_gross_historyCreateWithoutIbm_infoInput, gallon_gross_historyUncheckedCreateWithoutIbm_infoInput> | gallon_gross_historyCreateWithoutIbm_infoInput[] | gallon_gross_historyUncheckedCreateWithoutIbm_infoInput[]
+    connectOrCreate?: gallon_gross_historyCreateOrConnectWithoutIbm_infoInput | gallon_gross_historyCreateOrConnectWithoutIbm_infoInput[]
+    upsert?: gallon_gross_historyUpsertWithWhereUniqueWithoutIbm_infoInput | gallon_gross_historyUpsertWithWhereUniqueWithoutIbm_infoInput[]
+    createMany?: gallon_gross_historyCreateManyIbm_infoInputEnvelope
+    set?: gallon_gross_historyWhereUniqueInput | gallon_gross_historyWhereUniqueInput[]
+    disconnect?: gallon_gross_historyWhereUniqueInput | gallon_gross_historyWhereUniqueInput[]
+    delete?: gallon_gross_historyWhereUniqueInput | gallon_gross_historyWhereUniqueInput[]
+    connect?: gallon_gross_historyWhereUniqueInput | gallon_gross_historyWhereUniqueInput[]
+    update?: gallon_gross_historyUpdateWithWhereUniqueWithoutIbm_infoInput | gallon_gross_historyUpdateWithWhereUniqueWithoutIbm_infoInput[]
+    updateMany?: gallon_gross_historyUpdateManyWithWhereWithoutIbm_infoInput | gallon_gross_historyUpdateManyWithWhereWithoutIbm_infoInput[]
+    deleteMany?: gallon_gross_historyScalarWhereInput | gallon_gross_historyScalarWhereInput[]
+  }
+
   export type gas_station_setvariablesUpdateManyWithoutIbm_infoNestedInput = {
     create?: XOR<gas_station_setvariablesCreateWithoutIbm_infoInput, gas_station_setvariablesUncheckedCreateWithoutIbm_infoInput> | gas_station_setvariablesCreateWithoutIbm_infoInput[] | gas_station_setvariablesUncheckedCreateWithoutIbm_infoInput[]
     connectOrCreate?: gas_station_setvariablesCreateOrConnectWithoutIbm_infoInput | gas_station_setvariablesCreateOrConnectWithoutIbm_infoInput[]
@@ -13404,6 +16288,34 @@ export namespace Prisma {
     update?: gas_station_setvariablesUpdateWithWhereUniqueWithoutIbm_infoInput | gas_station_setvariablesUpdateWithWhereUniqueWithoutIbm_infoInput[]
     updateMany?: gas_station_setvariablesUpdateManyWithWhereWithoutIbm_infoInput | gas_station_setvariablesUpdateManyWithWhereWithoutIbm_infoInput[]
     deleteMany?: gas_station_setvariablesScalarWhereInput | gas_station_setvariablesScalarWhereInput[]
+  }
+
+  export type product_gross_historyUpdateManyWithoutIbm_infoNestedInput = {
+    create?: XOR<product_gross_historyCreateWithoutIbm_infoInput, product_gross_historyUncheckedCreateWithoutIbm_infoInput> | product_gross_historyCreateWithoutIbm_infoInput[] | product_gross_historyUncheckedCreateWithoutIbm_infoInput[]
+    connectOrCreate?: product_gross_historyCreateOrConnectWithoutIbm_infoInput | product_gross_historyCreateOrConnectWithoutIbm_infoInput[]
+    upsert?: product_gross_historyUpsertWithWhereUniqueWithoutIbm_infoInput | product_gross_historyUpsertWithWhereUniqueWithoutIbm_infoInput[]
+    createMany?: product_gross_historyCreateManyIbm_infoInputEnvelope
+    set?: product_gross_historyWhereUniqueInput | product_gross_historyWhereUniqueInput[]
+    disconnect?: product_gross_historyWhereUniqueInput | product_gross_historyWhereUniqueInput[]
+    delete?: product_gross_historyWhereUniqueInput | product_gross_historyWhereUniqueInput[]
+    connect?: product_gross_historyWhereUniqueInput | product_gross_historyWhereUniqueInput[]
+    update?: product_gross_historyUpdateWithWhereUniqueWithoutIbm_infoInput | product_gross_historyUpdateWithWhereUniqueWithoutIbm_infoInput[]
+    updateMany?: product_gross_historyUpdateManyWithWhereWithoutIbm_infoInput | product_gross_historyUpdateManyWithWhereWithoutIbm_infoInput[]
+    deleteMany?: product_gross_historyScalarWhereInput | product_gross_historyScalarWhereInput[]
+  }
+
+  export type gallon_gross_historyUncheckedUpdateManyWithoutIbm_infoNestedInput = {
+    create?: XOR<gallon_gross_historyCreateWithoutIbm_infoInput, gallon_gross_historyUncheckedCreateWithoutIbm_infoInput> | gallon_gross_historyCreateWithoutIbm_infoInput[] | gallon_gross_historyUncheckedCreateWithoutIbm_infoInput[]
+    connectOrCreate?: gallon_gross_historyCreateOrConnectWithoutIbm_infoInput | gallon_gross_historyCreateOrConnectWithoutIbm_infoInput[]
+    upsert?: gallon_gross_historyUpsertWithWhereUniqueWithoutIbm_infoInput | gallon_gross_historyUpsertWithWhereUniqueWithoutIbm_infoInput[]
+    createMany?: gallon_gross_historyCreateManyIbm_infoInputEnvelope
+    set?: gallon_gross_historyWhereUniqueInput | gallon_gross_historyWhereUniqueInput[]
+    disconnect?: gallon_gross_historyWhereUniqueInput | gallon_gross_historyWhereUniqueInput[]
+    delete?: gallon_gross_historyWhereUniqueInput | gallon_gross_historyWhereUniqueInput[]
+    connect?: gallon_gross_historyWhereUniqueInput | gallon_gross_historyWhereUniqueInput[]
+    update?: gallon_gross_historyUpdateWithWhereUniqueWithoutIbm_infoInput | gallon_gross_historyUpdateWithWhereUniqueWithoutIbm_infoInput[]
+    updateMany?: gallon_gross_historyUpdateManyWithWhereWithoutIbm_infoInput | gallon_gross_historyUpdateManyWithWhereWithoutIbm_infoInput[]
+    deleteMany?: gallon_gross_historyScalarWhereInput | gallon_gross_historyScalarWhereInput[]
   }
 
   export type gas_station_setvariablesUncheckedUpdateManyWithoutIbm_infoNestedInput = {
@@ -13420,8 +16332,29 @@ export namespace Prisma {
     deleteMany?: gas_station_setvariablesScalarWhereInput | gas_station_setvariablesScalarWhereInput[]
   }
 
+  export type product_gross_historyUncheckedUpdateManyWithoutIbm_infoNestedInput = {
+    create?: XOR<product_gross_historyCreateWithoutIbm_infoInput, product_gross_historyUncheckedCreateWithoutIbm_infoInput> | product_gross_historyCreateWithoutIbm_infoInput[] | product_gross_historyUncheckedCreateWithoutIbm_infoInput[]
+    connectOrCreate?: product_gross_historyCreateOrConnectWithoutIbm_infoInput | product_gross_historyCreateOrConnectWithoutIbm_infoInput[]
+    upsert?: product_gross_historyUpsertWithWhereUniqueWithoutIbm_infoInput | product_gross_historyUpsertWithWhereUniqueWithoutIbm_infoInput[]
+    createMany?: product_gross_historyCreateManyIbm_infoInputEnvelope
+    set?: product_gross_historyWhereUniqueInput | product_gross_historyWhereUniqueInput[]
+    disconnect?: product_gross_historyWhereUniqueInput | product_gross_historyWhereUniqueInput[]
+    delete?: product_gross_historyWhereUniqueInput | product_gross_historyWhereUniqueInput[]
+    connect?: product_gross_historyWhereUniqueInput | product_gross_historyWhereUniqueInput[]
+    update?: product_gross_historyUpdateWithWhereUniqueWithoutIbm_infoInput | product_gross_historyUpdateWithWhereUniqueWithoutIbm_infoInput[]
+    updateMany?: product_gross_historyUpdateManyWithWhereWithoutIbm_infoInput | product_gross_historyUpdateManyWithWhereWithoutIbm_infoInput[]
+    deleteMany?: product_gross_historyScalarWhereInput | product_gross_historyScalarWhereInput[]
+  }
+
   export type usersCreateuse_whats_appInput = {
     set: string[]
+  }
+
+  export type gallon_gross_historyCreateNestedManyWithoutUsersInput = {
+    create?: XOR<gallon_gross_historyCreateWithoutUsersInput, gallon_gross_historyUncheckedCreateWithoutUsersInput> | gallon_gross_historyCreateWithoutUsersInput[] | gallon_gross_historyUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: gallon_gross_historyCreateOrConnectWithoutUsersInput | gallon_gross_historyCreateOrConnectWithoutUsersInput[]
+    createMany?: gallon_gross_historyCreateManyUsersInputEnvelope
+    connect?: gallon_gross_historyWhereUniqueInput | gallon_gross_historyWhereUniqueInput[]
   }
 
   export type gas_station_setvariablesCreateNestedManyWithoutUsersInput = {
@@ -13431,6 +16364,13 @@ export namespace Prisma {
     connect?: gas_station_setvariablesWhereUniqueInput | gas_station_setvariablesWhereUniqueInput[]
   }
 
+  export type product_gross_historyCreateNestedManyWithoutUsersInput = {
+    create?: XOR<product_gross_historyCreateWithoutUsersInput, product_gross_historyUncheckedCreateWithoutUsersInput> | product_gross_historyCreateWithoutUsersInput[] | product_gross_historyUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: product_gross_historyCreateOrConnectWithoutUsersInput | product_gross_historyCreateOrConnectWithoutUsersInput[]
+    createMany?: product_gross_historyCreateManyUsersInputEnvelope
+    connect?: product_gross_historyWhereUniqueInput | product_gross_historyWhereUniqueInput[]
+  }
+
   export type region_setvariablesCreateNestedManyWithoutUsersInput = {
     create?: XOR<region_setvariablesCreateWithoutUsersInput, region_setvariablesUncheckedCreateWithoutUsersInput> | region_setvariablesCreateWithoutUsersInput[] | region_setvariablesUncheckedCreateWithoutUsersInput[]
     connectOrCreate?: region_setvariablesCreateOrConnectWithoutUsersInput | region_setvariablesCreateOrConnectWithoutUsersInput[]
@@ -13438,11 +16378,25 @@ export namespace Prisma {
     connect?: region_setvariablesWhereUniqueInput | region_setvariablesWhereUniqueInput[]
   }
 
+  export type gallon_gross_historyUncheckedCreateNestedManyWithoutUsersInput = {
+    create?: XOR<gallon_gross_historyCreateWithoutUsersInput, gallon_gross_historyUncheckedCreateWithoutUsersInput> | gallon_gross_historyCreateWithoutUsersInput[] | gallon_gross_historyUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: gallon_gross_historyCreateOrConnectWithoutUsersInput | gallon_gross_historyCreateOrConnectWithoutUsersInput[]
+    createMany?: gallon_gross_historyCreateManyUsersInputEnvelope
+    connect?: gallon_gross_historyWhereUniqueInput | gallon_gross_historyWhereUniqueInput[]
+  }
+
   export type gas_station_setvariablesUncheckedCreateNestedManyWithoutUsersInput = {
     create?: XOR<gas_station_setvariablesCreateWithoutUsersInput, gas_station_setvariablesUncheckedCreateWithoutUsersInput> | gas_station_setvariablesCreateWithoutUsersInput[] | gas_station_setvariablesUncheckedCreateWithoutUsersInput[]
     connectOrCreate?: gas_station_setvariablesCreateOrConnectWithoutUsersInput | gas_station_setvariablesCreateOrConnectWithoutUsersInput[]
     createMany?: gas_station_setvariablesCreateManyUsersInputEnvelope
     connect?: gas_station_setvariablesWhereUniqueInput | gas_station_setvariablesWhereUniqueInput[]
+  }
+
+  export type product_gross_historyUncheckedCreateNestedManyWithoutUsersInput = {
+    create?: XOR<product_gross_historyCreateWithoutUsersInput, product_gross_historyUncheckedCreateWithoutUsersInput> | product_gross_historyCreateWithoutUsersInput[] | product_gross_historyUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: product_gross_historyCreateOrConnectWithoutUsersInput | product_gross_historyCreateOrConnectWithoutUsersInput[]
+    createMany?: product_gross_historyCreateManyUsersInputEnvelope
+    connect?: product_gross_historyWhereUniqueInput | product_gross_historyWhereUniqueInput[]
   }
 
   export type region_setvariablesUncheckedCreateNestedManyWithoutUsersInput = {
@@ -13465,6 +16419,20 @@ export namespace Prisma {
     push?: string | string[]
   }
 
+  export type gallon_gross_historyUpdateManyWithoutUsersNestedInput = {
+    create?: XOR<gallon_gross_historyCreateWithoutUsersInput, gallon_gross_historyUncheckedCreateWithoutUsersInput> | gallon_gross_historyCreateWithoutUsersInput[] | gallon_gross_historyUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: gallon_gross_historyCreateOrConnectWithoutUsersInput | gallon_gross_historyCreateOrConnectWithoutUsersInput[]
+    upsert?: gallon_gross_historyUpsertWithWhereUniqueWithoutUsersInput | gallon_gross_historyUpsertWithWhereUniqueWithoutUsersInput[]
+    createMany?: gallon_gross_historyCreateManyUsersInputEnvelope
+    set?: gallon_gross_historyWhereUniqueInput | gallon_gross_historyWhereUniqueInput[]
+    disconnect?: gallon_gross_historyWhereUniqueInput | gallon_gross_historyWhereUniqueInput[]
+    delete?: gallon_gross_historyWhereUniqueInput | gallon_gross_historyWhereUniqueInput[]
+    connect?: gallon_gross_historyWhereUniqueInput | gallon_gross_historyWhereUniqueInput[]
+    update?: gallon_gross_historyUpdateWithWhereUniqueWithoutUsersInput | gallon_gross_historyUpdateWithWhereUniqueWithoutUsersInput[]
+    updateMany?: gallon_gross_historyUpdateManyWithWhereWithoutUsersInput | gallon_gross_historyUpdateManyWithWhereWithoutUsersInput[]
+    deleteMany?: gallon_gross_historyScalarWhereInput | gallon_gross_historyScalarWhereInput[]
+  }
+
   export type gas_station_setvariablesUpdateManyWithoutUsersNestedInput = {
     create?: XOR<gas_station_setvariablesCreateWithoutUsersInput, gas_station_setvariablesUncheckedCreateWithoutUsersInput> | gas_station_setvariablesCreateWithoutUsersInput[] | gas_station_setvariablesUncheckedCreateWithoutUsersInput[]
     connectOrCreate?: gas_station_setvariablesCreateOrConnectWithoutUsersInput | gas_station_setvariablesCreateOrConnectWithoutUsersInput[]
@@ -13477,6 +16445,20 @@ export namespace Prisma {
     update?: gas_station_setvariablesUpdateWithWhereUniqueWithoutUsersInput | gas_station_setvariablesUpdateWithWhereUniqueWithoutUsersInput[]
     updateMany?: gas_station_setvariablesUpdateManyWithWhereWithoutUsersInput | gas_station_setvariablesUpdateManyWithWhereWithoutUsersInput[]
     deleteMany?: gas_station_setvariablesScalarWhereInput | gas_station_setvariablesScalarWhereInput[]
+  }
+
+  export type product_gross_historyUpdateManyWithoutUsersNestedInput = {
+    create?: XOR<product_gross_historyCreateWithoutUsersInput, product_gross_historyUncheckedCreateWithoutUsersInput> | product_gross_historyCreateWithoutUsersInput[] | product_gross_historyUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: product_gross_historyCreateOrConnectWithoutUsersInput | product_gross_historyCreateOrConnectWithoutUsersInput[]
+    upsert?: product_gross_historyUpsertWithWhereUniqueWithoutUsersInput | product_gross_historyUpsertWithWhereUniqueWithoutUsersInput[]
+    createMany?: product_gross_historyCreateManyUsersInputEnvelope
+    set?: product_gross_historyWhereUniqueInput | product_gross_historyWhereUniqueInput[]
+    disconnect?: product_gross_historyWhereUniqueInput | product_gross_historyWhereUniqueInput[]
+    delete?: product_gross_historyWhereUniqueInput | product_gross_historyWhereUniqueInput[]
+    connect?: product_gross_historyWhereUniqueInput | product_gross_historyWhereUniqueInput[]
+    update?: product_gross_historyUpdateWithWhereUniqueWithoutUsersInput | product_gross_historyUpdateWithWhereUniqueWithoutUsersInput[]
+    updateMany?: product_gross_historyUpdateManyWithWhereWithoutUsersInput | product_gross_historyUpdateManyWithWhereWithoutUsersInput[]
+    deleteMany?: product_gross_historyScalarWhereInput | product_gross_historyScalarWhereInput[]
   }
 
   export type region_setvariablesUpdateManyWithoutUsersNestedInput = {
@@ -13493,6 +16475,20 @@ export namespace Prisma {
     deleteMany?: region_setvariablesScalarWhereInput | region_setvariablesScalarWhereInput[]
   }
 
+  export type gallon_gross_historyUncheckedUpdateManyWithoutUsersNestedInput = {
+    create?: XOR<gallon_gross_historyCreateWithoutUsersInput, gallon_gross_historyUncheckedCreateWithoutUsersInput> | gallon_gross_historyCreateWithoutUsersInput[] | gallon_gross_historyUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: gallon_gross_historyCreateOrConnectWithoutUsersInput | gallon_gross_historyCreateOrConnectWithoutUsersInput[]
+    upsert?: gallon_gross_historyUpsertWithWhereUniqueWithoutUsersInput | gallon_gross_historyUpsertWithWhereUniqueWithoutUsersInput[]
+    createMany?: gallon_gross_historyCreateManyUsersInputEnvelope
+    set?: gallon_gross_historyWhereUniqueInput | gallon_gross_historyWhereUniqueInput[]
+    disconnect?: gallon_gross_historyWhereUniqueInput | gallon_gross_historyWhereUniqueInput[]
+    delete?: gallon_gross_historyWhereUniqueInput | gallon_gross_historyWhereUniqueInput[]
+    connect?: gallon_gross_historyWhereUniqueInput | gallon_gross_historyWhereUniqueInput[]
+    update?: gallon_gross_historyUpdateWithWhereUniqueWithoutUsersInput | gallon_gross_historyUpdateWithWhereUniqueWithoutUsersInput[]
+    updateMany?: gallon_gross_historyUpdateManyWithWhereWithoutUsersInput | gallon_gross_historyUpdateManyWithWhereWithoutUsersInput[]
+    deleteMany?: gallon_gross_historyScalarWhereInput | gallon_gross_historyScalarWhereInput[]
+  }
+
   export type gas_station_setvariablesUncheckedUpdateManyWithoutUsersNestedInput = {
     create?: XOR<gas_station_setvariablesCreateWithoutUsersInput, gas_station_setvariablesUncheckedCreateWithoutUsersInput> | gas_station_setvariablesCreateWithoutUsersInput[] | gas_station_setvariablesUncheckedCreateWithoutUsersInput[]
     connectOrCreate?: gas_station_setvariablesCreateOrConnectWithoutUsersInput | gas_station_setvariablesCreateOrConnectWithoutUsersInput[]
@@ -13505,6 +16501,20 @@ export namespace Prisma {
     update?: gas_station_setvariablesUpdateWithWhereUniqueWithoutUsersInput | gas_station_setvariablesUpdateWithWhereUniqueWithoutUsersInput[]
     updateMany?: gas_station_setvariablesUpdateManyWithWhereWithoutUsersInput | gas_station_setvariablesUpdateManyWithWhereWithoutUsersInput[]
     deleteMany?: gas_station_setvariablesScalarWhereInput | gas_station_setvariablesScalarWhereInput[]
+  }
+
+  export type product_gross_historyUncheckedUpdateManyWithoutUsersNestedInput = {
+    create?: XOR<product_gross_historyCreateWithoutUsersInput, product_gross_historyUncheckedCreateWithoutUsersInput> | product_gross_historyCreateWithoutUsersInput[] | product_gross_historyUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: product_gross_historyCreateOrConnectWithoutUsersInput | product_gross_historyCreateOrConnectWithoutUsersInput[]
+    upsert?: product_gross_historyUpsertWithWhereUniqueWithoutUsersInput | product_gross_historyUpsertWithWhereUniqueWithoutUsersInput[]
+    createMany?: product_gross_historyCreateManyUsersInputEnvelope
+    set?: product_gross_historyWhereUniqueInput | product_gross_historyWhereUniqueInput[]
+    disconnect?: product_gross_historyWhereUniqueInput | product_gross_historyWhereUniqueInput[]
+    delete?: product_gross_historyWhereUniqueInput | product_gross_historyWhereUniqueInput[]
+    connect?: product_gross_historyWhereUniqueInput | product_gross_historyWhereUniqueInput[]
+    update?: product_gross_historyUpdateWithWhereUniqueWithoutUsersInput | product_gross_historyUpdateWithWhereUniqueWithoutUsersInput[]
+    updateMany?: product_gross_historyUpdateManyWithWhereWithoutUsersInput | product_gross_historyUpdateManyWithWhereWithoutUsersInput[]
+    deleteMany?: product_gross_historyScalarWhereInput | product_gross_historyScalarWhereInput[]
   }
 
   export type region_setvariablesUncheckedUpdateManyWithoutUsersNestedInput = {
@@ -13701,6 +16711,70 @@ export namespace Prisma {
     update?: region_setvariablesUpdateWithWhereUniqueWithoutRegionsInput | region_setvariablesUpdateWithWhereUniqueWithoutRegionsInput[]
     updateMany?: region_setvariablesUpdateManyWithWhereWithoutRegionsInput | region_setvariablesUpdateManyWithWhereWithoutRegionsInput[]
     deleteMany?: region_setvariablesScalarWhereInput | region_setvariablesScalarWhereInput[]
+  }
+
+  export type ibm_infoCreateNestedOneWithoutGallon_gross_historyInput = {
+    create?: XOR<ibm_infoCreateWithoutGallon_gross_historyInput, ibm_infoUncheckedCreateWithoutGallon_gross_historyInput>
+    connectOrCreate?: ibm_infoCreateOrConnectWithoutGallon_gross_historyInput
+    connect?: ibm_infoWhereUniqueInput
+  }
+
+  export type usersCreateNestedOneWithoutGallon_gross_historyInput = {
+    create?: XOR<usersCreateWithoutGallon_gross_historyInput, usersUncheckedCreateWithoutGallon_gross_historyInput>
+    connectOrCreate?: usersCreateOrConnectWithoutGallon_gross_historyInput
+    connect?: usersWhereUniqueInput
+  }
+
+  export type ibm_infoUpdateOneWithoutGallon_gross_historyNestedInput = {
+    create?: XOR<ibm_infoCreateWithoutGallon_gross_historyInput, ibm_infoUncheckedCreateWithoutGallon_gross_historyInput>
+    connectOrCreate?: ibm_infoCreateOrConnectWithoutGallon_gross_historyInput
+    upsert?: ibm_infoUpsertWithoutGallon_gross_historyInput
+    disconnect?: ibm_infoWhereInput | boolean
+    delete?: ibm_infoWhereInput | boolean
+    connect?: ibm_infoWhereUniqueInput
+    update?: XOR<XOR<ibm_infoUpdateToOneWithWhereWithoutGallon_gross_historyInput, ibm_infoUpdateWithoutGallon_gross_historyInput>, ibm_infoUncheckedUpdateWithoutGallon_gross_historyInput>
+  }
+
+  export type usersUpdateOneWithoutGallon_gross_historyNestedInput = {
+    create?: XOR<usersCreateWithoutGallon_gross_historyInput, usersUncheckedCreateWithoutGallon_gross_historyInput>
+    connectOrCreate?: usersCreateOrConnectWithoutGallon_gross_historyInput
+    upsert?: usersUpsertWithoutGallon_gross_historyInput
+    disconnect?: usersWhereInput | boolean
+    delete?: usersWhereInput | boolean
+    connect?: usersWhereUniqueInput
+    update?: XOR<XOR<usersUpdateToOneWithWhereWithoutGallon_gross_historyInput, usersUpdateWithoutGallon_gross_historyInput>, usersUncheckedUpdateWithoutGallon_gross_historyInput>
+  }
+
+  export type ibm_infoCreateNestedOneWithoutProduct_gross_historyInput = {
+    create?: XOR<ibm_infoCreateWithoutProduct_gross_historyInput, ibm_infoUncheckedCreateWithoutProduct_gross_historyInput>
+    connectOrCreate?: ibm_infoCreateOrConnectWithoutProduct_gross_historyInput
+    connect?: ibm_infoWhereUniqueInput
+  }
+
+  export type usersCreateNestedOneWithoutProduct_gross_historyInput = {
+    create?: XOR<usersCreateWithoutProduct_gross_historyInput, usersUncheckedCreateWithoutProduct_gross_historyInput>
+    connectOrCreate?: usersCreateOrConnectWithoutProduct_gross_historyInput
+    connect?: usersWhereUniqueInput
+  }
+
+  export type ibm_infoUpdateOneWithoutProduct_gross_historyNestedInput = {
+    create?: XOR<ibm_infoCreateWithoutProduct_gross_historyInput, ibm_infoUncheckedCreateWithoutProduct_gross_historyInput>
+    connectOrCreate?: ibm_infoCreateOrConnectWithoutProduct_gross_historyInput
+    upsert?: ibm_infoUpsertWithoutProduct_gross_historyInput
+    disconnect?: ibm_infoWhereInput | boolean
+    delete?: ibm_infoWhereInput | boolean
+    connect?: ibm_infoWhereUniqueInput
+    update?: XOR<XOR<ibm_infoUpdateToOneWithWhereWithoutProduct_gross_historyInput, ibm_infoUpdateWithoutProduct_gross_historyInput>, ibm_infoUncheckedUpdateWithoutProduct_gross_historyInput>
+  }
+
+  export type usersUpdateOneWithoutProduct_gross_historyNestedInput = {
+    create?: XOR<usersCreateWithoutProduct_gross_historyInput, usersUncheckedCreateWithoutProduct_gross_historyInput>
+    connectOrCreate?: usersCreateOrConnectWithoutProduct_gross_historyInput
+    upsert?: usersUpsertWithoutProduct_gross_historyInput
+    disconnect?: usersWhereInput | boolean
+    delete?: usersWhereInput | boolean
+    connect?: usersWhereUniqueInput
+    update?: XOR<XOR<usersUpdateToOneWithWhereWithoutProduct_gross_historyInput, usersUpdateWithoutProduct_gross_historyInput>, usersUncheckedUpdateWithoutProduct_gross_historyInput>
   }
 
   export type NestedStringNullableFilter<$PrismaModel = never> = {
@@ -13910,6 +16984,34 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
+  export type gallon_gross_historyCreateWithoutIbm_infoInput = {
+    gallon_history_uuid?: string
+    gallon_history_gross?: number | null
+    gallon_history_date?: Date | string | null
+    gallon_history_created_at?: Date | string
+    gallon_history_updated_at?: Date | string
+    users?: usersCreateNestedOneWithoutGallon_gross_historyInput
+  }
+
+  export type gallon_gross_historyUncheckedCreateWithoutIbm_infoInput = {
+    gallon_history_uuid?: string
+    use_uuid?: string | null
+    gallon_history_gross?: number | null
+    gallon_history_date?: Date | string | null
+    gallon_history_created_at?: Date | string
+    gallon_history_updated_at?: Date | string
+  }
+
+  export type gallon_gross_historyCreateOrConnectWithoutIbm_infoInput = {
+    where: gallon_gross_historyWhereUniqueInput
+    create: XOR<gallon_gross_historyCreateWithoutIbm_infoInput, gallon_gross_historyUncheckedCreateWithoutIbm_infoInput>
+  }
+
+  export type gallon_gross_historyCreateManyIbm_infoInputEnvelope = {
+    data: gallon_gross_historyCreateManyIbm_infoInput | gallon_gross_historyCreateManyIbm_infoInput[]
+    skipDuplicates?: boolean
+  }
+
   export type gas_station_setvariablesCreateWithoutIbm_infoInput = {
     gas_station_uuid?: string
     gas_station_marginGC?: number | null
@@ -14060,6 +17162,63 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type product_gross_historyCreateWithoutIbm_infoInput = {
+    product_history_uuid?: string
+    product_history_gross?: number | null
+    product_history_date?: Date | string | null
+    product_history_created_at?: Date | string
+    product_history_updated_at?: Date | string
+    users?: usersCreateNestedOneWithoutProduct_gross_historyInput
+  }
+
+  export type product_gross_historyUncheckedCreateWithoutIbm_infoInput = {
+    product_history_uuid?: string
+    use_uuid?: string | null
+    product_history_gross?: number | null
+    product_history_date?: Date | string | null
+    product_history_created_at?: Date | string
+    product_history_updated_at?: Date | string
+  }
+
+  export type product_gross_historyCreateOrConnectWithoutIbm_infoInput = {
+    where: product_gross_historyWhereUniqueInput
+    create: XOR<product_gross_historyCreateWithoutIbm_infoInput, product_gross_historyUncheckedCreateWithoutIbm_infoInput>
+  }
+
+  export type product_gross_historyCreateManyIbm_infoInputEnvelope = {
+    data: product_gross_historyCreateManyIbm_infoInput | product_gross_historyCreateManyIbm_infoInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type gallon_gross_historyUpsertWithWhereUniqueWithoutIbm_infoInput = {
+    where: gallon_gross_historyWhereUniqueInput
+    update: XOR<gallon_gross_historyUpdateWithoutIbm_infoInput, gallon_gross_historyUncheckedUpdateWithoutIbm_infoInput>
+    create: XOR<gallon_gross_historyCreateWithoutIbm_infoInput, gallon_gross_historyUncheckedCreateWithoutIbm_infoInput>
+  }
+
+  export type gallon_gross_historyUpdateWithWhereUniqueWithoutIbm_infoInput = {
+    where: gallon_gross_historyWhereUniqueInput
+    data: XOR<gallon_gross_historyUpdateWithoutIbm_infoInput, gallon_gross_historyUncheckedUpdateWithoutIbm_infoInput>
+  }
+
+  export type gallon_gross_historyUpdateManyWithWhereWithoutIbm_infoInput = {
+    where: gallon_gross_historyScalarWhereInput
+    data: XOR<gallon_gross_historyUpdateManyMutationInput, gallon_gross_historyUncheckedUpdateManyWithoutIbm_infoInput>
+  }
+
+  export type gallon_gross_historyScalarWhereInput = {
+    AND?: gallon_gross_historyScalarWhereInput | gallon_gross_historyScalarWhereInput[]
+    OR?: gallon_gross_historyScalarWhereInput[]
+    NOT?: gallon_gross_historyScalarWhereInput | gallon_gross_historyScalarWhereInput[]
+    gallon_history_uuid?: UuidFilter<"gallon_gross_history"> | string
+    ibm_info_id?: UuidNullableFilter<"gallon_gross_history"> | string | null
+    use_uuid?: UuidNullableFilter<"gallon_gross_history"> | string | null
+    gallon_history_gross?: FloatNullableFilter<"gallon_gross_history"> | number | null
+    gallon_history_date?: DateTimeNullableFilter<"gallon_gross_history"> | Date | string | null
+    gallon_history_created_at?: DateTimeFilter<"gallon_gross_history"> | Date | string
+    gallon_history_updated_at?: DateTimeFilter<"gallon_gross_history"> | Date | string
+  }
+
   export type gas_station_setvariablesUpsertWithWhereUniqueWithoutIbm_infoInput = {
     where: gas_station_setvariablesWhereUniqueInput
     update: XOR<gas_station_setvariablesUpdateWithoutIbm_infoInput, gas_station_setvariablesUncheckedUpdateWithoutIbm_infoInput>
@@ -14148,6 +17307,63 @@ export namespace Prisma {
     gas_station_freight_value?: FloatNullableFilter<"gas_station_setvariables"> | number | null
     gas_station_gross_result_literage?: FloatNullableFilter<"gas_station_setvariables"> | number | null
     gas_station_gross_result_product?: FloatNullableFilter<"gas_station_setvariables"> | number | null
+  }
+
+  export type product_gross_historyUpsertWithWhereUniqueWithoutIbm_infoInput = {
+    where: product_gross_historyWhereUniqueInput
+    update: XOR<product_gross_historyUpdateWithoutIbm_infoInput, product_gross_historyUncheckedUpdateWithoutIbm_infoInput>
+    create: XOR<product_gross_historyCreateWithoutIbm_infoInput, product_gross_historyUncheckedCreateWithoutIbm_infoInput>
+  }
+
+  export type product_gross_historyUpdateWithWhereUniqueWithoutIbm_infoInput = {
+    where: product_gross_historyWhereUniqueInput
+    data: XOR<product_gross_historyUpdateWithoutIbm_infoInput, product_gross_historyUncheckedUpdateWithoutIbm_infoInput>
+  }
+
+  export type product_gross_historyUpdateManyWithWhereWithoutIbm_infoInput = {
+    where: product_gross_historyScalarWhereInput
+    data: XOR<product_gross_historyUpdateManyMutationInput, product_gross_historyUncheckedUpdateManyWithoutIbm_infoInput>
+  }
+
+  export type product_gross_historyScalarWhereInput = {
+    AND?: product_gross_historyScalarWhereInput | product_gross_historyScalarWhereInput[]
+    OR?: product_gross_historyScalarWhereInput[]
+    NOT?: product_gross_historyScalarWhereInput | product_gross_historyScalarWhereInput[]
+    product_history_uuid?: UuidFilter<"product_gross_history"> | string
+    ibm_info_id?: UuidNullableFilter<"product_gross_history"> | string | null
+    use_uuid?: UuidNullableFilter<"product_gross_history"> | string | null
+    product_history_gross?: FloatNullableFilter<"product_gross_history"> | number | null
+    product_history_date?: DateTimeNullableFilter<"product_gross_history"> | Date | string | null
+    product_history_created_at?: DateTimeFilter<"product_gross_history"> | Date | string
+    product_history_updated_at?: DateTimeFilter<"product_gross_history"> | Date | string
+  }
+
+  export type gallon_gross_historyCreateWithoutUsersInput = {
+    gallon_history_uuid?: string
+    gallon_history_gross?: number | null
+    gallon_history_date?: Date | string | null
+    gallon_history_created_at?: Date | string
+    gallon_history_updated_at?: Date | string
+    ibm_info?: ibm_infoCreateNestedOneWithoutGallon_gross_historyInput
+  }
+
+  export type gallon_gross_historyUncheckedCreateWithoutUsersInput = {
+    gallon_history_uuid?: string
+    ibm_info_id?: string | null
+    gallon_history_gross?: number | null
+    gallon_history_date?: Date | string | null
+    gallon_history_created_at?: Date | string
+    gallon_history_updated_at?: Date | string
+  }
+
+  export type gallon_gross_historyCreateOrConnectWithoutUsersInput = {
+    where: gallon_gross_historyWhereUniqueInput
+    create: XOR<gallon_gross_historyCreateWithoutUsersInput, gallon_gross_historyUncheckedCreateWithoutUsersInput>
+  }
+
+  export type gallon_gross_historyCreateManyUsersInputEnvelope = {
+    data: gallon_gross_historyCreateManyUsersInput | gallon_gross_historyCreateManyUsersInput[]
+    skipDuplicates?: boolean
   }
 
   export type gas_station_setvariablesCreateWithoutUsersInput = {
@@ -14300,6 +17516,34 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type product_gross_historyCreateWithoutUsersInput = {
+    product_history_uuid?: string
+    product_history_gross?: number | null
+    product_history_date?: Date | string | null
+    product_history_created_at?: Date | string
+    product_history_updated_at?: Date | string
+    ibm_info?: ibm_infoCreateNestedOneWithoutProduct_gross_historyInput
+  }
+
+  export type product_gross_historyUncheckedCreateWithoutUsersInput = {
+    product_history_uuid?: string
+    ibm_info_id?: string | null
+    product_history_gross?: number | null
+    product_history_date?: Date | string | null
+    product_history_created_at?: Date | string
+    product_history_updated_at?: Date | string
+  }
+
+  export type product_gross_historyCreateOrConnectWithoutUsersInput = {
+    where: product_gross_historyWhereUniqueInput
+    create: XOR<product_gross_historyCreateWithoutUsersInput, product_gross_historyUncheckedCreateWithoutUsersInput>
+  }
+
+  export type product_gross_historyCreateManyUsersInputEnvelope = {
+    data: product_gross_historyCreateManyUsersInput | product_gross_historyCreateManyUsersInput[]
+    skipDuplicates?: boolean
+  }
+
   export type region_setvariablesCreateWithoutUsersInput = {
     region_uuid?: string
     region_marginGC?: number | null
@@ -14414,6 +17658,22 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type gallon_gross_historyUpsertWithWhereUniqueWithoutUsersInput = {
+    where: gallon_gross_historyWhereUniqueInput
+    update: XOR<gallon_gross_historyUpdateWithoutUsersInput, gallon_gross_historyUncheckedUpdateWithoutUsersInput>
+    create: XOR<gallon_gross_historyCreateWithoutUsersInput, gallon_gross_historyUncheckedCreateWithoutUsersInput>
+  }
+
+  export type gallon_gross_historyUpdateWithWhereUniqueWithoutUsersInput = {
+    where: gallon_gross_historyWhereUniqueInput
+    data: XOR<gallon_gross_historyUpdateWithoutUsersInput, gallon_gross_historyUncheckedUpdateWithoutUsersInput>
+  }
+
+  export type gallon_gross_historyUpdateManyWithWhereWithoutUsersInput = {
+    where: gallon_gross_historyScalarWhereInput
+    data: XOR<gallon_gross_historyUpdateManyMutationInput, gallon_gross_historyUncheckedUpdateManyWithoutUsersInput>
+  }
+
   export type gas_station_setvariablesUpsertWithWhereUniqueWithoutUsersInput = {
     where: gas_station_setvariablesWhereUniqueInput
     update: XOR<gas_station_setvariablesUpdateWithoutUsersInput, gas_station_setvariablesUncheckedUpdateWithoutUsersInput>
@@ -14428,6 +17688,22 @@ export namespace Prisma {
   export type gas_station_setvariablesUpdateManyWithWhereWithoutUsersInput = {
     where: gas_station_setvariablesScalarWhereInput
     data: XOR<gas_station_setvariablesUpdateManyMutationInput, gas_station_setvariablesUncheckedUpdateManyWithoutUsersInput>
+  }
+
+  export type product_gross_historyUpsertWithWhereUniqueWithoutUsersInput = {
+    where: product_gross_historyWhereUniqueInput
+    update: XOR<product_gross_historyUpdateWithoutUsersInput, product_gross_historyUncheckedUpdateWithoutUsersInput>
+    create: XOR<product_gross_historyCreateWithoutUsersInput, product_gross_historyUncheckedCreateWithoutUsersInput>
+  }
+
+  export type product_gross_historyUpdateWithWhereUniqueWithoutUsersInput = {
+    where: product_gross_historyWhereUniqueInput
+    data: XOR<product_gross_historyUpdateWithoutUsersInput, product_gross_historyUncheckedUpdateWithoutUsersInput>
+  }
+
+  export type product_gross_historyUpdateManyWithWhereWithoutUsersInput = {
+    where: product_gross_historyScalarWhereInput
+    data: XOR<product_gross_historyUpdateManyMutationInput, product_gross_historyUncheckedUpdateManyWithoutUsersInput>
   }
 
   export type region_setvariablesUpsertWithWhereUniqueWithoutUsersInput = {
@@ -14521,6 +17797,8 @@ export namespace Prisma {
     ibm_margin_ETANOL_COMUM?: ibm_infoCreateibm_margin_ETANOL_COMUMInput | number[]
     ibm_margin_TOTAL_PRODUCT?: ibm_infoCreateibm_margin_TOTAL_PRODUCTInput | number[]
     ibm_margin_ADITIVOS_AUTOMOVEIS_PRODUCT?: ibm_infoCreateibm_margin_ADITIVOS_AUTOMOVEIS_PRODUCTInput | number[]
+    gallon_gross_history?: gallon_gross_historyCreateNestedManyWithoutIbm_infoInput
+    product_gross_history?: product_gross_historyCreateNestedManyWithoutIbm_infoInput
   }
 
   export type ibm_infoUncheckedCreateWithoutGas_station_setvariablesInput = {
@@ -14542,6 +17820,8 @@ export namespace Prisma {
     ibm_margin_ETANOL_COMUM?: ibm_infoCreateibm_margin_ETANOL_COMUMInput | number[]
     ibm_margin_TOTAL_PRODUCT?: ibm_infoCreateibm_margin_TOTAL_PRODUCTInput | number[]
     ibm_margin_ADITIVOS_AUTOMOVEIS_PRODUCT?: ibm_infoCreateibm_margin_ADITIVOS_AUTOMOVEIS_PRODUCTInput | number[]
+    gallon_gross_history?: gallon_gross_historyUncheckedCreateNestedManyWithoutIbm_infoInput
+    product_gross_history?: product_gross_historyUncheckedCreateNestedManyWithoutIbm_infoInput
   }
 
   export type ibm_infoCreateOrConnectWithoutGas_station_setvariablesInput = {
@@ -14572,6 +17852,8 @@ export namespace Prisma {
     use_GASOLINA_COMUM_comb?: number | null
     use_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
     use_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
+    gallon_gross_history?: gallon_gross_historyCreateNestedManyWithoutUsersInput
+    product_gross_history?: product_gross_historyCreateNestedManyWithoutUsersInput
     region_setvariables?: region_setvariablesCreateNestedManyWithoutUsersInput
   }
 
@@ -14598,6 +17880,8 @@ export namespace Prisma {
     use_GASOLINA_COMUM_comb?: number | null
     use_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
     use_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
+    gallon_gross_history?: gallon_gross_historyUncheckedCreateNestedManyWithoutUsersInput
+    product_gross_history?: product_gross_historyUncheckedCreateNestedManyWithoutUsersInput
     region_setvariables?: region_setvariablesUncheckedCreateNestedManyWithoutUsersInput
   }
 
@@ -14636,6 +17920,8 @@ export namespace Prisma {
     ibm_margin_ETANOL_COMUM?: ibm_infoUpdateibm_margin_ETANOL_COMUMInput | number[]
     ibm_margin_TOTAL_PRODUCT?: ibm_infoUpdateibm_margin_TOTAL_PRODUCTInput | number[]
     ibm_margin_ADITIVOS_AUTOMOVEIS_PRODUCT?: ibm_infoUpdateibm_margin_ADITIVOS_AUTOMOVEIS_PRODUCTInput | number[]
+    gallon_gross_history?: gallon_gross_historyUpdateManyWithoutIbm_infoNestedInput
+    product_gross_history?: product_gross_historyUpdateManyWithoutIbm_infoNestedInput
   }
 
   export type ibm_infoUncheckedUpdateWithoutGas_station_setvariablesInput = {
@@ -14657,6 +17943,8 @@ export namespace Prisma {
     ibm_margin_ETANOL_COMUM?: ibm_infoUpdateibm_margin_ETANOL_COMUMInput | number[]
     ibm_margin_TOTAL_PRODUCT?: ibm_infoUpdateibm_margin_TOTAL_PRODUCTInput | number[]
     ibm_margin_ADITIVOS_AUTOMOVEIS_PRODUCT?: ibm_infoUpdateibm_margin_ADITIVOS_AUTOMOVEIS_PRODUCTInput | number[]
+    gallon_gross_history?: gallon_gross_historyUncheckedUpdateManyWithoutIbm_infoNestedInput
+    product_gross_history?: product_gross_historyUncheckedUpdateManyWithoutIbm_infoNestedInput
   }
 
   export type usersUpsertWithoutGas_station_setvariablesInput = {
@@ -14693,6 +17981,8 @@ export namespace Prisma {
     use_GASOLINA_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
     use_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
     use_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gallon_gross_history?: gallon_gross_historyUpdateManyWithoutUsersNestedInput
+    product_gross_history?: product_gross_historyUpdateManyWithoutUsersNestedInput
     region_setvariables?: region_setvariablesUpdateManyWithoutUsersNestedInput
   }
 
@@ -14719,6 +18009,8 @@ export namespace Prisma {
     use_GASOLINA_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
     use_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
     use_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gallon_gross_history?: gallon_gross_historyUncheckedUpdateManyWithoutUsersNestedInput
+    product_gross_history?: product_gross_historyUncheckedUpdateManyWithoutUsersNestedInput
     region_setvariables?: region_setvariablesUncheckedUpdateManyWithoutUsersNestedInput
   }
 
@@ -14778,7 +18070,9 @@ export namespace Prisma {
     use_GASOLINA_COMUM_comb?: number | null
     use_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
     use_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
+    gallon_gross_history?: gallon_gross_historyCreateNestedManyWithoutUsersInput
     gas_station_setvariables?: gas_station_setvariablesCreateNestedManyWithoutUsersInput
+    product_gross_history?: product_gross_historyCreateNestedManyWithoutUsersInput
   }
 
   export type usersUncheckedCreateWithoutRegion_setvariablesInput = {
@@ -14804,7 +18098,9 @@ export namespace Prisma {
     use_GASOLINA_COMUM_comb?: number | null
     use_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
     use_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
+    gallon_gross_history?: gallon_gross_historyUncheckedCreateNestedManyWithoutUsersInput
     gas_station_setvariables?: gas_station_setvariablesUncheckedCreateNestedManyWithoutUsersInput
+    product_gross_history?: product_gross_historyUncheckedCreateNestedManyWithoutUsersInput
   }
 
   export type usersCreateOrConnectWithoutRegion_setvariablesInput = {
@@ -14885,7 +18181,9 @@ export namespace Prisma {
     use_GASOLINA_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
     use_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
     use_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gallon_gross_history?: gallon_gross_historyUpdateManyWithoutUsersNestedInput
     gas_station_setvariables?: gas_station_setvariablesUpdateManyWithoutUsersNestedInput
+    product_gross_history?: product_gross_historyUpdateManyWithoutUsersNestedInput
   }
 
   export type usersUncheckedUpdateWithoutRegion_setvariablesInput = {
@@ -14911,7 +18209,9 @@ export namespace Prisma {
     use_GASOLINA_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
     use_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
     use_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gallon_gross_history?: gallon_gross_historyUncheckedUpdateManyWithoutUsersNestedInput
     gas_station_setvariables?: gas_station_setvariablesUncheckedUpdateManyWithoutUsersNestedInput
+    product_gross_history?: product_gross_historyUncheckedUpdateManyWithoutUsersNestedInput
   }
 
   export type region_setvariablesCreateWithoutRegionsInput = {
@@ -15044,6 +18344,487 @@ export namespace Prisma {
     data: XOR<region_setvariablesUpdateManyMutationInput, region_setvariablesUncheckedUpdateManyWithoutRegionsInput>
   }
 
+  export type ibm_infoCreateWithoutGallon_gross_historyInput = {
+    ibm?: string | null
+    nomefantasia?: string | null
+    cnpj?: string | null
+    razaosocial?: string | null
+    cep?: string | null
+    lat?: number | null
+    long?: number | null
+    id?: string
+    endereco?: string | null
+    regional?: string | null
+    ibm_margin_GC?: ibm_infoCreateibm_margin_GCInput | number[]
+    ibm_margin_GASOLINA_PODIUM?: ibm_infoCreateibm_margin_GASOLINA_PODIUMInput | number[]
+    ibm_margin_GASOLINA_PREMIUM?: ibm_infoCreateibm_margin_GASOLINA_PREMIUMInput | number[]
+    ibm_margin_DIESEL_GROUP?: ibm_infoCreateibm_margin_DIESEL_GROUPInput | number[]
+    ibm_margin_DIESEL_GROUP_S500?: ibm_infoCreateibm_margin_DIESEL_GROUP_S500Input | number[]
+    ibm_margin_ETANOL_COMUM?: ibm_infoCreateibm_margin_ETANOL_COMUMInput | number[]
+    ibm_margin_TOTAL_PRODUCT?: ibm_infoCreateibm_margin_TOTAL_PRODUCTInput | number[]
+    ibm_margin_ADITIVOS_AUTOMOVEIS_PRODUCT?: ibm_infoCreateibm_margin_ADITIVOS_AUTOMOVEIS_PRODUCTInput | number[]
+    gas_station_setvariables?: gas_station_setvariablesCreateNestedManyWithoutIbm_infoInput
+    product_gross_history?: product_gross_historyCreateNestedManyWithoutIbm_infoInput
+  }
+
+  export type ibm_infoUncheckedCreateWithoutGallon_gross_historyInput = {
+    ibm?: string | null
+    nomefantasia?: string | null
+    cnpj?: string | null
+    razaosocial?: string | null
+    cep?: string | null
+    lat?: number | null
+    long?: number | null
+    id?: string
+    endereco?: string | null
+    regional?: string | null
+    ibm_margin_GC?: ibm_infoCreateibm_margin_GCInput | number[]
+    ibm_margin_GASOLINA_PODIUM?: ibm_infoCreateibm_margin_GASOLINA_PODIUMInput | number[]
+    ibm_margin_GASOLINA_PREMIUM?: ibm_infoCreateibm_margin_GASOLINA_PREMIUMInput | number[]
+    ibm_margin_DIESEL_GROUP?: ibm_infoCreateibm_margin_DIESEL_GROUPInput | number[]
+    ibm_margin_DIESEL_GROUP_S500?: ibm_infoCreateibm_margin_DIESEL_GROUP_S500Input | number[]
+    ibm_margin_ETANOL_COMUM?: ibm_infoCreateibm_margin_ETANOL_COMUMInput | number[]
+    ibm_margin_TOTAL_PRODUCT?: ibm_infoCreateibm_margin_TOTAL_PRODUCTInput | number[]
+    ibm_margin_ADITIVOS_AUTOMOVEIS_PRODUCT?: ibm_infoCreateibm_margin_ADITIVOS_AUTOMOVEIS_PRODUCTInput | number[]
+    gas_station_setvariables?: gas_station_setvariablesUncheckedCreateNestedManyWithoutIbm_infoInput
+    product_gross_history?: product_gross_historyUncheckedCreateNestedManyWithoutIbm_infoInput
+  }
+
+  export type ibm_infoCreateOrConnectWithoutGallon_gross_historyInput = {
+    where: ibm_infoWhereUniqueInput
+    create: XOR<ibm_infoCreateWithoutGallon_gross_historyInput, ibm_infoUncheckedCreateWithoutGallon_gross_historyInput>
+  }
+
+  export type usersCreateWithoutGallon_gross_historyInput = {
+    use_uuid?: string
+    use_name?: string | null
+    use_email?: string | null
+    use_password?: string | null
+    use_created_at?: Date | string
+    use_updated_at?: Date | string
+    use_date_expire?: Date | string | null
+    use_token?: string | null
+    use_level?: string | null
+    use_whats_app?: usersCreateuse_whats_appInput | string[]
+    use_mlt?: number | null
+    use_tmc?: number | null
+    use_tmf?: number | null
+    use_tmp?: number | null
+    use_tmvol?: number | null
+    use_lucro_bruto_operacional_galonagem?: number | null
+    use_lucro_bruto_operacional_produto?: number | null
+    use_lucro_bruto_operacional?: number | null
+    use_ETANOL_COMUM_comb?: number | null
+    use_GASOLINA_COMUM_comb?: number | null
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
+    gas_station_setvariables?: gas_station_setvariablesCreateNestedManyWithoutUsersInput
+    product_gross_history?: product_gross_historyCreateNestedManyWithoutUsersInput
+    region_setvariables?: region_setvariablesCreateNestedManyWithoutUsersInput
+  }
+
+  export type usersUncheckedCreateWithoutGallon_gross_historyInput = {
+    use_uuid?: string
+    use_name?: string | null
+    use_email?: string | null
+    use_password?: string | null
+    use_created_at?: Date | string
+    use_updated_at?: Date | string
+    use_date_expire?: Date | string | null
+    use_token?: string | null
+    use_level?: string | null
+    use_whats_app?: usersCreateuse_whats_appInput | string[]
+    use_mlt?: number | null
+    use_tmc?: number | null
+    use_tmf?: number | null
+    use_tmp?: number | null
+    use_tmvol?: number | null
+    use_lucro_bruto_operacional_galonagem?: number | null
+    use_lucro_bruto_operacional_produto?: number | null
+    use_lucro_bruto_operacional?: number | null
+    use_ETANOL_COMUM_comb?: number | null
+    use_GASOLINA_COMUM_comb?: number | null
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
+    gas_station_setvariables?: gas_station_setvariablesUncheckedCreateNestedManyWithoutUsersInput
+    product_gross_history?: product_gross_historyUncheckedCreateNestedManyWithoutUsersInput
+    region_setvariables?: region_setvariablesUncheckedCreateNestedManyWithoutUsersInput
+  }
+
+  export type usersCreateOrConnectWithoutGallon_gross_historyInput = {
+    where: usersWhereUniqueInput
+    create: XOR<usersCreateWithoutGallon_gross_historyInput, usersUncheckedCreateWithoutGallon_gross_historyInput>
+  }
+
+  export type ibm_infoUpsertWithoutGallon_gross_historyInput = {
+    update: XOR<ibm_infoUpdateWithoutGallon_gross_historyInput, ibm_infoUncheckedUpdateWithoutGallon_gross_historyInput>
+    create: XOR<ibm_infoCreateWithoutGallon_gross_historyInput, ibm_infoUncheckedCreateWithoutGallon_gross_historyInput>
+    where?: ibm_infoWhereInput
+  }
+
+  export type ibm_infoUpdateToOneWithWhereWithoutGallon_gross_historyInput = {
+    where?: ibm_infoWhereInput
+    data: XOR<ibm_infoUpdateWithoutGallon_gross_historyInput, ibm_infoUncheckedUpdateWithoutGallon_gross_historyInput>
+  }
+
+  export type ibm_infoUpdateWithoutGallon_gross_historyInput = {
+    ibm?: NullableStringFieldUpdateOperationsInput | string | null
+    nomefantasia?: NullableStringFieldUpdateOperationsInput | string | null
+    cnpj?: NullableStringFieldUpdateOperationsInput | string | null
+    razaosocial?: NullableStringFieldUpdateOperationsInput | string | null
+    cep?: NullableStringFieldUpdateOperationsInput | string | null
+    lat?: NullableFloatFieldUpdateOperationsInput | number | null
+    long?: NullableFloatFieldUpdateOperationsInput | number | null
+    id?: StringFieldUpdateOperationsInput | string
+    endereco?: NullableStringFieldUpdateOperationsInput | string | null
+    regional?: NullableStringFieldUpdateOperationsInput | string | null
+    ibm_margin_GC?: ibm_infoUpdateibm_margin_GCInput | number[]
+    ibm_margin_GASOLINA_PODIUM?: ibm_infoUpdateibm_margin_GASOLINA_PODIUMInput | number[]
+    ibm_margin_GASOLINA_PREMIUM?: ibm_infoUpdateibm_margin_GASOLINA_PREMIUMInput | number[]
+    ibm_margin_DIESEL_GROUP?: ibm_infoUpdateibm_margin_DIESEL_GROUPInput | number[]
+    ibm_margin_DIESEL_GROUP_S500?: ibm_infoUpdateibm_margin_DIESEL_GROUP_S500Input | number[]
+    ibm_margin_ETANOL_COMUM?: ibm_infoUpdateibm_margin_ETANOL_COMUMInput | number[]
+    ibm_margin_TOTAL_PRODUCT?: ibm_infoUpdateibm_margin_TOTAL_PRODUCTInput | number[]
+    ibm_margin_ADITIVOS_AUTOMOVEIS_PRODUCT?: ibm_infoUpdateibm_margin_ADITIVOS_AUTOMOVEIS_PRODUCTInput | number[]
+    gas_station_setvariables?: gas_station_setvariablesUpdateManyWithoutIbm_infoNestedInput
+    product_gross_history?: product_gross_historyUpdateManyWithoutIbm_infoNestedInput
+  }
+
+  export type ibm_infoUncheckedUpdateWithoutGallon_gross_historyInput = {
+    ibm?: NullableStringFieldUpdateOperationsInput | string | null
+    nomefantasia?: NullableStringFieldUpdateOperationsInput | string | null
+    cnpj?: NullableStringFieldUpdateOperationsInput | string | null
+    razaosocial?: NullableStringFieldUpdateOperationsInput | string | null
+    cep?: NullableStringFieldUpdateOperationsInput | string | null
+    lat?: NullableFloatFieldUpdateOperationsInput | number | null
+    long?: NullableFloatFieldUpdateOperationsInput | number | null
+    id?: StringFieldUpdateOperationsInput | string
+    endereco?: NullableStringFieldUpdateOperationsInput | string | null
+    regional?: NullableStringFieldUpdateOperationsInput | string | null
+    ibm_margin_GC?: ibm_infoUpdateibm_margin_GCInput | number[]
+    ibm_margin_GASOLINA_PODIUM?: ibm_infoUpdateibm_margin_GASOLINA_PODIUMInput | number[]
+    ibm_margin_GASOLINA_PREMIUM?: ibm_infoUpdateibm_margin_GASOLINA_PREMIUMInput | number[]
+    ibm_margin_DIESEL_GROUP?: ibm_infoUpdateibm_margin_DIESEL_GROUPInput | number[]
+    ibm_margin_DIESEL_GROUP_S500?: ibm_infoUpdateibm_margin_DIESEL_GROUP_S500Input | number[]
+    ibm_margin_ETANOL_COMUM?: ibm_infoUpdateibm_margin_ETANOL_COMUMInput | number[]
+    ibm_margin_TOTAL_PRODUCT?: ibm_infoUpdateibm_margin_TOTAL_PRODUCTInput | number[]
+    ibm_margin_ADITIVOS_AUTOMOVEIS_PRODUCT?: ibm_infoUpdateibm_margin_ADITIVOS_AUTOMOVEIS_PRODUCTInput | number[]
+    gas_station_setvariables?: gas_station_setvariablesUncheckedUpdateManyWithoutIbm_infoNestedInput
+    product_gross_history?: product_gross_historyUncheckedUpdateManyWithoutIbm_infoNestedInput
+  }
+
+  export type usersUpsertWithoutGallon_gross_historyInput = {
+    update: XOR<usersUpdateWithoutGallon_gross_historyInput, usersUncheckedUpdateWithoutGallon_gross_historyInput>
+    create: XOR<usersCreateWithoutGallon_gross_historyInput, usersUncheckedCreateWithoutGallon_gross_historyInput>
+    where?: usersWhereInput
+  }
+
+  export type usersUpdateToOneWithWhereWithoutGallon_gross_historyInput = {
+    where?: usersWhereInput
+    data: XOR<usersUpdateWithoutGallon_gross_historyInput, usersUncheckedUpdateWithoutGallon_gross_historyInput>
+  }
+
+  export type usersUpdateWithoutGallon_gross_historyInput = {
+    use_uuid?: StringFieldUpdateOperationsInput | string
+    use_name?: NullableStringFieldUpdateOperationsInput | string | null
+    use_email?: NullableStringFieldUpdateOperationsInput | string | null
+    use_password?: NullableStringFieldUpdateOperationsInput | string | null
+    use_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    use_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    use_date_expire?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    use_token?: NullableStringFieldUpdateOperationsInput | string | null
+    use_level?: NullableStringFieldUpdateOperationsInput | string | null
+    use_whats_app?: usersUpdateuse_whats_appInput | string[]
+    use_mlt?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmc?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmf?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmp?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmvol?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_lucro_bruto_operacional_galonagem?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_lucro_bruto_operacional_produto?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_lucro_bruto_operacional?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_ETANOL_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_GASOLINA_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_setvariables?: gas_station_setvariablesUpdateManyWithoutUsersNestedInput
+    product_gross_history?: product_gross_historyUpdateManyWithoutUsersNestedInput
+    region_setvariables?: region_setvariablesUpdateManyWithoutUsersNestedInput
+  }
+
+  export type usersUncheckedUpdateWithoutGallon_gross_historyInput = {
+    use_uuid?: StringFieldUpdateOperationsInput | string
+    use_name?: NullableStringFieldUpdateOperationsInput | string | null
+    use_email?: NullableStringFieldUpdateOperationsInput | string | null
+    use_password?: NullableStringFieldUpdateOperationsInput | string | null
+    use_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    use_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    use_date_expire?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    use_token?: NullableStringFieldUpdateOperationsInput | string | null
+    use_level?: NullableStringFieldUpdateOperationsInput | string | null
+    use_whats_app?: usersUpdateuse_whats_appInput | string[]
+    use_mlt?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmc?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmf?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmp?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmvol?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_lucro_bruto_operacional_galonagem?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_lucro_bruto_operacional_produto?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_lucro_bruto_operacional?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_ETANOL_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_GASOLINA_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gas_station_setvariables?: gas_station_setvariablesUncheckedUpdateManyWithoutUsersNestedInput
+    product_gross_history?: product_gross_historyUncheckedUpdateManyWithoutUsersNestedInput
+    region_setvariables?: region_setvariablesUncheckedUpdateManyWithoutUsersNestedInput
+  }
+
+  export type ibm_infoCreateWithoutProduct_gross_historyInput = {
+    ibm?: string | null
+    nomefantasia?: string | null
+    cnpj?: string | null
+    razaosocial?: string | null
+    cep?: string | null
+    lat?: number | null
+    long?: number | null
+    id?: string
+    endereco?: string | null
+    regional?: string | null
+    ibm_margin_GC?: ibm_infoCreateibm_margin_GCInput | number[]
+    ibm_margin_GASOLINA_PODIUM?: ibm_infoCreateibm_margin_GASOLINA_PODIUMInput | number[]
+    ibm_margin_GASOLINA_PREMIUM?: ibm_infoCreateibm_margin_GASOLINA_PREMIUMInput | number[]
+    ibm_margin_DIESEL_GROUP?: ibm_infoCreateibm_margin_DIESEL_GROUPInput | number[]
+    ibm_margin_DIESEL_GROUP_S500?: ibm_infoCreateibm_margin_DIESEL_GROUP_S500Input | number[]
+    ibm_margin_ETANOL_COMUM?: ibm_infoCreateibm_margin_ETANOL_COMUMInput | number[]
+    ibm_margin_TOTAL_PRODUCT?: ibm_infoCreateibm_margin_TOTAL_PRODUCTInput | number[]
+    ibm_margin_ADITIVOS_AUTOMOVEIS_PRODUCT?: ibm_infoCreateibm_margin_ADITIVOS_AUTOMOVEIS_PRODUCTInput | number[]
+    gallon_gross_history?: gallon_gross_historyCreateNestedManyWithoutIbm_infoInput
+    gas_station_setvariables?: gas_station_setvariablesCreateNestedManyWithoutIbm_infoInput
+  }
+
+  export type ibm_infoUncheckedCreateWithoutProduct_gross_historyInput = {
+    ibm?: string | null
+    nomefantasia?: string | null
+    cnpj?: string | null
+    razaosocial?: string | null
+    cep?: string | null
+    lat?: number | null
+    long?: number | null
+    id?: string
+    endereco?: string | null
+    regional?: string | null
+    ibm_margin_GC?: ibm_infoCreateibm_margin_GCInput | number[]
+    ibm_margin_GASOLINA_PODIUM?: ibm_infoCreateibm_margin_GASOLINA_PODIUMInput | number[]
+    ibm_margin_GASOLINA_PREMIUM?: ibm_infoCreateibm_margin_GASOLINA_PREMIUMInput | number[]
+    ibm_margin_DIESEL_GROUP?: ibm_infoCreateibm_margin_DIESEL_GROUPInput | number[]
+    ibm_margin_DIESEL_GROUP_S500?: ibm_infoCreateibm_margin_DIESEL_GROUP_S500Input | number[]
+    ibm_margin_ETANOL_COMUM?: ibm_infoCreateibm_margin_ETANOL_COMUMInput | number[]
+    ibm_margin_TOTAL_PRODUCT?: ibm_infoCreateibm_margin_TOTAL_PRODUCTInput | number[]
+    ibm_margin_ADITIVOS_AUTOMOVEIS_PRODUCT?: ibm_infoCreateibm_margin_ADITIVOS_AUTOMOVEIS_PRODUCTInput | number[]
+    gallon_gross_history?: gallon_gross_historyUncheckedCreateNestedManyWithoutIbm_infoInput
+    gas_station_setvariables?: gas_station_setvariablesUncheckedCreateNestedManyWithoutIbm_infoInput
+  }
+
+  export type ibm_infoCreateOrConnectWithoutProduct_gross_historyInput = {
+    where: ibm_infoWhereUniqueInput
+    create: XOR<ibm_infoCreateWithoutProduct_gross_historyInput, ibm_infoUncheckedCreateWithoutProduct_gross_historyInput>
+  }
+
+  export type usersCreateWithoutProduct_gross_historyInput = {
+    use_uuid?: string
+    use_name?: string | null
+    use_email?: string | null
+    use_password?: string | null
+    use_created_at?: Date | string
+    use_updated_at?: Date | string
+    use_date_expire?: Date | string | null
+    use_token?: string | null
+    use_level?: string | null
+    use_whats_app?: usersCreateuse_whats_appInput | string[]
+    use_mlt?: number | null
+    use_tmc?: number | null
+    use_tmf?: number | null
+    use_tmp?: number | null
+    use_tmvol?: number | null
+    use_lucro_bruto_operacional_galonagem?: number | null
+    use_lucro_bruto_operacional_produto?: number | null
+    use_lucro_bruto_operacional?: number | null
+    use_ETANOL_COMUM_comb?: number | null
+    use_GASOLINA_COMUM_comb?: number | null
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
+    gallon_gross_history?: gallon_gross_historyCreateNestedManyWithoutUsersInput
+    gas_station_setvariables?: gas_station_setvariablesCreateNestedManyWithoutUsersInput
+    region_setvariables?: region_setvariablesCreateNestedManyWithoutUsersInput
+  }
+
+  export type usersUncheckedCreateWithoutProduct_gross_historyInput = {
+    use_uuid?: string
+    use_name?: string | null
+    use_email?: string | null
+    use_password?: string | null
+    use_created_at?: Date | string
+    use_updated_at?: Date | string
+    use_date_expire?: Date | string | null
+    use_token?: string | null
+    use_level?: string | null
+    use_whats_app?: usersCreateuse_whats_appInput | string[]
+    use_mlt?: number | null
+    use_tmc?: number | null
+    use_tmf?: number | null
+    use_tmp?: number | null
+    use_tmvol?: number | null
+    use_lucro_bruto_operacional_galonagem?: number | null
+    use_lucro_bruto_operacional_produto?: number | null
+    use_lucro_bruto_operacional?: number | null
+    use_ETANOL_COMUM_comb?: number | null
+    use_GASOLINA_COMUM_comb?: number | null
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
+    gallon_gross_history?: gallon_gross_historyUncheckedCreateNestedManyWithoutUsersInput
+    gas_station_setvariables?: gas_station_setvariablesUncheckedCreateNestedManyWithoutUsersInput
+    region_setvariables?: region_setvariablesUncheckedCreateNestedManyWithoutUsersInput
+  }
+
+  export type usersCreateOrConnectWithoutProduct_gross_historyInput = {
+    where: usersWhereUniqueInput
+    create: XOR<usersCreateWithoutProduct_gross_historyInput, usersUncheckedCreateWithoutProduct_gross_historyInput>
+  }
+
+  export type ibm_infoUpsertWithoutProduct_gross_historyInput = {
+    update: XOR<ibm_infoUpdateWithoutProduct_gross_historyInput, ibm_infoUncheckedUpdateWithoutProduct_gross_historyInput>
+    create: XOR<ibm_infoCreateWithoutProduct_gross_historyInput, ibm_infoUncheckedCreateWithoutProduct_gross_historyInput>
+    where?: ibm_infoWhereInput
+  }
+
+  export type ibm_infoUpdateToOneWithWhereWithoutProduct_gross_historyInput = {
+    where?: ibm_infoWhereInput
+    data: XOR<ibm_infoUpdateWithoutProduct_gross_historyInput, ibm_infoUncheckedUpdateWithoutProduct_gross_historyInput>
+  }
+
+  export type ibm_infoUpdateWithoutProduct_gross_historyInput = {
+    ibm?: NullableStringFieldUpdateOperationsInput | string | null
+    nomefantasia?: NullableStringFieldUpdateOperationsInput | string | null
+    cnpj?: NullableStringFieldUpdateOperationsInput | string | null
+    razaosocial?: NullableStringFieldUpdateOperationsInput | string | null
+    cep?: NullableStringFieldUpdateOperationsInput | string | null
+    lat?: NullableFloatFieldUpdateOperationsInput | number | null
+    long?: NullableFloatFieldUpdateOperationsInput | number | null
+    id?: StringFieldUpdateOperationsInput | string
+    endereco?: NullableStringFieldUpdateOperationsInput | string | null
+    regional?: NullableStringFieldUpdateOperationsInput | string | null
+    ibm_margin_GC?: ibm_infoUpdateibm_margin_GCInput | number[]
+    ibm_margin_GASOLINA_PODIUM?: ibm_infoUpdateibm_margin_GASOLINA_PODIUMInput | number[]
+    ibm_margin_GASOLINA_PREMIUM?: ibm_infoUpdateibm_margin_GASOLINA_PREMIUMInput | number[]
+    ibm_margin_DIESEL_GROUP?: ibm_infoUpdateibm_margin_DIESEL_GROUPInput | number[]
+    ibm_margin_DIESEL_GROUP_S500?: ibm_infoUpdateibm_margin_DIESEL_GROUP_S500Input | number[]
+    ibm_margin_ETANOL_COMUM?: ibm_infoUpdateibm_margin_ETANOL_COMUMInput | number[]
+    ibm_margin_TOTAL_PRODUCT?: ibm_infoUpdateibm_margin_TOTAL_PRODUCTInput | number[]
+    ibm_margin_ADITIVOS_AUTOMOVEIS_PRODUCT?: ibm_infoUpdateibm_margin_ADITIVOS_AUTOMOVEIS_PRODUCTInput | number[]
+    gallon_gross_history?: gallon_gross_historyUpdateManyWithoutIbm_infoNestedInput
+    gas_station_setvariables?: gas_station_setvariablesUpdateManyWithoutIbm_infoNestedInput
+  }
+
+  export type ibm_infoUncheckedUpdateWithoutProduct_gross_historyInput = {
+    ibm?: NullableStringFieldUpdateOperationsInput | string | null
+    nomefantasia?: NullableStringFieldUpdateOperationsInput | string | null
+    cnpj?: NullableStringFieldUpdateOperationsInput | string | null
+    razaosocial?: NullableStringFieldUpdateOperationsInput | string | null
+    cep?: NullableStringFieldUpdateOperationsInput | string | null
+    lat?: NullableFloatFieldUpdateOperationsInput | number | null
+    long?: NullableFloatFieldUpdateOperationsInput | number | null
+    id?: StringFieldUpdateOperationsInput | string
+    endereco?: NullableStringFieldUpdateOperationsInput | string | null
+    regional?: NullableStringFieldUpdateOperationsInput | string | null
+    ibm_margin_GC?: ibm_infoUpdateibm_margin_GCInput | number[]
+    ibm_margin_GASOLINA_PODIUM?: ibm_infoUpdateibm_margin_GASOLINA_PODIUMInput | number[]
+    ibm_margin_GASOLINA_PREMIUM?: ibm_infoUpdateibm_margin_GASOLINA_PREMIUMInput | number[]
+    ibm_margin_DIESEL_GROUP?: ibm_infoUpdateibm_margin_DIESEL_GROUPInput | number[]
+    ibm_margin_DIESEL_GROUP_S500?: ibm_infoUpdateibm_margin_DIESEL_GROUP_S500Input | number[]
+    ibm_margin_ETANOL_COMUM?: ibm_infoUpdateibm_margin_ETANOL_COMUMInput | number[]
+    ibm_margin_TOTAL_PRODUCT?: ibm_infoUpdateibm_margin_TOTAL_PRODUCTInput | number[]
+    ibm_margin_ADITIVOS_AUTOMOVEIS_PRODUCT?: ibm_infoUpdateibm_margin_ADITIVOS_AUTOMOVEIS_PRODUCTInput | number[]
+    gallon_gross_history?: gallon_gross_historyUncheckedUpdateManyWithoutIbm_infoNestedInput
+    gas_station_setvariables?: gas_station_setvariablesUncheckedUpdateManyWithoutIbm_infoNestedInput
+  }
+
+  export type usersUpsertWithoutProduct_gross_historyInput = {
+    update: XOR<usersUpdateWithoutProduct_gross_historyInput, usersUncheckedUpdateWithoutProduct_gross_historyInput>
+    create: XOR<usersCreateWithoutProduct_gross_historyInput, usersUncheckedCreateWithoutProduct_gross_historyInput>
+    where?: usersWhereInput
+  }
+
+  export type usersUpdateToOneWithWhereWithoutProduct_gross_historyInput = {
+    where?: usersWhereInput
+    data: XOR<usersUpdateWithoutProduct_gross_historyInput, usersUncheckedUpdateWithoutProduct_gross_historyInput>
+  }
+
+  export type usersUpdateWithoutProduct_gross_historyInput = {
+    use_uuid?: StringFieldUpdateOperationsInput | string
+    use_name?: NullableStringFieldUpdateOperationsInput | string | null
+    use_email?: NullableStringFieldUpdateOperationsInput | string | null
+    use_password?: NullableStringFieldUpdateOperationsInput | string | null
+    use_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    use_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    use_date_expire?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    use_token?: NullableStringFieldUpdateOperationsInput | string | null
+    use_level?: NullableStringFieldUpdateOperationsInput | string | null
+    use_whats_app?: usersUpdateuse_whats_appInput | string[]
+    use_mlt?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmc?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmf?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmp?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmvol?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_lucro_bruto_operacional_galonagem?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_lucro_bruto_operacional_produto?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_lucro_bruto_operacional?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_ETANOL_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_GASOLINA_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gallon_gross_history?: gallon_gross_historyUpdateManyWithoutUsersNestedInput
+    gas_station_setvariables?: gas_station_setvariablesUpdateManyWithoutUsersNestedInput
+    region_setvariables?: region_setvariablesUpdateManyWithoutUsersNestedInput
+  }
+
+  export type usersUncheckedUpdateWithoutProduct_gross_historyInput = {
+    use_uuid?: StringFieldUpdateOperationsInput | string
+    use_name?: NullableStringFieldUpdateOperationsInput | string | null
+    use_email?: NullableStringFieldUpdateOperationsInput | string | null
+    use_password?: NullableStringFieldUpdateOperationsInput | string | null
+    use_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    use_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    use_date_expire?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    use_token?: NullableStringFieldUpdateOperationsInput | string | null
+    use_level?: NullableStringFieldUpdateOperationsInput | string | null
+    use_whats_app?: usersUpdateuse_whats_appInput | string[]
+    use_mlt?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmc?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmf?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmp?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmvol?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_lucro_bruto_operacional_galonagem?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_lucro_bruto_operacional_produto?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_lucro_bruto_operacional?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_ETANOL_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_GASOLINA_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gallon_gross_history?: gallon_gross_historyUncheckedUpdateManyWithoutUsersNestedInput
+    gas_station_setvariables?: gas_station_setvariablesUncheckedUpdateManyWithoutUsersNestedInput
+    region_setvariables?: region_setvariablesUncheckedUpdateManyWithoutUsersNestedInput
+  }
+
+  export type gallon_gross_historyCreateManyIbm_infoInput = {
+    gallon_history_uuid?: string
+    use_uuid?: string | null
+    gallon_history_gross?: number | null
+    gallon_history_date?: Date | string | null
+    gallon_history_created_at?: Date | string
+    gallon_history_updated_at?: Date | string
+  }
+
   export type gas_station_setvariablesCreateManyIbm_infoInput = {
     gas_station_uuid?: string
     gas_station_marginGC?: number | null
@@ -15112,6 +18893,42 @@ export namespace Prisma {
     gas_station_freight_value?: number | null
     gas_station_gross_result_literage?: number | null
     gas_station_gross_result_product?: number | null
+  }
+
+  export type product_gross_historyCreateManyIbm_infoInput = {
+    product_history_uuid?: string
+    use_uuid?: string | null
+    product_history_gross?: number | null
+    product_history_date?: Date | string | null
+    product_history_created_at?: Date | string
+    product_history_updated_at?: Date | string
+  }
+
+  export type gallon_gross_historyUpdateWithoutIbm_infoInput = {
+    gallon_history_uuid?: StringFieldUpdateOperationsInput | string
+    gallon_history_gross?: NullableFloatFieldUpdateOperationsInput | number | null
+    gallon_history_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gallon_history_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    gallon_history_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: usersUpdateOneWithoutGallon_gross_historyNestedInput
+  }
+
+  export type gallon_gross_historyUncheckedUpdateWithoutIbm_infoInput = {
+    gallon_history_uuid?: StringFieldUpdateOperationsInput | string
+    use_uuid?: NullableStringFieldUpdateOperationsInput | string | null
+    gallon_history_gross?: NullableFloatFieldUpdateOperationsInput | number | null
+    gallon_history_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gallon_history_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    gallon_history_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type gallon_gross_historyUncheckedUpdateManyWithoutIbm_infoInput = {
+    gallon_history_uuid?: StringFieldUpdateOperationsInput | string
+    use_uuid?: NullableStringFieldUpdateOperationsInput | string | null
+    gallon_history_gross?: NullableFloatFieldUpdateOperationsInput | number | null
+    gallon_history_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gallon_history_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    gallon_history_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type gas_station_setvariablesUpdateWithoutIbm_infoInput = {
@@ -15324,6 +19141,42 @@ export namespace Prisma {
     gas_station_gross_result_product?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
+  export type product_gross_historyUpdateWithoutIbm_infoInput = {
+    product_history_uuid?: StringFieldUpdateOperationsInput | string
+    product_history_gross?: NullableFloatFieldUpdateOperationsInput | number | null
+    product_history_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    product_history_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    product_history_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: usersUpdateOneWithoutProduct_gross_historyNestedInput
+  }
+
+  export type product_gross_historyUncheckedUpdateWithoutIbm_infoInput = {
+    product_history_uuid?: StringFieldUpdateOperationsInput | string
+    use_uuid?: NullableStringFieldUpdateOperationsInput | string | null
+    product_history_gross?: NullableFloatFieldUpdateOperationsInput | number | null
+    product_history_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    product_history_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    product_history_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type product_gross_historyUncheckedUpdateManyWithoutIbm_infoInput = {
+    product_history_uuid?: StringFieldUpdateOperationsInput | string
+    use_uuid?: NullableStringFieldUpdateOperationsInput | string | null
+    product_history_gross?: NullableFloatFieldUpdateOperationsInput | number | null
+    product_history_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    product_history_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    product_history_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type gallon_gross_historyCreateManyUsersInput = {
+    gallon_history_uuid?: string
+    ibm_info_id?: string | null
+    gallon_history_gross?: number | null
+    gallon_history_date?: Date | string | null
+    gallon_history_created_at?: Date | string
+    gallon_history_updated_at?: Date | string
+  }
+
   export type gas_station_setvariablesCreateManyUsersInput = {
     gas_station_uuid?: string
     gas_station_marginGC?: number | null
@@ -15394,6 +19247,15 @@ export namespace Prisma {
     gas_station_gross_result_product?: number | null
   }
 
+  export type product_gross_historyCreateManyUsersInput = {
+    product_history_uuid?: string
+    ibm_info_id?: string | null
+    product_history_gross?: number | null
+    product_history_date?: Date | string | null
+    product_history_created_at?: Date | string
+    product_history_updated_at?: Date | string
+  }
+
   export type region_setvariablesCreateManyUsersInput = {
     region_uuid?: string
     region_marginGC?: number | null
@@ -15444,6 +19306,33 @@ export namespace Prisma {
     region_sanado_margin_ETANOL_COMUM?: boolean | null
     region_type_margin_ETANOL_COMUM?: boolean | null
     verification_hour_margin_ETANOL_COMUM?: Date | string | null
+  }
+
+  export type gallon_gross_historyUpdateWithoutUsersInput = {
+    gallon_history_uuid?: StringFieldUpdateOperationsInput | string
+    gallon_history_gross?: NullableFloatFieldUpdateOperationsInput | number | null
+    gallon_history_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gallon_history_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    gallon_history_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    ibm_info?: ibm_infoUpdateOneWithoutGallon_gross_historyNestedInput
+  }
+
+  export type gallon_gross_historyUncheckedUpdateWithoutUsersInput = {
+    gallon_history_uuid?: StringFieldUpdateOperationsInput | string
+    ibm_info_id?: NullableStringFieldUpdateOperationsInput | string | null
+    gallon_history_gross?: NullableFloatFieldUpdateOperationsInput | number | null
+    gallon_history_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gallon_history_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    gallon_history_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type gallon_gross_historyUncheckedUpdateManyWithoutUsersInput = {
+    gallon_history_uuid?: StringFieldUpdateOperationsInput | string
+    ibm_info_id?: NullableStringFieldUpdateOperationsInput | string | null
+    gallon_history_gross?: NullableFloatFieldUpdateOperationsInput | number | null
+    gallon_history_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gallon_history_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    gallon_history_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type gas_station_setvariablesUpdateWithoutUsersInput = {
@@ -15654,6 +19543,33 @@ export namespace Prisma {
     gas_station_freight_value?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_gross_result_literage?: NullableFloatFieldUpdateOperationsInput | number | null
     gas_station_gross_result_product?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
+  export type product_gross_historyUpdateWithoutUsersInput = {
+    product_history_uuid?: StringFieldUpdateOperationsInput | string
+    product_history_gross?: NullableFloatFieldUpdateOperationsInput | number | null
+    product_history_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    product_history_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    product_history_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    ibm_info?: ibm_infoUpdateOneWithoutProduct_gross_historyNestedInput
+  }
+
+  export type product_gross_historyUncheckedUpdateWithoutUsersInput = {
+    product_history_uuid?: StringFieldUpdateOperationsInput | string
+    ibm_info_id?: NullableStringFieldUpdateOperationsInput | string | null
+    product_history_gross?: NullableFloatFieldUpdateOperationsInput | number | null
+    product_history_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    product_history_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    product_history_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type product_gross_historyUncheckedUpdateManyWithoutUsersInput = {
+    product_history_uuid?: StringFieldUpdateOperationsInput | string
+    ibm_info_id?: NullableStringFieldUpdateOperationsInput | string | null
+    product_history_gross?: NullableFloatFieldUpdateOperationsInput | number | null
+    product_history_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    product_history_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    product_history_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type region_setvariablesUpdateWithoutUsersInput = {
@@ -16061,6 +19977,14 @@ export namespace Prisma {
      * @deprecated Use big_numbers_valuesDefaultArgs instead
      */
     export type big_numbers_valuesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = big_numbers_valuesDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use gallon_gross_historyDefaultArgs instead
+     */
+    export type gallon_gross_historyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = gallon_gross_historyDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use product_gross_historyDefaultArgs instead
+     */
+    export type product_gross_historyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = product_gross_historyDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

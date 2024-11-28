@@ -292,7 +292,7 @@ class DataController {
                     },
                     {
                         label: "Resultado Bruto da Galonagem", value: monthBigNumbers?.bignumbers_dailyLiterageProfit,
-                        secondary_label: "Lucro Bruto Operacional", secondary_value: Math.round((secondary_value_fuelProfit) * 100) / 100,
+                        secondary_label: "Resultado Bruto Operacional", secondary_value: Math.round((secondary_value_fuelProfit) * 100) / 100,
                         third_label: "Status Margem", third_value: lucro_operacional_galonagem, fourth_label: "Alvo",
                         fourth_value: (flags?.use_lucro_bruto_operacional_galonagem ?? 0) * 100,
                         fifth_label: "Soma mensal", fifth_value: monthBigNumbers?.bignumbers_fuelProfit,
@@ -320,7 +320,7 @@ class DataController {
                     },
                     {
                         label: "Resultado Bruto de Produto", value: monthBigNumbers?.bignumbers_dailyProductProfit,
-                        secondary_label: "Lucro Bruto Operacional", secondary_value: Math.round((secondary_value_productProfit) * 100) / 100,
+                        secondary_label: "Resultado Bruto Operacional", secondary_value: Math.round((secondary_value_productProfit) * 100) / 100,
                         third_label: "Status Margem", third_value: lucro_operacional_produto,
                         fourth_label: "Alvo", fourth_value: (flags?.use_lucro_bruto_operacional_produto ?? 0) * 100,
                         fifth_label: "Soma mensal", fifth_value: monthBigNumbers?.bignumbers_productProfit,
@@ -1914,7 +1914,7 @@ class DataController {
 
 
             }, 0)
-            
+
             //Salvar na tabela dos bignumbers como a soma de produto diario e soma galonagem diária
             await prismaRedeFlex.big_numbers_values.update({
                 data: {
@@ -1928,7 +1928,92 @@ class DataController {
             return res?.status(500).json({ message: `Erro ao atualizar os dados: ${error}` });
         }
     }
+    //Fluxo de criação registros de resultado bruto produto/galonagem
+    public async grossHistory(req: Request, res: Response) {
+        try {
+            const actualDate = moment().startOf('day').format('YYYY-MM-DD')
+            const token = process.env.SAULOAPI
+            const tableData = await axios.get(
+                `http://159.65.42.225:3053/v2/dataframes?token=${token}`,
+            );
+            //Buscar resultado bruto para galonagem por posto
+            const grossLiterage = tableData.data['galonagem'].map((element: any) => {
+                return {
+                    resultado_bruto: element['Resultado Bruto'],
+                    ibm: element['Posto_ibm'],
+                    posto: element['Posto']
+                }
+            })
+            //Buscar resultado bruto para produto por posto
+            const grossProduct = tableData.data['produto'].map((element: any) => {
+                return {
+                    resultado_bruto: element['Resultado Bruto'],
+                    ibm: element['Posto_ibm'],
+                    posto: element['Posto']
+                }
+            })
+            //Mapear os ibms para associar com os ids primarios da tabela ibm_info
+            const grossLiterageIbm = grossLiterage.map((element: any) => {
 
+                return element.ibm
+
+            })
+
+            //Mapear id primario com ibm
+            const grossLiterageProductId = await prismaRedeFlex.ibm_info.findMany({
+                select: { id: true, ibm: true },
+                where: {
+                    ibm: {
+                        in: grossLiterageIbm
+                    },
+                },
+            })
+            //Tratando o array de galonagem que será enviado para o banco(histórico) de galonagem
+            const finalgrossLiterageArray = grossLiterageProductId.map((obj1: any) => {
+
+                const match = grossLiterage.find((obj2: any) => obj1.ibm === obj2.ibm);
+
+                if (match) {
+
+                    return {
+                        ibm_info_id: obj1.id,
+                        gallon_history_date: new Date(actualDate),
+                        gallon_history_gross: Math.round(match.resultado_bruto * 100) / 100,
+                        use_uuid: "a9d1c35a-8ead-4687-9661-c15af693c761"
+                    };
+                }
+                return null;
+            }).filter(item => item !== null);
+            //Tratando o array de produto que será enviado para o banco(histórico) de produto
+            const finalgrossProductArray = grossLiterageProductId.map((obj1: any) => {
+
+                const match = grossProduct.find((obj2: any) => obj1.ibm === obj2.ibm);
+
+                if (match) {
+
+                    return {
+                        id: obj1.id,
+                        ibm: obj1.ibm,
+                        posto: match.posto,
+                        resultado_bruto: Math.round(match.resultado_bruto * 100) / 100
+                    };
+                }
+                return null;
+            }).filter(item => item !== null);
+
+
+
+            await prismaRedeFlex.gallon_gross_history.createMany({ data: finalgrossLiterageArray })
+
+
+
+            return res.status(200).json({ data: [finalgrossLiterageArray, finalgrossProductArray] })
+
+        } catch (error) {
+
+            return res?.status(500).json({ message: `Erro ao atualizar os dados: ${error}` });
+        }
+    }
     // public async tests(req?: Request, res?: Response) {
     //     const fuelliterageSell = await prismaSales.vendas.findMany({
     //         select: {
