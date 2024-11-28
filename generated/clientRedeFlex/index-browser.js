@@ -316,6 +316,26 @@ exports.Prisma.Big_numbers_valuesScalarFieldEnum = {
   bignumbers_dailyLiterageProfit: 'bignumbers_dailyLiterageProfit'
 };
 
+exports.Prisma.Gallon_gross_historyScalarFieldEnum = {
+  gallon_history_uuid: 'gallon_history_uuid',
+  ibm_info_id: 'ibm_info_id',
+  use_uuid: 'use_uuid',
+  gallon_history_gross: 'gallon_history_gross',
+  gallon_history_date: 'gallon_history_date',
+  gallon_history_created_at: 'gallon_history_created_at',
+  gallon_history_updated_at: 'gallon_history_updated_at'
+};
+
+exports.Prisma.Product_gross_historyScalarFieldEnum = {
+  product_history_uuid: 'product_history_uuid',
+  ibm_info_id: 'ibm_info_id',
+  use_uuid: 'use_uuid',
+  product_history_gross: 'product_history_gross',
+  product_history_date: 'product_history_date',
+  product_history_created_at: 'product_history_created_at',
+  product_history_updated_at: 'product_history_updated_at'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -338,7 +358,9 @@ exports.Prisma.ModelName = {
   gas_station_setvariables: 'gas_station_setvariables',
   region_setvariables: 'region_setvariables',
   regions: 'regions',
-  big_numbers_values: 'big_numbers_values'
+  big_numbers_values: 'big_numbers_values',
+  gallon_gross_history: 'gallon_gross_history',
+  product_gross_history: 'product_gross_history'
 };
 
 /**
