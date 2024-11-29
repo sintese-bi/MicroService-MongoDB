@@ -18,6 +18,7 @@ dataRouter.get("/map-data/:use_token", DataController.mapData)
 dataRouter.get("/teste", DataController.BigNumbersMonth)
 dataRouter.get("/fuel-types", DataController.fuelTypes)
 dataRouter.get("/gross-history", DataController.grossHistory)
+dataRouter.get("/gross-daily/:use_token/:type", DataController.grossDailyChart)
 // dataRouter.get("/tests",DataController.tests)
 export default dataRouter
 

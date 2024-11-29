@@ -1929,9 +1929,9 @@ class DataController {
         }
     }
     //Fluxo de criação registros de resultado bruto produto/galonagem
-    public async grossHistory(req: Request, res: Response) {
+    public async grossHistory(req?: Request, res?: Response) {
         try {
-            const actualDate = moment().startOf('day').format('YYYY-MM-DD')
+            const actualDate = moment().format('YYYY-MM-DD')
             const token = process.env.SAULOAPI
             const tableData = await axios.get(
                 `http://159.65.42.225:3053/v2/dataframes?token=${token}`,
@@ -1992,103 +1992,83 @@ class DataController {
                 if (match) {
 
                     return {
-                        id: obj1.id,
-                        ibm: obj1.ibm,
-                        posto: match.posto,
-                        resultado_bruto: Math.round(match.resultado_bruto * 100) / 100
+                        ibm_info_id: obj1.id,
+                        product_history_date: new Date(actualDate),
+                        product_history_gross: Math.round(match.resultado_bruto * 100) / 100,
+                        use_uuid: "a9d1c35a-8ead-4687-9661-c15af693c761"
+
                     };
                 }
                 return null;
             }).filter(item => item !== null);
 
 
-
+            //Criação dos itens na tabela de resultado bruto para galonagem
             await prismaRedeFlex.gallon_gross_history.createMany({ data: finalgrossLiterageArray })
 
+            //Criação dos itens na tabela de resultado bruto para produto
+            await prismaRedeFlex.product_gross_history.createMany({ data: finalgrossProductArray })
+            console.log(Intl.DateTimeFormat().resolvedOptions().timeZone);
 
 
-            return res.status(200).json({ data: [finalgrossLiterageArray, finalgrossProductArray] })
+            return res?.status(200).json({ message: "As informações foram salvas com sucesso!" })
 
         } catch (error) {
 
             return res?.status(500).json({ message: `Erro ao atualizar os dados: ${error}` });
         }
     }
-    // public async tests(req?: Request, res?: Response) {
-    //     const fuelliterageSell = await prismaSales.vendas.findMany({
-    //         select: {
-    //             items: {
-    //                 select: {
-    //                     iTip: true,
-    //                     tot: true,
-    //                     qd: true,
-    //                     pC: true,
-    //                     dI: true
-    //                 }
-    //             },
-    //             ibm: true
-    //         },
-    //         where: {
-    //             dtHr: {
-    //                 gte: `2024-11-12T00:00:00.000Z`,
-    //                 lte: `2024-11-12T23:59:59.999Z`
-    //             }
-    //         }
-    //     });
+    //API gráfico agregado resultado bruto diario 
+    public async grossDailyChart(req: Request, res: Response) {
+        try {
 
-    //     type VendasItems = {
-    //         iTip: string; 
-    //         tot: string;   
-    //         qd: string;   
-    //         pC: string;   
-    //         dI: string;    
-    //     };
+            const actualDate = moment().format("YYYY-MM-DD")
+            const monthDay = moment().format("YYYY-MM")
 
-    //     const fuelGroupedByCategory = {
-    //         dieselS10: [
-    //             "OLEO DIESEL B S10 COMUM",
-    //             "O.D. B S10 ADITIVADO",
-    //             "OLEO DIESEL B S10 ADITIVADO ",
-    //             "OLEO DIESEL B S-10",
-    //             "OLEO DIESEL B S10 ",
-    //             "O.D B S10 ADITIVADO ",
-    //         ]
-    //     };
+            const { use_token, type }: any = req.params;
 
+            const secret = process.env.SECRET;
+            if (!secret) {
+                throw new Error('Chave secreta não definida. Verifique a variável de ambiente SECRET.');
+            }
+            const id = extractUserIdFromToken(use_token, secret)
+            let dataGross
+            if (type === "fuel") {
 
-    //     const groupedByIbm = fuelliterageSell.reduce((acc: any, venda) => {
-    //         venda.items.forEach((item: VendasItems) => {
-    //             if (fuelGroupedByCategory.dieselS10.includes(item.dI)) {
-    //                 if (!acc[venda.ibm]) {
-    //                     acc[venda.ibm] = []; 
-    //                 }
-    //                 acc[venda.ibm].push(item);
-    //             }
-    //         });
-    //         return acc;
-    //     }, {});
+                dataGross = await prismaRedeFlex.gallon_gross_history.findMany({
+
+                    select: { ibm_info_id: true, gallon_history_gross: true },
+                    where: {
+                        gallon_history_date: {
+                            gte: `${monthDay}-01T00:00:00.000Z`,
+                            lte: `${actualDate}T23:59:59.999Z`
+                        },
+                        use_uuid: id
+                    }
+                })
+
+            } else if (type === "product") {
+                dataGross = await prismaRedeFlex.product_gross_history.findMany({
+                    select: { ibm_info_id: true, product_history_gross: true },
+                    where: {
+                        product_history_date: {
+                            gte: `${monthDay}-01T00:00:00.000Z`,
+                            lte: `${actualDate}T23:59:59.999Z`
+                        },
+                        use_uuid: id
+                    }
+                })
+
+            }
+
+            return res.status(200).json({ data: dataGross })
 
 
-    //     const fuelCalculations = Object.keys(groupedByIbm).map((ibmKey) => {
-    //         const stationItems = groupedByIbm[ibmKey];
+        } catch (error) {
+            return res?.status(500).json({ message: `Erro ao retornar os dados: ${error}` });
+        }
+    }
 
-    //         const sumFuelNumerator = stationItems.reduce((accumulator: number, currentValue: VendasItems) => {
-    //             return accumulator + (parseFloat(currentValue.tot) - (parseFloat(currentValue.qd) * parseFloat(currentValue.pC)));
-    //         }, 0);
-
-    //         const sumFuelDenominator = stationItems.reduce((accumulator: number, currentValue: VendasItems) => {
-    //             return accumulator + parseFloat(currentValue.qd);
-    //         }, 0);
-
-    //         return {
-    //             ibm: ibmKey,
-    //             sumFuelNumerator,
-    //             sumFuelDenominator
-    //         };
-    //     });
-    //     return res?.status(200).json({data:fuelCalculations})
-
-    // }
 
     public scheduleMonthlyBigNumberUpdate() {
         cron.schedule("0 0 * * *", async () => {
@@ -2111,8 +2091,25 @@ class DataController {
             }
         });
     }
+    public scheduledailyGrossProductLiterage() {
+        cron.schedule(
+            "50 59 23 * * *",
+            async () => {
+                try {
+                    await this.grossHistory();
+                } catch (error) {
+                    console.error("Erro durante a verificação:", error);
+                }
+            },
+            {
+                timezone: "America/Sao_Paulo",
+            }
+        );
+    }
+
 }
 const dataController = new DataController();
 dataController.scheduleMonthlyBigNumberUpdate()
 dataController.scheduledailyProductProfitUpdate()
+dataController.scheduledailyGrossProductLiterage()
 export default new DataController()
