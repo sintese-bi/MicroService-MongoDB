@@ -1968,6 +1968,8 @@ class DataController {
                     },
                 },
             })
+
+
             //Tratando o array de galonagem que será enviado para o banco(histórico) de galonagem
             const finalgrossLiterageArray = grossLiterageProductId.map((obj1: any) => {
 
@@ -2003,13 +2005,70 @@ class DataController {
             }).filter(item => item !== null);
 
 
-            //Criação dos itens na tabela de resultado bruto para galonagem
-            await prismaRedeFlex.gallon_gross_history.createMany({ data: finalgrossLiterageArray })
+            // Buscar os registros existentes para galonagem
+            const existingGallonRecords = await prismaRedeFlex.gallon_gross_history.findMany({
+                where: {
+                    gallon_history_date: new Date(actualDate),
+                    ibm_info_id: { in: finalgrossLiterageArray.map(item => item.ibm_info_id) }
+                },
+                select: { ibm_info_id: true }
+            });
 
-            //Criação dos itens na tabela de resultado bruto para produto
-            await prismaRedeFlex.product_gross_history.createMany({ data: finalgrossProductArray })
-            console.log(Intl.DateTimeFormat().resolvedOptions().timeZone);
+            // Filtrar registros de galonagem que precisam ser criados
+            const gallonToCreate = finalgrossLiterageArray.filter(item =>
+                !existingGallonRecords.some(record => record.ibm_info_id === item.ibm_info_id)
+            );
 
+            // Atualizar registros existentes de galonagem
+            for (const record of existingGallonRecords) {
+                const match = finalgrossLiterageArray.find(item => item.ibm_info_id === record.ibm_info_id);
+                if (match) {
+                    await prismaRedeFlex.gallon_gross_history.updateMany({
+                        where: {
+                            ibm_info_id: match.ibm_info_id,
+                            gallon_history_date: new Date(actualDate)
+                        },
+                        data: { gallon_history_gross: match.gallon_history_gross }
+                    });
+                }
+            }
+
+            if (gallonToCreate.length > 0) {
+                await prismaRedeFlex.gallon_gross_history.createMany({ data: gallonToCreate });
+            }
+
+
+            const existingProductRecords = await prismaRedeFlex.product_gross_history.findMany({
+                where: {
+                    product_history_date: new Date(actualDate),
+                    ibm_info_id: { in: finalgrossProductArray.map(item => item.ibm_info_id) }
+                },
+                select: { ibm_info_id: true }
+            });
+
+
+            const productToCreate = finalgrossProductArray.filter(item =>
+                !existingProductRecords.some(record => record.ibm_info_id === item.ibm_info_id)
+            );
+
+
+            for (const record of existingProductRecords) {
+                const match = finalgrossProductArray.find(item => item.ibm_info_id === record.ibm_info_id);
+                if (match) {
+                    await prismaRedeFlex.product_gross_history.updateMany({
+                        where: {
+                            ibm_info_id: match.ibm_info_id,
+                            product_history_date: new Date(actualDate)
+                        },
+                        data: { product_history_gross: match.product_history_gross }
+                    });
+                }
+            }
+
+
+            if (productToCreate.length > 0) {
+                await prismaRedeFlex.product_gross_history.createMany({ data: productToCreate });
+            }
 
             return res?.status(200).json({ message: "As informações foram salvas com sucesso!" })
 
@@ -2018,13 +2077,15 @@ class DataController {
             return res?.status(500).json({ message: `Erro ao atualizar os dados: ${error}` });
         }
     }
-    //API gráfico agregado resultado bruto diario 
+    //API gráfico agregado de todos os postos resultado bruto diario 
     public async grossDailyChart(req: Request, res: Response) {
         try {
 
             const actualDate = moment().format("YYYY-MM-DD")
-            const monthDay = moment().format("YYYY-MM")
 
+            const day = parseFloat(actualDate.split('-')[2])
+            const monthDay = moment().format("YYYY-MM")
+            const monthCountDays = moment().daysInMonth()
             const { use_token, type }: any = req.params;
 
             const secret = process.env.SECRET;
@@ -2032,43 +2093,195 @@ class DataController {
                 throw new Error('Chave secreta não definida. Verifique a variável de ambiente SECRET.');
             }
             const id = extractUserIdFromToken(use_token, secret)
-            let dataGross
+            let dataGross: any
+            let dataInfo: any
+            let grossDataArray: object[] = []
+
+            const grossResultDefined = await prismaRedeFlex.gas_station_setvariables.findMany({
+                select: { gas_station_gross_result_literage: true, gas_station_gross_result_product: true },
+                where: { use_uuid: id }
+            })
+
+            //Média do resultado bruto mensal de galonagem definido
+            const grossLiterageDefinedSum = grossResultDefined.reduce((acc: any, item: any) => {
+                return acc + (item.gas_station_gross_result_literage ?? 0)
+            }, 0) / monthCountDays
+
+            //Média do resultado bruto mensal de produto definido
+            const grossProductDefinedSum = grossResultDefined.reduce((acc: any, item: any) => {
+                return acc + (item.gas_station_gross_result_product ?? 0)
+            }, 0) / monthCountDays
+            for (let i = 1; i <= day; i++) {
+                grossDataArray[i - 1] = i < 10 ? { data: `${monthDay}-0${i}`, gross_result: 0 } : { data: `${monthDay}-${i}`, gross_result: [], gross_result_defined: [], percentage: [] }
+            }
+
+            //Estrutura que separa entre o gráfico de galonagem e produto  
             if (type === "fuel") {
 
                 dataGross = await prismaRedeFlex.gallon_gross_history.findMany({
 
-                    select: { ibm_info_id: true, gallon_history_gross: true },
+                    select: { ibm_info_id: true, gallon_history_gross: true, gallon_history_date: true },
                     where: {
                         gallon_history_date: {
                             gte: `${monthDay}-01T00:00:00.000Z`,
                             lte: `${actualDate}T23:59:59.999Z`
-                        },
-                        use_uuid: id
+                        }
+
                     }
+
                 })
+                grossDataArray.forEach((empty: any) => {
+
+                    const grossSum = dataGross.reduce((sum: number, element: any) => {
+                        const date = element.gallon_history_date.toISOString().split('T')[0];
+                        if (date === empty.data) {
+                            return sum + (element.gallon_history_gross ?? 0);
+                        }
+                        return sum;
+                    }, 0);
+                    empty.gross_result = Math.round(grossSum * 100) / 100
+                    empty.gross_result_defined = Math.round(grossLiterageDefinedSum * 100) / 100
+                    empty.percentage = Math.round(((Math.round(grossSum * 100) / 100) / (Math.round(grossLiterageDefinedSum * 100) / 100)) * 100) / 100
+                });
 
             } else if (type === "product") {
                 dataGross = await prismaRedeFlex.product_gross_history.findMany({
-                    select: { ibm_info_id: true, product_history_gross: true },
+                    select: { ibm_info_id: true, product_history_gross: true, product_history_date: true, },
                     where: {
                         product_history_date: {
                             gte: `${monthDay}-01T00:00:00.000Z`,
                             lte: `${actualDate}T23:59:59.999Z`
-                        },
-                        use_uuid: id
+                        }
+
                     }
                 })
+                grossDataArray.forEach((empty: any) => {
 
+                    const grossSum = dataGross.reduce((sum: number, element: any) => {
+                        const date = element.product_history_date.toISOString().split('T')[0];
+                        if (date === empty.data) {
+                            return sum + (element.product_history_gross ?? 0);
+                        }
+                        return sum;
+                    }, 0);
+                    empty.gross_result = Math.round(grossSum * 100) / 100
+                    empty.gross_result_defined = Math.round(grossProductDefinedSum * 100) / 100
+                    empty.percentage = Math.round(((Math.round(grossSum * 100) / 100) / (Math.round(grossProductDefinedSum * 100) / 100)) * 100) / 100
+                });
             }
 
-            return res.status(200).json({ data: dataGross })
+
+            return res.status(200).json({ data: grossDataArray })
 
 
         } catch (error) {
-            return res?.status(500).json({ message: `Erro ao retornar os dados: ${error}` });
+            return res.status(500).json({ message: `Erro ao retornar os dados: ${error}` });
         }
     }
+    //Fluxo para mapeamento por posto do resultado bruto galonagem e produto
+    public async grossDailyChartStation(req: Request, res: Response) {
+        try {
+            const monthDay = moment().format("YYYY-MM-DD")
+            const monthCountDays = moment().daysInMonth()
+            const { use_token, type }: any = req.params;
+            const secret = process.env.SECRET;
+            if (!secret) {
+                throw new Error('Chave secreta não definida. Verifique a variável de ambiente SECRET.');
+            }
+            const id = extractUserIdFromToken(use_token, secret)
+            let dataGross, dataGrossFormated
+            //Array com os dados definidos pelo usuario para resultado bruto galonagem/produto
+            const grossResultDefined = await prismaRedeFlex.gas_station_setvariables.findMany({
+                select: {
+                    gas_station_gross_result_literage: true,
+                    gas_station_gross_result_product: true,
+                    ibm_info_id: true
+                }, where: { use_uuid: id }
+            })
+            //Estrutura que separa entre o gráfico de galonagem e produto 
+            if (type === 'fuel') {
+                dataGross = await prismaRedeFlex.gallon_gross_history.findMany({
+                    select: {
+                        gallon_history_gross: true,
+                        ibm_info_id: true,
+                        ibm_info: { select: { razaosocial: true } }
+                    },
+                    where: {
+                        gallon_history_date: `${monthDay}T00:00:00.000Z`,
 
+                    }
+                })
+                dataGrossFormated = dataGross.map(element => {
+                    return {
+                        gallon_history_gross: element.gallon_history_gross,
+                        corporate_name: element.ibm_info?.razaosocial,
+                        gallon_history_gross_defined: 0,
+                        ibm_info_id: element.ibm_info_id,
+                        percentage: 0
+                    }
+                })
+                dataGrossFormated?.forEach((element: any) => {
+
+                    const grossDefined = grossResultDefined.find(definedValue =>
+                        element.ibm_info_id === definedValue.ibm_info_id
+
+                    )
+                    element.gallon_history_gross_defined = Math.round((grossDefined?.gas_station_gross_result_literage ?? 0) / monthCountDays * 100) / 100;
+                    element.percentage = grossDefined?.gas_station_gross_result_literage
+                        ? Math.round(
+                            ((element.gallon_history_gross ?? 0) /
+                                ((grossDefined.gas_station_gross_result_literage ?? 0) / monthCountDays)) * 100
+                        ) / 100
+                        : 0;
+
+
+                })
+            } else if (type === 'product') {
+                dataGross = await prismaRedeFlex.product_gross_history.findMany({
+                    select: {
+                        product_history_gross: true,
+                        ibm_info_id: true,
+                        ibm_info: { select: { razaosocial: true } }
+                    },
+                    where: {
+                        product_history_date: `${monthDay}T00:00:00.000Z`,
+
+                    }
+                })
+                dataGrossFormated = dataGross.map(element => {
+                    return {
+                        product_history_gross: element.product_history_gross,
+                        corporate_name: element.ibm_info?.razaosocial,
+                        product_history_gross_defined: 0,
+                        ibm_info_id: element.ibm_info_id,
+                        percentage: 0
+                    }
+                })
+                dataGrossFormated?.forEach((element: any) => {
+
+                    const grossDefined = grossResultDefined.find(definedValue =>
+                        element.ibm_info_id === definedValue.ibm_info_id
+
+                    )
+                    element.product_history_gross_defined = Math.round((grossDefined?.gas_station_gross_result_product ?? 0) / monthCountDays * 100) / 100;
+                    element.percentage = grossDefined?.gas_station_gross_result_product
+                        ? Math.round(
+                            ((element.product_history_gross ?? 0) /
+                                ((grossDefined.gas_station_gross_result_product ?? 0) / monthCountDays)) * 100
+                        ) / 100
+                        : 0;
+
+
+                })
+
+
+            }
+
+            return res.status(200).json({ data: dataGrossFormated })
+
+        }
+        catch (error) { return res.status(500).json({ message: `Erro ao retornar os dados: ${error}` }); }
+    }
 
     public scheduleMonthlyBigNumberUpdate() {
         cron.schedule("0 0 * * *", async () => {
@@ -2093,7 +2306,8 @@ class DataController {
     }
     public scheduledailyGrossProductLiterage() {
         cron.schedule(
-            "50 59 23 * * *",
+            "*/5 * * * *"
+            ,
             async () => {
                 try {
                     await this.grossHistory();
