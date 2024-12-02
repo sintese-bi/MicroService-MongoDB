@@ -294,7 +294,7 @@ class DataController {
                         label: "Resultado Bruto da Galonagem", value: monthBigNumbers?.bignumbers_dailyLiterageProfit,
                         secondary_label: "Resultado Bruto Operacional", secondary_value: Math.round((secondary_value_fuelProfit) * 100) / 100,
                         third_label: "Status Margem", third_value: lucro_operacional_galonagem, fourth_label: "Alvo",
-                        fourth_value: (flags?.use_lucro_bruto_operacional_galonagem ?? 0) * 100,
+                        fourth_value: (flags?.use_lucro_bruto_operacional_galonagem ?? 0) * 1000,
                         fifth_label: "Soma mensal", fifth_value: monthBigNumbers?.bignumbers_fuelProfit,
                         sixth_label: "Status Média", sixth_value: lucroCombustíveisCondição,
                         seventh_label: "Média Mensal", seventh_value: Math.round(((monthBigNumbers?.bignumbers_fuelProfit ?? 0) / actualDay) * 100) / 100
@@ -322,7 +322,7 @@ class DataController {
                         label: "Resultado Bruto de Produto", value: monthBigNumbers?.bignumbers_dailyProductProfit,
                         secondary_label: "Resultado Bruto Operacional", secondary_value: Math.round((secondary_value_productProfit) * 100) / 100,
                         third_label: "Status Margem", third_value: lucro_operacional_produto,
-                        fourth_label: "Alvo", fourth_value: (flags?.use_lucro_bruto_operacional_produto ?? 0) * 100,
+                        fourth_label: "Alvo", fourth_value: (flags?.use_lucro_bruto_operacional_produto ?? 0) * 1000,
                         fifth_label: "Soma mensal", fifth_value: monthBigNumbers?.bignumbers_productProfit,
                         sixth_label: "Status Média", sixth_value: lucroProdutosCondição,
                         seventh_label: "Média Mensal", seventh_value: Math.round(((monthBigNumbers?.bignumbers_productProfit ?? 0) / actualDay) * 100) / 100
@@ -1818,6 +1818,7 @@ class DataController {
             const sumLiterage = literage.reduce((accumulator, currentValue) => {
                 return (accumulator || 0) + (currentValue || 0);
             }, 0);
+
             //Soma do preço de custo do combustível
             const cost_price = itemsArray
                 .map(element => {
@@ -1873,8 +1874,7 @@ class DataController {
             const fuelProfit = Math.round(((sumFuel - sumCostPrice)) * 100) / 100
             //Diferença faturamento de produto pelo custo que é o lucro
             // const productProfit = Math.round(((sumFuelProd - sumProductPrice)) * 100) / 100
-
-
+    
             await prismaRedeFlex.big_numbers_values.update({
                 data: {
                     bignumbers_fuelProfit: parseFloat(monthProduct.data.month_combs),

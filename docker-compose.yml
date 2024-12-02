@@ -22,5 +22,6 @@ services:
       - ./:/app
     ports:
       - '3052:3052'
+    restart: always
     
       
