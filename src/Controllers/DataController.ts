@@ -292,9 +292,9 @@ class DataController {
                     },
                     {
                         label: "Resultado Bruto da Galonagem", value: monthBigNumbers?.bignumbers_dailyLiterageProfit,
-                        secondary_label: "Resultado Bruto Operacional", secondary_value: fuelProfit ,
+                        secondary_label: "Resultado Bruto Operacional", secondary_value: fuelProfit,
                         third_label: "Status Margem", third_value: lucro_operacional_galonagem, fourth_label: "Alvo",
-                        fourth_value: (flags?.use_lucro_bruto_operacional_galonagem ?? 0) ,
+                        fourth_value: (flags?.use_lucro_bruto_operacional_galonagem ?? 0),
                         fifth_label: "Soma mensal", fifth_value: monthBigNumbers?.bignumbers_fuelProfit,
                         sixth_label: "Status Média", sixth_value: lucroCombustíveisCondição,
                         seventh_label: "Média Mensal", seventh_value: Math.round(((monthBigNumbers?.bignumbers_fuelProfit ?? 0) / actualDay) * 100) / 100
@@ -322,7 +322,7 @@ class DataController {
                         label: "Resultado Bruto de Produto", value: monthBigNumbers?.bignumbers_dailyProductProfit,
                         secondary_label: "Resultado Bruto Operacional", secondary_value: productProfit,
                         third_label: "Status Margem", third_value: lucro_operacional_produto,
-                        fourth_label: "Alvo", fourth_value: (flags?.use_lucro_bruto_operacional_produto ?? 0) ,
+                        fourth_label: "Alvo", fourth_value: (flags?.use_lucro_bruto_operacional_produto ?? 0),
                         fifth_label: "Soma mensal", fifth_value: monthBigNumbers?.bignumbers_productProfit,
                         sixth_label: "Status Média", sixth_value: lucroProdutosCondição,
                         seventh_label: "Média Mensal", seventh_value: Math.round(((monthBigNumbers?.bignumbers_productProfit ?? 0) / actualDay) * 100) / 100
@@ -1874,7 +1874,7 @@ class DataController {
             const fuelProfit = Math.round(((sumFuel - sumCostPrice)) * 100) / 100
             //Diferença faturamento de produto pelo custo que é o lucro
             // const productProfit = Math.round(((sumFuelProd - sumProductPrice)) * 100) / 100
-    
+
             await prismaRedeFlex.big_numbers_values.update({
                 data: {
                     bignumbers_fuelProfit: parseFloat(monthProduct.data.month_combs),
@@ -2229,8 +2229,8 @@ class DataController {
                     element.gallon_history_gross_defined = Math.round((grossDefined?.gas_station_gross_result_literage ?? 0) * 100) / 100;
                     element.percentage = grossDefined?.gas_station_gross_result_literage
                         ? Math.round(
-                            ((element.gallon_history_gross ?? 0) /
-                                ((grossDefined.gas_station_gross_result_literage ?? 0) )) * 100
+                            (((element.gallon_history_gross ?? 0) /
+                                (grossDefined.gas_station_gross_result_literage ?? 1)) * 100) * 100
                         ) / 100
                         : 0;
 
@@ -2263,13 +2263,14 @@ class DataController {
                         element.ibm_info_id === definedValue.ibm_info_id
 
                     )
-                    element.product_history_gross_defined = Math.round((grossDefined?.gas_station_gross_result_product ?? 0)  * 100) / 100;
+                    element.product_history_gross_defined = Math.round((grossDefined?.gas_station_gross_result_product ?? 0) * 100) / 100;
                     element.percentage = grossDefined?.gas_station_gross_result_product
                         ? Math.round(
-                            ((element.product_history_gross ?? 0) /
-                                ((grossDefined.gas_station_gross_result_product ?? 0) )) * 100
+                            (((element.product_history_gross ?? 0) /
+                                (grossDefined.gas_station_gross_result_product ?? 1)) * 100) * 100
                         ) / 100
                         : 0;
+
 
 
                 })
