@@ -292,7 +292,8 @@ class DataController {
                     },
                     {
                         label: "Resultado Bruto da Galonagem", value: monthBigNumbers?.bignumbers_dailyLiterageProfit,
-                        secondary_label: "Resultado Bruto Operacional", secondary_value: fuelProfit,
+                        // secondary_label: "Resultado Bruto Operacional", secondary_value: fuelProfit,
+                        secondary_label: "", secondary_value: 0,
                         third_label: "Status Margem", third_value: lucro_operacional_galonagem, fourth_label: "Alvo",
                         fourth_value: (flags?.use_lucro_bruto_operacional_galonagem ?? 0),
                         fifth_label: "Soma mensal", fifth_value: monthBigNumbers?.bignumbers_fuelProfit,
@@ -320,7 +321,8 @@ class DataController {
                     },
                     {
                         label: "Resultado Bruto de Produto", value: monthBigNumbers?.bignumbers_dailyProductProfit,
-                        secondary_label: "Resultado Bruto Operacional", secondary_value: productProfit,
+                        // secondary_label: "Resultado Bruto Operacional", secondary_value: productProfit,
+                        secondary_label: "", secondary_value: 0,
                         third_label: "Status Margem", third_value: lucro_operacional_produto,
                         fourth_label: "Alvo", fourth_value: (flags?.use_lucro_bruto_operacional_produto ?? 0),
                         fifth_label: "Soma mensal", fifth_value: monthBigNumbers?.bignumbers_productProfit,
@@ -2141,7 +2143,7 @@ class DataController {
                     }, 0);
                     empty.gross_result = Math.round(grossSum * 100) / 100
                     empty.gross_result_defined = Math.round(grossLiterageDefinedSum * 100) / 100
-                    empty.percentage = Math.round(((Math.round(grossSum * 100) / 100) / (Math.round(grossLiterageDefinedSum * 100) / 100)) * 100) / 100
+                    empty.percentage = Math.round(((Math.round(grossSum * 100) / 100) / (Math.round(grossLiterageDefinedSum * 100) / 100)) * 100) 
                 });
 
             } else if (type === "product") {
@@ -2166,7 +2168,7 @@ class DataController {
                     }, 0);
                     empty.gross_result = Math.round(grossSum * 100) / 100
                     empty.gross_result_defined = Math.round(grossProductDefinedSum * 100) / 100
-                    empty.percentage = Math.round(((Math.round(grossSum * 100) / 100) / (Math.round(grossProductDefinedSum * 100) / 100)) * 100) / 100
+                    empty.percentage = Math.round(((Math.round(grossSum * 100) / 100) / (Math.round(grossProductDefinedSum * 100) / 100)) * 100) 
                 });
             }
 
