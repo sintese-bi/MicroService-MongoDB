@@ -331,7 +331,7 @@ class DataController {
 
                     },
                     {
-                        label: "Lucro Bruto Operacional", value: Math.round((secondary_value_bruto_operacional) * 100) / 100,
+                        label: "Lucro Bruto", value: Math.round((secondary_value_bruto_operacional) * 100) / 100,
                         secondary_label: "", secondary_value: 0,
                         third_label: "Status Margem", third_value: lucro_operacional_geral,
                         fourth_label: "Alvo", fourth_value: (flags?.use_lucro_bruto_operacional ?? 0) * 100,
@@ -2143,7 +2143,7 @@ class DataController {
                     }, 0);
                     empty.gross_result = Math.round(grossSum * 100) / 100
                     empty.gross_result_defined = Math.round(grossLiterageDefinedSum * 100) / 100
-                    empty.percentage = Math.round(((Math.round(grossSum * 100) / 100) / (Math.round(grossLiterageDefinedSum * 100) / 100)) * 100) 
+                    empty.percentage = Math.round(((Math.round(grossSum * 100) / 100) / (Math.round(grossLiterageDefinedSum * 100) / 100)) * 100)
                 });
 
             } else if (type === "product") {
@@ -2168,7 +2168,7 @@ class DataController {
                     }, 0);
                     empty.gross_result = Math.round(grossSum * 100) / 100
                     empty.gross_result_defined = Math.round(grossProductDefinedSum * 100) / 100
-                    empty.percentage = Math.round(((Math.round(grossSum * 100) / 100) / (Math.round(grossProductDefinedSum * 100) / 100)) * 100) 
+                    empty.percentage = Math.round(((Math.round(grossSum * 100) / 100) / (Math.round(grossProductDefinedSum * 100) / 100)) * 100)
                 });
             }
 
@@ -2285,6 +2285,26 @@ class DataController {
         }
         catch (error) { return res.status(500).json({ message: `Erro ao retornar os dados: ${error}` }); }
     }
+    public async mltStationTypePopulation(req?: Request, res?: Response) {
+        try {
+
+            const token = process.env.SAULOAPI
+            const tableData = await axios.get(
+                `http://159.65.42.225:3053/v2/dataframes?token=${token}`,
+            );
+
+
+
+            return res?.status(200).json({ data: tableData.data['combustivel'] })
+
+
+
+        } catch (error) {
+            return res?.status(500).json({ message: `Erro ao retornar os dados: ${error}` });
+        }
+
+
+    }
 
     public scheduleMonthlyBigNumberUpdate() {
         cron.schedule("0 0 * * *", async () => {
@@ -2323,6 +2343,22 @@ class DataController {
             }
         );
     }
+    // public scheduledailyGrossProductLiteragePerStation() {
+    //     cron.schedule(
+    //         "*/5 * * * *"
+    //         ,
+    //         async () => {
+    //             try {
+    //                 await this.mltStationTypePopulation();
+    //             } catch (error) {
+    //                 console.error("Erro durante a verificação:", error);
+    //             }
+    //         },
+    //         {
+    //             timezone: "America/Sao_Paulo",
+    //         }
+    //     );
+    // }
 
 }
 const dataController = new DataController();
