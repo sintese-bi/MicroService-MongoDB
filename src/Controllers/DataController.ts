@@ -2226,11 +2226,11 @@ class DataController {
                         element.ibm_info_id === definedValue.ibm_info_id
 
                     )
-                    element.gallon_history_gross_defined = Math.round((grossDefined?.gas_station_gross_result_literage ?? 0) / monthCountDays * 100) / 100;
+                    element.gallon_history_gross_defined = Math.round((grossDefined?.gas_station_gross_result_literage ?? 0) * 100) / 100;
                     element.percentage = grossDefined?.gas_station_gross_result_literage
                         ? Math.round(
                             ((element.gallon_history_gross ?? 0) /
-                                ((grossDefined.gas_station_gross_result_literage ?? 0) / monthCountDays)) * 100
+                                ((grossDefined.gas_station_gross_result_literage ?? 0) )) * 100
                         ) / 100
                         : 0;
 
@@ -2263,11 +2263,11 @@ class DataController {
                         element.ibm_info_id === definedValue.ibm_info_id
 
                     )
-                    element.product_history_gross_defined = Math.round((grossDefined?.gas_station_gross_result_product ?? 0) / monthCountDays * 100) / 100;
+                    element.product_history_gross_defined = Math.round((grossDefined?.gas_station_gross_result_product ?? 0)  * 100) / 100;
                     element.percentage = grossDefined?.gas_station_gross_result_product
                         ? Math.round(
                             ((element.product_history_gross ?? 0) /
-                                ((grossDefined.gas_station_gross_result_product ?? 0) / monthCountDays)) * 100
+                                ((grossDefined.gas_station_gross_result_product ?? 0) )) * 100
                         ) / 100
                         : 0;
 
