@@ -20,7 +20,7 @@ dataRouter.get("/fuel-types", DataController.fuelTypes)
 dataRouter.get("/gross-history", DataController.grossHistory)
 dataRouter.get("/gross-daily/:use_token/:type", DataController.grossDailyChart)
 dataRouter.get("/gross-daily-per-station/:use_token/:type", DataController.grossDailyChartStation)
-dataRouter.get("/gross-per-type-history", DataController.mltStationTypePopulation)
+
 
 
 

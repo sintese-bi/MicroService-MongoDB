@@ -235,8 +235,8 @@ class DataController {
                 const use_tmf = (flags?.use_tmf ?? 0) <= secondary_value_fuel;
                 const use_tmp = (flags?.use_tmp ?? 0) <= secondary_value_produto;
                 const use_tmvol = (flags?.use_tmp ?? 0) <= secondary_value_galonagem
-                const lucro_operacional_galonagem = (flags?.use_lucro_bruto_operacional_galonagem ?? 0) * 100 <= secondary_value_fuelProfit
-                const lucro_operacional_produto = (flags?.use_lucro_bruto_operacional_produto ?? 0) * 100 <= secondary_value_productProfit
+                const lucro_operacional_galonagem = (flags?.use_lucro_bruto_operacional_galonagem ?? 0) <= secondary_value_fuelProfit
+                const lucro_operacional_produto = (flags?.use_lucro_bruto_operacional_produto ?? 0) <= secondary_value_productProfit
                 const lucro_operacional_geral = (flags?.use_lucro_bruto_operacional ?? 0) * 100 <= Math.round((secondary_value_bruto_operacional) * 100) / 100
                 const monthBigNumbers = await prismaRedeFlex.big_numbers_values.findFirst({
                     select: {
@@ -255,6 +255,39 @@ class DataController {
                 const lucroCombustíveisCondição = fuelProfit >= Math.round(((monthBigNumbers?.bignumbers_fuelProfit ?? 0) / actualDay) * 100) / 100;
                 const vendaProdutosCondição = Math.round(sumFuelProd * 100) / 100 >= Math.round(((monthBigNumbers?.bignumbers_productSales ?? 0) / actualDay) * 100) / 100;
                 const lucroProdutosCondição = (monthBigNumbers?.bignumbers_dailyProductProfit ?? 0) >= (Math.round(((monthBigNumbers?.bignumbers_productProfit ?? 0) / actualDay) * 100) / 100);
+
+
+                //Fluxo mlt por tipo combustível
+
+                const token = process.env.SAULOAPI
+                const tableData = await axios.get(
+                    `http://159.65.42.225:3053/v2/dataframes?token=${token}`,
+
+                );
+                const fuelArray = ["GASOLINA COMUM", "GASOLINA ADITIVADA", "OLEO DIESEL B S10 COMUM",
+                    "ETANOL HIDRATADO COMBUSTIVEL", "OLEO DIESEL B S500 COMUM", "GASOLINA PREMIUM PODIUM",]
+
+                const literagePerFuel = tableData.data['combustivel'].map((element: any) => {
+                    if (element.hasOwnProperty('Combustivel') && fuelArray.includes(element['Combustivel'])) { return element }
+                    return null;
+                }).filter((value: object) => value !== null)
+
+
+                let arrayFuel: { [key: string]: number[] } = {};
+
+                literagePerFuel.forEach((element: any) => {
+                    if (!arrayFuel[element['Combustivel']]) {
+                        arrayFuel[element['Combustivel']] = [element['M/LT']];
+                    } else {
+                        arrayFuel[element['Combustivel']].push(element['M/LT']);
+                    }
+                });
+                const fuelSums: { [key: string]: number } = {};
+
+                for (const fuelType in arrayFuel) {
+                    fuelSums[fuelType] = arrayFuel[fuelType].reduce((sum, value) => Math.round((sum + value) * 100) / 100, 0);
+                }
+
 
 
                 return res.status(200).json({
@@ -300,16 +333,16 @@ class DataController {
                         sixth_label: "Status Média", sixth_value: lucroCombustíveisCondição,
                         seventh_label: "Média Mensal", seventh_value: Math.round(((monthBigNumbers?.bignumbers_fuelProfit ?? 0) / actualDay) * 100) / 100
                     },
-                    {
-                        label: "M/LT", value: Math.round(valueMLT * 100) / 100,
-                        secondary_label: "", secondary_value: 0,
-                        third_label: "Status Margem", third_value: mlt,
-                        fourth_label: "Alvo",
-                        fourth_value: flags?.use_mlt ?? 0,
-                        fifth_label: "", fifth_value: 0, sixth_label: "", sixth_value: 0,
-                        seventh_label: "", seventh_value: 0
+                    // {
+                    //     label: "M/LT", value: Math.round(valueMLT * 100) / 100,
+                    //     secondary_label: "", secondary_value: 0,
+                    //     third_label: "Status Margem", third_value: mlt,
+                    //     fourth_label: "Alvo",
+                    //     fourth_value: flags?.use_mlt ?? 0,
+                    //     fifth_label: "", fifth_value: 0, sixth_label: "", sixth_value: 0,
+                    //     seventh_label: "", seventh_value: 0
 
-                    },
+                    // },
                     {
                         label: "Venda de Produtos", value: Math.round(sumFuelProd * 100) / 100,
                         secondary_label: "TMP", secondary_value: Math.round((secondary_value_produto) * 100) / 100,
@@ -328,6 +361,68 @@ class DataController {
                         fifth_label: "Soma mensal", fifth_value: monthBigNumbers?.bignumbers_productProfit,
                         sixth_label: "Status Média", sixth_value: lucroProdutosCondição,
                         seventh_label: "Média Mensal", seventh_value: Math.round(((monthBigNumbers?.bignumbers_productProfit ?? 0) / actualDay) * 100) / 100
+
+                    },
+
+                    {
+                        label: "M/LT Gasolina Comum", value: fuelSums['GASOLINA COMUM'],
+                        secondary_label: "", secondary_value: 0,
+                        third_label: "", third_value: 0,
+                        fourth_label: "",
+                        fourth_value: 0,
+                        fifth_label: "", fifth_value: 0, sixth_label: "", sixth_value: 0,
+                        seventh_label: "", seventh_value: 0
+
+                    },
+                    {
+                        label: "M/LT Gasolina Aditivada", value: fuelSums['GASOLINA ADITIVADA'],
+                        secondary_label: "", secondary_value: 0,
+                        third_label: "", third_value: 0,
+                        fourth_label: "",
+                        fourth_value: 0,
+                        fifth_label: "", fifth_value: 0, sixth_label: "", sixth_value: 0,
+                        seventh_label: "", seventh_value: 0
+
+                    },
+                    {
+                        label: "M/LT Gasolina Premium Podium", value: fuelSums['GASOLINA PREMIUM PODIUM'],
+                        secondary_label: "", secondary_value: 0,
+                        third_label: "", third_value: 0,
+                        fourth_label: "",
+                        fourth_value: 0,
+                        fifth_label: "", fifth_value: 0, sixth_label: "", sixth_value: 0,
+                        seventh_label: "", seventh_value: 0
+
+                    },
+                    {
+                        label: "M/LT Óleo Diesel B S10 Comum", value: fuelSums['OLEO DIESEL B S10 COMUM'],
+                        secondary_label: "", secondary_value: 0,
+                        third_label: "", third_value: 0,
+                        fourth_label: "",
+                        fourth_value: 0,
+                        fifth_label: "", fifth_value: 0, sixth_label: "", sixth_value: 0,
+                        seventh_label: "", seventh_value: 0
+
+                    },
+                    {
+                        label: "M/LT Óleo Diesel B S500 Comum", value: fuelSums['OLEO DIESEL B S500 COMUM'],
+                        secondary_label: "", secondary_value: 0,
+                        third_label: "", third_value: 0,
+                        fourth_label: "",
+                        fourth_value: 0,
+                        fifth_label: "", fifth_value: 0, sixth_label: "", sixth_value: 0,
+                        seventh_label: "", seventh_value: 0
+
+                    },
+
+                    {
+                        label: "M/LT Etanol Hidratado Combustível", value: fuelSums['ETANOL HIDRATADO COMBUSTIVEL'],
+                        secondary_label: "", secondary_value: 0,
+                        third_label: "", third_value: 0,
+                        fourth_label: "",
+                        fourth_value: 0,
+                        fifth_label: "", fifth_value: 0, sixth_label: "", sixth_value: 0,
+                        seventh_label: "", seventh_value: 0
 
                     },
                     {
@@ -2285,26 +2380,7 @@ class DataController {
         }
         catch (error) { return res.status(500).json({ message: `Erro ao retornar os dados: ${error}` }); }
     }
-    public async mltStationTypePopulation(req?: Request, res?: Response) {
-        try {
 
-            const token = process.env.SAULOAPI
-            const tableData = await axios.get(
-                `http://159.65.42.225:3053/v2/dataframes?token=${token}`,
-            );
-
-
-
-            return res?.status(200).json({ data: tableData.data['combustivel'] })
-
-
-
-        } catch (error) {
-            return res?.status(500).json({ message: `Erro ao retornar os dados: ${error}` });
-        }
-
-
-    }
 
     public scheduleMonthlyBigNumberUpdate() {
         cron.schedule("0 0 * * *", async () => {
@@ -2343,22 +2419,7 @@ class DataController {
             }
         );
     }
-    // public scheduledailyGrossProductLiteragePerStation() {
-    //     cron.schedule(
-    //         "*/5 * * * *"
-    //         ,
-    //         async () => {
-    //             try {
-    //                 await this.mltStationTypePopulation();
-    //             } catch (error) {
-    //                 console.error("Erro durante a verificação:", error);
-    //             }
-    //         },
-    //         {
-    //             timezone: "America/Sao_Paulo",
-    //         }
-    //     );
-    // }
+
 
 }
 const dataController = new DataController();
