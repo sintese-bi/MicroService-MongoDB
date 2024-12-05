@@ -365,7 +365,7 @@ class DataController {
                     },
 
                     {
-                        label: "M/LT Gasolina Comum", value: fuelSums['GASOLINA COMUM'],
+                        label: "M/LT Gasolina Comum", value: Math.round((fuelSums['GASOLINA COMUM'] / 36) * 100) / 100,
                         secondary_label: "", secondary_value: 0,
                         third_label: "", third_value: 0,
                         fourth_label: "",
@@ -375,7 +375,7 @@ class DataController {
 
                     },
                     {
-                        label: "M/LT Gasolina Aditivada", value: fuelSums['GASOLINA ADITIVADA'],
+                        label: "M/LT Gasolina Aditivada", value: Math.round(((fuelSums['GASOLINA ADITIVADA'] / 36)) * 100) / 100,
                         secondary_label: "", secondary_value: 0,
                         third_label: "", third_value: 0,
                         fourth_label: "",
@@ -385,7 +385,8 @@ class DataController {
 
                     },
                     {
-                        label: "M/LT Gasolina Premium Podium", value: fuelSums['GASOLINA PREMIUM PODIUM'],
+                        label: "M/LT Gasolina Premium Podium", value: Math.round(((fuelSums['GASOLINA PREMIUM PODIUM'] / 36)) * 100) / 100,
+
                         secondary_label: "", secondary_value: 0,
                         third_label: "", third_value: 0,
                         fourth_label: "",
@@ -395,7 +396,7 @@ class DataController {
 
                     },
                     {
-                        label: "M/LT Óleo Diesel B S10 Comum", value: fuelSums['OLEO DIESEL B S10 COMUM'],
+                        label: "M/LT Óleo Diesel B S10 Comum", value: Math.round(((fuelSums['OLEO DIESEL B S10 COMUM'] / 36)) * 100) / 100,
                         secondary_label: "", secondary_value: 0,
                         third_label: "", third_value: 0,
                         fourth_label: "",
@@ -405,7 +406,7 @@ class DataController {
 
                     },
                     {
-                        label: "M/LT Óleo Diesel B S500 Comum", value: fuelSums['OLEO DIESEL B S500 COMUM'],
+                        label: "M/LT Óleo Diesel B S500 Comum", value: Math.round(((fuelSums['OLEO DIESEL B S500 COMUM'] / 36)) * 100) / 100,
                         secondary_label: "", secondary_value: 0,
                         third_label: "", third_value: 0,
                         fourth_label: "",
@@ -416,7 +417,7 @@ class DataController {
                     },
 
                     {
-                        label: "M/LT Etanol Hidratado Combustível", value: fuelSums['ETANOL HIDRATADO COMBUSTIVEL'],
+                        label: "M/LT Etanol Hidratado Combustível", value: Math.round(((fuelSums['ETANOL HIDRATADO COMBUSTIVEL'] / 36) * 100)) / 100,
                         secondary_label: "", secondary_value: 0,
                         third_label: "", third_value: 0,
                         fourth_label: "",
