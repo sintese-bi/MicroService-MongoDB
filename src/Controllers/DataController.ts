@@ -210,6 +210,152 @@ class DataController {
                 const sumProductPrice = product_price.reduce((accumulator, currentValue) => {
                     return (accumulator || 0) + (currentValue.pc * currentValue.qd || 0);
                 }, 0);
+
+                //Fluxo valor bignumbers ultima semana
+                const samedayLastWeek = moment().tz("America/Sao_Paulo").subtract(7, 'days').format("YYYY-MM-DD");
+                const samedayLastWeekDate = moment().tz("America/Sao_Paulo").subtract(7, 'days').subtract(3, 'hours').toISOString();
+
+                const fuelliterageSellLastWeek = await prismaSales.vendas.findMany({
+                    select: {
+                        items: {
+                            select: {
+                                iTip: true,
+                                tot: true,
+                                qd: true,
+                                pC: true,
+
+
+                            }
+                        }, ibm: true, dtHr: true
+                    },
+                    where: {
+                        dtHr: {
+                            gte: `${samedayLastWeek}T00:00:00.000Z`,
+                            lte: samedayLastWeekDate
+                        }
+                    }
+
+                })
+    
+                //Construção array de items
+                const itemsArrayLastWeek = fuelliterageSellLastWeek.flatMap(element => {
+
+                    return element.items
+
+
+                })
+
+                //Quantas vezes foi abastecido combustível nos postos
+                const supplyQuantityLastWeek = itemsArrayLastWeek.flatMap(element => {
+                    return element
+
+                })
+                //Quantas vezes entraram carros e compraram no posto
+                const quantTotalLastWeek = itemsArrayLastWeek.length
+                const quantSupplyLastWeek = supplyQuantityLastWeek.length
+
+                //Soma combustíveis tipo combustivel
+                const fuelLastWeek = itemsArrayLastWeek
+                    .map(element => {
+                        if (element.iTip == "1") {
+                            return parseFloat(element.tot);
+                        }
+                        return undefined;
+                    })
+                    .filter((item): item is number => item !== undefined)
+
+                const sumFuelLastWeek = fuelLastWeek.reduce((accumulator, currentValue) => {
+                    return (accumulator || 0) + (currentValue || 0);
+                }, 0);
+
+                //Faturamento total combustível+produto
+                const fuelTotalLastWeek = itemsArrayLastWeek
+                    .map(element => {
+
+                        return parseFloat(element.tot);
+
+                    })
+                    .filter((item): item is number => item !== undefined)
+
+                const sumFuelTotalLastWeek = fuelTotalLastWeek.reduce((accumulator, currentValue) => {
+                    return (accumulator || 0) + (currentValue || 0);
+                }, 0);
+
+
+
+
+                //Soma da litragem tipo combustível
+                const literageLastWeek = itemsArrayLastWeek.map(element => {
+                    if (element.iTip == "1") { return parseFloat(element.qd) }
+                    return undefined;
+
+                }).filter((item): item is number => item !== undefined)
+
+                //Carros que entraram no posto
+                const supplyLastWeek = itemsArrayLastWeek.map(element => {
+                    return parseFloat(element.qd)
+
+                }, 0)
+                const sumSupplyLastWeek = supplyLastWeek.reduce((accumulator, currentValue) => {
+                    return (accumulator || 0) + (currentValue || 0);
+                }, 0);
+                const sumLiterageLastWeek = literageLastWeek.reduce((accumulator, currentValue) => {
+                    return (accumulator || 0) + (currentValue || 0);
+                }, 0);
+                //Soma do preço de custo do combustível
+                const cost_priceLastWeek = itemsArrayLastWeek
+                    .map(element => {
+                        if (element.iTip === "1") {
+                            return { pc: parseFloat(element.pC), qd: parseFloat(element.qd) };
+                        }
+                        return undefined;
+                    })
+                    .filter((item): item is { pc: number; qd: number } => item !== undefined);
+
+
+                const sumCostPriceLastWeek = cost_priceLastWeek.reduce((accumulator, currentValue) => {
+                    return (accumulator || 0) + (currentValue.qd * currentValue.pc || 0);
+                }, 0);
+
+
+                //Soma combustíveis tipo produto
+                const fuelProdLastWeek = itemsArrayLastWeek.map(element => {
+                    if (element.iTip == "0") { return parseFloat(element.tot) }
+                    return undefined
+
+                }).filter((item): item is number => item !== undefined)
+
+                const sumFuelProdLastWeek = fuelProdLastWeek.reduce((accumulator, currentValue) => {
+                    return (accumulator || 0) + (currentValue || 0);
+                }, 0);
+
+                //Soma da litragem tipo produto
+                const literageProdLastWeek = itemsArrayLastWeek.map(element => {
+                    if (element.iTip == "0") { return parseFloat(element.qd) }
+                    return undefined
+
+                }).filter((item): item is number => item !== undefined)
+
+                const sumLiterageProdLastWeek = literageProdLastWeek.reduce((accumulator, currentValue) => {
+                    return (accumulator || 0) + (currentValue || 0);
+                }, 0);
+                //Soma do preço de custo do produto
+                const product_priceLastWeek = itemsArrayLastWeek
+                    .map(element => {
+                        if (element.iTip === "0") {
+                            return { pc: parseFloat(element.pC), qd: parseFloat(element.qd) };
+                        }
+                        return undefined;
+                    })
+                    .filter((item): item is { pc: number; qd: number } => item !== undefined);
+
+
+                const sumProductPriceLastWeek = product_priceLastWeek.reduce((accumulator, currentValue) => {
+                    return (accumulator || 0) + (currentValue.pc * currentValue.qd || 0);
+                }, 0);
+
+
+
                 //Diferença faturamento de combustível pelo custo que é o lucro
                 const fuelProfit = Math.round(((sumFuel - sumCostPrice - sumLiterage * 0.04)) * 100) / 100
                 //Diferença faturamento de produto pelo custo que é o lucro
