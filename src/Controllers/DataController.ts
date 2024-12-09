@@ -236,7 +236,7 @@ class DataController {
                     }
 
                 })
-    
+
                 //Construção array de items
                 const itemsArrayLastWeek = fuelliterageSellLastWeek.flatMap(element => {
 
@@ -423,9 +423,9 @@ class DataController {
 
                 literagePerFuel.forEach((element: any) => {
                     if (!arrayFuel[element['Combustivel']]) {
-                        arrayFuel[element['Combustivel']] = [element['M/LT']];
+                        arrayFuel[element['Combustivel']] = [element['Lucro']];
                     } else {
-                        arrayFuel[element['Combustivel']].push(element['M/LT']);
+                        arrayFuel[element['Combustivel']].push(element['Lucro']);
                     }
                 });
                 const fuelSums: { [key: string]: number } = {};
@@ -434,7 +434,20 @@ class DataController {
                     fuelSums[fuelType] = arrayFuel[fuelType].reduce((sum, value) => Math.round((sum + value) * 100) / 100, 0);
                 }
 
+                let arrayFuelVolume: { [key: string]: number[] } = {};
 
+                literagePerFuel.forEach((element: any) => {
+                    if (!arrayFuelVolume[element['Combustivel']]) {
+                        arrayFuelVolume[element['Combustivel']] = [element['Volume']];
+                    } else {
+                        arrayFuelVolume[element['Combustivel']].push(element['Volume']);
+                    }
+                });
+                const fuelSumsVolume: { [key: string]: number } = {};
+
+                for (const fuelType in arrayFuelVolume) {
+                    fuelSumsVolume[fuelType] = arrayFuelVolume[fuelType].reduce((sum, value) => Math.round((sum + value) * 100) / 100, 0);
+                }
 
                 return res.status(200).json({
                     data: [{
@@ -479,16 +492,25 @@ class DataController {
                         sixth_label: "Status Média", sixth_value: lucroCombustíveisCondição,
                         seventh_label: "Média Mensal", seventh_value: Math.round(((monthBigNumbers?.bignumbers_fuelProfit ?? 0) / actualDay) * 100) / 100
                     },
-                    // {
-                    //     label: "M/LT", value: Math.round(valueMLT * 100) / 100,
-                    //     secondary_label: "", secondary_value: 0,
-                    //     third_label: "Status Margem", third_value: mlt,
-                    //     fourth_label: "Alvo",
-                    //     fourth_value: flags?.use_mlt ?? 0,
-                    //     fifth_label: "", fifth_value: 0, sixth_label: "", sixth_value: 0,
-                    //     seventh_label: "", seventh_value: 0
+                    {
+                        label: "M/LT",
+                        value: Math.round(
+                            (
+                                fuelSums['GASOLINA COMUM'] + fuelSums['GASOLINA ADITIVADA'] + fuelSums['GASOLINA PREMIUM PODIUM'] +
+                                fuelSums['OLEO DIESEL B S10 COMUM'] + fuelSums['OLEO DIESEL B S500 COMUM'] + fuelSums['ETANOL HIDRATADO COMBUSTIVEL']
+                            ) / (
+                                fuelSumsVolume['GASOLINA COMUM'] + fuelSumsVolume['GASOLINA ADITIVADA'] + fuelSumsVolume['GASOLINA PREMIUM PODIUM'] +
+                                fuelSumsVolume['OLEO DIESEL B S10 COMUM'] + fuelSumsVolume['OLEO DIESEL B S500 COMUM'] + fuelSumsVolume['ETANOL HIDRATADO COMBUSTIVEL']
+                            ) * 100
+                        ) / 100,
+                        secondary_label: "", secondary_value: 0,
+                        third_label: "Status Margem", third_value: mlt,
+                        fourth_label: "Alvo",
+                        fourth_value: flags?.use_mlt ?? 0,
+                        fifth_label: "", fifth_value: 0, sixth_label: "", sixth_value: 0,
+                        seventh_label: "", seventh_value: 0
 
-                    // },
+                    },
                     {
                         label: "Venda de Produtos", value: Math.round(sumFuelProd * 100) / 100,
                         secondary_label: "TMP", secondary_value: Math.round((secondary_value_produto) * 100) / 100,
@@ -511,7 +533,7 @@ class DataController {
                     },
 
                     {
-                        label: "M/LT Gasolina Comum", value: Math.round((fuelSums['GASOLINA COMUM'] / 36) * 100) / 100,
+                        label: "M/LT Gasolina Comum", value: Math.round((fuelSums['GASOLINA COMUM'] / fuelSumsVolume['GASOLINA COMUM']) * 100) / 100,
                         secondary_label: "", secondary_value: 0,
                         third_label: "", third_value: 0,
                         fourth_label: "",
@@ -521,7 +543,7 @@ class DataController {
 
                     },
                     {
-                        label: "M/LT Gasolina Aditivada", value: Math.round(((fuelSums['GASOLINA ADITIVADA'] / 36)) * 100) / 100,
+                        label: "M/LT Gasolina Aditivada", value: Math.round(((fuelSums['GASOLINA ADITIVADA'] / fuelSumsVolume['GASOLINA ADITIVADA'])) * 100) / 100,
                         secondary_label: "", secondary_value: 0,
                         third_label: "", third_value: 0,
                         fourth_label: "",
@@ -531,7 +553,7 @@ class DataController {
 
                     },
                     {
-                        label: "M/LT Gasolina Premium Podium", value: Math.round(((fuelSums['GASOLINA PREMIUM PODIUM'] / 36)) * 100) / 100,
+                        label: "M/LT Gasolina Premium Podium", value: Math.round(((fuelSums['GASOLINA PREMIUM PODIUM'] / fuelSumsVolume['GASOLINA PREMIUM PODIUM'])) * 100) / 100,
 
                         secondary_label: "", secondary_value: 0,
                         third_label: "", third_value: 0,
@@ -542,7 +564,7 @@ class DataController {
 
                     },
                     {
-                        label: "M/LT Óleo Diesel B S10 Comum", value: Math.round(((fuelSums['OLEO DIESEL B S10 COMUM'] / 36)) * 100) / 100,
+                        label: "M/LT Óleo Diesel B S10 Comum", value: Math.round(((fuelSums['OLEO DIESEL B S10 COMUM'] / fuelSumsVolume['OLEO DIESEL B S10 COMUM'])) * 100) / 100,
                         secondary_label: "", secondary_value: 0,
                         third_label: "", third_value: 0,
                         fourth_label: "",
@@ -552,7 +574,7 @@ class DataController {
 
                     },
                     {
-                        label: "M/LT Óleo Diesel B S500 Comum", value: Math.round(((fuelSums['OLEO DIESEL B S500 COMUM'] / 36)) * 100) / 100,
+                        label: "M/LT Óleo Diesel B S500 Comum", value: Math.round(((fuelSums['OLEO DIESEL B S500 COMUM'] / fuelSumsVolume['OLEO DIESEL B S500 COMUM'])) * 100) / 100,
                         secondary_label: "", secondary_value: 0,
                         third_label: "", third_value: 0,
                         fourth_label: "",
@@ -563,7 +585,7 @@ class DataController {
                     },
 
                     {
-                        label: "M/LT Etanol Hidratado Combustível", value: Math.round(((fuelSums['ETANOL HIDRATADO COMBUSTIVEL'] / 36) * 100)) / 100,
+                        label: "M/LT Etanol Hidratado Combustível", value: Math.round(((fuelSums['ETANOL HIDRATADO COMBUSTIVEL'] / fuelSumsVolume['ETANOL HIDRATADO COMBUSTIVEL']) * 100)) / 100,
                         secondary_label: "", secondary_value: 0,
                         third_label: "", third_value: 0,
                         fourth_label: "",
