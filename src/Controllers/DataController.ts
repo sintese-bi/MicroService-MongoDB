@@ -44,14 +44,12 @@ class DataController {
         const uniqueFuelNames = [...new Set(fuelNames)];
         const uniqueProductNames = [...new Set(productsNames)];
 
-        return res
-          .status(200)
-          .json({
-            data: {
-              fuelMargin: uniqueFuelNames,
-              productMargin: uniqueProductNames,
-            },
-          });
+        return res.status(200).json({
+          data: {
+            fuelMargin: uniqueFuelNames,
+            productMargin: uniqueProductNames,
+          },
+        });
       } else {
         return res
           .status(401)
@@ -223,6 +221,186 @@ class DataController {
           },
           0
         );
+
+        //Fluxo valor bignumbers ultima semana
+        const samedayLastWeek = moment()
+          .tz("America/Sao_Paulo")
+          .subtract(7, "days")
+          .format("YYYY-MM-DD");
+        const samedayLastWeekDate = moment()
+          .tz("America/Sao_Paulo")
+          .subtract(7, "days")
+          .subtract(3, "hours")
+          .toISOString();
+
+        const fuelliterageSellLastWeek = await prismaSales.vendas.findMany({
+          select: {
+            items: {
+              select: {
+                iTip: true,
+                tot: true,
+                qd: true,
+                pC: true,
+              },
+            },
+            ibm: true,
+            dtHr: true,
+          },
+          where: {
+            dtHr: {
+              gte: `${samedayLastWeek}T00:00:00.000Z`,
+              lte: samedayLastWeekDate,
+            },
+          },
+        });
+
+        //Construção array de items
+        const itemsArrayLastWeek = fuelliterageSellLastWeek.flatMap(
+          (element) => {
+            return element.items;
+          }
+        );
+
+        //Quantas vezes foi abastecido combustível nos postos
+        const supplyQuantityLastWeek = itemsArrayLastWeek.flatMap((element) => {
+          return element;
+        });
+        //Quantas vezes entraram carros e compraram no posto
+        const quantTotalLastWeek = itemsArrayLastWeek.length;
+        const quantSupplyLastWeek = supplyQuantityLastWeek.length;
+
+        //Soma combustíveis tipo combustivel
+        const fuelLastWeek = itemsArrayLastWeek
+          .map((element) => {
+            if (element.iTip == "1") {
+              return parseFloat(element.tot);
+            }
+            return undefined;
+          })
+          .filter((item): item is number => item !== undefined);
+
+        const sumFuelLastWeek = fuelLastWeek.reduce(
+          (accumulator, currentValue) => {
+            return (accumulator || 0) + (currentValue || 0);
+          },
+          0
+        );
+
+        //Faturamento total combustível+produto
+        const fuelTotalLastWeek = itemsArrayLastWeek
+          .map((element) => {
+            return parseFloat(element.tot);
+          })
+          .filter((item): item is number => item !== undefined);
+
+        const sumFuelTotalLastWeek = fuelTotalLastWeek.reduce(
+          (accumulator, currentValue) => {
+            return (accumulator || 0) + (currentValue || 0);
+          },
+          0
+        );
+
+        //Soma da litragem tipo combustível
+        const literageLastWeek = itemsArrayLastWeek
+          .map((element) => {
+            if (element.iTip == "1") {
+              return parseFloat(element.qd);
+            }
+            return undefined;
+          })
+          .filter((item): item is number => item !== undefined);
+
+        //Carros que entraram no posto
+        const supplyLastWeek = itemsArrayLastWeek.map((element) => {
+          return parseFloat(element.qd);
+        }, 0);
+        const sumSupplyLastWeek = supplyLastWeek.reduce(
+          (accumulator, currentValue) => {
+            return (accumulator || 0) + (currentValue || 0);
+          },
+          0
+        );
+        const sumLiterageLastWeek = literageLastWeek.reduce(
+          (accumulator, currentValue) => {
+            return (accumulator || 0) + (currentValue || 0);
+          },
+          0
+        );
+        //Soma do preço de custo do combustível
+        const cost_priceLastWeek = itemsArrayLastWeek
+          .map((element) => {
+            if (element.iTip === "1") {
+              return { pc: parseFloat(element.pC), qd: parseFloat(element.qd) };
+            }
+            return undefined;
+          })
+          .filter(
+            (item): item is { pc: number; qd: number } => item !== undefined
+          );
+
+        const sumCostPriceLastWeek = cost_priceLastWeek.reduce(
+          (accumulator, currentValue) => {
+            return (
+              (accumulator || 0) + (currentValue.qd * currentValue.pc || 0)
+            );
+          },
+          0
+        );
+
+        //Soma combustíveis tipo produto
+        const fuelProdLastWeek = itemsArrayLastWeek
+          .map((element) => {
+            if (element.iTip == "0") {
+              return parseFloat(element.tot);
+            }
+            return undefined;
+          })
+          .filter((item): item is number => item !== undefined);
+
+        const sumFuelProdLastWeek = fuelProdLastWeek.reduce(
+          (accumulator, currentValue) => {
+            return (accumulator || 0) + (currentValue || 0);
+          },
+          0
+        );
+
+        //Soma da litragem tipo produto
+        const literageProdLastWeek = itemsArrayLastWeek
+          .map((element) => {
+            if (element.iTip == "0") {
+              return parseFloat(element.qd);
+            }
+            return undefined;
+          })
+          .filter((item): item is number => item !== undefined);
+
+        const sumLiterageProdLastWeek = literageProdLastWeek.reduce(
+          (accumulator, currentValue) => {
+            return (accumulator || 0) + (currentValue || 0);
+          },
+          0
+        );
+        //Soma do preço de custo do produto
+        const product_priceLastWeek = itemsArrayLastWeek
+          .map((element) => {
+            if (element.iTip === "0") {
+              return { pc: parseFloat(element.pC), qd: parseFloat(element.qd) };
+            }
+            return undefined;
+          })
+          .filter(
+            (item): item is { pc: number; qd: number } => item !== undefined
+          );
+
+        const sumProductPriceLastWeek = product_priceLastWeek.reduce(
+          (accumulator, currentValue) => {
+            return (
+              (accumulator || 0) + (currentValue.pc * currentValue.qd || 0)
+            );
+          },
+          0
+        );
+
         //Diferença faturamento de combustível pelo custo que é o lucro
         const fuelProfit =
           Math.round((sumFuel - sumCostPrice - sumLiterage * 0.04) * 100) / 100;
@@ -374,9 +552,9 @@ class DataController {
 
         literagePerFuel.forEach((element: any) => {
           if (!arrayFuel[element["Combustivel"]]) {
-            arrayFuel[element["Combustivel"]] = [element["M/LT"]];
+            arrayFuel[element["Combustivel"]] = [element["Lucro"]];
           } else {
-            arrayFuel[element["Combustivel"]].push(element["M/LT"]);
+            arrayFuel[element["Combustivel"]].push(element["Lucro"]);
           }
         });
         const fuelSums: { [key: string]: number } = {};
@@ -387,6 +565,28 @@ class DataController {
             0
           );
         }
+
+        let arrayFuelVolume: { [key: string]: number[] } = {};
+
+        literagePerFuel.forEach((element: any) => {
+          if (!arrayFuelVolume[element["Combustivel"]]) {
+            arrayFuelVolume[element["Combustivel"]] = [element["Volume"]];
+          } else {
+            arrayFuelVolume[element["Combustivel"]].push(element["Volume"]);
+          }
+        });
+        const fuelSumsVolume: { [key: string]: number } = {};
+
+        for (const fuelType in arrayFuelVolume) {
+          fuelSumsVolume[fuelType] = arrayFuelVolume[fuelType].reduce(
+            (sum, value) => Math.round((sum + value) * 100) / 100,
+            0
+          );
+        }
+        const portugueseDateFormat = moment()
+          .tz("America/Sao_Paulo")
+          .subtract(7, "days")
+          .format("DD-MM-YYYY");
 
         return res.status(200).json({
           data: [
@@ -410,6 +610,12 @@ class DataController {
                   ((monthBigNumbers?.bignumbers_sumliterage ?? 0) / actualDay) *
                     100
                 ) / 100,
+              eighth_label: `Agregado de ${portugueseDateFormat}`,
+              eighth_value: Math.round(sumLiterageLastWeek * 100) / 100,
+              ninth_label: "Valor Percentual",
+              ninth_value:
+                (Math.round((sumLiterage / sumLiterageLastWeek) * 100) / 100) *
+                100,
             },
             {
               label: "Faturamento da Rede",
@@ -430,6 +636,13 @@ class DataController {
                   ((monthBigNumbers?.bignumbers_invoicing ?? 0) / actualDay) *
                     100
                 ) / 100,
+              eighth_label: `Agregado de ${portugueseDateFormat}`,
+              eighth_value: Math.round(sumFuelTotalLastWeek * 100) / 100,
+              ninth_label: "Valor Percentual",
+              ninth_value:
+                (Math.round((sumFuelTotal / sumFuelTotalLastWeek) * 100) /
+                  100) *
+                100,
             },
             {
               label: "Abastecimentos a Rede",
@@ -450,6 +663,12 @@ class DataController {
                   ((monthBigNumbers?.bignumbers_Supplies ?? 0) / actualDay) *
                     100
                 ) / 100,
+              eighth_label: `Agregado de ${portugueseDateFormat}`,
+              eighth_value: Math.round(quantSupplyLastWeek * 100) / 100,
+              ninth_label: "Valor Percentual",
+              ninth_value:
+                (Math.round((quantSupply / quantSupplyLastWeek) * 100) / 100) *
+                100,
             },
             {
               label: "Venda de Combustíveis",
@@ -470,6 +689,11 @@ class DataController {
                   ((monthBigNumbers?.bignumbers_fuelSales ?? 0) / actualDay) *
                     100
                 ) / 100,
+              eighth_label: `Agregado de ${portugueseDateFormat}`,
+              eighth_value: Math.round(sumFuelLastWeek * 100) / 100,
+              ninth_label: "Valor Percentual",
+              ninth_value:
+                (Math.round((sumFuel / sumFuelLastWeek) * 100) / 100) * 100,
             },
             {
               label: "Resultado Bruto da Galonagem",
@@ -491,17 +715,57 @@ class DataController {
                   ((monthBigNumbers?.bignumbers_fuelProfit ?? 0) / actualDay) *
                     100
                 ) / 100,
+              eighth_label: `Agregado de ${portugueseDateFormat}`,
+              eighth_value:
+                Math.round(
+                  (sumFuelLastWeek -
+                    sumCostPriceLastWeek -
+                    sumLiterageLastWeek * 0.04) *
+                    100
+                ) / 100,
+              ninth_label: "Valor Percentual",
+              ninth_value:
+                (Math.round(
+                  ((monthBigNumbers?.bignumbers_dailyLiterageProfit || 0) /
+                    (sumFuelLastWeek -
+                      sumCostPriceLastWeek -
+                      sumLiterageLastWeek * 0.04)) *
+                    100
+                ) /
+                  100) *
+                100,
             },
-            // {
-            //     label: "M/LT", value: Math.round(valueMLT * 100) / 100,
-            //     secondary_label: "", secondary_value: 0,
-            //     third_label: "Status Margem", third_value: mlt,
-            //     fourth_label: "Alvo",
-            //     fourth_value: flags?.use_mlt ?? 0,
-            //     fifth_label: "", fifth_value: 0, sixth_label: "", sixth_value: 0,
-            //     seventh_label: "", seventh_value: 0
-
-            // },
+            {
+              label: "M/LT",
+              value:
+                Math.round(
+                  ((fuelSums["GASOLINA COMUM"] +
+                    fuelSums["GASOLINA ADITIVADA"] +
+                    fuelSums["GASOLINA PREMIUM PODIUM"] +
+                    fuelSums["OLEO DIESEL B S10 COMUM"] +
+                    fuelSums["OLEO DIESEL B S500 COMUM"] +
+                    fuelSums["ETANOL HIDRATADO COMBUSTIVEL"]) /
+                    (fuelSumsVolume["GASOLINA COMUM"] +
+                      fuelSumsVolume["GASOLINA ADITIVADA"] +
+                      fuelSumsVolume["GASOLINA PREMIUM PODIUM"] +
+                      fuelSumsVolume["OLEO DIESEL B S10 COMUM"] +
+                      fuelSumsVolume["OLEO DIESEL B S500 COMUM"] +
+                      fuelSumsVolume["ETANOL HIDRATADO COMBUSTIVEL"])) *
+                    100
+                ) / 100,
+              secondary_label: "",
+              secondary_value: 0,
+              third_label: "Status Margem",
+              third_value: mlt,
+              fourth_label: "Alvo",
+              fourth_value: flags?.use_mlt ?? 0,
+              fifth_label: "",
+              fifth_value: 0,
+              sixth_label: "",
+              sixth_value: 0,
+              seventh_label: "",
+              seventh_value: 0,
+            },
             {
               label: "Venda de Produtos",
               value: Math.round(sumFuelProd * 100) / 100,
@@ -522,6 +786,12 @@ class DataController {
                     actualDay) *
                     100
                 ) / 100,
+              eighth_label: `Agregado de ${portugueseDateFormat}`,
+              eighth_value: Math.round(sumFuelProdLastWeek * 100) / 100,
+              ninth_label: "Valor Percentual",
+              ninth_value:
+                (Math.round((sumFuelProd / sumFuelProdLastWeek) * 100) / 100) *
+                100,
             },
             {
               label: "Resultado Bruto de Produto",
@@ -544,11 +814,20 @@ class DataController {
                     actualDay) *
                     100
                 ) / 100,
+              eighth_label: `Agregado de ${portugueseDateFormat}`,
+              eighth_value: 0,
+              ninth_label: "Valor Percentual",
+              ninth_value: 0,
             },
 
             {
               label: "M/LT Gasolina Comum",
-              value: Math.round((fuelSums["GASOLINA COMUM"] / 36) * 100) / 100,
+              value:
+                Math.round(
+                  (fuelSums["GASOLINA COMUM"] /
+                    fuelSumsVolume["GASOLINA COMUM"]) *
+                    100
+                ) / 100,
               secondary_label: "",
               secondary_value: 0,
               third_label: "",
@@ -565,7 +844,11 @@ class DataController {
             {
               label: "M/LT Gasolina Aditivada",
               value:
-                Math.round((fuelSums["GASOLINA ADITIVADA"] / 36) * 100) / 100,
+                Math.round(
+                  (fuelSums["GASOLINA ADITIVADA"] /
+                    fuelSumsVolume["GASOLINA ADITIVADA"]) *
+                    100
+                ) / 100,
               secondary_label: "",
               secondary_value: 0,
               third_label: "",
@@ -582,8 +865,11 @@ class DataController {
             {
               label: "M/LT Gasolina Premium Podium",
               value:
-                Math.round((fuelSums["GASOLINA PREMIUM PODIUM"] / 36) * 100) /
-                100,
+                Math.round(
+                  (fuelSums["GASOLINA PREMIUM PODIUM"] /
+                    fuelSumsVolume["GASOLINA PREMIUM PODIUM"]) *
+                    100
+                ) / 100,
 
               secondary_label: "",
               secondary_value: 0,
@@ -601,8 +887,11 @@ class DataController {
             {
               label: "M/LT Óleo Diesel B S10 Comum",
               value:
-                Math.round((fuelSums["OLEO DIESEL B S10 COMUM"] / 36) * 100) /
-                100,
+                Math.round(
+                  (fuelSums["OLEO DIESEL B S10 COMUM"] /
+                    fuelSumsVolume["OLEO DIESEL B S10 COMUM"]) *
+                    100
+                ) / 100,
               secondary_label: "",
               secondary_value: 0,
               third_label: "",
@@ -619,8 +908,11 @@ class DataController {
             {
               label: "M/LT Óleo Diesel B S500 Comum",
               value:
-                Math.round((fuelSums["OLEO DIESEL B S500 COMUM"] / 36) * 100) /
-                100,
+                Math.round(
+                  (fuelSums["OLEO DIESEL B S500 COMUM"] /
+                    fuelSumsVolume["OLEO DIESEL B S500 COMUM"]) *
+                    100
+                ) / 100,
               secondary_label: "",
               secondary_value: 0,
               third_label: "",
@@ -639,7 +931,9 @@ class DataController {
               label: "M/LT Etanol Hidratado Combustível",
               value:
                 Math.round(
-                  (fuelSums["ETANOL HIDRATADO COMBUSTIVEL"] / 36) * 100
+                  (fuelSums["ETANOL HIDRATADO COMBUSTIVEL"] /
+                    fuelSumsVolume["ETANOL HIDRATADO COMBUSTIVEL"]) *
+                    100
                 ) / 100,
               secondary_label: "",
               secondary_value: 0,
