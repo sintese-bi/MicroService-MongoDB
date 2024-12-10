@@ -448,6 +448,17 @@ class DataController {
                 for (const fuelType in arrayFuelVolume) {
                     fuelSumsVolume[fuelType] = arrayFuelVolume[fuelType].reduce((sum, value) => Math.round((sum + value) * 100) / 100, 0);
                 }
+                //Comparação flag dia atual com -7 dias
+                const literageTodayLastWeekFlag = Math.round(sumLiterage * 100) / 100 >= Math.round(sumLiterageLastWeek * 100) / 100
+                const sumFuelTotalTodayLastWeekFlag = Math.round(sumFuelTotal * 100) / 100 >= Math.round(sumFuelTotalLastWeek * 100) / 100
+                const quantSupplyTodayLastWeekFlag = Math.round(quantSupply * 100) / 100 >= Math.round(quantSupplyLastWeek * 100) / 100
+                const sumFuelTodayLastWeekFlag = Math.round(sumFuel * 100) / 100 >= Math.round(sumFuelLastWeek * 100) / 100
+                const literageProfitTodayLastWeekFlag = (monthBigNumbers?.bignumbers_dailyLiterageProfit || 0) >= Math.round(((sumFuelLastWeek - sumCostPriceLastWeek - sumLiterageLastWeek * 0.04)) * 100) / 100
+                const sumFuelProdTodayLastWeekFlag = Math.round(sumFuelProd * 100) / 100 >= Math.round(sumFuelProdLastWeek * 100) / 100
+
+
+
+                const portugueseDateFormat = moment().tz("America/Sao_Paulo").subtract(7, 'days').format("DD-MM-YYYY")
 
                 return res.status(200).json({
                     data: [{
@@ -456,7 +467,10 @@ class DataController {
                         third_value: use_tmvol, fourth_label: "Alvo", fourth_value: flags?.use_tmvol,
                         fifth_label: "Soma mensal", fifth_value: monthBigNumbers?.bignumbers_sumliterage,
                         sixth_label: "Status Média", sixth_value: galonagemLitrosCondição,
-                        seventh_label: "Média Mensal", seventh_value: Math.round(((monthBigNumbers?.bignumbers_sumliterage ?? 0) / actualDay) * 100) / 100
+                        seventh_label: "Média Mensal", seventh_value: Math.round(((monthBigNumbers?.bignumbers_sumliterage ?? 0) / actualDay) * 100) / 100,
+                        eighth_label: `Agregado de ${portugueseDateFormat}`, eighth_value: Math.round(sumLiterageLastWeek * 100) / 100,
+                        ninth_label: "Valor Percentual", ninth_value: ((Math.round(sumLiterage / sumLiterageLastWeek * 100) / 100)) * 100,
+                        tenth_label: "Comparativo intrasemanal", tenth_value: literageTodayLastWeekFlag
                     },
                     {
                         label: "Faturamento da Rede", value: Math.round(sumFuelTotal * 100) / 100, secondary_label: "TMF",
@@ -464,7 +478,10 @@ class DataController {
                         third_value: use_tmf, fourth_label: "Alvo", fourth_value: flags?.use_tmf,
                         fifth_label: "Soma mensal", fifth_value: monthBigNumbers?.bignumbers_invoicing,
                         sixth_label: "Status Média", sixth_value: faturamentoRedeCondição,
-                        seventh_label: "Média Mensal", seventh_value: Math.round(((monthBigNumbers?.bignumbers_invoicing ?? 0) / actualDay) * 100) / 100
+                        seventh_label: "Média Mensal", seventh_value: Math.round(((monthBigNumbers?.bignumbers_invoicing ?? 0) / actualDay) * 100) / 100,
+                        eighth_label: `Agregado de ${portugueseDateFormat}`, eighth_value: Math.round(sumFuelTotalLastWeek * 100) / 100,
+                        ninth_label: "Valor Percentual", ninth_value: ((Math.round(sumFuelTotal / sumFuelTotalLastWeek * 100) / 100)) * 100,
+                        tenth_label: "Comparativo intrasemanal", tenth_value: sumFuelTotalTodayLastWeekFlag
                     },
                     {
                         label: "Abastecimentos a Rede", value: Math.round(quantSupply * 100) / 100, secondary_label: "",
@@ -472,7 +489,10 @@ class DataController {
                         third_value: 0, fourth_label: "", fourth_value: 0,
                         fifth_label: "Soma mensal", fifth_value: monthBigNumbers?.bignumbers_Supplies,
                         sixth_label: "Status Média", sixth_value: abastecimentoRedeCondição,
-                        seventh_label: "Média Mensal", seventh_value: Math.round(((monthBigNumbers?.bignumbers_Supplies ?? 0) / actualDay) * 100) / 100
+                        seventh_label: "Média Mensal", seventh_value: Math.round(((monthBigNumbers?.bignumbers_Supplies ?? 0) / actualDay) * 100) / 100,
+                        eighth_label: `Agregado de ${portugueseDateFormat}`, eighth_value: Math.round(quantSupplyLastWeek * 100) / 100,
+                        ninth_label: "Valor Percentual", ninth_value: ((Math.round(quantSupply / quantSupplyLastWeek * 100) / 100)) * 100,
+                        tenth_label: "Comparativo intrasemanal", tenth_value: quantSupplyTodayLastWeekFlag
                     },
                     {
                         label: "Venda de Combustíveis", value: Math.round(sumFuel * 100) / 100,
@@ -480,7 +500,10 @@ class DataController {
                         third_label: "Status Margem", third_value: tmc, fourth_label: "Alvo", fourth_value: flags?.use_tmc,
                         fifth_label: "Soma mensal", fifth_value: monthBigNumbers?.bignumbers_fuelSales,
                         sixth_label: "Status Média", sixth_value: vendaCombustíveisCondição,
-                        seventh_label: "Média Mensal", seventh_value: Math.round(((monthBigNumbers?.bignumbers_fuelSales ?? 0) / actualDay) * 100) / 100
+                        seventh_label: "Média Mensal", seventh_value: Math.round(((monthBigNumbers?.bignumbers_fuelSales ?? 0) / actualDay) * 100) / 100,
+                        eighth_label: `Agregado de ${portugueseDateFormat}`, eighth_value: Math.round(sumFuelLastWeek * 100) / 100,
+                        ninth_label: "Valor Percentual", ninth_value: ((Math.round(sumFuel / sumFuelLastWeek * 100) / 100)) * 100,
+                        tenth_label: "Comparativo intrasemanal", tenth_value: sumFuelTodayLastWeekFlag
                     },
                     {
                         label: "Resultado Bruto da Galonagem", value: monthBigNumbers?.bignumbers_dailyLiterageProfit,
@@ -490,7 +513,10 @@ class DataController {
                         fourth_value: (flags?.use_lucro_bruto_operacional_galonagem ?? 0),
                         fifth_label: "Soma mensal", fifth_value: monthBigNumbers?.bignumbers_fuelProfit,
                         sixth_label: "Status Média", sixth_value: lucroCombustíveisCondição,
-                        seventh_label: "Média Mensal", seventh_value: Math.round(((monthBigNumbers?.bignumbers_fuelProfit ?? 0) / actualDay) * 100) / 100
+                        seventh_label: "Média Mensal", seventh_value: Math.round(((monthBigNumbers?.bignumbers_fuelProfit ?? 0) / actualDay) * 100) / 100,
+                        eighth_label: `Agregado de ${portugueseDateFormat}`, eighth_value: Math.round(((sumFuelLastWeek - sumCostPriceLastWeek - sumLiterageLastWeek * 0.04)) * 100) / 100,
+                        ninth_label: "Valor Percentual", ninth_value: ((Math.round((monthBigNumbers?.bignumbers_dailyLiterageProfit || 0) / (sumFuelLastWeek - sumCostPriceLastWeek - sumLiterageLastWeek * 0.04) * 100) / 100)) * 100,
+                        tenth_label: "Comparativo intrasemanal", tenth_value: literageProfitTodayLastWeekFlag
                     },
                     {
                         label: "M/LT",
@@ -518,7 +544,10 @@ class DataController {
                         fourth_label: "Alvo", fourth_value: flags?.use_tmp,
                         fifth_label: "Soma mensal", fifth_value: monthBigNumbers?.bignumbers_productSales,
                         sixth_label: "Status Média", sixth_value: vendaProdutosCondição,
-                        seventh_label: "Média Mensal", seventh_value: Math.round(((monthBigNumbers?.bignumbers_productSales ?? 0) / actualDay) * 100) / 100
+                        seventh_label: "Média Mensal", seventh_value: Math.round(((monthBigNumbers?.bignumbers_productSales ?? 0) / actualDay) * 100) / 100,
+                        eighth_label: `Agregado de ${portugueseDateFormat}`, eighth_value: Math.round(sumFuelProdLastWeek * 100) / 100,
+                        ninth_label: "Valor Percentual", ninth_value: ((Math.round(sumFuelProd / sumFuelProdLastWeek * 100) / 100)) * 100,
+                        tenth_label: "Comparativo intrasemanal", tenth_value: sumFuelProdTodayLastWeekFlag
                     },
                     {
                         label: "Resultado Bruto de Produto", value: monthBigNumbers?.bignumbers_dailyProductProfit,
@@ -528,7 +557,10 @@ class DataController {
                         fourth_label: "Alvo", fourth_value: (flags?.use_lucro_bruto_operacional_produto ?? 0),
                         fifth_label: "Soma mensal", fifth_value: monthBigNumbers?.bignumbers_productProfit,
                         sixth_label: "Status Média", sixth_value: lucroProdutosCondição,
-                        seventh_label: "Média Mensal", seventh_value: Math.round(((monthBigNumbers?.bignumbers_productProfit ?? 0) / actualDay) * 100) / 100
+                        seventh_label: "Média Mensal", seventh_value: Math.round(((monthBigNumbers?.bignumbers_productProfit ?? 0) / actualDay) * 100) / 100,
+                        eighth_label: `Agregado de ${portugueseDateFormat}`, eighth_value: 0,
+                        ninth_label: "Valor Percentual", ninth_value: 0,
+                        tenth_label: "Comparativo intrasemanal", tenth_value: 0
 
                     },
 
