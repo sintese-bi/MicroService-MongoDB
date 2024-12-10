@@ -23,5 +23,8 @@ services:
     ports:
       - '3052:3052'
     restart: always
-    
-      
+  
+networks:
+  default: 
+    name: rede_flex
+    external: true   
