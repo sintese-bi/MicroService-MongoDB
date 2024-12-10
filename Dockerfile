@@ -1,6 +1,9 @@
 # Use Node.js 18 como base
 FROM node:18-alpine
 
+# Instale o OpenSSL
+RUN apk add --no-cache openssl
+
 # Define o diretório de trabalho
 WORKDIR /usr/app
 
