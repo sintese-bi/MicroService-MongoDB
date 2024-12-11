@@ -13,6 +13,7 @@ const {
   empty,
   join,
   raw,
+  skip,
   Decimal,
   Debug,
   objectEnumValues,
@@ -31,12 +32,12 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 5.15.1
- * Query Engine version: 5675a3182f972f1a8f31d16eee6abf4fd54910e3
+ * Prisma Client JS version: 5.22.0
+ * Query Engine version: 605197351a3c8bdd595af2d2a9bc3025bca48ea2
  */
 Prisma.prismaVersion = {
-  client: "5.15.1",
-  engine: "5675a3182f972f1a8f31d16eee6abf4fd54910e3"
+  client: "5.22.0",
+  engine: "605197351a3c8bdd595af2d2a9bc3025bca48ea2"
 }
 
 Prisma.PrismaClientKnownRequestError = PrismaClientKnownRequestError;
@@ -74,6 +75,8 @@ Prisma.NullTypes = {
   JsonNull: objectEnumValues.classes.JsonNull,
   AnyNull: objectEnumValues.classes.AnyNull
 }
+
+
 
 
 
@@ -347,7 +350,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\Eloy\\Desktop\\Arquivos\\Projetos\\MicroService-MongoDB\\generated\\clientRedeFlex",
+      "value": "C:\\Users\\PC\\Desktop\\SinteseBI\\MicroService-MongoDB\\generated\\clientRedeFlex",
       "fromEnvVar": null
     },
     "config": {
@@ -361,6 +364,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
+    "sourceFilePath": "C:\\Users\\PC\\Desktop\\SinteseBI\\MicroService-MongoDB\\prisma\\schemaRedeFlex.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -368,13 +372,12 @@ const config = {
     "schemaEnvPath": "../../.env"
   },
   "relativePath": "../../prisma",
-  "clientVersion": "5.15.1",
-  "engineVersion": "5675a3182f972f1a8f31d16eee6abf4fd54910e3",
+  "clientVersion": "5.22.0",
+  "engineVersion": "605197351a3c8bdd595af2d2a9bc3025bca48ea2",
   "datasourceNames": [
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {

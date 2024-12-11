@@ -69,8 +69,8 @@ export type product_gross_history = $Result.DefaultSelection<Prisma.$product_gro
  * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
  */
 export class PrismaClient<
-  T extends Prisma.PrismaClientOptions = Prisma.PrismaClientOptions,
-  U = 'log' extends keyof T ? T['log'] extends Array<Prisma.LogLevel | Prisma.LogDefinition> ? Prisma.GetEvents<T['log']> : never : never,
+  ClientOptions extends Prisma.PrismaClientOptions = Prisma.PrismaClientOptions,
+  U = 'log' extends keyof ClientOptions ? ClientOptions['log'] extends Array<Prisma.LogLevel | Prisma.LogDefinition> ? Prisma.GetEvents<ClientOptions['log']> : never : never,
   ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
 > {
   [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['other'] }
@@ -90,7 +90,7 @@ export class PrismaClient<
    * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
    */
 
-  constructor(optionsArg ?: Prisma.Subset<T, Prisma.PrismaClientOptions>);
+  constructor(optionsArg ?: Prisma.Subset<ClientOptions, Prisma.PrismaClientOptions>);
   $on<V extends U>(eventType: V, callback: (event: V extends 'query' ? Prisma.QueryEvent : Prisma.LogEvent) => void): void;
 
   /**
@@ -156,6 +156,7 @@ export class PrismaClient<
    */
   $queryRawUnsafe<T = unknown>(query: string, ...values: any[]): Prisma.PrismaPromise<T>;
 
+
   /**
    * Allows the running of a sequence of read/write operations that are guaranteed to either succeed or fail as a whole.
    * @example
@@ -174,7 +175,7 @@ export class PrismaClient<
   $transaction<R>(fn: (prisma: Omit<PrismaClient, runtime.ITXClientDenyList>) => $Utils.JsPromise<R>, options?: { maxWait?: number, timeout?: number, isolationLevel?: Prisma.TransactionIsolationLevel }): $Utils.JsPromise<R>
 
 
-  $extends: $Extensions.ExtendsHook<'extends', Prisma.TypeMapCb, ExtArgs>
+  $extends: $Extensions.ExtendsHook<"extends", Prisma.TypeMapCb, ExtArgs>
 
       /**
    * `prisma.ibm_info`: Exposes CRUD operations for the **ibm_info** model.
@@ -286,6 +287,8 @@ export namespace Prisma {
   export import raw = runtime.raw
   export import Sql = runtime.Sql
 
+
+
   /**
    * Decimal.js
    */
@@ -312,8 +315,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 5.15.1
-   * Query Engine version: 5675a3182f972f1a8f31d16eee6abf4fd54910e3
+   * Prisma Client JS version: 5.22.0
+   * Query Engine version: 605197351a3c8bdd595af2d2a9bc3025bca48ea2
    */
   export type PrismaVersion = {
     client: string
@@ -325,51 +328,13 @@ export namespace Prisma {
    * Utility Types
    */
 
-  /**
-   * From https://github.com/sindresorhus/type-fest/
-   * Matches a JSON object.
-   * This type can be useful to enforce some input to be JSON-compatible or as a super-type to be extended from. 
-   */
-  export type JsonObject = {[Key in string]?: JsonValue}
 
-  /**
-   * From https://github.com/sindresorhus/type-fest/
-   * Matches a JSON array.
-   */
-  export interface JsonArray extends Array<JsonValue> {}
-
-  /**
-   * From https://github.com/sindresorhus/type-fest/
-   * Matches any valid JSON value.
-   */
-  export type JsonValue = string | number | boolean | JsonObject | JsonArray | null
-
-  /**
-   * Matches a JSON object.
-   * Unlike `JsonObject`, this type allows undefined and read-only properties.
-   */
-  export type InputJsonObject = {readonly [Key in string]?: InputJsonValue | null}
-
-  /**
-   * Matches a JSON array.
-   * Unlike `JsonArray`, readonly arrays are assignable to this type.
-   */
-  export interface InputJsonArray extends ReadonlyArray<InputJsonValue | null> {}
-
-  /**
-   * Matches any valid value that can be used as an input for operations like
-   * create and update as the value of a JSON field. Unlike `JsonValue`, this
-   * type allows read-only arrays and read-only object properties and disallows
-   * `null` at the top level.
-   *
-   * `null` cannot be used as the value of a JSON field because its meaning
-   * would be ambiguous. Use `Prisma.JsonNull` to store the JSON null value or
-   * `Prisma.DbNull` to clear the JSON value and set the field to the database
-   * NULL value instead.
-   *
-   * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-by-null-values
-   */
-  export type InputJsonValue = string | number | boolean | InputJsonObject | InputJsonArray | { toJSON(): unknown }
+  export import JsonObject = runtime.JsonObject
+  export import JsonArray = runtime.JsonArray
+  export import JsonValue = runtime.JsonValue
+  export import InputJsonObject = runtime.InputJsonObject
+  export import InputJsonArray = runtime.InputJsonArray
+  export import InputJsonValue = runtime.InputJsonValue
 
   /**
    * Types of the values used to represent different kinds of `null` values when working with JSON fields.
@@ -749,83 +714,82 @@ export namespace Prisma {
     db?: Datasource
   }
 
-
-  interface TypeMapCb extends $Utils.Fn<{extArgs: $Extensions.InternalArgs}, $Utils.Record<string, any>> {
-    returns: Prisma.TypeMap<this['params']['extArgs']>
+  interface TypeMapCb extends $Utils.Fn<{extArgs: $Extensions.InternalArgs, clientOptions: PrismaClientOptions }, $Utils.Record<string, any>> {
+    returns: Prisma.TypeMap<this['params']['extArgs'], this['params']['clientOptions']>
   }
 
-  export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: 'ibm_info' | 'users' | 'gas_station_setvariables' | 'region_setvariables' | 'regions' | 'big_numbers_values' | 'gallon_gross_history' | 'product_gross_history'
+      modelProps: "ibm_info" | "users" | "gas_station_setvariables" | "region_setvariables" | "regions" | "big_numbers_values" | "gallon_gross_history" | "product_gross_history"
       txIsolationLevel: Prisma.TransactionIsolationLevel
-    },
+    }
     model: {
       ibm_info: {
         payload: Prisma.$ibm_infoPayload<ExtArgs>
         fields: Prisma.ibm_infoFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.ibm_infoFindUniqueArgs<ExtArgs>,
+            args: Prisma.ibm_infoFindUniqueArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$ibm_infoPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.ibm_infoFindUniqueOrThrowArgs<ExtArgs>,
+            args: Prisma.ibm_infoFindUniqueOrThrowArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$ibm_infoPayload>
           }
           findFirst: {
-            args: Prisma.ibm_infoFindFirstArgs<ExtArgs>,
+            args: Prisma.ibm_infoFindFirstArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$ibm_infoPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.ibm_infoFindFirstOrThrowArgs<ExtArgs>,
+            args: Prisma.ibm_infoFindFirstOrThrowArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$ibm_infoPayload>
           }
           findMany: {
-            args: Prisma.ibm_infoFindManyArgs<ExtArgs>,
+            args: Prisma.ibm_infoFindManyArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$ibm_infoPayload>[]
           }
           create: {
-            args: Prisma.ibm_infoCreateArgs<ExtArgs>,
+            args: Prisma.ibm_infoCreateArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$ibm_infoPayload>
           }
           createMany: {
-            args: Prisma.ibm_infoCreateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
+            args: Prisma.ibm_infoCreateManyArgs<ExtArgs>
+            result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.ibm_infoCreateManyAndReturnArgs<ExtArgs>,
+            args: Prisma.ibm_infoCreateManyAndReturnArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$ibm_infoPayload>[]
           }
           delete: {
-            args: Prisma.ibm_infoDeleteArgs<ExtArgs>,
+            args: Prisma.ibm_infoDeleteArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$ibm_infoPayload>
           }
           update: {
-            args: Prisma.ibm_infoUpdateArgs<ExtArgs>,
+            args: Prisma.ibm_infoUpdateArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$ibm_infoPayload>
           }
           deleteMany: {
-            args: Prisma.ibm_infoDeleteManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
+            args: Prisma.ibm_infoDeleteManyArgs<ExtArgs>
+            result: BatchPayload
           }
           updateMany: {
-            args: Prisma.ibm_infoUpdateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
+            args: Prisma.ibm_infoUpdateManyArgs<ExtArgs>
+            result: BatchPayload
           }
           upsert: {
-            args: Prisma.ibm_infoUpsertArgs<ExtArgs>,
+            args: Prisma.ibm_infoUpsertArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$ibm_infoPayload>
           }
           aggregate: {
-            args: Prisma.Ibm_infoAggregateArgs<ExtArgs>,
+            args: Prisma.Ibm_infoAggregateArgs<ExtArgs>
             result: $Utils.Optional<AggregateIbm_info>
           }
           groupBy: {
-            args: Prisma.ibm_infoGroupByArgs<ExtArgs>,
+            args: Prisma.ibm_infoGroupByArgs<ExtArgs>
             result: $Utils.Optional<Ibm_infoGroupByOutputType>[]
           }
           count: {
-            args: Prisma.ibm_infoCountArgs<ExtArgs>,
+            args: Prisma.ibm_infoCountArgs<ExtArgs>
             result: $Utils.Optional<Ibm_infoCountAggregateOutputType> | number
           }
         }
@@ -835,67 +799,67 @@ export namespace Prisma {
         fields: Prisma.usersFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.usersFindUniqueArgs<ExtArgs>,
+            args: Prisma.usersFindUniqueArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$usersPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.usersFindUniqueOrThrowArgs<ExtArgs>,
+            args: Prisma.usersFindUniqueOrThrowArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$usersPayload>
           }
           findFirst: {
-            args: Prisma.usersFindFirstArgs<ExtArgs>,
+            args: Prisma.usersFindFirstArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$usersPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.usersFindFirstOrThrowArgs<ExtArgs>,
+            args: Prisma.usersFindFirstOrThrowArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$usersPayload>
           }
           findMany: {
-            args: Prisma.usersFindManyArgs<ExtArgs>,
+            args: Prisma.usersFindManyArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$usersPayload>[]
           }
           create: {
-            args: Prisma.usersCreateArgs<ExtArgs>,
+            args: Prisma.usersCreateArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$usersPayload>
           }
           createMany: {
-            args: Prisma.usersCreateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
+            args: Prisma.usersCreateManyArgs<ExtArgs>
+            result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.usersCreateManyAndReturnArgs<ExtArgs>,
+            args: Prisma.usersCreateManyAndReturnArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$usersPayload>[]
           }
           delete: {
-            args: Prisma.usersDeleteArgs<ExtArgs>,
+            args: Prisma.usersDeleteArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$usersPayload>
           }
           update: {
-            args: Prisma.usersUpdateArgs<ExtArgs>,
+            args: Prisma.usersUpdateArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$usersPayload>
           }
           deleteMany: {
-            args: Prisma.usersDeleteManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
+            args: Prisma.usersDeleteManyArgs<ExtArgs>
+            result: BatchPayload
           }
           updateMany: {
-            args: Prisma.usersUpdateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
+            args: Prisma.usersUpdateManyArgs<ExtArgs>
+            result: BatchPayload
           }
           upsert: {
-            args: Prisma.usersUpsertArgs<ExtArgs>,
+            args: Prisma.usersUpsertArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$usersPayload>
           }
           aggregate: {
-            args: Prisma.UsersAggregateArgs<ExtArgs>,
+            args: Prisma.UsersAggregateArgs<ExtArgs>
             result: $Utils.Optional<AggregateUsers>
           }
           groupBy: {
-            args: Prisma.usersGroupByArgs<ExtArgs>,
+            args: Prisma.usersGroupByArgs<ExtArgs>
             result: $Utils.Optional<UsersGroupByOutputType>[]
           }
           count: {
-            args: Prisma.usersCountArgs<ExtArgs>,
+            args: Prisma.usersCountArgs<ExtArgs>
             result: $Utils.Optional<UsersCountAggregateOutputType> | number
           }
         }
@@ -905,67 +869,67 @@ export namespace Prisma {
         fields: Prisma.gas_station_setvariablesFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.gas_station_setvariablesFindUniqueArgs<ExtArgs>,
+            args: Prisma.gas_station_setvariablesFindUniqueArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$gas_station_setvariablesPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.gas_station_setvariablesFindUniqueOrThrowArgs<ExtArgs>,
+            args: Prisma.gas_station_setvariablesFindUniqueOrThrowArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$gas_station_setvariablesPayload>
           }
           findFirst: {
-            args: Prisma.gas_station_setvariablesFindFirstArgs<ExtArgs>,
+            args: Prisma.gas_station_setvariablesFindFirstArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$gas_station_setvariablesPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.gas_station_setvariablesFindFirstOrThrowArgs<ExtArgs>,
+            args: Prisma.gas_station_setvariablesFindFirstOrThrowArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$gas_station_setvariablesPayload>
           }
           findMany: {
-            args: Prisma.gas_station_setvariablesFindManyArgs<ExtArgs>,
+            args: Prisma.gas_station_setvariablesFindManyArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$gas_station_setvariablesPayload>[]
           }
           create: {
-            args: Prisma.gas_station_setvariablesCreateArgs<ExtArgs>,
+            args: Prisma.gas_station_setvariablesCreateArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$gas_station_setvariablesPayload>
           }
           createMany: {
-            args: Prisma.gas_station_setvariablesCreateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
+            args: Prisma.gas_station_setvariablesCreateManyArgs<ExtArgs>
+            result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.gas_station_setvariablesCreateManyAndReturnArgs<ExtArgs>,
+            args: Prisma.gas_station_setvariablesCreateManyAndReturnArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$gas_station_setvariablesPayload>[]
           }
           delete: {
-            args: Prisma.gas_station_setvariablesDeleteArgs<ExtArgs>,
+            args: Prisma.gas_station_setvariablesDeleteArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$gas_station_setvariablesPayload>
           }
           update: {
-            args: Prisma.gas_station_setvariablesUpdateArgs<ExtArgs>,
+            args: Prisma.gas_station_setvariablesUpdateArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$gas_station_setvariablesPayload>
           }
           deleteMany: {
-            args: Prisma.gas_station_setvariablesDeleteManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
+            args: Prisma.gas_station_setvariablesDeleteManyArgs<ExtArgs>
+            result: BatchPayload
           }
           updateMany: {
-            args: Prisma.gas_station_setvariablesUpdateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
+            args: Prisma.gas_station_setvariablesUpdateManyArgs<ExtArgs>
+            result: BatchPayload
           }
           upsert: {
-            args: Prisma.gas_station_setvariablesUpsertArgs<ExtArgs>,
+            args: Prisma.gas_station_setvariablesUpsertArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$gas_station_setvariablesPayload>
           }
           aggregate: {
-            args: Prisma.Gas_station_setvariablesAggregateArgs<ExtArgs>,
+            args: Prisma.Gas_station_setvariablesAggregateArgs<ExtArgs>
             result: $Utils.Optional<AggregateGas_station_setvariables>
           }
           groupBy: {
-            args: Prisma.gas_station_setvariablesGroupByArgs<ExtArgs>,
+            args: Prisma.gas_station_setvariablesGroupByArgs<ExtArgs>
             result: $Utils.Optional<Gas_station_setvariablesGroupByOutputType>[]
           }
           count: {
-            args: Prisma.gas_station_setvariablesCountArgs<ExtArgs>,
+            args: Prisma.gas_station_setvariablesCountArgs<ExtArgs>
             result: $Utils.Optional<Gas_station_setvariablesCountAggregateOutputType> | number
           }
         }
@@ -975,67 +939,67 @@ export namespace Prisma {
         fields: Prisma.region_setvariablesFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.region_setvariablesFindUniqueArgs<ExtArgs>,
+            args: Prisma.region_setvariablesFindUniqueArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$region_setvariablesPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.region_setvariablesFindUniqueOrThrowArgs<ExtArgs>,
+            args: Prisma.region_setvariablesFindUniqueOrThrowArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$region_setvariablesPayload>
           }
           findFirst: {
-            args: Prisma.region_setvariablesFindFirstArgs<ExtArgs>,
+            args: Prisma.region_setvariablesFindFirstArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$region_setvariablesPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.region_setvariablesFindFirstOrThrowArgs<ExtArgs>,
+            args: Prisma.region_setvariablesFindFirstOrThrowArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$region_setvariablesPayload>
           }
           findMany: {
-            args: Prisma.region_setvariablesFindManyArgs<ExtArgs>,
+            args: Prisma.region_setvariablesFindManyArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$region_setvariablesPayload>[]
           }
           create: {
-            args: Prisma.region_setvariablesCreateArgs<ExtArgs>,
+            args: Prisma.region_setvariablesCreateArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$region_setvariablesPayload>
           }
           createMany: {
-            args: Prisma.region_setvariablesCreateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
+            args: Prisma.region_setvariablesCreateManyArgs<ExtArgs>
+            result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.region_setvariablesCreateManyAndReturnArgs<ExtArgs>,
+            args: Prisma.region_setvariablesCreateManyAndReturnArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$region_setvariablesPayload>[]
           }
           delete: {
-            args: Prisma.region_setvariablesDeleteArgs<ExtArgs>,
+            args: Prisma.region_setvariablesDeleteArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$region_setvariablesPayload>
           }
           update: {
-            args: Prisma.region_setvariablesUpdateArgs<ExtArgs>,
+            args: Prisma.region_setvariablesUpdateArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$region_setvariablesPayload>
           }
           deleteMany: {
-            args: Prisma.region_setvariablesDeleteManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
+            args: Prisma.region_setvariablesDeleteManyArgs<ExtArgs>
+            result: BatchPayload
           }
           updateMany: {
-            args: Prisma.region_setvariablesUpdateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
+            args: Prisma.region_setvariablesUpdateManyArgs<ExtArgs>
+            result: BatchPayload
           }
           upsert: {
-            args: Prisma.region_setvariablesUpsertArgs<ExtArgs>,
+            args: Prisma.region_setvariablesUpsertArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$region_setvariablesPayload>
           }
           aggregate: {
-            args: Prisma.Region_setvariablesAggregateArgs<ExtArgs>,
+            args: Prisma.Region_setvariablesAggregateArgs<ExtArgs>
             result: $Utils.Optional<AggregateRegion_setvariables>
           }
           groupBy: {
-            args: Prisma.region_setvariablesGroupByArgs<ExtArgs>,
+            args: Prisma.region_setvariablesGroupByArgs<ExtArgs>
             result: $Utils.Optional<Region_setvariablesGroupByOutputType>[]
           }
           count: {
-            args: Prisma.region_setvariablesCountArgs<ExtArgs>,
+            args: Prisma.region_setvariablesCountArgs<ExtArgs>
             result: $Utils.Optional<Region_setvariablesCountAggregateOutputType> | number
           }
         }
@@ -1045,67 +1009,67 @@ export namespace Prisma {
         fields: Prisma.regionsFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.regionsFindUniqueArgs<ExtArgs>,
+            args: Prisma.regionsFindUniqueArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$regionsPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.regionsFindUniqueOrThrowArgs<ExtArgs>,
+            args: Prisma.regionsFindUniqueOrThrowArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$regionsPayload>
           }
           findFirst: {
-            args: Prisma.regionsFindFirstArgs<ExtArgs>,
+            args: Prisma.regionsFindFirstArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$regionsPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.regionsFindFirstOrThrowArgs<ExtArgs>,
+            args: Prisma.regionsFindFirstOrThrowArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$regionsPayload>
           }
           findMany: {
-            args: Prisma.regionsFindManyArgs<ExtArgs>,
+            args: Prisma.regionsFindManyArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$regionsPayload>[]
           }
           create: {
-            args: Prisma.regionsCreateArgs<ExtArgs>,
+            args: Prisma.regionsCreateArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$regionsPayload>
           }
           createMany: {
-            args: Prisma.regionsCreateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
+            args: Prisma.regionsCreateManyArgs<ExtArgs>
+            result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.regionsCreateManyAndReturnArgs<ExtArgs>,
+            args: Prisma.regionsCreateManyAndReturnArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$regionsPayload>[]
           }
           delete: {
-            args: Prisma.regionsDeleteArgs<ExtArgs>,
+            args: Prisma.regionsDeleteArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$regionsPayload>
           }
           update: {
-            args: Prisma.regionsUpdateArgs<ExtArgs>,
+            args: Prisma.regionsUpdateArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$regionsPayload>
           }
           deleteMany: {
-            args: Prisma.regionsDeleteManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
+            args: Prisma.regionsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
           }
           updateMany: {
-            args: Prisma.regionsUpdateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
+            args: Prisma.regionsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
           }
           upsert: {
-            args: Prisma.regionsUpsertArgs<ExtArgs>,
+            args: Prisma.regionsUpsertArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$regionsPayload>
           }
           aggregate: {
-            args: Prisma.RegionsAggregateArgs<ExtArgs>,
+            args: Prisma.RegionsAggregateArgs<ExtArgs>
             result: $Utils.Optional<AggregateRegions>
           }
           groupBy: {
-            args: Prisma.regionsGroupByArgs<ExtArgs>,
+            args: Prisma.regionsGroupByArgs<ExtArgs>
             result: $Utils.Optional<RegionsGroupByOutputType>[]
           }
           count: {
-            args: Prisma.regionsCountArgs<ExtArgs>,
+            args: Prisma.regionsCountArgs<ExtArgs>
             result: $Utils.Optional<RegionsCountAggregateOutputType> | number
           }
         }
@@ -1115,67 +1079,67 @@ export namespace Prisma {
         fields: Prisma.big_numbers_valuesFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.big_numbers_valuesFindUniqueArgs<ExtArgs>,
+            args: Prisma.big_numbers_valuesFindUniqueArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$big_numbers_valuesPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.big_numbers_valuesFindUniqueOrThrowArgs<ExtArgs>,
+            args: Prisma.big_numbers_valuesFindUniqueOrThrowArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$big_numbers_valuesPayload>
           }
           findFirst: {
-            args: Prisma.big_numbers_valuesFindFirstArgs<ExtArgs>,
+            args: Prisma.big_numbers_valuesFindFirstArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$big_numbers_valuesPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.big_numbers_valuesFindFirstOrThrowArgs<ExtArgs>,
+            args: Prisma.big_numbers_valuesFindFirstOrThrowArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$big_numbers_valuesPayload>
           }
           findMany: {
-            args: Prisma.big_numbers_valuesFindManyArgs<ExtArgs>,
+            args: Prisma.big_numbers_valuesFindManyArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$big_numbers_valuesPayload>[]
           }
           create: {
-            args: Prisma.big_numbers_valuesCreateArgs<ExtArgs>,
+            args: Prisma.big_numbers_valuesCreateArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$big_numbers_valuesPayload>
           }
           createMany: {
-            args: Prisma.big_numbers_valuesCreateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
+            args: Prisma.big_numbers_valuesCreateManyArgs<ExtArgs>
+            result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.big_numbers_valuesCreateManyAndReturnArgs<ExtArgs>,
+            args: Prisma.big_numbers_valuesCreateManyAndReturnArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$big_numbers_valuesPayload>[]
           }
           delete: {
-            args: Prisma.big_numbers_valuesDeleteArgs<ExtArgs>,
+            args: Prisma.big_numbers_valuesDeleteArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$big_numbers_valuesPayload>
           }
           update: {
-            args: Prisma.big_numbers_valuesUpdateArgs<ExtArgs>,
+            args: Prisma.big_numbers_valuesUpdateArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$big_numbers_valuesPayload>
           }
           deleteMany: {
-            args: Prisma.big_numbers_valuesDeleteManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
+            args: Prisma.big_numbers_valuesDeleteManyArgs<ExtArgs>
+            result: BatchPayload
           }
           updateMany: {
-            args: Prisma.big_numbers_valuesUpdateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
+            args: Prisma.big_numbers_valuesUpdateManyArgs<ExtArgs>
+            result: BatchPayload
           }
           upsert: {
-            args: Prisma.big_numbers_valuesUpsertArgs<ExtArgs>,
+            args: Prisma.big_numbers_valuesUpsertArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$big_numbers_valuesPayload>
           }
           aggregate: {
-            args: Prisma.Big_numbers_valuesAggregateArgs<ExtArgs>,
+            args: Prisma.Big_numbers_valuesAggregateArgs<ExtArgs>
             result: $Utils.Optional<AggregateBig_numbers_values>
           }
           groupBy: {
-            args: Prisma.big_numbers_valuesGroupByArgs<ExtArgs>,
+            args: Prisma.big_numbers_valuesGroupByArgs<ExtArgs>
             result: $Utils.Optional<Big_numbers_valuesGroupByOutputType>[]
           }
           count: {
-            args: Prisma.big_numbers_valuesCountArgs<ExtArgs>,
+            args: Prisma.big_numbers_valuesCountArgs<ExtArgs>
             result: $Utils.Optional<Big_numbers_valuesCountAggregateOutputType> | number
           }
         }
@@ -1185,67 +1149,67 @@ export namespace Prisma {
         fields: Prisma.gallon_gross_historyFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.gallon_gross_historyFindUniqueArgs<ExtArgs>,
+            args: Prisma.gallon_gross_historyFindUniqueArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$gallon_gross_historyPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.gallon_gross_historyFindUniqueOrThrowArgs<ExtArgs>,
+            args: Prisma.gallon_gross_historyFindUniqueOrThrowArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$gallon_gross_historyPayload>
           }
           findFirst: {
-            args: Prisma.gallon_gross_historyFindFirstArgs<ExtArgs>,
+            args: Prisma.gallon_gross_historyFindFirstArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$gallon_gross_historyPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.gallon_gross_historyFindFirstOrThrowArgs<ExtArgs>,
+            args: Prisma.gallon_gross_historyFindFirstOrThrowArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$gallon_gross_historyPayload>
           }
           findMany: {
-            args: Prisma.gallon_gross_historyFindManyArgs<ExtArgs>,
+            args: Prisma.gallon_gross_historyFindManyArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$gallon_gross_historyPayload>[]
           }
           create: {
-            args: Prisma.gallon_gross_historyCreateArgs<ExtArgs>,
+            args: Prisma.gallon_gross_historyCreateArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$gallon_gross_historyPayload>
           }
           createMany: {
-            args: Prisma.gallon_gross_historyCreateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
+            args: Prisma.gallon_gross_historyCreateManyArgs<ExtArgs>
+            result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.gallon_gross_historyCreateManyAndReturnArgs<ExtArgs>,
+            args: Prisma.gallon_gross_historyCreateManyAndReturnArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$gallon_gross_historyPayload>[]
           }
           delete: {
-            args: Prisma.gallon_gross_historyDeleteArgs<ExtArgs>,
+            args: Prisma.gallon_gross_historyDeleteArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$gallon_gross_historyPayload>
           }
           update: {
-            args: Prisma.gallon_gross_historyUpdateArgs<ExtArgs>,
+            args: Prisma.gallon_gross_historyUpdateArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$gallon_gross_historyPayload>
           }
           deleteMany: {
-            args: Prisma.gallon_gross_historyDeleteManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
+            args: Prisma.gallon_gross_historyDeleteManyArgs<ExtArgs>
+            result: BatchPayload
           }
           updateMany: {
-            args: Prisma.gallon_gross_historyUpdateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
+            args: Prisma.gallon_gross_historyUpdateManyArgs<ExtArgs>
+            result: BatchPayload
           }
           upsert: {
-            args: Prisma.gallon_gross_historyUpsertArgs<ExtArgs>,
+            args: Prisma.gallon_gross_historyUpsertArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$gallon_gross_historyPayload>
           }
           aggregate: {
-            args: Prisma.Gallon_gross_historyAggregateArgs<ExtArgs>,
+            args: Prisma.Gallon_gross_historyAggregateArgs<ExtArgs>
             result: $Utils.Optional<AggregateGallon_gross_history>
           }
           groupBy: {
-            args: Prisma.gallon_gross_historyGroupByArgs<ExtArgs>,
+            args: Prisma.gallon_gross_historyGroupByArgs<ExtArgs>
             result: $Utils.Optional<Gallon_gross_historyGroupByOutputType>[]
           }
           count: {
-            args: Prisma.gallon_gross_historyCountArgs<ExtArgs>,
+            args: Prisma.gallon_gross_historyCountArgs<ExtArgs>
             result: $Utils.Optional<Gallon_gross_historyCountAggregateOutputType> | number
           }
         }
@@ -1255,67 +1219,67 @@ export namespace Prisma {
         fields: Prisma.product_gross_historyFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.product_gross_historyFindUniqueArgs<ExtArgs>,
+            args: Prisma.product_gross_historyFindUniqueArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$product_gross_historyPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.product_gross_historyFindUniqueOrThrowArgs<ExtArgs>,
+            args: Prisma.product_gross_historyFindUniqueOrThrowArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$product_gross_historyPayload>
           }
           findFirst: {
-            args: Prisma.product_gross_historyFindFirstArgs<ExtArgs>,
+            args: Prisma.product_gross_historyFindFirstArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$product_gross_historyPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.product_gross_historyFindFirstOrThrowArgs<ExtArgs>,
+            args: Prisma.product_gross_historyFindFirstOrThrowArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$product_gross_historyPayload>
           }
           findMany: {
-            args: Prisma.product_gross_historyFindManyArgs<ExtArgs>,
+            args: Prisma.product_gross_historyFindManyArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$product_gross_historyPayload>[]
           }
           create: {
-            args: Prisma.product_gross_historyCreateArgs<ExtArgs>,
+            args: Prisma.product_gross_historyCreateArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$product_gross_historyPayload>
           }
           createMany: {
-            args: Prisma.product_gross_historyCreateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
+            args: Prisma.product_gross_historyCreateManyArgs<ExtArgs>
+            result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.product_gross_historyCreateManyAndReturnArgs<ExtArgs>,
+            args: Prisma.product_gross_historyCreateManyAndReturnArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$product_gross_historyPayload>[]
           }
           delete: {
-            args: Prisma.product_gross_historyDeleteArgs<ExtArgs>,
+            args: Prisma.product_gross_historyDeleteArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$product_gross_historyPayload>
           }
           update: {
-            args: Prisma.product_gross_historyUpdateArgs<ExtArgs>,
+            args: Prisma.product_gross_historyUpdateArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$product_gross_historyPayload>
           }
           deleteMany: {
-            args: Prisma.product_gross_historyDeleteManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
+            args: Prisma.product_gross_historyDeleteManyArgs<ExtArgs>
+            result: BatchPayload
           }
           updateMany: {
-            args: Prisma.product_gross_historyUpdateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
+            args: Prisma.product_gross_historyUpdateManyArgs<ExtArgs>
+            result: BatchPayload
           }
           upsert: {
-            args: Prisma.product_gross_historyUpsertArgs<ExtArgs>,
+            args: Prisma.product_gross_historyUpsertArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$product_gross_historyPayload>
           }
           aggregate: {
-            args: Prisma.Product_gross_historyAggregateArgs<ExtArgs>,
+            args: Prisma.Product_gross_historyAggregateArgs<ExtArgs>
             result: $Utils.Optional<AggregateProduct_gross_history>
           }
           groupBy: {
-            args: Prisma.product_gross_historyGroupByArgs<ExtArgs>,
+            args: Prisma.product_gross_historyGroupByArgs<ExtArgs>
             result: $Utils.Optional<Product_gross_historyGroupByOutputType>[]
           }
           count: {
-            args: Prisma.product_gross_historyCountArgs<ExtArgs>,
+            args: Prisma.product_gross_historyCountArgs<ExtArgs>
             result: $Utils.Optional<Product_gross_historyCountAggregateOutputType> | number
           }
         }
@@ -1325,15 +1289,11 @@ export namespace Prisma {
     other: {
       payload: any
       operations: {
-        $executeRawUnsafe: {
-          args: [query: string, ...values: any[]],
-          result: any
-        }
         $executeRaw: {
           args: [query: TemplateStringsArray | Prisma.Sql, ...values: any[]],
           result: any
         }
-        $queryRawUnsafe: {
+        $executeRawUnsafe: {
           args: [query: string, ...values: any[]],
           result: any
         }
@@ -1341,10 +1301,14 @@ export namespace Prisma {
           args: [query: TemplateStringsArray | Prisma.Sql, ...values: any[]],
           result: any
         }
+        $queryRawUnsafe: {
+          args: [query: string, ...values: any[]],
+          result: any
+        }
       }
     }
   }
-  export const defineExtension: $Extensions.ExtendsHook<'define', Prisma.TypeMapCb, $Extensions.DefaultArgs>
+  export const defineExtension: $Extensions.ExtendsHook<"define", Prisma.TypeMapCb, $Extensions.DefaultArgs>
   export type DefaultPrismaClient = PrismaClient
   export type ErrorFormat = 'pretty' | 'colorless' | 'minimal'
   export interface PrismaClientOptions {
@@ -1388,6 +1352,7 @@ export namespace Prisma {
       isolationLevel?: Prisma.TransactionIsolationLevel
     }
   }
+
 
   /* Types for Logging */
   export type LogLevel = 'info' | 'query' | 'warn' | 'error'
@@ -2039,10 +2004,8 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-    **/
-    findUnique<T extends ibm_infoFindUniqueArgs<ExtArgs>>(
-      args: SelectSubset<T, ibm_infoFindUniqueArgs<ExtArgs>>
-    ): Prisma__ibm_infoClient<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+     */
+    findUnique<T extends ibm_infoFindUniqueArgs>(args: SelectSubset<T, ibm_infoFindUniqueArgs<ExtArgs>>): Prisma__ibm_infoClient<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
 
     /**
      * Find one Ibm_info that matches the filter or throw an error with `error.code='P2025'` 
@@ -2055,10 +2018,8 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-    **/
-    findUniqueOrThrow<T extends ibm_infoFindUniqueOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, ibm_infoFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__ibm_infoClient<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+     */
+    findUniqueOrThrow<T extends ibm_infoFindUniqueOrThrowArgs>(args: SelectSubset<T, ibm_infoFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ibm_infoClient<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
 
     /**
      * Find the first Ibm_info that matches the filter.
@@ -2072,10 +2033,8 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-    **/
-    findFirst<T extends ibm_infoFindFirstArgs<ExtArgs>>(
-      args?: SelectSubset<T, ibm_infoFindFirstArgs<ExtArgs>>
-    ): Prisma__ibm_infoClient<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+     */
+    findFirst<T extends ibm_infoFindFirstArgs>(args?: SelectSubset<T, ibm_infoFindFirstArgs<ExtArgs>>): Prisma__ibm_infoClient<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
 
     /**
      * Find the first Ibm_info that matches the filter or
@@ -2090,10 +2049,8 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-    **/
-    findFirstOrThrow<T extends ibm_infoFindFirstOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, ibm_infoFindFirstOrThrowArgs<ExtArgs>>
-    ): Prisma__ibm_infoClient<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+     */
+    findFirstOrThrow<T extends ibm_infoFindFirstOrThrowArgs>(args?: SelectSubset<T, ibm_infoFindFirstOrThrowArgs<ExtArgs>>): Prisma__ibm_infoClient<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
 
     /**
      * Find zero or more Ibm_infos that matches the filter.
@@ -2110,10 +2067,8 @@ export namespace Prisma {
      * // Only select the `ibm`
      * const ibm_infoWithIbmOnly = await prisma.ibm_info.findMany({ select: { ibm: true } })
      * 
-    **/
-    findMany<T extends ibm_infoFindManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, ibm_infoFindManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, 'findMany'>>
+     */
+    findMany<T extends ibm_infoFindManyArgs>(args?: SelectSubset<T, ibm_infoFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, "findMany">>
 
     /**
      * Create a Ibm_info.
@@ -2126,10 +2081,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    create<T extends ibm_infoCreateArgs<ExtArgs>>(
-      args: SelectSubset<T, ibm_infoCreateArgs<ExtArgs>>
-    ): Prisma__ibm_infoClient<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+     */
+    create<T extends ibm_infoCreateArgs>(args: SelectSubset<T, ibm_infoCreateArgs<ExtArgs>>): Prisma__ibm_infoClient<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, "create">, never, ExtArgs>
 
     /**
      * Create many Ibm_infos.
@@ -2142,10 +2095,8 @@ export namespace Prisma {
      *   ]
      * })
      *     
-    **/
-    createMany<T extends ibm_infoCreateManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, ibm_infoCreateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
+     */
+    createMany<T extends ibm_infoCreateManyArgs>(args?: SelectSubset<T, ibm_infoCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create many Ibm_infos and returns the data saved in the database.
@@ -2168,10 +2119,8 @@ export namespace Prisma {
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
      * 
-    **/
-    createManyAndReturn<T extends ibm_infoCreateManyAndReturnArgs<ExtArgs>>(
-      args?: SelectSubset<T, ibm_infoCreateManyAndReturnArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, 'createManyAndReturn'>>
+     */
+    createManyAndReturn<T extends ibm_infoCreateManyAndReturnArgs>(args?: SelectSubset<T, ibm_infoCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, "createManyAndReturn">>
 
     /**
      * Delete a Ibm_info.
@@ -2184,10 +2133,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    delete<T extends ibm_infoDeleteArgs<ExtArgs>>(
-      args: SelectSubset<T, ibm_infoDeleteArgs<ExtArgs>>
-    ): Prisma__ibm_infoClient<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+     */
+    delete<T extends ibm_infoDeleteArgs>(args: SelectSubset<T, ibm_infoDeleteArgs<ExtArgs>>): Prisma__ibm_infoClient<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, "delete">, never, ExtArgs>
 
     /**
      * Update one Ibm_info.
@@ -2203,10 +2150,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    update<T extends ibm_infoUpdateArgs<ExtArgs>>(
-      args: SelectSubset<T, ibm_infoUpdateArgs<ExtArgs>>
-    ): Prisma__ibm_infoClient<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+     */
+    update<T extends ibm_infoUpdateArgs>(args: SelectSubset<T, ibm_infoUpdateArgs<ExtArgs>>): Prisma__ibm_infoClient<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, "update">, never, ExtArgs>
 
     /**
      * Delete zero or more Ibm_infos.
@@ -2219,10 +2164,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    deleteMany<T extends ibm_infoDeleteManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, ibm_infoDeleteManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
+     */
+    deleteMany<T extends ibm_infoDeleteManyArgs>(args?: SelectSubset<T, ibm_infoDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more Ibm_infos.
@@ -2240,10 +2183,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    updateMany<T extends ibm_infoUpdateManyArgs<ExtArgs>>(
-      args: SelectSubset<T, ibm_infoUpdateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
+     */
+    updateMany<T extends ibm_infoUpdateManyArgs>(args: SelectSubset<T, ibm_infoUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create or update one Ibm_info.
@@ -2261,10 +2202,9 @@ export namespace Prisma {
      *     // ... the filter for the Ibm_info we want to update
      *   }
      * })
-    **/
-    upsert<T extends ibm_infoUpsertArgs<ExtArgs>>(
-      args: SelectSubset<T, ibm_infoUpsertArgs<ExtArgs>>
-    ): Prisma__ibm_infoClient<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+     */
+    upsert<T extends ibm_infoUpsertArgs>(args: SelectSubset<T, ibm_infoUpsertArgs<ExtArgs>>): Prisma__ibm_infoClient<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
 
     /**
      * Count the number of Ibm_infos.
@@ -2404,35 +2344,32 @@ export namespace Prisma {
    * https://github.com/prisma/prisma-client-js/issues/707
    */
   export interface Prisma__ibm_infoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: 'PrismaPromise';
-
-    gallon_gross_history<T extends ibm_info$gallon_gross_historyArgs<ExtArgs> = {}>(args?: Subset<T, ibm_info$gallon_gross_historyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, 'findMany'> | Null>;
-
-    gas_station_setvariables<T extends ibm_info$gas_station_setvariablesArgs<ExtArgs> = {}>(args?: Subset<T, ibm_info$gas_station_setvariablesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, 'findMany'> | Null>;
-
-    product_gross_history<T extends ibm_info$product_gross_historyArgs<ExtArgs> = {}>(args?: Subset<T, ibm_info$product_gross_historyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, 'findMany'> | Null>;
-
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    gallon_gross_history<T extends ibm_info$gallon_gross_historyArgs<ExtArgs> = {}>(args?: Subset<T, ibm_info$gallon_gross_historyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, "findMany"> | Null>
+    gas_station_setvariables<T extends ibm_info$gas_station_setvariablesArgs<ExtArgs> = {}>(args?: Subset<T, ibm_info$gas_station_setvariablesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, "findMany"> | Null>
+    product_gross_history<T extends ibm_info$product_gross_historyArgs<ExtArgs> = {}>(args?: Subset<T, ibm_info$product_gross_historyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
      * resolved value cannot be modified from the callback.
      * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
      * @returns A Promise for the completion of the callback.
      */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
   }
+
 
 
 
@@ -3341,10 +3278,8 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-    **/
-    findUnique<T extends usersFindUniqueArgs<ExtArgs>>(
-      args: SelectSubset<T, usersFindUniqueArgs<ExtArgs>>
-    ): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+     */
+    findUnique<T extends usersFindUniqueArgs>(args: SelectSubset<T, usersFindUniqueArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
 
     /**
      * Find one Users that matches the filter or throw an error with `error.code='P2025'` 
@@ -3357,10 +3292,8 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-    **/
-    findUniqueOrThrow<T extends usersFindUniqueOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, usersFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+     */
+    findUniqueOrThrow<T extends usersFindUniqueOrThrowArgs>(args: SelectSubset<T, usersFindUniqueOrThrowArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
 
     /**
      * Find the first Users that matches the filter.
@@ -3374,10 +3307,8 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-    **/
-    findFirst<T extends usersFindFirstArgs<ExtArgs>>(
-      args?: SelectSubset<T, usersFindFirstArgs<ExtArgs>>
-    ): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+     */
+    findFirst<T extends usersFindFirstArgs>(args?: SelectSubset<T, usersFindFirstArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
 
     /**
      * Find the first Users that matches the filter or
@@ -3392,10 +3323,8 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-    **/
-    findFirstOrThrow<T extends usersFindFirstOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, usersFindFirstOrThrowArgs<ExtArgs>>
-    ): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+     */
+    findFirstOrThrow<T extends usersFindFirstOrThrowArgs>(args?: SelectSubset<T, usersFindFirstOrThrowArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
 
     /**
      * Find zero or more Users that matches the filter.
@@ -3412,10 +3341,8 @@ export namespace Prisma {
      * // Only select the `use_uuid`
      * const usersWithUse_uuidOnly = await prisma.users.findMany({ select: { use_uuid: true } })
      * 
-    **/
-    findMany<T extends usersFindManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, usersFindManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, 'findMany'>>
+     */
+    findMany<T extends usersFindManyArgs>(args?: SelectSubset<T, usersFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findMany">>
 
     /**
      * Create a Users.
@@ -3428,10 +3355,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    create<T extends usersCreateArgs<ExtArgs>>(
-      args: SelectSubset<T, usersCreateArgs<ExtArgs>>
-    ): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+     */
+    create<T extends usersCreateArgs>(args: SelectSubset<T, usersCreateArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "create">, never, ExtArgs>
 
     /**
      * Create many Users.
@@ -3444,10 +3369,8 @@ export namespace Prisma {
      *   ]
      * })
      *     
-    **/
-    createMany<T extends usersCreateManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, usersCreateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
+     */
+    createMany<T extends usersCreateManyArgs>(args?: SelectSubset<T, usersCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create many Users and returns the data saved in the database.
@@ -3470,10 +3393,8 @@ export namespace Prisma {
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
      * 
-    **/
-    createManyAndReturn<T extends usersCreateManyAndReturnArgs<ExtArgs>>(
-      args?: SelectSubset<T, usersCreateManyAndReturnArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, 'createManyAndReturn'>>
+     */
+    createManyAndReturn<T extends usersCreateManyAndReturnArgs>(args?: SelectSubset<T, usersCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "createManyAndReturn">>
 
     /**
      * Delete a Users.
@@ -3486,10 +3407,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    delete<T extends usersDeleteArgs<ExtArgs>>(
-      args: SelectSubset<T, usersDeleteArgs<ExtArgs>>
-    ): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+     */
+    delete<T extends usersDeleteArgs>(args: SelectSubset<T, usersDeleteArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "delete">, never, ExtArgs>
 
     /**
      * Update one Users.
@@ -3505,10 +3424,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    update<T extends usersUpdateArgs<ExtArgs>>(
-      args: SelectSubset<T, usersUpdateArgs<ExtArgs>>
-    ): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+     */
+    update<T extends usersUpdateArgs>(args: SelectSubset<T, usersUpdateArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "update">, never, ExtArgs>
 
     /**
      * Delete zero or more Users.
@@ -3521,10 +3438,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    deleteMany<T extends usersDeleteManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, usersDeleteManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
+     */
+    deleteMany<T extends usersDeleteManyArgs>(args?: SelectSubset<T, usersDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more Users.
@@ -3542,10 +3457,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    updateMany<T extends usersUpdateManyArgs<ExtArgs>>(
-      args: SelectSubset<T, usersUpdateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
+     */
+    updateMany<T extends usersUpdateManyArgs>(args: SelectSubset<T, usersUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create or update one Users.
@@ -3563,10 +3476,9 @@ export namespace Prisma {
      *     // ... the filter for the Users we want to update
      *   }
      * })
-    **/
-    upsert<T extends usersUpsertArgs<ExtArgs>>(
-      args: SelectSubset<T, usersUpsertArgs<ExtArgs>>
-    ): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+     */
+    upsert<T extends usersUpsertArgs>(args: SelectSubset<T, usersUpsertArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
 
     /**
      * Count the number of Users.
@@ -3706,37 +3618,33 @@ export namespace Prisma {
    * https://github.com/prisma/prisma-client-js/issues/707
    */
   export interface Prisma__usersClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: 'PrismaPromise';
-
-    gallon_gross_history<T extends users$gallon_gross_historyArgs<ExtArgs> = {}>(args?: Subset<T, users$gallon_gross_historyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, 'findMany'> | Null>;
-
-    gas_station_setvariables<T extends users$gas_station_setvariablesArgs<ExtArgs> = {}>(args?: Subset<T, users$gas_station_setvariablesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, 'findMany'> | Null>;
-
-    product_gross_history<T extends users$product_gross_historyArgs<ExtArgs> = {}>(args?: Subset<T, users$product_gross_historyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, 'findMany'> | Null>;
-
-    region_setvariables<T extends users$region_setvariablesArgs<ExtArgs> = {}>(args?: Subset<T, users$region_setvariablesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, 'findMany'> | Null>;
-
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    gallon_gross_history<T extends users$gallon_gross_historyArgs<ExtArgs> = {}>(args?: Subset<T, users$gallon_gross_historyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, "findMany"> | Null>
+    gas_station_setvariables<T extends users$gas_station_setvariablesArgs<ExtArgs> = {}>(args?: Subset<T, users$gas_station_setvariablesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, "findMany"> | Null>
+    product_gross_history<T extends users$product_gross_historyArgs<ExtArgs> = {}>(args?: Subset<T, users$product_gross_historyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, "findMany"> | Null>
+    region_setvariables<T extends users$region_setvariablesArgs<ExtArgs> = {}>(args?: Subset<T, users$region_setvariablesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
      * resolved value cannot be modified from the callback.
      * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
      * @returns A Promise for the completion of the callback.
      */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
   }
+
 
 
 
@@ -5298,10 +5206,8 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-    **/
-    findUnique<T extends gas_station_setvariablesFindUniqueArgs<ExtArgs>>(
-      args: SelectSubset<T, gas_station_setvariablesFindUniqueArgs<ExtArgs>>
-    ): Prisma__gas_station_setvariablesClient<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+     */
+    findUnique<T extends gas_station_setvariablesFindUniqueArgs>(args: SelectSubset<T, gas_station_setvariablesFindUniqueArgs<ExtArgs>>): Prisma__gas_station_setvariablesClient<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
 
     /**
      * Find one Gas_station_setvariables that matches the filter or throw an error with `error.code='P2025'` 
@@ -5314,10 +5220,8 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-    **/
-    findUniqueOrThrow<T extends gas_station_setvariablesFindUniqueOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, gas_station_setvariablesFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__gas_station_setvariablesClient<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+     */
+    findUniqueOrThrow<T extends gas_station_setvariablesFindUniqueOrThrowArgs>(args: SelectSubset<T, gas_station_setvariablesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__gas_station_setvariablesClient<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
 
     /**
      * Find the first Gas_station_setvariables that matches the filter.
@@ -5331,10 +5235,8 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-    **/
-    findFirst<T extends gas_station_setvariablesFindFirstArgs<ExtArgs>>(
-      args?: SelectSubset<T, gas_station_setvariablesFindFirstArgs<ExtArgs>>
-    ): Prisma__gas_station_setvariablesClient<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+     */
+    findFirst<T extends gas_station_setvariablesFindFirstArgs>(args?: SelectSubset<T, gas_station_setvariablesFindFirstArgs<ExtArgs>>): Prisma__gas_station_setvariablesClient<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
 
     /**
      * Find the first Gas_station_setvariables that matches the filter or
@@ -5349,10 +5251,8 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-    **/
-    findFirstOrThrow<T extends gas_station_setvariablesFindFirstOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, gas_station_setvariablesFindFirstOrThrowArgs<ExtArgs>>
-    ): Prisma__gas_station_setvariablesClient<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+     */
+    findFirstOrThrow<T extends gas_station_setvariablesFindFirstOrThrowArgs>(args?: SelectSubset<T, gas_station_setvariablesFindFirstOrThrowArgs<ExtArgs>>): Prisma__gas_station_setvariablesClient<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
 
     /**
      * Find zero or more Gas_station_setvariables that matches the filter.
@@ -5369,10 +5269,8 @@ export namespace Prisma {
      * // Only select the `gas_station_uuid`
      * const gas_station_setvariablesWithGas_station_uuidOnly = await prisma.gas_station_setvariables.findMany({ select: { gas_station_uuid: true } })
      * 
-    **/
-    findMany<T extends gas_station_setvariablesFindManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, gas_station_setvariablesFindManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, 'findMany'>>
+     */
+    findMany<T extends gas_station_setvariablesFindManyArgs>(args?: SelectSubset<T, gas_station_setvariablesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, "findMany">>
 
     /**
      * Create a Gas_station_setvariables.
@@ -5385,10 +5283,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    create<T extends gas_station_setvariablesCreateArgs<ExtArgs>>(
-      args: SelectSubset<T, gas_station_setvariablesCreateArgs<ExtArgs>>
-    ): Prisma__gas_station_setvariablesClient<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+     */
+    create<T extends gas_station_setvariablesCreateArgs>(args: SelectSubset<T, gas_station_setvariablesCreateArgs<ExtArgs>>): Prisma__gas_station_setvariablesClient<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, "create">, never, ExtArgs>
 
     /**
      * Create many Gas_station_setvariables.
@@ -5401,10 +5297,8 @@ export namespace Prisma {
      *   ]
      * })
      *     
-    **/
-    createMany<T extends gas_station_setvariablesCreateManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, gas_station_setvariablesCreateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
+     */
+    createMany<T extends gas_station_setvariablesCreateManyArgs>(args?: SelectSubset<T, gas_station_setvariablesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create many Gas_station_setvariables and returns the data saved in the database.
@@ -5427,10 +5321,8 @@ export namespace Prisma {
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
      * 
-    **/
-    createManyAndReturn<T extends gas_station_setvariablesCreateManyAndReturnArgs<ExtArgs>>(
-      args?: SelectSubset<T, gas_station_setvariablesCreateManyAndReturnArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, 'createManyAndReturn'>>
+     */
+    createManyAndReturn<T extends gas_station_setvariablesCreateManyAndReturnArgs>(args?: SelectSubset<T, gas_station_setvariablesCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, "createManyAndReturn">>
 
     /**
      * Delete a Gas_station_setvariables.
@@ -5443,10 +5335,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    delete<T extends gas_station_setvariablesDeleteArgs<ExtArgs>>(
-      args: SelectSubset<T, gas_station_setvariablesDeleteArgs<ExtArgs>>
-    ): Prisma__gas_station_setvariablesClient<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+     */
+    delete<T extends gas_station_setvariablesDeleteArgs>(args: SelectSubset<T, gas_station_setvariablesDeleteArgs<ExtArgs>>): Prisma__gas_station_setvariablesClient<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, "delete">, never, ExtArgs>
 
     /**
      * Update one Gas_station_setvariables.
@@ -5462,10 +5352,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    update<T extends gas_station_setvariablesUpdateArgs<ExtArgs>>(
-      args: SelectSubset<T, gas_station_setvariablesUpdateArgs<ExtArgs>>
-    ): Prisma__gas_station_setvariablesClient<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+     */
+    update<T extends gas_station_setvariablesUpdateArgs>(args: SelectSubset<T, gas_station_setvariablesUpdateArgs<ExtArgs>>): Prisma__gas_station_setvariablesClient<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, "update">, never, ExtArgs>
 
     /**
      * Delete zero or more Gas_station_setvariables.
@@ -5478,10 +5366,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    deleteMany<T extends gas_station_setvariablesDeleteManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, gas_station_setvariablesDeleteManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
+     */
+    deleteMany<T extends gas_station_setvariablesDeleteManyArgs>(args?: SelectSubset<T, gas_station_setvariablesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more Gas_station_setvariables.
@@ -5499,10 +5385,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    updateMany<T extends gas_station_setvariablesUpdateManyArgs<ExtArgs>>(
-      args: SelectSubset<T, gas_station_setvariablesUpdateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
+     */
+    updateMany<T extends gas_station_setvariablesUpdateManyArgs>(args: SelectSubset<T, gas_station_setvariablesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create or update one Gas_station_setvariables.
@@ -5520,10 +5404,9 @@ export namespace Prisma {
      *     // ... the filter for the Gas_station_setvariables we want to update
      *   }
      * })
-    **/
-    upsert<T extends gas_station_setvariablesUpsertArgs<ExtArgs>>(
-      args: SelectSubset<T, gas_station_setvariablesUpsertArgs<ExtArgs>>
-    ): Prisma__gas_station_setvariablesClient<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+     */
+    upsert<T extends gas_station_setvariablesUpsertArgs>(args: SelectSubset<T, gas_station_setvariablesUpsertArgs<ExtArgs>>): Prisma__gas_station_setvariablesClient<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
 
     /**
      * Count the number of Gas_station_setvariables.
@@ -5663,33 +5546,31 @@ export namespace Prisma {
    * https://github.com/prisma/prisma-client-js/issues/707
    */
   export interface Prisma__gas_station_setvariablesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: 'PrismaPromise';
-
-    ibm_info<T extends gas_station_setvariables$ibm_infoArgs<ExtArgs> = {}>(args?: Subset<T, gas_station_setvariables$ibm_infoArgs<ExtArgs>>): Prisma__ibm_infoClient<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
-
-    users<T extends gas_station_setvariables$usersArgs<ExtArgs> = {}>(args?: Subset<T, gas_station_setvariables$usersArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
-
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    ibm_info<T extends gas_station_setvariables$ibm_infoArgs<ExtArgs> = {}>(args?: Subset<T, gas_station_setvariables$ibm_infoArgs<ExtArgs>>): Prisma__ibm_infoClient<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    users<T extends gas_station_setvariables$usersArgs<ExtArgs> = {}>(args?: Subset<T, gas_station_setvariables$usersArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
      * resolved value cannot be modified from the callback.
      * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
      * @returns A Promise for the completion of the callback.
      */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
   }
+
 
 
 
@@ -6955,10 +6836,8 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-    **/
-    findUnique<T extends region_setvariablesFindUniqueArgs<ExtArgs>>(
-      args: SelectSubset<T, region_setvariablesFindUniqueArgs<ExtArgs>>
-    ): Prisma__region_setvariablesClient<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+     */
+    findUnique<T extends region_setvariablesFindUniqueArgs>(args: SelectSubset<T, region_setvariablesFindUniqueArgs<ExtArgs>>): Prisma__region_setvariablesClient<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
 
     /**
      * Find one Region_setvariables that matches the filter or throw an error with `error.code='P2025'` 
@@ -6971,10 +6850,8 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-    **/
-    findUniqueOrThrow<T extends region_setvariablesFindUniqueOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, region_setvariablesFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__region_setvariablesClient<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+     */
+    findUniqueOrThrow<T extends region_setvariablesFindUniqueOrThrowArgs>(args: SelectSubset<T, region_setvariablesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__region_setvariablesClient<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
 
     /**
      * Find the first Region_setvariables that matches the filter.
@@ -6988,10 +6865,8 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-    **/
-    findFirst<T extends region_setvariablesFindFirstArgs<ExtArgs>>(
-      args?: SelectSubset<T, region_setvariablesFindFirstArgs<ExtArgs>>
-    ): Prisma__region_setvariablesClient<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+     */
+    findFirst<T extends region_setvariablesFindFirstArgs>(args?: SelectSubset<T, region_setvariablesFindFirstArgs<ExtArgs>>): Prisma__region_setvariablesClient<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
 
     /**
      * Find the first Region_setvariables that matches the filter or
@@ -7006,10 +6881,8 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-    **/
-    findFirstOrThrow<T extends region_setvariablesFindFirstOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, region_setvariablesFindFirstOrThrowArgs<ExtArgs>>
-    ): Prisma__region_setvariablesClient<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+     */
+    findFirstOrThrow<T extends region_setvariablesFindFirstOrThrowArgs>(args?: SelectSubset<T, region_setvariablesFindFirstOrThrowArgs<ExtArgs>>): Prisma__region_setvariablesClient<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
 
     /**
      * Find zero or more Region_setvariables that matches the filter.
@@ -7026,10 +6899,8 @@ export namespace Prisma {
      * // Only select the `region_uuid`
      * const region_setvariablesWithRegion_uuidOnly = await prisma.region_setvariables.findMany({ select: { region_uuid: true } })
      * 
-    **/
-    findMany<T extends region_setvariablesFindManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, region_setvariablesFindManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, 'findMany'>>
+     */
+    findMany<T extends region_setvariablesFindManyArgs>(args?: SelectSubset<T, region_setvariablesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, "findMany">>
 
     /**
      * Create a Region_setvariables.
@@ -7042,10 +6913,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    create<T extends region_setvariablesCreateArgs<ExtArgs>>(
-      args: SelectSubset<T, region_setvariablesCreateArgs<ExtArgs>>
-    ): Prisma__region_setvariablesClient<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+     */
+    create<T extends region_setvariablesCreateArgs>(args: SelectSubset<T, region_setvariablesCreateArgs<ExtArgs>>): Prisma__region_setvariablesClient<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, "create">, never, ExtArgs>
 
     /**
      * Create many Region_setvariables.
@@ -7058,10 +6927,8 @@ export namespace Prisma {
      *   ]
      * })
      *     
-    **/
-    createMany<T extends region_setvariablesCreateManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, region_setvariablesCreateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
+     */
+    createMany<T extends region_setvariablesCreateManyArgs>(args?: SelectSubset<T, region_setvariablesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create many Region_setvariables and returns the data saved in the database.
@@ -7084,10 +6951,8 @@ export namespace Prisma {
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
      * 
-    **/
-    createManyAndReturn<T extends region_setvariablesCreateManyAndReturnArgs<ExtArgs>>(
-      args?: SelectSubset<T, region_setvariablesCreateManyAndReturnArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, 'createManyAndReturn'>>
+     */
+    createManyAndReturn<T extends region_setvariablesCreateManyAndReturnArgs>(args?: SelectSubset<T, region_setvariablesCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, "createManyAndReturn">>
 
     /**
      * Delete a Region_setvariables.
@@ -7100,10 +6965,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    delete<T extends region_setvariablesDeleteArgs<ExtArgs>>(
-      args: SelectSubset<T, region_setvariablesDeleteArgs<ExtArgs>>
-    ): Prisma__region_setvariablesClient<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+     */
+    delete<T extends region_setvariablesDeleteArgs>(args: SelectSubset<T, region_setvariablesDeleteArgs<ExtArgs>>): Prisma__region_setvariablesClient<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, "delete">, never, ExtArgs>
 
     /**
      * Update one Region_setvariables.
@@ -7119,10 +6982,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    update<T extends region_setvariablesUpdateArgs<ExtArgs>>(
-      args: SelectSubset<T, region_setvariablesUpdateArgs<ExtArgs>>
-    ): Prisma__region_setvariablesClient<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+     */
+    update<T extends region_setvariablesUpdateArgs>(args: SelectSubset<T, region_setvariablesUpdateArgs<ExtArgs>>): Prisma__region_setvariablesClient<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, "update">, never, ExtArgs>
 
     /**
      * Delete zero or more Region_setvariables.
@@ -7135,10 +6996,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    deleteMany<T extends region_setvariablesDeleteManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, region_setvariablesDeleteManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
+     */
+    deleteMany<T extends region_setvariablesDeleteManyArgs>(args?: SelectSubset<T, region_setvariablesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more Region_setvariables.
@@ -7156,10 +7015,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    updateMany<T extends region_setvariablesUpdateManyArgs<ExtArgs>>(
-      args: SelectSubset<T, region_setvariablesUpdateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
+     */
+    updateMany<T extends region_setvariablesUpdateManyArgs>(args: SelectSubset<T, region_setvariablesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create or update one Region_setvariables.
@@ -7177,10 +7034,9 @@ export namespace Prisma {
      *     // ... the filter for the Region_setvariables we want to update
      *   }
      * })
-    **/
-    upsert<T extends region_setvariablesUpsertArgs<ExtArgs>>(
-      args: SelectSubset<T, region_setvariablesUpsertArgs<ExtArgs>>
-    ): Prisma__region_setvariablesClient<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+     */
+    upsert<T extends region_setvariablesUpsertArgs>(args: SelectSubset<T, region_setvariablesUpsertArgs<ExtArgs>>): Prisma__region_setvariablesClient<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
 
     /**
      * Count the number of Region_setvariables.
@@ -7320,33 +7176,31 @@ export namespace Prisma {
    * https://github.com/prisma/prisma-client-js/issues/707
    */
   export interface Prisma__region_setvariablesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: 'PrismaPromise';
-
-    regions<T extends region_setvariables$regionsArgs<ExtArgs> = {}>(args?: Subset<T, region_setvariables$regionsArgs<ExtArgs>>): Prisma__regionsClient<$Result.GetResult<Prisma.$regionsPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
-
-    users<T extends region_setvariables$usersArgs<ExtArgs> = {}>(args?: Subset<T, region_setvariables$usersArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
-
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    regions<T extends region_setvariables$regionsArgs<ExtArgs> = {}>(args?: Subset<T, region_setvariables$regionsArgs<ExtArgs>>): Prisma__regionsClient<$Result.GetResult<Prisma.$regionsPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    users<T extends region_setvariables$usersArgs<ExtArgs> = {}>(args?: Subset<T, region_setvariables$usersArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
      * resolved value cannot be modified from the callback.
      * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
      * @returns A Promise for the completion of the callback.
      */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
   }
+
 
 
 
@@ -8086,10 +7940,8 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-    **/
-    findUnique<T extends regionsFindUniqueArgs<ExtArgs>>(
-      args: SelectSubset<T, regionsFindUniqueArgs<ExtArgs>>
-    ): Prisma__regionsClient<$Result.GetResult<Prisma.$regionsPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+     */
+    findUnique<T extends regionsFindUniqueArgs>(args: SelectSubset<T, regionsFindUniqueArgs<ExtArgs>>): Prisma__regionsClient<$Result.GetResult<Prisma.$regionsPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
 
     /**
      * Find one Regions that matches the filter or throw an error with `error.code='P2025'` 
@@ -8102,10 +7954,8 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-    **/
-    findUniqueOrThrow<T extends regionsFindUniqueOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, regionsFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__regionsClient<$Result.GetResult<Prisma.$regionsPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+     */
+    findUniqueOrThrow<T extends regionsFindUniqueOrThrowArgs>(args: SelectSubset<T, regionsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__regionsClient<$Result.GetResult<Prisma.$regionsPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
 
     /**
      * Find the first Regions that matches the filter.
@@ -8119,10 +7969,8 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-    **/
-    findFirst<T extends regionsFindFirstArgs<ExtArgs>>(
-      args?: SelectSubset<T, regionsFindFirstArgs<ExtArgs>>
-    ): Prisma__regionsClient<$Result.GetResult<Prisma.$regionsPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+     */
+    findFirst<T extends regionsFindFirstArgs>(args?: SelectSubset<T, regionsFindFirstArgs<ExtArgs>>): Prisma__regionsClient<$Result.GetResult<Prisma.$regionsPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
 
     /**
      * Find the first Regions that matches the filter or
@@ -8137,10 +7985,8 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-    **/
-    findFirstOrThrow<T extends regionsFindFirstOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, regionsFindFirstOrThrowArgs<ExtArgs>>
-    ): Prisma__regionsClient<$Result.GetResult<Prisma.$regionsPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+     */
+    findFirstOrThrow<T extends regionsFindFirstOrThrowArgs>(args?: SelectSubset<T, regionsFindFirstOrThrowArgs<ExtArgs>>): Prisma__regionsClient<$Result.GetResult<Prisma.$regionsPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
 
     /**
      * Find zero or more Regions that matches the filter.
@@ -8157,10 +8003,8 @@ export namespace Prisma {
      * // Only select the `regions_uuid`
      * const regionsWithRegions_uuidOnly = await prisma.regions.findMany({ select: { regions_uuid: true } })
      * 
-    **/
-    findMany<T extends regionsFindManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, regionsFindManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$regionsPayload<ExtArgs>, T, 'findMany'>>
+     */
+    findMany<T extends regionsFindManyArgs>(args?: SelectSubset<T, regionsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$regionsPayload<ExtArgs>, T, "findMany">>
 
     /**
      * Create a Regions.
@@ -8173,10 +8017,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    create<T extends regionsCreateArgs<ExtArgs>>(
-      args: SelectSubset<T, regionsCreateArgs<ExtArgs>>
-    ): Prisma__regionsClient<$Result.GetResult<Prisma.$regionsPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+     */
+    create<T extends regionsCreateArgs>(args: SelectSubset<T, regionsCreateArgs<ExtArgs>>): Prisma__regionsClient<$Result.GetResult<Prisma.$regionsPayload<ExtArgs>, T, "create">, never, ExtArgs>
 
     /**
      * Create many Regions.
@@ -8189,10 +8031,8 @@ export namespace Prisma {
      *   ]
      * })
      *     
-    **/
-    createMany<T extends regionsCreateManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, regionsCreateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
+     */
+    createMany<T extends regionsCreateManyArgs>(args?: SelectSubset<T, regionsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create many Regions and returns the data saved in the database.
@@ -8215,10 +8055,8 @@ export namespace Prisma {
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
      * 
-    **/
-    createManyAndReturn<T extends regionsCreateManyAndReturnArgs<ExtArgs>>(
-      args?: SelectSubset<T, regionsCreateManyAndReturnArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$regionsPayload<ExtArgs>, T, 'createManyAndReturn'>>
+     */
+    createManyAndReturn<T extends regionsCreateManyAndReturnArgs>(args?: SelectSubset<T, regionsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$regionsPayload<ExtArgs>, T, "createManyAndReturn">>
 
     /**
      * Delete a Regions.
@@ -8231,10 +8069,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    delete<T extends regionsDeleteArgs<ExtArgs>>(
-      args: SelectSubset<T, regionsDeleteArgs<ExtArgs>>
-    ): Prisma__regionsClient<$Result.GetResult<Prisma.$regionsPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+     */
+    delete<T extends regionsDeleteArgs>(args: SelectSubset<T, regionsDeleteArgs<ExtArgs>>): Prisma__regionsClient<$Result.GetResult<Prisma.$regionsPayload<ExtArgs>, T, "delete">, never, ExtArgs>
 
     /**
      * Update one Regions.
@@ -8250,10 +8086,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    update<T extends regionsUpdateArgs<ExtArgs>>(
-      args: SelectSubset<T, regionsUpdateArgs<ExtArgs>>
-    ): Prisma__regionsClient<$Result.GetResult<Prisma.$regionsPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+     */
+    update<T extends regionsUpdateArgs>(args: SelectSubset<T, regionsUpdateArgs<ExtArgs>>): Prisma__regionsClient<$Result.GetResult<Prisma.$regionsPayload<ExtArgs>, T, "update">, never, ExtArgs>
 
     /**
      * Delete zero or more Regions.
@@ -8266,10 +8100,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    deleteMany<T extends regionsDeleteManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, regionsDeleteManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
+     */
+    deleteMany<T extends regionsDeleteManyArgs>(args?: SelectSubset<T, regionsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more Regions.
@@ -8287,10 +8119,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    updateMany<T extends regionsUpdateManyArgs<ExtArgs>>(
-      args: SelectSubset<T, regionsUpdateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
+     */
+    updateMany<T extends regionsUpdateManyArgs>(args: SelectSubset<T, regionsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create or update one Regions.
@@ -8308,10 +8138,9 @@ export namespace Prisma {
      *     // ... the filter for the Regions we want to update
      *   }
      * })
-    **/
-    upsert<T extends regionsUpsertArgs<ExtArgs>>(
-      args: SelectSubset<T, regionsUpsertArgs<ExtArgs>>
-    ): Prisma__regionsClient<$Result.GetResult<Prisma.$regionsPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+     */
+    upsert<T extends regionsUpsertArgs>(args: SelectSubset<T, regionsUpsertArgs<ExtArgs>>): Prisma__regionsClient<$Result.GetResult<Prisma.$regionsPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
 
     /**
      * Count the number of Regions.
@@ -8451,31 +8280,30 @@ export namespace Prisma {
    * https://github.com/prisma/prisma-client-js/issues/707
    */
   export interface Prisma__regionsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: 'PrismaPromise';
-
-    region_setvariables<T extends regions$region_setvariablesArgs<ExtArgs> = {}>(args?: Subset<T, regions$region_setvariablesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, 'findMany'> | Null>;
-
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    region_setvariables<T extends regions$region_setvariablesArgs<ExtArgs> = {}>(args?: Subset<T, regions$region_setvariablesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
      * resolved value cannot be modified from the callback.
      * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
      * @returns A Promise for the completion of the callback.
      */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
   }
+
 
 
 
@@ -9178,10 +9006,8 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-    **/
-    findUnique<T extends big_numbers_valuesFindUniqueArgs<ExtArgs>>(
-      args: SelectSubset<T, big_numbers_valuesFindUniqueArgs<ExtArgs>>
-    ): Prisma__big_numbers_valuesClient<$Result.GetResult<Prisma.$big_numbers_valuesPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+     */
+    findUnique<T extends big_numbers_valuesFindUniqueArgs>(args: SelectSubset<T, big_numbers_valuesFindUniqueArgs<ExtArgs>>): Prisma__big_numbers_valuesClient<$Result.GetResult<Prisma.$big_numbers_valuesPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
 
     /**
      * Find one Big_numbers_values that matches the filter or throw an error with `error.code='P2025'` 
@@ -9194,10 +9020,8 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-    **/
-    findUniqueOrThrow<T extends big_numbers_valuesFindUniqueOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, big_numbers_valuesFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__big_numbers_valuesClient<$Result.GetResult<Prisma.$big_numbers_valuesPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+     */
+    findUniqueOrThrow<T extends big_numbers_valuesFindUniqueOrThrowArgs>(args: SelectSubset<T, big_numbers_valuesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__big_numbers_valuesClient<$Result.GetResult<Prisma.$big_numbers_valuesPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
 
     /**
      * Find the first Big_numbers_values that matches the filter.
@@ -9211,10 +9035,8 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-    **/
-    findFirst<T extends big_numbers_valuesFindFirstArgs<ExtArgs>>(
-      args?: SelectSubset<T, big_numbers_valuesFindFirstArgs<ExtArgs>>
-    ): Prisma__big_numbers_valuesClient<$Result.GetResult<Prisma.$big_numbers_valuesPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+     */
+    findFirst<T extends big_numbers_valuesFindFirstArgs>(args?: SelectSubset<T, big_numbers_valuesFindFirstArgs<ExtArgs>>): Prisma__big_numbers_valuesClient<$Result.GetResult<Prisma.$big_numbers_valuesPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
 
     /**
      * Find the first Big_numbers_values that matches the filter or
@@ -9229,10 +9051,8 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-    **/
-    findFirstOrThrow<T extends big_numbers_valuesFindFirstOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, big_numbers_valuesFindFirstOrThrowArgs<ExtArgs>>
-    ): Prisma__big_numbers_valuesClient<$Result.GetResult<Prisma.$big_numbers_valuesPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+     */
+    findFirstOrThrow<T extends big_numbers_valuesFindFirstOrThrowArgs>(args?: SelectSubset<T, big_numbers_valuesFindFirstOrThrowArgs<ExtArgs>>): Prisma__big_numbers_valuesClient<$Result.GetResult<Prisma.$big_numbers_valuesPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
 
     /**
      * Find zero or more Big_numbers_values that matches the filter.
@@ -9249,10 +9069,8 @@ export namespace Prisma {
      * // Only select the `bignumbers_uuid`
      * const big_numbers_valuesWithBignumbers_uuidOnly = await prisma.big_numbers_values.findMany({ select: { bignumbers_uuid: true } })
      * 
-    **/
-    findMany<T extends big_numbers_valuesFindManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, big_numbers_valuesFindManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$big_numbers_valuesPayload<ExtArgs>, T, 'findMany'>>
+     */
+    findMany<T extends big_numbers_valuesFindManyArgs>(args?: SelectSubset<T, big_numbers_valuesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$big_numbers_valuesPayload<ExtArgs>, T, "findMany">>
 
     /**
      * Create a Big_numbers_values.
@@ -9265,10 +9083,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    create<T extends big_numbers_valuesCreateArgs<ExtArgs>>(
-      args: SelectSubset<T, big_numbers_valuesCreateArgs<ExtArgs>>
-    ): Prisma__big_numbers_valuesClient<$Result.GetResult<Prisma.$big_numbers_valuesPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+     */
+    create<T extends big_numbers_valuesCreateArgs>(args: SelectSubset<T, big_numbers_valuesCreateArgs<ExtArgs>>): Prisma__big_numbers_valuesClient<$Result.GetResult<Prisma.$big_numbers_valuesPayload<ExtArgs>, T, "create">, never, ExtArgs>
 
     /**
      * Create many Big_numbers_values.
@@ -9281,10 +9097,8 @@ export namespace Prisma {
      *   ]
      * })
      *     
-    **/
-    createMany<T extends big_numbers_valuesCreateManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, big_numbers_valuesCreateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
+     */
+    createMany<T extends big_numbers_valuesCreateManyArgs>(args?: SelectSubset<T, big_numbers_valuesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create many Big_numbers_values and returns the data saved in the database.
@@ -9307,10 +9121,8 @@ export namespace Prisma {
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
      * 
-    **/
-    createManyAndReturn<T extends big_numbers_valuesCreateManyAndReturnArgs<ExtArgs>>(
-      args?: SelectSubset<T, big_numbers_valuesCreateManyAndReturnArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$big_numbers_valuesPayload<ExtArgs>, T, 'createManyAndReturn'>>
+     */
+    createManyAndReturn<T extends big_numbers_valuesCreateManyAndReturnArgs>(args?: SelectSubset<T, big_numbers_valuesCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$big_numbers_valuesPayload<ExtArgs>, T, "createManyAndReturn">>
 
     /**
      * Delete a Big_numbers_values.
@@ -9323,10 +9135,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    delete<T extends big_numbers_valuesDeleteArgs<ExtArgs>>(
-      args: SelectSubset<T, big_numbers_valuesDeleteArgs<ExtArgs>>
-    ): Prisma__big_numbers_valuesClient<$Result.GetResult<Prisma.$big_numbers_valuesPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+     */
+    delete<T extends big_numbers_valuesDeleteArgs>(args: SelectSubset<T, big_numbers_valuesDeleteArgs<ExtArgs>>): Prisma__big_numbers_valuesClient<$Result.GetResult<Prisma.$big_numbers_valuesPayload<ExtArgs>, T, "delete">, never, ExtArgs>
 
     /**
      * Update one Big_numbers_values.
@@ -9342,10 +9152,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    update<T extends big_numbers_valuesUpdateArgs<ExtArgs>>(
-      args: SelectSubset<T, big_numbers_valuesUpdateArgs<ExtArgs>>
-    ): Prisma__big_numbers_valuesClient<$Result.GetResult<Prisma.$big_numbers_valuesPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+     */
+    update<T extends big_numbers_valuesUpdateArgs>(args: SelectSubset<T, big_numbers_valuesUpdateArgs<ExtArgs>>): Prisma__big_numbers_valuesClient<$Result.GetResult<Prisma.$big_numbers_valuesPayload<ExtArgs>, T, "update">, never, ExtArgs>
 
     /**
      * Delete zero or more Big_numbers_values.
@@ -9358,10 +9166,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    deleteMany<T extends big_numbers_valuesDeleteManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, big_numbers_valuesDeleteManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
+     */
+    deleteMany<T extends big_numbers_valuesDeleteManyArgs>(args?: SelectSubset<T, big_numbers_valuesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more Big_numbers_values.
@@ -9379,10 +9185,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    updateMany<T extends big_numbers_valuesUpdateManyArgs<ExtArgs>>(
-      args: SelectSubset<T, big_numbers_valuesUpdateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
+     */
+    updateMany<T extends big_numbers_valuesUpdateManyArgs>(args: SelectSubset<T, big_numbers_valuesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create or update one Big_numbers_values.
@@ -9400,10 +9204,9 @@ export namespace Prisma {
      *     // ... the filter for the Big_numbers_values we want to update
      *   }
      * })
-    **/
-    upsert<T extends big_numbers_valuesUpsertArgs<ExtArgs>>(
-      args: SelectSubset<T, big_numbers_valuesUpsertArgs<ExtArgs>>
-    ): Prisma__big_numbers_valuesClient<$Result.GetResult<Prisma.$big_numbers_valuesPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+     */
+    upsert<T extends big_numbers_valuesUpsertArgs>(args: SelectSubset<T, big_numbers_valuesUpsertArgs<ExtArgs>>): Prisma__big_numbers_valuesClient<$Result.GetResult<Prisma.$big_numbers_valuesPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
 
     /**
      * Count the number of Big_numbers_values.
@@ -9543,30 +9346,29 @@ export namespace Prisma {
    * https://github.com/prisma/prisma-client-js/issues/707
    */
   export interface Prisma__big_numbers_valuesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: 'PrismaPromise';
-
-
+    readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
      * resolved value cannot be modified from the callback.
      * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
      * @returns A Promise for the completion of the callback.
      */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
   }
+
 
 
 
@@ -10158,10 +9960,8 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-    **/
-    findUnique<T extends gallon_gross_historyFindUniqueArgs<ExtArgs>>(
-      args: SelectSubset<T, gallon_gross_historyFindUniqueArgs<ExtArgs>>
-    ): Prisma__gallon_gross_historyClient<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+     */
+    findUnique<T extends gallon_gross_historyFindUniqueArgs>(args: SelectSubset<T, gallon_gross_historyFindUniqueArgs<ExtArgs>>): Prisma__gallon_gross_historyClient<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
 
     /**
      * Find one Gallon_gross_history that matches the filter or throw an error with `error.code='P2025'` 
@@ -10174,10 +9974,8 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-    **/
-    findUniqueOrThrow<T extends gallon_gross_historyFindUniqueOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, gallon_gross_historyFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__gallon_gross_historyClient<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+     */
+    findUniqueOrThrow<T extends gallon_gross_historyFindUniqueOrThrowArgs>(args: SelectSubset<T, gallon_gross_historyFindUniqueOrThrowArgs<ExtArgs>>): Prisma__gallon_gross_historyClient<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
 
     /**
      * Find the first Gallon_gross_history that matches the filter.
@@ -10191,10 +9989,8 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-    **/
-    findFirst<T extends gallon_gross_historyFindFirstArgs<ExtArgs>>(
-      args?: SelectSubset<T, gallon_gross_historyFindFirstArgs<ExtArgs>>
-    ): Prisma__gallon_gross_historyClient<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+     */
+    findFirst<T extends gallon_gross_historyFindFirstArgs>(args?: SelectSubset<T, gallon_gross_historyFindFirstArgs<ExtArgs>>): Prisma__gallon_gross_historyClient<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
 
     /**
      * Find the first Gallon_gross_history that matches the filter or
@@ -10209,10 +10005,8 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-    **/
-    findFirstOrThrow<T extends gallon_gross_historyFindFirstOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, gallon_gross_historyFindFirstOrThrowArgs<ExtArgs>>
-    ): Prisma__gallon_gross_historyClient<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+     */
+    findFirstOrThrow<T extends gallon_gross_historyFindFirstOrThrowArgs>(args?: SelectSubset<T, gallon_gross_historyFindFirstOrThrowArgs<ExtArgs>>): Prisma__gallon_gross_historyClient<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
 
     /**
      * Find zero or more Gallon_gross_histories that matches the filter.
@@ -10229,10 +10023,8 @@ export namespace Prisma {
      * // Only select the `gallon_history_uuid`
      * const gallon_gross_historyWithGallon_history_uuidOnly = await prisma.gallon_gross_history.findMany({ select: { gallon_history_uuid: true } })
      * 
-    **/
-    findMany<T extends gallon_gross_historyFindManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, gallon_gross_historyFindManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, 'findMany'>>
+     */
+    findMany<T extends gallon_gross_historyFindManyArgs>(args?: SelectSubset<T, gallon_gross_historyFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, "findMany">>
 
     /**
      * Create a Gallon_gross_history.
@@ -10245,10 +10037,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    create<T extends gallon_gross_historyCreateArgs<ExtArgs>>(
-      args: SelectSubset<T, gallon_gross_historyCreateArgs<ExtArgs>>
-    ): Prisma__gallon_gross_historyClient<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+     */
+    create<T extends gallon_gross_historyCreateArgs>(args: SelectSubset<T, gallon_gross_historyCreateArgs<ExtArgs>>): Prisma__gallon_gross_historyClient<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, "create">, never, ExtArgs>
 
     /**
      * Create many Gallon_gross_histories.
@@ -10261,10 +10051,8 @@ export namespace Prisma {
      *   ]
      * })
      *     
-    **/
-    createMany<T extends gallon_gross_historyCreateManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, gallon_gross_historyCreateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
+     */
+    createMany<T extends gallon_gross_historyCreateManyArgs>(args?: SelectSubset<T, gallon_gross_historyCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create many Gallon_gross_histories and returns the data saved in the database.
@@ -10287,10 +10075,8 @@ export namespace Prisma {
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
      * 
-    **/
-    createManyAndReturn<T extends gallon_gross_historyCreateManyAndReturnArgs<ExtArgs>>(
-      args?: SelectSubset<T, gallon_gross_historyCreateManyAndReturnArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, 'createManyAndReturn'>>
+     */
+    createManyAndReturn<T extends gallon_gross_historyCreateManyAndReturnArgs>(args?: SelectSubset<T, gallon_gross_historyCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, "createManyAndReturn">>
 
     /**
      * Delete a Gallon_gross_history.
@@ -10303,10 +10089,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    delete<T extends gallon_gross_historyDeleteArgs<ExtArgs>>(
-      args: SelectSubset<T, gallon_gross_historyDeleteArgs<ExtArgs>>
-    ): Prisma__gallon_gross_historyClient<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+     */
+    delete<T extends gallon_gross_historyDeleteArgs>(args: SelectSubset<T, gallon_gross_historyDeleteArgs<ExtArgs>>): Prisma__gallon_gross_historyClient<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, "delete">, never, ExtArgs>
 
     /**
      * Update one Gallon_gross_history.
@@ -10322,10 +10106,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    update<T extends gallon_gross_historyUpdateArgs<ExtArgs>>(
-      args: SelectSubset<T, gallon_gross_historyUpdateArgs<ExtArgs>>
-    ): Prisma__gallon_gross_historyClient<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+     */
+    update<T extends gallon_gross_historyUpdateArgs>(args: SelectSubset<T, gallon_gross_historyUpdateArgs<ExtArgs>>): Prisma__gallon_gross_historyClient<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, "update">, never, ExtArgs>
 
     /**
      * Delete zero or more Gallon_gross_histories.
@@ -10338,10 +10120,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    deleteMany<T extends gallon_gross_historyDeleteManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, gallon_gross_historyDeleteManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
+     */
+    deleteMany<T extends gallon_gross_historyDeleteManyArgs>(args?: SelectSubset<T, gallon_gross_historyDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more Gallon_gross_histories.
@@ -10359,10 +10139,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    updateMany<T extends gallon_gross_historyUpdateManyArgs<ExtArgs>>(
-      args: SelectSubset<T, gallon_gross_historyUpdateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
+     */
+    updateMany<T extends gallon_gross_historyUpdateManyArgs>(args: SelectSubset<T, gallon_gross_historyUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create or update one Gallon_gross_history.
@@ -10380,10 +10158,9 @@ export namespace Prisma {
      *     // ... the filter for the Gallon_gross_history we want to update
      *   }
      * })
-    **/
-    upsert<T extends gallon_gross_historyUpsertArgs<ExtArgs>>(
-      args: SelectSubset<T, gallon_gross_historyUpsertArgs<ExtArgs>>
-    ): Prisma__gallon_gross_historyClient<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+     */
+    upsert<T extends gallon_gross_historyUpsertArgs>(args: SelectSubset<T, gallon_gross_historyUpsertArgs<ExtArgs>>): Prisma__gallon_gross_historyClient<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
 
     /**
      * Count the number of Gallon_gross_histories.
@@ -10523,33 +10300,31 @@ export namespace Prisma {
    * https://github.com/prisma/prisma-client-js/issues/707
    */
   export interface Prisma__gallon_gross_historyClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: 'PrismaPromise';
-
-    ibm_info<T extends gallon_gross_history$ibm_infoArgs<ExtArgs> = {}>(args?: Subset<T, gallon_gross_history$ibm_infoArgs<ExtArgs>>): Prisma__ibm_infoClient<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
-
-    users<T extends gallon_gross_history$usersArgs<ExtArgs> = {}>(args?: Subset<T, gallon_gross_history$usersArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
-
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    ibm_info<T extends gallon_gross_history$ibm_infoArgs<ExtArgs> = {}>(args?: Subset<T, gallon_gross_history$ibm_infoArgs<ExtArgs>>): Prisma__ibm_infoClient<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    users<T extends gallon_gross_history$usersArgs<ExtArgs> = {}>(args?: Subset<T, gallon_gross_history$usersArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
      * resolved value cannot be modified from the callback.
      * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
      * @returns A Promise for the completion of the callback.
      */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
   }
+
 
 
 
@@ -11212,10 +10987,8 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-    **/
-    findUnique<T extends product_gross_historyFindUniqueArgs<ExtArgs>>(
-      args: SelectSubset<T, product_gross_historyFindUniqueArgs<ExtArgs>>
-    ): Prisma__product_gross_historyClient<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+     */
+    findUnique<T extends product_gross_historyFindUniqueArgs>(args: SelectSubset<T, product_gross_historyFindUniqueArgs<ExtArgs>>): Prisma__product_gross_historyClient<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
 
     /**
      * Find one Product_gross_history that matches the filter or throw an error with `error.code='P2025'` 
@@ -11228,10 +11001,8 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-    **/
-    findUniqueOrThrow<T extends product_gross_historyFindUniqueOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, product_gross_historyFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__product_gross_historyClient<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+     */
+    findUniqueOrThrow<T extends product_gross_historyFindUniqueOrThrowArgs>(args: SelectSubset<T, product_gross_historyFindUniqueOrThrowArgs<ExtArgs>>): Prisma__product_gross_historyClient<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
 
     /**
      * Find the first Product_gross_history that matches the filter.
@@ -11245,10 +11016,8 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-    **/
-    findFirst<T extends product_gross_historyFindFirstArgs<ExtArgs>>(
-      args?: SelectSubset<T, product_gross_historyFindFirstArgs<ExtArgs>>
-    ): Prisma__product_gross_historyClient<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+     */
+    findFirst<T extends product_gross_historyFindFirstArgs>(args?: SelectSubset<T, product_gross_historyFindFirstArgs<ExtArgs>>): Prisma__product_gross_historyClient<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
 
     /**
      * Find the first Product_gross_history that matches the filter or
@@ -11263,10 +11032,8 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-    **/
-    findFirstOrThrow<T extends product_gross_historyFindFirstOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, product_gross_historyFindFirstOrThrowArgs<ExtArgs>>
-    ): Prisma__product_gross_historyClient<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+     */
+    findFirstOrThrow<T extends product_gross_historyFindFirstOrThrowArgs>(args?: SelectSubset<T, product_gross_historyFindFirstOrThrowArgs<ExtArgs>>): Prisma__product_gross_historyClient<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
 
     /**
      * Find zero or more Product_gross_histories that matches the filter.
@@ -11283,10 +11050,8 @@ export namespace Prisma {
      * // Only select the `product_history_uuid`
      * const product_gross_historyWithProduct_history_uuidOnly = await prisma.product_gross_history.findMany({ select: { product_history_uuid: true } })
      * 
-    **/
-    findMany<T extends product_gross_historyFindManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, product_gross_historyFindManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, 'findMany'>>
+     */
+    findMany<T extends product_gross_historyFindManyArgs>(args?: SelectSubset<T, product_gross_historyFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, "findMany">>
 
     /**
      * Create a Product_gross_history.
@@ -11299,10 +11064,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    create<T extends product_gross_historyCreateArgs<ExtArgs>>(
-      args: SelectSubset<T, product_gross_historyCreateArgs<ExtArgs>>
-    ): Prisma__product_gross_historyClient<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+     */
+    create<T extends product_gross_historyCreateArgs>(args: SelectSubset<T, product_gross_historyCreateArgs<ExtArgs>>): Prisma__product_gross_historyClient<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, "create">, never, ExtArgs>
 
     /**
      * Create many Product_gross_histories.
@@ -11315,10 +11078,8 @@ export namespace Prisma {
      *   ]
      * })
      *     
-    **/
-    createMany<T extends product_gross_historyCreateManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, product_gross_historyCreateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
+     */
+    createMany<T extends product_gross_historyCreateManyArgs>(args?: SelectSubset<T, product_gross_historyCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create many Product_gross_histories and returns the data saved in the database.
@@ -11341,10 +11102,8 @@ export namespace Prisma {
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
      * 
-    **/
-    createManyAndReturn<T extends product_gross_historyCreateManyAndReturnArgs<ExtArgs>>(
-      args?: SelectSubset<T, product_gross_historyCreateManyAndReturnArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, 'createManyAndReturn'>>
+     */
+    createManyAndReturn<T extends product_gross_historyCreateManyAndReturnArgs>(args?: SelectSubset<T, product_gross_historyCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, "createManyAndReturn">>
 
     /**
      * Delete a Product_gross_history.
@@ -11357,10 +11116,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    delete<T extends product_gross_historyDeleteArgs<ExtArgs>>(
-      args: SelectSubset<T, product_gross_historyDeleteArgs<ExtArgs>>
-    ): Prisma__product_gross_historyClient<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+     */
+    delete<T extends product_gross_historyDeleteArgs>(args: SelectSubset<T, product_gross_historyDeleteArgs<ExtArgs>>): Prisma__product_gross_historyClient<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, "delete">, never, ExtArgs>
 
     /**
      * Update one Product_gross_history.
@@ -11376,10 +11133,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    update<T extends product_gross_historyUpdateArgs<ExtArgs>>(
-      args: SelectSubset<T, product_gross_historyUpdateArgs<ExtArgs>>
-    ): Prisma__product_gross_historyClient<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+     */
+    update<T extends product_gross_historyUpdateArgs>(args: SelectSubset<T, product_gross_historyUpdateArgs<ExtArgs>>): Prisma__product_gross_historyClient<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, "update">, never, ExtArgs>
 
     /**
      * Delete zero or more Product_gross_histories.
@@ -11392,10 +11147,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    deleteMany<T extends product_gross_historyDeleteManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, product_gross_historyDeleteManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
+     */
+    deleteMany<T extends product_gross_historyDeleteManyArgs>(args?: SelectSubset<T, product_gross_historyDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more Product_gross_histories.
@@ -11413,10 +11166,8 @@ export namespace Prisma {
      *   }
      * })
      * 
-    **/
-    updateMany<T extends product_gross_historyUpdateManyArgs<ExtArgs>>(
-      args: SelectSubset<T, product_gross_historyUpdateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
+     */
+    updateMany<T extends product_gross_historyUpdateManyArgs>(args: SelectSubset<T, product_gross_historyUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create or update one Product_gross_history.
@@ -11434,10 +11185,9 @@ export namespace Prisma {
      *     // ... the filter for the Product_gross_history we want to update
      *   }
      * })
-    **/
-    upsert<T extends product_gross_historyUpsertArgs<ExtArgs>>(
-      args: SelectSubset<T, product_gross_historyUpsertArgs<ExtArgs>>
-    ): Prisma__product_gross_historyClient<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+     */
+    upsert<T extends product_gross_historyUpsertArgs>(args: SelectSubset<T, product_gross_historyUpsertArgs<ExtArgs>>): Prisma__product_gross_historyClient<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
 
     /**
      * Count the number of Product_gross_histories.
@@ -11577,33 +11327,31 @@ export namespace Prisma {
    * https://github.com/prisma/prisma-client-js/issues/707
    */
   export interface Prisma__product_gross_historyClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: 'PrismaPromise';
-
-    ibm_info<T extends product_gross_history$ibm_infoArgs<ExtArgs> = {}>(args?: Subset<T, product_gross_history$ibm_infoArgs<ExtArgs>>): Prisma__ibm_infoClient<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
-
-    users<T extends product_gross_history$usersArgs<ExtArgs> = {}>(args?: Subset<T, product_gross_history$usersArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
-
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    ibm_info<T extends product_gross_history$ibm_infoArgs<ExtArgs> = {}>(args?: Subset<T, product_gross_history$ibm_infoArgs<ExtArgs>>): Prisma__ibm_infoClient<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    users<T extends product_gross_history$usersArgs<ExtArgs> = {}>(args?: Subset<T, product_gross_history$usersArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
      * resolved value cannot be modified from the callback.
      * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
      * @returns A Promise for the completion of the callback.
      */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
   }
+
 
 
 
