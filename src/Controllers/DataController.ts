@@ -483,43 +483,43 @@ class DataController {
           Math.round(
             ((monthBigNumbers?.bignumbers_sumliterage ?? 0) / actualDay) * 100
           ) /
-            100;
+          100;
         const faturamentoRedeCondição =
           Math.round(sumFuelTotal * 100) / 100 >=
           Math.round(
             ((monthBigNumbers?.bignumbers_invoicing ?? 0) / actualDay) * 100
           ) /
-            100;
+          100;
         const abastecimentoRedeCondição =
           Math.round(quantSupply * 100) / 100 >=
           Math.round(
             ((monthBigNumbers?.bignumbers_Supplies ?? 0) / actualDay) * 100
           ) /
-            100;
+          100;
         const vendaCombustíveisCondição =
           Math.round(sumFuel * 100) / 100 >=
           Math.round(
             ((monthBigNumbers?.bignumbers_fuelSales ?? 0) / actualDay) * 100
           ) /
-            100;
+          100;
         const lucroCombustíveisCondição =
           fuelProfit >=
           Math.round(
             ((monthBigNumbers?.bignumbers_fuelProfit ?? 0) / actualDay) * 100
           ) /
-            100;
+          100;
         const vendaProdutosCondição =
           Math.round(sumFuelProd * 100) / 100 >=
           Math.round(
             ((monthBigNumbers?.bignumbers_productSales ?? 0) / actualDay) * 100
           ) /
-            100;
+          100;
         const lucroProdutosCondição =
           (monthBigNumbers?.bignumbers_dailyProductProfit ?? 0) >=
           Math.round(
             ((monthBigNumbers?.bignumbers_productProfit ?? 0) / actualDay) * 100
           ) /
-            100;
+          100;
 
         //Fluxo mlt por tipo combustível
 
@@ -583,21 +583,32 @@ class DataController {
             0
           );
         }
-                //Comparação flag dia atual com -7 dias
-                const literageTodayLastWeekFlag = Math.round(sumLiterage * 100) / 100 >= Math.round(sumLiterageLastWeek * 100) / 100
-                const sumFuelTotalTodayLastWeekFlag = Math.round(sumFuelTotal * 100) / 100 >= Math.round(sumFuelTotalLastWeek * 100) / 100
-                const quantSupplyTodayLastWeekFlag = Math.round(quantSupply * 100) / 100 >= Math.round(quantSupplyLastWeek * 100) / 100
-                const sumFuelTodayLastWeekFlag = Math.round(sumFuel * 100) / 100 >= Math.round(sumFuelLastWeek * 100) / 100
-                const literageProfitTodayLastWeekFlag = (monthBigNumbers?.bignumbers_dailyLiterageProfit || 0) >= Math.round(((sumFuelLastWeek - sumCostPriceLastWeek - sumLiterageLastWeek * 0.04)) * 100) / 100
-                const sumFuelProdTodayLastWeekFlag = Math.round(sumFuelProd * 100) / 100 >= Math.round(sumFuelProdLastWeek * 100) / 100
+
+        //Lucro Bruto semana passada
+        const productProfitLastWeek =
+          Math.round((sumFuelProdLastWeek - sumProductPriceLastWeek) * 100) / 100;
+        const fuelProfitLastWeek =
+          Math.round((sumFuelLastWeek - sumCostPriceLastWeek - sumLiterageLastWeek * 0.04) * 100) / 100;
 
 
+        const secondary_value_bruto_operacionalLastWeek =
+          sumFuelTotalLastWeek !== 0
+            ? ((productProfitLastWeek + fuelProfitLastWeek) / sumFuelTotalLastWeek) * 100
+            : 0;
 
-        const portugueseDateFormat = moment()
+        //Comparação flag dia atual com -7 dias
+        const literageTodayLastWeekFlag = Math.round(sumLiterage * 100) / 100 >= Math.round(sumLiterageLastWeek * 100) / 100
+        const sumFuelTotalTodayLastWeekFlag = Math.round(sumFuelTotal * 100) / 100 >= Math.round(sumFuelTotalLastWeek * 100) / 100
+        const quantSupplyTodayLastWeekFlag = Math.round(quantSupply * 100) / 100 >= Math.round(quantSupplyLastWeek * 100) / 100
+        const sumFuelTodayLastWeekFlag = Math.round(sumFuel * 100) / 100 >= Math.round(sumFuelLastWeek * 100) / 100
+        const literageProfitTodayLastWeekFlag = (monthBigNumbers?.bignumbers_dailyLiterageProfit || 0) >= Math.round(((sumFuelLastWeek - sumCostPriceLastWeek - sumLiterageLastWeek * 0.04)) * 100) / 100
+        const sumFuelProdTodayLastWeekFlag = Math.round(sumFuelProd * 100) / 100 >= Math.round(sumFuelProdLastWeek * 100) / 100
+        const value_bruto = Math.round(secondary_value_bruto_operacional * 100) / 100 >= Math.round(secondary_value_bruto_operacionalLastWeek * 100) / 100
+        const portugueseDateFormat = moment().locale('pt')
           .tz("America/Sao_Paulo")
           .subtract(7, "days")
-          .format("DD-MM-YYYY");
-
+          .format("dddd");
+        const portugueseDate = portugueseDateFormat === "Sábado" || portugueseDateFormat === "Domingo" ? `Último ${portugueseDateFormat}` : `Última ${portugueseDateFormat}`
         return res.status(200).json({
           data: [
             [
@@ -620,15 +631,17 @@ class DataController {
                   Math.round(
                     ((monthBigNumbers?.bignumbers_sumliterage ?? 0) /
                       actualDay) *
-                      100
+                    100
                   ) / 100,
-                eighth_label: `Agregado de ${portugueseDateFormat}`,
+                eighth_label: `${portugueseDate}`,
                 eighth_value: Math.round(sumLiterageLastWeek * 100) / 100,
                 ninth_label: "Valor Percentual",
                 ninth_value:
                   (Math.round((sumLiterage / sumLiterageLastWeek) * 100) /
                     100) *
                   100,
+                tenth_label: "Flag Comparativo entre semanas",
+                tenth_value: literageTodayLastWeekFlag
               },
               {
                 label: "Faturamento da Rede",
@@ -647,15 +660,17 @@ class DataController {
                 seventh_value:
                   Math.round(
                     ((monthBigNumbers?.bignumbers_invoicing ?? 0) / actualDay) *
-                      100
+                    100
                   ) / 100,
-                eighth_label: `Agregado de ${portugueseDateFormat}`,
+                eighth_label: `${portugueseDate}`,
                 eighth_value: Math.round(sumFuelTotalLastWeek * 100) / 100,
                 ninth_label: "Valor Percentual",
                 ninth_value:
                   (Math.round((sumFuelTotal / sumFuelTotalLastWeek) * 100) /
                     100) *
                   100,
+                tenth_label: "Flag Comparativo entre semanas",
+                tenth_value: sumFuelTotalTodayLastWeekFlag
               },
               {
                 label: "Abastecimentos a Rede",
@@ -674,15 +689,17 @@ class DataController {
                 seventh_value:
                   Math.round(
                     ((monthBigNumbers?.bignumbers_Supplies ?? 0) / actualDay) *
-                      100
+                    100
                   ) / 100,
-                eighth_label: `Agregado de ${portugueseDateFormat}`,
+                eighth_label: `${portugueseDate}`,
                 eighth_value: Math.round(quantSupplyLastWeek * 100) / 100,
                 ninth_label: "Valor Percentual",
                 ninth_value:
                   (Math.round((quantSupply / quantSupplyLastWeek) * 100) /
                     100) *
                   100,
+                tenth_label: "Flag Comparativo entre semanas",
+                tenth_value: quantSupplyTodayLastWeekFlag
               },
             ],
             [
@@ -703,13 +720,15 @@ class DataController {
                 seventh_value:
                   Math.round(
                     ((monthBigNumbers?.bignumbers_fuelSales ?? 0) / actualDay) *
-                      100
+                    100
                   ) / 100,
-                eighth_label: `Agregado de ${portugueseDateFormat}`,
+                eighth_label: `${portugueseDate}`,
                 eighth_value: Math.round(sumFuelLastWeek * 100) / 100,
                 ninth_label: "Valor Percentual",
                 ninth_value:
                   (Math.round((sumFuel / sumFuelLastWeek) * 100) / 100) * 100,
+                tenth_label: "Flag Comparativo entre semanas",
+                tenth_value: sumFuelTodayLastWeekFlag
               },
               {
                 label: "Resultado Bruto da Galonagem",
@@ -730,15 +749,15 @@ class DataController {
                   Math.round(
                     ((monthBigNumbers?.bignumbers_fuelProfit ?? 0) /
                       actualDay) *
-                      100
+                    100
                   ) / 100,
-                eighth_label: `Agregado de ${portugueseDateFormat}`,
+                eighth_label: `Agregado de ${portugueseDate}`,
                 eighth_value:
                   Math.round(
                     (sumFuelLastWeek -
                       sumCostPriceLastWeek -
                       sumLiterageLastWeek * 0.04) *
-                      100
+                    100
                   ) / 100,
                 ninth_label: "Valor Percentual",
                 ninth_value:
@@ -747,10 +766,12 @@ class DataController {
                       (sumFuelLastWeek -
                         sumCostPriceLastWeek -
                         sumLiterageLastWeek * 0.04)) *
-                      100
+                    100
                   ) /
                     100) *
                   100,
+                tenth_label: "Flag Comparativo entre semanas",
+                tenth_value: literageProfitTodayLastWeekFlag
               },
             ],
             [
@@ -773,15 +794,17 @@ class DataController {
                   Math.round(
                     ((monthBigNumbers?.bignumbers_productSales ?? 0) /
                       actualDay) *
-                      100
+                    100
                   ) / 100,
-                eighth_label: `Agregado de ${portugueseDateFormat}`,
+                eighth_label: `${portugueseDate}`,
                 eighth_value: Math.round(sumFuelProdLastWeek * 100) / 100,
                 ninth_label: "Valor Percentual",
                 ninth_value:
                   (Math.round((sumFuelProd / sumFuelProdLastWeek) * 100) /
                     100) *
                   100,
+                tenth_label: "Flag Comparativo entre semanas",
+                tenth_value: sumFuelProdTodayLastWeekFlag
               },
               {
                 label: "Resultado Bruto de Produto",
@@ -802,9 +825,9 @@ class DataController {
                   Math.round(
                     ((monthBigNumbers?.bignumbers_productProfit ?? 0) /
                       actualDay) *
-                      100
+                    100
                   ) / 100,
-                eighth_label: `Agregado de ${portugueseDateFormat}`,
+                eighth_label: `${portugueseDate}`,
                 eighth_value: 0,
                 ninth_label: "Valor Percentual",
                 ninth_value: 0,
@@ -827,7 +850,7 @@ class DataController {
                         fuelSumsVolume["OLEO DIESEL B S10 COMUM"] +
                         fuelSumsVolume["OLEO DIESEL B S500 COMUM"] +
                         fuelSumsVolume["ETANOL HIDRATADO COMBUSTIVEL"])) *
-                      100
+                    100
                   ) / 100,
                 secondary_label: "",
                 secondary_value: 0,
@@ -848,7 +871,7 @@ class DataController {
                   Math.round(
                     (fuelSums["GASOLINA COMUM"] /
                       fuelSumsVolume["GASOLINA COMUM"]) *
-                      100
+                    100
                   ) / 100,
                 secondary_label: "",
                 secondary_value: 0,
@@ -869,7 +892,7 @@ class DataController {
                   Math.round(
                     (fuelSums["GASOLINA ADITIVADA"] /
                       fuelSumsVolume["GASOLINA ADITIVADA"]) *
-                      100
+                    100
                   ) / 100,
                 secondary_label: "",
                 secondary_value: 0,
@@ -892,7 +915,7 @@ class DataController {
                   Math.round(
                     (fuelSums["GASOLINA PREMIUM PODIUM"] /
                       fuelSumsVolume["GASOLINA PREMIUM PODIUM"]) *
-                      100
+                    100
                   ) / 100,
 
                 secondary_label: "",
@@ -914,7 +937,7 @@ class DataController {
                   Math.round(
                     (fuelSums["OLEO DIESEL B S10 COMUM"] /
                       fuelSumsVolume["OLEO DIESEL B S10 COMUM"]) *
-                      100
+                    100
                   ) / 100,
                 secondary_label: "",
                 secondary_value: 0,
@@ -935,7 +958,7 @@ class DataController {
                   Math.round(
                     (fuelSums["OLEO DIESEL B S500 COMUM"] /
                       fuelSumsVolume["OLEO DIESEL B S500 COMUM"]) *
-                      100
+                    100
                   ) / 100,
                 secondary_label: "",
                 secondary_value: 0,
@@ -958,7 +981,7 @@ class DataController {
                   Math.round(
                     (fuelSums["ETANOL HIDRATADO COMBUSTIVEL"] /
                       fuelSumsVolume["ETANOL HIDRATADO COMBUSTIVEL"]) *
-                      100
+                    100
                   ) / 100,
                 secondary_label: "",
                 secondary_value: 0,
@@ -989,7 +1012,17 @@ class DataController {
                 sixth_value: 0,
                 seventh_label: "",
                 seventh_value: 0,
+                eighth_label: `${portugueseDate}`,
+                eighth_value: Math.round(secondary_value_bruto_operacionalLastWeek * 100) / 100,
+                ninth_label: "Valor Percentual",
+                ninth_value:
+                  (Math.round((secondary_value_bruto_operacional / secondary_value_bruto_operacionalLastWeek) * 100) /
+                    100) *
+                  100,
+                tenth_label: "Flag Comparativo entre semanas",
+                tenth_value: value_bruto
               },
+
             ],
           ],
         });
@@ -2003,7 +2036,7 @@ class DataController {
           const valueLBO =
             sumproduct - sumProductPrice !== 0
               ? (sumfuel - sumCostPrice + (sumproduct - sumProductPrice)) /
-                (sumproduct + sumfuel)
+              (sumproduct + sumfuel)
               : 0;
           const valueLBOProduto =
             sumproduct !== 0 ? (sumproduct - sumProductPrice) / sumproduct : 0;
@@ -2915,11 +2948,11 @@ class DataController {
           i < 10
             ? { data: `${monthDay}-0${i}`, gross_result: 0 }
             : {
-                data: `${monthDay}-${i}`,
-                gross_result: [],
-                gross_result_defined: [],
-                percentage: [],
-              };
+              data: `${monthDay}-${i}`,
+              gross_result: [],
+              gross_result_defined: [],
+              percentage: [],
+            };
       }
 
       //Estrutura que separa entre o gráfico de galonagem e produto
@@ -2954,7 +2987,7 @@ class DataController {
             (Math.round(grossSum * 100) /
               100 /
               (Math.round(grossLiterageDefinedSum * 100) / 100)) *
-              100
+            100
           );
         });
       } else if (type === "product") {
@@ -2988,7 +3021,7 @@ class DataController {
             (Math.round(grossSum * 100) /
               100 /
               (Math.round(grossProductDefinedSum * 100) / 100)) *
-              100
+            100
           );
         });
       }
@@ -3055,11 +3088,11 @@ class DataController {
             ) / 100;
           element.percentage = grossDefined?.gas_station_gross_result_literage
             ? Math.round(
-                ((element.gallon_history_gross ?? 0) /
-                  (grossDefined.gas_station_gross_result_literage ?? 1)) *
-                  100 *
-                  100
-              ) / 100
+              ((element.gallon_history_gross ?? 0) /
+                (grossDefined.gas_station_gross_result_literage ?? 1)) *
+              100 *
+              100
+            ) / 100
             : 0;
         });
       } else if (type === "product") {
@@ -3092,11 +3125,11 @@ class DataController {
             ) / 100;
           element.percentage = grossDefined?.gas_station_gross_result_product
             ? Math.round(
-                ((element.product_history_gross ?? 0) /
-                  (grossDefined.gas_station_gross_result_product ?? 1)) *
-                  100 *
-                  100
-              ) / 100
+              ((element.product_history_gross ?? 0) /
+                (grossDefined.gas_station_gross_result_product ?? 1)) *
+              100 *
+              100
+            ) / 100
             : 0;
         });
       }
