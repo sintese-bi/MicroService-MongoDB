@@ -751,14 +751,9 @@ class DataController {
                       actualDay) *
                     100
                   ) / 100,
-                eighth_label: `Agregado de ${portugueseDate}`,
+                eighth_label: "",
                 eighth_value:
-                  Math.round(
-                    (sumFuelLastWeek -
-                      sumCostPriceLastWeek -
-                      sumLiterageLastWeek * 0.04) *
-                    100
-                  ) / 100,
+                  0,
                 ninth_label: "Valor Percentual",
                 ninth_value:
                   (Math.round(
@@ -827,7 +822,7 @@ class DataController {
                       actualDay) *
                     100
                   ) / 100,
-                eighth_label: `${portugueseDate}`,
+                eighth_label: "",
                 eighth_value: 0,
                 ninth_label: "Valor Percentual",
                 ninth_value: 0,
@@ -1037,7 +1032,97 @@ class DataController {
         .json({ message: `Erro ao retornar os dados: ${error}` });
     }
   }
+  public async bigNumbersMLT(req: Request, res: Response) {
+    try {
+      const actualdate = moment().tz("America/Sao_Paulo").format("YYYY-MM-DD");
+      const firstDayOfMonth = moment()
+        .tz("America/Sao_Paulo")
+        .startOf("month")
+        .format("YYYY-MM-DD");
+      const clientToken = req.headers.authorization;
+      const { use_token }: any = req.params;
+      const actualDay = parseFloat(actualdate.split("-")[2]) - 1;
 
+      if (!clientToken) {
+        return res.status(401).json({ message: "Token não fornecido." });
+      }
+      const expectedToken = process.env.TOKEN;
+      if (clientToken == `Bearer ${expectedToken}`) {
+        const fuelliterageSell = await prismaLBCBi.combustiveis.findMany({
+          select: {
+            vda: true,
+            cus: true,
+            des: true,
+            ibm: true,
+          },
+          where: {
+            dtHr: {
+              gte: `${actualdate}T00:00:00.000Z`,
+              lte: `${actualdate}T23:59:59.999Z`,
+            },
+          },
+        })
+        let stationsMapping: any = {}
+        const secret = process.env.SECRET;
+        if (!secret) {
+          throw new Error(
+            "Chave secreta não definida. Verifique a variável de ambiente SECRET."
+          );
+        }
+        const id = extractUserIdFromToken(use_token, secret);
+        fuelliterageSell.forEach(element => {
+
+          if (!stationsMapping[element.ibm]) {
+            stationsMapping[element.ibm] = [{ value: element.vda, cost: element.cus, description: element.des }]
+          } else {
+
+            stationsMapping[element.ibm] = [
+              ...stationsMapping[element.ibm],
+              { value: element.vda, cost: element.cus, description: element.des }
+            ];
+          }
+
+
+        });
+        const stationNames = await prismaRedeFlex.gas_station_setvariables.findMany({
+          select: {
+            ibm_info: {
+              select: {
+                ibm: true,
+                nomefantasia: true
+              }
+            },
+            gas_station_GASOLINA_COMUM_comb: true,
+            gas_station_ETANOL_COMUM_comb: true,
+            gas_station_OLEO_DIESEL_B_S10_COMUM_comb: true,
+            gas_station_OLEO_DIESEL_B_S500_COMUM_comb: true,
+          },
+
+          where: { use_uuid: id }
+
+        })
+
+
+
+
+        return res.status(200).json({ data: stationsMapping })
+
+
+
+
+      } else {
+        return res
+          .status(401)
+          .json({ message: "Falha na autenticação: Token inválido." });
+      }
+
+
+    } catch (error) {
+      return res
+        .status(500)
+        .json({ message: `Erro ao retornar os dados: ${error}` });
+    }
+  }
   //Dados do Gráfico diário
   public async dailyGraphic(req: Request, res: Response) {
     try {
