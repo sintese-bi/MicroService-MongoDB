@@ -637,7 +637,7 @@ class DataController {
                 eighth_value: Math.round(sumLiterageLastWeek * 100) / 100,
                 ninth_label: "% ult. semana",
                 ninth_value:
-                  100 - ((Math.round((sumLiterage / sumLiterageLastWeek) * 100) /
+                  ((Math.round(100 - (sumLiterage / sumLiterageLastWeek) * 100) /
                     100) *
                     100),
                 tenth_label: "Flag Comparativo entre semanas",
@@ -666,7 +666,7 @@ class DataController {
                 eighth_value: Math.round(sumFuelTotalLastWeek * 100) / 100,
                 ninth_label: "% ult. semana",
                 ninth_value:
-                  100 - ((Math.round((sumFuelTotal / sumFuelTotalLastWeek) * 100) /
+                  ((Math.round(100 - (sumFuelTotal / sumFuelTotalLastWeek) * 100) /
                     100) *
                     100),
                 tenth_label: "Flag Comparativo entre semanas",
@@ -695,7 +695,7 @@ class DataController {
                 eighth_value: Math.round(quantSupplyLastWeek * 100) / 100,
                 ninth_label: "% ult. semana",
                 ninth_value:
-                  100 - ((Math.round((quantSupply / quantSupplyLastWeek) * 100) /
+                  ((Math.round(100 - (quantSupply / quantSupplyLastWeek) * 100) /
                     100) *
                     100),
                 tenth_label: "Flag Comparativo entre semanas",
@@ -726,7 +726,7 @@ class DataController {
                 eighth_value: Math.round(sumFuelLastWeek * 100) / 100,
                 ninth_label: "% ult. semana",
                 ninth_value:
-                  100 - ((Math.round((sumFuel / sumFuelLastWeek) * 100) / 100) * 100),
+                  ((Math.round(100 - (sumFuel / sumFuelLastWeek) * 100) / 100) * 100),
                 tenth_label: "Flag Comparativo entre semanas",
                 tenth_value: sumFuelTodayLastWeekFlag
               },
@@ -818,7 +818,7 @@ class DataController {
                 eighth_value: Math.round(sumFuelProdLastWeek * 100) / 100,
                 ninth_label: "% ult. semana",
                 ninth_value:
-                  100 - (Math.round((sumFuelProd / sumFuelProdLastWeek) * 100 * 100) / 100),
+                100 - (Math.round((sumFuelProd / sumFuelProdLastWeek) * 100 * 100) / 100),
                 tenth_label: "Flag Comparativo entre semanas",
                 tenth_value: sumFuelProdTodayLastWeekFlag
               },
@@ -868,7 +868,7 @@ class DataController {
                 eighth_value: Math.round(secondary_value_bruto_operacionalLastWeek * 100) / 100,
                 ninth_label: "% ult. semana",
                 ninth_value:
-                  100 - ((Math.round((secondary_value_bruto_operacional / secondary_value_bruto_operacionalLastWeek) * 100) /
+                  ((Math.round(100 - (secondary_value_bruto_operacional / secondary_value_bruto_operacionalLastWeek) * 100) /
                     100) *
                     100),
                 tenth_label: "Flag Comparativo entre semanas",
@@ -1176,18 +1176,18 @@ class DataController {
           return {
             fuel_name,
             value: Math.round(averageValue * 100) / 100,
-           
+
           };
         });
         const allowedFuels = ["GASOLINA COMUM", "OLEO DIESEL B S10 COMUM", "OLEO DIESEL B S500 COMUM", "ETANOL HIDRATADO COMBUSTIVEL"]
         const allowedFuelsArray = aggregatedResult.filter((element: any) => {
           const result = allowedFuels.find((value: any) => value === element.fuel_name)
           if (result) return element
-          
+
 
         })
         return res.status(200).json({
-          data: allowedFuelsArray
+          data: aggregatedResult
         })
 
 
