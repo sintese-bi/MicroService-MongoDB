@@ -635,7 +635,7 @@ class DataController {
                   ) / 100,
                 eighth_label: `${portugueseDate}`,
                 eighth_value: Math.round(sumLiterageLastWeek * 100) / 100,
-                ninth_label: "Valor Percentual",
+                ninth_label: "% ult. semana",
                 ninth_value:
                   100 - ((Math.round((sumLiterage / sumLiterageLastWeek) * 100) /
                     100) *
@@ -664,7 +664,7 @@ class DataController {
                   ) / 100,
                 eighth_label: `${portugueseDate}`,
                 eighth_value: Math.round(sumFuelTotalLastWeek * 100) / 100,
-                ninth_label: "Valor Percentual",
+                ninth_label: "% ult. semana",
                 ninth_value:
                   100 - ((Math.round((sumFuelTotal / sumFuelTotalLastWeek) * 100) /
                     100) *
@@ -693,7 +693,7 @@ class DataController {
                   ) / 100,
                 eighth_label: `${portugueseDate}`,
                 eighth_value: Math.round(quantSupplyLastWeek * 100) / 100,
-                ninth_label: "Valor Percentual",
+                ninth_label: "% ult. semana",
                 ninth_value:
                   100 - ((Math.round((quantSupply / quantSupplyLastWeek) * 100) /
                     100) *
@@ -724,7 +724,7 @@ class DataController {
                   ) / 100,
                 eighth_label: `${portugueseDate}`,
                 eighth_value: Math.round(sumFuelLastWeek * 100) / 100,
-                ninth_label: "Valor Percentual",
+                ninth_label: "% ult. semana",
                 ninth_value:
                   100 - ((Math.round((sumFuel / sumFuelLastWeek) * 100) / 100) * 100),
                 tenth_label: "Flag Comparativo entre semanas",
@@ -816,7 +816,7 @@ class DataController {
                   ) / 100,
                 eighth_label: `${portugueseDate}`,
                 eighth_value: Math.round(sumFuelProdLastWeek * 100) / 100,
-                ninth_label: "Valor Percentual",
+                ninth_label: "% ult. semana",
                 ninth_value:
                   100 - (Math.round((sumFuelProd / sumFuelProdLastWeek) * 100 * 100) / 100),
                 tenth_label: "Flag Comparativo entre semanas",
@@ -845,7 +845,7 @@ class DataController {
                   ) / 100,
                 eighth_label: "",
                 eighth_value: 0,
-                ninth_label: "Valor Percentual",
+                ninth_label: "% ult. semana",
                 ninth_value: 0,
               },
               {
@@ -866,7 +866,7 @@ class DataController {
                 seventh_value: 0,
                 eighth_label: `${portugueseDate}`,
                 eighth_value: Math.round(secondary_value_bruto_operacionalLastWeek * 100) / 100,
-                ninth_label: "Valor Percentual",
+                ninth_label: "% ult. semana",
                 ninth_value:
                   100 - ((Math.round((secondary_value_bruto_operacional / secondary_value_bruto_operacionalLastWeek) * 100) /
                     100) *
@@ -1147,19 +1147,47 @@ class DataController {
           });
 
         }
-        let mltValue: any = {}
+        // let mltValue: any = {}
+        // stationsMlt.forEach((element: any) => {
+
+        //   if (!mltValue[element.name]) {
+        //     mltValue[element.name] = [{ mlt: Math.round(element.mlt * 100) / 100, fuel_name: element.fuel_name }]
+        //   } else {
+        //     mltValue[element.name] = [...mltValue[element.name], { mlt: Math.round(element.mlt * 100) / 100, fuel_name: element.fuel_name }]
+        //   }
+
+        // });
+        let fuelAggregation: any = {};
+
         stationsMlt.forEach((element: any) => {
-
-          if (!mltValue[element.name]) {
-            mltValue[element.name] = [{ mlt: Math.round(element.mlt * 100) / 100, fuel_name: element.fuel_name }]
-          } else {
-            mltValue[element.name] = [...mltValue[element.name], { mlt: Math.round(element.mlt * 100) / 100, fuel_name: element.fuel_name }]
+          if (!fuelAggregation[element.fuel_name]) {
+            fuelAggregation[element.fuel_name] = {
+              total: 0,
+              count: 0,
+            };
           }
-
+          fuelAggregation[element.fuel_name].total += element.mlt;
+          fuelAggregation[element.fuel_name].count++;
         });
 
+        const aggregatedResult = Object.keys(fuelAggregation).map((fuel_name) => {
+          const fuelData = fuelAggregation[fuel_name];
+          const averageValue = fuelData.total / fuelData.count;
+          return {
+            fuel_name,
+            value: Math.round(averageValue * 100) / 100,
+           
+          };
+        });
+        const allowedFuels = ["GASOLINA COMUM", "OLEO DIESEL B S10 COMUM", "OLEO DIESEL B S500 COMUM", "ETANOL HIDRATADO COMBUSTIVEL"]
+        const allowedFuelsArray = aggregatedResult.filter((element: any) => {
+          const result = allowedFuels.find((value: any) => value === element.fuel_name)
+          if (result) return element
+          
+
+        })
         return res.status(200).json({
-          data: mltValue
+          data: allowedFuelsArray
         })
 
 
