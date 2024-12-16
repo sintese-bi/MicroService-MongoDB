@@ -818,7 +818,7 @@ class DataController {
                 eighth_value: Math.round(sumFuelProdLastWeek * 100) / 100,
                 ninth_label: "% ult. semana",
                 ninth_value:
-                100 - (Math.round((sumFuelProd / sumFuelProdLastWeek) * 100 * 100) / 100),
+                  100 - (Math.round((sumFuelProd / sumFuelProdLastWeek) * 100 * 100) / 100),
                 tenth_label: "Flag Comparativo entre semanas",
                 tenth_value: sumFuelProdTodayLastWeekFlag
               },
@@ -1179,7 +1179,7 @@ class DataController {
 
           };
         });
-        const allowedFuels = ["GASOLINA COMUM", "OLEO DIESEL B S10 COMUM", "OLEO DIESEL B S500 COMUM", "ETANOL HIDRATADO COMBUSTIVEL"]
+        const allowedFuels = ["GASOLINA COMUM", "OLEO DIESEL B S10 COMUM", "OLEO DIESEL B S500 COMUM", "ETANOL HIDRATADO COMBUSTIVEL", "GASOLINA COMUM  ADITIVADA","GAS NATURAL VEICULAR"]
         const allowedFuelsArray = aggregatedResult.filter((element: any) => {
           const result = allowedFuels.find((value: any) => value === element.fuel_name)
           if (result) return element
@@ -1187,7 +1187,7 @@ class DataController {
 
         })
         return res.status(200).json({
-          data: aggregatedResult
+          data: allowedFuelsArray
         })
 
 
