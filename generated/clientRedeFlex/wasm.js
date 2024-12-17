@@ -7,7 +7,6 @@ const {
   makeStrictEnum,
   Public,
   getRuntime,
-  skip
 } = require('./runtime/index-browser.js')
 
 
@@ -17,12 +16,12 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 5.22.0
- * Query Engine version: 605197351a3c8bdd595af2d2a9bc3025bca48ea2
+ * Prisma Client JS version: 5.15.1
+ * Query Engine version: 5675a3182f972f1a8f31d16eee6abf4fd54910e3
  */
 Prisma.prismaVersion = {
-  client: "5.22.0",
-  engine: "605197351a3c8bdd595af2d2a9bc3025bca48ea2"
+  client: "5.15.1",
+  engine: "5675a3182f972f1a8f31d16eee6abf4fd54910e3"
 }
 
 Prisma.PrismaClientKnownRequestError = () => {
@@ -108,8 +107,6 @@ Prisma.NullTypes = {
   JsonNull: objectEnumValues.classes.JsonNull,
   AnyNull: objectEnumValues.classes.AnyNull
 }
-
-
 
 /**
  * Enums
@@ -345,6 +342,24 @@ exports.Prisma.Product_gross_historyScalarFieldEnum = {
   product_history_updated_at: 'product_history_updated_at'
 };
 
+exports.Prisma.Gallon_gross_last_weekScalarFieldEnum = {
+  gallon_last_history_uuid: 'gallon_last_history_uuid',
+  use_uuid: 'use_uuid',
+  gallon_last_history_gross: 'gallon_last_history_gross',
+  gallon_last_history_date: 'gallon_last_history_date',
+  gallon_last_history_created_at: 'gallon_last_history_created_at',
+  gallon_last_history_updated_at: 'gallon_last_history_updated_at'
+};
+
+exports.Prisma.Product_gross_last_weekScalarFieldEnum = {
+  product_last_history_uuid: 'product_last_history_uuid',
+  use_uuid: 'use_uuid',
+  product_last_history_gross: 'product_last_history_gross',
+  product_last_history_date: 'product_last_history_date',
+  product_last_history_created_at: 'product_last_history_created_at',
+  product_last_history_updated_at: 'product_last_history_updated_at'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -369,7 +384,9 @@ exports.Prisma.ModelName = {
   regions: 'regions',
   big_numbers_values: 'big_numbers_values',
   gallon_gross_history: 'gallon_gross_history',
-  product_gross_history: 'product_gross_history'
+  product_gross_history: 'product_gross_history',
+  gallon_gross_last_week: 'gallon_gross_last_week',
+  product_gross_last_week: 'product_gross_last_week'
 };
 
 /**
