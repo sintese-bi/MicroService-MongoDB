@@ -53,6 +53,16 @@ export type gallon_gross_history = $Result.DefaultSelection<Prisma.$gallon_gross
  * 
  */
 export type product_gross_history = $Result.DefaultSelection<Prisma.$product_gross_historyPayload>
+/**
+ * Model gallon_gross_last_week
+ * 
+ */
+export type gallon_gross_last_week = $Result.DefaultSelection<Prisma.$gallon_gross_last_weekPayload>
+/**
+ * Model product_gross_last_week
+ * 
+ */
+export type product_gross_last_week = $Result.DefaultSelection<Prisma.$product_gross_last_weekPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -69,8 +79,8 @@ export type product_gross_history = $Result.DefaultSelection<Prisma.$product_gro
  * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
  */
 export class PrismaClient<
-  ClientOptions extends Prisma.PrismaClientOptions = Prisma.PrismaClientOptions,
-  U = 'log' extends keyof ClientOptions ? ClientOptions['log'] extends Array<Prisma.LogLevel | Prisma.LogDefinition> ? Prisma.GetEvents<ClientOptions['log']> : never : never,
+  T extends Prisma.PrismaClientOptions = Prisma.PrismaClientOptions,
+  U = 'log' extends keyof T ? T['log'] extends Array<Prisma.LogLevel | Prisma.LogDefinition> ? Prisma.GetEvents<T['log']> : never : never,
   ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
 > {
   [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['other'] }
@@ -90,7 +100,7 @@ export class PrismaClient<
    * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
    */
 
-  constructor(optionsArg ?: Prisma.Subset<ClientOptions, Prisma.PrismaClientOptions>);
+  constructor(optionsArg ?: Prisma.Subset<T, Prisma.PrismaClientOptions>);
   $on<V extends U>(eventType: V, callback: (event: V extends 'query' ? Prisma.QueryEvent : Prisma.LogEvent) => void): void;
 
   /**
@@ -156,7 +166,6 @@ export class PrismaClient<
    */
   $queryRawUnsafe<T = unknown>(query: string, ...values: any[]): Prisma.PrismaPromise<T>;
 
-
   /**
    * Allows the running of a sequence of read/write operations that are guaranteed to either succeed or fail as a whole.
    * @example
@@ -175,7 +184,7 @@ export class PrismaClient<
   $transaction<R>(fn: (prisma: Omit<PrismaClient, runtime.ITXClientDenyList>) => $Utils.JsPromise<R>, options?: { maxWait?: number, timeout?: number, isolationLevel?: Prisma.TransactionIsolationLevel }): $Utils.JsPromise<R>
 
 
-  $extends: $Extensions.ExtendsHook<"extends", Prisma.TypeMapCb, ExtArgs>
+  $extends: $Extensions.ExtendsHook<'extends', Prisma.TypeMapCb, ExtArgs>
 
       /**
    * `prisma.ibm_info`: Exposes CRUD operations for the **ibm_info** model.
@@ -256,6 +265,26 @@ export class PrismaClient<
     * ```
     */
   get product_gross_history(): Prisma.product_gross_historyDelegate<ExtArgs>;
+
+  /**
+   * `prisma.gallon_gross_last_week`: Exposes CRUD operations for the **gallon_gross_last_week** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Gallon_gross_last_weeks
+    * const gallon_gross_last_weeks = await prisma.gallon_gross_last_week.findMany()
+    * ```
+    */
+  get gallon_gross_last_week(): Prisma.gallon_gross_last_weekDelegate<ExtArgs>;
+
+  /**
+   * `prisma.product_gross_last_week`: Exposes CRUD operations for the **product_gross_last_week** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Product_gross_last_weeks
+    * const product_gross_last_weeks = await prisma.product_gross_last_week.findMany()
+    * ```
+    */
+  get product_gross_last_week(): Prisma.product_gross_last_weekDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -287,8 +316,6 @@ export namespace Prisma {
   export import raw = runtime.raw
   export import Sql = runtime.Sql
 
-
-
   /**
    * Decimal.js
    */
@@ -315,8 +342,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 5.22.0
-   * Query Engine version: 605197351a3c8bdd595af2d2a9bc3025bca48ea2
+   * Prisma Client JS version: 5.15.1
+   * Query Engine version: 5675a3182f972f1a8f31d16eee6abf4fd54910e3
    */
   export type PrismaVersion = {
     client: string
@@ -328,13 +355,51 @@ export namespace Prisma {
    * Utility Types
    */
 
+  /**
+   * From https://github.com/sindresorhus/type-fest/
+   * Matches a JSON object.
+   * This type can be useful to enforce some input to be JSON-compatible or as a super-type to be extended from. 
+   */
+  export type JsonObject = {[Key in string]?: JsonValue}
 
-  export import JsonObject = runtime.JsonObject
-  export import JsonArray = runtime.JsonArray
-  export import JsonValue = runtime.JsonValue
-  export import InputJsonObject = runtime.InputJsonObject
-  export import InputJsonArray = runtime.InputJsonArray
-  export import InputJsonValue = runtime.InputJsonValue
+  /**
+   * From https://github.com/sindresorhus/type-fest/
+   * Matches a JSON array.
+   */
+  export interface JsonArray extends Array<JsonValue> {}
+
+  /**
+   * From https://github.com/sindresorhus/type-fest/
+   * Matches any valid JSON value.
+   */
+  export type JsonValue = string | number | boolean | JsonObject | JsonArray | null
+
+  /**
+   * Matches a JSON object.
+   * Unlike `JsonObject`, this type allows undefined and read-only properties.
+   */
+  export type InputJsonObject = {readonly [Key in string]?: InputJsonValue | null}
+
+  /**
+   * Matches a JSON array.
+   * Unlike `JsonArray`, readonly arrays are assignable to this type.
+   */
+  export interface InputJsonArray extends ReadonlyArray<InputJsonValue | null> {}
+
+  /**
+   * Matches any valid value that can be used as an input for operations like
+   * create and update as the value of a JSON field. Unlike `JsonValue`, this
+   * type allows read-only arrays and read-only object properties and disallows
+   * `null` at the top level.
+   *
+   * `null` cannot be used as the value of a JSON field because its meaning
+   * would be ambiguous. Use `Prisma.JsonNull` to store the JSON null value or
+   * `Prisma.DbNull` to clear the JSON value and set the field to the database
+   * NULL value instead.
+   *
+   * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-by-null-values
+   */
+  export type InputJsonValue = string | number | boolean | InputJsonObject | InputJsonArray | { toJSON(): unknown }
 
   /**
    * Types of the values used to represent different kinds of `null` values when working with JSON fields.
@@ -704,7 +769,9 @@ export namespace Prisma {
     regions: 'regions',
     big_numbers_values: 'big_numbers_values',
     gallon_gross_history: 'gallon_gross_history',
-    product_gross_history: 'product_gross_history'
+    product_gross_history: 'product_gross_history',
+    gallon_gross_last_week: 'gallon_gross_last_week',
+    product_gross_last_week: 'product_gross_last_week'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -714,82 +781,83 @@ export namespace Prisma {
     db?: Datasource
   }
 
-  interface TypeMapCb extends $Utils.Fn<{extArgs: $Extensions.InternalArgs, clientOptions: PrismaClientOptions }, $Utils.Record<string, any>> {
-    returns: Prisma.TypeMap<this['params']['extArgs'], this['params']['clientOptions']>
+
+  interface TypeMapCb extends $Utils.Fn<{extArgs: $Extensions.InternalArgs}, $Utils.Record<string, any>> {
+    returns: Prisma.TypeMap<this['params']['extArgs']>
   }
 
-  export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
+  export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: "ibm_info" | "users" | "gas_station_setvariables" | "region_setvariables" | "regions" | "big_numbers_values" | "gallon_gross_history" | "product_gross_history"
+      modelProps: 'ibm_info' | 'users' | 'gas_station_setvariables' | 'region_setvariables' | 'regions' | 'big_numbers_values' | 'gallon_gross_history' | 'product_gross_history' | 'gallon_gross_last_week' | 'product_gross_last_week'
       txIsolationLevel: Prisma.TransactionIsolationLevel
-    }
+    },
     model: {
       ibm_info: {
         payload: Prisma.$ibm_infoPayload<ExtArgs>
         fields: Prisma.ibm_infoFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.ibm_infoFindUniqueArgs<ExtArgs>
+            args: Prisma.ibm_infoFindUniqueArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$ibm_infoPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.ibm_infoFindUniqueOrThrowArgs<ExtArgs>
+            args: Prisma.ibm_infoFindUniqueOrThrowArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$ibm_infoPayload>
           }
           findFirst: {
-            args: Prisma.ibm_infoFindFirstArgs<ExtArgs>
+            args: Prisma.ibm_infoFindFirstArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$ibm_infoPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.ibm_infoFindFirstOrThrowArgs<ExtArgs>
+            args: Prisma.ibm_infoFindFirstOrThrowArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$ibm_infoPayload>
           }
           findMany: {
-            args: Prisma.ibm_infoFindManyArgs<ExtArgs>
+            args: Prisma.ibm_infoFindManyArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$ibm_infoPayload>[]
           }
           create: {
-            args: Prisma.ibm_infoCreateArgs<ExtArgs>
+            args: Prisma.ibm_infoCreateArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$ibm_infoPayload>
           }
           createMany: {
-            args: Prisma.ibm_infoCreateManyArgs<ExtArgs>
-            result: BatchPayload
+            args: Prisma.ibm_infoCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.ibm_infoCreateManyAndReturnArgs<ExtArgs>
+            args: Prisma.ibm_infoCreateManyAndReturnArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$ibm_infoPayload>[]
           }
           delete: {
-            args: Prisma.ibm_infoDeleteArgs<ExtArgs>
+            args: Prisma.ibm_infoDeleteArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$ibm_infoPayload>
           }
           update: {
-            args: Prisma.ibm_infoUpdateArgs<ExtArgs>
+            args: Prisma.ibm_infoUpdateArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$ibm_infoPayload>
           }
           deleteMany: {
-            args: Prisma.ibm_infoDeleteManyArgs<ExtArgs>
-            result: BatchPayload
+            args: Prisma.ibm_infoDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
           }
           updateMany: {
-            args: Prisma.ibm_infoUpdateManyArgs<ExtArgs>
-            result: BatchPayload
+            args: Prisma.ibm_infoUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
           }
           upsert: {
-            args: Prisma.ibm_infoUpsertArgs<ExtArgs>
+            args: Prisma.ibm_infoUpsertArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$ibm_infoPayload>
           }
           aggregate: {
-            args: Prisma.Ibm_infoAggregateArgs<ExtArgs>
+            args: Prisma.Ibm_infoAggregateArgs<ExtArgs>,
             result: $Utils.Optional<AggregateIbm_info>
           }
           groupBy: {
-            args: Prisma.ibm_infoGroupByArgs<ExtArgs>
+            args: Prisma.ibm_infoGroupByArgs<ExtArgs>,
             result: $Utils.Optional<Ibm_infoGroupByOutputType>[]
           }
           count: {
-            args: Prisma.ibm_infoCountArgs<ExtArgs>
+            args: Prisma.ibm_infoCountArgs<ExtArgs>,
             result: $Utils.Optional<Ibm_infoCountAggregateOutputType> | number
           }
         }
@@ -799,67 +867,67 @@ export namespace Prisma {
         fields: Prisma.usersFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.usersFindUniqueArgs<ExtArgs>
+            args: Prisma.usersFindUniqueArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$usersPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.usersFindUniqueOrThrowArgs<ExtArgs>
+            args: Prisma.usersFindUniqueOrThrowArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$usersPayload>
           }
           findFirst: {
-            args: Prisma.usersFindFirstArgs<ExtArgs>
+            args: Prisma.usersFindFirstArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$usersPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.usersFindFirstOrThrowArgs<ExtArgs>
+            args: Prisma.usersFindFirstOrThrowArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$usersPayload>
           }
           findMany: {
-            args: Prisma.usersFindManyArgs<ExtArgs>
+            args: Prisma.usersFindManyArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$usersPayload>[]
           }
           create: {
-            args: Prisma.usersCreateArgs<ExtArgs>
+            args: Prisma.usersCreateArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$usersPayload>
           }
           createMany: {
-            args: Prisma.usersCreateManyArgs<ExtArgs>
-            result: BatchPayload
+            args: Prisma.usersCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.usersCreateManyAndReturnArgs<ExtArgs>
+            args: Prisma.usersCreateManyAndReturnArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$usersPayload>[]
           }
           delete: {
-            args: Prisma.usersDeleteArgs<ExtArgs>
+            args: Prisma.usersDeleteArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$usersPayload>
           }
           update: {
-            args: Prisma.usersUpdateArgs<ExtArgs>
+            args: Prisma.usersUpdateArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$usersPayload>
           }
           deleteMany: {
-            args: Prisma.usersDeleteManyArgs<ExtArgs>
-            result: BatchPayload
+            args: Prisma.usersDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
           }
           updateMany: {
-            args: Prisma.usersUpdateManyArgs<ExtArgs>
-            result: BatchPayload
+            args: Prisma.usersUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
           }
           upsert: {
-            args: Prisma.usersUpsertArgs<ExtArgs>
+            args: Prisma.usersUpsertArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$usersPayload>
           }
           aggregate: {
-            args: Prisma.UsersAggregateArgs<ExtArgs>
+            args: Prisma.UsersAggregateArgs<ExtArgs>,
             result: $Utils.Optional<AggregateUsers>
           }
           groupBy: {
-            args: Prisma.usersGroupByArgs<ExtArgs>
+            args: Prisma.usersGroupByArgs<ExtArgs>,
             result: $Utils.Optional<UsersGroupByOutputType>[]
           }
           count: {
-            args: Prisma.usersCountArgs<ExtArgs>
+            args: Prisma.usersCountArgs<ExtArgs>,
             result: $Utils.Optional<UsersCountAggregateOutputType> | number
           }
         }
@@ -869,67 +937,67 @@ export namespace Prisma {
         fields: Prisma.gas_station_setvariablesFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.gas_station_setvariablesFindUniqueArgs<ExtArgs>
+            args: Prisma.gas_station_setvariablesFindUniqueArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$gas_station_setvariablesPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.gas_station_setvariablesFindUniqueOrThrowArgs<ExtArgs>
+            args: Prisma.gas_station_setvariablesFindUniqueOrThrowArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$gas_station_setvariablesPayload>
           }
           findFirst: {
-            args: Prisma.gas_station_setvariablesFindFirstArgs<ExtArgs>
+            args: Prisma.gas_station_setvariablesFindFirstArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$gas_station_setvariablesPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.gas_station_setvariablesFindFirstOrThrowArgs<ExtArgs>
+            args: Prisma.gas_station_setvariablesFindFirstOrThrowArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$gas_station_setvariablesPayload>
           }
           findMany: {
-            args: Prisma.gas_station_setvariablesFindManyArgs<ExtArgs>
+            args: Prisma.gas_station_setvariablesFindManyArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$gas_station_setvariablesPayload>[]
           }
           create: {
-            args: Prisma.gas_station_setvariablesCreateArgs<ExtArgs>
+            args: Prisma.gas_station_setvariablesCreateArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$gas_station_setvariablesPayload>
           }
           createMany: {
-            args: Prisma.gas_station_setvariablesCreateManyArgs<ExtArgs>
-            result: BatchPayload
+            args: Prisma.gas_station_setvariablesCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.gas_station_setvariablesCreateManyAndReturnArgs<ExtArgs>
+            args: Prisma.gas_station_setvariablesCreateManyAndReturnArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$gas_station_setvariablesPayload>[]
           }
           delete: {
-            args: Prisma.gas_station_setvariablesDeleteArgs<ExtArgs>
+            args: Prisma.gas_station_setvariablesDeleteArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$gas_station_setvariablesPayload>
           }
           update: {
-            args: Prisma.gas_station_setvariablesUpdateArgs<ExtArgs>
+            args: Prisma.gas_station_setvariablesUpdateArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$gas_station_setvariablesPayload>
           }
           deleteMany: {
-            args: Prisma.gas_station_setvariablesDeleteManyArgs<ExtArgs>
-            result: BatchPayload
+            args: Prisma.gas_station_setvariablesDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
           }
           updateMany: {
-            args: Prisma.gas_station_setvariablesUpdateManyArgs<ExtArgs>
-            result: BatchPayload
+            args: Prisma.gas_station_setvariablesUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
           }
           upsert: {
-            args: Prisma.gas_station_setvariablesUpsertArgs<ExtArgs>
+            args: Prisma.gas_station_setvariablesUpsertArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$gas_station_setvariablesPayload>
           }
           aggregate: {
-            args: Prisma.Gas_station_setvariablesAggregateArgs<ExtArgs>
+            args: Prisma.Gas_station_setvariablesAggregateArgs<ExtArgs>,
             result: $Utils.Optional<AggregateGas_station_setvariables>
           }
           groupBy: {
-            args: Prisma.gas_station_setvariablesGroupByArgs<ExtArgs>
+            args: Prisma.gas_station_setvariablesGroupByArgs<ExtArgs>,
             result: $Utils.Optional<Gas_station_setvariablesGroupByOutputType>[]
           }
           count: {
-            args: Prisma.gas_station_setvariablesCountArgs<ExtArgs>
+            args: Prisma.gas_station_setvariablesCountArgs<ExtArgs>,
             result: $Utils.Optional<Gas_station_setvariablesCountAggregateOutputType> | number
           }
         }
@@ -939,67 +1007,67 @@ export namespace Prisma {
         fields: Prisma.region_setvariablesFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.region_setvariablesFindUniqueArgs<ExtArgs>
+            args: Prisma.region_setvariablesFindUniqueArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$region_setvariablesPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.region_setvariablesFindUniqueOrThrowArgs<ExtArgs>
+            args: Prisma.region_setvariablesFindUniqueOrThrowArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$region_setvariablesPayload>
           }
           findFirst: {
-            args: Prisma.region_setvariablesFindFirstArgs<ExtArgs>
+            args: Prisma.region_setvariablesFindFirstArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$region_setvariablesPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.region_setvariablesFindFirstOrThrowArgs<ExtArgs>
+            args: Prisma.region_setvariablesFindFirstOrThrowArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$region_setvariablesPayload>
           }
           findMany: {
-            args: Prisma.region_setvariablesFindManyArgs<ExtArgs>
+            args: Prisma.region_setvariablesFindManyArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$region_setvariablesPayload>[]
           }
           create: {
-            args: Prisma.region_setvariablesCreateArgs<ExtArgs>
+            args: Prisma.region_setvariablesCreateArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$region_setvariablesPayload>
           }
           createMany: {
-            args: Prisma.region_setvariablesCreateManyArgs<ExtArgs>
-            result: BatchPayload
+            args: Prisma.region_setvariablesCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.region_setvariablesCreateManyAndReturnArgs<ExtArgs>
+            args: Prisma.region_setvariablesCreateManyAndReturnArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$region_setvariablesPayload>[]
           }
           delete: {
-            args: Prisma.region_setvariablesDeleteArgs<ExtArgs>
+            args: Prisma.region_setvariablesDeleteArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$region_setvariablesPayload>
           }
           update: {
-            args: Prisma.region_setvariablesUpdateArgs<ExtArgs>
+            args: Prisma.region_setvariablesUpdateArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$region_setvariablesPayload>
           }
           deleteMany: {
-            args: Prisma.region_setvariablesDeleteManyArgs<ExtArgs>
-            result: BatchPayload
+            args: Prisma.region_setvariablesDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
           }
           updateMany: {
-            args: Prisma.region_setvariablesUpdateManyArgs<ExtArgs>
-            result: BatchPayload
+            args: Prisma.region_setvariablesUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
           }
           upsert: {
-            args: Prisma.region_setvariablesUpsertArgs<ExtArgs>
+            args: Prisma.region_setvariablesUpsertArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$region_setvariablesPayload>
           }
           aggregate: {
-            args: Prisma.Region_setvariablesAggregateArgs<ExtArgs>
+            args: Prisma.Region_setvariablesAggregateArgs<ExtArgs>,
             result: $Utils.Optional<AggregateRegion_setvariables>
           }
           groupBy: {
-            args: Prisma.region_setvariablesGroupByArgs<ExtArgs>
+            args: Prisma.region_setvariablesGroupByArgs<ExtArgs>,
             result: $Utils.Optional<Region_setvariablesGroupByOutputType>[]
           }
           count: {
-            args: Prisma.region_setvariablesCountArgs<ExtArgs>
+            args: Prisma.region_setvariablesCountArgs<ExtArgs>,
             result: $Utils.Optional<Region_setvariablesCountAggregateOutputType> | number
           }
         }
@@ -1009,67 +1077,67 @@ export namespace Prisma {
         fields: Prisma.regionsFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.regionsFindUniqueArgs<ExtArgs>
+            args: Prisma.regionsFindUniqueArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$regionsPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.regionsFindUniqueOrThrowArgs<ExtArgs>
+            args: Prisma.regionsFindUniqueOrThrowArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$regionsPayload>
           }
           findFirst: {
-            args: Prisma.regionsFindFirstArgs<ExtArgs>
+            args: Prisma.regionsFindFirstArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$regionsPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.regionsFindFirstOrThrowArgs<ExtArgs>
+            args: Prisma.regionsFindFirstOrThrowArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$regionsPayload>
           }
           findMany: {
-            args: Prisma.regionsFindManyArgs<ExtArgs>
+            args: Prisma.regionsFindManyArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$regionsPayload>[]
           }
           create: {
-            args: Prisma.regionsCreateArgs<ExtArgs>
+            args: Prisma.regionsCreateArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$regionsPayload>
           }
           createMany: {
-            args: Prisma.regionsCreateManyArgs<ExtArgs>
-            result: BatchPayload
+            args: Prisma.regionsCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.regionsCreateManyAndReturnArgs<ExtArgs>
+            args: Prisma.regionsCreateManyAndReturnArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$regionsPayload>[]
           }
           delete: {
-            args: Prisma.regionsDeleteArgs<ExtArgs>
+            args: Prisma.regionsDeleteArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$regionsPayload>
           }
           update: {
-            args: Prisma.regionsUpdateArgs<ExtArgs>
+            args: Prisma.regionsUpdateArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$regionsPayload>
           }
           deleteMany: {
-            args: Prisma.regionsDeleteManyArgs<ExtArgs>
-            result: BatchPayload
+            args: Prisma.regionsDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
           }
           updateMany: {
-            args: Prisma.regionsUpdateManyArgs<ExtArgs>
-            result: BatchPayload
+            args: Prisma.regionsUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
           }
           upsert: {
-            args: Prisma.regionsUpsertArgs<ExtArgs>
+            args: Prisma.regionsUpsertArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$regionsPayload>
           }
           aggregate: {
-            args: Prisma.RegionsAggregateArgs<ExtArgs>
+            args: Prisma.RegionsAggregateArgs<ExtArgs>,
             result: $Utils.Optional<AggregateRegions>
           }
           groupBy: {
-            args: Prisma.regionsGroupByArgs<ExtArgs>
+            args: Prisma.regionsGroupByArgs<ExtArgs>,
             result: $Utils.Optional<RegionsGroupByOutputType>[]
           }
           count: {
-            args: Prisma.regionsCountArgs<ExtArgs>
+            args: Prisma.regionsCountArgs<ExtArgs>,
             result: $Utils.Optional<RegionsCountAggregateOutputType> | number
           }
         }
@@ -1079,67 +1147,67 @@ export namespace Prisma {
         fields: Prisma.big_numbers_valuesFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.big_numbers_valuesFindUniqueArgs<ExtArgs>
+            args: Prisma.big_numbers_valuesFindUniqueArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$big_numbers_valuesPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.big_numbers_valuesFindUniqueOrThrowArgs<ExtArgs>
+            args: Prisma.big_numbers_valuesFindUniqueOrThrowArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$big_numbers_valuesPayload>
           }
           findFirst: {
-            args: Prisma.big_numbers_valuesFindFirstArgs<ExtArgs>
+            args: Prisma.big_numbers_valuesFindFirstArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$big_numbers_valuesPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.big_numbers_valuesFindFirstOrThrowArgs<ExtArgs>
+            args: Prisma.big_numbers_valuesFindFirstOrThrowArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$big_numbers_valuesPayload>
           }
           findMany: {
-            args: Prisma.big_numbers_valuesFindManyArgs<ExtArgs>
+            args: Prisma.big_numbers_valuesFindManyArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$big_numbers_valuesPayload>[]
           }
           create: {
-            args: Prisma.big_numbers_valuesCreateArgs<ExtArgs>
+            args: Prisma.big_numbers_valuesCreateArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$big_numbers_valuesPayload>
           }
           createMany: {
-            args: Prisma.big_numbers_valuesCreateManyArgs<ExtArgs>
-            result: BatchPayload
+            args: Prisma.big_numbers_valuesCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.big_numbers_valuesCreateManyAndReturnArgs<ExtArgs>
+            args: Prisma.big_numbers_valuesCreateManyAndReturnArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$big_numbers_valuesPayload>[]
           }
           delete: {
-            args: Prisma.big_numbers_valuesDeleteArgs<ExtArgs>
+            args: Prisma.big_numbers_valuesDeleteArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$big_numbers_valuesPayload>
           }
           update: {
-            args: Prisma.big_numbers_valuesUpdateArgs<ExtArgs>
+            args: Prisma.big_numbers_valuesUpdateArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$big_numbers_valuesPayload>
           }
           deleteMany: {
-            args: Prisma.big_numbers_valuesDeleteManyArgs<ExtArgs>
-            result: BatchPayload
+            args: Prisma.big_numbers_valuesDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
           }
           updateMany: {
-            args: Prisma.big_numbers_valuesUpdateManyArgs<ExtArgs>
-            result: BatchPayload
+            args: Prisma.big_numbers_valuesUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
           }
           upsert: {
-            args: Prisma.big_numbers_valuesUpsertArgs<ExtArgs>
+            args: Prisma.big_numbers_valuesUpsertArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$big_numbers_valuesPayload>
           }
           aggregate: {
-            args: Prisma.Big_numbers_valuesAggregateArgs<ExtArgs>
+            args: Prisma.Big_numbers_valuesAggregateArgs<ExtArgs>,
             result: $Utils.Optional<AggregateBig_numbers_values>
           }
           groupBy: {
-            args: Prisma.big_numbers_valuesGroupByArgs<ExtArgs>
+            args: Prisma.big_numbers_valuesGroupByArgs<ExtArgs>,
             result: $Utils.Optional<Big_numbers_valuesGroupByOutputType>[]
           }
           count: {
-            args: Prisma.big_numbers_valuesCountArgs<ExtArgs>
+            args: Prisma.big_numbers_valuesCountArgs<ExtArgs>,
             result: $Utils.Optional<Big_numbers_valuesCountAggregateOutputType> | number
           }
         }
@@ -1149,67 +1217,67 @@ export namespace Prisma {
         fields: Prisma.gallon_gross_historyFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.gallon_gross_historyFindUniqueArgs<ExtArgs>
+            args: Prisma.gallon_gross_historyFindUniqueArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$gallon_gross_historyPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.gallon_gross_historyFindUniqueOrThrowArgs<ExtArgs>
+            args: Prisma.gallon_gross_historyFindUniqueOrThrowArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$gallon_gross_historyPayload>
           }
           findFirst: {
-            args: Prisma.gallon_gross_historyFindFirstArgs<ExtArgs>
+            args: Prisma.gallon_gross_historyFindFirstArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$gallon_gross_historyPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.gallon_gross_historyFindFirstOrThrowArgs<ExtArgs>
+            args: Prisma.gallon_gross_historyFindFirstOrThrowArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$gallon_gross_historyPayload>
           }
           findMany: {
-            args: Prisma.gallon_gross_historyFindManyArgs<ExtArgs>
+            args: Prisma.gallon_gross_historyFindManyArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$gallon_gross_historyPayload>[]
           }
           create: {
-            args: Prisma.gallon_gross_historyCreateArgs<ExtArgs>
+            args: Prisma.gallon_gross_historyCreateArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$gallon_gross_historyPayload>
           }
           createMany: {
-            args: Prisma.gallon_gross_historyCreateManyArgs<ExtArgs>
-            result: BatchPayload
+            args: Prisma.gallon_gross_historyCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.gallon_gross_historyCreateManyAndReturnArgs<ExtArgs>
+            args: Prisma.gallon_gross_historyCreateManyAndReturnArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$gallon_gross_historyPayload>[]
           }
           delete: {
-            args: Prisma.gallon_gross_historyDeleteArgs<ExtArgs>
+            args: Prisma.gallon_gross_historyDeleteArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$gallon_gross_historyPayload>
           }
           update: {
-            args: Prisma.gallon_gross_historyUpdateArgs<ExtArgs>
+            args: Prisma.gallon_gross_historyUpdateArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$gallon_gross_historyPayload>
           }
           deleteMany: {
-            args: Prisma.gallon_gross_historyDeleteManyArgs<ExtArgs>
-            result: BatchPayload
+            args: Prisma.gallon_gross_historyDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
           }
           updateMany: {
-            args: Prisma.gallon_gross_historyUpdateManyArgs<ExtArgs>
-            result: BatchPayload
+            args: Prisma.gallon_gross_historyUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
           }
           upsert: {
-            args: Prisma.gallon_gross_historyUpsertArgs<ExtArgs>
+            args: Prisma.gallon_gross_historyUpsertArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$gallon_gross_historyPayload>
           }
           aggregate: {
-            args: Prisma.Gallon_gross_historyAggregateArgs<ExtArgs>
+            args: Prisma.Gallon_gross_historyAggregateArgs<ExtArgs>,
             result: $Utils.Optional<AggregateGallon_gross_history>
           }
           groupBy: {
-            args: Prisma.gallon_gross_historyGroupByArgs<ExtArgs>
+            args: Prisma.gallon_gross_historyGroupByArgs<ExtArgs>,
             result: $Utils.Optional<Gallon_gross_historyGroupByOutputType>[]
           }
           count: {
-            args: Prisma.gallon_gross_historyCountArgs<ExtArgs>
+            args: Prisma.gallon_gross_historyCountArgs<ExtArgs>,
             result: $Utils.Optional<Gallon_gross_historyCountAggregateOutputType> | number
           }
         }
@@ -1219,68 +1287,208 @@ export namespace Prisma {
         fields: Prisma.product_gross_historyFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.product_gross_historyFindUniqueArgs<ExtArgs>
+            args: Prisma.product_gross_historyFindUniqueArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$product_gross_historyPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.product_gross_historyFindUniqueOrThrowArgs<ExtArgs>
+            args: Prisma.product_gross_historyFindUniqueOrThrowArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$product_gross_historyPayload>
           }
           findFirst: {
-            args: Prisma.product_gross_historyFindFirstArgs<ExtArgs>
+            args: Prisma.product_gross_historyFindFirstArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$product_gross_historyPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.product_gross_historyFindFirstOrThrowArgs<ExtArgs>
+            args: Prisma.product_gross_historyFindFirstOrThrowArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$product_gross_historyPayload>
           }
           findMany: {
-            args: Prisma.product_gross_historyFindManyArgs<ExtArgs>
+            args: Prisma.product_gross_historyFindManyArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$product_gross_historyPayload>[]
           }
           create: {
-            args: Prisma.product_gross_historyCreateArgs<ExtArgs>
+            args: Prisma.product_gross_historyCreateArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$product_gross_historyPayload>
           }
           createMany: {
-            args: Prisma.product_gross_historyCreateManyArgs<ExtArgs>
-            result: BatchPayload
+            args: Prisma.product_gross_historyCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.product_gross_historyCreateManyAndReturnArgs<ExtArgs>
+            args: Prisma.product_gross_historyCreateManyAndReturnArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$product_gross_historyPayload>[]
           }
           delete: {
-            args: Prisma.product_gross_historyDeleteArgs<ExtArgs>
+            args: Prisma.product_gross_historyDeleteArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$product_gross_historyPayload>
           }
           update: {
-            args: Prisma.product_gross_historyUpdateArgs<ExtArgs>
+            args: Prisma.product_gross_historyUpdateArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$product_gross_historyPayload>
           }
           deleteMany: {
-            args: Prisma.product_gross_historyDeleteManyArgs<ExtArgs>
-            result: BatchPayload
+            args: Prisma.product_gross_historyDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
           }
           updateMany: {
-            args: Prisma.product_gross_historyUpdateManyArgs<ExtArgs>
-            result: BatchPayload
+            args: Prisma.product_gross_historyUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
           }
           upsert: {
-            args: Prisma.product_gross_historyUpsertArgs<ExtArgs>
+            args: Prisma.product_gross_historyUpsertArgs<ExtArgs>,
             result: $Utils.PayloadToResult<Prisma.$product_gross_historyPayload>
           }
           aggregate: {
-            args: Prisma.Product_gross_historyAggregateArgs<ExtArgs>
+            args: Prisma.Product_gross_historyAggregateArgs<ExtArgs>,
             result: $Utils.Optional<AggregateProduct_gross_history>
           }
           groupBy: {
-            args: Prisma.product_gross_historyGroupByArgs<ExtArgs>
+            args: Prisma.product_gross_historyGroupByArgs<ExtArgs>,
             result: $Utils.Optional<Product_gross_historyGroupByOutputType>[]
           }
           count: {
-            args: Prisma.product_gross_historyCountArgs<ExtArgs>
+            args: Prisma.product_gross_historyCountArgs<ExtArgs>,
             result: $Utils.Optional<Product_gross_historyCountAggregateOutputType> | number
+          }
+        }
+      }
+      gallon_gross_last_week: {
+        payload: Prisma.$gallon_gross_last_weekPayload<ExtArgs>
+        fields: Prisma.gallon_gross_last_weekFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.gallon_gross_last_weekFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$gallon_gross_last_weekPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.gallon_gross_last_weekFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$gallon_gross_last_weekPayload>
+          }
+          findFirst: {
+            args: Prisma.gallon_gross_last_weekFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$gallon_gross_last_weekPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.gallon_gross_last_weekFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$gallon_gross_last_weekPayload>
+          }
+          findMany: {
+            args: Prisma.gallon_gross_last_weekFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$gallon_gross_last_weekPayload>[]
+          }
+          create: {
+            args: Prisma.gallon_gross_last_weekCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$gallon_gross_last_weekPayload>
+          }
+          createMany: {
+            args: Prisma.gallon_gross_last_weekCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.gallon_gross_last_weekCreateManyAndReturnArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$gallon_gross_last_weekPayload>[]
+          }
+          delete: {
+            args: Prisma.gallon_gross_last_weekDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$gallon_gross_last_weekPayload>
+          }
+          update: {
+            args: Prisma.gallon_gross_last_weekUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$gallon_gross_last_weekPayload>
+          }
+          deleteMany: {
+            args: Prisma.gallon_gross_last_weekDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.gallon_gross_last_weekUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.gallon_gross_last_weekUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$gallon_gross_last_weekPayload>
+          }
+          aggregate: {
+            args: Prisma.Gallon_gross_last_weekAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateGallon_gross_last_week>
+          }
+          groupBy: {
+            args: Prisma.gallon_gross_last_weekGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<Gallon_gross_last_weekGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.gallon_gross_last_weekCountArgs<ExtArgs>,
+            result: $Utils.Optional<Gallon_gross_last_weekCountAggregateOutputType> | number
+          }
+        }
+      }
+      product_gross_last_week: {
+        payload: Prisma.$product_gross_last_weekPayload<ExtArgs>
+        fields: Prisma.product_gross_last_weekFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.product_gross_last_weekFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$product_gross_last_weekPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.product_gross_last_weekFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$product_gross_last_weekPayload>
+          }
+          findFirst: {
+            args: Prisma.product_gross_last_weekFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$product_gross_last_weekPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.product_gross_last_weekFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$product_gross_last_weekPayload>
+          }
+          findMany: {
+            args: Prisma.product_gross_last_weekFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$product_gross_last_weekPayload>[]
+          }
+          create: {
+            args: Prisma.product_gross_last_weekCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$product_gross_last_weekPayload>
+          }
+          createMany: {
+            args: Prisma.product_gross_last_weekCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.product_gross_last_weekCreateManyAndReturnArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$product_gross_last_weekPayload>[]
+          }
+          delete: {
+            args: Prisma.product_gross_last_weekDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$product_gross_last_weekPayload>
+          }
+          update: {
+            args: Prisma.product_gross_last_weekUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$product_gross_last_weekPayload>
+          }
+          deleteMany: {
+            args: Prisma.product_gross_last_weekDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.product_gross_last_weekUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.product_gross_last_weekUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$product_gross_last_weekPayload>
+          }
+          aggregate: {
+            args: Prisma.Product_gross_last_weekAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateProduct_gross_last_week>
+          }
+          groupBy: {
+            args: Prisma.product_gross_last_weekGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<Product_gross_last_weekGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.product_gross_last_weekCountArgs<ExtArgs>,
+            result: $Utils.Optional<Product_gross_last_weekCountAggregateOutputType> | number
           }
         }
       }
@@ -1289,15 +1497,11 @@ export namespace Prisma {
     other: {
       payload: any
       operations: {
-        $executeRaw: {
-          args: [query: TemplateStringsArray | Prisma.Sql, ...values: any[]],
-          result: any
-        }
         $executeRawUnsafe: {
           args: [query: string, ...values: any[]],
           result: any
         }
-        $queryRaw: {
+        $executeRaw: {
           args: [query: TemplateStringsArray | Prisma.Sql, ...values: any[]],
           result: any
         }
@@ -1305,10 +1509,14 @@ export namespace Prisma {
           args: [query: string, ...values: any[]],
           result: any
         }
+        $queryRaw: {
+          args: [query: TemplateStringsArray | Prisma.Sql, ...values: any[]],
+          result: any
+        }
       }
     }
   }
-  export const defineExtension: $Extensions.ExtendsHook<"define", Prisma.TypeMapCb, $Extensions.DefaultArgs>
+  export const defineExtension: $Extensions.ExtendsHook<'define', Prisma.TypeMapCb, $Extensions.DefaultArgs>
   export type DefaultPrismaClient = PrismaClient
   export type ErrorFormat = 'pretty' | 'colorless' | 'minimal'
   export interface PrismaClientOptions {
@@ -1352,7 +1560,6 @@ export namespace Prisma {
       isolationLevel?: Prisma.TransactionIsolationLevel
     }
   }
-
 
   /* Types for Logging */
   export type LogLevel = 'info' | 'query' | 'warn' | 'error'
@@ -1495,15 +1702,19 @@ export namespace Prisma {
 
   export type UsersCountOutputType = {
     gallon_gross_history: number
+    gallon_gross_last_week: number
     gas_station_setvariables: number
     product_gross_history: number
+    product_gross_last_week: number
     region_setvariables: number
   }
 
   export type UsersCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     gallon_gross_history?: boolean | UsersCountOutputTypeCountGallon_gross_historyArgs
+    gallon_gross_last_week?: boolean | UsersCountOutputTypeCountGallon_gross_last_weekArgs
     gas_station_setvariables?: boolean | UsersCountOutputTypeCountGas_station_setvariablesArgs
     product_gross_history?: boolean | UsersCountOutputTypeCountProduct_gross_historyArgs
+    product_gross_last_week?: boolean | UsersCountOutputTypeCountProduct_gross_last_weekArgs
     region_setvariables?: boolean | UsersCountOutputTypeCountRegion_setvariablesArgs
   }
 
@@ -1528,6 +1739,13 @@ export namespace Prisma {
   /**
    * UsersCountOutputType without action
    */
+  export type UsersCountOutputTypeCountGallon_gross_last_weekArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: gallon_gross_last_weekWhereInput
+  }
+
+  /**
+   * UsersCountOutputType without action
+   */
   export type UsersCountOutputTypeCountGas_station_setvariablesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: gas_station_setvariablesWhereInput
   }
@@ -1537,6 +1755,13 @@ export namespace Prisma {
    */
   export type UsersCountOutputTypeCountProduct_gross_historyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: product_gross_historyWhereInput
+  }
+
+  /**
+   * UsersCountOutputType without action
+   */
+  export type UsersCountOutputTypeCountProduct_gross_last_weekArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: product_gross_last_weekWhereInput
   }
 
   /**
@@ -2004,8 +2229,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     */
-    findUnique<T extends ibm_infoFindUniqueArgs>(args: SelectSubset<T, ibm_infoFindUniqueArgs<ExtArgs>>): Prisma__ibm_infoClient<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    **/
+    findUnique<T extends ibm_infoFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, ibm_infoFindUniqueArgs<ExtArgs>>
+    ): Prisma__ibm_infoClient<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
 
     /**
      * Find one Ibm_info that matches the filter or throw an error with `error.code='P2025'` 
@@ -2018,8 +2245,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     */
-    findUniqueOrThrow<T extends ibm_infoFindUniqueOrThrowArgs>(args: SelectSubset<T, ibm_infoFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ibm_infoClient<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    **/
+    findUniqueOrThrow<T extends ibm_infoFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, ibm_infoFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__ibm_infoClient<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
 
     /**
      * Find the first Ibm_info that matches the filter.
@@ -2033,8 +2262,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     */
-    findFirst<T extends ibm_infoFindFirstArgs>(args?: SelectSubset<T, ibm_infoFindFirstArgs<ExtArgs>>): Prisma__ibm_infoClient<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    **/
+    findFirst<T extends ibm_infoFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, ibm_infoFindFirstArgs<ExtArgs>>
+    ): Prisma__ibm_infoClient<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
 
     /**
      * Find the first Ibm_info that matches the filter or
@@ -2049,8 +2280,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     */
-    findFirstOrThrow<T extends ibm_infoFindFirstOrThrowArgs>(args?: SelectSubset<T, ibm_infoFindFirstOrThrowArgs<ExtArgs>>): Prisma__ibm_infoClient<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    **/
+    findFirstOrThrow<T extends ibm_infoFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, ibm_infoFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__ibm_infoClient<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
 
     /**
      * Find zero or more Ibm_infos that matches the filter.
@@ -2067,8 +2300,10 @@ export namespace Prisma {
      * // Only select the `ibm`
      * const ibm_infoWithIbmOnly = await prisma.ibm_info.findMany({ select: { ibm: true } })
      * 
-     */
-    findMany<T extends ibm_infoFindManyArgs>(args?: SelectSubset<T, ibm_infoFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, "findMany">>
+    **/
+    findMany<T extends ibm_infoFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ibm_infoFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, 'findMany'>>
 
     /**
      * Create a Ibm_info.
@@ -2081,8 +2316,10 @@ export namespace Prisma {
      *   }
      * })
      * 
-     */
-    create<T extends ibm_infoCreateArgs>(args: SelectSubset<T, ibm_infoCreateArgs<ExtArgs>>): Prisma__ibm_infoClient<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, "create">, never, ExtArgs>
+    **/
+    create<T extends ibm_infoCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, ibm_infoCreateArgs<ExtArgs>>
+    ): Prisma__ibm_infoClient<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
 
     /**
      * Create many Ibm_infos.
@@ -2095,8 +2332,10 @@ export namespace Prisma {
      *   ]
      * })
      *     
-     */
-    createMany<T extends ibm_infoCreateManyArgs>(args?: SelectSubset<T, ibm_infoCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    **/
+    createMany<T extends ibm_infoCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ibm_infoCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create many Ibm_infos and returns the data saved in the database.
@@ -2119,8 +2358,10 @@ export namespace Prisma {
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
      * 
-     */
-    createManyAndReturn<T extends ibm_infoCreateManyAndReturnArgs>(args?: SelectSubset<T, ibm_infoCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, "createManyAndReturn">>
+    **/
+    createManyAndReturn<T extends ibm_infoCreateManyAndReturnArgs<ExtArgs>>(
+      args?: SelectSubset<T, ibm_infoCreateManyAndReturnArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, 'createManyAndReturn'>>
 
     /**
      * Delete a Ibm_info.
@@ -2133,8 +2374,10 @@ export namespace Prisma {
      *   }
      * })
      * 
-     */
-    delete<T extends ibm_infoDeleteArgs>(args: SelectSubset<T, ibm_infoDeleteArgs<ExtArgs>>): Prisma__ibm_infoClient<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+    **/
+    delete<T extends ibm_infoDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, ibm_infoDeleteArgs<ExtArgs>>
+    ): Prisma__ibm_infoClient<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
 
     /**
      * Update one Ibm_info.
@@ -2150,8 +2393,10 @@ export namespace Prisma {
      *   }
      * })
      * 
-     */
-    update<T extends ibm_infoUpdateArgs>(args: SelectSubset<T, ibm_infoUpdateArgs<ExtArgs>>): Prisma__ibm_infoClient<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, "update">, never, ExtArgs>
+    **/
+    update<T extends ibm_infoUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, ibm_infoUpdateArgs<ExtArgs>>
+    ): Prisma__ibm_infoClient<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
 
     /**
      * Delete zero or more Ibm_infos.
@@ -2164,8 +2409,10 @@ export namespace Prisma {
      *   }
      * })
      * 
-     */
-    deleteMany<T extends ibm_infoDeleteManyArgs>(args?: SelectSubset<T, ibm_infoDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    **/
+    deleteMany<T extends ibm_infoDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ibm_infoDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more Ibm_infos.
@@ -2183,8 +2430,10 @@ export namespace Prisma {
      *   }
      * })
      * 
-     */
-    updateMany<T extends ibm_infoUpdateManyArgs>(args: SelectSubset<T, ibm_infoUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    **/
+    updateMany<T extends ibm_infoUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, ibm_infoUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create or update one Ibm_info.
@@ -2202,9 +2451,10 @@ export namespace Prisma {
      *     // ... the filter for the Ibm_info we want to update
      *   }
      * })
-     */
-    upsert<T extends ibm_infoUpsertArgs>(args: SelectSubset<T, ibm_infoUpsertArgs<ExtArgs>>): Prisma__ibm_infoClient<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
-
+    **/
+    upsert<T extends ibm_infoUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, ibm_infoUpsertArgs<ExtArgs>>
+    ): Prisma__ibm_infoClient<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
 
     /**
      * Count the number of Ibm_infos.
@@ -2344,32 +2594,35 @@ export namespace Prisma {
    * https://github.com/prisma/prisma-client-js/issues/707
    */
   export interface Prisma__ibm_infoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    gallon_gross_history<T extends ibm_info$gallon_gross_historyArgs<ExtArgs> = {}>(args?: Subset<T, ibm_info$gallon_gross_historyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, "findMany"> | Null>
-    gas_station_setvariables<T extends ibm_info$gas_station_setvariablesArgs<ExtArgs> = {}>(args?: Subset<T, ibm_info$gas_station_setvariablesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, "findMany"> | Null>
-    product_gross_history<T extends ibm_info$product_gross_historyArgs<ExtArgs> = {}>(args?: Subset<T, ibm_info$product_gross_historyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, "findMany"> | Null>
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    gallon_gross_history<T extends ibm_info$gallon_gross_historyArgs<ExtArgs> = {}>(args?: Subset<T, ibm_info$gallon_gross_historyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    gas_station_setvariables<T extends ibm_info$gas_station_setvariablesArgs<ExtArgs> = {}>(args?: Subset<T, ibm_info$gas_station_setvariablesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    product_gross_history<T extends ibm_info$product_gross_historyArgs<ExtArgs> = {}>(args?: Subset<T, ibm_info$product_gross_historyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, 'findMany'> | Null>;
+
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
      * resolved value cannot be modified from the callback.
      * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
      * @returns A Promise for the completion of the callback.
      */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
   }
-
 
 
 
@@ -3159,8 +3412,10 @@ export namespace Prisma {
     use_OLEO_DIESEL_B_S10_COMUM_comb?: boolean
     use_OLEO_DIESEL_B_S500_COMUM_comb?: boolean
     gallon_gross_history?: boolean | users$gallon_gross_historyArgs<ExtArgs>
+    gallon_gross_last_week?: boolean | users$gallon_gross_last_weekArgs<ExtArgs>
     gas_station_setvariables?: boolean | users$gas_station_setvariablesArgs<ExtArgs>
     product_gross_history?: boolean | users$product_gross_historyArgs<ExtArgs>
+    product_gross_last_week?: boolean | users$product_gross_last_weekArgs<ExtArgs>
     region_setvariables?: boolean | users$region_setvariablesArgs<ExtArgs>
     _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["users"]>
@@ -3217,8 +3472,10 @@ export namespace Prisma {
 
   export type usersInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     gallon_gross_history?: boolean | users$gallon_gross_historyArgs<ExtArgs>
+    gallon_gross_last_week?: boolean | users$gallon_gross_last_weekArgs<ExtArgs>
     gas_station_setvariables?: boolean | users$gas_station_setvariablesArgs<ExtArgs>
     product_gross_history?: boolean | users$product_gross_historyArgs<ExtArgs>
+    product_gross_last_week?: boolean | users$product_gross_last_weekArgs<ExtArgs>
     region_setvariables?: boolean | users$region_setvariablesArgs<ExtArgs>
     _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -3228,8 +3485,10 @@ export namespace Prisma {
     name: "users"
     objects: {
       gallon_gross_history: Prisma.$gallon_gross_historyPayload<ExtArgs>[]
+      gallon_gross_last_week: Prisma.$gallon_gross_last_weekPayload<ExtArgs>[]
       gas_station_setvariables: Prisma.$gas_station_setvariablesPayload<ExtArgs>[]
       product_gross_history: Prisma.$product_gross_historyPayload<ExtArgs>[]
+      product_gross_last_week: Prisma.$product_gross_last_weekPayload<ExtArgs>[]
       region_setvariables: Prisma.$region_setvariablesPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -3278,8 +3537,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     */
-    findUnique<T extends usersFindUniqueArgs>(args: SelectSubset<T, usersFindUniqueArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    **/
+    findUnique<T extends usersFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, usersFindUniqueArgs<ExtArgs>>
+    ): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
 
     /**
      * Find one Users that matches the filter or throw an error with `error.code='P2025'` 
@@ -3292,8 +3553,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     */
-    findUniqueOrThrow<T extends usersFindUniqueOrThrowArgs>(args: SelectSubset<T, usersFindUniqueOrThrowArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    **/
+    findUniqueOrThrow<T extends usersFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, usersFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
 
     /**
      * Find the first Users that matches the filter.
@@ -3307,8 +3570,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     */
-    findFirst<T extends usersFindFirstArgs>(args?: SelectSubset<T, usersFindFirstArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    **/
+    findFirst<T extends usersFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, usersFindFirstArgs<ExtArgs>>
+    ): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
 
     /**
      * Find the first Users that matches the filter or
@@ -3323,8 +3588,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     */
-    findFirstOrThrow<T extends usersFindFirstOrThrowArgs>(args?: SelectSubset<T, usersFindFirstOrThrowArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    **/
+    findFirstOrThrow<T extends usersFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, usersFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
 
     /**
      * Find zero or more Users that matches the filter.
@@ -3341,8 +3608,10 @@ export namespace Prisma {
      * // Only select the `use_uuid`
      * const usersWithUse_uuidOnly = await prisma.users.findMany({ select: { use_uuid: true } })
      * 
-     */
-    findMany<T extends usersFindManyArgs>(args?: SelectSubset<T, usersFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findMany">>
+    **/
+    findMany<T extends usersFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, usersFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, 'findMany'>>
 
     /**
      * Create a Users.
@@ -3355,8 +3624,10 @@ export namespace Prisma {
      *   }
      * })
      * 
-     */
-    create<T extends usersCreateArgs>(args: SelectSubset<T, usersCreateArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "create">, never, ExtArgs>
+    **/
+    create<T extends usersCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, usersCreateArgs<ExtArgs>>
+    ): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
 
     /**
      * Create many Users.
@@ -3369,8 +3640,10 @@ export namespace Prisma {
      *   ]
      * })
      *     
-     */
-    createMany<T extends usersCreateManyArgs>(args?: SelectSubset<T, usersCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    **/
+    createMany<T extends usersCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, usersCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create many Users and returns the data saved in the database.
@@ -3393,8 +3666,10 @@ export namespace Prisma {
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
      * 
-     */
-    createManyAndReturn<T extends usersCreateManyAndReturnArgs>(args?: SelectSubset<T, usersCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "createManyAndReturn">>
+    **/
+    createManyAndReturn<T extends usersCreateManyAndReturnArgs<ExtArgs>>(
+      args?: SelectSubset<T, usersCreateManyAndReturnArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, 'createManyAndReturn'>>
 
     /**
      * Delete a Users.
@@ -3407,8 +3682,10 @@ export namespace Prisma {
      *   }
      * })
      * 
-     */
-    delete<T extends usersDeleteArgs>(args: SelectSubset<T, usersDeleteArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+    **/
+    delete<T extends usersDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, usersDeleteArgs<ExtArgs>>
+    ): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
 
     /**
      * Update one Users.
@@ -3424,8 +3701,10 @@ export namespace Prisma {
      *   }
      * })
      * 
-     */
-    update<T extends usersUpdateArgs>(args: SelectSubset<T, usersUpdateArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "update">, never, ExtArgs>
+    **/
+    update<T extends usersUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, usersUpdateArgs<ExtArgs>>
+    ): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
 
     /**
      * Delete zero or more Users.
@@ -3438,8 +3717,10 @@ export namespace Prisma {
      *   }
      * })
      * 
-     */
-    deleteMany<T extends usersDeleteManyArgs>(args?: SelectSubset<T, usersDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    **/
+    deleteMany<T extends usersDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, usersDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more Users.
@@ -3457,8 +3738,10 @@ export namespace Prisma {
      *   }
      * })
      * 
-     */
-    updateMany<T extends usersUpdateManyArgs>(args: SelectSubset<T, usersUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    **/
+    updateMany<T extends usersUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, usersUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create or update one Users.
@@ -3476,9 +3759,10 @@ export namespace Prisma {
      *     // ... the filter for the Users we want to update
      *   }
      * })
-     */
-    upsert<T extends usersUpsertArgs>(args: SelectSubset<T, usersUpsertArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
-
+    **/
+    upsert<T extends usersUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, usersUpsertArgs<ExtArgs>>
+    ): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
 
     /**
      * Count the number of Users.
@@ -3618,33 +3902,41 @@ export namespace Prisma {
    * https://github.com/prisma/prisma-client-js/issues/707
    */
   export interface Prisma__usersClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    gallon_gross_history<T extends users$gallon_gross_historyArgs<ExtArgs> = {}>(args?: Subset<T, users$gallon_gross_historyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, "findMany"> | Null>
-    gas_station_setvariables<T extends users$gas_station_setvariablesArgs<ExtArgs> = {}>(args?: Subset<T, users$gas_station_setvariablesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, "findMany"> | Null>
-    product_gross_history<T extends users$product_gross_historyArgs<ExtArgs> = {}>(args?: Subset<T, users$product_gross_historyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, "findMany"> | Null>
-    region_setvariables<T extends users$region_setvariablesArgs<ExtArgs> = {}>(args?: Subset<T, users$region_setvariablesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, "findMany"> | Null>
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    gallon_gross_history<T extends users$gallon_gross_historyArgs<ExtArgs> = {}>(args?: Subset<T, users$gallon_gross_historyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    gallon_gross_last_week<T extends users$gallon_gross_last_weekArgs<ExtArgs> = {}>(args?: Subset<T, users$gallon_gross_last_weekArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gallon_gross_last_weekPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    gas_station_setvariables<T extends users$gas_station_setvariablesArgs<ExtArgs> = {}>(args?: Subset<T, users$gas_station_setvariablesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    product_gross_history<T extends users$product_gross_historyArgs<ExtArgs> = {}>(args?: Subset<T, users$product_gross_historyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    product_gross_last_week<T extends users$product_gross_last_weekArgs<ExtArgs> = {}>(args?: Subset<T, users$product_gross_last_weekArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$product_gross_last_weekPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    region_setvariables<T extends users$region_setvariablesArgs<ExtArgs> = {}>(args?: Subset<T, users$region_setvariablesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, 'findMany'> | Null>;
+
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
      * resolved value cannot be modified from the callback.
      * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
      * @returns A Promise for the completion of the callback.
      */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
   }
-
 
 
 
@@ -4008,6 +4300,26 @@ export namespace Prisma {
   }
 
   /**
+   * users.gallon_gross_last_week
+   */
+  export type users$gallon_gross_last_weekArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the gallon_gross_last_week
+     */
+    select?: gallon_gross_last_weekSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: gallon_gross_last_weekInclude<ExtArgs> | null
+    where?: gallon_gross_last_weekWhereInput
+    orderBy?: gallon_gross_last_weekOrderByWithRelationInput | gallon_gross_last_weekOrderByWithRelationInput[]
+    cursor?: gallon_gross_last_weekWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Gallon_gross_last_weekScalarFieldEnum | Gallon_gross_last_weekScalarFieldEnum[]
+  }
+
+  /**
    * users.gas_station_setvariables
    */
   export type users$gas_station_setvariablesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4045,6 +4357,26 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: Product_gross_historyScalarFieldEnum | Product_gross_historyScalarFieldEnum[]
+  }
+
+  /**
+   * users.product_gross_last_week
+   */
+  export type users$product_gross_last_weekArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the product_gross_last_week
+     */
+    select?: product_gross_last_weekSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: product_gross_last_weekInclude<ExtArgs> | null
+    where?: product_gross_last_weekWhereInput
+    orderBy?: product_gross_last_weekOrderByWithRelationInput | product_gross_last_weekOrderByWithRelationInput[]
+    cursor?: product_gross_last_weekWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Product_gross_last_weekScalarFieldEnum | Product_gross_last_weekScalarFieldEnum[]
   }
 
   /**
@@ -5206,8 +5538,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     */
-    findUnique<T extends gas_station_setvariablesFindUniqueArgs>(args: SelectSubset<T, gas_station_setvariablesFindUniqueArgs<ExtArgs>>): Prisma__gas_station_setvariablesClient<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    **/
+    findUnique<T extends gas_station_setvariablesFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, gas_station_setvariablesFindUniqueArgs<ExtArgs>>
+    ): Prisma__gas_station_setvariablesClient<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
 
     /**
      * Find one Gas_station_setvariables that matches the filter or throw an error with `error.code='P2025'` 
@@ -5220,8 +5554,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     */
-    findUniqueOrThrow<T extends gas_station_setvariablesFindUniqueOrThrowArgs>(args: SelectSubset<T, gas_station_setvariablesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__gas_station_setvariablesClient<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    **/
+    findUniqueOrThrow<T extends gas_station_setvariablesFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, gas_station_setvariablesFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__gas_station_setvariablesClient<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
 
     /**
      * Find the first Gas_station_setvariables that matches the filter.
@@ -5235,8 +5571,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     */
-    findFirst<T extends gas_station_setvariablesFindFirstArgs>(args?: SelectSubset<T, gas_station_setvariablesFindFirstArgs<ExtArgs>>): Prisma__gas_station_setvariablesClient<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    **/
+    findFirst<T extends gas_station_setvariablesFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, gas_station_setvariablesFindFirstArgs<ExtArgs>>
+    ): Prisma__gas_station_setvariablesClient<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
 
     /**
      * Find the first Gas_station_setvariables that matches the filter or
@@ -5251,8 +5589,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     */
-    findFirstOrThrow<T extends gas_station_setvariablesFindFirstOrThrowArgs>(args?: SelectSubset<T, gas_station_setvariablesFindFirstOrThrowArgs<ExtArgs>>): Prisma__gas_station_setvariablesClient<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    **/
+    findFirstOrThrow<T extends gas_station_setvariablesFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, gas_station_setvariablesFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__gas_station_setvariablesClient<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
 
     /**
      * Find zero or more Gas_station_setvariables that matches the filter.
@@ -5269,8 +5609,10 @@ export namespace Prisma {
      * // Only select the `gas_station_uuid`
      * const gas_station_setvariablesWithGas_station_uuidOnly = await prisma.gas_station_setvariables.findMany({ select: { gas_station_uuid: true } })
      * 
-     */
-    findMany<T extends gas_station_setvariablesFindManyArgs>(args?: SelectSubset<T, gas_station_setvariablesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, "findMany">>
+    **/
+    findMany<T extends gas_station_setvariablesFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, gas_station_setvariablesFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, 'findMany'>>
 
     /**
      * Create a Gas_station_setvariables.
@@ -5283,8 +5625,10 @@ export namespace Prisma {
      *   }
      * })
      * 
-     */
-    create<T extends gas_station_setvariablesCreateArgs>(args: SelectSubset<T, gas_station_setvariablesCreateArgs<ExtArgs>>): Prisma__gas_station_setvariablesClient<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, "create">, never, ExtArgs>
+    **/
+    create<T extends gas_station_setvariablesCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, gas_station_setvariablesCreateArgs<ExtArgs>>
+    ): Prisma__gas_station_setvariablesClient<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
 
     /**
      * Create many Gas_station_setvariables.
@@ -5297,8 +5641,10 @@ export namespace Prisma {
      *   ]
      * })
      *     
-     */
-    createMany<T extends gas_station_setvariablesCreateManyArgs>(args?: SelectSubset<T, gas_station_setvariablesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    **/
+    createMany<T extends gas_station_setvariablesCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, gas_station_setvariablesCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create many Gas_station_setvariables and returns the data saved in the database.
@@ -5321,8 +5667,10 @@ export namespace Prisma {
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
      * 
-     */
-    createManyAndReturn<T extends gas_station_setvariablesCreateManyAndReturnArgs>(args?: SelectSubset<T, gas_station_setvariablesCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, "createManyAndReturn">>
+    **/
+    createManyAndReturn<T extends gas_station_setvariablesCreateManyAndReturnArgs<ExtArgs>>(
+      args?: SelectSubset<T, gas_station_setvariablesCreateManyAndReturnArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, 'createManyAndReturn'>>
 
     /**
      * Delete a Gas_station_setvariables.
@@ -5335,8 +5683,10 @@ export namespace Prisma {
      *   }
      * })
      * 
-     */
-    delete<T extends gas_station_setvariablesDeleteArgs>(args: SelectSubset<T, gas_station_setvariablesDeleteArgs<ExtArgs>>): Prisma__gas_station_setvariablesClient<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+    **/
+    delete<T extends gas_station_setvariablesDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, gas_station_setvariablesDeleteArgs<ExtArgs>>
+    ): Prisma__gas_station_setvariablesClient<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
 
     /**
      * Update one Gas_station_setvariables.
@@ -5352,8 +5702,10 @@ export namespace Prisma {
      *   }
      * })
      * 
-     */
-    update<T extends gas_station_setvariablesUpdateArgs>(args: SelectSubset<T, gas_station_setvariablesUpdateArgs<ExtArgs>>): Prisma__gas_station_setvariablesClient<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, "update">, never, ExtArgs>
+    **/
+    update<T extends gas_station_setvariablesUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, gas_station_setvariablesUpdateArgs<ExtArgs>>
+    ): Prisma__gas_station_setvariablesClient<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
 
     /**
      * Delete zero or more Gas_station_setvariables.
@@ -5366,8 +5718,10 @@ export namespace Prisma {
      *   }
      * })
      * 
-     */
-    deleteMany<T extends gas_station_setvariablesDeleteManyArgs>(args?: SelectSubset<T, gas_station_setvariablesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    **/
+    deleteMany<T extends gas_station_setvariablesDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, gas_station_setvariablesDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more Gas_station_setvariables.
@@ -5385,8 +5739,10 @@ export namespace Prisma {
      *   }
      * })
      * 
-     */
-    updateMany<T extends gas_station_setvariablesUpdateManyArgs>(args: SelectSubset<T, gas_station_setvariablesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    **/
+    updateMany<T extends gas_station_setvariablesUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, gas_station_setvariablesUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create or update one Gas_station_setvariables.
@@ -5404,9 +5760,10 @@ export namespace Prisma {
      *     // ... the filter for the Gas_station_setvariables we want to update
      *   }
      * })
-     */
-    upsert<T extends gas_station_setvariablesUpsertArgs>(args: SelectSubset<T, gas_station_setvariablesUpsertArgs<ExtArgs>>): Prisma__gas_station_setvariablesClient<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
-
+    **/
+    upsert<T extends gas_station_setvariablesUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, gas_station_setvariablesUpsertArgs<ExtArgs>>
+    ): Prisma__gas_station_setvariablesClient<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
 
     /**
      * Count the number of Gas_station_setvariables.
@@ -5546,31 +5903,33 @@ export namespace Prisma {
    * https://github.com/prisma/prisma-client-js/issues/707
    */
   export interface Prisma__gas_station_setvariablesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    ibm_info<T extends gas_station_setvariables$ibm_infoArgs<ExtArgs> = {}>(args?: Subset<T, gas_station_setvariables$ibm_infoArgs<ExtArgs>>): Prisma__ibm_infoClient<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
-    users<T extends gas_station_setvariables$usersArgs<ExtArgs> = {}>(args?: Subset<T, gas_station_setvariables$usersArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    ibm_info<T extends gas_station_setvariables$ibm_infoArgs<ExtArgs> = {}>(args?: Subset<T, gas_station_setvariables$ibm_infoArgs<ExtArgs>>): Prisma__ibm_infoClient<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
+
+    users<T extends gas_station_setvariables$usersArgs<ExtArgs> = {}>(args?: Subset<T, gas_station_setvariables$usersArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
+
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
      * resolved value cannot be modified from the callback.
      * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
      * @returns A Promise for the completion of the callback.
      */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
   }
-
 
 
 
@@ -6836,8 +7195,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     */
-    findUnique<T extends region_setvariablesFindUniqueArgs>(args: SelectSubset<T, region_setvariablesFindUniqueArgs<ExtArgs>>): Prisma__region_setvariablesClient<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    **/
+    findUnique<T extends region_setvariablesFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, region_setvariablesFindUniqueArgs<ExtArgs>>
+    ): Prisma__region_setvariablesClient<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
 
     /**
      * Find one Region_setvariables that matches the filter or throw an error with `error.code='P2025'` 
@@ -6850,8 +7211,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     */
-    findUniqueOrThrow<T extends region_setvariablesFindUniqueOrThrowArgs>(args: SelectSubset<T, region_setvariablesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__region_setvariablesClient<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    **/
+    findUniqueOrThrow<T extends region_setvariablesFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, region_setvariablesFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__region_setvariablesClient<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
 
     /**
      * Find the first Region_setvariables that matches the filter.
@@ -6865,8 +7228,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     */
-    findFirst<T extends region_setvariablesFindFirstArgs>(args?: SelectSubset<T, region_setvariablesFindFirstArgs<ExtArgs>>): Prisma__region_setvariablesClient<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    **/
+    findFirst<T extends region_setvariablesFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, region_setvariablesFindFirstArgs<ExtArgs>>
+    ): Prisma__region_setvariablesClient<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
 
     /**
      * Find the first Region_setvariables that matches the filter or
@@ -6881,8 +7246,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     */
-    findFirstOrThrow<T extends region_setvariablesFindFirstOrThrowArgs>(args?: SelectSubset<T, region_setvariablesFindFirstOrThrowArgs<ExtArgs>>): Prisma__region_setvariablesClient<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    **/
+    findFirstOrThrow<T extends region_setvariablesFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, region_setvariablesFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__region_setvariablesClient<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
 
     /**
      * Find zero or more Region_setvariables that matches the filter.
@@ -6899,8 +7266,10 @@ export namespace Prisma {
      * // Only select the `region_uuid`
      * const region_setvariablesWithRegion_uuidOnly = await prisma.region_setvariables.findMany({ select: { region_uuid: true } })
      * 
-     */
-    findMany<T extends region_setvariablesFindManyArgs>(args?: SelectSubset<T, region_setvariablesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, "findMany">>
+    **/
+    findMany<T extends region_setvariablesFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, region_setvariablesFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, 'findMany'>>
 
     /**
      * Create a Region_setvariables.
@@ -6913,8 +7282,10 @@ export namespace Prisma {
      *   }
      * })
      * 
-     */
-    create<T extends region_setvariablesCreateArgs>(args: SelectSubset<T, region_setvariablesCreateArgs<ExtArgs>>): Prisma__region_setvariablesClient<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, "create">, never, ExtArgs>
+    **/
+    create<T extends region_setvariablesCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, region_setvariablesCreateArgs<ExtArgs>>
+    ): Prisma__region_setvariablesClient<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
 
     /**
      * Create many Region_setvariables.
@@ -6927,8 +7298,10 @@ export namespace Prisma {
      *   ]
      * })
      *     
-     */
-    createMany<T extends region_setvariablesCreateManyArgs>(args?: SelectSubset<T, region_setvariablesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    **/
+    createMany<T extends region_setvariablesCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, region_setvariablesCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create many Region_setvariables and returns the data saved in the database.
@@ -6951,8 +7324,10 @@ export namespace Prisma {
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
      * 
-     */
-    createManyAndReturn<T extends region_setvariablesCreateManyAndReturnArgs>(args?: SelectSubset<T, region_setvariablesCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, "createManyAndReturn">>
+    **/
+    createManyAndReturn<T extends region_setvariablesCreateManyAndReturnArgs<ExtArgs>>(
+      args?: SelectSubset<T, region_setvariablesCreateManyAndReturnArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, 'createManyAndReturn'>>
 
     /**
      * Delete a Region_setvariables.
@@ -6965,8 +7340,10 @@ export namespace Prisma {
      *   }
      * })
      * 
-     */
-    delete<T extends region_setvariablesDeleteArgs>(args: SelectSubset<T, region_setvariablesDeleteArgs<ExtArgs>>): Prisma__region_setvariablesClient<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+    **/
+    delete<T extends region_setvariablesDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, region_setvariablesDeleteArgs<ExtArgs>>
+    ): Prisma__region_setvariablesClient<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
 
     /**
      * Update one Region_setvariables.
@@ -6982,8 +7359,10 @@ export namespace Prisma {
      *   }
      * })
      * 
-     */
-    update<T extends region_setvariablesUpdateArgs>(args: SelectSubset<T, region_setvariablesUpdateArgs<ExtArgs>>): Prisma__region_setvariablesClient<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, "update">, never, ExtArgs>
+    **/
+    update<T extends region_setvariablesUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, region_setvariablesUpdateArgs<ExtArgs>>
+    ): Prisma__region_setvariablesClient<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
 
     /**
      * Delete zero or more Region_setvariables.
@@ -6996,8 +7375,10 @@ export namespace Prisma {
      *   }
      * })
      * 
-     */
-    deleteMany<T extends region_setvariablesDeleteManyArgs>(args?: SelectSubset<T, region_setvariablesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    **/
+    deleteMany<T extends region_setvariablesDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, region_setvariablesDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more Region_setvariables.
@@ -7015,8 +7396,10 @@ export namespace Prisma {
      *   }
      * })
      * 
-     */
-    updateMany<T extends region_setvariablesUpdateManyArgs>(args: SelectSubset<T, region_setvariablesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    **/
+    updateMany<T extends region_setvariablesUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, region_setvariablesUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create or update one Region_setvariables.
@@ -7034,9 +7417,10 @@ export namespace Prisma {
      *     // ... the filter for the Region_setvariables we want to update
      *   }
      * })
-     */
-    upsert<T extends region_setvariablesUpsertArgs>(args: SelectSubset<T, region_setvariablesUpsertArgs<ExtArgs>>): Prisma__region_setvariablesClient<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
-
+    **/
+    upsert<T extends region_setvariablesUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, region_setvariablesUpsertArgs<ExtArgs>>
+    ): Prisma__region_setvariablesClient<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
 
     /**
      * Count the number of Region_setvariables.
@@ -7176,31 +7560,33 @@ export namespace Prisma {
    * https://github.com/prisma/prisma-client-js/issues/707
    */
   export interface Prisma__region_setvariablesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    regions<T extends region_setvariables$regionsArgs<ExtArgs> = {}>(args?: Subset<T, region_setvariables$regionsArgs<ExtArgs>>): Prisma__regionsClient<$Result.GetResult<Prisma.$regionsPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
-    users<T extends region_setvariables$usersArgs<ExtArgs> = {}>(args?: Subset<T, region_setvariables$usersArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    regions<T extends region_setvariables$regionsArgs<ExtArgs> = {}>(args?: Subset<T, region_setvariables$regionsArgs<ExtArgs>>): Prisma__regionsClient<$Result.GetResult<Prisma.$regionsPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
+
+    users<T extends region_setvariables$usersArgs<ExtArgs> = {}>(args?: Subset<T, region_setvariables$usersArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
+
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
      * resolved value cannot be modified from the callback.
      * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
      * @returns A Promise for the completion of the callback.
      */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
   }
-
 
 
 
@@ -7940,8 +8326,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     */
-    findUnique<T extends regionsFindUniqueArgs>(args: SelectSubset<T, regionsFindUniqueArgs<ExtArgs>>): Prisma__regionsClient<$Result.GetResult<Prisma.$regionsPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    **/
+    findUnique<T extends regionsFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, regionsFindUniqueArgs<ExtArgs>>
+    ): Prisma__regionsClient<$Result.GetResult<Prisma.$regionsPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
 
     /**
      * Find one Regions that matches the filter or throw an error with `error.code='P2025'` 
@@ -7954,8 +8342,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     */
-    findUniqueOrThrow<T extends regionsFindUniqueOrThrowArgs>(args: SelectSubset<T, regionsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__regionsClient<$Result.GetResult<Prisma.$regionsPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    **/
+    findUniqueOrThrow<T extends regionsFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, regionsFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__regionsClient<$Result.GetResult<Prisma.$regionsPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
 
     /**
      * Find the first Regions that matches the filter.
@@ -7969,8 +8359,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     */
-    findFirst<T extends regionsFindFirstArgs>(args?: SelectSubset<T, regionsFindFirstArgs<ExtArgs>>): Prisma__regionsClient<$Result.GetResult<Prisma.$regionsPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    **/
+    findFirst<T extends regionsFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, regionsFindFirstArgs<ExtArgs>>
+    ): Prisma__regionsClient<$Result.GetResult<Prisma.$regionsPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
 
     /**
      * Find the first Regions that matches the filter or
@@ -7985,8 +8377,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     */
-    findFirstOrThrow<T extends regionsFindFirstOrThrowArgs>(args?: SelectSubset<T, regionsFindFirstOrThrowArgs<ExtArgs>>): Prisma__regionsClient<$Result.GetResult<Prisma.$regionsPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    **/
+    findFirstOrThrow<T extends regionsFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, regionsFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__regionsClient<$Result.GetResult<Prisma.$regionsPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
 
     /**
      * Find zero or more Regions that matches the filter.
@@ -8003,8 +8397,10 @@ export namespace Prisma {
      * // Only select the `regions_uuid`
      * const regionsWithRegions_uuidOnly = await prisma.regions.findMany({ select: { regions_uuid: true } })
      * 
-     */
-    findMany<T extends regionsFindManyArgs>(args?: SelectSubset<T, regionsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$regionsPayload<ExtArgs>, T, "findMany">>
+    **/
+    findMany<T extends regionsFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, regionsFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$regionsPayload<ExtArgs>, T, 'findMany'>>
 
     /**
      * Create a Regions.
@@ -8017,8 +8413,10 @@ export namespace Prisma {
      *   }
      * })
      * 
-     */
-    create<T extends regionsCreateArgs>(args: SelectSubset<T, regionsCreateArgs<ExtArgs>>): Prisma__regionsClient<$Result.GetResult<Prisma.$regionsPayload<ExtArgs>, T, "create">, never, ExtArgs>
+    **/
+    create<T extends regionsCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, regionsCreateArgs<ExtArgs>>
+    ): Prisma__regionsClient<$Result.GetResult<Prisma.$regionsPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
 
     /**
      * Create many Regions.
@@ -8031,8 +8429,10 @@ export namespace Prisma {
      *   ]
      * })
      *     
-     */
-    createMany<T extends regionsCreateManyArgs>(args?: SelectSubset<T, regionsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    **/
+    createMany<T extends regionsCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, regionsCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create many Regions and returns the data saved in the database.
@@ -8055,8 +8455,10 @@ export namespace Prisma {
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
      * 
-     */
-    createManyAndReturn<T extends regionsCreateManyAndReturnArgs>(args?: SelectSubset<T, regionsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$regionsPayload<ExtArgs>, T, "createManyAndReturn">>
+    **/
+    createManyAndReturn<T extends regionsCreateManyAndReturnArgs<ExtArgs>>(
+      args?: SelectSubset<T, regionsCreateManyAndReturnArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$regionsPayload<ExtArgs>, T, 'createManyAndReturn'>>
 
     /**
      * Delete a Regions.
@@ -8069,8 +8471,10 @@ export namespace Prisma {
      *   }
      * })
      * 
-     */
-    delete<T extends regionsDeleteArgs>(args: SelectSubset<T, regionsDeleteArgs<ExtArgs>>): Prisma__regionsClient<$Result.GetResult<Prisma.$regionsPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+    **/
+    delete<T extends regionsDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, regionsDeleteArgs<ExtArgs>>
+    ): Prisma__regionsClient<$Result.GetResult<Prisma.$regionsPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
 
     /**
      * Update one Regions.
@@ -8086,8 +8490,10 @@ export namespace Prisma {
      *   }
      * })
      * 
-     */
-    update<T extends regionsUpdateArgs>(args: SelectSubset<T, regionsUpdateArgs<ExtArgs>>): Prisma__regionsClient<$Result.GetResult<Prisma.$regionsPayload<ExtArgs>, T, "update">, never, ExtArgs>
+    **/
+    update<T extends regionsUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, regionsUpdateArgs<ExtArgs>>
+    ): Prisma__regionsClient<$Result.GetResult<Prisma.$regionsPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
 
     /**
      * Delete zero or more Regions.
@@ -8100,8 +8506,10 @@ export namespace Prisma {
      *   }
      * })
      * 
-     */
-    deleteMany<T extends regionsDeleteManyArgs>(args?: SelectSubset<T, regionsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    **/
+    deleteMany<T extends regionsDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, regionsDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more Regions.
@@ -8119,8 +8527,10 @@ export namespace Prisma {
      *   }
      * })
      * 
-     */
-    updateMany<T extends regionsUpdateManyArgs>(args: SelectSubset<T, regionsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    **/
+    updateMany<T extends regionsUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, regionsUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create or update one Regions.
@@ -8138,9 +8548,10 @@ export namespace Prisma {
      *     // ... the filter for the Regions we want to update
      *   }
      * })
-     */
-    upsert<T extends regionsUpsertArgs>(args: SelectSubset<T, regionsUpsertArgs<ExtArgs>>): Prisma__regionsClient<$Result.GetResult<Prisma.$regionsPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
-
+    **/
+    upsert<T extends regionsUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, regionsUpsertArgs<ExtArgs>>
+    ): Prisma__regionsClient<$Result.GetResult<Prisma.$regionsPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
 
     /**
      * Count the number of Regions.
@@ -8280,30 +8691,31 @@ export namespace Prisma {
    * https://github.com/prisma/prisma-client-js/issues/707
    */
   export interface Prisma__regionsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    region_setvariables<T extends regions$region_setvariablesArgs<ExtArgs> = {}>(args?: Subset<T, regions$region_setvariablesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, "findMany"> | Null>
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    region_setvariables<T extends regions$region_setvariablesArgs<ExtArgs> = {}>(args?: Subset<T, regions$region_setvariablesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$region_setvariablesPayload<ExtArgs>, T, 'findMany'> | Null>;
+
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
      * resolved value cannot be modified from the callback.
      * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
      * @returns A Promise for the completion of the callback.
      */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
   }
-
 
 
 
@@ -9006,8 +9418,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     */
-    findUnique<T extends big_numbers_valuesFindUniqueArgs>(args: SelectSubset<T, big_numbers_valuesFindUniqueArgs<ExtArgs>>): Prisma__big_numbers_valuesClient<$Result.GetResult<Prisma.$big_numbers_valuesPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    **/
+    findUnique<T extends big_numbers_valuesFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, big_numbers_valuesFindUniqueArgs<ExtArgs>>
+    ): Prisma__big_numbers_valuesClient<$Result.GetResult<Prisma.$big_numbers_valuesPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
 
     /**
      * Find one Big_numbers_values that matches the filter or throw an error with `error.code='P2025'` 
@@ -9020,8 +9434,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     */
-    findUniqueOrThrow<T extends big_numbers_valuesFindUniqueOrThrowArgs>(args: SelectSubset<T, big_numbers_valuesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__big_numbers_valuesClient<$Result.GetResult<Prisma.$big_numbers_valuesPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    **/
+    findUniqueOrThrow<T extends big_numbers_valuesFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, big_numbers_valuesFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__big_numbers_valuesClient<$Result.GetResult<Prisma.$big_numbers_valuesPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
 
     /**
      * Find the first Big_numbers_values that matches the filter.
@@ -9035,8 +9451,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     */
-    findFirst<T extends big_numbers_valuesFindFirstArgs>(args?: SelectSubset<T, big_numbers_valuesFindFirstArgs<ExtArgs>>): Prisma__big_numbers_valuesClient<$Result.GetResult<Prisma.$big_numbers_valuesPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    **/
+    findFirst<T extends big_numbers_valuesFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, big_numbers_valuesFindFirstArgs<ExtArgs>>
+    ): Prisma__big_numbers_valuesClient<$Result.GetResult<Prisma.$big_numbers_valuesPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
 
     /**
      * Find the first Big_numbers_values that matches the filter or
@@ -9051,8 +9469,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     */
-    findFirstOrThrow<T extends big_numbers_valuesFindFirstOrThrowArgs>(args?: SelectSubset<T, big_numbers_valuesFindFirstOrThrowArgs<ExtArgs>>): Prisma__big_numbers_valuesClient<$Result.GetResult<Prisma.$big_numbers_valuesPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    **/
+    findFirstOrThrow<T extends big_numbers_valuesFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, big_numbers_valuesFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__big_numbers_valuesClient<$Result.GetResult<Prisma.$big_numbers_valuesPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
 
     /**
      * Find zero or more Big_numbers_values that matches the filter.
@@ -9069,8 +9489,10 @@ export namespace Prisma {
      * // Only select the `bignumbers_uuid`
      * const big_numbers_valuesWithBignumbers_uuidOnly = await prisma.big_numbers_values.findMany({ select: { bignumbers_uuid: true } })
      * 
-     */
-    findMany<T extends big_numbers_valuesFindManyArgs>(args?: SelectSubset<T, big_numbers_valuesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$big_numbers_valuesPayload<ExtArgs>, T, "findMany">>
+    **/
+    findMany<T extends big_numbers_valuesFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, big_numbers_valuesFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$big_numbers_valuesPayload<ExtArgs>, T, 'findMany'>>
 
     /**
      * Create a Big_numbers_values.
@@ -9083,8 +9505,10 @@ export namespace Prisma {
      *   }
      * })
      * 
-     */
-    create<T extends big_numbers_valuesCreateArgs>(args: SelectSubset<T, big_numbers_valuesCreateArgs<ExtArgs>>): Prisma__big_numbers_valuesClient<$Result.GetResult<Prisma.$big_numbers_valuesPayload<ExtArgs>, T, "create">, never, ExtArgs>
+    **/
+    create<T extends big_numbers_valuesCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, big_numbers_valuesCreateArgs<ExtArgs>>
+    ): Prisma__big_numbers_valuesClient<$Result.GetResult<Prisma.$big_numbers_valuesPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
 
     /**
      * Create many Big_numbers_values.
@@ -9097,8 +9521,10 @@ export namespace Prisma {
      *   ]
      * })
      *     
-     */
-    createMany<T extends big_numbers_valuesCreateManyArgs>(args?: SelectSubset<T, big_numbers_valuesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    **/
+    createMany<T extends big_numbers_valuesCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, big_numbers_valuesCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create many Big_numbers_values and returns the data saved in the database.
@@ -9121,8 +9547,10 @@ export namespace Prisma {
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
      * 
-     */
-    createManyAndReturn<T extends big_numbers_valuesCreateManyAndReturnArgs>(args?: SelectSubset<T, big_numbers_valuesCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$big_numbers_valuesPayload<ExtArgs>, T, "createManyAndReturn">>
+    **/
+    createManyAndReturn<T extends big_numbers_valuesCreateManyAndReturnArgs<ExtArgs>>(
+      args?: SelectSubset<T, big_numbers_valuesCreateManyAndReturnArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$big_numbers_valuesPayload<ExtArgs>, T, 'createManyAndReturn'>>
 
     /**
      * Delete a Big_numbers_values.
@@ -9135,8 +9563,10 @@ export namespace Prisma {
      *   }
      * })
      * 
-     */
-    delete<T extends big_numbers_valuesDeleteArgs>(args: SelectSubset<T, big_numbers_valuesDeleteArgs<ExtArgs>>): Prisma__big_numbers_valuesClient<$Result.GetResult<Prisma.$big_numbers_valuesPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+    **/
+    delete<T extends big_numbers_valuesDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, big_numbers_valuesDeleteArgs<ExtArgs>>
+    ): Prisma__big_numbers_valuesClient<$Result.GetResult<Prisma.$big_numbers_valuesPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
 
     /**
      * Update one Big_numbers_values.
@@ -9152,8 +9582,10 @@ export namespace Prisma {
      *   }
      * })
      * 
-     */
-    update<T extends big_numbers_valuesUpdateArgs>(args: SelectSubset<T, big_numbers_valuesUpdateArgs<ExtArgs>>): Prisma__big_numbers_valuesClient<$Result.GetResult<Prisma.$big_numbers_valuesPayload<ExtArgs>, T, "update">, never, ExtArgs>
+    **/
+    update<T extends big_numbers_valuesUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, big_numbers_valuesUpdateArgs<ExtArgs>>
+    ): Prisma__big_numbers_valuesClient<$Result.GetResult<Prisma.$big_numbers_valuesPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
 
     /**
      * Delete zero or more Big_numbers_values.
@@ -9166,8 +9598,10 @@ export namespace Prisma {
      *   }
      * })
      * 
-     */
-    deleteMany<T extends big_numbers_valuesDeleteManyArgs>(args?: SelectSubset<T, big_numbers_valuesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    **/
+    deleteMany<T extends big_numbers_valuesDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, big_numbers_valuesDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more Big_numbers_values.
@@ -9185,8 +9619,10 @@ export namespace Prisma {
      *   }
      * })
      * 
-     */
-    updateMany<T extends big_numbers_valuesUpdateManyArgs>(args: SelectSubset<T, big_numbers_valuesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    **/
+    updateMany<T extends big_numbers_valuesUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, big_numbers_valuesUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create or update one Big_numbers_values.
@@ -9204,9 +9640,10 @@ export namespace Prisma {
      *     // ... the filter for the Big_numbers_values we want to update
      *   }
      * })
-     */
-    upsert<T extends big_numbers_valuesUpsertArgs>(args: SelectSubset<T, big_numbers_valuesUpsertArgs<ExtArgs>>): Prisma__big_numbers_valuesClient<$Result.GetResult<Prisma.$big_numbers_valuesPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
-
+    **/
+    upsert<T extends big_numbers_valuesUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, big_numbers_valuesUpsertArgs<ExtArgs>>
+    ): Prisma__big_numbers_valuesClient<$Result.GetResult<Prisma.$big_numbers_valuesPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
 
     /**
      * Count the number of Big_numbers_values.
@@ -9346,29 +9783,30 @@ export namespace Prisma {
    * https://github.com/prisma/prisma-client-js/issues/707
    */
   export interface Prisma__big_numbers_valuesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
      * resolved value cannot be modified from the callback.
      * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
      * @returns A Promise for the completion of the callback.
      */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
   }
-
 
 
 
@@ -9960,8 +10398,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     */
-    findUnique<T extends gallon_gross_historyFindUniqueArgs>(args: SelectSubset<T, gallon_gross_historyFindUniqueArgs<ExtArgs>>): Prisma__gallon_gross_historyClient<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    **/
+    findUnique<T extends gallon_gross_historyFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, gallon_gross_historyFindUniqueArgs<ExtArgs>>
+    ): Prisma__gallon_gross_historyClient<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
 
     /**
      * Find one Gallon_gross_history that matches the filter or throw an error with `error.code='P2025'` 
@@ -9974,8 +10414,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     */
-    findUniqueOrThrow<T extends gallon_gross_historyFindUniqueOrThrowArgs>(args: SelectSubset<T, gallon_gross_historyFindUniqueOrThrowArgs<ExtArgs>>): Prisma__gallon_gross_historyClient<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    **/
+    findUniqueOrThrow<T extends gallon_gross_historyFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, gallon_gross_historyFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__gallon_gross_historyClient<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
 
     /**
      * Find the first Gallon_gross_history that matches the filter.
@@ -9989,8 +10431,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     */
-    findFirst<T extends gallon_gross_historyFindFirstArgs>(args?: SelectSubset<T, gallon_gross_historyFindFirstArgs<ExtArgs>>): Prisma__gallon_gross_historyClient<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    **/
+    findFirst<T extends gallon_gross_historyFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, gallon_gross_historyFindFirstArgs<ExtArgs>>
+    ): Prisma__gallon_gross_historyClient<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
 
     /**
      * Find the first Gallon_gross_history that matches the filter or
@@ -10005,8 +10449,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     */
-    findFirstOrThrow<T extends gallon_gross_historyFindFirstOrThrowArgs>(args?: SelectSubset<T, gallon_gross_historyFindFirstOrThrowArgs<ExtArgs>>): Prisma__gallon_gross_historyClient<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    **/
+    findFirstOrThrow<T extends gallon_gross_historyFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, gallon_gross_historyFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__gallon_gross_historyClient<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
 
     /**
      * Find zero or more Gallon_gross_histories that matches the filter.
@@ -10023,8 +10469,10 @@ export namespace Prisma {
      * // Only select the `gallon_history_uuid`
      * const gallon_gross_historyWithGallon_history_uuidOnly = await prisma.gallon_gross_history.findMany({ select: { gallon_history_uuid: true } })
      * 
-     */
-    findMany<T extends gallon_gross_historyFindManyArgs>(args?: SelectSubset<T, gallon_gross_historyFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, "findMany">>
+    **/
+    findMany<T extends gallon_gross_historyFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, gallon_gross_historyFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, 'findMany'>>
 
     /**
      * Create a Gallon_gross_history.
@@ -10037,8 +10485,10 @@ export namespace Prisma {
      *   }
      * })
      * 
-     */
-    create<T extends gallon_gross_historyCreateArgs>(args: SelectSubset<T, gallon_gross_historyCreateArgs<ExtArgs>>): Prisma__gallon_gross_historyClient<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, "create">, never, ExtArgs>
+    **/
+    create<T extends gallon_gross_historyCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, gallon_gross_historyCreateArgs<ExtArgs>>
+    ): Prisma__gallon_gross_historyClient<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
 
     /**
      * Create many Gallon_gross_histories.
@@ -10051,8 +10501,10 @@ export namespace Prisma {
      *   ]
      * })
      *     
-     */
-    createMany<T extends gallon_gross_historyCreateManyArgs>(args?: SelectSubset<T, gallon_gross_historyCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    **/
+    createMany<T extends gallon_gross_historyCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, gallon_gross_historyCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create many Gallon_gross_histories and returns the data saved in the database.
@@ -10075,8 +10527,10 @@ export namespace Prisma {
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
      * 
-     */
-    createManyAndReturn<T extends gallon_gross_historyCreateManyAndReturnArgs>(args?: SelectSubset<T, gallon_gross_historyCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, "createManyAndReturn">>
+    **/
+    createManyAndReturn<T extends gallon_gross_historyCreateManyAndReturnArgs<ExtArgs>>(
+      args?: SelectSubset<T, gallon_gross_historyCreateManyAndReturnArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, 'createManyAndReturn'>>
 
     /**
      * Delete a Gallon_gross_history.
@@ -10089,8 +10543,10 @@ export namespace Prisma {
      *   }
      * })
      * 
-     */
-    delete<T extends gallon_gross_historyDeleteArgs>(args: SelectSubset<T, gallon_gross_historyDeleteArgs<ExtArgs>>): Prisma__gallon_gross_historyClient<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+    **/
+    delete<T extends gallon_gross_historyDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, gallon_gross_historyDeleteArgs<ExtArgs>>
+    ): Prisma__gallon_gross_historyClient<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
 
     /**
      * Update one Gallon_gross_history.
@@ -10106,8 +10562,10 @@ export namespace Prisma {
      *   }
      * })
      * 
-     */
-    update<T extends gallon_gross_historyUpdateArgs>(args: SelectSubset<T, gallon_gross_historyUpdateArgs<ExtArgs>>): Prisma__gallon_gross_historyClient<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, "update">, never, ExtArgs>
+    **/
+    update<T extends gallon_gross_historyUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, gallon_gross_historyUpdateArgs<ExtArgs>>
+    ): Prisma__gallon_gross_historyClient<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
 
     /**
      * Delete zero or more Gallon_gross_histories.
@@ -10120,8 +10578,10 @@ export namespace Prisma {
      *   }
      * })
      * 
-     */
-    deleteMany<T extends gallon_gross_historyDeleteManyArgs>(args?: SelectSubset<T, gallon_gross_historyDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    **/
+    deleteMany<T extends gallon_gross_historyDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, gallon_gross_historyDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more Gallon_gross_histories.
@@ -10139,8 +10599,10 @@ export namespace Prisma {
      *   }
      * })
      * 
-     */
-    updateMany<T extends gallon_gross_historyUpdateManyArgs>(args: SelectSubset<T, gallon_gross_historyUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    **/
+    updateMany<T extends gallon_gross_historyUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, gallon_gross_historyUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create or update one Gallon_gross_history.
@@ -10158,9 +10620,10 @@ export namespace Prisma {
      *     // ... the filter for the Gallon_gross_history we want to update
      *   }
      * })
-     */
-    upsert<T extends gallon_gross_historyUpsertArgs>(args: SelectSubset<T, gallon_gross_historyUpsertArgs<ExtArgs>>): Prisma__gallon_gross_historyClient<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
-
+    **/
+    upsert<T extends gallon_gross_historyUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, gallon_gross_historyUpsertArgs<ExtArgs>>
+    ): Prisma__gallon_gross_historyClient<$Result.GetResult<Prisma.$gallon_gross_historyPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
 
     /**
      * Count the number of Gallon_gross_histories.
@@ -10300,31 +10763,33 @@ export namespace Prisma {
    * https://github.com/prisma/prisma-client-js/issues/707
    */
   export interface Prisma__gallon_gross_historyClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    ibm_info<T extends gallon_gross_history$ibm_infoArgs<ExtArgs> = {}>(args?: Subset<T, gallon_gross_history$ibm_infoArgs<ExtArgs>>): Prisma__ibm_infoClient<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
-    users<T extends gallon_gross_history$usersArgs<ExtArgs> = {}>(args?: Subset<T, gallon_gross_history$usersArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    ibm_info<T extends gallon_gross_history$ibm_infoArgs<ExtArgs> = {}>(args?: Subset<T, gallon_gross_history$ibm_infoArgs<ExtArgs>>): Prisma__ibm_infoClient<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
+
+    users<T extends gallon_gross_history$usersArgs<ExtArgs> = {}>(args?: Subset<T, gallon_gross_history$usersArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
+
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
      * resolved value cannot be modified from the callback.
      * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
      * @returns A Promise for the completion of the callback.
      */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
   }
-
 
 
 
@@ -10987,8 +11452,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     */
-    findUnique<T extends product_gross_historyFindUniqueArgs>(args: SelectSubset<T, product_gross_historyFindUniqueArgs<ExtArgs>>): Prisma__product_gross_historyClient<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    **/
+    findUnique<T extends product_gross_historyFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, product_gross_historyFindUniqueArgs<ExtArgs>>
+    ): Prisma__product_gross_historyClient<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
 
     /**
      * Find one Product_gross_history that matches the filter or throw an error with `error.code='P2025'` 
@@ -11001,8 +11468,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     */
-    findUniqueOrThrow<T extends product_gross_historyFindUniqueOrThrowArgs>(args: SelectSubset<T, product_gross_historyFindUniqueOrThrowArgs<ExtArgs>>): Prisma__product_gross_historyClient<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    **/
+    findUniqueOrThrow<T extends product_gross_historyFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, product_gross_historyFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__product_gross_historyClient<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
 
     /**
      * Find the first Product_gross_history that matches the filter.
@@ -11016,8 +11485,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     */
-    findFirst<T extends product_gross_historyFindFirstArgs>(args?: SelectSubset<T, product_gross_historyFindFirstArgs<ExtArgs>>): Prisma__product_gross_historyClient<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    **/
+    findFirst<T extends product_gross_historyFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, product_gross_historyFindFirstArgs<ExtArgs>>
+    ): Prisma__product_gross_historyClient<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
 
     /**
      * Find the first Product_gross_history that matches the filter or
@@ -11032,8 +11503,10 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     */
-    findFirstOrThrow<T extends product_gross_historyFindFirstOrThrowArgs>(args?: SelectSubset<T, product_gross_historyFindFirstOrThrowArgs<ExtArgs>>): Prisma__product_gross_historyClient<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    **/
+    findFirstOrThrow<T extends product_gross_historyFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, product_gross_historyFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__product_gross_historyClient<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
 
     /**
      * Find zero or more Product_gross_histories that matches the filter.
@@ -11050,8 +11523,10 @@ export namespace Prisma {
      * // Only select the `product_history_uuid`
      * const product_gross_historyWithProduct_history_uuidOnly = await prisma.product_gross_history.findMany({ select: { product_history_uuid: true } })
      * 
-     */
-    findMany<T extends product_gross_historyFindManyArgs>(args?: SelectSubset<T, product_gross_historyFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, "findMany">>
+    **/
+    findMany<T extends product_gross_historyFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, product_gross_historyFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, 'findMany'>>
 
     /**
      * Create a Product_gross_history.
@@ -11064,8 +11539,10 @@ export namespace Prisma {
      *   }
      * })
      * 
-     */
-    create<T extends product_gross_historyCreateArgs>(args: SelectSubset<T, product_gross_historyCreateArgs<ExtArgs>>): Prisma__product_gross_historyClient<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, "create">, never, ExtArgs>
+    **/
+    create<T extends product_gross_historyCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, product_gross_historyCreateArgs<ExtArgs>>
+    ): Prisma__product_gross_historyClient<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
 
     /**
      * Create many Product_gross_histories.
@@ -11078,8 +11555,10 @@ export namespace Prisma {
      *   ]
      * })
      *     
-     */
-    createMany<T extends product_gross_historyCreateManyArgs>(args?: SelectSubset<T, product_gross_historyCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    **/
+    createMany<T extends product_gross_historyCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, product_gross_historyCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create many Product_gross_histories and returns the data saved in the database.
@@ -11102,8 +11581,10 @@ export namespace Prisma {
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
      * 
-     */
-    createManyAndReturn<T extends product_gross_historyCreateManyAndReturnArgs>(args?: SelectSubset<T, product_gross_historyCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, "createManyAndReturn">>
+    **/
+    createManyAndReturn<T extends product_gross_historyCreateManyAndReturnArgs<ExtArgs>>(
+      args?: SelectSubset<T, product_gross_historyCreateManyAndReturnArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, 'createManyAndReturn'>>
 
     /**
      * Delete a Product_gross_history.
@@ -11116,8 +11597,10 @@ export namespace Prisma {
      *   }
      * })
      * 
-     */
-    delete<T extends product_gross_historyDeleteArgs>(args: SelectSubset<T, product_gross_historyDeleteArgs<ExtArgs>>): Prisma__product_gross_historyClient<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+    **/
+    delete<T extends product_gross_historyDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, product_gross_historyDeleteArgs<ExtArgs>>
+    ): Prisma__product_gross_historyClient<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
 
     /**
      * Update one Product_gross_history.
@@ -11133,8 +11616,10 @@ export namespace Prisma {
      *   }
      * })
      * 
-     */
-    update<T extends product_gross_historyUpdateArgs>(args: SelectSubset<T, product_gross_historyUpdateArgs<ExtArgs>>): Prisma__product_gross_historyClient<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, "update">, never, ExtArgs>
+    **/
+    update<T extends product_gross_historyUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, product_gross_historyUpdateArgs<ExtArgs>>
+    ): Prisma__product_gross_historyClient<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
 
     /**
      * Delete zero or more Product_gross_histories.
@@ -11147,8 +11632,10 @@ export namespace Prisma {
      *   }
      * })
      * 
-     */
-    deleteMany<T extends product_gross_historyDeleteManyArgs>(args?: SelectSubset<T, product_gross_historyDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    **/
+    deleteMany<T extends product_gross_historyDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, product_gross_historyDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more Product_gross_histories.
@@ -11166,8 +11653,10 @@ export namespace Prisma {
      *   }
      * })
      * 
-     */
-    updateMany<T extends product_gross_historyUpdateManyArgs>(args: SelectSubset<T, product_gross_historyUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    **/
+    updateMany<T extends product_gross_historyUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, product_gross_historyUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create or update one Product_gross_history.
@@ -11185,9 +11674,10 @@ export namespace Prisma {
      *     // ... the filter for the Product_gross_history we want to update
      *   }
      * })
-     */
-    upsert<T extends product_gross_historyUpsertArgs>(args: SelectSubset<T, product_gross_historyUpsertArgs<ExtArgs>>): Prisma__product_gross_historyClient<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
-
+    **/
+    upsert<T extends product_gross_historyUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, product_gross_historyUpsertArgs<ExtArgs>>
+    ): Prisma__product_gross_historyClient<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
 
     /**
      * Count the number of Product_gross_histories.
@@ -11327,31 +11817,33 @@ export namespace Prisma {
    * https://github.com/prisma/prisma-client-js/issues/707
    */
   export interface Prisma__product_gross_historyClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    ibm_info<T extends product_gross_history$ibm_infoArgs<ExtArgs> = {}>(args?: Subset<T, product_gross_history$ibm_infoArgs<ExtArgs>>): Prisma__ibm_infoClient<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
-    users<T extends product_gross_history$usersArgs<ExtArgs> = {}>(args?: Subset<T, product_gross_history$usersArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    ibm_info<T extends product_gross_history$ibm_infoArgs<ExtArgs> = {}>(args?: Subset<T, product_gross_history$ibm_infoArgs<ExtArgs>>): Prisma__ibm_infoClient<$Result.GetResult<Prisma.$ibm_infoPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
+
+    users<T extends product_gross_history$usersArgs<ExtArgs> = {}>(args?: Subset<T, product_gross_history$usersArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
+
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
      * resolved value cannot be modified from the callback.
      * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
      * @returns A Promise for the completion of the callback.
      */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
   }
-
 
 
 
@@ -11729,6 +12221,2046 @@ export namespace Prisma {
 
 
   /**
+   * Model gallon_gross_last_week
+   */
+
+  export type AggregateGallon_gross_last_week = {
+    _count: Gallon_gross_last_weekCountAggregateOutputType | null
+    _avg: Gallon_gross_last_weekAvgAggregateOutputType | null
+    _sum: Gallon_gross_last_weekSumAggregateOutputType | null
+    _min: Gallon_gross_last_weekMinAggregateOutputType | null
+    _max: Gallon_gross_last_weekMaxAggregateOutputType | null
+  }
+
+  export type Gallon_gross_last_weekAvgAggregateOutputType = {
+    gallon_last_history_gross: number | null
+  }
+
+  export type Gallon_gross_last_weekSumAggregateOutputType = {
+    gallon_last_history_gross: number | null
+  }
+
+  export type Gallon_gross_last_weekMinAggregateOutputType = {
+    gallon_last_history_uuid: string | null
+    use_uuid: string | null
+    gallon_last_history_gross: number | null
+    gallon_last_history_date: Date | null
+    gallon_last_history_created_at: Date | null
+    gallon_last_history_updated_at: Date | null
+  }
+
+  export type Gallon_gross_last_weekMaxAggregateOutputType = {
+    gallon_last_history_uuid: string | null
+    use_uuid: string | null
+    gallon_last_history_gross: number | null
+    gallon_last_history_date: Date | null
+    gallon_last_history_created_at: Date | null
+    gallon_last_history_updated_at: Date | null
+  }
+
+  export type Gallon_gross_last_weekCountAggregateOutputType = {
+    gallon_last_history_uuid: number
+    use_uuid: number
+    gallon_last_history_gross: number
+    gallon_last_history_date: number
+    gallon_last_history_created_at: number
+    gallon_last_history_updated_at: number
+    _all: number
+  }
+
+
+  export type Gallon_gross_last_weekAvgAggregateInputType = {
+    gallon_last_history_gross?: true
+  }
+
+  export type Gallon_gross_last_weekSumAggregateInputType = {
+    gallon_last_history_gross?: true
+  }
+
+  export type Gallon_gross_last_weekMinAggregateInputType = {
+    gallon_last_history_uuid?: true
+    use_uuid?: true
+    gallon_last_history_gross?: true
+    gallon_last_history_date?: true
+    gallon_last_history_created_at?: true
+    gallon_last_history_updated_at?: true
+  }
+
+  export type Gallon_gross_last_weekMaxAggregateInputType = {
+    gallon_last_history_uuid?: true
+    use_uuid?: true
+    gallon_last_history_gross?: true
+    gallon_last_history_date?: true
+    gallon_last_history_created_at?: true
+    gallon_last_history_updated_at?: true
+  }
+
+  export type Gallon_gross_last_weekCountAggregateInputType = {
+    gallon_last_history_uuid?: true
+    use_uuid?: true
+    gallon_last_history_gross?: true
+    gallon_last_history_date?: true
+    gallon_last_history_created_at?: true
+    gallon_last_history_updated_at?: true
+    _all?: true
+  }
+
+  export type Gallon_gross_last_weekAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which gallon_gross_last_week to aggregate.
+     */
+    where?: gallon_gross_last_weekWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of gallon_gross_last_weeks to fetch.
+     */
+    orderBy?: gallon_gross_last_weekOrderByWithRelationInput | gallon_gross_last_weekOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: gallon_gross_last_weekWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` gallon_gross_last_weeks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` gallon_gross_last_weeks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned gallon_gross_last_weeks
+    **/
+    _count?: true | Gallon_gross_last_weekCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Gallon_gross_last_weekAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Gallon_gross_last_weekSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Gallon_gross_last_weekMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Gallon_gross_last_weekMaxAggregateInputType
+  }
+
+  export type GetGallon_gross_last_weekAggregateType<T extends Gallon_gross_last_weekAggregateArgs> = {
+        [P in keyof T & keyof AggregateGallon_gross_last_week]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateGallon_gross_last_week[P]>
+      : GetScalarType<T[P], AggregateGallon_gross_last_week[P]>
+  }
+
+
+
+
+  export type gallon_gross_last_weekGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: gallon_gross_last_weekWhereInput
+    orderBy?: gallon_gross_last_weekOrderByWithAggregationInput | gallon_gross_last_weekOrderByWithAggregationInput[]
+    by: Gallon_gross_last_weekScalarFieldEnum[] | Gallon_gross_last_weekScalarFieldEnum
+    having?: gallon_gross_last_weekScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Gallon_gross_last_weekCountAggregateInputType | true
+    _avg?: Gallon_gross_last_weekAvgAggregateInputType
+    _sum?: Gallon_gross_last_weekSumAggregateInputType
+    _min?: Gallon_gross_last_weekMinAggregateInputType
+    _max?: Gallon_gross_last_weekMaxAggregateInputType
+  }
+
+  export type Gallon_gross_last_weekGroupByOutputType = {
+    gallon_last_history_uuid: string
+    use_uuid: string | null
+    gallon_last_history_gross: number | null
+    gallon_last_history_date: Date | null
+    gallon_last_history_created_at: Date
+    gallon_last_history_updated_at: Date
+    _count: Gallon_gross_last_weekCountAggregateOutputType | null
+    _avg: Gallon_gross_last_weekAvgAggregateOutputType | null
+    _sum: Gallon_gross_last_weekSumAggregateOutputType | null
+    _min: Gallon_gross_last_weekMinAggregateOutputType | null
+    _max: Gallon_gross_last_weekMaxAggregateOutputType | null
+  }
+
+  type GetGallon_gross_last_weekGroupByPayload<T extends gallon_gross_last_weekGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Gallon_gross_last_weekGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Gallon_gross_last_weekGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Gallon_gross_last_weekGroupByOutputType[P]>
+            : GetScalarType<T[P], Gallon_gross_last_weekGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type gallon_gross_last_weekSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    gallon_last_history_uuid?: boolean
+    use_uuid?: boolean
+    gallon_last_history_gross?: boolean
+    gallon_last_history_date?: boolean
+    gallon_last_history_created_at?: boolean
+    gallon_last_history_updated_at?: boolean
+    users?: boolean | gallon_gross_last_week$usersArgs<ExtArgs>
+  }, ExtArgs["result"]["gallon_gross_last_week"]>
+
+  export type gallon_gross_last_weekSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    gallon_last_history_uuid?: boolean
+    use_uuid?: boolean
+    gallon_last_history_gross?: boolean
+    gallon_last_history_date?: boolean
+    gallon_last_history_created_at?: boolean
+    gallon_last_history_updated_at?: boolean
+    users?: boolean | gallon_gross_last_week$usersArgs<ExtArgs>
+  }, ExtArgs["result"]["gallon_gross_last_week"]>
+
+  export type gallon_gross_last_weekSelectScalar = {
+    gallon_last_history_uuid?: boolean
+    use_uuid?: boolean
+    gallon_last_history_gross?: boolean
+    gallon_last_history_date?: boolean
+    gallon_last_history_created_at?: boolean
+    gallon_last_history_updated_at?: boolean
+  }
+
+  export type gallon_gross_last_weekInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    users?: boolean | gallon_gross_last_week$usersArgs<ExtArgs>
+  }
+  export type gallon_gross_last_weekIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    users?: boolean | gallon_gross_last_week$usersArgs<ExtArgs>
+  }
+
+  export type $gallon_gross_last_weekPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "gallon_gross_last_week"
+    objects: {
+      users: Prisma.$usersPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      gallon_last_history_uuid: string
+      use_uuid: string | null
+      gallon_last_history_gross: number | null
+      gallon_last_history_date: Date | null
+      gallon_last_history_created_at: Date
+      gallon_last_history_updated_at: Date
+    }, ExtArgs["result"]["gallon_gross_last_week"]>
+    composites: {}
+  }
+
+  type gallon_gross_last_weekGetPayload<S extends boolean | null | undefined | gallon_gross_last_weekDefaultArgs> = $Result.GetResult<Prisma.$gallon_gross_last_weekPayload, S>
+
+  type gallon_gross_last_weekCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<gallon_gross_last_weekFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: Gallon_gross_last_weekCountAggregateInputType | true
+    }
+
+  export interface gallon_gross_last_weekDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['gallon_gross_last_week'], meta: { name: 'gallon_gross_last_week' } }
+    /**
+     * Find zero or one Gallon_gross_last_week that matches the filter.
+     * @param {gallon_gross_last_weekFindUniqueArgs} args - Arguments to find a Gallon_gross_last_week
+     * @example
+     * // Get one Gallon_gross_last_week
+     * const gallon_gross_last_week = await prisma.gallon_gross_last_week.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends gallon_gross_last_weekFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, gallon_gross_last_weekFindUniqueArgs<ExtArgs>>
+    ): Prisma__gallon_gross_last_weekClient<$Result.GetResult<Prisma.$gallon_gross_last_weekPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one Gallon_gross_last_week that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {gallon_gross_last_weekFindUniqueOrThrowArgs} args - Arguments to find a Gallon_gross_last_week
+     * @example
+     * // Get one Gallon_gross_last_week
+     * const gallon_gross_last_week = await prisma.gallon_gross_last_week.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends gallon_gross_last_weekFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, gallon_gross_last_weekFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__gallon_gross_last_weekClient<$Result.GetResult<Prisma.$gallon_gross_last_weekPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first Gallon_gross_last_week that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {gallon_gross_last_weekFindFirstArgs} args - Arguments to find a Gallon_gross_last_week
+     * @example
+     * // Get one Gallon_gross_last_week
+     * const gallon_gross_last_week = await prisma.gallon_gross_last_week.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends gallon_gross_last_weekFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, gallon_gross_last_weekFindFirstArgs<ExtArgs>>
+    ): Prisma__gallon_gross_last_weekClient<$Result.GetResult<Prisma.$gallon_gross_last_weekPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first Gallon_gross_last_week that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {gallon_gross_last_weekFindFirstOrThrowArgs} args - Arguments to find a Gallon_gross_last_week
+     * @example
+     * // Get one Gallon_gross_last_week
+     * const gallon_gross_last_week = await prisma.gallon_gross_last_week.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends gallon_gross_last_weekFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, gallon_gross_last_weekFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__gallon_gross_last_weekClient<$Result.GetResult<Prisma.$gallon_gross_last_weekPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more Gallon_gross_last_weeks that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {gallon_gross_last_weekFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Gallon_gross_last_weeks
+     * const gallon_gross_last_weeks = await prisma.gallon_gross_last_week.findMany()
+     * 
+     * // Get first 10 Gallon_gross_last_weeks
+     * const gallon_gross_last_weeks = await prisma.gallon_gross_last_week.findMany({ take: 10 })
+     * 
+     * // Only select the `gallon_last_history_uuid`
+     * const gallon_gross_last_weekWithGallon_last_history_uuidOnly = await prisma.gallon_gross_last_week.findMany({ select: { gallon_last_history_uuid: true } })
+     * 
+    **/
+    findMany<T extends gallon_gross_last_weekFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, gallon_gross_last_weekFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gallon_gross_last_weekPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a Gallon_gross_last_week.
+     * @param {gallon_gross_last_weekCreateArgs} args - Arguments to create a Gallon_gross_last_week.
+     * @example
+     * // Create one Gallon_gross_last_week
+     * const Gallon_gross_last_week = await prisma.gallon_gross_last_week.create({
+     *   data: {
+     *     // ... data to create a Gallon_gross_last_week
+     *   }
+     * })
+     * 
+    **/
+    create<T extends gallon_gross_last_weekCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, gallon_gross_last_weekCreateArgs<ExtArgs>>
+    ): Prisma__gallon_gross_last_weekClient<$Result.GetResult<Prisma.$gallon_gross_last_weekPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many Gallon_gross_last_weeks.
+     * @param {gallon_gross_last_weekCreateManyArgs} args - Arguments to create many Gallon_gross_last_weeks.
+     * @example
+     * // Create many Gallon_gross_last_weeks
+     * const gallon_gross_last_week = await prisma.gallon_gross_last_week.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+    **/
+    createMany<T extends gallon_gross_last_weekCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, gallon_gross_last_weekCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Gallon_gross_last_weeks and returns the data saved in the database.
+     * @param {gallon_gross_last_weekCreateManyAndReturnArgs} args - Arguments to create many Gallon_gross_last_weeks.
+     * @example
+     * // Create many Gallon_gross_last_weeks
+     * const gallon_gross_last_week = await prisma.gallon_gross_last_week.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Gallon_gross_last_weeks and only return the `gallon_last_history_uuid`
+     * const gallon_gross_last_weekWithGallon_last_history_uuidOnly = await prisma.gallon_gross_last_week.createManyAndReturn({ 
+     *   select: { gallon_last_history_uuid: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+    **/
+    createManyAndReturn<T extends gallon_gross_last_weekCreateManyAndReturnArgs<ExtArgs>>(
+      args?: SelectSubset<T, gallon_gross_last_weekCreateManyAndReturnArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gallon_gross_last_weekPayload<ExtArgs>, T, 'createManyAndReturn'>>
+
+    /**
+     * Delete a Gallon_gross_last_week.
+     * @param {gallon_gross_last_weekDeleteArgs} args - Arguments to delete one Gallon_gross_last_week.
+     * @example
+     * // Delete one Gallon_gross_last_week
+     * const Gallon_gross_last_week = await prisma.gallon_gross_last_week.delete({
+     *   where: {
+     *     // ... filter to delete one Gallon_gross_last_week
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends gallon_gross_last_weekDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, gallon_gross_last_weekDeleteArgs<ExtArgs>>
+    ): Prisma__gallon_gross_last_weekClient<$Result.GetResult<Prisma.$gallon_gross_last_weekPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one Gallon_gross_last_week.
+     * @param {gallon_gross_last_weekUpdateArgs} args - Arguments to update one Gallon_gross_last_week.
+     * @example
+     * // Update one Gallon_gross_last_week
+     * const gallon_gross_last_week = await prisma.gallon_gross_last_week.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends gallon_gross_last_weekUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, gallon_gross_last_weekUpdateArgs<ExtArgs>>
+    ): Prisma__gallon_gross_last_weekClient<$Result.GetResult<Prisma.$gallon_gross_last_weekPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more Gallon_gross_last_weeks.
+     * @param {gallon_gross_last_weekDeleteManyArgs} args - Arguments to filter Gallon_gross_last_weeks to delete.
+     * @example
+     * // Delete a few Gallon_gross_last_weeks
+     * const { count } = await prisma.gallon_gross_last_week.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends gallon_gross_last_weekDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, gallon_gross_last_weekDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Gallon_gross_last_weeks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {gallon_gross_last_weekUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Gallon_gross_last_weeks
+     * const gallon_gross_last_week = await prisma.gallon_gross_last_week.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends gallon_gross_last_weekUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, gallon_gross_last_weekUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Gallon_gross_last_week.
+     * @param {gallon_gross_last_weekUpsertArgs} args - Arguments to update or create a Gallon_gross_last_week.
+     * @example
+     * // Update or create a Gallon_gross_last_week
+     * const gallon_gross_last_week = await prisma.gallon_gross_last_week.upsert({
+     *   create: {
+     *     // ... data to create a Gallon_gross_last_week
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Gallon_gross_last_week we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends gallon_gross_last_weekUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, gallon_gross_last_weekUpsertArgs<ExtArgs>>
+    ): Prisma__gallon_gross_last_weekClient<$Result.GetResult<Prisma.$gallon_gross_last_weekPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of Gallon_gross_last_weeks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {gallon_gross_last_weekCountArgs} args - Arguments to filter Gallon_gross_last_weeks to count.
+     * @example
+     * // Count the number of Gallon_gross_last_weeks
+     * const count = await prisma.gallon_gross_last_week.count({
+     *   where: {
+     *     // ... the filter for the Gallon_gross_last_weeks we want to count
+     *   }
+     * })
+    **/
+    count<T extends gallon_gross_last_weekCountArgs>(
+      args?: Subset<T, gallon_gross_last_weekCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Gallon_gross_last_weekCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Gallon_gross_last_week.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Gallon_gross_last_weekAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Gallon_gross_last_weekAggregateArgs>(args: Subset<T, Gallon_gross_last_weekAggregateArgs>): Prisma.PrismaPromise<GetGallon_gross_last_weekAggregateType<T>>
+
+    /**
+     * Group by Gallon_gross_last_week.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {gallon_gross_last_weekGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends gallon_gross_last_weekGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: gallon_gross_last_weekGroupByArgs['orderBy'] }
+        : { orderBy?: gallon_gross_last_weekGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, gallon_gross_last_weekGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetGallon_gross_last_weekGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the gallon_gross_last_week model
+   */
+  readonly fields: gallon_gross_last_weekFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for gallon_gross_last_week.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__gallon_gross_last_weekClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    users<T extends gallon_gross_last_week$usersArgs<ExtArgs> = {}>(args?: Subset<T, gallon_gross_last_week$usersArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the gallon_gross_last_week model
+   */ 
+  interface gallon_gross_last_weekFieldRefs {
+    readonly gallon_last_history_uuid: FieldRef<"gallon_gross_last_week", 'String'>
+    readonly use_uuid: FieldRef<"gallon_gross_last_week", 'String'>
+    readonly gallon_last_history_gross: FieldRef<"gallon_gross_last_week", 'Float'>
+    readonly gallon_last_history_date: FieldRef<"gallon_gross_last_week", 'DateTime'>
+    readonly gallon_last_history_created_at: FieldRef<"gallon_gross_last_week", 'DateTime'>
+    readonly gallon_last_history_updated_at: FieldRef<"gallon_gross_last_week", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * gallon_gross_last_week findUnique
+   */
+  export type gallon_gross_last_weekFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the gallon_gross_last_week
+     */
+    select?: gallon_gross_last_weekSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: gallon_gross_last_weekInclude<ExtArgs> | null
+    /**
+     * Filter, which gallon_gross_last_week to fetch.
+     */
+    where: gallon_gross_last_weekWhereUniqueInput
+  }
+
+  /**
+   * gallon_gross_last_week findUniqueOrThrow
+   */
+  export type gallon_gross_last_weekFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the gallon_gross_last_week
+     */
+    select?: gallon_gross_last_weekSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: gallon_gross_last_weekInclude<ExtArgs> | null
+    /**
+     * Filter, which gallon_gross_last_week to fetch.
+     */
+    where: gallon_gross_last_weekWhereUniqueInput
+  }
+
+  /**
+   * gallon_gross_last_week findFirst
+   */
+  export type gallon_gross_last_weekFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the gallon_gross_last_week
+     */
+    select?: gallon_gross_last_weekSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: gallon_gross_last_weekInclude<ExtArgs> | null
+    /**
+     * Filter, which gallon_gross_last_week to fetch.
+     */
+    where?: gallon_gross_last_weekWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of gallon_gross_last_weeks to fetch.
+     */
+    orderBy?: gallon_gross_last_weekOrderByWithRelationInput | gallon_gross_last_weekOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for gallon_gross_last_weeks.
+     */
+    cursor?: gallon_gross_last_weekWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` gallon_gross_last_weeks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` gallon_gross_last_weeks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of gallon_gross_last_weeks.
+     */
+    distinct?: Gallon_gross_last_weekScalarFieldEnum | Gallon_gross_last_weekScalarFieldEnum[]
+  }
+
+  /**
+   * gallon_gross_last_week findFirstOrThrow
+   */
+  export type gallon_gross_last_weekFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the gallon_gross_last_week
+     */
+    select?: gallon_gross_last_weekSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: gallon_gross_last_weekInclude<ExtArgs> | null
+    /**
+     * Filter, which gallon_gross_last_week to fetch.
+     */
+    where?: gallon_gross_last_weekWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of gallon_gross_last_weeks to fetch.
+     */
+    orderBy?: gallon_gross_last_weekOrderByWithRelationInput | gallon_gross_last_weekOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for gallon_gross_last_weeks.
+     */
+    cursor?: gallon_gross_last_weekWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` gallon_gross_last_weeks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` gallon_gross_last_weeks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of gallon_gross_last_weeks.
+     */
+    distinct?: Gallon_gross_last_weekScalarFieldEnum | Gallon_gross_last_weekScalarFieldEnum[]
+  }
+
+  /**
+   * gallon_gross_last_week findMany
+   */
+  export type gallon_gross_last_weekFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the gallon_gross_last_week
+     */
+    select?: gallon_gross_last_weekSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: gallon_gross_last_weekInclude<ExtArgs> | null
+    /**
+     * Filter, which gallon_gross_last_weeks to fetch.
+     */
+    where?: gallon_gross_last_weekWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of gallon_gross_last_weeks to fetch.
+     */
+    orderBy?: gallon_gross_last_weekOrderByWithRelationInput | gallon_gross_last_weekOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing gallon_gross_last_weeks.
+     */
+    cursor?: gallon_gross_last_weekWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` gallon_gross_last_weeks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` gallon_gross_last_weeks.
+     */
+    skip?: number
+    distinct?: Gallon_gross_last_weekScalarFieldEnum | Gallon_gross_last_weekScalarFieldEnum[]
+  }
+
+  /**
+   * gallon_gross_last_week create
+   */
+  export type gallon_gross_last_weekCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the gallon_gross_last_week
+     */
+    select?: gallon_gross_last_weekSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: gallon_gross_last_weekInclude<ExtArgs> | null
+    /**
+     * The data needed to create a gallon_gross_last_week.
+     */
+    data?: XOR<gallon_gross_last_weekCreateInput, gallon_gross_last_weekUncheckedCreateInput>
+  }
+
+  /**
+   * gallon_gross_last_week createMany
+   */
+  export type gallon_gross_last_weekCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many gallon_gross_last_weeks.
+     */
+    data: gallon_gross_last_weekCreateManyInput | gallon_gross_last_weekCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * gallon_gross_last_week createManyAndReturn
+   */
+  export type gallon_gross_last_weekCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the gallon_gross_last_week
+     */
+    select?: gallon_gross_last_weekSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many gallon_gross_last_weeks.
+     */
+    data: gallon_gross_last_weekCreateManyInput | gallon_gross_last_weekCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: gallon_gross_last_weekIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * gallon_gross_last_week update
+   */
+  export type gallon_gross_last_weekUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the gallon_gross_last_week
+     */
+    select?: gallon_gross_last_weekSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: gallon_gross_last_weekInclude<ExtArgs> | null
+    /**
+     * The data needed to update a gallon_gross_last_week.
+     */
+    data: XOR<gallon_gross_last_weekUpdateInput, gallon_gross_last_weekUncheckedUpdateInput>
+    /**
+     * Choose, which gallon_gross_last_week to update.
+     */
+    where: gallon_gross_last_weekWhereUniqueInput
+  }
+
+  /**
+   * gallon_gross_last_week updateMany
+   */
+  export type gallon_gross_last_weekUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update gallon_gross_last_weeks.
+     */
+    data: XOR<gallon_gross_last_weekUpdateManyMutationInput, gallon_gross_last_weekUncheckedUpdateManyInput>
+    /**
+     * Filter which gallon_gross_last_weeks to update
+     */
+    where?: gallon_gross_last_weekWhereInput
+  }
+
+  /**
+   * gallon_gross_last_week upsert
+   */
+  export type gallon_gross_last_weekUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the gallon_gross_last_week
+     */
+    select?: gallon_gross_last_weekSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: gallon_gross_last_weekInclude<ExtArgs> | null
+    /**
+     * The filter to search for the gallon_gross_last_week to update in case it exists.
+     */
+    where: gallon_gross_last_weekWhereUniqueInput
+    /**
+     * In case the gallon_gross_last_week found by the `where` argument doesn't exist, create a new gallon_gross_last_week with this data.
+     */
+    create: XOR<gallon_gross_last_weekCreateInput, gallon_gross_last_weekUncheckedCreateInput>
+    /**
+     * In case the gallon_gross_last_week was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<gallon_gross_last_weekUpdateInput, gallon_gross_last_weekUncheckedUpdateInput>
+  }
+
+  /**
+   * gallon_gross_last_week delete
+   */
+  export type gallon_gross_last_weekDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the gallon_gross_last_week
+     */
+    select?: gallon_gross_last_weekSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: gallon_gross_last_weekInclude<ExtArgs> | null
+    /**
+     * Filter which gallon_gross_last_week to delete.
+     */
+    where: gallon_gross_last_weekWhereUniqueInput
+  }
+
+  /**
+   * gallon_gross_last_week deleteMany
+   */
+  export type gallon_gross_last_weekDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which gallon_gross_last_weeks to delete
+     */
+    where?: gallon_gross_last_weekWhereInput
+  }
+
+  /**
+   * gallon_gross_last_week.users
+   */
+  export type gallon_gross_last_week$usersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the users
+     */
+    select?: usersSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: usersInclude<ExtArgs> | null
+    where?: usersWhereInput
+  }
+
+  /**
+   * gallon_gross_last_week without action
+   */
+  export type gallon_gross_last_weekDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the gallon_gross_last_week
+     */
+    select?: gallon_gross_last_weekSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: gallon_gross_last_weekInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model product_gross_last_week
+   */
+
+  export type AggregateProduct_gross_last_week = {
+    _count: Product_gross_last_weekCountAggregateOutputType | null
+    _avg: Product_gross_last_weekAvgAggregateOutputType | null
+    _sum: Product_gross_last_weekSumAggregateOutputType | null
+    _min: Product_gross_last_weekMinAggregateOutputType | null
+    _max: Product_gross_last_weekMaxAggregateOutputType | null
+  }
+
+  export type Product_gross_last_weekAvgAggregateOutputType = {
+    product_last_history_gross: number | null
+  }
+
+  export type Product_gross_last_weekSumAggregateOutputType = {
+    product_last_history_gross: number | null
+  }
+
+  export type Product_gross_last_weekMinAggregateOutputType = {
+    product_last_history_uuid: string | null
+    use_uuid: string | null
+    product_last_history_gross: number | null
+    product_last_history_date: Date | null
+    product_last_history_created_at: Date | null
+    product_last_history_updated_at: Date | null
+  }
+
+  export type Product_gross_last_weekMaxAggregateOutputType = {
+    product_last_history_uuid: string | null
+    use_uuid: string | null
+    product_last_history_gross: number | null
+    product_last_history_date: Date | null
+    product_last_history_created_at: Date | null
+    product_last_history_updated_at: Date | null
+  }
+
+  export type Product_gross_last_weekCountAggregateOutputType = {
+    product_last_history_uuid: number
+    use_uuid: number
+    product_last_history_gross: number
+    product_last_history_date: number
+    product_last_history_created_at: number
+    product_last_history_updated_at: number
+    _all: number
+  }
+
+
+  export type Product_gross_last_weekAvgAggregateInputType = {
+    product_last_history_gross?: true
+  }
+
+  export type Product_gross_last_weekSumAggregateInputType = {
+    product_last_history_gross?: true
+  }
+
+  export type Product_gross_last_weekMinAggregateInputType = {
+    product_last_history_uuid?: true
+    use_uuid?: true
+    product_last_history_gross?: true
+    product_last_history_date?: true
+    product_last_history_created_at?: true
+    product_last_history_updated_at?: true
+  }
+
+  export type Product_gross_last_weekMaxAggregateInputType = {
+    product_last_history_uuid?: true
+    use_uuid?: true
+    product_last_history_gross?: true
+    product_last_history_date?: true
+    product_last_history_created_at?: true
+    product_last_history_updated_at?: true
+  }
+
+  export type Product_gross_last_weekCountAggregateInputType = {
+    product_last_history_uuid?: true
+    use_uuid?: true
+    product_last_history_gross?: true
+    product_last_history_date?: true
+    product_last_history_created_at?: true
+    product_last_history_updated_at?: true
+    _all?: true
+  }
+
+  export type Product_gross_last_weekAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which product_gross_last_week to aggregate.
+     */
+    where?: product_gross_last_weekWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of product_gross_last_weeks to fetch.
+     */
+    orderBy?: product_gross_last_weekOrderByWithRelationInput | product_gross_last_weekOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: product_gross_last_weekWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` product_gross_last_weeks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` product_gross_last_weeks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned product_gross_last_weeks
+    **/
+    _count?: true | Product_gross_last_weekCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Product_gross_last_weekAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Product_gross_last_weekSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Product_gross_last_weekMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Product_gross_last_weekMaxAggregateInputType
+  }
+
+  export type GetProduct_gross_last_weekAggregateType<T extends Product_gross_last_weekAggregateArgs> = {
+        [P in keyof T & keyof AggregateProduct_gross_last_week]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateProduct_gross_last_week[P]>
+      : GetScalarType<T[P], AggregateProduct_gross_last_week[P]>
+  }
+
+
+
+
+  export type product_gross_last_weekGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: product_gross_last_weekWhereInput
+    orderBy?: product_gross_last_weekOrderByWithAggregationInput | product_gross_last_weekOrderByWithAggregationInput[]
+    by: Product_gross_last_weekScalarFieldEnum[] | Product_gross_last_weekScalarFieldEnum
+    having?: product_gross_last_weekScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Product_gross_last_weekCountAggregateInputType | true
+    _avg?: Product_gross_last_weekAvgAggregateInputType
+    _sum?: Product_gross_last_weekSumAggregateInputType
+    _min?: Product_gross_last_weekMinAggregateInputType
+    _max?: Product_gross_last_weekMaxAggregateInputType
+  }
+
+  export type Product_gross_last_weekGroupByOutputType = {
+    product_last_history_uuid: string
+    use_uuid: string | null
+    product_last_history_gross: number | null
+    product_last_history_date: Date | null
+    product_last_history_created_at: Date
+    product_last_history_updated_at: Date
+    _count: Product_gross_last_weekCountAggregateOutputType | null
+    _avg: Product_gross_last_weekAvgAggregateOutputType | null
+    _sum: Product_gross_last_weekSumAggregateOutputType | null
+    _min: Product_gross_last_weekMinAggregateOutputType | null
+    _max: Product_gross_last_weekMaxAggregateOutputType | null
+  }
+
+  type GetProduct_gross_last_weekGroupByPayload<T extends product_gross_last_weekGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Product_gross_last_weekGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Product_gross_last_weekGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Product_gross_last_weekGroupByOutputType[P]>
+            : GetScalarType<T[P], Product_gross_last_weekGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type product_gross_last_weekSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    product_last_history_uuid?: boolean
+    use_uuid?: boolean
+    product_last_history_gross?: boolean
+    product_last_history_date?: boolean
+    product_last_history_created_at?: boolean
+    product_last_history_updated_at?: boolean
+    users?: boolean | product_gross_last_week$usersArgs<ExtArgs>
+  }, ExtArgs["result"]["product_gross_last_week"]>
+
+  export type product_gross_last_weekSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    product_last_history_uuid?: boolean
+    use_uuid?: boolean
+    product_last_history_gross?: boolean
+    product_last_history_date?: boolean
+    product_last_history_created_at?: boolean
+    product_last_history_updated_at?: boolean
+    users?: boolean | product_gross_last_week$usersArgs<ExtArgs>
+  }, ExtArgs["result"]["product_gross_last_week"]>
+
+  export type product_gross_last_weekSelectScalar = {
+    product_last_history_uuid?: boolean
+    use_uuid?: boolean
+    product_last_history_gross?: boolean
+    product_last_history_date?: boolean
+    product_last_history_created_at?: boolean
+    product_last_history_updated_at?: boolean
+  }
+
+  export type product_gross_last_weekInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    users?: boolean | product_gross_last_week$usersArgs<ExtArgs>
+  }
+  export type product_gross_last_weekIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    users?: boolean | product_gross_last_week$usersArgs<ExtArgs>
+  }
+
+  export type $product_gross_last_weekPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "product_gross_last_week"
+    objects: {
+      users: Prisma.$usersPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      product_last_history_uuid: string
+      use_uuid: string | null
+      product_last_history_gross: number | null
+      product_last_history_date: Date | null
+      product_last_history_created_at: Date
+      product_last_history_updated_at: Date
+    }, ExtArgs["result"]["product_gross_last_week"]>
+    composites: {}
+  }
+
+  type product_gross_last_weekGetPayload<S extends boolean | null | undefined | product_gross_last_weekDefaultArgs> = $Result.GetResult<Prisma.$product_gross_last_weekPayload, S>
+
+  type product_gross_last_weekCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<product_gross_last_weekFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: Product_gross_last_weekCountAggregateInputType | true
+    }
+
+  export interface product_gross_last_weekDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['product_gross_last_week'], meta: { name: 'product_gross_last_week' } }
+    /**
+     * Find zero or one Product_gross_last_week that matches the filter.
+     * @param {product_gross_last_weekFindUniqueArgs} args - Arguments to find a Product_gross_last_week
+     * @example
+     * // Get one Product_gross_last_week
+     * const product_gross_last_week = await prisma.product_gross_last_week.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends product_gross_last_weekFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, product_gross_last_weekFindUniqueArgs<ExtArgs>>
+    ): Prisma__product_gross_last_weekClient<$Result.GetResult<Prisma.$product_gross_last_weekPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one Product_gross_last_week that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {product_gross_last_weekFindUniqueOrThrowArgs} args - Arguments to find a Product_gross_last_week
+     * @example
+     * // Get one Product_gross_last_week
+     * const product_gross_last_week = await prisma.product_gross_last_week.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends product_gross_last_weekFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, product_gross_last_weekFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__product_gross_last_weekClient<$Result.GetResult<Prisma.$product_gross_last_weekPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first Product_gross_last_week that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {product_gross_last_weekFindFirstArgs} args - Arguments to find a Product_gross_last_week
+     * @example
+     * // Get one Product_gross_last_week
+     * const product_gross_last_week = await prisma.product_gross_last_week.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends product_gross_last_weekFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, product_gross_last_weekFindFirstArgs<ExtArgs>>
+    ): Prisma__product_gross_last_weekClient<$Result.GetResult<Prisma.$product_gross_last_weekPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first Product_gross_last_week that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {product_gross_last_weekFindFirstOrThrowArgs} args - Arguments to find a Product_gross_last_week
+     * @example
+     * // Get one Product_gross_last_week
+     * const product_gross_last_week = await prisma.product_gross_last_week.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends product_gross_last_weekFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, product_gross_last_weekFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__product_gross_last_weekClient<$Result.GetResult<Prisma.$product_gross_last_weekPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more Product_gross_last_weeks that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {product_gross_last_weekFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Product_gross_last_weeks
+     * const product_gross_last_weeks = await prisma.product_gross_last_week.findMany()
+     * 
+     * // Get first 10 Product_gross_last_weeks
+     * const product_gross_last_weeks = await prisma.product_gross_last_week.findMany({ take: 10 })
+     * 
+     * // Only select the `product_last_history_uuid`
+     * const product_gross_last_weekWithProduct_last_history_uuidOnly = await prisma.product_gross_last_week.findMany({ select: { product_last_history_uuid: true } })
+     * 
+    **/
+    findMany<T extends product_gross_last_weekFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, product_gross_last_weekFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$product_gross_last_weekPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a Product_gross_last_week.
+     * @param {product_gross_last_weekCreateArgs} args - Arguments to create a Product_gross_last_week.
+     * @example
+     * // Create one Product_gross_last_week
+     * const Product_gross_last_week = await prisma.product_gross_last_week.create({
+     *   data: {
+     *     // ... data to create a Product_gross_last_week
+     *   }
+     * })
+     * 
+    **/
+    create<T extends product_gross_last_weekCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, product_gross_last_weekCreateArgs<ExtArgs>>
+    ): Prisma__product_gross_last_weekClient<$Result.GetResult<Prisma.$product_gross_last_weekPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many Product_gross_last_weeks.
+     * @param {product_gross_last_weekCreateManyArgs} args - Arguments to create many Product_gross_last_weeks.
+     * @example
+     * // Create many Product_gross_last_weeks
+     * const product_gross_last_week = await prisma.product_gross_last_week.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+    **/
+    createMany<T extends product_gross_last_weekCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, product_gross_last_weekCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Product_gross_last_weeks and returns the data saved in the database.
+     * @param {product_gross_last_weekCreateManyAndReturnArgs} args - Arguments to create many Product_gross_last_weeks.
+     * @example
+     * // Create many Product_gross_last_weeks
+     * const product_gross_last_week = await prisma.product_gross_last_week.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Product_gross_last_weeks and only return the `product_last_history_uuid`
+     * const product_gross_last_weekWithProduct_last_history_uuidOnly = await prisma.product_gross_last_week.createManyAndReturn({ 
+     *   select: { product_last_history_uuid: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+    **/
+    createManyAndReturn<T extends product_gross_last_weekCreateManyAndReturnArgs<ExtArgs>>(
+      args?: SelectSubset<T, product_gross_last_weekCreateManyAndReturnArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$product_gross_last_weekPayload<ExtArgs>, T, 'createManyAndReturn'>>
+
+    /**
+     * Delete a Product_gross_last_week.
+     * @param {product_gross_last_weekDeleteArgs} args - Arguments to delete one Product_gross_last_week.
+     * @example
+     * // Delete one Product_gross_last_week
+     * const Product_gross_last_week = await prisma.product_gross_last_week.delete({
+     *   where: {
+     *     // ... filter to delete one Product_gross_last_week
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends product_gross_last_weekDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, product_gross_last_weekDeleteArgs<ExtArgs>>
+    ): Prisma__product_gross_last_weekClient<$Result.GetResult<Prisma.$product_gross_last_weekPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one Product_gross_last_week.
+     * @param {product_gross_last_weekUpdateArgs} args - Arguments to update one Product_gross_last_week.
+     * @example
+     * // Update one Product_gross_last_week
+     * const product_gross_last_week = await prisma.product_gross_last_week.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends product_gross_last_weekUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, product_gross_last_weekUpdateArgs<ExtArgs>>
+    ): Prisma__product_gross_last_weekClient<$Result.GetResult<Prisma.$product_gross_last_weekPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more Product_gross_last_weeks.
+     * @param {product_gross_last_weekDeleteManyArgs} args - Arguments to filter Product_gross_last_weeks to delete.
+     * @example
+     * // Delete a few Product_gross_last_weeks
+     * const { count } = await prisma.product_gross_last_week.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends product_gross_last_weekDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, product_gross_last_weekDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Product_gross_last_weeks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {product_gross_last_weekUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Product_gross_last_weeks
+     * const product_gross_last_week = await prisma.product_gross_last_week.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends product_gross_last_weekUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, product_gross_last_weekUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Product_gross_last_week.
+     * @param {product_gross_last_weekUpsertArgs} args - Arguments to update or create a Product_gross_last_week.
+     * @example
+     * // Update or create a Product_gross_last_week
+     * const product_gross_last_week = await prisma.product_gross_last_week.upsert({
+     *   create: {
+     *     // ... data to create a Product_gross_last_week
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Product_gross_last_week we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends product_gross_last_weekUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, product_gross_last_weekUpsertArgs<ExtArgs>>
+    ): Prisma__product_gross_last_weekClient<$Result.GetResult<Prisma.$product_gross_last_weekPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of Product_gross_last_weeks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {product_gross_last_weekCountArgs} args - Arguments to filter Product_gross_last_weeks to count.
+     * @example
+     * // Count the number of Product_gross_last_weeks
+     * const count = await prisma.product_gross_last_week.count({
+     *   where: {
+     *     // ... the filter for the Product_gross_last_weeks we want to count
+     *   }
+     * })
+    **/
+    count<T extends product_gross_last_weekCountArgs>(
+      args?: Subset<T, product_gross_last_weekCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Product_gross_last_weekCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Product_gross_last_week.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Product_gross_last_weekAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Product_gross_last_weekAggregateArgs>(args: Subset<T, Product_gross_last_weekAggregateArgs>): Prisma.PrismaPromise<GetProduct_gross_last_weekAggregateType<T>>
+
+    /**
+     * Group by Product_gross_last_week.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {product_gross_last_weekGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends product_gross_last_weekGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: product_gross_last_weekGroupByArgs['orderBy'] }
+        : { orderBy?: product_gross_last_weekGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, product_gross_last_weekGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProduct_gross_last_weekGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the product_gross_last_week model
+   */
+  readonly fields: product_gross_last_weekFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for product_gross_last_week.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__product_gross_last_weekClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    users<T extends product_gross_last_week$usersArgs<ExtArgs> = {}>(args?: Subset<T, product_gross_last_week$usersArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the product_gross_last_week model
+   */ 
+  interface product_gross_last_weekFieldRefs {
+    readonly product_last_history_uuid: FieldRef<"product_gross_last_week", 'String'>
+    readonly use_uuid: FieldRef<"product_gross_last_week", 'String'>
+    readonly product_last_history_gross: FieldRef<"product_gross_last_week", 'Float'>
+    readonly product_last_history_date: FieldRef<"product_gross_last_week", 'DateTime'>
+    readonly product_last_history_created_at: FieldRef<"product_gross_last_week", 'DateTime'>
+    readonly product_last_history_updated_at: FieldRef<"product_gross_last_week", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * product_gross_last_week findUnique
+   */
+  export type product_gross_last_weekFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the product_gross_last_week
+     */
+    select?: product_gross_last_weekSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: product_gross_last_weekInclude<ExtArgs> | null
+    /**
+     * Filter, which product_gross_last_week to fetch.
+     */
+    where: product_gross_last_weekWhereUniqueInput
+  }
+
+  /**
+   * product_gross_last_week findUniqueOrThrow
+   */
+  export type product_gross_last_weekFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the product_gross_last_week
+     */
+    select?: product_gross_last_weekSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: product_gross_last_weekInclude<ExtArgs> | null
+    /**
+     * Filter, which product_gross_last_week to fetch.
+     */
+    where: product_gross_last_weekWhereUniqueInput
+  }
+
+  /**
+   * product_gross_last_week findFirst
+   */
+  export type product_gross_last_weekFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the product_gross_last_week
+     */
+    select?: product_gross_last_weekSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: product_gross_last_weekInclude<ExtArgs> | null
+    /**
+     * Filter, which product_gross_last_week to fetch.
+     */
+    where?: product_gross_last_weekWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of product_gross_last_weeks to fetch.
+     */
+    orderBy?: product_gross_last_weekOrderByWithRelationInput | product_gross_last_weekOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for product_gross_last_weeks.
+     */
+    cursor?: product_gross_last_weekWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` product_gross_last_weeks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` product_gross_last_weeks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of product_gross_last_weeks.
+     */
+    distinct?: Product_gross_last_weekScalarFieldEnum | Product_gross_last_weekScalarFieldEnum[]
+  }
+
+  /**
+   * product_gross_last_week findFirstOrThrow
+   */
+  export type product_gross_last_weekFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the product_gross_last_week
+     */
+    select?: product_gross_last_weekSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: product_gross_last_weekInclude<ExtArgs> | null
+    /**
+     * Filter, which product_gross_last_week to fetch.
+     */
+    where?: product_gross_last_weekWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of product_gross_last_weeks to fetch.
+     */
+    orderBy?: product_gross_last_weekOrderByWithRelationInput | product_gross_last_weekOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for product_gross_last_weeks.
+     */
+    cursor?: product_gross_last_weekWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` product_gross_last_weeks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` product_gross_last_weeks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of product_gross_last_weeks.
+     */
+    distinct?: Product_gross_last_weekScalarFieldEnum | Product_gross_last_weekScalarFieldEnum[]
+  }
+
+  /**
+   * product_gross_last_week findMany
+   */
+  export type product_gross_last_weekFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the product_gross_last_week
+     */
+    select?: product_gross_last_weekSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: product_gross_last_weekInclude<ExtArgs> | null
+    /**
+     * Filter, which product_gross_last_weeks to fetch.
+     */
+    where?: product_gross_last_weekWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of product_gross_last_weeks to fetch.
+     */
+    orderBy?: product_gross_last_weekOrderByWithRelationInput | product_gross_last_weekOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing product_gross_last_weeks.
+     */
+    cursor?: product_gross_last_weekWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` product_gross_last_weeks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` product_gross_last_weeks.
+     */
+    skip?: number
+    distinct?: Product_gross_last_weekScalarFieldEnum | Product_gross_last_weekScalarFieldEnum[]
+  }
+
+  /**
+   * product_gross_last_week create
+   */
+  export type product_gross_last_weekCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the product_gross_last_week
+     */
+    select?: product_gross_last_weekSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: product_gross_last_weekInclude<ExtArgs> | null
+    /**
+     * The data needed to create a product_gross_last_week.
+     */
+    data?: XOR<product_gross_last_weekCreateInput, product_gross_last_weekUncheckedCreateInput>
+  }
+
+  /**
+   * product_gross_last_week createMany
+   */
+  export type product_gross_last_weekCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many product_gross_last_weeks.
+     */
+    data: product_gross_last_weekCreateManyInput | product_gross_last_weekCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * product_gross_last_week createManyAndReturn
+   */
+  export type product_gross_last_weekCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the product_gross_last_week
+     */
+    select?: product_gross_last_weekSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many product_gross_last_weeks.
+     */
+    data: product_gross_last_weekCreateManyInput | product_gross_last_weekCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: product_gross_last_weekIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * product_gross_last_week update
+   */
+  export type product_gross_last_weekUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the product_gross_last_week
+     */
+    select?: product_gross_last_weekSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: product_gross_last_weekInclude<ExtArgs> | null
+    /**
+     * The data needed to update a product_gross_last_week.
+     */
+    data: XOR<product_gross_last_weekUpdateInput, product_gross_last_weekUncheckedUpdateInput>
+    /**
+     * Choose, which product_gross_last_week to update.
+     */
+    where: product_gross_last_weekWhereUniqueInput
+  }
+
+  /**
+   * product_gross_last_week updateMany
+   */
+  export type product_gross_last_weekUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update product_gross_last_weeks.
+     */
+    data: XOR<product_gross_last_weekUpdateManyMutationInput, product_gross_last_weekUncheckedUpdateManyInput>
+    /**
+     * Filter which product_gross_last_weeks to update
+     */
+    where?: product_gross_last_weekWhereInput
+  }
+
+  /**
+   * product_gross_last_week upsert
+   */
+  export type product_gross_last_weekUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the product_gross_last_week
+     */
+    select?: product_gross_last_weekSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: product_gross_last_weekInclude<ExtArgs> | null
+    /**
+     * The filter to search for the product_gross_last_week to update in case it exists.
+     */
+    where: product_gross_last_weekWhereUniqueInput
+    /**
+     * In case the product_gross_last_week found by the `where` argument doesn't exist, create a new product_gross_last_week with this data.
+     */
+    create: XOR<product_gross_last_weekCreateInput, product_gross_last_weekUncheckedCreateInput>
+    /**
+     * In case the product_gross_last_week was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<product_gross_last_weekUpdateInput, product_gross_last_weekUncheckedUpdateInput>
+  }
+
+  /**
+   * product_gross_last_week delete
+   */
+  export type product_gross_last_weekDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the product_gross_last_week
+     */
+    select?: product_gross_last_weekSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: product_gross_last_weekInclude<ExtArgs> | null
+    /**
+     * Filter which product_gross_last_week to delete.
+     */
+    where: product_gross_last_weekWhereUniqueInput
+  }
+
+  /**
+   * product_gross_last_week deleteMany
+   */
+  export type product_gross_last_weekDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which product_gross_last_weeks to delete
+     */
+    where?: product_gross_last_weekWhereInput
+  }
+
+  /**
+   * product_gross_last_week.users
+   */
+  export type product_gross_last_week$usersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the users
+     */
+    select?: usersSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: usersInclude<ExtArgs> | null
+    where?: usersWhereInput
+  }
+
+  /**
+   * product_gross_last_week without action
+   */
+  export type product_gross_last_weekDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the product_gross_last_week
+     */
+    select?: product_gross_last_weekSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: product_gross_last_weekInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -11989,6 +14521,30 @@ export namespace Prisma {
   export type Product_gross_historyScalarFieldEnum = (typeof Product_gross_historyScalarFieldEnum)[keyof typeof Product_gross_historyScalarFieldEnum]
 
 
+  export const Gallon_gross_last_weekScalarFieldEnum: {
+    gallon_last_history_uuid: 'gallon_last_history_uuid',
+    use_uuid: 'use_uuid',
+    gallon_last_history_gross: 'gallon_last_history_gross',
+    gallon_last_history_date: 'gallon_last_history_date',
+    gallon_last_history_created_at: 'gallon_last_history_created_at',
+    gallon_last_history_updated_at: 'gallon_last_history_updated_at'
+  };
+
+  export type Gallon_gross_last_weekScalarFieldEnum = (typeof Gallon_gross_last_weekScalarFieldEnum)[keyof typeof Gallon_gross_last_weekScalarFieldEnum]
+
+
+  export const Product_gross_last_weekScalarFieldEnum: {
+    product_last_history_uuid: 'product_last_history_uuid',
+    use_uuid: 'use_uuid',
+    product_last_history_gross: 'product_last_history_gross',
+    product_last_history_date: 'product_last_history_date',
+    product_last_history_created_at: 'product_last_history_created_at',
+    product_last_history_updated_at: 'product_last_history_updated_at'
+  };
+
+  export type Product_gross_last_weekScalarFieldEnum = (typeof Product_gross_last_weekScalarFieldEnum)[keyof typeof Product_gross_last_weekScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -12244,8 +14800,10 @@ export namespace Prisma {
     use_OLEO_DIESEL_B_S10_COMUM_comb?: FloatNullableFilter<"users"> | number | null
     use_OLEO_DIESEL_B_S500_COMUM_comb?: FloatNullableFilter<"users"> | number | null
     gallon_gross_history?: Gallon_gross_historyListRelationFilter
+    gallon_gross_last_week?: Gallon_gross_last_weekListRelationFilter
     gas_station_setvariables?: Gas_station_setvariablesListRelationFilter
     product_gross_history?: Product_gross_historyListRelationFilter
+    product_gross_last_week?: Product_gross_last_weekListRelationFilter
     region_setvariables?: Region_setvariablesListRelationFilter
   }
 
@@ -12273,8 +14831,10 @@ export namespace Prisma {
     use_OLEO_DIESEL_B_S10_COMUM_comb?: SortOrderInput | SortOrder
     use_OLEO_DIESEL_B_S500_COMUM_comb?: SortOrderInput | SortOrder
     gallon_gross_history?: gallon_gross_historyOrderByRelationAggregateInput
+    gallon_gross_last_week?: gallon_gross_last_weekOrderByRelationAggregateInput
     gas_station_setvariables?: gas_station_setvariablesOrderByRelationAggregateInput
     product_gross_history?: product_gross_historyOrderByRelationAggregateInput
+    product_gross_last_week?: product_gross_last_weekOrderByRelationAggregateInput
     region_setvariables?: region_setvariablesOrderByRelationAggregateInput
   }
 
@@ -12305,8 +14865,10 @@ export namespace Prisma {
     use_OLEO_DIESEL_B_S10_COMUM_comb?: FloatNullableFilter<"users"> | number | null
     use_OLEO_DIESEL_B_S500_COMUM_comb?: FloatNullableFilter<"users"> | number | null
     gallon_gross_history?: Gallon_gross_historyListRelationFilter
+    gallon_gross_last_week?: Gallon_gross_last_weekListRelationFilter
     gas_station_setvariables?: Gas_station_setvariablesListRelationFilter
     product_gross_history?: Product_gross_historyListRelationFilter
+    product_gross_last_week?: Product_gross_last_weekListRelationFilter
     region_setvariables?: Region_setvariablesListRelationFilter
   }, "use_uuid">
 
@@ -13359,6 +15921,130 @@ export namespace Prisma {
     product_history_updated_at?: DateTimeWithAggregatesFilter<"product_gross_history"> | Date | string
   }
 
+  export type gallon_gross_last_weekWhereInput = {
+    AND?: gallon_gross_last_weekWhereInput | gallon_gross_last_weekWhereInput[]
+    OR?: gallon_gross_last_weekWhereInput[]
+    NOT?: gallon_gross_last_weekWhereInput | gallon_gross_last_weekWhereInput[]
+    gallon_last_history_uuid?: UuidFilter<"gallon_gross_last_week"> | string
+    use_uuid?: UuidNullableFilter<"gallon_gross_last_week"> | string | null
+    gallon_last_history_gross?: FloatNullableFilter<"gallon_gross_last_week"> | number | null
+    gallon_last_history_date?: DateTimeNullableFilter<"gallon_gross_last_week"> | Date | string | null
+    gallon_last_history_created_at?: DateTimeFilter<"gallon_gross_last_week"> | Date | string
+    gallon_last_history_updated_at?: DateTimeFilter<"gallon_gross_last_week"> | Date | string
+    users?: XOR<UsersNullableRelationFilter, usersWhereInput> | null
+  }
+
+  export type gallon_gross_last_weekOrderByWithRelationInput = {
+    gallon_last_history_uuid?: SortOrder
+    use_uuid?: SortOrderInput | SortOrder
+    gallon_last_history_gross?: SortOrderInput | SortOrder
+    gallon_last_history_date?: SortOrderInput | SortOrder
+    gallon_last_history_created_at?: SortOrder
+    gallon_last_history_updated_at?: SortOrder
+    users?: usersOrderByWithRelationInput
+  }
+
+  export type gallon_gross_last_weekWhereUniqueInput = Prisma.AtLeast<{
+    gallon_last_history_uuid?: string
+    AND?: gallon_gross_last_weekWhereInput | gallon_gross_last_weekWhereInput[]
+    OR?: gallon_gross_last_weekWhereInput[]
+    NOT?: gallon_gross_last_weekWhereInput | gallon_gross_last_weekWhereInput[]
+    use_uuid?: UuidNullableFilter<"gallon_gross_last_week"> | string | null
+    gallon_last_history_gross?: FloatNullableFilter<"gallon_gross_last_week"> | number | null
+    gallon_last_history_date?: DateTimeNullableFilter<"gallon_gross_last_week"> | Date | string | null
+    gallon_last_history_created_at?: DateTimeFilter<"gallon_gross_last_week"> | Date | string
+    gallon_last_history_updated_at?: DateTimeFilter<"gallon_gross_last_week"> | Date | string
+    users?: XOR<UsersNullableRelationFilter, usersWhereInput> | null
+  }, "gallon_last_history_uuid">
+
+  export type gallon_gross_last_weekOrderByWithAggregationInput = {
+    gallon_last_history_uuid?: SortOrder
+    use_uuid?: SortOrderInput | SortOrder
+    gallon_last_history_gross?: SortOrderInput | SortOrder
+    gallon_last_history_date?: SortOrderInput | SortOrder
+    gallon_last_history_created_at?: SortOrder
+    gallon_last_history_updated_at?: SortOrder
+    _count?: gallon_gross_last_weekCountOrderByAggregateInput
+    _avg?: gallon_gross_last_weekAvgOrderByAggregateInput
+    _max?: gallon_gross_last_weekMaxOrderByAggregateInput
+    _min?: gallon_gross_last_weekMinOrderByAggregateInput
+    _sum?: gallon_gross_last_weekSumOrderByAggregateInput
+  }
+
+  export type gallon_gross_last_weekScalarWhereWithAggregatesInput = {
+    AND?: gallon_gross_last_weekScalarWhereWithAggregatesInput | gallon_gross_last_weekScalarWhereWithAggregatesInput[]
+    OR?: gallon_gross_last_weekScalarWhereWithAggregatesInput[]
+    NOT?: gallon_gross_last_weekScalarWhereWithAggregatesInput | gallon_gross_last_weekScalarWhereWithAggregatesInput[]
+    gallon_last_history_uuid?: UuidWithAggregatesFilter<"gallon_gross_last_week"> | string
+    use_uuid?: UuidNullableWithAggregatesFilter<"gallon_gross_last_week"> | string | null
+    gallon_last_history_gross?: FloatNullableWithAggregatesFilter<"gallon_gross_last_week"> | number | null
+    gallon_last_history_date?: DateTimeNullableWithAggregatesFilter<"gallon_gross_last_week"> | Date | string | null
+    gallon_last_history_created_at?: DateTimeWithAggregatesFilter<"gallon_gross_last_week"> | Date | string
+    gallon_last_history_updated_at?: DateTimeWithAggregatesFilter<"gallon_gross_last_week"> | Date | string
+  }
+
+  export type product_gross_last_weekWhereInput = {
+    AND?: product_gross_last_weekWhereInput | product_gross_last_weekWhereInput[]
+    OR?: product_gross_last_weekWhereInput[]
+    NOT?: product_gross_last_weekWhereInput | product_gross_last_weekWhereInput[]
+    product_last_history_uuid?: UuidFilter<"product_gross_last_week"> | string
+    use_uuid?: UuidNullableFilter<"product_gross_last_week"> | string | null
+    product_last_history_gross?: FloatNullableFilter<"product_gross_last_week"> | number | null
+    product_last_history_date?: DateTimeNullableFilter<"product_gross_last_week"> | Date | string | null
+    product_last_history_created_at?: DateTimeFilter<"product_gross_last_week"> | Date | string
+    product_last_history_updated_at?: DateTimeFilter<"product_gross_last_week"> | Date | string
+    users?: XOR<UsersNullableRelationFilter, usersWhereInput> | null
+  }
+
+  export type product_gross_last_weekOrderByWithRelationInput = {
+    product_last_history_uuid?: SortOrder
+    use_uuid?: SortOrderInput | SortOrder
+    product_last_history_gross?: SortOrderInput | SortOrder
+    product_last_history_date?: SortOrderInput | SortOrder
+    product_last_history_created_at?: SortOrder
+    product_last_history_updated_at?: SortOrder
+    users?: usersOrderByWithRelationInput
+  }
+
+  export type product_gross_last_weekWhereUniqueInput = Prisma.AtLeast<{
+    product_last_history_uuid?: string
+    AND?: product_gross_last_weekWhereInput | product_gross_last_weekWhereInput[]
+    OR?: product_gross_last_weekWhereInput[]
+    NOT?: product_gross_last_weekWhereInput | product_gross_last_weekWhereInput[]
+    use_uuid?: UuidNullableFilter<"product_gross_last_week"> | string | null
+    product_last_history_gross?: FloatNullableFilter<"product_gross_last_week"> | number | null
+    product_last_history_date?: DateTimeNullableFilter<"product_gross_last_week"> | Date | string | null
+    product_last_history_created_at?: DateTimeFilter<"product_gross_last_week"> | Date | string
+    product_last_history_updated_at?: DateTimeFilter<"product_gross_last_week"> | Date | string
+    users?: XOR<UsersNullableRelationFilter, usersWhereInput> | null
+  }, "product_last_history_uuid">
+
+  export type product_gross_last_weekOrderByWithAggregationInput = {
+    product_last_history_uuid?: SortOrder
+    use_uuid?: SortOrderInput | SortOrder
+    product_last_history_gross?: SortOrderInput | SortOrder
+    product_last_history_date?: SortOrderInput | SortOrder
+    product_last_history_created_at?: SortOrder
+    product_last_history_updated_at?: SortOrder
+    _count?: product_gross_last_weekCountOrderByAggregateInput
+    _avg?: product_gross_last_weekAvgOrderByAggregateInput
+    _max?: product_gross_last_weekMaxOrderByAggregateInput
+    _min?: product_gross_last_weekMinOrderByAggregateInput
+    _sum?: product_gross_last_weekSumOrderByAggregateInput
+  }
+
+  export type product_gross_last_weekScalarWhereWithAggregatesInput = {
+    AND?: product_gross_last_weekScalarWhereWithAggregatesInput | product_gross_last_weekScalarWhereWithAggregatesInput[]
+    OR?: product_gross_last_weekScalarWhereWithAggregatesInput[]
+    NOT?: product_gross_last_weekScalarWhereWithAggregatesInput | product_gross_last_weekScalarWhereWithAggregatesInput[]
+    product_last_history_uuid?: UuidWithAggregatesFilter<"product_gross_last_week"> | string
+    use_uuid?: UuidNullableWithAggregatesFilter<"product_gross_last_week"> | string | null
+    product_last_history_gross?: FloatNullableWithAggregatesFilter<"product_gross_last_week"> | number | null
+    product_last_history_date?: DateTimeNullableWithAggregatesFilter<"product_gross_last_week"> | Date | string | null
+    product_last_history_created_at?: DateTimeWithAggregatesFilter<"product_gross_last_week"> | Date | string
+    product_last_history_updated_at?: DateTimeWithAggregatesFilter<"product_gross_last_week"> | Date | string
+  }
+
   export type ibm_infoCreateInput = {
     ibm?: string | null
     nomefantasia?: string | null
@@ -13549,8 +16235,10 @@ export namespace Prisma {
     use_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
     use_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
     gallon_gross_history?: gallon_gross_historyCreateNestedManyWithoutUsersInput
+    gallon_gross_last_week?: gallon_gross_last_weekCreateNestedManyWithoutUsersInput
     gas_station_setvariables?: gas_station_setvariablesCreateNestedManyWithoutUsersInput
     product_gross_history?: product_gross_historyCreateNestedManyWithoutUsersInput
+    product_gross_last_week?: product_gross_last_weekCreateNestedManyWithoutUsersInput
     region_setvariables?: region_setvariablesCreateNestedManyWithoutUsersInput
   }
 
@@ -13578,8 +16266,10 @@ export namespace Prisma {
     use_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
     use_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
     gallon_gross_history?: gallon_gross_historyUncheckedCreateNestedManyWithoutUsersInput
+    gallon_gross_last_week?: gallon_gross_last_weekUncheckedCreateNestedManyWithoutUsersInput
     gas_station_setvariables?: gas_station_setvariablesUncheckedCreateNestedManyWithoutUsersInput
     product_gross_history?: product_gross_historyUncheckedCreateNestedManyWithoutUsersInput
+    product_gross_last_week?: product_gross_last_weekUncheckedCreateNestedManyWithoutUsersInput
     region_setvariables?: region_setvariablesUncheckedCreateNestedManyWithoutUsersInput
   }
 
@@ -13607,8 +16297,10 @@ export namespace Prisma {
     use_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
     use_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
     gallon_gross_history?: gallon_gross_historyUpdateManyWithoutUsersNestedInput
+    gallon_gross_last_week?: gallon_gross_last_weekUpdateManyWithoutUsersNestedInput
     gas_station_setvariables?: gas_station_setvariablesUpdateManyWithoutUsersNestedInput
     product_gross_history?: product_gross_historyUpdateManyWithoutUsersNestedInput
+    product_gross_last_week?: product_gross_last_weekUpdateManyWithoutUsersNestedInput
     region_setvariables?: region_setvariablesUpdateManyWithoutUsersNestedInput
   }
 
@@ -13636,8 +16328,10 @@ export namespace Prisma {
     use_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
     use_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
     gallon_gross_history?: gallon_gross_historyUncheckedUpdateManyWithoutUsersNestedInput
+    gallon_gross_last_week?: gallon_gross_last_weekUncheckedUpdateManyWithoutUsersNestedInput
     gas_station_setvariables?: gas_station_setvariablesUncheckedUpdateManyWithoutUsersNestedInput
     product_gross_history?: product_gross_historyUncheckedUpdateManyWithoutUsersNestedInput
+    product_gross_last_week?: product_gross_last_weekUncheckedUpdateManyWithoutUsersNestedInput
     region_setvariables?: region_setvariablesUncheckedUpdateManyWithoutUsersNestedInput
   }
 
@@ -14944,6 +17638,130 @@ export namespace Prisma {
     product_history_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type gallon_gross_last_weekCreateInput = {
+    gallon_last_history_uuid?: string
+    gallon_last_history_gross?: number | null
+    gallon_last_history_date?: Date | string | null
+    gallon_last_history_created_at?: Date | string
+    gallon_last_history_updated_at?: Date | string
+    users?: usersCreateNestedOneWithoutGallon_gross_last_weekInput
+  }
+
+  export type gallon_gross_last_weekUncheckedCreateInput = {
+    gallon_last_history_uuid?: string
+    use_uuid?: string | null
+    gallon_last_history_gross?: number | null
+    gallon_last_history_date?: Date | string | null
+    gallon_last_history_created_at?: Date | string
+    gallon_last_history_updated_at?: Date | string
+  }
+
+  export type gallon_gross_last_weekUpdateInput = {
+    gallon_last_history_uuid?: StringFieldUpdateOperationsInput | string
+    gallon_last_history_gross?: NullableFloatFieldUpdateOperationsInput | number | null
+    gallon_last_history_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gallon_last_history_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    gallon_last_history_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: usersUpdateOneWithoutGallon_gross_last_weekNestedInput
+  }
+
+  export type gallon_gross_last_weekUncheckedUpdateInput = {
+    gallon_last_history_uuid?: StringFieldUpdateOperationsInput | string
+    use_uuid?: NullableStringFieldUpdateOperationsInput | string | null
+    gallon_last_history_gross?: NullableFloatFieldUpdateOperationsInput | number | null
+    gallon_last_history_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gallon_last_history_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    gallon_last_history_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type gallon_gross_last_weekCreateManyInput = {
+    gallon_last_history_uuid?: string
+    use_uuid?: string | null
+    gallon_last_history_gross?: number | null
+    gallon_last_history_date?: Date | string | null
+    gallon_last_history_created_at?: Date | string
+    gallon_last_history_updated_at?: Date | string
+  }
+
+  export type gallon_gross_last_weekUpdateManyMutationInput = {
+    gallon_last_history_uuid?: StringFieldUpdateOperationsInput | string
+    gallon_last_history_gross?: NullableFloatFieldUpdateOperationsInput | number | null
+    gallon_last_history_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gallon_last_history_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    gallon_last_history_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type gallon_gross_last_weekUncheckedUpdateManyInput = {
+    gallon_last_history_uuid?: StringFieldUpdateOperationsInput | string
+    use_uuid?: NullableStringFieldUpdateOperationsInput | string | null
+    gallon_last_history_gross?: NullableFloatFieldUpdateOperationsInput | number | null
+    gallon_last_history_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gallon_last_history_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    gallon_last_history_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type product_gross_last_weekCreateInput = {
+    product_last_history_uuid?: string
+    product_last_history_gross?: number | null
+    product_last_history_date?: Date | string | null
+    product_last_history_created_at?: Date | string
+    product_last_history_updated_at?: Date | string
+    users?: usersCreateNestedOneWithoutProduct_gross_last_weekInput
+  }
+
+  export type product_gross_last_weekUncheckedCreateInput = {
+    product_last_history_uuid?: string
+    use_uuid?: string | null
+    product_last_history_gross?: number | null
+    product_last_history_date?: Date | string | null
+    product_last_history_created_at?: Date | string
+    product_last_history_updated_at?: Date | string
+  }
+
+  export type product_gross_last_weekUpdateInput = {
+    product_last_history_uuid?: StringFieldUpdateOperationsInput | string
+    product_last_history_gross?: NullableFloatFieldUpdateOperationsInput | number | null
+    product_last_history_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    product_last_history_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    product_last_history_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: usersUpdateOneWithoutProduct_gross_last_weekNestedInput
+  }
+
+  export type product_gross_last_weekUncheckedUpdateInput = {
+    product_last_history_uuid?: StringFieldUpdateOperationsInput | string
+    use_uuid?: NullableStringFieldUpdateOperationsInput | string | null
+    product_last_history_gross?: NullableFloatFieldUpdateOperationsInput | number | null
+    product_last_history_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    product_last_history_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    product_last_history_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type product_gross_last_weekCreateManyInput = {
+    product_last_history_uuid?: string
+    use_uuid?: string | null
+    product_last_history_gross?: number | null
+    product_last_history_date?: Date | string | null
+    product_last_history_created_at?: Date | string
+    product_last_history_updated_at?: Date | string
+  }
+
+  export type product_gross_last_weekUpdateManyMutationInput = {
+    product_last_history_uuid?: StringFieldUpdateOperationsInput | string
+    product_last_history_gross?: NullableFloatFieldUpdateOperationsInput | number | null
+    product_last_history_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    product_last_history_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    product_last_history_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type product_gross_last_weekUncheckedUpdateManyInput = {
+    product_last_history_uuid?: StringFieldUpdateOperationsInput | string
+    use_uuid?: NullableStringFieldUpdateOperationsInput | string | null
+    product_last_history_gross?: NullableFloatFieldUpdateOperationsInput | number | null
+    product_last_history_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    product_last_history_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    product_last_history_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -15180,10 +17998,30 @@ export namespace Prisma {
     isEmpty?: boolean
   }
 
+  export type Gallon_gross_last_weekListRelationFilter = {
+    every?: gallon_gross_last_weekWhereInput
+    some?: gallon_gross_last_weekWhereInput
+    none?: gallon_gross_last_weekWhereInput
+  }
+
+  export type Product_gross_last_weekListRelationFilter = {
+    every?: product_gross_last_weekWhereInput
+    some?: product_gross_last_weekWhereInput
+    none?: product_gross_last_weekWhereInput
+  }
+
   export type Region_setvariablesListRelationFilter = {
     every?: region_setvariablesWhereInput
     some?: region_setvariablesWhereInput
     none?: region_setvariablesWhereInput
+  }
+
+  export type gallon_gross_last_weekOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type product_gross_last_weekOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type region_setvariablesOrderByRelationAggregateInput = {
@@ -16054,6 +18892,76 @@ export namespace Prisma {
     product_history_gross?: SortOrder
   }
 
+  export type gallon_gross_last_weekCountOrderByAggregateInput = {
+    gallon_last_history_uuid?: SortOrder
+    use_uuid?: SortOrder
+    gallon_last_history_gross?: SortOrder
+    gallon_last_history_date?: SortOrder
+    gallon_last_history_created_at?: SortOrder
+    gallon_last_history_updated_at?: SortOrder
+  }
+
+  export type gallon_gross_last_weekAvgOrderByAggregateInput = {
+    gallon_last_history_gross?: SortOrder
+  }
+
+  export type gallon_gross_last_weekMaxOrderByAggregateInput = {
+    gallon_last_history_uuid?: SortOrder
+    use_uuid?: SortOrder
+    gallon_last_history_gross?: SortOrder
+    gallon_last_history_date?: SortOrder
+    gallon_last_history_created_at?: SortOrder
+    gallon_last_history_updated_at?: SortOrder
+  }
+
+  export type gallon_gross_last_weekMinOrderByAggregateInput = {
+    gallon_last_history_uuid?: SortOrder
+    use_uuid?: SortOrder
+    gallon_last_history_gross?: SortOrder
+    gallon_last_history_date?: SortOrder
+    gallon_last_history_created_at?: SortOrder
+    gallon_last_history_updated_at?: SortOrder
+  }
+
+  export type gallon_gross_last_weekSumOrderByAggregateInput = {
+    gallon_last_history_gross?: SortOrder
+  }
+
+  export type product_gross_last_weekCountOrderByAggregateInput = {
+    product_last_history_uuid?: SortOrder
+    use_uuid?: SortOrder
+    product_last_history_gross?: SortOrder
+    product_last_history_date?: SortOrder
+    product_last_history_created_at?: SortOrder
+    product_last_history_updated_at?: SortOrder
+  }
+
+  export type product_gross_last_weekAvgOrderByAggregateInput = {
+    product_last_history_gross?: SortOrder
+  }
+
+  export type product_gross_last_weekMaxOrderByAggregateInput = {
+    product_last_history_uuid?: SortOrder
+    use_uuid?: SortOrder
+    product_last_history_gross?: SortOrder
+    product_last_history_date?: SortOrder
+    product_last_history_created_at?: SortOrder
+    product_last_history_updated_at?: SortOrder
+  }
+
+  export type product_gross_last_weekMinOrderByAggregateInput = {
+    product_last_history_uuid?: SortOrder
+    use_uuid?: SortOrder
+    product_last_history_gross?: SortOrder
+    product_last_history_date?: SortOrder
+    product_last_history_created_at?: SortOrder
+    product_last_history_updated_at?: SortOrder
+  }
+
+  export type product_gross_last_weekSumOrderByAggregateInput = {
+    product_last_history_gross?: SortOrder
+  }
+
   export type ibm_infoCreateibm_margin_GCInput = {
     set: number[]
   }
@@ -16288,6 +19196,13 @@ export namespace Prisma {
     connect?: gallon_gross_historyWhereUniqueInput | gallon_gross_historyWhereUniqueInput[]
   }
 
+  export type gallon_gross_last_weekCreateNestedManyWithoutUsersInput = {
+    create?: XOR<gallon_gross_last_weekCreateWithoutUsersInput, gallon_gross_last_weekUncheckedCreateWithoutUsersInput> | gallon_gross_last_weekCreateWithoutUsersInput[] | gallon_gross_last_weekUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: gallon_gross_last_weekCreateOrConnectWithoutUsersInput | gallon_gross_last_weekCreateOrConnectWithoutUsersInput[]
+    createMany?: gallon_gross_last_weekCreateManyUsersInputEnvelope
+    connect?: gallon_gross_last_weekWhereUniqueInput | gallon_gross_last_weekWhereUniqueInput[]
+  }
+
   export type gas_station_setvariablesCreateNestedManyWithoutUsersInput = {
     create?: XOR<gas_station_setvariablesCreateWithoutUsersInput, gas_station_setvariablesUncheckedCreateWithoutUsersInput> | gas_station_setvariablesCreateWithoutUsersInput[] | gas_station_setvariablesUncheckedCreateWithoutUsersInput[]
     connectOrCreate?: gas_station_setvariablesCreateOrConnectWithoutUsersInput | gas_station_setvariablesCreateOrConnectWithoutUsersInput[]
@@ -16300,6 +19215,13 @@ export namespace Prisma {
     connectOrCreate?: product_gross_historyCreateOrConnectWithoutUsersInput | product_gross_historyCreateOrConnectWithoutUsersInput[]
     createMany?: product_gross_historyCreateManyUsersInputEnvelope
     connect?: product_gross_historyWhereUniqueInput | product_gross_historyWhereUniqueInput[]
+  }
+
+  export type product_gross_last_weekCreateNestedManyWithoutUsersInput = {
+    create?: XOR<product_gross_last_weekCreateWithoutUsersInput, product_gross_last_weekUncheckedCreateWithoutUsersInput> | product_gross_last_weekCreateWithoutUsersInput[] | product_gross_last_weekUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: product_gross_last_weekCreateOrConnectWithoutUsersInput | product_gross_last_weekCreateOrConnectWithoutUsersInput[]
+    createMany?: product_gross_last_weekCreateManyUsersInputEnvelope
+    connect?: product_gross_last_weekWhereUniqueInput | product_gross_last_weekWhereUniqueInput[]
   }
 
   export type region_setvariablesCreateNestedManyWithoutUsersInput = {
@@ -16316,6 +19238,13 @@ export namespace Prisma {
     connect?: gallon_gross_historyWhereUniqueInput | gallon_gross_historyWhereUniqueInput[]
   }
 
+  export type gallon_gross_last_weekUncheckedCreateNestedManyWithoutUsersInput = {
+    create?: XOR<gallon_gross_last_weekCreateWithoutUsersInput, gallon_gross_last_weekUncheckedCreateWithoutUsersInput> | gallon_gross_last_weekCreateWithoutUsersInput[] | gallon_gross_last_weekUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: gallon_gross_last_weekCreateOrConnectWithoutUsersInput | gallon_gross_last_weekCreateOrConnectWithoutUsersInput[]
+    createMany?: gallon_gross_last_weekCreateManyUsersInputEnvelope
+    connect?: gallon_gross_last_weekWhereUniqueInput | gallon_gross_last_weekWhereUniqueInput[]
+  }
+
   export type gas_station_setvariablesUncheckedCreateNestedManyWithoutUsersInput = {
     create?: XOR<gas_station_setvariablesCreateWithoutUsersInput, gas_station_setvariablesUncheckedCreateWithoutUsersInput> | gas_station_setvariablesCreateWithoutUsersInput[] | gas_station_setvariablesUncheckedCreateWithoutUsersInput[]
     connectOrCreate?: gas_station_setvariablesCreateOrConnectWithoutUsersInput | gas_station_setvariablesCreateOrConnectWithoutUsersInput[]
@@ -16328,6 +19257,13 @@ export namespace Prisma {
     connectOrCreate?: product_gross_historyCreateOrConnectWithoutUsersInput | product_gross_historyCreateOrConnectWithoutUsersInput[]
     createMany?: product_gross_historyCreateManyUsersInputEnvelope
     connect?: product_gross_historyWhereUniqueInput | product_gross_historyWhereUniqueInput[]
+  }
+
+  export type product_gross_last_weekUncheckedCreateNestedManyWithoutUsersInput = {
+    create?: XOR<product_gross_last_weekCreateWithoutUsersInput, product_gross_last_weekUncheckedCreateWithoutUsersInput> | product_gross_last_weekCreateWithoutUsersInput[] | product_gross_last_weekUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: product_gross_last_weekCreateOrConnectWithoutUsersInput | product_gross_last_weekCreateOrConnectWithoutUsersInput[]
+    createMany?: product_gross_last_weekCreateManyUsersInputEnvelope
+    connect?: product_gross_last_weekWhereUniqueInput | product_gross_last_weekWhereUniqueInput[]
   }
 
   export type region_setvariablesUncheckedCreateNestedManyWithoutUsersInput = {
@@ -16364,6 +19300,20 @@ export namespace Prisma {
     deleteMany?: gallon_gross_historyScalarWhereInput | gallon_gross_historyScalarWhereInput[]
   }
 
+  export type gallon_gross_last_weekUpdateManyWithoutUsersNestedInput = {
+    create?: XOR<gallon_gross_last_weekCreateWithoutUsersInput, gallon_gross_last_weekUncheckedCreateWithoutUsersInput> | gallon_gross_last_weekCreateWithoutUsersInput[] | gallon_gross_last_weekUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: gallon_gross_last_weekCreateOrConnectWithoutUsersInput | gallon_gross_last_weekCreateOrConnectWithoutUsersInput[]
+    upsert?: gallon_gross_last_weekUpsertWithWhereUniqueWithoutUsersInput | gallon_gross_last_weekUpsertWithWhereUniqueWithoutUsersInput[]
+    createMany?: gallon_gross_last_weekCreateManyUsersInputEnvelope
+    set?: gallon_gross_last_weekWhereUniqueInput | gallon_gross_last_weekWhereUniqueInput[]
+    disconnect?: gallon_gross_last_weekWhereUniqueInput | gallon_gross_last_weekWhereUniqueInput[]
+    delete?: gallon_gross_last_weekWhereUniqueInput | gallon_gross_last_weekWhereUniqueInput[]
+    connect?: gallon_gross_last_weekWhereUniqueInput | gallon_gross_last_weekWhereUniqueInput[]
+    update?: gallon_gross_last_weekUpdateWithWhereUniqueWithoutUsersInput | gallon_gross_last_weekUpdateWithWhereUniqueWithoutUsersInput[]
+    updateMany?: gallon_gross_last_weekUpdateManyWithWhereWithoutUsersInput | gallon_gross_last_weekUpdateManyWithWhereWithoutUsersInput[]
+    deleteMany?: gallon_gross_last_weekScalarWhereInput | gallon_gross_last_weekScalarWhereInput[]
+  }
+
   export type gas_station_setvariablesUpdateManyWithoutUsersNestedInput = {
     create?: XOR<gas_station_setvariablesCreateWithoutUsersInput, gas_station_setvariablesUncheckedCreateWithoutUsersInput> | gas_station_setvariablesCreateWithoutUsersInput[] | gas_station_setvariablesUncheckedCreateWithoutUsersInput[]
     connectOrCreate?: gas_station_setvariablesCreateOrConnectWithoutUsersInput | gas_station_setvariablesCreateOrConnectWithoutUsersInput[]
@@ -16390,6 +19340,20 @@ export namespace Prisma {
     update?: product_gross_historyUpdateWithWhereUniqueWithoutUsersInput | product_gross_historyUpdateWithWhereUniqueWithoutUsersInput[]
     updateMany?: product_gross_historyUpdateManyWithWhereWithoutUsersInput | product_gross_historyUpdateManyWithWhereWithoutUsersInput[]
     deleteMany?: product_gross_historyScalarWhereInput | product_gross_historyScalarWhereInput[]
+  }
+
+  export type product_gross_last_weekUpdateManyWithoutUsersNestedInput = {
+    create?: XOR<product_gross_last_weekCreateWithoutUsersInput, product_gross_last_weekUncheckedCreateWithoutUsersInput> | product_gross_last_weekCreateWithoutUsersInput[] | product_gross_last_weekUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: product_gross_last_weekCreateOrConnectWithoutUsersInput | product_gross_last_weekCreateOrConnectWithoutUsersInput[]
+    upsert?: product_gross_last_weekUpsertWithWhereUniqueWithoutUsersInput | product_gross_last_weekUpsertWithWhereUniqueWithoutUsersInput[]
+    createMany?: product_gross_last_weekCreateManyUsersInputEnvelope
+    set?: product_gross_last_weekWhereUniqueInput | product_gross_last_weekWhereUniqueInput[]
+    disconnect?: product_gross_last_weekWhereUniqueInput | product_gross_last_weekWhereUniqueInput[]
+    delete?: product_gross_last_weekWhereUniqueInput | product_gross_last_weekWhereUniqueInput[]
+    connect?: product_gross_last_weekWhereUniqueInput | product_gross_last_weekWhereUniqueInput[]
+    update?: product_gross_last_weekUpdateWithWhereUniqueWithoutUsersInput | product_gross_last_weekUpdateWithWhereUniqueWithoutUsersInput[]
+    updateMany?: product_gross_last_weekUpdateManyWithWhereWithoutUsersInput | product_gross_last_weekUpdateManyWithWhereWithoutUsersInput[]
+    deleteMany?: product_gross_last_weekScalarWhereInput | product_gross_last_weekScalarWhereInput[]
   }
 
   export type region_setvariablesUpdateManyWithoutUsersNestedInput = {
@@ -16420,6 +19384,20 @@ export namespace Prisma {
     deleteMany?: gallon_gross_historyScalarWhereInput | gallon_gross_historyScalarWhereInput[]
   }
 
+  export type gallon_gross_last_weekUncheckedUpdateManyWithoutUsersNestedInput = {
+    create?: XOR<gallon_gross_last_weekCreateWithoutUsersInput, gallon_gross_last_weekUncheckedCreateWithoutUsersInput> | gallon_gross_last_weekCreateWithoutUsersInput[] | gallon_gross_last_weekUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: gallon_gross_last_weekCreateOrConnectWithoutUsersInput | gallon_gross_last_weekCreateOrConnectWithoutUsersInput[]
+    upsert?: gallon_gross_last_weekUpsertWithWhereUniqueWithoutUsersInput | gallon_gross_last_weekUpsertWithWhereUniqueWithoutUsersInput[]
+    createMany?: gallon_gross_last_weekCreateManyUsersInputEnvelope
+    set?: gallon_gross_last_weekWhereUniqueInput | gallon_gross_last_weekWhereUniqueInput[]
+    disconnect?: gallon_gross_last_weekWhereUniqueInput | gallon_gross_last_weekWhereUniqueInput[]
+    delete?: gallon_gross_last_weekWhereUniqueInput | gallon_gross_last_weekWhereUniqueInput[]
+    connect?: gallon_gross_last_weekWhereUniqueInput | gallon_gross_last_weekWhereUniqueInput[]
+    update?: gallon_gross_last_weekUpdateWithWhereUniqueWithoutUsersInput | gallon_gross_last_weekUpdateWithWhereUniqueWithoutUsersInput[]
+    updateMany?: gallon_gross_last_weekUpdateManyWithWhereWithoutUsersInput | gallon_gross_last_weekUpdateManyWithWhereWithoutUsersInput[]
+    deleteMany?: gallon_gross_last_weekScalarWhereInput | gallon_gross_last_weekScalarWhereInput[]
+  }
+
   export type gas_station_setvariablesUncheckedUpdateManyWithoutUsersNestedInput = {
     create?: XOR<gas_station_setvariablesCreateWithoutUsersInput, gas_station_setvariablesUncheckedCreateWithoutUsersInput> | gas_station_setvariablesCreateWithoutUsersInput[] | gas_station_setvariablesUncheckedCreateWithoutUsersInput[]
     connectOrCreate?: gas_station_setvariablesCreateOrConnectWithoutUsersInput | gas_station_setvariablesCreateOrConnectWithoutUsersInput[]
@@ -16446,6 +19424,20 @@ export namespace Prisma {
     update?: product_gross_historyUpdateWithWhereUniqueWithoutUsersInput | product_gross_historyUpdateWithWhereUniqueWithoutUsersInput[]
     updateMany?: product_gross_historyUpdateManyWithWhereWithoutUsersInput | product_gross_historyUpdateManyWithWhereWithoutUsersInput[]
     deleteMany?: product_gross_historyScalarWhereInput | product_gross_historyScalarWhereInput[]
+  }
+
+  export type product_gross_last_weekUncheckedUpdateManyWithoutUsersNestedInput = {
+    create?: XOR<product_gross_last_weekCreateWithoutUsersInput, product_gross_last_weekUncheckedCreateWithoutUsersInput> | product_gross_last_weekCreateWithoutUsersInput[] | product_gross_last_weekUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: product_gross_last_weekCreateOrConnectWithoutUsersInput | product_gross_last_weekCreateOrConnectWithoutUsersInput[]
+    upsert?: product_gross_last_weekUpsertWithWhereUniqueWithoutUsersInput | product_gross_last_weekUpsertWithWhereUniqueWithoutUsersInput[]
+    createMany?: product_gross_last_weekCreateManyUsersInputEnvelope
+    set?: product_gross_last_weekWhereUniqueInput | product_gross_last_weekWhereUniqueInput[]
+    disconnect?: product_gross_last_weekWhereUniqueInput | product_gross_last_weekWhereUniqueInput[]
+    delete?: product_gross_last_weekWhereUniqueInput | product_gross_last_weekWhereUniqueInput[]
+    connect?: product_gross_last_weekWhereUniqueInput | product_gross_last_weekWhereUniqueInput[]
+    update?: product_gross_last_weekUpdateWithWhereUniqueWithoutUsersInput | product_gross_last_weekUpdateWithWhereUniqueWithoutUsersInput[]
+    updateMany?: product_gross_last_weekUpdateManyWithWhereWithoutUsersInput | product_gross_last_weekUpdateManyWithWhereWithoutUsersInput[]
+    deleteMany?: product_gross_last_weekScalarWhereInput | product_gross_last_weekScalarWhereInput[]
   }
 
   export type region_setvariablesUncheckedUpdateManyWithoutUsersNestedInput = {
@@ -16706,6 +19698,38 @@ export namespace Prisma {
     delete?: usersWhereInput | boolean
     connect?: usersWhereUniqueInput
     update?: XOR<XOR<usersUpdateToOneWithWhereWithoutProduct_gross_historyInput, usersUpdateWithoutProduct_gross_historyInput>, usersUncheckedUpdateWithoutProduct_gross_historyInput>
+  }
+
+  export type usersCreateNestedOneWithoutGallon_gross_last_weekInput = {
+    create?: XOR<usersCreateWithoutGallon_gross_last_weekInput, usersUncheckedCreateWithoutGallon_gross_last_weekInput>
+    connectOrCreate?: usersCreateOrConnectWithoutGallon_gross_last_weekInput
+    connect?: usersWhereUniqueInput
+  }
+
+  export type usersUpdateOneWithoutGallon_gross_last_weekNestedInput = {
+    create?: XOR<usersCreateWithoutGallon_gross_last_weekInput, usersUncheckedCreateWithoutGallon_gross_last_weekInput>
+    connectOrCreate?: usersCreateOrConnectWithoutGallon_gross_last_weekInput
+    upsert?: usersUpsertWithoutGallon_gross_last_weekInput
+    disconnect?: usersWhereInput | boolean
+    delete?: usersWhereInput | boolean
+    connect?: usersWhereUniqueInput
+    update?: XOR<XOR<usersUpdateToOneWithWhereWithoutGallon_gross_last_weekInput, usersUpdateWithoutGallon_gross_last_weekInput>, usersUncheckedUpdateWithoutGallon_gross_last_weekInput>
+  }
+
+  export type usersCreateNestedOneWithoutProduct_gross_last_weekInput = {
+    create?: XOR<usersCreateWithoutProduct_gross_last_weekInput, usersUncheckedCreateWithoutProduct_gross_last_weekInput>
+    connectOrCreate?: usersCreateOrConnectWithoutProduct_gross_last_weekInput
+    connect?: usersWhereUniqueInput
+  }
+
+  export type usersUpdateOneWithoutProduct_gross_last_weekNestedInput = {
+    create?: XOR<usersCreateWithoutProduct_gross_last_weekInput, usersUncheckedCreateWithoutProduct_gross_last_weekInput>
+    connectOrCreate?: usersCreateOrConnectWithoutProduct_gross_last_weekInput
+    upsert?: usersUpsertWithoutProduct_gross_last_weekInput
+    disconnect?: usersWhereInput | boolean
+    delete?: usersWhereInput | boolean
+    connect?: usersWhereUniqueInput
+    update?: XOR<XOR<usersUpdateToOneWithWhereWithoutProduct_gross_last_weekInput, usersUpdateWithoutProduct_gross_last_weekInput>, usersUncheckedUpdateWithoutProduct_gross_last_weekInput>
   }
 
   export type NestedStringNullableFilter<$PrismaModel = never> = {
@@ -17312,6 +20336,32 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type gallon_gross_last_weekCreateWithoutUsersInput = {
+    gallon_last_history_uuid?: string
+    gallon_last_history_gross?: number | null
+    gallon_last_history_date?: Date | string | null
+    gallon_last_history_created_at?: Date | string
+    gallon_last_history_updated_at?: Date | string
+  }
+
+  export type gallon_gross_last_weekUncheckedCreateWithoutUsersInput = {
+    gallon_last_history_uuid?: string
+    gallon_last_history_gross?: number | null
+    gallon_last_history_date?: Date | string | null
+    gallon_last_history_created_at?: Date | string
+    gallon_last_history_updated_at?: Date | string
+  }
+
+  export type gallon_gross_last_weekCreateOrConnectWithoutUsersInput = {
+    where: gallon_gross_last_weekWhereUniqueInput
+    create: XOR<gallon_gross_last_weekCreateWithoutUsersInput, gallon_gross_last_weekUncheckedCreateWithoutUsersInput>
+  }
+
+  export type gallon_gross_last_weekCreateManyUsersInputEnvelope = {
+    data: gallon_gross_last_weekCreateManyUsersInput | gallon_gross_last_weekCreateManyUsersInput[]
+    skipDuplicates?: boolean
+  }
+
   export type gas_station_setvariablesCreateWithoutUsersInput = {
     gas_station_uuid?: string
     gas_station_marginGC?: number | null
@@ -17500,6 +20550,32 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type product_gross_last_weekCreateWithoutUsersInput = {
+    product_last_history_uuid?: string
+    product_last_history_gross?: number | null
+    product_last_history_date?: Date | string | null
+    product_last_history_created_at?: Date | string
+    product_last_history_updated_at?: Date | string
+  }
+
+  export type product_gross_last_weekUncheckedCreateWithoutUsersInput = {
+    product_last_history_uuid?: string
+    product_last_history_gross?: number | null
+    product_last_history_date?: Date | string | null
+    product_last_history_created_at?: Date | string
+    product_last_history_updated_at?: Date | string
+  }
+
+  export type product_gross_last_weekCreateOrConnectWithoutUsersInput = {
+    where: product_gross_last_weekWhereUniqueInput
+    create: XOR<product_gross_last_weekCreateWithoutUsersInput, product_gross_last_weekUncheckedCreateWithoutUsersInput>
+  }
+
+  export type product_gross_last_weekCreateManyUsersInputEnvelope = {
+    data: product_gross_last_weekCreateManyUsersInput | product_gross_last_weekCreateManyUsersInput[]
+    skipDuplicates?: boolean
+  }
+
   export type region_setvariablesCreateWithoutUsersInput = {
     region_uuid?: string
     region_marginGC?: number | null
@@ -17630,6 +20706,34 @@ export namespace Prisma {
     data: XOR<gallon_gross_historyUpdateManyMutationInput, gallon_gross_historyUncheckedUpdateManyWithoutUsersInput>
   }
 
+  export type gallon_gross_last_weekUpsertWithWhereUniqueWithoutUsersInput = {
+    where: gallon_gross_last_weekWhereUniqueInput
+    update: XOR<gallon_gross_last_weekUpdateWithoutUsersInput, gallon_gross_last_weekUncheckedUpdateWithoutUsersInput>
+    create: XOR<gallon_gross_last_weekCreateWithoutUsersInput, gallon_gross_last_weekUncheckedCreateWithoutUsersInput>
+  }
+
+  export type gallon_gross_last_weekUpdateWithWhereUniqueWithoutUsersInput = {
+    where: gallon_gross_last_weekWhereUniqueInput
+    data: XOR<gallon_gross_last_weekUpdateWithoutUsersInput, gallon_gross_last_weekUncheckedUpdateWithoutUsersInput>
+  }
+
+  export type gallon_gross_last_weekUpdateManyWithWhereWithoutUsersInput = {
+    where: gallon_gross_last_weekScalarWhereInput
+    data: XOR<gallon_gross_last_weekUpdateManyMutationInput, gallon_gross_last_weekUncheckedUpdateManyWithoutUsersInput>
+  }
+
+  export type gallon_gross_last_weekScalarWhereInput = {
+    AND?: gallon_gross_last_weekScalarWhereInput | gallon_gross_last_weekScalarWhereInput[]
+    OR?: gallon_gross_last_weekScalarWhereInput[]
+    NOT?: gallon_gross_last_weekScalarWhereInput | gallon_gross_last_weekScalarWhereInput[]
+    gallon_last_history_uuid?: UuidFilter<"gallon_gross_last_week"> | string
+    use_uuid?: UuidNullableFilter<"gallon_gross_last_week"> | string | null
+    gallon_last_history_gross?: FloatNullableFilter<"gallon_gross_last_week"> | number | null
+    gallon_last_history_date?: DateTimeNullableFilter<"gallon_gross_last_week"> | Date | string | null
+    gallon_last_history_created_at?: DateTimeFilter<"gallon_gross_last_week"> | Date | string
+    gallon_last_history_updated_at?: DateTimeFilter<"gallon_gross_last_week"> | Date | string
+  }
+
   export type gas_station_setvariablesUpsertWithWhereUniqueWithoutUsersInput = {
     where: gas_station_setvariablesWhereUniqueInput
     update: XOR<gas_station_setvariablesUpdateWithoutUsersInput, gas_station_setvariablesUncheckedUpdateWithoutUsersInput>
@@ -17660,6 +20764,34 @@ export namespace Prisma {
   export type product_gross_historyUpdateManyWithWhereWithoutUsersInput = {
     where: product_gross_historyScalarWhereInput
     data: XOR<product_gross_historyUpdateManyMutationInput, product_gross_historyUncheckedUpdateManyWithoutUsersInput>
+  }
+
+  export type product_gross_last_weekUpsertWithWhereUniqueWithoutUsersInput = {
+    where: product_gross_last_weekWhereUniqueInput
+    update: XOR<product_gross_last_weekUpdateWithoutUsersInput, product_gross_last_weekUncheckedUpdateWithoutUsersInput>
+    create: XOR<product_gross_last_weekCreateWithoutUsersInput, product_gross_last_weekUncheckedCreateWithoutUsersInput>
+  }
+
+  export type product_gross_last_weekUpdateWithWhereUniqueWithoutUsersInput = {
+    where: product_gross_last_weekWhereUniqueInput
+    data: XOR<product_gross_last_weekUpdateWithoutUsersInput, product_gross_last_weekUncheckedUpdateWithoutUsersInput>
+  }
+
+  export type product_gross_last_weekUpdateManyWithWhereWithoutUsersInput = {
+    where: product_gross_last_weekScalarWhereInput
+    data: XOR<product_gross_last_weekUpdateManyMutationInput, product_gross_last_weekUncheckedUpdateManyWithoutUsersInput>
+  }
+
+  export type product_gross_last_weekScalarWhereInput = {
+    AND?: product_gross_last_weekScalarWhereInput | product_gross_last_weekScalarWhereInput[]
+    OR?: product_gross_last_weekScalarWhereInput[]
+    NOT?: product_gross_last_weekScalarWhereInput | product_gross_last_weekScalarWhereInput[]
+    product_last_history_uuid?: UuidFilter<"product_gross_last_week"> | string
+    use_uuid?: UuidNullableFilter<"product_gross_last_week"> | string | null
+    product_last_history_gross?: FloatNullableFilter<"product_gross_last_week"> | number | null
+    product_last_history_date?: DateTimeNullableFilter<"product_gross_last_week"> | Date | string | null
+    product_last_history_created_at?: DateTimeFilter<"product_gross_last_week"> | Date | string
+    product_last_history_updated_at?: DateTimeFilter<"product_gross_last_week"> | Date | string
   }
 
   export type region_setvariablesUpsertWithWhereUniqueWithoutUsersInput = {
@@ -17811,7 +20943,9 @@ export namespace Prisma {
     use_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
     use_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
     gallon_gross_history?: gallon_gross_historyCreateNestedManyWithoutUsersInput
+    gallon_gross_last_week?: gallon_gross_last_weekCreateNestedManyWithoutUsersInput
     product_gross_history?: product_gross_historyCreateNestedManyWithoutUsersInput
+    product_gross_last_week?: product_gross_last_weekCreateNestedManyWithoutUsersInput
     region_setvariables?: region_setvariablesCreateNestedManyWithoutUsersInput
   }
 
@@ -17839,7 +20973,9 @@ export namespace Prisma {
     use_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
     use_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
     gallon_gross_history?: gallon_gross_historyUncheckedCreateNestedManyWithoutUsersInput
+    gallon_gross_last_week?: gallon_gross_last_weekUncheckedCreateNestedManyWithoutUsersInput
     product_gross_history?: product_gross_historyUncheckedCreateNestedManyWithoutUsersInput
+    product_gross_last_week?: product_gross_last_weekUncheckedCreateNestedManyWithoutUsersInput
     region_setvariables?: region_setvariablesUncheckedCreateNestedManyWithoutUsersInput
   }
 
@@ -17942,7 +21078,9 @@ export namespace Prisma {
     use_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
     use_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
     gallon_gross_history?: gallon_gross_historyUpdateManyWithoutUsersNestedInput
+    gallon_gross_last_week?: gallon_gross_last_weekUpdateManyWithoutUsersNestedInput
     product_gross_history?: product_gross_historyUpdateManyWithoutUsersNestedInput
+    product_gross_last_week?: product_gross_last_weekUpdateManyWithoutUsersNestedInput
     region_setvariables?: region_setvariablesUpdateManyWithoutUsersNestedInput
   }
 
@@ -17970,7 +21108,9 @@ export namespace Prisma {
     use_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
     use_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
     gallon_gross_history?: gallon_gross_historyUncheckedUpdateManyWithoutUsersNestedInput
+    gallon_gross_last_week?: gallon_gross_last_weekUncheckedUpdateManyWithoutUsersNestedInput
     product_gross_history?: product_gross_historyUncheckedUpdateManyWithoutUsersNestedInput
+    product_gross_last_week?: product_gross_last_weekUncheckedUpdateManyWithoutUsersNestedInput
     region_setvariables?: region_setvariablesUncheckedUpdateManyWithoutUsersNestedInput
   }
 
@@ -18031,8 +21171,10 @@ export namespace Prisma {
     use_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
     use_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
     gallon_gross_history?: gallon_gross_historyCreateNestedManyWithoutUsersInput
+    gallon_gross_last_week?: gallon_gross_last_weekCreateNestedManyWithoutUsersInput
     gas_station_setvariables?: gas_station_setvariablesCreateNestedManyWithoutUsersInput
     product_gross_history?: product_gross_historyCreateNestedManyWithoutUsersInput
+    product_gross_last_week?: product_gross_last_weekCreateNestedManyWithoutUsersInput
   }
 
   export type usersUncheckedCreateWithoutRegion_setvariablesInput = {
@@ -18059,8 +21201,10 @@ export namespace Prisma {
     use_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
     use_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
     gallon_gross_history?: gallon_gross_historyUncheckedCreateNestedManyWithoutUsersInput
+    gallon_gross_last_week?: gallon_gross_last_weekUncheckedCreateNestedManyWithoutUsersInput
     gas_station_setvariables?: gas_station_setvariablesUncheckedCreateNestedManyWithoutUsersInput
     product_gross_history?: product_gross_historyUncheckedCreateNestedManyWithoutUsersInput
+    product_gross_last_week?: product_gross_last_weekUncheckedCreateNestedManyWithoutUsersInput
   }
 
   export type usersCreateOrConnectWithoutRegion_setvariablesInput = {
@@ -18142,8 +21286,10 @@ export namespace Prisma {
     use_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
     use_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
     gallon_gross_history?: gallon_gross_historyUpdateManyWithoutUsersNestedInput
+    gallon_gross_last_week?: gallon_gross_last_weekUpdateManyWithoutUsersNestedInput
     gas_station_setvariables?: gas_station_setvariablesUpdateManyWithoutUsersNestedInput
     product_gross_history?: product_gross_historyUpdateManyWithoutUsersNestedInput
+    product_gross_last_week?: product_gross_last_weekUpdateManyWithoutUsersNestedInput
   }
 
   export type usersUncheckedUpdateWithoutRegion_setvariablesInput = {
@@ -18170,8 +21316,10 @@ export namespace Prisma {
     use_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
     use_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
     gallon_gross_history?: gallon_gross_historyUncheckedUpdateManyWithoutUsersNestedInput
+    gallon_gross_last_week?: gallon_gross_last_weekUncheckedUpdateManyWithoutUsersNestedInput
     gas_station_setvariables?: gas_station_setvariablesUncheckedUpdateManyWithoutUsersNestedInput
     product_gross_history?: product_gross_historyUncheckedUpdateManyWithoutUsersNestedInput
+    product_gross_last_week?: product_gross_last_weekUncheckedUpdateManyWithoutUsersNestedInput
   }
 
   export type region_setvariablesCreateWithoutRegionsInput = {
@@ -18380,8 +21528,10 @@ export namespace Prisma {
     use_GASOLINA_COMUM_comb?: number | null
     use_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
     use_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
+    gallon_gross_last_week?: gallon_gross_last_weekCreateNestedManyWithoutUsersInput
     gas_station_setvariables?: gas_station_setvariablesCreateNestedManyWithoutUsersInput
     product_gross_history?: product_gross_historyCreateNestedManyWithoutUsersInput
+    product_gross_last_week?: product_gross_last_weekCreateNestedManyWithoutUsersInput
     region_setvariables?: region_setvariablesCreateNestedManyWithoutUsersInput
   }
 
@@ -18408,8 +21558,10 @@ export namespace Prisma {
     use_GASOLINA_COMUM_comb?: number | null
     use_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
     use_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
+    gallon_gross_last_week?: gallon_gross_last_weekUncheckedCreateNestedManyWithoutUsersInput
     gas_station_setvariables?: gas_station_setvariablesUncheckedCreateNestedManyWithoutUsersInput
     product_gross_history?: product_gross_historyUncheckedCreateNestedManyWithoutUsersInput
+    product_gross_last_week?: product_gross_last_weekUncheckedCreateNestedManyWithoutUsersInput
     region_setvariables?: region_setvariablesUncheckedCreateNestedManyWithoutUsersInput
   }
 
@@ -18511,8 +21663,10 @@ export namespace Prisma {
     use_GASOLINA_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
     use_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
     use_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gallon_gross_last_week?: gallon_gross_last_weekUpdateManyWithoutUsersNestedInput
     gas_station_setvariables?: gas_station_setvariablesUpdateManyWithoutUsersNestedInput
     product_gross_history?: product_gross_historyUpdateManyWithoutUsersNestedInput
+    product_gross_last_week?: product_gross_last_weekUpdateManyWithoutUsersNestedInput
     region_setvariables?: region_setvariablesUpdateManyWithoutUsersNestedInput
   }
 
@@ -18539,8 +21693,10 @@ export namespace Prisma {
     use_GASOLINA_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
     use_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
     use_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gallon_gross_last_week?: gallon_gross_last_weekUncheckedUpdateManyWithoutUsersNestedInput
     gas_station_setvariables?: gas_station_setvariablesUncheckedUpdateManyWithoutUsersNestedInput
     product_gross_history?: product_gross_historyUncheckedUpdateManyWithoutUsersNestedInput
+    product_gross_last_week?: product_gross_last_weekUncheckedUpdateManyWithoutUsersNestedInput
     region_setvariables?: region_setvariablesUncheckedUpdateManyWithoutUsersNestedInput
   }
 
@@ -18621,7 +21777,9 @@ export namespace Prisma {
     use_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
     use_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
     gallon_gross_history?: gallon_gross_historyCreateNestedManyWithoutUsersInput
+    gallon_gross_last_week?: gallon_gross_last_weekCreateNestedManyWithoutUsersInput
     gas_station_setvariables?: gas_station_setvariablesCreateNestedManyWithoutUsersInput
+    product_gross_last_week?: product_gross_last_weekCreateNestedManyWithoutUsersInput
     region_setvariables?: region_setvariablesCreateNestedManyWithoutUsersInput
   }
 
@@ -18649,7 +21807,9 @@ export namespace Prisma {
     use_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
     use_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
     gallon_gross_history?: gallon_gross_historyUncheckedCreateNestedManyWithoutUsersInput
+    gallon_gross_last_week?: gallon_gross_last_weekUncheckedCreateNestedManyWithoutUsersInput
     gas_station_setvariables?: gas_station_setvariablesUncheckedCreateNestedManyWithoutUsersInput
+    product_gross_last_week?: product_gross_last_weekUncheckedCreateNestedManyWithoutUsersInput
     region_setvariables?: region_setvariablesUncheckedCreateNestedManyWithoutUsersInput
   }
 
@@ -18752,7 +21912,9 @@ export namespace Prisma {
     use_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
     use_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
     gallon_gross_history?: gallon_gross_historyUpdateManyWithoutUsersNestedInput
+    gallon_gross_last_week?: gallon_gross_last_weekUpdateManyWithoutUsersNestedInput
     gas_station_setvariables?: gas_station_setvariablesUpdateManyWithoutUsersNestedInput
+    product_gross_last_week?: product_gross_last_weekUpdateManyWithoutUsersNestedInput
     region_setvariables?: region_setvariablesUpdateManyWithoutUsersNestedInput
   }
 
@@ -18780,7 +21942,281 @@ export namespace Prisma {
     use_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
     use_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
     gallon_gross_history?: gallon_gross_historyUncheckedUpdateManyWithoutUsersNestedInput
+    gallon_gross_last_week?: gallon_gross_last_weekUncheckedUpdateManyWithoutUsersNestedInput
     gas_station_setvariables?: gas_station_setvariablesUncheckedUpdateManyWithoutUsersNestedInput
+    product_gross_last_week?: product_gross_last_weekUncheckedUpdateManyWithoutUsersNestedInput
+    region_setvariables?: region_setvariablesUncheckedUpdateManyWithoutUsersNestedInput
+  }
+
+  export type usersCreateWithoutGallon_gross_last_weekInput = {
+    use_uuid?: string
+    use_name?: string | null
+    use_email?: string | null
+    use_password?: string | null
+    use_created_at?: Date | string
+    use_updated_at?: Date | string
+    use_date_expire?: Date | string | null
+    use_token?: string | null
+    use_level?: string | null
+    use_whats_app?: usersCreateuse_whats_appInput | string[]
+    use_mlt?: number | null
+    use_tmc?: number | null
+    use_tmf?: number | null
+    use_tmp?: number | null
+    use_tmvol?: number | null
+    use_lucro_bruto_operacional_galonagem?: number | null
+    use_lucro_bruto_operacional_produto?: number | null
+    use_lucro_bruto_operacional?: number | null
+    use_ETANOL_COMUM_comb?: number | null
+    use_GASOLINA_COMUM_comb?: number | null
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
+    gallon_gross_history?: gallon_gross_historyCreateNestedManyWithoutUsersInput
+    gas_station_setvariables?: gas_station_setvariablesCreateNestedManyWithoutUsersInput
+    product_gross_history?: product_gross_historyCreateNestedManyWithoutUsersInput
+    product_gross_last_week?: product_gross_last_weekCreateNestedManyWithoutUsersInput
+    region_setvariables?: region_setvariablesCreateNestedManyWithoutUsersInput
+  }
+
+  export type usersUncheckedCreateWithoutGallon_gross_last_weekInput = {
+    use_uuid?: string
+    use_name?: string | null
+    use_email?: string | null
+    use_password?: string | null
+    use_created_at?: Date | string
+    use_updated_at?: Date | string
+    use_date_expire?: Date | string | null
+    use_token?: string | null
+    use_level?: string | null
+    use_whats_app?: usersCreateuse_whats_appInput | string[]
+    use_mlt?: number | null
+    use_tmc?: number | null
+    use_tmf?: number | null
+    use_tmp?: number | null
+    use_tmvol?: number | null
+    use_lucro_bruto_operacional_galonagem?: number | null
+    use_lucro_bruto_operacional_produto?: number | null
+    use_lucro_bruto_operacional?: number | null
+    use_ETANOL_COMUM_comb?: number | null
+    use_GASOLINA_COMUM_comb?: number | null
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
+    gallon_gross_history?: gallon_gross_historyUncheckedCreateNestedManyWithoutUsersInput
+    gas_station_setvariables?: gas_station_setvariablesUncheckedCreateNestedManyWithoutUsersInput
+    product_gross_history?: product_gross_historyUncheckedCreateNestedManyWithoutUsersInput
+    product_gross_last_week?: product_gross_last_weekUncheckedCreateNestedManyWithoutUsersInput
+    region_setvariables?: region_setvariablesUncheckedCreateNestedManyWithoutUsersInput
+  }
+
+  export type usersCreateOrConnectWithoutGallon_gross_last_weekInput = {
+    where: usersWhereUniqueInput
+    create: XOR<usersCreateWithoutGallon_gross_last_weekInput, usersUncheckedCreateWithoutGallon_gross_last_weekInput>
+  }
+
+  export type usersUpsertWithoutGallon_gross_last_weekInput = {
+    update: XOR<usersUpdateWithoutGallon_gross_last_weekInput, usersUncheckedUpdateWithoutGallon_gross_last_weekInput>
+    create: XOR<usersCreateWithoutGallon_gross_last_weekInput, usersUncheckedCreateWithoutGallon_gross_last_weekInput>
+    where?: usersWhereInput
+  }
+
+  export type usersUpdateToOneWithWhereWithoutGallon_gross_last_weekInput = {
+    where?: usersWhereInput
+    data: XOR<usersUpdateWithoutGallon_gross_last_weekInput, usersUncheckedUpdateWithoutGallon_gross_last_weekInput>
+  }
+
+  export type usersUpdateWithoutGallon_gross_last_weekInput = {
+    use_uuid?: StringFieldUpdateOperationsInput | string
+    use_name?: NullableStringFieldUpdateOperationsInput | string | null
+    use_email?: NullableStringFieldUpdateOperationsInput | string | null
+    use_password?: NullableStringFieldUpdateOperationsInput | string | null
+    use_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    use_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    use_date_expire?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    use_token?: NullableStringFieldUpdateOperationsInput | string | null
+    use_level?: NullableStringFieldUpdateOperationsInput | string | null
+    use_whats_app?: usersUpdateuse_whats_appInput | string[]
+    use_mlt?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmc?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmf?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmp?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmvol?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_lucro_bruto_operacional_galonagem?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_lucro_bruto_operacional_produto?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_lucro_bruto_operacional?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_ETANOL_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_GASOLINA_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gallon_gross_history?: gallon_gross_historyUpdateManyWithoutUsersNestedInput
+    gas_station_setvariables?: gas_station_setvariablesUpdateManyWithoutUsersNestedInput
+    product_gross_history?: product_gross_historyUpdateManyWithoutUsersNestedInput
+    product_gross_last_week?: product_gross_last_weekUpdateManyWithoutUsersNestedInput
+    region_setvariables?: region_setvariablesUpdateManyWithoutUsersNestedInput
+  }
+
+  export type usersUncheckedUpdateWithoutGallon_gross_last_weekInput = {
+    use_uuid?: StringFieldUpdateOperationsInput | string
+    use_name?: NullableStringFieldUpdateOperationsInput | string | null
+    use_email?: NullableStringFieldUpdateOperationsInput | string | null
+    use_password?: NullableStringFieldUpdateOperationsInput | string | null
+    use_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    use_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    use_date_expire?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    use_token?: NullableStringFieldUpdateOperationsInput | string | null
+    use_level?: NullableStringFieldUpdateOperationsInput | string | null
+    use_whats_app?: usersUpdateuse_whats_appInput | string[]
+    use_mlt?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmc?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmf?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmp?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmvol?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_lucro_bruto_operacional_galonagem?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_lucro_bruto_operacional_produto?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_lucro_bruto_operacional?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_ETANOL_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_GASOLINA_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gallon_gross_history?: gallon_gross_historyUncheckedUpdateManyWithoutUsersNestedInput
+    gas_station_setvariables?: gas_station_setvariablesUncheckedUpdateManyWithoutUsersNestedInput
+    product_gross_history?: product_gross_historyUncheckedUpdateManyWithoutUsersNestedInput
+    product_gross_last_week?: product_gross_last_weekUncheckedUpdateManyWithoutUsersNestedInput
+    region_setvariables?: region_setvariablesUncheckedUpdateManyWithoutUsersNestedInput
+  }
+
+  export type usersCreateWithoutProduct_gross_last_weekInput = {
+    use_uuid?: string
+    use_name?: string | null
+    use_email?: string | null
+    use_password?: string | null
+    use_created_at?: Date | string
+    use_updated_at?: Date | string
+    use_date_expire?: Date | string | null
+    use_token?: string | null
+    use_level?: string | null
+    use_whats_app?: usersCreateuse_whats_appInput | string[]
+    use_mlt?: number | null
+    use_tmc?: number | null
+    use_tmf?: number | null
+    use_tmp?: number | null
+    use_tmvol?: number | null
+    use_lucro_bruto_operacional_galonagem?: number | null
+    use_lucro_bruto_operacional_produto?: number | null
+    use_lucro_bruto_operacional?: number | null
+    use_ETANOL_COMUM_comb?: number | null
+    use_GASOLINA_COMUM_comb?: number | null
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
+    gallon_gross_history?: gallon_gross_historyCreateNestedManyWithoutUsersInput
+    gallon_gross_last_week?: gallon_gross_last_weekCreateNestedManyWithoutUsersInput
+    gas_station_setvariables?: gas_station_setvariablesCreateNestedManyWithoutUsersInput
+    product_gross_history?: product_gross_historyCreateNestedManyWithoutUsersInput
+    region_setvariables?: region_setvariablesCreateNestedManyWithoutUsersInput
+  }
+
+  export type usersUncheckedCreateWithoutProduct_gross_last_weekInput = {
+    use_uuid?: string
+    use_name?: string | null
+    use_email?: string | null
+    use_password?: string | null
+    use_created_at?: Date | string
+    use_updated_at?: Date | string
+    use_date_expire?: Date | string | null
+    use_token?: string | null
+    use_level?: string | null
+    use_whats_app?: usersCreateuse_whats_appInput | string[]
+    use_mlt?: number | null
+    use_tmc?: number | null
+    use_tmf?: number | null
+    use_tmp?: number | null
+    use_tmvol?: number | null
+    use_lucro_bruto_operacional_galonagem?: number | null
+    use_lucro_bruto_operacional_produto?: number | null
+    use_lucro_bruto_operacional?: number | null
+    use_ETANOL_COMUM_comb?: number | null
+    use_GASOLINA_COMUM_comb?: number | null
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
+    gallon_gross_history?: gallon_gross_historyUncheckedCreateNestedManyWithoutUsersInput
+    gallon_gross_last_week?: gallon_gross_last_weekUncheckedCreateNestedManyWithoutUsersInput
+    gas_station_setvariables?: gas_station_setvariablesUncheckedCreateNestedManyWithoutUsersInput
+    product_gross_history?: product_gross_historyUncheckedCreateNestedManyWithoutUsersInput
+    region_setvariables?: region_setvariablesUncheckedCreateNestedManyWithoutUsersInput
+  }
+
+  export type usersCreateOrConnectWithoutProduct_gross_last_weekInput = {
+    where: usersWhereUniqueInput
+    create: XOR<usersCreateWithoutProduct_gross_last_weekInput, usersUncheckedCreateWithoutProduct_gross_last_weekInput>
+  }
+
+  export type usersUpsertWithoutProduct_gross_last_weekInput = {
+    update: XOR<usersUpdateWithoutProduct_gross_last_weekInput, usersUncheckedUpdateWithoutProduct_gross_last_weekInput>
+    create: XOR<usersCreateWithoutProduct_gross_last_weekInput, usersUncheckedCreateWithoutProduct_gross_last_weekInput>
+    where?: usersWhereInput
+  }
+
+  export type usersUpdateToOneWithWhereWithoutProduct_gross_last_weekInput = {
+    where?: usersWhereInput
+    data: XOR<usersUpdateWithoutProduct_gross_last_weekInput, usersUncheckedUpdateWithoutProduct_gross_last_weekInput>
+  }
+
+  export type usersUpdateWithoutProduct_gross_last_weekInput = {
+    use_uuid?: StringFieldUpdateOperationsInput | string
+    use_name?: NullableStringFieldUpdateOperationsInput | string | null
+    use_email?: NullableStringFieldUpdateOperationsInput | string | null
+    use_password?: NullableStringFieldUpdateOperationsInput | string | null
+    use_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    use_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    use_date_expire?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    use_token?: NullableStringFieldUpdateOperationsInput | string | null
+    use_level?: NullableStringFieldUpdateOperationsInput | string | null
+    use_whats_app?: usersUpdateuse_whats_appInput | string[]
+    use_mlt?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmc?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmf?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmp?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmvol?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_lucro_bruto_operacional_galonagem?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_lucro_bruto_operacional_produto?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_lucro_bruto_operacional?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_ETANOL_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_GASOLINA_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gallon_gross_history?: gallon_gross_historyUpdateManyWithoutUsersNestedInput
+    gallon_gross_last_week?: gallon_gross_last_weekUpdateManyWithoutUsersNestedInput
+    gas_station_setvariables?: gas_station_setvariablesUpdateManyWithoutUsersNestedInput
+    product_gross_history?: product_gross_historyUpdateManyWithoutUsersNestedInput
+    region_setvariables?: region_setvariablesUpdateManyWithoutUsersNestedInput
+  }
+
+  export type usersUncheckedUpdateWithoutProduct_gross_last_weekInput = {
+    use_uuid?: StringFieldUpdateOperationsInput | string
+    use_name?: NullableStringFieldUpdateOperationsInput | string | null
+    use_email?: NullableStringFieldUpdateOperationsInput | string | null
+    use_password?: NullableStringFieldUpdateOperationsInput | string | null
+    use_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    use_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    use_date_expire?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    use_token?: NullableStringFieldUpdateOperationsInput | string | null
+    use_level?: NullableStringFieldUpdateOperationsInput | string | null
+    use_whats_app?: usersUpdateuse_whats_appInput | string[]
+    use_mlt?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmc?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmf?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmp?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmvol?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_lucro_bruto_operacional_galonagem?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_lucro_bruto_operacional_produto?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_lucro_bruto_operacional?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_ETANOL_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_GASOLINA_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gallon_gross_history?: gallon_gross_historyUncheckedUpdateManyWithoutUsersNestedInput
+    gallon_gross_last_week?: gallon_gross_last_weekUncheckedUpdateManyWithoutUsersNestedInput
+    gas_station_setvariables?: gas_station_setvariablesUncheckedUpdateManyWithoutUsersNestedInput
+    product_gross_history?: product_gross_historyUncheckedUpdateManyWithoutUsersNestedInput
     region_setvariables?: region_setvariablesUncheckedUpdateManyWithoutUsersNestedInput
   }
 
@@ -19165,6 +22601,14 @@ export namespace Prisma {
     gallon_history_updated_at?: Date | string
   }
 
+  export type gallon_gross_last_weekCreateManyUsersInput = {
+    gallon_last_history_uuid?: string
+    gallon_last_history_gross?: number | null
+    gallon_last_history_date?: Date | string | null
+    gallon_last_history_created_at?: Date | string
+    gallon_last_history_updated_at?: Date | string
+  }
+
   export type gas_station_setvariablesCreateManyUsersInput = {
     gas_station_uuid?: string
     gas_station_marginGC?: number | null
@@ -19249,6 +22693,14 @@ export namespace Prisma {
     product_history_updated_at?: Date | string
   }
 
+  export type product_gross_last_weekCreateManyUsersInput = {
+    product_last_history_uuid?: string
+    product_last_history_gross?: number | null
+    product_last_history_date?: Date | string | null
+    product_last_history_created_at?: Date | string
+    product_last_history_updated_at?: Date | string
+  }
+
   export type region_setvariablesCreateManyUsersInput = {
     region_uuid?: string
     region_marginGC?: number | null
@@ -19326,6 +22778,30 @@ export namespace Prisma {
     gallon_history_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gallon_history_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     gallon_history_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type gallon_gross_last_weekUpdateWithoutUsersInput = {
+    gallon_last_history_uuid?: StringFieldUpdateOperationsInput | string
+    gallon_last_history_gross?: NullableFloatFieldUpdateOperationsInput | number | null
+    gallon_last_history_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gallon_last_history_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    gallon_last_history_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type gallon_gross_last_weekUncheckedUpdateWithoutUsersInput = {
+    gallon_last_history_uuid?: StringFieldUpdateOperationsInput | string
+    gallon_last_history_gross?: NullableFloatFieldUpdateOperationsInput | number | null
+    gallon_last_history_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gallon_last_history_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    gallon_last_history_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type gallon_gross_last_weekUncheckedUpdateManyWithoutUsersInput = {
+    gallon_last_history_uuid?: StringFieldUpdateOperationsInput | string
+    gallon_last_history_gross?: NullableFloatFieldUpdateOperationsInput | number | null
+    gallon_last_history_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gallon_last_history_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    gallon_last_history_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type gas_station_setvariablesUpdateWithoutUsersInput = {
@@ -19578,6 +23054,30 @@ export namespace Prisma {
     product_history_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     product_history_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     product_history_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type product_gross_last_weekUpdateWithoutUsersInput = {
+    product_last_history_uuid?: StringFieldUpdateOperationsInput | string
+    product_last_history_gross?: NullableFloatFieldUpdateOperationsInput | number | null
+    product_last_history_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    product_last_history_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    product_last_history_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type product_gross_last_weekUncheckedUpdateWithoutUsersInput = {
+    product_last_history_uuid?: StringFieldUpdateOperationsInput | string
+    product_last_history_gross?: NullableFloatFieldUpdateOperationsInput | number | null
+    product_last_history_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    product_last_history_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    product_last_history_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type product_gross_last_weekUncheckedUpdateManyWithoutUsersInput = {
+    product_last_history_uuid?: StringFieldUpdateOperationsInput | string
+    product_last_history_gross?: NullableFloatFieldUpdateOperationsInput | number | null
+    product_last_history_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    product_last_history_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    product_last_history_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type region_setvariablesUpdateWithoutUsersInput = {
@@ -19993,6 +23493,14 @@ export namespace Prisma {
      * @deprecated Use product_gross_historyDefaultArgs instead
      */
     export type product_gross_historyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = product_gross_historyDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use gallon_gross_last_weekDefaultArgs instead
+     */
+    export type gallon_gross_last_weekArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = gallon_gross_last_weekDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use product_gross_last_weekDefaultArgs instead
+     */
+    export type product_gross_last_weekArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = product_gross_last_weekDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany
