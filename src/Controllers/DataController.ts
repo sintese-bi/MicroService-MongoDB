@@ -767,6 +767,7 @@ class DataController {
                   100,
                 tenth_label: "Flag Comparativo entre semanas",
                 tenth_value: sumFuelTodayLastWeekFlag,
+                unit_type: "real",
               },
               {
                 label: "Resultado Bruto da Galonagem",
@@ -793,9 +794,9 @@ class DataController {
                 eighth_value: 0,
                 ninth_label: "",
                 ninth_value: 0,
-
                 tenth_label: "Flag Comparativo entre semanas",
                 tenth_value: literageProfitTodayLastWeekFlag,
+                unit_type: "real",
               },
               {
                 label: "M/LT",
@@ -827,6 +828,7 @@ class DataController {
                 sixth_value: 0,
                 seventh_label: "",
                 seventh_value: 0,
+                unit_type: "real_per_gallon",
               },
             ],
             [
@@ -860,6 +862,7 @@ class DataController {
                     100,
                 tenth_label: "Flag Comparativo entre semanas",
                 tenth_value: sumFuelProdTodayLastWeekFlag,
+                unit_type: "real",
               },
               {
                 label: "Resultado Bruto de Produto",
@@ -886,6 +889,7 @@ class DataController {
                 eighth_value: 0,
                 ninth_label: "% ult. semana",
                 ninth_value: 0,
+                unit_type: "real",
               },
               {
                 label: "Lucro Bruto",
@@ -919,6 +923,7 @@ class DataController {
                   100,
                 tenth_label: "Flag Comparativo entre semanas",
                 tenth_value: value_bruto,
+                unit_type: "percentage",
               },
             ],
             // [
