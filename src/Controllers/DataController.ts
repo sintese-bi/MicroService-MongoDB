@@ -950,6 +950,7 @@ class DataController {
                 //   grossProfitPercentage,
                 // tenth_label: "Flag Comparativo entre semanas",
                 // tenth_value: value_bruto
+                unit_type: "real",
               },
             ],
             // [
