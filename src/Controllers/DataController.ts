@@ -521,6 +521,19 @@ class DataController {
           ) /
           100;
 
+        const actualdateLastWeek =
+          moment().tz("America/Sao_Paulo").format("YYYY-MM-DDTHH:mm:ss") + "Z";
+        //Fluxo última semana Resultado bruto galonagem e produto
+        const grossLiterageLastWeek = await prismaRedeFlex.gallon_gross_last_week.findFirst({
+          select: { gallon_last_history_gross: true },
+          where: { gallon_last_history_date: { lt: actualdateLastWeek }, use_uuid: id },
+          orderBy: { gallon_last_history_date: 'desc' }
+        })
+        const grossProductLastWeek = await prismaRedeFlex.product_gross_last_week.findFirst({
+          select: { product_last_history_gross: true },
+          where: { product_last_history_date: { lt: actualdateLastWeek }, use_uuid: id },
+          orderBy: { product_last_history_date: 'desc' }
+        })
         //Fluxo mlt por tipo combustível
 
         const token = process.env.SAULOAPI;
@@ -617,14 +630,8 @@ class DataController {
           Math.round(sumFuel * 100) / 100 >=
           Math.round(sumFuelLastWeek * 100) / 100;
         const literageProfitTodayLastWeekFlag =
-          (monthBigNumbers?.bignumbers_dailyLiterageProfit || 0) >=
-          Math.round(
-            (sumFuelLastWeek -
-              sumCostPriceLastWeek -
-              sumLiterageLastWeek * 0.04) *
-            100
-          ) /
-          100;
+          (monthBigNumbers?.bignumbers_dailyLiterageProfit || 0) >= (grossLiterageLastWeek?.gallon_last_history_gross || 0)
+        const productProfitTodayLastWeekFlag = (monthBigNumbers?.bignumbers_dailyProductProfit || 0) >= (grossProductLastWeek?.product_last_history_gross || 0)
         const sumFuelProdTodayLastWeekFlag =
           Math.round(sumFuelProd * 100) / 100 >=
           Math.round(sumFuelProdLastWeek * 100) / 100;
@@ -679,19 +686,6 @@ class DataController {
               100 -
               100
             );
-        const actualdateLastWeek =
-          moment().tz("America/Sao_Paulo").format("YYYY-MM-DDTHH:mm:ss") + "Z";
-        //Fluxo última semana Resultado bruto galonagem e produto
-        const grossLiterageLastWeek = await prismaRedeFlex.gallon_gross_last_week.findFirst({
-          select: { gallon_last_history_gross: true },
-          where: { gallon_last_history_date: { lt: actualdateLastWeek }, use_uuid: id },
-          orderBy: { gallon_last_history_date: 'desc' }
-        })
-        const grossProductLastWeek = await prismaRedeFlex.product_gross_last_week.findFirst({
-          select: { product_last_history_gross: true },
-          where: { product_last_history_date: { lt: actualdateLastWeek }, use_uuid: id },
-          orderBy: { product_last_history_date: 'desc' }
-        })
         return res.status(200).json({
           data: [
             [
@@ -830,9 +824,10 @@ class DataController {
                   ) / 100,
                 eighth_label: "",
                 eighth_value: 0,
-
-                tenth_label: "Flag Comparativo entre semanas",
-                tenth_value: literageProfitTodayLastWeekFlag,
+                // ninth_label: "% ult. semana",
+                // ninth_value: 0,
+                // tenth_label: "Flag Comparativo entre semanas",
+                // tenth_value: literageProfitTodayLastWeekFlag,
                 unit_type: "real",
               },
               {
@@ -921,8 +916,10 @@ class DataController {
                   ) / 100,
                 eighth_label: "",
                 eighth_value: 0,
-                ninth_label: "% ult. semana",
-                ninth_value: 0,
+                // ninth_label: "% ult. semana",
+                // ninth_value: 0,
+                // tenth_label: "Flag Comparativo entre semanas",
+                // tenth_value: productProfitTodayLastWeekFlag,
                 unit_type: "real",
               },
               {
@@ -945,11 +942,11 @@ class DataController {
                 eighth_value:
                   Math.round(secondary_value_bruto_operacionalLastWeek * 100) /
                   100,
-                // ninth_label: "% ult. semana",
-                // ninth_value:
-                //   grossProfitPercentage,
-                // tenth_label: "Flag Comparativo entre semanas",
-                // tenth_value: value_bruto
+                ninth_label: "% ult. semana",
+                ninth_value:
+                  grossProfitPercentage,
+                tenth_label: "Flag Comparativo entre semanas",
+                tenth_value: value_bruto,
                 unit_type: "percentage",
               },
             ],
@@ -1296,6 +1293,7 @@ class DataController {
           "ETANOL HIDRATADO COMBUSTIVEL",
           "GASOLINA COMUM  ADITIVADA",
           "GAS NATURAL VEICULAR",
+          "GASOLINA PREMIUM PODIUM"
         ];
         const allowedFuelsArray = aggregatedResult.filter((element: any) => {
           const result = allowedFuels.find(
@@ -3442,7 +3440,48 @@ class DataController {
         .json({ message: `Erro ao retornar os dados: ${error}` });
     }
   }
+  public async deleteLastWeekDataPlusOne(req?: Request, res?: Response) {
+    try {
+      const oldDates = moment().tz("America/Sao_Paulo").subtract(8, 'days').format("YYYY-MM-DD");
 
+
+      await prismaRedeFlex.gallon_gross_last_week.deleteMany({
+        where: {
+          gallon_last_history_date: {
+            lt: `${oldDates}T00:00:00.000Z`,
+          },
+        }
+      })
+      await prismaRedeFlex.product_gross_last_week.deleteMany({
+        where: {
+          product_last_history_date: {
+            lt: `${oldDates}T00:00:00.000Z`,
+          },
+        }
+      })
+      return res?.status(200).json({ message: "Dados deletados com sucesso!" });
+    } catch (error) {
+      return res
+        ?.status(500)
+        .json({ message: `Erro ao atualizar os dados: ${error}` });
+    }
+  }
+  //Executará a tarefa de 8 em 8 dias
+  public deleteData() {
+    cron.schedule(
+      "0 0 */8 * *",
+      async () => {
+        try {
+          await this.deleteLastWeekDataPlusOne();
+        } catch (error) {
+          console.error("Erro durante a verificação de alertas:", error);
+        }
+      },
+      {
+        timezone: "America/Sao_Paulo",
+      }
+    );
+  }
   public scheduleMonthlyBigNumberUpdate() {
     cron.schedule(
       "0 0 * * *",
@@ -3487,4 +3526,5 @@ const dataController = new DataController();
 dataController.scheduleMonthlyBigNumberUpdate();
 dataController.scheduledailyProductProfitUpdate();
 dataController.scheduledailyGrossProductLiterage();
+dataController.deleteData()
 export default new DataController();
