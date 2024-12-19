@@ -3485,6 +3485,6 @@ class DataController {
 }
 const dataController = new DataController();
 dataController.scheduleMonthlyBigNumberUpdate();
-// dataController.scheduledailyProductProfitUpdate();
+dataController.scheduledailyProductProfitUpdate();
 dataController.scheduledailyGrossProductLiterage();
 export default new DataController();
