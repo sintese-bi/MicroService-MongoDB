@@ -828,7 +828,7 @@ class DataController {
                 // ninth_value: 0,
                 // tenth_label: "Flag Comparativo entre semanas",
                 // tenth_value: literageProfitTodayLastWeekFlag,
-                unit_type: "real",
+                unit_type: "percentage",
               },
               {
                 label: "M/LT",
@@ -920,7 +920,7 @@ class DataController {
                 // ninth_value: 0,
                 // tenth_label: "Flag Comparativo entre semanas",
                 // tenth_value: productProfitTodayLastWeekFlag,
-                unit_type: "real",
+                unit_type: "percentage",
               },
               {
                 label: "Lucro Bruto",
