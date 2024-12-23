@@ -674,18 +674,16 @@ class DataController {
           secondary_value_bruto_operacional /
             secondary_value_bruto_operacionalLastWeek <
             1
-            ? Math.round(
-              100 -
-              (secondary_value_bruto_operacional /
-                secondary_value_bruto_operacionalLastWeek) *
-              100
-            )
-            : Math.round(
-              (secondary_value_bruto_operacional /
-                secondary_value_bruto_operacionalLastWeek) *
-              100 -
-              100
-            );
+            ?
+
+            Math.ceil(
+              Math.abs((secondary_value_bruto_operacional - secondary_value_bruto_operacionalLastWeek) * 100)
+            ) / 100
+
+            :
+            Math.ceil(
+              Math.abs((secondary_value_bruto_operacional - secondary_value_bruto_operacionalLastWeek) * 100)
+            ) / 100;
         return res.status(200).json({
           data: [
             [
