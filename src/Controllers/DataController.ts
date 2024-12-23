@@ -691,6 +691,15 @@ class DataController {
               ) * 100
             ) / 100;
 
+
+
+
+
+
+
+
+
+
         return res.status(200).json({
           data: [
             [
@@ -1133,9 +1142,13 @@ class DataController {
               gte: `${actualdate}T00:00:00.000Z`,
               lte: `${actualdate}T23:59:59.999Z`,
             },
-            vda: {
-              not: "",
-            },
+            AND: [
+              { vda: { not: "" } },
+              { cus: { not: "" } },
+              { des: { not: "" } },
+              { ibm: { not: "" } },
+              { del: { not: "" } },
+            ],
           },
         });
         if (!fuelliterageSell) {
@@ -1152,11 +1165,16 @@ class DataController {
                 gte: `${actualdateOne}T00:00:00.000Z`,
                 lte: `${actualdateOne}T23:59:59.999Z`,
               },
-              vda: {
-                not: "",
-              },
+              AND: [
+                { vda: { not: "" } },
+                { cus: { not: "" } },
+                { des: { not: "" } },
+                { ibm: { not: "" } },
+                { del: { not: "" } },
+              ],
             },
           });
+
         }
 
         let stationsMapping: any = {};
