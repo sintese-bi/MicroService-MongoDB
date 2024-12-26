@@ -363,7 +363,7 @@ class DataController {
           },
           0
         );
-
+        console.log(sumFuelProdLastWeek)
         //Soma da litragem tipo produto
         const literageProdLastWeek = itemsArrayLastWeek
           .map((element) => {
@@ -522,13 +522,15 @@ class DataController {
           100;
 
         const actualdateLastWeek =
-          moment().tz("America/Sao_Paulo").format("YYYY-MM-DDTHH:mm:ss") + "Z";
+          moment().tz("America/Sao_Paulo").subtract(7, "days")
+            .format("YYYY-MM-DDTHH:mm:ss") + "Z";
         //Fluxo última semana Resultado bruto galonagem e produto
         const grossLiterageLastWeek = await prismaRedeFlex.gallon_gross_last_week.findFirst({
           select: { gallon_last_history_gross: true },
           where: { gallon_last_history_date: { lt: actualdateLastWeek }, use_uuid: id },
           orderBy: { gallon_last_history_date: 'desc' }
         })
+
         const grossProductLastWeek = await prismaRedeFlex.product_gross_last_week.findFirst({
           select: { product_last_history_gross: true },
           where: { product_last_history_date: { lt: actualdateLastWeek }, use_uuid: id },
@@ -542,7 +544,7 @@ class DataController {
         );
         const fuelArray = [
           "GASOLINA COMUM",
-          "GASOLINA ADITIVADA",
+          "GAS NATURAL VEICULAR",
           "OLEO DIESEL B S10 COMUM",
           "ETANOL HIDRATADO COMBUSTIVEL",
           "OLEO DIESEL B S500 COMUM",
@@ -690,16 +692,13 @@ class DataController {
                 (Math.round(secondary_value_bruto_operacionalLastWeek * 100) / 100)
               ) * 100
             ) / 100;
+        const grossLiterageLastPercentage = ((monthBigNumbers?.bignumbers_dailyLiterageProfit) || 0) / (grossLiterageLastWeek?.gallon_last_history_gross || 0) < 1
+          ? Math.round(100 - (((monthBigNumbers?.bignumbers_dailyLiterageProfit) || 0) / (grossLiterageLastWeek?.gallon_last_history_gross || 0)) * 100)
+          : Math.round((((monthBigNumbers?.bignumbers_dailyLiterageProfit) || 0) / (grossLiterageLastWeek?.gallon_last_history_gross || 0)) * 100 - 100);
 
-
-
-
-
-
-
-
-
-
+        const grossProductLastPercentage = ((monthBigNumbers?.bignumbers_dailyProductProfit) || 0) / (grossProductLastWeek?.product_last_history_gross || 0) < 1
+          ? Math.round(100 - (((monthBigNumbers?.bignumbers_dailyProductProfit) || 0) / (grossProductLastWeek?.product_last_history_gross || 0)) * 100)
+          : Math.round((((monthBigNumbers?.bignumbers_dailyProductProfit) || 0) / (grossProductLastWeek?.product_last_history_gross || 0)) * 100 - 100);
         return res.status(200).json({
           data: [
             [
@@ -836,12 +835,12 @@ class DataController {
                       actualDay) *
                     100
                   ) / 100,
-                eighth_label: "",
-                eighth_value: 0,
-                // ninth_label: "% ult. semana",
-                // ninth_value: 0,
-                // tenth_label: "Flag Comparativo entre semanas",
-                // tenth_value: literageProfitTodayLastWeekFlag,
+                eighth_label: `${portugueseDate}`,
+                eighth_value: grossLiterageLastWeek?.gallon_last_history_gross || (monthBigNumbers?.bignumbers_dailyLiterageProfit || 0) - 125,
+                ninth_label: "% ult. semana",
+                ninth_value: grossLiterageLastPercentage,
+                tenth_label: "Flag Comparativo entre semanas",
+                tenth_value: literageProfitTodayLastWeekFlag,
                 unit_type: "real",
               },
               {
@@ -849,13 +848,13 @@ class DataController {
                 value:
                   Math.round(
                     ((fuelSums["GASOLINA COMUM"] +
-                      fuelSums["GASOLINA ADITIVADA"] +
+                      fuelSums["GAS NATURAL VEICULAR"] +
                       fuelSums["GASOLINA PREMIUM PODIUM"] +
                       fuelSums["OLEO DIESEL B S10 COMUM"] +
                       fuelSums["OLEO DIESEL B S500 COMUM"] +
                       fuelSums["ETANOL HIDRATADO COMBUSTIVEL"]) /
                       (fuelSumsVolume["GASOLINA COMUM"] +
-                        fuelSumsVolume["GASOLINA ADITIVADA"] +
+                        fuelSumsVolume["GAS NATURAL VEICULAR"] +
                         fuelSumsVolume["GASOLINA PREMIUM PODIUM"] +
                         fuelSumsVolume["OLEO DIESEL B S10 COMUM"] +
                         fuelSumsVolume["OLEO DIESEL B S500 COMUM"] +
@@ -928,12 +927,12 @@ class DataController {
                       actualDay) *
                     100
                   ) / 100,
-                eighth_label: "",
-                eighth_value: 0,
-                // ninth_label: "% ult. semana",
-                // ninth_value: 0,
-                // tenth_label: "Flag Comparativo entre semanas",
-                // tenth_value: productProfitTodayLastWeekFlag,
+                eighth_label: `${portugueseDate}`,
+                eighth_value: grossProductLastWeek?.product_last_history_gross || (monthBigNumbers?.bignumbers_dailyProductProfit || 0) - 125,
+                ninth_label: "% ult. semana",
+                ninth_value: grossProductLastPercentage,
+                tenth_label: "Flag Comparativo entre semanas",
+                tenth_value: productProfitTodayLastWeekFlag,
                 unit_type: "real",
               },
               {
@@ -1294,7 +1293,7 @@ class DataController {
           "OLEO DIESEL B S10 COMUM",
           "OLEO DIESEL B S500 COMUM",
           "ETANOL HIDRATADO COMBUSTIVEL",
-          "GASOLINA COMUM  ADITIVADA",
+         
           "GAS NATURAL VEICULAR",
           "GASOLINA PREMIUM PODIUM",
         ];
@@ -1304,7 +1303,8 @@ class DataController {
         );
 
         return res.status(200).json({
-          data: allowedFuelsArray,
+          data: allowedFuelsArray
+
         });
       } else {
         return res
@@ -3526,8 +3526,8 @@ class DataController {
   }
 }
 const dataController = new DataController();
-dataController.scheduleMonthlyBigNumberUpdate();
-dataController.scheduledailyProductProfitUpdate();
-dataController.scheduledailyGrossProductLiterage();
-dataController.deleteData()
+// dataController.scheduleMonthlyBigNumberUpdate();
+// dataController.scheduledailyProductProfitUpdate();
+// dataController.scheduledailyGrossProductLiterage();
+// dataController.deleteData()
 export default new DataController();
