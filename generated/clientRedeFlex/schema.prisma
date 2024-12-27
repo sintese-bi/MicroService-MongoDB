@@ -59,6 +59,7 @@ model users {
   gallon_gross_history                  gallon_gross_history[]
   gallon_gross_last_week                gallon_gross_last_week[]
   gas_station_setvariables              gas_station_setvariables[]
+  mlt_history                           mlt_history[]
   product_gross_history                 product_gross_history[]
   product_gross_last_week               product_gross_last_week[]
   region_setvariables                   region_setvariables[]
@@ -267,4 +268,14 @@ model product_gross_last_week {
   product_last_history_created_at DateTime  @default(now()) @db.Timestamp(6)
   product_last_history_updated_at DateTime  @default(now()) @db.Timestamp(6)
   users                           users?    @relation(fields: [use_uuid], references: [use_uuid])
+}
+
+model mlt_history {
+  mlt_history_uuid       String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  use_uuid               String?   @db.Uuid
+  mlt_history_value      Float?
+  mlt_history_date       DateTime?
+  mlt_history_created_at DateTime  @default(now()) @db.Timestamp(6)
+  mlt_history_updated_at DateTime  @default(now()) @db.Timestamp(6)
+  users                  users?    @relation(fields: [use_uuid], references: [use_uuid])
 }

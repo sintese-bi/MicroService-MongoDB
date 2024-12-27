@@ -360,6 +360,15 @@ exports.Prisma.Product_gross_last_weekScalarFieldEnum = {
   product_last_history_updated_at: 'product_last_history_updated_at'
 };
 
+exports.Prisma.Mlt_historyScalarFieldEnum = {
+  mlt_history_uuid: 'mlt_history_uuid',
+  use_uuid: 'use_uuid',
+  mlt_history_value: 'mlt_history_value',
+  mlt_history_date: 'mlt_history_date',
+  mlt_history_created_at: 'mlt_history_created_at',
+  mlt_history_updated_at: 'mlt_history_updated_at'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -386,7 +395,8 @@ exports.Prisma.ModelName = {
   gallon_gross_history: 'gallon_gross_history',
   product_gross_history: 'product_gross_history',
   gallon_gross_last_week: 'gallon_gross_last_week',
-  product_gross_last_week: 'product_gross_last_week'
+  product_gross_last_week: 'product_gross_last_week',
+  mlt_history: 'mlt_history'
 };
 
 /**

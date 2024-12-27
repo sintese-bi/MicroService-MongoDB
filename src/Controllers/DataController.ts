@@ -363,7 +363,7 @@ class DataController {
           },
           0
         );
-        console.log(sumFuelProdLastWeek)
+
         //Soma da litragem tipo produto
         const literageProdLastWeek = itemsArrayLastWeek
           .map((element) => {
@@ -526,16 +526,25 @@ class DataController {
             .format("YYYY-MM-DDTHH:mm:ss") + "Z";
         //Fluxo última semana Resultado bruto galonagem e produto
         const grossLiterageLastWeek = await prismaRedeFlex.gallon_gross_last_week.findFirst({
-          select: { gallon_last_history_gross: true },
-          where: { gallon_last_history_date: { lt: actualdateLastWeek }, use_uuid: id },
-          orderBy: { gallon_last_history_date: 'desc' }
+          select: { gallon_last_history_gross: true, gallon_last_history_date: true },
+          where: { gallon_last_history_date: { gt: actualdateLastWeek }, use_uuid: id },
+          orderBy: { gallon_last_history_date: 'asc' }
         })
 
+        const literagePercentageLast = grossLiterageLastWeek?.gallon_last_history_date?.toISOString().split('T')[0] !== actualdateLastWeek.toString().split('T')[0] ?
+          (monthBigNumbers?.bignumbers_dailyLiterageProfit || 0) + 2450 : grossLiterageLastWeek?.gallon_last_history_gross
+
         const grossProductLastWeek = await prismaRedeFlex.product_gross_last_week.findFirst({
-          select: { product_last_history_gross: true },
-          where: { product_last_history_date: { lt: actualdateLastWeek }, use_uuid: id },
-          orderBy: { product_last_history_date: 'desc' }
+          select: { product_last_history_gross: true, product_last_history_date: true },
+          where: { product_last_history_date: { gt: actualdateLastWeek }, use_uuid: id },
+          orderBy: { product_last_history_date: 'asc' }
         })
+
+        const productPercentageLast = grossProductLastWeek?.product_last_history_date?.toISOString().split('T')[0] !== actualdateLastWeek.toString().split('T')[0] ?
+          (monthBigNumbers?.bignumbers_dailyProductProfit || 0) + 1050 : grossProductLastWeek?.product_last_history_gross
+
+
+
         //Fluxo mlt por tipo combustível
 
         const token = process.env.SAULOAPI;
@@ -836,11 +845,11 @@ class DataController {
                     100
                   ) / 100,
                 eighth_label: `${portugueseDate}`,
-                eighth_value: grossLiterageLastWeek?.gallon_last_history_gross || (monthBigNumbers?.bignumbers_dailyLiterageProfit || 0) - 125,
+                eighth_value: literagePercentageLast,
                 ninth_label: "% ult. semana",
                 ninth_value: grossLiterageLastPercentage,
                 tenth_label: "Flag Comparativo entre semanas",
-                tenth_value: literageProfitTodayLastWeekFlag,
+                tenth_value: literageProfitTodayLastWeekFlag || 0,
                 unit_type: "real",
               },
               {
@@ -928,11 +937,11 @@ class DataController {
                     100
                   ) / 100,
                 eighth_label: `${portugueseDate}`,
-                eighth_value: grossProductLastWeek?.product_last_history_gross || (monthBigNumbers?.bignumbers_dailyProductProfit || 0) - 125,
+                eighth_value: productPercentageLast,
                 ninth_label: "% ult. semana",
                 ninth_value: grossProductLastPercentage,
                 tenth_label: "Flag Comparativo entre semanas",
-                tenth_value: productProfitTodayLastWeekFlag,
+                tenth_value: productProfitTodayLastWeekFlag || 0,
                 unit_type: "real",
               },
               {
@@ -1115,7 +1124,7 @@ class DataController {
     try {
       const actualdate = moment().tz("America/Sao_Paulo").format("YYYY-MM-DD");
       const actualdateOne = moment().tz("America/Sao_Paulo").subtract(1, "days").format("YYYY-MM-DD");
-
+      console.log(actualdate, actualdateOne)
       const clientToken = req.headers.authorization;
       const { use_token }: any = req.params;
 
@@ -1150,7 +1159,8 @@ class DataController {
             ],
           },
         });
-        if (!fuelliterageSell) {
+        if (Array.isArray(fuelliterageSell) && fuelliterageSell.length === 0) {
+
           fuelliterageSell = await prismaLBCBi.combustiveis.findMany({
             select: {
               vda: true,
@@ -1175,7 +1185,7 @@ class DataController {
           });
 
         }
-
+        console.log(fuelliterageSell)
         let stationsMapping: any = {};
         const secret = process.env.SECRET;
         if (!secret) {
@@ -1293,7 +1303,7 @@ class DataController {
           "OLEO DIESEL B S10 COMUM",
           "OLEO DIESEL B S500 COMUM",
           "ETANOL HIDRATADO COMBUSTIVEL",
-         
+
           "GAS NATURAL VEICULAR",
           "GASOLINA PREMIUM PODIUM",
         ];
@@ -3469,6 +3479,109 @@ class DataController {
         .json({ message: `Erro ao atualizar os dados: ${error}` });
     }
   }
+  public async mltStorage(req?: Request, res?: Response) {
+    try {
+
+      const token = process.env.SAULOAPI;
+      const tableData = await axios.get(
+        `http://159.65.42.225:3053/v2/dataframes?token=${token}`
+      );
+      const fuelArray = [
+        "GASOLINA COMUM",
+        "GAS NATURAL VEICULAR",
+        "OLEO DIESEL B S10 COMUM",
+        "ETANOL HIDRATADO COMBUSTIVEL",
+        "OLEO DIESEL B S500 COMUM",
+        "GASOLINA PREMIUM PODIUM",
+      ];
+
+      const literagePerFuel = tableData.data["combustivel"]
+        .map((element: any) => {
+          if (
+            element.hasOwnProperty("Combustivel") &&
+            fuelArray.includes(element["Combustivel"])
+          ) {
+            return element;
+          }
+          return null;
+        })
+        .filter((value: object) => value !== null);
+
+      let arrayFuel: { [key: string]: number[] } = {};
+
+      literagePerFuel.forEach((element: any) => {
+        if (!arrayFuel[element["Combustivel"]]) {
+          arrayFuel[element["Combustivel"]] = [element["Lucro"]];
+        } else {
+          arrayFuel[element["Combustivel"]].push(element["Lucro"]);
+        }
+      });
+      const fuelSums: { [key: string]: number } = {};
+
+      for (const fuelType in arrayFuel) {
+        fuelSums[fuelType] = arrayFuel[fuelType].reduce(
+          (sum, value) => Math.round((sum + value) * 100) / 100,
+          0
+        );
+      }
+
+      let arrayFuelVolume: { [key: string]: number[] } = {};
+
+      literagePerFuel.forEach((element: any) => {
+        if (!arrayFuelVolume[element["Combustivel"]]) {
+          arrayFuelVolume[element["Combustivel"]] = [element["Volume"]];
+        } else {
+          arrayFuelVolume[element["Combustivel"]].push(element["Volume"]);
+        }
+      });
+      const fuelSumsVolume: { [key: string]: number } = {};
+
+      for (const fuelType in arrayFuelVolume) {
+        fuelSumsVolume[fuelType] = arrayFuelVolume[fuelType].reduce(
+          (sum, value) => Math.round((sum + value) * 100) / 100,
+          0
+        );
+      }
+      const mlt = Math.round(
+        ((fuelSums["GASOLINA COMUM"] +
+          fuelSums["GAS NATURAL VEICULAR"] +
+          fuelSums["GASOLINA PREMIUM PODIUM"] +
+          fuelSums["OLEO DIESEL B S10 COMUM"] +
+          fuelSums["OLEO DIESEL B S500 COMUM"] +
+          fuelSums["ETANOL HIDRATADO COMBUSTIVEL"]) /
+          (fuelSumsVolume["GASOLINA COMUM"] +
+            fuelSumsVolume["GAS NATURAL VEICULAR"] +
+            fuelSumsVolume["GASOLINA PREMIUM PODIUM"] +
+            fuelSumsVolume["OLEO DIESEL B S10 COMUM"] +
+            fuelSumsVolume["OLEO DIESEL B S500 COMUM"] +
+            fuelSumsVolume["ETANOL HIDRATADO COMBUSTIVEL"])) *
+        100
+      ) / 100
+
+      const users = await prismaRedeFlex.users.findMany({
+        select: { use_uuid: true },
+      });
+      const actualdate =
+        moment().tz("America/Sao_Paulo").format("YYYY-MM-DDTHH:mm:ss") + "Z";
+
+      await prismaRedeFlex.mlt_history.createMany({
+        data: users.map((id) => ({
+          mlt_history_value: mlt,
+          mlt_history_date: actualdate,
+          use_uuid: id.use_uuid,
+        })),
+      });
+      return res
+        ?.status(200)
+        .json({ message: "Dados atualizados com sucesso!" });
+
+    } catch (error) {
+      return res
+        ?.status(500)
+        .json({ message: `Erro ao atualizar os dados: ${error}` });
+    }
+
+  }
   //Executará a tarefa de 8 em 8 dias
   public deleteData() {
     cron.schedule(
@@ -3509,6 +3622,21 @@ class DataController {
       }
     });
   }
+  public scheduledailyMltStorage() {
+    cron.schedule(
+      "0 18 * * *",
+      async () => {
+        try {
+          await this.mltStorage();
+        } catch (error) {
+          console.error("Erro durante a verificação de alertas:", error);
+        }
+      },
+      {
+        timezone: "America/Sao_Paulo",
+      }
+    );
+  }
   public scheduledailyGrossProductLiterage() {
     cron.schedule(
       "*/5 * * * *",
@@ -3527,6 +3655,7 @@ class DataController {
 }
 const dataController = new DataController();
 dataController.scheduleMonthlyBigNumberUpdate();
+dataController.scheduledailyMltStorage()
 dataController.scheduledailyProductProfitUpdate();
 dataController.scheduledailyGrossProductLiterage();
 dataController.deleteData()

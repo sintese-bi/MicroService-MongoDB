@@ -63,6 +63,11 @@ export type gallon_gross_last_week = $Result.DefaultSelection<Prisma.$gallon_gro
  * 
  */
 export type product_gross_last_week = $Result.DefaultSelection<Prisma.$product_gross_last_weekPayload>
+/**
+ * Model mlt_history
+ * 
+ */
+export type mlt_history = $Result.DefaultSelection<Prisma.$mlt_historyPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -285,6 +290,16 @@ export class PrismaClient<
     * ```
     */
   get product_gross_last_week(): Prisma.product_gross_last_weekDelegate<ExtArgs>;
+
+  /**
+   * `prisma.mlt_history`: Exposes CRUD operations for the **mlt_history** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Mlt_histories
+    * const mlt_histories = await prisma.mlt_history.findMany()
+    * ```
+    */
+  get mlt_history(): Prisma.mlt_historyDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -771,7 +786,8 @@ export namespace Prisma {
     gallon_gross_history: 'gallon_gross_history',
     product_gross_history: 'product_gross_history',
     gallon_gross_last_week: 'gallon_gross_last_week',
-    product_gross_last_week: 'product_gross_last_week'
+    product_gross_last_week: 'product_gross_last_week',
+    mlt_history: 'mlt_history'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -788,7 +804,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'ibm_info' | 'users' | 'gas_station_setvariables' | 'region_setvariables' | 'regions' | 'big_numbers_values' | 'gallon_gross_history' | 'product_gross_history' | 'gallon_gross_last_week' | 'product_gross_last_week'
+      modelProps: 'ibm_info' | 'users' | 'gas_station_setvariables' | 'region_setvariables' | 'regions' | 'big_numbers_values' | 'gallon_gross_history' | 'product_gross_history' | 'gallon_gross_last_week' | 'product_gross_last_week' | 'mlt_history'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
@@ -1492,6 +1508,76 @@ export namespace Prisma {
           }
         }
       }
+      mlt_history: {
+        payload: Prisma.$mlt_historyPayload<ExtArgs>
+        fields: Prisma.mlt_historyFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.mlt_historyFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$mlt_historyPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.mlt_historyFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$mlt_historyPayload>
+          }
+          findFirst: {
+            args: Prisma.mlt_historyFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$mlt_historyPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.mlt_historyFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$mlt_historyPayload>
+          }
+          findMany: {
+            args: Prisma.mlt_historyFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$mlt_historyPayload>[]
+          }
+          create: {
+            args: Prisma.mlt_historyCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$mlt_historyPayload>
+          }
+          createMany: {
+            args: Prisma.mlt_historyCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.mlt_historyCreateManyAndReturnArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$mlt_historyPayload>[]
+          }
+          delete: {
+            args: Prisma.mlt_historyDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$mlt_historyPayload>
+          }
+          update: {
+            args: Prisma.mlt_historyUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$mlt_historyPayload>
+          }
+          deleteMany: {
+            args: Prisma.mlt_historyDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.mlt_historyUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.mlt_historyUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$mlt_historyPayload>
+          }
+          aggregate: {
+            args: Prisma.Mlt_historyAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateMlt_history>
+          }
+          groupBy: {
+            args: Prisma.mlt_historyGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<Mlt_historyGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.mlt_historyCountArgs<ExtArgs>,
+            result: $Utils.Optional<Mlt_historyCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1704,6 +1790,7 @@ export namespace Prisma {
     gallon_gross_history: number
     gallon_gross_last_week: number
     gas_station_setvariables: number
+    mlt_history: number
     product_gross_history: number
     product_gross_last_week: number
     region_setvariables: number
@@ -1713,6 +1800,7 @@ export namespace Prisma {
     gallon_gross_history?: boolean | UsersCountOutputTypeCountGallon_gross_historyArgs
     gallon_gross_last_week?: boolean | UsersCountOutputTypeCountGallon_gross_last_weekArgs
     gas_station_setvariables?: boolean | UsersCountOutputTypeCountGas_station_setvariablesArgs
+    mlt_history?: boolean | UsersCountOutputTypeCountMlt_historyArgs
     product_gross_history?: boolean | UsersCountOutputTypeCountProduct_gross_historyArgs
     product_gross_last_week?: boolean | UsersCountOutputTypeCountProduct_gross_last_weekArgs
     region_setvariables?: boolean | UsersCountOutputTypeCountRegion_setvariablesArgs
@@ -1748,6 +1836,13 @@ export namespace Prisma {
    */
   export type UsersCountOutputTypeCountGas_station_setvariablesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: gas_station_setvariablesWhereInput
+  }
+
+  /**
+   * UsersCountOutputType without action
+   */
+  export type UsersCountOutputTypeCountMlt_historyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: mlt_historyWhereInput
   }
 
   /**
@@ -3414,6 +3509,7 @@ export namespace Prisma {
     gallon_gross_history?: boolean | users$gallon_gross_historyArgs<ExtArgs>
     gallon_gross_last_week?: boolean | users$gallon_gross_last_weekArgs<ExtArgs>
     gas_station_setvariables?: boolean | users$gas_station_setvariablesArgs<ExtArgs>
+    mlt_history?: boolean | users$mlt_historyArgs<ExtArgs>
     product_gross_history?: boolean | users$product_gross_historyArgs<ExtArgs>
     product_gross_last_week?: boolean | users$product_gross_last_weekArgs<ExtArgs>
     region_setvariables?: boolean | users$region_setvariablesArgs<ExtArgs>
@@ -3474,6 +3570,7 @@ export namespace Prisma {
     gallon_gross_history?: boolean | users$gallon_gross_historyArgs<ExtArgs>
     gallon_gross_last_week?: boolean | users$gallon_gross_last_weekArgs<ExtArgs>
     gas_station_setvariables?: boolean | users$gas_station_setvariablesArgs<ExtArgs>
+    mlt_history?: boolean | users$mlt_historyArgs<ExtArgs>
     product_gross_history?: boolean | users$product_gross_historyArgs<ExtArgs>
     product_gross_last_week?: boolean | users$product_gross_last_weekArgs<ExtArgs>
     region_setvariables?: boolean | users$region_setvariablesArgs<ExtArgs>
@@ -3487,6 +3584,7 @@ export namespace Prisma {
       gallon_gross_history: Prisma.$gallon_gross_historyPayload<ExtArgs>[]
       gallon_gross_last_week: Prisma.$gallon_gross_last_weekPayload<ExtArgs>[]
       gas_station_setvariables: Prisma.$gas_station_setvariablesPayload<ExtArgs>[]
+      mlt_history: Prisma.$mlt_historyPayload<ExtArgs>[]
       product_gross_history: Prisma.$product_gross_historyPayload<ExtArgs>[]
       product_gross_last_week: Prisma.$product_gross_last_weekPayload<ExtArgs>[]
       region_setvariables: Prisma.$region_setvariablesPayload<ExtArgs>[]
@@ -3909,6 +4007,8 @@ export namespace Prisma {
     gallon_gross_last_week<T extends users$gallon_gross_last_weekArgs<ExtArgs> = {}>(args?: Subset<T, users$gallon_gross_last_weekArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gallon_gross_last_weekPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     gas_station_setvariables<T extends users$gas_station_setvariablesArgs<ExtArgs> = {}>(args?: Subset<T, users$gas_station_setvariablesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gas_station_setvariablesPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    mlt_history<T extends users$mlt_historyArgs<ExtArgs> = {}>(args?: Subset<T, users$mlt_historyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$mlt_historyPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     product_gross_history<T extends users$product_gross_historyArgs<ExtArgs> = {}>(args?: Subset<T, users$product_gross_historyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$product_gross_historyPayload<ExtArgs>, T, 'findMany'> | Null>;
 
@@ -4337,6 +4437,26 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: Gas_station_setvariablesScalarFieldEnum | Gas_station_setvariablesScalarFieldEnum[]
+  }
+
+  /**
+   * users.mlt_history
+   */
+  export type users$mlt_historyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the mlt_history
+     */
+    select?: mlt_historySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: mlt_historyInclude<ExtArgs> | null
+    where?: mlt_historyWhereInput
+    orderBy?: mlt_historyOrderByWithRelationInput | mlt_historyOrderByWithRelationInput[]
+    cursor?: mlt_historyWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Mlt_historyScalarFieldEnum | Mlt_historyScalarFieldEnum[]
   }
 
   /**
@@ -14261,6 +14381,1026 @@ export namespace Prisma {
 
 
   /**
+   * Model mlt_history
+   */
+
+  export type AggregateMlt_history = {
+    _count: Mlt_historyCountAggregateOutputType | null
+    _avg: Mlt_historyAvgAggregateOutputType | null
+    _sum: Mlt_historySumAggregateOutputType | null
+    _min: Mlt_historyMinAggregateOutputType | null
+    _max: Mlt_historyMaxAggregateOutputType | null
+  }
+
+  export type Mlt_historyAvgAggregateOutputType = {
+    mlt_history_value: number | null
+  }
+
+  export type Mlt_historySumAggregateOutputType = {
+    mlt_history_value: number | null
+  }
+
+  export type Mlt_historyMinAggregateOutputType = {
+    mlt_history_uuid: string | null
+    use_uuid: string | null
+    mlt_history_value: number | null
+    mlt_history_date: Date | null
+    mlt_history_created_at: Date | null
+    mlt_history_updated_at: Date | null
+  }
+
+  export type Mlt_historyMaxAggregateOutputType = {
+    mlt_history_uuid: string | null
+    use_uuid: string | null
+    mlt_history_value: number | null
+    mlt_history_date: Date | null
+    mlt_history_created_at: Date | null
+    mlt_history_updated_at: Date | null
+  }
+
+  export type Mlt_historyCountAggregateOutputType = {
+    mlt_history_uuid: number
+    use_uuid: number
+    mlt_history_value: number
+    mlt_history_date: number
+    mlt_history_created_at: number
+    mlt_history_updated_at: number
+    _all: number
+  }
+
+
+  export type Mlt_historyAvgAggregateInputType = {
+    mlt_history_value?: true
+  }
+
+  export type Mlt_historySumAggregateInputType = {
+    mlt_history_value?: true
+  }
+
+  export type Mlt_historyMinAggregateInputType = {
+    mlt_history_uuid?: true
+    use_uuid?: true
+    mlt_history_value?: true
+    mlt_history_date?: true
+    mlt_history_created_at?: true
+    mlt_history_updated_at?: true
+  }
+
+  export type Mlt_historyMaxAggregateInputType = {
+    mlt_history_uuid?: true
+    use_uuid?: true
+    mlt_history_value?: true
+    mlt_history_date?: true
+    mlt_history_created_at?: true
+    mlt_history_updated_at?: true
+  }
+
+  export type Mlt_historyCountAggregateInputType = {
+    mlt_history_uuid?: true
+    use_uuid?: true
+    mlt_history_value?: true
+    mlt_history_date?: true
+    mlt_history_created_at?: true
+    mlt_history_updated_at?: true
+    _all?: true
+  }
+
+  export type Mlt_historyAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which mlt_history to aggregate.
+     */
+    where?: mlt_historyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of mlt_histories to fetch.
+     */
+    orderBy?: mlt_historyOrderByWithRelationInput | mlt_historyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: mlt_historyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` mlt_histories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` mlt_histories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned mlt_histories
+    **/
+    _count?: true | Mlt_historyCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Mlt_historyAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Mlt_historySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Mlt_historyMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Mlt_historyMaxAggregateInputType
+  }
+
+  export type GetMlt_historyAggregateType<T extends Mlt_historyAggregateArgs> = {
+        [P in keyof T & keyof AggregateMlt_history]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMlt_history[P]>
+      : GetScalarType<T[P], AggregateMlt_history[P]>
+  }
+
+
+
+
+  export type mlt_historyGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: mlt_historyWhereInput
+    orderBy?: mlt_historyOrderByWithAggregationInput | mlt_historyOrderByWithAggregationInput[]
+    by: Mlt_historyScalarFieldEnum[] | Mlt_historyScalarFieldEnum
+    having?: mlt_historyScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Mlt_historyCountAggregateInputType | true
+    _avg?: Mlt_historyAvgAggregateInputType
+    _sum?: Mlt_historySumAggregateInputType
+    _min?: Mlt_historyMinAggregateInputType
+    _max?: Mlt_historyMaxAggregateInputType
+  }
+
+  export type Mlt_historyGroupByOutputType = {
+    mlt_history_uuid: string
+    use_uuid: string | null
+    mlt_history_value: number | null
+    mlt_history_date: Date | null
+    mlt_history_created_at: Date
+    mlt_history_updated_at: Date
+    _count: Mlt_historyCountAggregateOutputType | null
+    _avg: Mlt_historyAvgAggregateOutputType | null
+    _sum: Mlt_historySumAggregateOutputType | null
+    _min: Mlt_historyMinAggregateOutputType | null
+    _max: Mlt_historyMaxAggregateOutputType | null
+  }
+
+  type GetMlt_historyGroupByPayload<T extends mlt_historyGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Mlt_historyGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Mlt_historyGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Mlt_historyGroupByOutputType[P]>
+            : GetScalarType<T[P], Mlt_historyGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type mlt_historySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    mlt_history_uuid?: boolean
+    use_uuid?: boolean
+    mlt_history_value?: boolean
+    mlt_history_date?: boolean
+    mlt_history_created_at?: boolean
+    mlt_history_updated_at?: boolean
+    users?: boolean | mlt_history$usersArgs<ExtArgs>
+  }, ExtArgs["result"]["mlt_history"]>
+
+  export type mlt_historySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    mlt_history_uuid?: boolean
+    use_uuid?: boolean
+    mlt_history_value?: boolean
+    mlt_history_date?: boolean
+    mlt_history_created_at?: boolean
+    mlt_history_updated_at?: boolean
+    users?: boolean | mlt_history$usersArgs<ExtArgs>
+  }, ExtArgs["result"]["mlt_history"]>
+
+  export type mlt_historySelectScalar = {
+    mlt_history_uuid?: boolean
+    use_uuid?: boolean
+    mlt_history_value?: boolean
+    mlt_history_date?: boolean
+    mlt_history_created_at?: boolean
+    mlt_history_updated_at?: boolean
+  }
+
+  export type mlt_historyInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    users?: boolean | mlt_history$usersArgs<ExtArgs>
+  }
+  export type mlt_historyIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    users?: boolean | mlt_history$usersArgs<ExtArgs>
+  }
+
+  export type $mlt_historyPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "mlt_history"
+    objects: {
+      users: Prisma.$usersPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      mlt_history_uuid: string
+      use_uuid: string | null
+      mlt_history_value: number | null
+      mlt_history_date: Date | null
+      mlt_history_created_at: Date
+      mlt_history_updated_at: Date
+    }, ExtArgs["result"]["mlt_history"]>
+    composites: {}
+  }
+
+  type mlt_historyGetPayload<S extends boolean | null | undefined | mlt_historyDefaultArgs> = $Result.GetResult<Prisma.$mlt_historyPayload, S>
+
+  type mlt_historyCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<mlt_historyFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: Mlt_historyCountAggregateInputType | true
+    }
+
+  export interface mlt_historyDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['mlt_history'], meta: { name: 'mlt_history' } }
+    /**
+     * Find zero or one Mlt_history that matches the filter.
+     * @param {mlt_historyFindUniqueArgs} args - Arguments to find a Mlt_history
+     * @example
+     * // Get one Mlt_history
+     * const mlt_history = await prisma.mlt_history.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends mlt_historyFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, mlt_historyFindUniqueArgs<ExtArgs>>
+    ): Prisma__mlt_historyClient<$Result.GetResult<Prisma.$mlt_historyPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one Mlt_history that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {mlt_historyFindUniqueOrThrowArgs} args - Arguments to find a Mlt_history
+     * @example
+     * // Get one Mlt_history
+     * const mlt_history = await prisma.mlt_history.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends mlt_historyFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, mlt_historyFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__mlt_historyClient<$Result.GetResult<Prisma.$mlt_historyPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first Mlt_history that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {mlt_historyFindFirstArgs} args - Arguments to find a Mlt_history
+     * @example
+     * // Get one Mlt_history
+     * const mlt_history = await prisma.mlt_history.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends mlt_historyFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, mlt_historyFindFirstArgs<ExtArgs>>
+    ): Prisma__mlt_historyClient<$Result.GetResult<Prisma.$mlt_historyPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first Mlt_history that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {mlt_historyFindFirstOrThrowArgs} args - Arguments to find a Mlt_history
+     * @example
+     * // Get one Mlt_history
+     * const mlt_history = await prisma.mlt_history.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends mlt_historyFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, mlt_historyFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__mlt_historyClient<$Result.GetResult<Prisma.$mlt_historyPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more Mlt_histories that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {mlt_historyFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Mlt_histories
+     * const mlt_histories = await prisma.mlt_history.findMany()
+     * 
+     * // Get first 10 Mlt_histories
+     * const mlt_histories = await prisma.mlt_history.findMany({ take: 10 })
+     * 
+     * // Only select the `mlt_history_uuid`
+     * const mlt_historyWithMlt_history_uuidOnly = await prisma.mlt_history.findMany({ select: { mlt_history_uuid: true } })
+     * 
+    **/
+    findMany<T extends mlt_historyFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, mlt_historyFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$mlt_historyPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a Mlt_history.
+     * @param {mlt_historyCreateArgs} args - Arguments to create a Mlt_history.
+     * @example
+     * // Create one Mlt_history
+     * const Mlt_history = await prisma.mlt_history.create({
+     *   data: {
+     *     // ... data to create a Mlt_history
+     *   }
+     * })
+     * 
+    **/
+    create<T extends mlt_historyCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, mlt_historyCreateArgs<ExtArgs>>
+    ): Prisma__mlt_historyClient<$Result.GetResult<Prisma.$mlt_historyPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many Mlt_histories.
+     * @param {mlt_historyCreateManyArgs} args - Arguments to create many Mlt_histories.
+     * @example
+     * // Create many Mlt_histories
+     * const mlt_history = await prisma.mlt_history.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+    **/
+    createMany<T extends mlt_historyCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, mlt_historyCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Mlt_histories and returns the data saved in the database.
+     * @param {mlt_historyCreateManyAndReturnArgs} args - Arguments to create many Mlt_histories.
+     * @example
+     * // Create many Mlt_histories
+     * const mlt_history = await prisma.mlt_history.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Mlt_histories and only return the `mlt_history_uuid`
+     * const mlt_historyWithMlt_history_uuidOnly = await prisma.mlt_history.createManyAndReturn({ 
+     *   select: { mlt_history_uuid: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+    **/
+    createManyAndReturn<T extends mlt_historyCreateManyAndReturnArgs<ExtArgs>>(
+      args?: SelectSubset<T, mlt_historyCreateManyAndReturnArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$mlt_historyPayload<ExtArgs>, T, 'createManyAndReturn'>>
+
+    /**
+     * Delete a Mlt_history.
+     * @param {mlt_historyDeleteArgs} args - Arguments to delete one Mlt_history.
+     * @example
+     * // Delete one Mlt_history
+     * const Mlt_history = await prisma.mlt_history.delete({
+     *   where: {
+     *     // ... filter to delete one Mlt_history
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends mlt_historyDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, mlt_historyDeleteArgs<ExtArgs>>
+    ): Prisma__mlt_historyClient<$Result.GetResult<Prisma.$mlt_historyPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one Mlt_history.
+     * @param {mlt_historyUpdateArgs} args - Arguments to update one Mlt_history.
+     * @example
+     * // Update one Mlt_history
+     * const mlt_history = await prisma.mlt_history.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends mlt_historyUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, mlt_historyUpdateArgs<ExtArgs>>
+    ): Prisma__mlt_historyClient<$Result.GetResult<Prisma.$mlt_historyPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more Mlt_histories.
+     * @param {mlt_historyDeleteManyArgs} args - Arguments to filter Mlt_histories to delete.
+     * @example
+     * // Delete a few Mlt_histories
+     * const { count } = await prisma.mlt_history.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends mlt_historyDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, mlt_historyDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Mlt_histories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {mlt_historyUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Mlt_histories
+     * const mlt_history = await prisma.mlt_history.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends mlt_historyUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, mlt_historyUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Mlt_history.
+     * @param {mlt_historyUpsertArgs} args - Arguments to update or create a Mlt_history.
+     * @example
+     * // Update or create a Mlt_history
+     * const mlt_history = await prisma.mlt_history.upsert({
+     *   create: {
+     *     // ... data to create a Mlt_history
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Mlt_history we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends mlt_historyUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, mlt_historyUpsertArgs<ExtArgs>>
+    ): Prisma__mlt_historyClient<$Result.GetResult<Prisma.$mlt_historyPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of Mlt_histories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {mlt_historyCountArgs} args - Arguments to filter Mlt_histories to count.
+     * @example
+     * // Count the number of Mlt_histories
+     * const count = await prisma.mlt_history.count({
+     *   where: {
+     *     // ... the filter for the Mlt_histories we want to count
+     *   }
+     * })
+    **/
+    count<T extends mlt_historyCountArgs>(
+      args?: Subset<T, mlt_historyCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Mlt_historyCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Mlt_history.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Mlt_historyAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Mlt_historyAggregateArgs>(args: Subset<T, Mlt_historyAggregateArgs>): Prisma.PrismaPromise<GetMlt_historyAggregateType<T>>
+
+    /**
+     * Group by Mlt_history.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {mlt_historyGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends mlt_historyGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: mlt_historyGroupByArgs['orderBy'] }
+        : { orderBy?: mlt_historyGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, mlt_historyGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMlt_historyGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the mlt_history model
+   */
+  readonly fields: mlt_historyFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for mlt_history.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__mlt_historyClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    users<T extends mlt_history$usersArgs<ExtArgs> = {}>(args?: Subset<T, mlt_history$usersArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the mlt_history model
+   */ 
+  interface mlt_historyFieldRefs {
+    readonly mlt_history_uuid: FieldRef<"mlt_history", 'String'>
+    readonly use_uuid: FieldRef<"mlt_history", 'String'>
+    readonly mlt_history_value: FieldRef<"mlt_history", 'Float'>
+    readonly mlt_history_date: FieldRef<"mlt_history", 'DateTime'>
+    readonly mlt_history_created_at: FieldRef<"mlt_history", 'DateTime'>
+    readonly mlt_history_updated_at: FieldRef<"mlt_history", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * mlt_history findUnique
+   */
+  export type mlt_historyFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the mlt_history
+     */
+    select?: mlt_historySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: mlt_historyInclude<ExtArgs> | null
+    /**
+     * Filter, which mlt_history to fetch.
+     */
+    where: mlt_historyWhereUniqueInput
+  }
+
+  /**
+   * mlt_history findUniqueOrThrow
+   */
+  export type mlt_historyFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the mlt_history
+     */
+    select?: mlt_historySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: mlt_historyInclude<ExtArgs> | null
+    /**
+     * Filter, which mlt_history to fetch.
+     */
+    where: mlt_historyWhereUniqueInput
+  }
+
+  /**
+   * mlt_history findFirst
+   */
+  export type mlt_historyFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the mlt_history
+     */
+    select?: mlt_historySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: mlt_historyInclude<ExtArgs> | null
+    /**
+     * Filter, which mlt_history to fetch.
+     */
+    where?: mlt_historyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of mlt_histories to fetch.
+     */
+    orderBy?: mlt_historyOrderByWithRelationInput | mlt_historyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for mlt_histories.
+     */
+    cursor?: mlt_historyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` mlt_histories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` mlt_histories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of mlt_histories.
+     */
+    distinct?: Mlt_historyScalarFieldEnum | Mlt_historyScalarFieldEnum[]
+  }
+
+  /**
+   * mlt_history findFirstOrThrow
+   */
+  export type mlt_historyFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the mlt_history
+     */
+    select?: mlt_historySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: mlt_historyInclude<ExtArgs> | null
+    /**
+     * Filter, which mlt_history to fetch.
+     */
+    where?: mlt_historyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of mlt_histories to fetch.
+     */
+    orderBy?: mlt_historyOrderByWithRelationInput | mlt_historyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for mlt_histories.
+     */
+    cursor?: mlt_historyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` mlt_histories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` mlt_histories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of mlt_histories.
+     */
+    distinct?: Mlt_historyScalarFieldEnum | Mlt_historyScalarFieldEnum[]
+  }
+
+  /**
+   * mlt_history findMany
+   */
+  export type mlt_historyFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the mlt_history
+     */
+    select?: mlt_historySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: mlt_historyInclude<ExtArgs> | null
+    /**
+     * Filter, which mlt_histories to fetch.
+     */
+    where?: mlt_historyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of mlt_histories to fetch.
+     */
+    orderBy?: mlt_historyOrderByWithRelationInput | mlt_historyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing mlt_histories.
+     */
+    cursor?: mlt_historyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` mlt_histories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` mlt_histories.
+     */
+    skip?: number
+    distinct?: Mlt_historyScalarFieldEnum | Mlt_historyScalarFieldEnum[]
+  }
+
+  /**
+   * mlt_history create
+   */
+  export type mlt_historyCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the mlt_history
+     */
+    select?: mlt_historySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: mlt_historyInclude<ExtArgs> | null
+    /**
+     * The data needed to create a mlt_history.
+     */
+    data?: XOR<mlt_historyCreateInput, mlt_historyUncheckedCreateInput>
+  }
+
+  /**
+   * mlt_history createMany
+   */
+  export type mlt_historyCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many mlt_histories.
+     */
+    data: mlt_historyCreateManyInput | mlt_historyCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * mlt_history createManyAndReturn
+   */
+  export type mlt_historyCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the mlt_history
+     */
+    select?: mlt_historySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many mlt_histories.
+     */
+    data: mlt_historyCreateManyInput | mlt_historyCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: mlt_historyIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * mlt_history update
+   */
+  export type mlt_historyUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the mlt_history
+     */
+    select?: mlt_historySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: mlt_historyInclude<ExtArgs> | null
+    /**
+     * The data needed to update a mlt_history.
+     */
+    data: XOR<mlt_historyUpdateInput, mlt_historyUncheckedUpdateInput>
+    /**
+     * Choose, which mlt_history to update.
+     */
+    where: mlt_historyWhereUniqueInput
+  }
+
+  /**
+   * mlt_history updateMany
+   */
+  export type mlt_historyUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update mlt_histories.
+     */
+    data: XOR<mlt_historyUpdateManyMutationInput, mlt_historyUncheckedUpdateManyInput>
+    /**
+     * Filter which mlt_histories to update
+     */
+    where?: mlt_historyWhereInput
+  }
+
+  /**
+   * mlt_history upsert
+   */
+  export type mlt_historyUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the mlt_history
+     */
+    select?: mlt_historySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: mlt_historyInclude<ExtArgs> | null
+    /**
+     * The filter to search for the mlt_history to update in case it exists.
+     */
+    where: mlt_historyWhereUniqueInput
+    /**
+     * In case the mlt_history found by the `where` argument doesn't exist, create a new mlt_history with this data.
+     */
+    create: XOR<mlt_historyCreateInput, mlt_historyUncheckedCreateInput>
+    /**
+     * In case the mlt_history was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<mlt_historyUpdateInput, mlt_historyUncheckedUpdateInput>
+  }
+
+  /**
+   * mlt_history delete
+   */
+  export type mlt_historyDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the mlt_history
+     */
+    select?: mlt_historySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: mlt_historyInclude<ExtArgs> | null
+    /**
+     * Filter which mlt_history to delete.
+     */
+    where: mlt_historyWhereUniqueInput
+  }
+
+  /**
+   * mlt_history deleteMany
+   */
+  export type mlt_historyDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which mlt_histories to delete
+     */
+    where?: mlt_historyWhereInput
+  }
+
+  /**
+   * mlt_history.users
+   */
+  export type mlt_history$usersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the users
+     */
+    select?: usersSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: usersInclude<ExtArgs> | null
+    where?: usersWhereInput
+  }
+
+  /**
+   * mlt_history without action
+   */
+  export type mlt_historyDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the mlt_history
+     */
+    select?: mlt_historySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: mlt_historyInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -14545,6 +15685,18 @@ export namespace Prisma {
   export type Product_gross_last_weekScalarFieldEnum = (typeof Product_gross_last_weekScalarFieldEnum)[keyof typeof Product_gross_last_weekScalarFieldEnum]
 
 
+  export const Mlt_historyScalarFieldEnum: {
+    mlt_history_uuid: 'mlt_history_uuid',
+    use_uuid: 'use_uuid',
+    mlt_history_value: 'mlt_history_value',
+    mlt_history_date: 'mlt_history_date',
+    mlt_history_created_at: 'mlt_history_created_at',
+    mlt_history_updated_at: 'mlt_history_updated_at'
+  };
+
+  export type Mlt_historyScalarFieldEnum = (typeof Mlt_historyScalarFieldEnum)[keyof typeof Mlt_historyScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -14802,6 +15954,7 @@ export namespace Prisma {
     gallon_gross_history?: Gallon_gross_historyListRelationFilter
     gallon_gross_last_week?: Gallon_gross_last_weekListRelationFilter
     gas_station_setvariables?: Gas_station_setvariablesListRelationFilter
+    mlt_history?: Mlt_historyListRelationFilter
     product_gross_history?: Product_gross_historyListRelationFilter
     product_gross_last_week?: Product_gross_last_weekListRelationFilter
     region_setvariables?: Region_setvariablesListRelationFilter
@@ -14833,6 +15986,7 @@ export namespace Prisma {
     gallon_gross_history?: gallon_gross_historyOrderByRelationAggregateInput
     gallon_gross_last_week?: gallon_gross_last_weekOrderByRelationAggregateInput
     gas_station_setvariables?: gas_station_setvariablesOrderByRelationAggregateInput
+    mlt_history?: mlt_historyOrderByRelationAggregateInput
     product_gross_history?: product_gross_historyOrderByRelationAggregateInput
     product_gross_last_week?: product_gross_last_weekOrderByRelationAggregateInput
     region_setvariables?: region_setvariablesOrderByRelationAggregateInput
@@ -14867,6 +16021,7 @@ export namespace Prisma {
     gallon_gross_history?: Gallon_gross_historyListRelationFilter
     gallon_gross_last_week?: Gallon_gross_last_weekListRelationFilter
     gas_station_setvariables?: Gas_station_setvariablesListRelationFilter
+    mlt_history?: Mlt_historyListRelationFilter
     product_gross_history?: Product_gross_historyListRelationFilter
     product_gross_last_week?: Product_gross_last_weekListRelationFilter
     region_setvariables?: Region_setvariablesListRelationFilter
@@ -16045,6 +17200,68 @@ export namespace Prisma {
     product_last_history_updated_at?: DateTimeWithAggregatesFilter<"product_gross_last_week"> | Date | string
   }
 
+  export type mlt_historyWhereInput = {
+    AND?: mlt_historyWhereInput | mlt_historyWhereInput[]
+    OR?: mlt_historyWhereInput[]
+    NOT?: mlt_historyWhereInput | mlt_historyWhereInput[]
+    mlt_history_uuid?: UuidFilter<"mlt_history"> | string
+    use_uuid?: UuidNullableFilter<"mlt_history"> | string | null
+    mlt_history_value?: FloatNullableFilter<"mlt_history"> | number | null
+    mlt_history_date?: DateTimeNullableFilter<"mlt_history"> | Date | string | null
+    mlt_history_created_at?: DateTimeFilter<"mlt_history"> | Date | string
+    mlt_history_updated_at?: DateTimeFilter<"mlt_history"> | Date | string
+    users?: XOR<UsersNullableRelationFilter, usersWhereInput> | null
+  }
+
+  export type mlt_historyOrderByWithRelationInput = {
+    mlt_history_uuid?: SortOrder
+    use_uuid?: SortOrderInput | SortOrder
+    mlt_history_value?: SortOrderInput | SortOrder
+    mlt_history_date?: SortOrderInput | SortOrder
+    mlt_history_created_at?: SortOrder
+    mlt_history_updated_at?: SortOrder
+    users?: usersOrderByWithRelationInput
+  }
+
+  export type mlt_historyWhereUniqueInput = Prisma.AtLeast<{
+    mlt_history_uuid?: string
+    AND?: mlt_historyWhereInput | mlt_historyWhereInput[]
+    OR?: mlt_historyWhereInput[]
+    NOT?: mlt_historyWhereInput | mlt_historyWhereInput[]
+    use_uuid?: UuidNullableFilter<"mlt_history"> | string | null
+    mlt_history_value?: FloatNullableFilter<"mlt_history"> | number | null
+    mlt_history_date?: DateTimeNullableFilter<"mlt_history"> | Date | string | null
+    mlt_history_created_at?: DateTimeFilter<"mlt_history"> | Date | string
+    mlt_history_updated_at?: DateTimeFilter<"mlt_history"> | Date | string
+    users?: XOR<UsersNullableRelationFilter, usersWhereInput> | null
+  }, "mlt_history_uuid">
+
+  export type mlt_historyOrderByWithAggregationInput = {
+    mlt_history_uuid?: SortOrder
+    use_uuid?: SortOrderInput | SortOrder
+    mlt_history_value?: SortOrderInput | SortOrder
+    mlt_history_date?: SortOrderInput | SortOrder
+    mlt_history_created_at?: SortOrder
+    mlt_history_updated_at?: SortOrder
+    _count?: mlt_historyCountOrderByAggregateInput
+    _avg?: mlt_historyAvgOrderByAggregateInput
+    _max?: mlt_historyMaxOrderByAggregateInput
+    _min?: mlt_historyMinOrderByAggregateInput
+    _sum?: mlt_historySumOrderByAggregateInput
+  }
+
+  export type mlt_historyScalarWhereWithAggregatesInput = {
+    AND?: mlt_historyScalarWhereWithAggregatesInput | mlt_historyScalarWhereWithAggregatesInput[]
+    OR?: mlt_historyScalarWhereWithAggregatesInput[]
+    NOT?: mlt_historyScalarWhereWithAggregatesInput | mlt_historyScalarWhereWithAggregatesInput[]
+    mlt_history_uuid?: UuidWithAggregatesFilter<"mlt_history"> | string
+    use_uuid?: UuidNullableWithAggregatesFilter<"mlt_history"> | string | null
+    mlt_history_value?: FloatNullableWithAggregatesFilter<"mlt_history"> | number | null
+    mlt_history_date?: DateTimeNullableWithAggregatesFilter<"mlt_history"> | Date | string | null
+    mlt_history_created_at?: DateTimeWithAggregatesFilter<"mlt_history"> | Date | string
+    mlt_history_updated_at?: DateTimeWithAggregatesFilter<"mlt_history"> | Date | string
+  }
+
   export type ibm_infoCreateInput = {
     ibm?: string | null
     nomefantasia?: string | null
@@ -16237,6 +17454,7 @@ export namespace Prisma {
     gallon_gross_history?: gallon_gross_historyCreateNestedManyWithoutUsersInput
     gallon_gross_last_week?: gallon_gross_last_weekCreateNestedManyWithoutUsersInput
     gas_station_setvariables?: gas_station_setvariablesCreateNestedManyWithoutUsersInput
+    mlt_history?: mlt_historyCreateNestedManyWithoutUsersInput
     product_gross_history?: product_gross_historyCreateNestedManyWithoutUsersInput
     product_gross_last_week?: product_gross_last_weekCreateNestedManyWithoutUsersInput
     region_setvariables?: region_setvariablesCreateNestedManyWithoutUsersInput
@@ -16268,6 +17486,7 @@ export namespace Prisma {
     gallon_gross_history?: gallon_gross_historyUncheckedCreateNestedManyWithoutUsersInput
     gallon_gross_last_week?: gallon_gross_last_weekUncheckedCreateNestedManyWithoutUsersInput
     gas_station_setvariables?: gas_station_setvariablesUncheckedCreateNestedManyWithoutUsersInput
+    mlt_history?: mlt_historyUncheckedCreateNestedManyWithoutUsersInput
     product_gross_history?: product_gross_historyUncheckedCreateNestedManyWithoutUsersInput
     product_gross_last_week?: product_gross_last_weekUncheckedCreateNestedManyWithoutUsersInput
     region_setvariables?: region_setvariablesUncheckedCreateNestedManyWithoutUsersInput
@@ -16299,6 +17518,7 @@ export namespace Prisma {
     gallon_gross_history?: gallon_gross_historyUpdateManyWithoutUsersNestedInput
     gallon_gross_last_week?: gallon_gross_last_weekUpdateManyWithoutUsersNestedInput
     gas_station_setvariables?: gas_station_setvariablesUpdateManyWithoutUsersNestedInput
+    mlt_history?: mlt_historyUpdateManyWithoutUsersNestedInput
     product_gross_history?: product_gross_historyUpdateManyWithoutUsersNestedInput
     product_gross_last_week?: product_gross_last_weekUpdateManyWithoutUsersNestedInput
     region_setvariables?: region_setvariablesUpdateManyWithoutUsersNestedInput
@@ -16330,6 +17550,7 @@ export namespace Prisma {
     gallon_gross_history?: gallon_gross_historyUncheckedUpdateManyWithoutUsersNestedInput
     gallon_gross_last_week?: gallon_gross_last_weekUncheckedUpdateManyWithoutUsersNestedInput
     gas_station_setvariables?: gas_station_setvariablesUncheckedUpdateManyWithoutUsersNestedInput
+    mlt_history?: mlt_historyUncheckedUpdateManyWithoutUsersNestedInput
     product_gross_history?: product_gross_historyUncheckedUpdateManyWithoutUsersNestedInput
     product_gross_last_week?: product_gross_last_weekUncheckedUpdateManyWithoutUsersNestedInput
     region_setvariables?: region_setvariablesUncheckedUpdateManyWithoutUsersNestedInput
@@ -17762,6 +18983,68 @@ export namespace Prisma {
     product_last_history_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type mlt_historyCreateInput = {
+    mlt_history_uuid?: string
+    mlt_history_value?: number | null
+    mlt_history_date?: Date | string | null
+    mlt_history_created_at?: Date | string
+    mlt_history_updated_at?: Date | string
+    users?: usersCreateNestedOneWithoutMlt_historyInput
+  }
+
+  export type mlt_historyUncheckedCreateInput = {
+    mlt_history_uuid?: string
+    use_uuid?: string | null
+    mlt_history_value?: number | null
+    mlt_history_date?: Date | string | null
+    mlt_history_created_at?: Date | string
+    mlt_history_updated_at?: Date | string
+  }
+
+  export type mlt_historyUpdateInput = {
+    mlt_history_uuid?: StringFieldUpdateOperationsInput | string
+    mlt_history_value?: NullableFloatFieldUpdateOperationsInput | number | null
+    mlt_history_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mlt_history_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    mlt_history_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: usersUpdateOneWithoutMlt_historyNestedInput
+  }
+
+  export type mlt_historyUncheckedUpdateInput = {
+    mlt_history_uuid?: StringFieldUpdateOperationsInput | string
+    use_uuid?: NullableStringFieldUpdateOperationsInput | string | null
+    mlt_history_value?: NullableFloatFieldUpdateOperationsInput | number | null
+    mlt_history_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mlt_history_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    mlt_history_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type mlt_historyCreateManyInput = {
+    mlt_history_uuid?: string
+    use_uuid?: string | null
+    mlt_history_value?: number | null
+    mlt_history_date?: Date | string | null
+    mlt_history_created_at?: Date | string
+    mlt_history_updated_at?: Date | string
+  }
+
+  export type mlt_historyUpdateManyMutationInput = {
+    mlt_history_uuid?: StringFieldUpdateOperationsInput | string
+    mlt_history_value?: NullableFloatFieldUpdateOperationsInput | number | null
+    mlt_history_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mlt_history_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    mlt_history_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type mlt_historyUncheckedUpdateManyInput = {
+    mlt_history_uuid?: StringFieldUpdateOperationsInput | string
+    use_uuid?: NullableStringFieldUpdateOperationsInput | string | null
+    mlt_history_value?: NullableFloatFieldUpdateOperationsInput | number | null
+    mlt_history_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mlt_history_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    mlt_history_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -18004,6 +19287,12 @@ export namespace Prisma {
     none?: gallon_gross_last_weekWhereInput
   }
 
+  export type Mlt_historyListRelationFilter = {
+    every?: mlt_historyWhereInput
+    some?: mlt_historyWhereInput
+    none?: mlt_historyWhereInput
+  }
+
   export type Product_gross_last_weekListRelationFilter = {
     every?: product_gross_last_weekWhereInput
     some?: product_gross_last_weekWhereInput
@@ -18017,6 +19306,10 @@ export namespace Prisma {
   }
 
   export type gallon_gross_last_weekOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type mlt_historyOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -18962,6 +20255,41 @@ export namespace Prisma {
     product_last_history_gross?: SortOrder
   }
 
+  export type mlt_historyCountOrderByAggregateInput = {
+    mlt_history_uuid?: SortOrder
+    use_uuid?: SortOrder
+    mlt_history_value?: SortOrder
+    mlt_history_date?: SortOrder
+    mlt_history_created_at?: SortOrder
+    mlt_history_updated_at?: SortOrder
+  }
+
+  export type mlt_historyAvgOrderByAggregateInput = {
+    mlt_history_value?: SortOrder
+  }
+
+  export type mlt_historyMaxOrderByAggregateInput = {
+    mlt_history_uuid?: SortOrder
+    use_uuid?: SortOrder
+    mlt_history_value?: SortOrder
+    mlt_history_date?: SortOrder
+    mlt_history_created_at?: SortOrder
+    mlt_history_updated_at?: SortOrder
+  }
+
+  export type mlt_historyMinOrderByAggregateInput = {
+    mlt_history_uuid?: SortOrder
+    use_uuid?: SortOrder
+    mlt_history_value?: SortOrder
+    mlt_history_date?: SortOrder
+    mlt_history_created_at?: SortOrder
+    mlt_history_updated_at?: SortOrder
+  }
+
+  export type mlt_historySumOrderByAggregateInput = {
+    mlt_history_value?: SortOrder
+  }
+
   export type ibm_infoCreateibm_margin_GCInput = {
     set: number[]
   }
@@ -19210,6 +20538,13 @@ export namespace Prisma {
     connect?: gas_station_setvariablesWhereUniqueInput | gas_station_setvariablesWhereUniqueInput[]
   }
 
+  export type mlt_historyCreateNestedManyWithoutUsersInput = {
+    create?: XOR<mlt_historyCreateWithoutUsersInput, mlt_historyUncheckedCreateWithoutUsersInput> | mlt_historyCreateWithoutUsersInput[] | mlt_historyUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: mlt_historyCreateOrConnectWithoutUsersInput | mlt_historyCreateOrConnectWithoutUsersInput[]
+    createMany?: mlt_historyCreateManyUsersInputEnvelope
+    connect?: mlt_historyWhereUniqueInput | mlt_historyWhereUniqueInput[]
+  }
+
   export type product_gross_historyCreateNestedManyWithoutUsersInput = {
     create?: XOR<product_gross_historyCreateWithoutUsersInput, product_gross_historyUncheckedCreateWithoutUsersInput> | product_gross_historyCreateWithoutUsersInput[] | product_gross_historyUncheckedCreateWithoutUsersInput[]
     connectOrCreate?: product_gross_historyCreateOrConnectWithoutUsersInput | product_gross_historyCreateOrConnectWithoutUsersInput[]
@@ -19250,6 +20585,13 @@ export namespace Prisma {
     connectOrCreate?: gas_station_setvariablesCreateOrConnectWithoutUsersInput | gas_station_setvariablesCreateOrConnectWithoutUsersInput[]
     createMany?: gas_station_setvariablesCreateManyUsersInputEnvelope
     connect?: gas_station_setvariablesWhereUniqueInput | gas_station_setvariablesWhereUniqueInput[]
+  }
+
+  export type mlt_historyUncheckedCreateNestedManyWithoutUsersInput = {
+    create?: XOR<mlt_historyCreateWithoutUsersInput, mlt_historyUncheckedCreateWithoutUsersInput> | mlt_historyCreateWithoutUsersInput[] | mlt_historyUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: mlt_historyCreateOrConnectWithoutUsersInput | mlt_historyCreateOrConnectWithoutUsersInput[]
+    createMany?: mlt_historyCreateManyUsersInputEnvelope
+    connect?: mlt_historyWhereUniqueInput | mlt_historyWhereUniqueInput[]
   }
 
   export type product_gross_historyUncheckedCreateNestedManyWithoutUsersInput = {
@@ -19326,6 +20668,20 @@ export namespace Prisma {
     update?: gas_station_setvariablesUpdateWithWhereUniqueWithoutUsersInput | gas_station_setvariablesUpdateWithWhereUniqueWithoutUsersInput[]
     updateMany?: gas_station_setvariablesUpdateManyWithWhereWithoutUsersInput | gas_station_setvariablesUpdateManyWithWhereWithoutUsersInput[]
     deleteMany?: gas_station_setvariablesScalarWhereInput | gas_station_setvariablesScalarWhereInput[]
+  }
+
+  export type mlt_historyUpdateManyWithoutUsersNestedInput = {
+    create?: XOR<mlt_historyCreateWithoutUsersInput, mlt_historyUncheckedCreateWithoutUsersInput> | mlt_historyCreateWithoutUsersInput[] | mlt_historyUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: mlt_historyCreateOrConnectWithoutUsersInput | mlt_historyCreateOrConnectWithoutUsersInput[]
+    upsert?: mlt_historyUpsertWithWhereUniqueWithoutUsersInput | mlt_historyUpsertWithWhereUniqueWithoutUsersInput[]
+    createMany?: mlt_historyCreateManyUsersInputEnvelope
+    set?: mlt_historyWhereUniqueInput | mlt_historyWhereUniqueInput[]
+    disconnect?: mlt_historyWhereUniqueInput | mlt_historyWhereUniqueInput[]
+    delete?: mlt_historyWhereUniqueInput | mlt_historyWhereUniqueInput[]
+    connect?: mlt_historyWhereUniqueInput | mlt_historyWhereUniqueInput[]
+    update?: mlt_historyUpdateWithWhereUniqueWithoutUsersInput | mlt_historyUpdateWithWhereUniqueWithoutUsersInput[]
+    updateMany?: mlt_historyUpdateManyWithWhereWithoutUsersInput | mlt_historyUpdateManyWithWhereWithoutUsersInput[]
+    deleteMany?: mlt_historyScalarWhereInput | mlt_historyScalarWhereInput[]
   }
 
   export type product_gross_historyUpdateManyWithoutUsersNestedInput = {
@@ -19410,6 +20766,20 @@ export namespace Prisma {
     update?: gas_station_setvariablesUpdateWithWhereUniqueWithoutUsersInput | gas_station_setvariablesUpdateWithWhereUniqueWithoutUsersInput[]
     updateMany?: gas_station_setvariablesUpdateManyWithWhereWithoutUsersInput | gas_station_setvariablesUpdateManyWithWhereWithoutUsersInput[]
     deleteMany?: gas_station_setvariablesScalarWhereInput | gas_station_setvariablesScalarWhereInput[]
+  }
+
+  export type mlt_historyUncheckedUpdateManyWithoutUsersNestedInput = {
+    create?: XOR<mlt_historyCreateWithoutUsersInput, mlt_historyUncheckedCreateWithoutUsersInput> | mlt_historyCreateWithoutUsersInput[] | mlt_historyUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: mlt_historyCreateOrConnectWithoutUsersInput | mlt_historyCreateOrConnectWithoutUsersInput[]
+    upsert?: mlt_historyUpsertWithWhereUniqueWithoutUsersInput | mlt_historyUpsertWithWhereUniqueWithoutUsersInput[]
+    createMany?: mlt_historyCreateManyUsersInputEnvelope
+    set?: mlt_historyWhereUniqueInput | mlt_historyWhereUniqueInput[]
+    disconnect?: mlt_historyWhereUniqueInput | mlt_historyWhereUniqueInput[]
+    delete?: mlt_historyWhereUniqueInput | mlt_historyWhereUniqueInput[]
+    connect?: mlt_historyWhereUniqueInput | mlt_historyWhereUniqueInput[]
+    update?: mlt_historyUpdateWithWhereUniqueWithoutUsersInput | mlt_historyUpdateWithWhereUniqueWithoutUsersInput[]
+    updateMany?: mlt_historyUpdateManyWithWhereWithoutUsersInput | mlt_historyUpdateManyWithWhereWithoutUsersInput[]
+    deleteMany?: mlt_historyScalarWhereInput | mlt_historyScalarWhereInput[]
   }
 
   export type product_gross_historyUncheckedUpdateManyWithoutUsersNestedInput = {
@@ -19730,6 +21100,22 @@ export namespace Prisma {
     delete?: usersWhereInput | boolean
     connect?: usersWhereUniqueInput
     update?: XOR<XOR<usersUpdateToOneWithWhereWithoutProduct_gross_last_weekInput, usersUpdateWithoutProduct_gross_last_weekInput>, usersUncheckedUpdateWithoutProduct_gross_last_weekInput>
+  }
+
+  export type usersCreateNestedOneWithoutMlt_historyInput = {
+    create?: XOR<usersCreateWithoutMlt_historyInput, usersUncheckedCreateWithoutMlt_historyInput>
+    connectOrCreate?: usersCreateOrConnectWithoutMlt_historyInput
+    connect?: usersWhereUniqueInput
+  }
+
+  export type usersUpdateOneWithoutMlt_historyNestedInput = {
+    create?: XOR<usersCreateWithoutMlt_historyInput, usersUncheckedCreateWithoutMlt_historyInput>
+    connectOrCreate?: usersCreateOrConnectWithoutMlt_historyInput
+    upsert?: usersUpsertWithoutMlt_historyInput
+    disconnect?: usersWhereInput | boolean
+    delete?: usersWhereInput | boolean
+    connect?: usersWhereUniqueInput
+    update?: XOR<XOR<usersUpdateToOneWithWhereWithoutMlt_historyInput, usersUpdateWithoutMlt_historyInput>, usersUncheckedUpdateWithoutMlt_historyInput>
   }
 
   export type NestedStringNullableFilter<$PrismaModel = never> = {
@@ -20522,6 +21908,32 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type mlt_historyCreateWithoutUsersInput = {
+    mlt_history_uuid?: string
+    mlt_history_value?: number | null
+    mlt_history_date?: Date | string | null
+    mlt_history_created_at?: Date | string
+    mlt_history_updated_at?: Date | string
+  }
+
+  export type mlt_historyUncheckedCreateWithoutUsersInput = {
+    mlt_history_uuid?: string
+    mlt_history_value?: number | null
+    mlt_history_date?: Date | string | null
+    mlt_history_created_at?: Date | string
+    mlt_history_updated_at?: Date | string
+  }
+
+  export type mlt_historyCreateOrConnectWithoutUsersInput = {
+    where: mlt_historyWhereUniqueInput
+    create: XOR<mlt_historyCreateWithoutUsersInput, mlt_historyUncheckedCreateWithoutUsersInput>
+  }
+
+  export type mlt_historyCreateManyUsersInputEnvelope = {
+    data: mlt_historyCreateManyUsersInput | mlt_historyCreateManyUsersInput[]
+    skipDuplicates?: boolean
+  }
+
   export type product_gross_historyCreateWithoutUsersInput = {
     product_history_uuid?: string
     product_history_gross?: number | null
@@ -20750,6 +22162,34 @@ export namespace Prisma {
     data: XOR<gas_station_setvariablesUpdateManyMutationInput, gas_station_setvariablesUncheckedUpdateManyWithoutUsersInput>
   }
 
+  export type mlt_historyUpsertWithWhereUniqueWithoutUsersInput = {
+    where: mlt_historyWhereUniqueInput
+    update: XOR<mlt_historyUpdateWithoutUsersInput, mlt_historyUncheckedUpdateWithoutUsersInput>
+    create: XOR<mlt_historyCreateWithoutUsersInput, mlt_historyUncheckedCreateWithoutUsersInput>
+  }
+
+  export type mlt_historyUpdateWithWhereUniqueWithoutUsersInput = {
+    where: mlt_historyWhereUniqueInput
+    data: XOR<mlt_historyUpdateWithoutUsersInput, mlt_historyUncheckedUpdateWithoutUsersInput>
+  }
+
+  export type mlt_historyUpdateManyWithWhereWithoutUsersInput = {
+    where: mlt_historyScalarWhereInput
+    data: XOR<mlt_historyUpdateManyMutationInput, mlt_historyUncheckedUpdateManyWithoutUsersInput>
+  }
+
+  export type mlt_historyScalarWhereInput = {
+    AND?: mlt_historyScalarWhereInput | mlt_historyScalarWhereInput[]
+    OR?: mlt_historyScalarWhereInput[]
+    NOT?: mlt_historyScalarWhereInput | mlt_historyScalarWhereInput[]
+    mlt_history_uuid?: UuidFilter<"mlt_history"> | string
+    use_uuid?: UuidNullableFilter<"mlt_history"> | string | null
+    mlt_history_value?: FloatNullableFilter<"mlt_history"> | number | null
+    mlt_history_date?: DateTimeNullableFilter<"mlt_history"> | Date | string | null
+    mlt_history_created_at?: DateTimeFilter<"mlt_history"> | Date | string
+    mlt_history_updated_at?: DateTimeFilter<"mlt_history"> | Date | string
+  }
+
   export type product_gross_historyUpsertWithWhereUniqueWithoutUsersInput = {
     where: product_gross_historyWhereUniqueInput
     update: XOR<product_gross_historyUpdateWithoutUsersInput, product_gross_historyUncheckedUpdateWithoutUsersInput>
@@ -20944,6 +22384,7 @@ export namespace Prisma {
     use_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
     gallon_gross_history?: gallon_gross_historyCreateNestedManyWithoutUsersInput
     gallon_gross_last_week?: gallon_gross_last_weekCreateNestedManyWithoutUsersInput
+    mlt_history?: mlt_historyCreateNestedManyWithoutUsersInput
     product_gross_history?: product_gross_historyCreateNestedManyWithoutUsersInput
     product_gross_last_week?: product_gross_last_weekCreateNestedManyWithoutUsersInput
     region_setvariables?: region_setvariablesCreateNestedManyWithoutUsersInput
@@ -20974,6 +22415,7 @@ export namespace Prisma {
     use_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
     gallon_gross_history?: gallon_gross_historyUncheckedCreateNestedManyWithoutUsersInput
     gallon_gross_last_week?: gallon_gross_last_weekUncheckedCreateNestedManyWithoutUsersInput
+    mlt_history?: mlt_historyUncheckedCreateNestedManyWithoutUsersInput
     product_gross_history?: product_gross_historyUncheckedCreateNestedManyWithoutUsersInput
     product_gross_last_week?: product_gross_last_weekUncheckedCreateNestedManyWithoutUsersInput
     region_setvariables?: region_setvariablesUncheckedCreateNestedManyWithoutUsersInput
@@ -21079,6 +22521,7 @@ export namespace Prisma {
     use_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
     gallon_gross_history?: gallon_gross_historyUpdateManyWithoutUsersNestedInput
     gallon_gross_last_week?: gallon_gross_last_weekUpdateManyWithoutUsersNestedInput
+    mlt_history?: mlt_historyUpdateManyWithoutUsersNestedInput
     product_gross_history?: product_gross_historyUpdateManyWithoutUsersNestedInput
     product_gross_last_week?: product_gross_last_weekUpdateManyWithoutUsersNestedInput
     region_setvariables?: region_setvariablesUpdateManyWithoutUsersNestedInput
@@ -21109,6 +22552,7 @@ export namespace Prisma {
     use_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
     gallon_gross_history?: gallon_gross_historyUncheckedUpdateManyWithoutUsersNestedInput
     gallon_gross_last_week?: gallon_gross_last_weekUncheckedUpdateManyWithoutUsersNestedInput
+    mlt_history?: mlt_historyUncheckedUpdateManyWithoutUsersNestedInput
     product_gross_history?: product_gross_historyUncheckedUpdateManyWithoutUsersNestedInput
     product_gross_last_week?: product_gross_last_weekUncheckedUpdateManyWithoutUsersNestedInput
     region_setvariables?: region_setvariablesUncheckedUpdateManyWithoutUsersNestedInput
@@ -21173,6 +22617,7 @@ export namespace Prisma {
     gallon_gross_history?: gallon_gross_historyCreateNestedManyWithoutUsersInput
     gallon_gross_last_week?: gallon_gross_last_weekCreateNestedManyWithoutUsersInput
     gas_station_setvariables?: gas_station_setvariablesCreateNestedManyWithoutUsersInput
+    mlt_history?: mlt_historyCreateNestedManyWithoutUsersInput
     product_gross_history?: product_gross_historyCreateNestedManyWithoutUsersInput
     product_gross_last_week?: product_gross_last_weekCreateNestedManyWithoutUsersInput
   }
@@ -21203,6 +22648,7 @@ export namespace Prisma {
     gallon_gross_history?: gallon_gross_historyUncheckedCreateNestedManyWithoutUsersInput
     gallon_gross_last_week?: gallon_gross_last_weekUncheckedCreateNestedManyWithoutUsersInput
     gas_station_setvariables?: gas_station_setvariablesUncheckedCreateNestedManyWithoutUsersInput
+    mlt_history?: mlt_historyUncheckedCreateNestedManyWithoutUsersInput
     product_gross_history?: product_gross_historyUncheckedCreateNestedManyWithoutUsersInput
     product_gross_last_week?: product_gross_last_weekUncheckedCreateNestedManyWithoutUsersInput
   }
@@ -21288,6 +22734,7 @@ export namespace Prisma {
     gallon_gross_history?: gallon_gross_historyUpdateManyWithoutUsersNestedInput
     gallon_gross_last_week?: gallon_gross_last_weekUpdateManyWithoutUsersNestedInput
     gas_station_setvariables?: gas_station_setvariablesUpdateManyWithoutUsersNestedInput
+    mlt_history?: mlt_historyUpdateManyWithoutUsersNestedInput
     product_gross_history?: product_gross_historyUpdateManyWithoutUsersNestedInput
     product_gross_last_week?: product_gross_last_weekUpdateManyWithoutUsersNestedInput
   }
@@ -21318,6 +22765,7 @@ export namespace Prisma {
     gallon_gross_history?: gallon_gross_historyUncheckedUpdateManyWithoutUsersNestedInput
     gallon_gross_last_week?: gallon_gross_last_weekUncheckedUpdateManyWithoutUsersNestedInput
     gas_station_setvariables?: gas_station_setvariablesUncheckedUpdateManyWithoutUsersNestedInput
+    mlt_history?: mlt_historyUncheckedUpdateManyWithoutUsersNestedInput
     product_gross_history?: product_gross_historyUncheckedUpdateManyWithoutUsersNestedInput
     product_gross_last_week?: product_gross_last_weekUncheckedUpdateManyWithoutUsersNestedInput
   }
@@ -21530,6 +22978,7 @@ export namespace Prisma {
     use_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
     gallon_gross_last_week?: gallon_gross_last_weekCreateNestedManyWithoutUsersInput
     gas_station_setvariables?: gas_station_setvariablesCreateNestedManyWithoutUsersInput
+    mlt_history?: mlt_historyCreateNestedManyWithoutUsersInput
     product_gross_history?: product_gross_historyCreateNestedManyWithoutUsersInput
     product_gross_last_week?: product_gross_last_weekCreateNestedManyWithoutUsersInput
     region_setvariables?: region_setvariablesCreateNestedManyWithoutUsersInput
@@ -21560,6 +23009,7 @@ export namespace Prisma {
     use_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
     gallon_gross_last_week?: gallon_gross_last_weekUncheckedCreateNestedManyWithoutUsersInput
     gas_station_setvariables?: gas_station_setvariablesUncheckedCreateNestedManyWithoutUsersInput
+    mlt_history?: mlt_historyUncheckedCreateNestedManyWithoutUsersInput
     product_gross_history?: product_gross_historyUncheckedCreateNestedManyWithoutUsersInput
     product_gross_last_week?: product_gross_last_weekUncheckedCreateNestedManyWithoutUsersInput
     region_setvariables?: region_setvariablesUncheckedCreateNestedManyWithoutUsersInput
@@ -21665,6 +23115,7 @@ export namespace Prisma {
     use_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
     gallon_gross_last_week?: gallon_gross_last_weekUpdateManyWithoutUsersNestedInput
     gas_station_setvariables?: gas_station_setvariablesUpdateManyWithoutUsersNestedInput
+    mlt_history?: mlt_historyUpdateManyWithoutUsersNestedInput
     product_gross_history?: product_gross_historyUpdateManyWithoutUsersNestedInput
     product_gross_last_week?: product_gross_last_weekUpdateManyWithoutUsersNestedInput
     region_setvariables?: region_setvariablesUpdateManyWithoutUsersNestedInput
@@ -21695,6 +23146,7 @@ export namespace Prisma {
     use_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
     gallon_gross_last_week?: gallon_gross_last_weekUncheckedUpdateManyWithoutUsersNestedInput
     gas_station_setvariables?: gas_station_setvariablesUncheckedUpdateManyWithoutUsersNestedInput
+    mlt_history?: mlt_historyUncheckedUpdateManyWithoutUsersNestedInput
     product_gross_history?: product_gross_historyUncheckedUpdateManyWithoutUsersNestedInput
     product_gross_last_week?: product_gross_last_weekUncheckedUpdateManyWithoutUsersNestedInput
     region_setvariables?: region_setvariablesUncheckedUpdateManyWithoutUsersNestedInput
@@ -21779,6 +23231,7 @@ export namespace Prisma {
     gallon_gross_history?: gallon_gross_historyCreateNestedManyWithoutUsersInput
     gallon_gross_last_week?: gallon_gross_last_weekCreateNestedManyWithoutUsersInput
     gas_station_setvariables?: gas_station_setvariablesCreateNestedManyWithoutUsersInput
+    mlt_history?: mlt_historyCreateNestedManyWithoutUsersInput
     product_gross_last_week?: product_gross_last_weekCreateNestedManyWithoutUsersInput
     region_setvariables?: region_setvariablesCreateNestedManyWithoutUsersInput
   }
@@ -21809,6 +23262,7 @@ export namespace Prisma {
     gallon_gross_history?: gallon_gross_historyUncheckedCreateNestedManyWithoutUsersInput
     gallon_gross_last_week?: gallon_gross_last_weekUncheckedCreateNestedManyWithoutUsersInput
     gas_station_setvariables?: gas_station_setvariablesUncheckedCreateNestedManyWithoutUsersInput
+    mlt_history?: mlt_historyUncheckedCreateNestedManyWithoutUsersInput
     product_gross_last_week?: product_gross_last_weekUncheckedCreateNestedManyWithoutUsersInput
     region_setvariables?: region_setvariablesUncheckedCreateNestedManyWithoutUsersInput
   }
@@ -21914,6 +23368,7 @@ export namespace Prisma {
     gallon_gross_history?: gallon_gross_historyUpdateManyWithoutUsersNestedInput
     gallon_gross_last_week?: gallon_gross_last_weekUpdateManyWithoutUsersNestedInput
     gas_station_setvariables?: gas_station_setvariablesUpdateManyWithoutUsersNestedInput
+    mlt_history?: mlt_historyUpdateManyWithoutUsersNestedInput
     product_gross_last_week?: product_gross_last_weekUpdateManyWithoutUsersNestedInput
     region_setvariables?: region_setvariablesUpdateManyWithoutUsersNestedInput
   }
@@ -21944,6 +23399,7 @@ export namespace Prisma {
     gallon_gross_history?: gallon_gross_historyUncheckedUpdateManyWithoutUsersNestedInput
     gallon_gross_last_week?: gallon_gross_last_weekUncheckedUpdateManyWithoutUsersNestedInput
     gas_station_setvariables?: gas_station_setvariablesUncheckedUpdateManyWithoutUsersNestedInput
+    mlt_history?: mlt_historyUncheckedUpdateManyWithoutUsersNestedInput
     product_gross_last_week?: product_gross_last_weekUncheckedUpdateManyWithoutUsersNestedInput
     region_setvariables?: region_setvariablesUncheckedUpdateManyWithoutUsersNestedInput
   }
@@ -21973,6 +23429,7 @@ export namespace Prisma {
     use_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
     gallon_gross_history?: gallon_gross_historyCreateNestedManyWithoutUsersInput
     gas_station_setvariables?: gas_station_setvariablesCreateNestedManyWithoutUsersInput
+    mlt_history?: mlt_historyCreateNestedManyWithoutUsersInput
     product_gross_history?: product_gross_historyCreateNestedManyWithoutUsersInput
     product_gross_last_week?: product_gross_last_weekCreateNestedManyWithoutUsersInput
     region_setvariables?: region_setvariablesCreateNestedManyWithoutUsersInput
@@ -22003,6 +23460,7 @@ export namespace Prisma {
     use_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
     gallon_gross_history?: gallon_gross_historyUncheckedCreateNestedManyWithoutUsersInput
     gas_station_setvariables?: gas_station_setvariablesUncheckedCreateNestedManyWithoutUsersInput
+    mlt_history?: mlt_historyUncheckedCreateNestedManyWithoutUsersInput
     product_gross_history?: product_gross_historyUncheckedCreateNestedManyWithoutUsersInput
     product_gross_last_week?: product_gross_last_weekUncheckedCreateNestedManyWithoutUsersInput
     region_setvariables?: region_setvariablesUncheckedCreateNestedManyWithoutUsersInput
@@ -22049,6 +23507,7 @@ export namespace Prisma {
     use_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
     gallon_gross_history?: gallon_gross_historyUpdateManyWithoutUsersNestedInput
     gas_station_setvariables?: gas_station_setvariablesUpdateManyWithoutUsersNestedInput
+    mlt_history?: mlt_historyUpdateManyWithoutUsersNestedInput
     product_gross_history?: product_gross_historyUpdateManyWithoutUsersNestedInput
     product_gross_last_week?: product_gross_last_weekUpdateManyWithoutUsersNestedInput
     region_setvariables?: region_setvariablesUpdateManyWithoutUsersNestedInput
@@ -22079,6 +23538,7 @@ export namespace Prisma {
     use_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
     gallon_gross_history?: gallon_gross_historyUncheckedUpdateManyWithoutUsersNestedInput
     gas_station_setvariables?: gas_station_setvariablesUncheckedUpdateManyWithoutUsersNestedInput
+    mlt_history?: mlt_historyUncheckedUpdateManyWithoutUsersNestedInput
     product_gross_history?: product_gross_historyUncheckedUpdateManyWithoutUsersNestedInput
     product_gross_last_week?: product_gross_last_weekUncheckedUpdateManyWithoutUsersNestedInput
     region_setvariables?: region_setvariablesUncheckedUpdateManyWithoutUsersNestedInput
@@ -22110,6 +23570,7 @@ export namespace Prisma {
     gallon_gross_history?: gallon_gross_historyCreateNestedManyWithoutUsersInput
     gallon_gross_last_week?: gallon_gross_last_weekCreateNestedManyWithoutUsersInput
     gas_station_setvariables?: gas_station_setvariablesCreateNestedManyWithoutUsersInput
+    mlt_history?: mlt_historyCreateNestedManyWithoutUsersInput
     product_gross_history?: product_gross_historyCreateNestedManyWithoutUsersInput
     region_setvariables?: region_setvariablesCreateNestedManyWithoutUsersInput
   }
@@ -22140,6 +23601,7 @@ export namespace Prisma {
     gallon_gross_history?: gallon_gross_historyUncheckedCreateNestedManyWithoutUsersInput
     gallon_gross_last_week?: gallon_gross_last_weekUncheckedCreateNestedManyWithoutUsersInput
     gas_station_setvariables?: gas_station_setvariablesUncheckedCreateNestedManyWithoutUsersInput
+    mlt_history?: mlt_historyUncheckedCreateNestedManyWithoutUsersInput
     product_gross_history?: product_gross_historyUncheckedCreateNestedManyWithoutUsersInput
     region_setvariables?: region_setvariablesUncheckedCreateNestedManyWithoutUsersInput
   }
@@ -22186,6 +23648,7 @@ export namespace Prisma {
     gallon_gross_history?: gallon_gross_historyUpdateManyWithoutUsersNestedInput
     gallon_gross_last_week?: gallon_gross_last_weekUpdateManyWithoutUsersNestedInput
     gas_station_setvariables?: gas_station_setvariablesUpdateManyWithoutUsersNestedInput
+    mlt_history?: mlt_historyUpdateManyWithoutUsersNestedInput
     product_gross_history?: product_gross_historyUpdateManyWithoutUsersNestedInput
     region_setvariables?: region_setvariablesUpdateManyWithoutUsersNestedInput
   }
@@ -22216,7 +23679,148 @@ export namespace Prisma {
     gallon_gross_history?: gallon_gross_historyUncheckedUpdateManyWithoutUsersNestedInput
     gallon_gross_last_week?: gallon_gross_last_weekUncheckedUpdateManyWithoutUsersNestedInput
     gas_station_setvariables?: gas_station_setvariablesUncheckedUpdateManyWithoutUsersNestedInput
+    mlt_history?: mlt_historyUncheckedUpdateManyWithoutUsersNestedInput
     product_gross_history?: product_gross_historyUncheckedUpdateManyWithoutUsersNestedInput
+    region_setvariables?: region_setvariablesUncheckedUpdateManyWithoutUsersNestedInput
+  }
+
+  export type usersCreateWithoutMlt_historyInput = {
+    use_uuid?: string
+    use_name?: string | null
+    use_email?: string | null
+    use_password?: string | null
+    use_created_at?: Date | string
+    use_updated_at?: Date | string
+    use_date_expire?: Date | string | null
+    use_token?: string | null
+    use_level?: string | null
+    use_whats_app?: usersCreateuse_whats_appInput | string[]
+    use_mlt?: number | null
+    use_tmc?: number | null
+    use_tmf?: number | null
+    use_tmp?: number | null
+    use_tmvol?: number | null
+    use_lucro_bruto_operacional_galonagem?: number | null
+    use_lucro_bruto_operacional_produto?: number | null
+    use_lucro_bruto_operacional?: number | null
+    use_ETANOL_COMUM_comb?: number | null
+    use_GASOLINA_COMUM_comb?: number | null
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
+    gallon_gross_history?: gallon_gross_historyCreateNestedManyWithoutUsersInput
+    gallon_gross_last_week?: gallon_gross_last_weekCreateNestedManyWithoutUsersInput
+    gas_station_setvariables?: gas_station_setvariablesCreateNestedManyWithoutUsersInput
+    product_gross_history?: product_gross_historyCreateNestedManyWithoutUsersInput
+    product_gross_last_week?: product_gross_last_weekCreateNestedManyWithoutUsersInput
+    region_setvariables?: region_setvariablesCreateNestedManyWithoutUsersInput
+  }
+
+  export type usersUncheckedCreateWithoutMlt_historyInput = {
+    use_uuid?: string
+    use_name?: string | null
+    use_email?: string | null
+    use_password?: string | null
+    use_created_at?: Date | string
+    use_updated_at?: Date | string
+    use_date_expire?: Date | string | null
+    use_token?: string | null
+    use_level?: string | null
+    use_whats_app?: usersCreateuse_whats_appInput | string[]
+    use_mlt?: number | null
+    use_tmc?: number | null
+    use_tmf?: number | null
+    use_tmp?: number | null
+    use_tmvol?: number | null
+    use_lucro_bruto_operacional_galonagem?: number | null
+    use_lucro_bruto_operacional_produto?: number | null
+    use_lucro_bruto_operacional?: number | null
+    use_ETANOL_COMUM_comb?: number | null
+    use_GASOLINA_COMUM_comb?: number | null
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: number | null
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: number | null
+    gallon_gross_history?: gallon_gross_historyUncheckedCreateNestedManyWithoutUsersInput
+    gallon_gross_last_week?: gallon_gross_last_weekUncheckedCreateNestedManyWithoutUsersInput
+    gas_station_setvariables?: gas_station_setvariablesUncheckedCreateNestedManyWithoutUsersInput
+    product_gross_history?: product_gross_historyUncheckedCreateNestedManyWithoutUsersInput
+    product_gross_last_week?: product_gross_last_weekUncheckedCreateNestedManyWithoutUsersInput
+    region_setvariables?: region_setvariablesUncheckedCreateNestedManyWithoutUsersInput
+  }
+
+  export type usersCreateOrConnectWithoutMlt_historyInput = {
+    where: usersWhereUniqueInput
+    create: XOR<usersCreateWithoutMlt_historyInput, usersUncheckedCreateWithoutMlt_historyInput>
+  }
+
+  export type usersUpsertWithoutMlt_historyInput = {
+    update: XOR<usersUpdateWithoutMlt_historyInput, usersUncheckedUpdateWithoutMlt_historyInput>
+    create: XOR<usersCreateWithoutMlt_historyInput, usersUncheckedCreateWithoutMlt_historyInput>
+    where?: usersWhereInput
+  }
+
+  export type usersUpdateToOneWithWhereWithoutMlt_historyInput = {
+    where?: usersWhereInput
+    data: XOR<usersUpdateWithoutMlt_historyInput, usersUncheckedUpdateWithoutMlt_historyInput>
+  }
+
+  export type usersUpdateWithoutMlt_historyInput = {
+    use_uuid?: StringFieldUpdateOperationsInput | string
+    use_name?: NullableStringFieldUpdateOperationsInput | string | null
+    use_email?: NullableStringFieldUpdateOperationsInput | string | null
+    use_password?: NullableStringFieldUpdateOperationsInput | string | null
+    use_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    use_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    use_date_expire?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    use_token?: NullableStringFieldUpdateOperationsInput | string | null
+    use_level?: NullableStringFieldUpdateOperationsInput | string | null
+    use_whats_app?: usersUpdateuse_whats_appInput | string[]
+    use_mlt?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmc?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmf?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmp?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmvol?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_lucro_bruto_operacional_galonagem?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_lucro_bruto_operacional_produto?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_lucro_bruto_operacional?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_ETANOL_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_GASOLINA_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gallon_gross_history?: gallon_gross_historyUpdateManyWithoutUsersNestedInput
+    gallon_gross_last_week?: gallon_gross_last_weekUpdateManyWithoutUsersNestedInput
+    gas_station_setvariables?: gas_station_setvariablesUpdateManyWithoutUsersNestedInput
+    product_gross_history?: product_gross_historyUpdateManyWithoutUsersNestedInput
+    product_gross_last_week?: product_gross_last_weekUpdateManyWithoutUsersNestedInput
+    region_setvariables?: region_setvariablesUpdateManyWithoutUsersNestedInput
+  }
+
+  export type usersUncheckedUpdateWithoutMlt_historyInput = {
+    use_uuid?: StringFieldUpdateOperationsInput | string
+    use_name?: NullableStringFieldUpdateOperationsInput | string | null
+    use_email?: NullableStringFieldUpdateOperationsInput | string | null
+    use_password?: NullableStringFieldUpdateOperationsInput | string | null
+    use_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    use_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    use_date_expire?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    use_token?: NullableStringFieldUpdateOperationsInput | string | null
+    use_level?: NullableStringFieldUpdateOperationsInput | string | null
+    use_whats_app?: usersUpdateuse_whats_appInput | string[]
+    use_mlt?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmc?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmf?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmp?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_tmvol?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_lucro_bruto_operacional_galonagem?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_lucro_bruto_operacional_produto?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_lucro_bruto_operacional?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_ETANOL_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_GASOLINA_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_OLEO_DIESEL_B_S10_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    use_OLEO_DIESEL_B_S500_COMUM_comb?: NullableFloatFieldUpdateOperationsInput | number | null
+    gallon_gross_history?: gallon_gross_historyUncheckedUpdateManyWithoutUsersNestedInput
+    gallon_gross_last_week?: gallon_gross_last_weekUncheckedUpdateManyWithoutUsersNestedInput
+    gas_station_setvariables?: gas_station_setvariablesUncheckedUpdateManyWithoutUsersNestedInput
+    product_gross_history?: product_gross_historyUncheckedUpdateManyWithoutUsersNestedInput
+    product_gross_last_week?: product_gross_last_weekUncheckedUpdateManyWithoutUsersNestedInput
     region_setvariables?: region_setvariablesUncheckedUpdateManyWithoutUsersNestedInput
   }
 
@@ -22684,6 +24288,14 @@ export namespace Prisma {
     verification_hour_margin_FILTROS_AR_PRODUCT?: Date | string | null
   }
 
+  export type mlt_historyCreateManyUsersInput = {
+    mlt_history_uuid?: string
+    mlt_history_value?: number | null
+    mlt_history_date?: Date | string | null
+    mlt_history_created_at?: Date | string
+    mlt_history_updated_at?: Date | string
+  }
+
   export type product_gross_historyCreateManyUsersInput = {
     product_history_uuid?: string
     ibm_info_id?: string | null
@@ -23027,6 +24639,30 @@ export namespace Prisma {
     gas_station_sanado_margin_FILTROS_AR_PRODUCT?: NullableBoolFieldUpdateOperationsInput | boolean | null
     gas_station_type_margin_FILTROS_AR_PRODUCT?: NullableBoolFieldUpdateOperationsInput | boolean | null
     verification_hour_margin_FILTROS_AR_PRODUCT?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type mlt_historyUpdateWithoutUsersInput = {
+    mlt_history_uuid?: StringFieldUpdateOperationsInput | string
+    mlt_history_value?: NullableFloatFieldUpdateOperationsInput | number | null
+    mlt_history_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mlt_history_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    mlt_history_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type mlt_historyUncheckedUpdateWithoutUsersInput = {
+    mlt_history_uuid?: StringFieldUpdateOperationsInput | string
+    mlt_history_value?: NullableFloatFieldUpdateOperationsInput | number | null
+    mlt_history_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mlt_history_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    mlt_history_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type mlt_historyUncheckedUpdateManyWithoutUsersInput = {
+    mlt_history_uuid?: StringFieldUpdateOperationsInput | string
+    mlt_history_value?: NullableFloatFieldUpdateOperationsInput | number | null
+    mlt_history_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    mlt_history_created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    mlt_history_updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type product_gross_historyUpdateWithoutUsersInput = {
@@ -23501,6 +25137,10 @@ export namespace Prisma {
      * @deprecated Use product_gross_last_weekDefaultArgs instead
      */
     export type product_gross_last_weekArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = product_gross_last_weekDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use mlt_historyDefaultArgs instead
+     */
+    export type mlt_historyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = mlt_historyDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany
