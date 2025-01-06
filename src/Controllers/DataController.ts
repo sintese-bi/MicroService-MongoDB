@@ -524,6 +524,11 @@ class DataController {
         const actualdateLastWeek =
           moment().tz("America/Sao_Paulo").subtract(7, "days")
             .format("YYYY-MM-DDTHH:mm:ss") + "Z";
+        const startOfDay = new Date(actualdateLastWeek);
+        startOfDay.setHours(0, 0, 0, 0);
+
+        const endOfDay = new Date(actualdateLastWeek);
+        endOfDay.setHours(23, 59, 59, 999);
         //Fluxo última semana Resultado bruto galonagem e produto
         const grossLiterageLastWeek = await prismaRedeFlex.gallon_gross_last_week.findFirst({
           select: { gallon_last_history_gross: true, gallon_last_history_date: true },
@@ -540,10 +545,25 @@ class DataController {
           orderBy: { product_last_history_date: 'asc' }
         })
 
+
         const productPercentageLast = grossProductLastWeek?.product_last_history_date?.toISOString().split('T')[0] !== actualdateLastWeek.toString().split('T')[0] ?
           (monthBigNumbers?.bignumbers_dailyProductProfit || 0) + 1050 : grossProductLastWeek?.product_last_history_gross
 
+        //Mlt semana passada
 
+        const mltLastWeek = await prismaRedeFlex.mlt_history.findFirst({
+          select: { mlt_history_value: true, mlt_history_date: true },
+          where: {
+            mlt_history_date: {
+              gte: startOfDay,
+              lte: endOfDay,
+            }, use_uuid: id
+          },
+          orderBy: { mlt_history_date: 'asc' }
+        })
+
+        const mltPercentageLast = mltLastWeek?.mlt_history_date?.toISOString().split('T')[0] !== actualdateLastWeek.toString().split('T')[0] ?
+          0.49 : mltLastWeek?.mlt_history_value
 
         //Fluxo mlt por tipo combustível
 
