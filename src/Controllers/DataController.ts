@@ -400,7 +400,7 @@ class DataController {
           },
           0
         );
-        //1
+    
         //Diferença faturamento de combustível pelo custo que é o lucro
         const fuelProfit =
           Math.round((sumFuel - sumCostPrice - sumLiterage * 0.04) * 100) / 100;
