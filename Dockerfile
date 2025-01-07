@@ -11,7 +11,7 @@ WORKDIR /usr/app
 COPY package*.json ./
 
 # Atualize o npm para a versão mais recente
-RUN npm install -g npm@latest
+# RUN npm install -g npm@latest
 
 # Instale as dependências do projeto
 RUN npm install --legacy-peer-deps

@@ -232,7 +232,7 @@ class DataController {
           .subtract(7, "days")
           .subtract(3, "hours")
           .toISOString();
-
+        
         const fuelliterageSellLastWeek = await prismaSales.vendas.findMany({
           select: {
             items: {
@@ -3506,6 +3506,7 @@ class DataController {
       const tableData = await axios.get(
         `http://159.65.42.225:3053/v2/dataframes?token=${token}`
       );
+
       const fuelArray = [
         "GASOLINA COMUM",
         "GAS NATURAL VEICULAR",
