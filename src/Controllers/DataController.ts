@@ -400,7 +400,7 @@ class DataController {
           },
           0
         );
-    
+
         //Diferença faturamento de combustível pelo custo que é o lucro
         const fuelProfit =
           Math.round((sumFuel - sumCostPrice - sumLiterage * 0.04) * 100) / 100;
@@ -420,6 +420,7 @@ class DataController {
           sumFuel !== 0 ? (fuelProfit / sumFuel) * 100 : 0;
         const secondary_value_productProfit =
           sumFuelProd !== 0 ? (productProfit / sumFuelProd) * 100 : 0;
+
         const secondary_value_bruto_operacional =
           sumFuelTotal !== 0
             ? ((productProfit + fuelProfit) / sumFuelTotal) * 100
@@ -728,88 +729,106 @@ class DataController {
         const grossProductLastPercentage = ((monthBigNumbers?.bignumbers_dailyProductProfit) || 0) / (grossProductLastWeek?.product_last_history_gross || 0) < 1
           ? Math.round(100 - (((monthBigNumbers?.bignumbers_dailyProductProfit) || 0) / (grossProductLastWeek?.product_last_history_gross || 0)) * 100)
           : Math.round((((monthBigNumbers?.bignumbers_dailyProductProfit) || 0) / (grossProductLastWeek?.product_last_history_gross || 0)) * 100 - 100);
+
+
+
+
+        //Lucro bruto Modificado
+        const value1 =
+          sumFuelTotal !== 0
+            ? (((monthBigNumbers?.bignumbers_dailyProductProfit || 0) + (monthBigNumbers?.bignumbers_dailyLiterageProfit || 0)) / sumFuelTotal) * 100
+            : 0;
+
+        const value2 =
+          sumFuelTotalLastWeek !== 0
+            ? (((productPercentageLast || 0) + (literagePercentageLast || 0)) /
+              sumFuelTotalLastWeek) *
+            100
+            : 0;
+
+
         return res.status(200).json({
           data: [
             [
               {
                 label: "Galonagem em Litros",
-                value: Math.round(sumLiterage * 100) / 100,
+                value: (Math.round(sumLiterage * 100) / 100).toFixed(2),
                 secondary_label: "TM VOL",
                 secondary_value:
-                  Math.round(secondary_value_galonagem * 100) / 100,
+                  (Math.round(secondary_value_galonagem * 100) / 100).toFixed(2),
                 third_label: "Status Margem",
                 third_value: use_tmvol,
                 fourth_label: "Alvo",
-                fourth_value: flags?.use_tmvol,
+                fourth_value: (flags?.use_tmvol || 0).toFixed(2),
                 fifth_label: "Soma mensal",
-                fifth_value: monthBigNumbers?.bignumbers_sumliterage,
+                fifth_value: (monthBigNumbers?.bignumbers_sumliterage || 0).toFixed(2),
                 sixth_label: "Status Média",
                 sixth_value: galonagemLitrosCondição,
                 seventh_label: "Média Mensal",
                 seventh_value:
-                  Math.round(
+                  (Math.round(
                     ((monthBigNumbers?.bignumbers_sumliterage ?? 0) /
                       actualDay) *
                     100
-                  ) / 100,
+                  ) / 100).toFixed(2),
                 eighth_label: `${portugueseDate}`,
-                eighth_value: Math.round(sumLiterageLastWeek * 100) / 100,
+                eighth_value: (Math.round(sumLiterageLastWeek * 100) / 100).toFixed(2),
                 ninth_label: "% ult. semana",
-                ninth_value: literagePercentage,
+                ninth_value: literagePercentage.toFixed(0),
                 tenth_label: "Flag Comparativo entre semanas",
                 tenth_value: literageTodayLastWeekFlag,
                 unit_type: "gallon",
               },
               {
                 label: "Faturamento da Rede",
-                value: Math.round(sumFuelTotal * 100) / 100,
+                value: (Math.round(sumFuelTotal * 100) / 100).toFixed(2),
                 secondary_label: "TMF",
-                secondary_value: Math.round(secondary_value_fuel * 100) / 100,
+                secondary_value: (Math.round(secondary_value_fuel * 100) / 100).toFixed(2),
                 third_label: "Status Margem",
                 third_value: use_tmf,
                 fourth_label: "Alvo",
-                fourth_value: flags?.use_tmf,
+                fourth_value: (flags?.use_tmf || 0).toFixed(2),
                 fifth_label: "Soma mensal",
-                fifth_value: monthBigNumbers?.bignumbers_invoicing,
+                fifth_value: (monthBigNumbers?.bignumbers_invoicing || 0).toFixed(2),
                 sixth_label: "Status Média",
                 sixth_value: faturamentoRedeCondição,
                 seventh_label: "Média Mensal",
                 seventh_value:
-                  Math.round(
+                  (Math.round(
                     ((monthBigNumbers?.bignumbers_invoicing ?? 0) / actualDay) *
                     100
-                  ) / 100,
+                  ) / 100).toFixed(2),
                 eighth_label: `${portugueseDate}`,
-                eighth_value: Math.round(sumFuelTotalLastWeek * 100) / 100,
+                eighth_value: (Math.round(sumFuelTotalLastWeek * 100) / 100).toFixed(2),
                 ninth_label: "% ult. semana",
-                ninth_value: sumFuelTotalPercentage,
+                ninth_value: sumFuelTotalPercentage.toFixed(0),
                 tenth_label: "Flag Comparativo entre semanas",
                 tenth_value: sumFuelTotalTodayLastWeekFlag,
                 unit_type: "real",
               },
               {
                 label: "Abastecimentos a Rede",
-                value: Math.round(quantSupply * 100) / 100,
+                value: (Math.round(quantSupply * 100) / 100).toFixed(),
                 secondary_label: "",
-                secondary_value: 0,
+                secondary_value: "0",
                 third_label: "",
-                third_value: 0,
+                third_value: "0",
                 fourth_label: "",
-                fourth_value: 0,
+                fourth_value: "0",
                 fifth_label: "Soma mensal",
-                fifth_value: monthBigNumbers?.bignumbers_Supplies,
+                fifth_value: (monthBigNumbers?.bignumbers_Supplies || 0).toFixed(),
                 sixth_label: "Status Média",
                 sixth_value: abastecimentoRedeCondição,
                 seventh_label: "Média Mensal",
                 seventh_value:
-                  Math.round(
+                  (Math.round(
                     ((monthBigNumbers?.bignumbers_Supplies ?? 0) / actualDay) *
                     100
-                  ) / 100,
+                  ) / 100).toFixed(2),
                 eighth_label: `${portugueseDate}`,
-                eighth_value: Math.round(quantSupplyLastWeek * 100) / 100,
+                eighth_value: (Math.round(quantSupplyLastWeek * 100) / 100).toFixed(),
                 ninth_label: "% ult. semana",
-                ninth_value: quantSupplyPercentage,
+                ninth_value: quantSupplyPercentage.toFixed(),
                 tenth_label: "Flag Comparativo entre semanas",
                 tenth_value: quantSupplyTodayLastWeekFlag,
                 unit_type: "gallon",
@@ -818,56 +837,56 @@ class DataController {
             [
               {
                 label: "Venda de Combustíveis",
-                value: Math.round(sumFuel * 100) / 100,
+                value: (Math.round(sumFuel * 100) / 100).toFixed(2),
                 secondary_label: "TMC",
-                secondary_value: Math.round(secondary_value_tmc * 100) / 100,
+                secondary_value: (Math.round(secondary_value_tmc * 100) / 100).toFixed(2),
                 third_label: "Status Margem",
                 third_value: tmc,
                 fourth_label: "Alvo",
-                fourth_value: flags?.use_tmc,
+                fourth_value: (flags?.use_tmc || 0).toFixed(2),
                 fifth_label: "Soma mensal",
-                fifth_value: monthBigNumbers?.bignumbers_fuelSales,
+                fifth_value: (monthBigNumbers?.bignumbers_fuelSales || 0).toFixed(2),
                 sixth_label: "Status Média",
                 sixth_value: vendaCombustíveisCondição,
                 seventh_label: "Média Mensal",
                 seventh_value:
-                  Math.round(
+                  (Math.round(
                     ((monthBigNumbers?.bignumbers_fuelSales ?? 0) / actualDay) *
                     100
-                  ) / 100,
+                  ) / 100).toFixed(2),
                 eighth_label: `${portugueseDate}`,
-                eighth_value: Math.round(sumFuelLastWeek * 100) / 100,
+                eighth_value: (Math.round(sumFuelLastWeek * 100) / 100).toFixed(2),
                 ninth_label: "% ult. semana",
-                ninth_value: sumFuelPercentage,
+                ninth_value: sumFuelPercentage.toFixed(),
                 tenth_label: "Flag Comparativo entre semanas",
                 tenth_value: sumFuelTodayLastWeekFlag,
                 unit_type: "real",
               },
               {
                 label: "Resultado Bruto da Galonagem",
-                value: monthBigNumbers?.bignumbers_dailyLiterageProfit,
+                value: (monthBigNumbers?.bignumbers_dailyLiterageProfit || 0).toFixed(2),
                 // secondary_label: "Resultado Bruto Operacional", secondary_value: fuelProfit,
                 secondary_label: "",
-                secondary_value: 0,
+                secondary_value: "0",
                 third_label: "Status Margem",
                 third_value: lucro_operacional_galonagem,
                 fourth_label: "Alvo",
-                fourth_value: flags?.use_lucro_bruto_operacional_galonagem ?? 0,
+                fourth_value: (flags?.use_lucro_bruto_operacional_galonagem ?? 0).toFixed(2),
                 fifth_label: "Soma mensal",
-                fifth_value: monthBigNumbers?.bignumbers_fuelProfit,
+                fifth_value: (monthBigNumbers?.bignumbers_fuelProfit || 0).toFixed(2),
                 sixth_label: "Status Média",
                 sixth_value: lucroCombustíveisCondição,
                 seventh_label: "Média Mensal",
                 seventh_value:
-                  Math.round(
+                  (Math.round(
                     ((monthBigNumbers?.bignumbers_fuelProfit ?? 0) /
                       actualDay) *
                     100
-                  ) / 100,
+                  ) / 100).toFixed(2),
                 eighth_label: `${portugueseDate}`,
-                eighth_value: literagePercentageLast,
+                eighth_value: (literagePercentageLast || 0).toFixed(2),
                 ninth_label: "% ult. semana",
-                ninth_value: grossLiterageLastPercentage,
+                ninth_value: grossLiterageLastPercentage.toFixed(),
                 tenth_label: "Flag Comparativo entre semanas",
                 tenth_value: literageProfitTodayLastWeekFlag || 0,
                 unit_type: "real",
@@ -875,7 +894,7 @@ class DataController {
               {
                 label: "M/LT",
                 value:
-                  Math.round(
+                  (Math.round(
                     ((fuelSums["GASOLINA COMUM"] +
                       fuelSums["GAS NATURAL VEICULAR"] +
                       fuelSums["GASOLINA PREMIUM PODIUM"] +
@@ -889,77 +908,77 @@ class DataController {
                         fuelSumsVolume["OLEO DIESEL B S500 COMUM"] +
                         fuelSumsVolume["ETANOL HIDRATADO COMBUSTIVEL"])) *
                     100
-                  ) / 100,
+                  ) / 100).toFixed(2),
                 secondary_label: "",
-                secondary_value: 0,
+                secondary_value: "0",
                 third_label: "Status Margem",
                 third_value: mlt,
                 fourth_label: "Alvo",
-                fourth_value: flags?.use_mlt ?? 0,
+                fourth_value: (flags?.use_mlt ?? 0).toFixed(2),
                 fifth_label: "",
-                fifth_value: 0,
+                fifth_value: "0",
                 sixth_label: "",
-                sixth_value: 0,
+                sixth_value: "0",
                 seventh_label: "",
-                seventh_value: 0,
+                seventh_value: "0",
                 unit_type: "real_per_gallon",
               },
             ],
             [
               {
                 label: "Venda de Produtos",
-                value: Math.round(sumFuelProd * 100) / 100,
+                value: (Math.round(sumFuelProd * 100) / 100).toFixed(),
                 secondary_label: "TMP",
                 secondary_value:
-                  Math.round(secondary_value_produto * 100) / 100,
+                  (Math.round(secondary_value_produto * 100) / 100).toFixed(2),
                 third_label: "Status Margem",
                 third_value: use_tmp,
                 fourth_label: "Alvo",
-                fourth_value: flags?.use_tmp,
+                fourth_value: (flags?.use_tmp || 0).toFixed(2),
                 fifth_label: "Soma mensal",
-                fifth_value: monthBigNumbers?.bignumbers_productSales,
+                fifth_value: (monthBigNumbers?.bignumbers_productSales || 0).toFixed(),
                 sixth_label: "Status Média",
                 sixth_value: vendaProdutosCondição,
                 seventh_label: "Média Mensal",
                 seventh_value:
-                  Math.round(
+                  (Math.round(
                     ((monthBigNumbers?.bignumbers_productSales ?? 0) /
                       actualDay) *
                     100
-                  ) / 100,
+                  ) / 100).toFixed(2),
                 eighth_label: `${portugueseDate}`,
-                eighth_value: Math.round(sumFuelProdLastWeek * 100) / 100,
+                eighth_value: (Math.round(sumFuelProdLastWeek * 100) / 100).toFixed(),
                 ninth_label: "% ult. semana",
-                ninth_value: sumFuelProdPercentage,
+                ninth_value: sumFuelProdPercentage.toFixed(),
                 tenth_label: "Flag Comparativo entre semanas",
                 tenth_value: sumFuelProdTodayLastWeekFlag,
                 unit_type: "real",
               },
               {
                 label: "Resultado Bruto de Produto",
-                value: monthBigNumbers?.bignumbers_dailyProductProfit,
+                value: (monthBigNumbers?.bignumbers_dailyProductProfit || 0).toFixed(2),
                 // secondary_label: "Resultado Bruto Operacional", secondary_value: productProfit,
                 secondary_label: "",
-                secondary_value: 0,
+                secondary_value: "0",
                 third_label: "Status Margem",
                 third_value: lucro_operacional_produto,
                 fourth_label: "Alvo",
-                fourth_value: flags?.use_lucro_bruto_operacional_produto ?? 0,
+                fourth_value: (flags?.use_lucro_bruto_operacional_produto ?? 0).toFixed(2),
                 fifth_label: "Soma mensal",
-                fifth_value: monthBigNumbers?.bignumbers_productProfit,
+                fifth_value: (monthBigNumbers?.bignumbers_productProfit || 0).toFixed(2),
                 sixth_label: "Status Média",
                 sixth_value: lucroProdutosCondição,
                 seventh_label: "Média Mensal",
                 seventh_value:
-                  Math.round(
+                  (Math.round(
                     ((monthBigNumbers?.bignumbers_productProfit ?? 0) /
                       actualDay) *
                     100
-                  ) / 100,
+                  ) / 100).toFixed(2),
                 eighth_label: `${portugueseDate}`,
-                eighth_value: productPercentageLast,
+                eighth_value: (productPercentageLast || 0).toFixed(2),
                 ninth_label: "% ult. semana",
-                ninth_value: grossProductLastPercentage,
+                ninth_value: grossProductLastPercentage.toFixed(),
                 tenth_label: "Flag Comparativo entre semanas",
                 tenth_value: productProfitTodayLastWeekFlag || 0,
                 unit_type: "real",
@@ -967,26 +986,26 @@ class DataController {
               {
                 label: "Lucro Bruto",
                 value:
-                  Math.round(secondary_value_bruto_operacional * 100) / 100,
+                  (Math.round(value1 * 100) / 100).toFixed(2),
                 secondary_label: "",
-                secondary_value: 0,
+                secondary_value: "0",
                 third_label: "Status Margem",
                 third_value: lucro_operacional_geral,
                 fourth_label: "Alvo",
-                fourth_value: (flags?.use_lucro_bruto_operacional ?? 0) * 100,
+                fourth_value: ((flags?.use_lucro_bruto_operacional ?? 0) * 100).toFixed(2),
                 fifth_label: "",
-                fifth_value: 0,
+                fifth_value: "0",
                 sixth_label: "",
-                sixth_value: 0,
+                sixth_value: "0",
                 seventh_label: "",
-                seventh_value: 0,
+                seventh_value: "0",
                 eighth_label: `${portugueseDate}`,
                 eighth_value:
-                  Math.round(secondary_value_bruto_operacionalLastWeek * 100) /
-                  100,
+                  (Math.round(value2 * 100) /
+                    100).toFixed(2),
                 ninth_label: "% ult. semana",
                 ninth_value:
-                  grossProfitPercentage,
+                  grossProfitPercentage.toFixed(2),
                 tenth_label: "Flag Comparativo entre semanas",
                 tenth_value: value_bruto,
                 unit_type: "percentage",
