@@ -3581,9 +3581,9 @@ class DataController {
   }
 }
 const dataController = new DataController();
-// dataController.scheduleMonthlyBigNumberUpdate();
-// dataController.scheduledailyMltStorage()
-// dataController.scheduledailyProductProfitUpdate();
-// dataController.scheduledailyGrossProductLiterage();
-// dataController.deleteData()
+dataController.scheduleMonthlyBigNumberUpdate();
+dataController.scheduledailyMltStorage()
+dataController.scheduledailyProductProfitUpdate();
+dataController.scheduledailyGrossProductLiterage();
+dataController.deleteData()
 export default new DataController();
