@@ -754,7 +754,26 @@ class DataController {
             maximumFractionDigits: decimals
           }).format(value);
         };
+        const grossProfitPercentage1 =
+        value1 /
+          value2 <
+          1
+          ?
 
+          Math.ceil(
+            Math.abs(
+              (Math.round(value1 * 100) / 100) -
+              (Math.round(value2 * 100) / 100)
+            ) * 100
+          ) / 100
+
+          :
+          Math.ceil(
+            Math.abs(
+              (Math.round(value1 * 100) / 100) -
+              (Math.round(value2 * 100) / 100)
+            ) * 100
+          ) / 100;
         return res.status(200).json({
           data: [
             [
@@ -1007,7 +1026,7 @@ class DataController {
                   formatNumber(value2),
                 ninth_label: "% ult. semana",
                 ninth_value:
-                  formatNumber(grossProfitPercentage,2),
+                  formatNumber(grossProfitPercentage1,2),
                 tenth_label: "Flag Comparativo entre semanas",
                 tenth_value: value_bruto1,
                 unit_type: "percentage",
