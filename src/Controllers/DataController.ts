@@ -1000,7 +1000,7 @@ class DataController {
                 eighth_label: `${portugueseDate}`,
                 eighth_value: formatNumber(productPercentageLast),
                 ninth_label: "% ult. semana",
-                ninth_value: formatNumber(productPercentageLast),
+                ninth_value: formatNumber(grossProductLastPercentage,0),
                 tenth_label: "Flag Comparativo entre semanas",
                 tenth_value: productProfitTodayLastWeekFlag || 0,
                 unit_type: "real",
@@ -3581,9 +3581,9 @@ class DataController {
   }
 }
 const dataController = new DataController();
-dataController.scheduleMonthlyBigNumberUpdate();
-dataController.scheduledailyMltStorage()
-dataController.scheduledailyProductProfitUpdate();
-dataController.scheduledailyGrossProductLiterage();
-dataController.deleteData()
+// dataController.scheduleMonthlyBigNumberUpdate();
+// dataController.scheduledailyMltStorage()
+// dataController.scheduledailyProductProfitUpdate();
+// dataController.scheduledailyGrossProductLiterage();
+// dataController.deleteData()
 export default new DataController();
