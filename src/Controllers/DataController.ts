@@ -253,7 +253,6 @@ class DataController {
             },
           },
         });
-
         //Construção array de items
         const itemsArrayLastWeek = fuelliterageSellLastWeek.flatMap(
           (element) => {
