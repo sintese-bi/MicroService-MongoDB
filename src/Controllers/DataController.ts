@@ -744,7 +744,9 @@ class DataController {
               sumFuelTotalLastWeek) *
             100
             : 0;
-
+            const value_bruto1 =
+            Math.round(value1 * 100) / 100 >=
+            Math.round(value2 * 100) / 100;
 
         const formatNumber = (value: any, decimals = 2) => {
           return new Intl.NumberFormat('pt-BR', {
@@ -1007,7 +1009,7 @@ class DataController {
                 ninth_value:
                   formatNumber(grossProfitPercentage,2),
                 tenth_label: "Flag Comparativo entre semanas",
-                tenth_value: value_bruto,
+                tenth_value: value_bruto1,
                 unit_type: "percentage",
               },
             ]
