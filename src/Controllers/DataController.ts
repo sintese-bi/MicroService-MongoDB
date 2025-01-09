@@ -912,14 +912,14 @@ class DataController {
                         fuelSumsVolume["ETANOL HIDRATADO COMBUSTIVEL"])) *
                     100
                   ) / 100),
-                  0 // 0 casas decimais
+                  2 // 0 casas decimais
                 ),
                 secondary_label: "",
                 secondary_value: "0",
                 third_label: "Status Margem",
                 third_value: mlt,
                 fourth_label: "Alvo",
-                fourth_value: formatNumber(flags?.use_mlt ?? 0),
+                fourth_value: formatNumber(flags?.use_mlt ?? 2),
                 fifth_label: "",
                 fifth_value: "0",
                 sixth_label: "",
