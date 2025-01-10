@@ -972,7 +972,7 @@ class DataController {
                   2
                 ),
                 eighth_label: `${portugueseDate}`,
-                eighth_value: formatNumber(sumFuelProdLastWeek, 0),  // 0 casas decimais
+                eighth_value: formatNumber(sumFuelProdLastWeek, 2),  // 0 casas decimais
                 ninth_label: "% ult. semana",
                 ninth_value: sumFuelProdPercentage.toFixed(0),
                 tenth_label: "Flag Comparativo entre semanas",
