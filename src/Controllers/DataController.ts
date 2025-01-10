@@ -953,7 +953,7 @@ class DataController {
             [
               {
                 label: "Venda de Produtos",
-                value: formatNumber(sumFuelProd, 0),  // 0 casas decimais
+                value: formatNumber(sumFuelProd, 2),  // 0 casas decimais
                 secondary_label: "TMP",
                 secondary_value: formatNumber(secondary_value_produto),
                 third_label: "Status Margem",
@@ -961,7 +961,7 @@ class DataController {
                 fourth_label: "Alvo",
                 fourth_value: formatNumber(flags?.use_tmp || 0),
                 fifth_label: "Soma mensal",
-                fifth_value: formatNumber(monthBigNumbers?.bignumbers_productSales || 0, 0),  // 0 casas decimais
+                fifth_value: formatNumber(monthBigNumbers?.bignumbers_productSales || 0, 2),  // 0 casas decimais
                 sixth_label: "Status Média",
                 sixth_value: vendaProdutosCondição,
                 seventh_label: "Média Mensal",
