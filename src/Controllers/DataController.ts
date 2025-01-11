@@ -744,9 +744,9 @@ class DataController {
               sumFuelTotalLastWeek) *
             100
             : 0;
-            const value_bruto1 =
-            Math.round(value1 * 100) / 100 >=
-            Math.round(value2 * 100) / 100;
+        const value_bruto1 =
+          Math.round(value1 * 100) / 100 >=
+          Math.round(value2 * 100) / 100;
 
         const formatNumber = (value: any, decimals = 2) => {
           return new Intl.NumberFormat('pt-BR', {
@@ -755,25 +755,25 @@ class DataController {
           }).format(value);
         };
         const grossProfitPercentage1 =
-        value1 /
-          value2 <
-          1
-          ?
+          value1 /
+            value2 <
+            1
+            ?
 
-          Math.ceil(
-            Math.abs(
-              (Math.round(value1 * 100) / 100) -
-              (Math.round(value2 * 100) / 100)
-            ) * 100
-          ) / 100
+            Math.ceil(
+              Math.abs(
+                (Math.round(value1 * 100) / 100) -
+                (Math.round(value2 * 100) / 100)
+              ) * 100
+            ) / 100
 
-          :
-          Math.ceil(
-            Math.abs(
-              (Math.round(value1 * 100) / 100) -
-              (Math.round(value2 * 100) / 100)
-            ) * 100
-          ) / 100;
+            :
+            Math.ceil(
+              Math.abs(
+                (Math.round(value1 * 100) / 100) -
+                (Math.round(value2 * 100) / 100)
+              ) * 100
+            ) / 100;
         return res.status(200).json({
           data: [
             [
@@ -979,7 +979,7 @@ class DataController {
                 tenth_value: sumFuelProdTodayLastWeekFlag,
                 unit_type: "real",
               },
-              
+
               {
                 label: "Resultado Bruto de Produto",
                 value: formatNumber(monthBigNumbers?.bignumbers_dailyProductProfit),
@@ -995,12 +995,15 @@ class DataController {
                 sixth_label: "Status Média",
                 sixth_value: formatNumber(lucroProdutosCondição),
                 seventh_label: "Média Mensal",
-                seventh_value:
-                  formatNumber(monthBigNumbers?.bignumbers_productProfit),
+                seventh_value: formatNumber(
+                  (Math.round(
+                    ((monthBigNumbers?.bignumbers_productProfit ?? 0) / actualDay) * 100
+                  ) / 100)
+                ),
                 eighth_label: `${portugueseDate}`,
                 eighth_value: formatNumber(productPercentageLast),
                 ninth_label: "% ult. semana",
-                ninth_value: formatNumber(grossProductLastPercentage,0),
+                ninth_value: formatNumber(grossProductLastPercentage, 0),
                 tenth_label: "Flag Comparativo entre semanas",
                 tenth_value: productProfitTodayLastWeekFlag || 0,
                 unit_type: "real",
@@ -1026,7 +1029,7 @@ class DataController {
                   formatNumber(value2),
                 ninth_label: "% ult. semana",
                 ninth_value:
-                  formatNumber(grossProfitPercentage1,2),
+                  formatNumber(grossProfitPercentage1, 2),
                 tenth_label: "Flag Comparativo entre semanas",
                 tenth_value: value_bruto1,
                 unit_type: "percentage",
