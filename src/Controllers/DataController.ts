@@ -934,7 +934,7 @@ class DataController {
                     100
                   ) / 100),
                   2 // 0 casas decimais
-                ),
+                ) || 0,
                 secondary_label: "",
                 secondary_value: "0",
                 third_label: "Status Margem",
