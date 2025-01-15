@@ -563,7 +563,12 @@ class DataController {
         })
 
         const mltPercentageLast = mltLastWeek?.mlt_history_date?.toISOString().split('T')[0] !== actualdateLastWeek.toString().split('T')[0] ?
-          0.49 : mltLastWeek?.mlt_history_value
+          0.49 : mltLastWeek?.mlt_history_value || 0
+
+
+
+
+
 
         //Fluxo mlt por tipo combustível
 
@@ -774,6 +779,30 @@ class DataController {
                 (Math.round(value2 * 100) / 100)
               ) * 100
             ) / 100;
+
+        //Comparativo e ultima semana MLT
+        const mltcomp =
+          Math.round(
+            ((fuelSums["GASOLINA COMUM"] +
+              fuelSums["GAS NATURAL VEICULAR"] +
+              fuelSums["GASOLINA PREMIUM PODIUM"] +
+              fuelSums["OLEO DIESEL B S10 COMUM"] +
+              fuelSums["OLEO DIESEL B S500 COMUM"] +
+              fuelSums["ETANOL HIDRATADO COMBUSTIVEL"]) /
+              (fuelSumsVolume["GASOLINA COMUM"] +
+                fuelSumsVolume["GAS NATURAL VEICULAR"] +
+                fuelSumsVolume["GASOLINA PREMIUM PODIUM"] +
+                fuelSumsVolume["OLEO DIESEL B S10 COMUM"] +
+                fuelSumsVolume["OLEO DIESEL B S500 COMUM"] +
+                fuelSumsVolume["ETANOL HIDRATADO COMBUSTIVEL"])) *
+            100
+          ) / 100
+        const comparativoMLT = mltcomp < mltPercentageLast ? false : true
+        const sumMLTPercentage =
+          mltcomp / mltPercentageLast < 1
+            ? Math.round(100 - (mltcomp / mltPercentageLast) * 100)
+            : Math.round((mltcomp / mltPercentageLast) * 100 - 100);
+
         return res.status(200).json({
           data: [
             [
@@ -910,7 +939,7 @@ class DataController {
                 eighth_label: `${portugueseDate}`,
                 eighth_value: formatNumber(literagePercentageLast || 0),
                 ninth_label: "% ult. semana",
-                ninth_value: grossLiterageLastPercentage.toFixed(0) || 0,
+                ninth_value: grossLiterageLastPercentage.toFixed(0),
                 tenth_label: "Flag Comparativo entre semanas",
                 tenth_value: literageProfitTodayLastWeekFlag || 0,
                 unit_type: "real",
@@ -934,7 +963,7 @@ class DataController {
                     100
                   ) / 100),
                   2 // 0 casas decimais
-                ) || 0,
+                ),
                 secondary_label: "",
                 secondary_value: "0",
                 third_label: "Status Margem",
@@ -947,6 +976,12 @@ class DataController {
                 sixth_value: "0",
                 seventh_label: "",
                 seventh_value: "0",
+                eighth_label: `${portugueseDate}`,
+                eighth_value: formatNumber(mltPercentageLast, 2),  // 0 casas decimais
+                ninth_label: "% ult. semana",
+                ninth_value: formatNumber(sumMLTPercentage, 0),
+                tenth_label: "Flag Comparativo entre semanas",
+                tenth_value: comparativoMLT,
                 unit_type: "real_per_gallon",
               },
             ],
@@ -1003,7 +1038,7 @@ class DataController {
                 eighth_label: `${portugueseDate}`,
                 eighth_value: formatNumber(productPercentageLast),
                 ninth_label: "% ult. semana",
-                ninth_value: formatNumber(grossProductLastPercentage, 0) || 0,
+                ninth_value: formatNumber(grossProductLastPercentage, 0),
                 tenth_label: "Flag Comparativo entre semanas",
                 tenth_value: productProfitTodayLastWeekFlag || 0,
                 unit_type: "real",
