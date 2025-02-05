@@ -1088,7 +1088,7 @@ class DataController {
     try {
       const actualdate = moment().tz("America/Sao_Paulo").format("YYYY-MM-DD");
       const actualdateOne = moment().tz("America/Sao_Paulo").subtract(1, "days").format("YYYY-MM-DD");
-      console.log(actualdate, actualdateOne)
+      console.log(actualdate, actualdateOne);
       const clientToken = req.headers.authorization;
       const { use_token }: any = req.params;
 
@@ -1098,7 +1098,6 @@ class DataController {
 
       const expectedToken = process.env.TOKEN;
       if (clientToken === `Bearer ${expectedToken}`) {
-
         let fuelliterageSell;
 
         fuelliterageSell = await prismaLBCBi.combustiveis.findMany({
@@ -1123,8 +1122,8 @@ class DataController {
             ],
           },
         });
-        if (Array.isArray(fuelliterageSell) && fuelliterageSell.length === 0) {
 
+        if (Array.isArray(fuelliterageSell) && fuelliterageSell.length === 0) {
           fuelliterageSell = await prismaLBCBi.combustiveis.findMany({
             select: {
               vda: true,
@@ -1147,9 +1146,9 @@ class DataController {
               ],
             },
           });
-
         }
-        console.log(fuelliterageSell)
+
+        console.log(fuelliterageSell);
         let stationsMapping: any = {};
         const secret = process.env.SECRET;
         if (!secret) {
@@ -1247,17 +1246,13 @@ class DataController {
 
         const aggregatedResult = Object.keys(fuelAggregation).map(
           (fuel_name) => {
-            const values = fuelAggregation[fuel_name].sort((a: number, b: number) => a - b);
-            const middle = Math.floor(values.length / 2);
-
-            const median =
-              values.length % 2 === 0
-                ? (values[middle - 1] + values[middle]) / 2
-                : values[middle];
+            const values = fuelAggregation[fuel_name];
+            const sum = values.reduce((acc: number, val: number) => acc + val, 0);
+            const average = sum / values.length;
 
             return {
               fuel_name,
-              value: Math.round(median * 100) / 100,
+              value: Math.round(average * 10000) / 10000,
             };
           }
         );
@@ -1267,7 +1262,6 @@ class DataController {
           "OLEO DIESEL B S10 COMUM",
           "OLEO DIESEL B S500 COMUM",
           "ETANOL HIDRATADO COMBUSTIVEL",
-
           "GAS NATURAL VEICULAR",
           "GASOLINA PREMIUM PODIUM",
         ];
@@ -1277,8 +1271,7 @@ class DataController {
         );
 
         return res.status(200).json({
-          data: allowedFuelsArray
-
+          data: allowedFuelsArray,
         });
       } else {
         return res
@@ -1291,6 +1284,7 @@ class DataController {
         .json({ message: `Erro ao retornar os dados: ${error}` });
     }
   }
+
 
   //Dados do Gráfico diário
   public async dailyGraphic(req: Request, res: Response) {
