@@ -1256,7 +1256,7 @@ class DataController {
             };
           }
         );
-
+        ""
         const allowedFuels = [
           "GASOLINA COMUM",
           "OLEO DIESEL B S10 COMUM",
