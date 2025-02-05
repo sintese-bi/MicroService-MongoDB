@@ -7,7 +7,7 @@ RUN apk add --no-cache openssl
 # Define o diretório de trabalho
 WORKDIR /usr/app
 
-# Copie os arquivos de dependências
+# Copie os arquivos de dependências ## 
 COPY package*.json ./
 
 # Atualize o npm para a versão mais recente
