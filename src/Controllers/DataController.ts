@@ -726,15 +726,15 @@ class DataController {
                 (Math.round(secondary_value_bruto_operacionalLastWeek * 100) / 100)
               ) * 100
             ) / 100;
-        const grossLiterageLastPercentage = ((monthBigNumbers?.bignumbers_dailyLiterageProfit) || 0) / (grossLiterageLastWeek?.gallon_last_history_gross || 0) < 1
-          ? Math.round(100 - (((monthBigNumbers?.bignumbers_dailyLiterageProfit) || 0) / (grossLiterageLastWeek?.gallon_last_history_gross || 0)) * 100)
-          : Math.round((((monthBigNumbers?.bignumbers_dailyLiterageProfit) || 0) / (grossLiterageLastWeek?.gallon_last_history_gross || 0)) * 100 - 100);
+        const grossLiterageLastPercentage = ((monthBigNumbers?.bignumbers_dailyLiterageProfit) || 0) / (literagePercentageLast || 0) < 1
+          ? Math.round(100 - (((monthBigNumbers?.bignumbers_dailyLiterageProfit) || 0) / (literagePercentageLast || 0)) * 100)
+          : Math.round((((monthBigNumbers?.bignumbers_dailyLiterageProfit) || 0) / (literagePercentageLast || 0)) * 100 - 100);
 
-        const grossProductLastPercentage = ((monthBigNumbers?.bignumbers_dailyProductProfit) || 0) / (grossProductLastWeek?.product_last_history_gross || 0) < 1
-          ? Math.round(100 - (((monthBigNumbers?.bignumbers_dailyProductProfit) || 0) / (grossProductLastWeek?.product_last_history_gross || 0)) * 100)
-          : Math.round((((monthBigNumbers?.bignumbers_dailyProductProfit) || 0) / (grossProductLastWeek?.product_last_history_gross || 0)) * 100 - 100);
-
-
+        const grossProductLastPercentage = ((monthBigNumbers?.bignumbers_dailyProductProfit) || 0) / (productPercentageLast || 0) < 1
+          ? Math.round(100 - (((monthBigNumbers?.bignumbers_dailyProductProfit) || 0) / (productPercentageLast || 0)) * 100)
+          : Math.round((((monthBigNumbers?.bignumbers_dailyProductProfit) || 0) / (productPercentageLast || 0)) * 100 - 100);
+        const flagGalllon = (monthBigNumbers?.bignumbers_dailyLiterageProfit || 0 < (literagePercentageLast || 0)) ? false : true
+        const flagProduct = (monthBigNumbers?.bignumbers_dailyProductProfit || 0 < (productPercentageLast || 0)) ? false : true
 
 
         //Lucro bruto Modificado
@@ -941,7 +941,7 @@ class DataController {
                 ninth_label: "% ult. semana",
                 ninth_value: grossLiterageLastPercentage.toFixed(0),
                 tenth_label: "Flag Comparativo entre semanas",
-                tenth_value: literageProfitTodayLastWeekFlag || 0,
+                tenth_value: flagGalllon ,
                 unit_type: "real",
               },
               {
@@ -1040,7 +1040,7 @@ class DataController {
                 ninth_label: "% ult. semana",
                 ninth_value: formatNumber(grossProductLastPercentage, 0),
                 tenth_label: "Flag Comparativo entre semanas",
-                tenth_value: productProfitTodayLastWeekFlag || 0,
+                tenth_value: flagProduct ,
                 unit_type: "real",
               },
               {
