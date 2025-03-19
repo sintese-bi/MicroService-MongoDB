@@ -1087,9 +1087,22 @@ class DataController {
   }
   public async bigNumbersMLT(req: Request, res: Response) {
     try {
+      interface FuelEntry {
+        Combustivel: string;
+        "M/LT": number;
+      }
+
+      interface FuelStats {
+        totalMLT: number;
+        count: number;
+      }
+
+      interface FuelResult {
+        fuel_name: string;
+        value: number;
+      }
       const actualdate = moment().tz("America/Sao_Paulo").format("YYYY-MM-DD");
       const actualdateOne = moment().tz("America/Sao_Paulo").subtract(1, "days").format("YYYY-MM-DD");
-      console.log(actualdate, actualdateOne);
       const clientToken = req.headers.authorization;
       const { use_token }: any = req.params;
 
@@ -1099,181 +1112,224 @@ class DataController {
 
       const expectedToken = process.env.TOKEN;
       if (clientToken === `Bearer ${expectedToken}`) {
-        let fuelliterageSell;
-
-        fuelliterageSell = await prismaLBCBi.combustiveis.findMany({
-          select: {
-            vda: true,
-            cus: true,
-            des: true,
-            ibm: true,
-            del: true,
-          },
-          where: {
-            dtHr: {
-              gte: `${actualdate}T00:00:00.000Z`,
-              lte: `${actualdate}T23:59:59.999Z`,
-            },
-            AND: [
-              { vda: { not: "" } },
-              { cus: { not: "" } },
-              { des: { not: "" } },
-              { ibm: { not: "" } },
-              { del: { not: "" } },
-            ],
-          },
-        });
-
-        if (Array.isArray(fuelliterageSell) && fuelliterageSell.length === 0) {
-          fuelliterageSell = await prismaLBCBi.combustiveis.findMany({
-            select: {
-              vda: true,
-              cus: true,
-              des: true,
-              ibm: true,
-              del: true,
-            },
-            where: {
-              dtHr: {
-                gte: `${actualdateOne}T00:00:00.000Z`,
-                lte: `${actualdateOne}T23:59:59.999Z`,
-              },
-              AND: [
-                { vda: { not: "" } },
-                { cus: { not: "" } },
-                { des: { not: "" } },
-                { ibm: { not: "" } },
-                { del: { not: "" } },
-              ],
-            },
-          });
-        }
-
-        console.log(fuelliterageSell);
-        let stationsMapping: any = {};
-        const secret = process.env.SECRET;
-        if (!secret) {
-          throw new Error("Chave secreta não definida. Verifique a variável de ambiente SECRET.");
-        }
-
-        const id = extractUserIdFromToken(use_token, secret);
-
-        fuelliterageSell.forEach((element) => {
-          if (element.del === "F") {
-            if (!stationsMapping[element.ibm]) {
-              stationsMapping[element.ibm] = [
-                {
-                  value: parseFloat(element.vda),
-                  cost: parseFloat(element.cus),
-                  description: element.des,
-                },
-              ];
-            } else {
-              stationsMapping[element.ibm].push({
-                value: parseFloat(element.vda),
-                cost: parseFloat(element.cus),
-                description: element.des,
-              });
-            }
-          }
-        });
-
-        const stationNames = await prismaRedeFlex.gas_station_setvariables.findMany({
-          select: {
-            ibm_info: {
-              select: {
-                ibm: true,
-                nomefantasia: true,
-              },
-            },
-            gas_station_GASOLINA_COMUM_comb: true,
-            gas_station_ETANOL_COMUM_comb: true,
-            gas_station_OLEO_DIESEL_B_S10_COMUM_comb: true,
-            gas_station_OLEO_DIESEL_B_S500_COMUM_comb: true,
-          },
-          where: { use_uuid: id },
-        });
-
-        let stationsMlt: any = [];
-        for (let keys in stationsMapping) {
-          const result = stationNames.find(
-            (item) => item.ibm_info?.ibm === keys
-          );
-
-          stationsMapping[keys].forEach((element: any) => {
-            if (element !== stationsMapping[keys].at(-1)) {
-              let mltValue = 0;
-              if (element.description === "GASOLINA COMUM") {
-                mltValue =
-                  element.value -
-                  element.cost -
-                  (result?.gas_station_GASOLINA_COMUM_comb || 0);
-              } else if (element.description === "OLEO DIESEL B S10 COMUM") {
-                mltValue =
-                  element.value -
-                  element.cost -
-                  (result?.gas_station_OLEO_DIESEL_B_S10_COMUM_comb || 0);
-              } else if (element.description === "OLEO DIESEL B S500 COMUM") {
-                mltValue =
-                  element.value -
-                  element.cost -
-                  (result?.gas_station_OLEO_DIESEL_B_S500_COMUM_comb || 0);
-              } else if (element.description === "ETANOL HIDRATADO COMBUSTIVEL") {
-                mltValue =
-                  element.value -
-                  element.cost -
-                  (result?.gas_station_ETANOL_COMUM_comb || 0);
-              } else {
-                mltValue = element.value - element.cost;
-              }
-
-              stationsMlt.push({
-                name: result?.ibm_info?.nomefantasia,
-                mlt: mltValue,
-                fuel_name: element.description,
-              });
-            }
-          });
-        }
-
-        let fuelAggregation: any = {};
-
-        stationsMlt.forEach((element: any) => {
-          if (!fuelAggregation[element.fuel_name]) {
-            fuelAggregation[element.fuel_name] = [];
-          }
-          fuelAggregation[element.fuel_name].push(element.mlt);
-        });
-
-        const aggregatedResult = Object.keys(fuelAggregation).map(
-          (fuel_name) => {
-            const values = fuelAggregation[fuel_name];
-            const sum = values.reduce((acc: number, val: number) => acc + val, 0);
-            const average = sum / values.length;
-
-            return {
-              fuel_name,
-              value: Math.round(average * 10000) / 10000,
-            };
-          }
+        const token = process.env.SAULOAPI;
+        const response = await axios.get<{ combustivel: FuelEntry[] }>(
+          `http://159.65.42.225:3053/v2/dataframes?token=${token}`
         );
-        ""
-        const allowedFuels = [
+        const tableData = response.data["combustivel"];
+
+        const fuelArray: string[] = [
           "GASOLINA COMUM",
-          "OLEO DIESEL B S10 COMUM",
-          "OLEO DIESEL B S500 COMUM",
-          "ETANOL HIDRATADO COMBUSTIVEL",
           "GAS NATURAL VEICULAR",
+          "OLEO DIESEL B S10 COMUM",
+          "ETANOL HIDRATADO COMBUSTIVEL",
+          "OLEO DIESEL B S500 COMUM",
           "GASOLINA PREMIUM PODIUM",
         ];
 
-        const allowedFuelsArray = aggregatedResult.filter((element: any) =>
-          allowedFuels.includes(element.fuel_name)
-        );
+        const fuelStats: Record<string, FuelStats> = {};
 
-        return res.status(200).json({
-          data: allowedFuelsArray,
+        tableData.forEach((entry) => {
+          const fuelType = entry["Combustivel"];
+          const mlt = parseFloat(entry["M/LT"].toString());
+
+          if (fuelArray.includes(fuelType)) {
+            if (!fuelStats[fuelType]) {
+              fuelStats[fuelType] = { totalMLT: 0, count: 0 };
+            }
+
+            fuelStats[fuelType].totalMLT += mlt;
+            fuelStats[fuelType].count += 1;
+          }
         });
+
+        const result = {
+          data: Object.keys(fuelStats).map((fuelType) => ({
+            fuel_name: fuelType,
+            value: parseFloat(
+              (fuelStats[fuelType].totalMLT / fuelStats[fuelType].count).toFixed(4)
+            ),
+          })),
+        };
+
+        
+        return res.status(200).json({ data: result["data"] })
+
+        // let fuelliterageSell;
+
+        // fuelliterageSell = await prismaLBCBi.combustiveis.findMany({
+        //   select: {
+        //     vda: true,
+        //     cus: true,
+        //     des: true,
+        //     ibm: true,
+        //     del: true,
+        //   },
+        //   where: {
+        //     dtHr: {
+        //       gte: `${actualdate}T00:00:00.000Z`,
+        //       lte: `${actualdate}T23:59:59.999Z`,
+        //     },
+        //     AND: [
+        //       { vda: { not: "" } },
+        //       { cus: { not: "" } },
+        //       { des: { not: "" } },
+        //       { ibm: { not: "" } },
+        //       { del: { not: "" } },
+        //     ],
+        //   },
+        // });
+
+        // if (Array.isArray(fuelliterageSell) && fuelliterageSell.length === 0) {
+        //   fuelliterageSell = await prismaLBCBi.combustiveis.findMany({
+        //     select: {
+        //       vda: true,
+        //       cus: true,
+        //       des: true,
+        //       ibm: true,
+        //       del: true,
+        //     },
+        //     where: {
+        //       dtHr: {
+        //         gte: `${actualdateOne}T00:00:00.000Z`,
+        //         lte: `${actualdateOne}T23:59:59.999Z`,
+        //       },
+        //       AND: [
+        //         { vda: { not: "" } },
+        //         { cus: { not: "" } },
+        //         { des: { not: "" } },
+        //         { ibm: { not: "" } },
+        //         { del: { not: "" } },
+        //       ],
+        //     },
+        //   });
+        // }
+
+        // console.log(fuelliterageSell);
+        // let stationsMapping: any = {};
+        // const secret = process.env.SECRET;
+        // if (!secret) {
+        //   throw new Error("Chave secreta não definida. Verifique a variável de ambiente SECRET.");
+        // }
+
+        // const id = extractUserIdFromToken(use_token, secret);
+
+        // fuelliterageSell.forEach((element) => {
+        //   if (element.del === "F") {
+        //     if (!stationsMapping[element.ibm]) {
+        //       stationsMapping[element.ibm] = [
+        //         {
+        //           value: parseFloat(element.vda),
+        //           cost: parseFloat(element.cus),
+        //           description: element.des,
+        //         },
+        //       ];
+        //     } else {
+        //       stationsMapping[element.ibm].push({
+        //         value: parseFloat(element.vda),
+        //         cost: parseFloat(element.cus),
+        //         description: element.des,
+        //       });
+        //     }
+        //   }
+        // });
+
+        // const stationNames = await prismaRedeFlex.gas_station_setvariables.findMany({
+        //   select: {
+        //     ibm_info: {
+        //       select: {
+        //         ibm: true,
+        //         nomefantasia: true,
+        //       },
+        //     },
+        //     gas_station_GASOLINA_COMUM_comb: true,
+        //     gas_station_ETANOL_COMUM_comb: true,
+        //     gas_station_OLEO_DIESEL_B_S10_COMUM_comb: true,
+        //     gas_station_OLEO_DIESEL_B_S500_COMUM_comb: true,
+        //   },
+        //   where: { use_uuid: id },
+        // });
+
+        // let stationsMlt: any = [];
+        // for (let keys in stationsMapping) {
+        //   const result = stationNames.find(
+        //     (item) => item.ibm_info?.ibm === keys
+        //   );
+
+        //   stationsMapping[keys].forEach((element: any) => {
+        //     if (element !== stationsMapping[keys].at(-1)) {
+        //       let mltValue = 0;
+        //       if (element.description === "GASOLINA COMUM") {
+        //         mltValue =
+        //           element.value -
+        //           element.cost -
+        //           (result?.gas_station_GASOLINA_COMUM_comb || 0);
+        //       } else if (element.description === "OLEO DIESEL B S10 COMUM") {
+        //         mltValue =
+        //           element.value -
+        //           element.cost -
+        //           (result?.gas_station_OLEO_DIESEL_B_S10_COMUM_comb || 0);
+        //       } else if (element.description === "OLEO DIESEL B S500 COMUM") {
+        //         mltValue =
+        //           element.value -
+        //           element.cost -
+        //           (result?.gas_station_OLEO_DIESEL_B_S500_COMUM_comb || 0);
+        //       } else if (element.description === "ETANOL HIDRATADO COMBUSTIVEL") {
+        //         mltValue =
+        //           element.value -
+        //           element.cost -
+        //           (result?.gas_station_ETANOL_COMUM_comb || 0);
+        //       } else {
+        //         mltValue = element.value - element.cost;
+        //       }
+
+        //       stationsMlt.push({
+        //         name: result?.ibm_info?.nomefantasia,
+        //         mlt: mltValue,
+        //         fuel_name: element.description,
+        //       });
+        //     }
+        //   });
+        // }
+
+        // let fuelAggregation: any = {};
+
+        // stationsMlt.forEach((element: any) => {
+        //   if (!fuelAggregation[element.fuel_name]) {
+        //     fuelAggregation[element.fuel_name] = [];
+        //   }
+        //   fuelAggregation[element.fuel_name].push(element.mlt);
+        // });
+
+        // const aggregatedResult = Object.keys(fuelAggregation).map(
+        //   (fuel_name) => {
+        //     const values = fuelAggregation[fuel_name];
+        //     const sum = values.reduce((acc: number, val: number) => acc + val, 0);
+        //     const average = sum / values.length;
+
+        //     return {
+        //       fuel_name,
+        //       value: Math.round(average * 10000) / 10000,
+        //     };
+        //   }
+        // );
+        // ""
+        // const allowedFuels = [
+        //   "GASOLINA COMUM",
+        //   "OLEO DIESEL B S10 COMUM",
+        //   "OLEO DIESEL B S500 COMUM",
+        //   "ETANOL HIDRATADO COMBUSTIVEL",
+        //   "GAS NATURAL VEICULAR",
+        //   "GASOLINA PREMIUM PODIUM",
+        // ];
+
+        // const allowedFuelsArray = aggregatedResult.filter((element: any) =>
+        //   allowedFuels.includes(element.fuel_name)
+        // );
+
+        // return res.status(200).json({
+        //   data: allowedFuelsArray,
+        // });
       } else {
         return res
           .status(401)
