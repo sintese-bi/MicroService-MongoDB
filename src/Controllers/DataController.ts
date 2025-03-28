@@ -1121,6 +1121,7 @@ class DataController {
       interface FuelEntry {
         Combustivel: string;
         "M/LT": number;
+        "Hora da Venda": string;
       }
 
       interface FuelStats {
@@ -1158,33 +1159,41 @@ class DataController {
           "GASOLINA PREMIUM PODIUM",
         ];
 
-        const fuelStats: Record<string, FuelStats> = {};
+        const latestMLTByFuel: Record<string, FuelEntry> = {};
 
         tableData.forEach((entry) => {
           const fuelType = entry["Combustivel"];
-          const mlt = parseFloat(entry["M/LT"].toString());
+          const timestamp = new Date(entry["Hora da Venda"]).getTime();
 
           if (fuelArray.includes(fuelType)) {
-            if (!fuelStats[fuelType]) {
-              fuelStats[fuelType] = { totalMLT: 0, count: 0 };
+            if (!latestMLTByFuel[fuelType] || timestamp > new Date(latestMLTByFuel[fuelType]["Hora da Venda"]).getTime()) {
+              latestMLTByFuel[fuelType] = entry;
             }
-
-            fuelStats[fuelType].totalMLT += mlt;
-            fuelStats[fuelType].count += 1;
           }
+        });
+
+        const fuelStats: Record<string, FuelStats> = {};
+
+        Object.values(latestMLTByFuel).forEach((entry) => {
+          const fuelType = entry["Combustivel"];
+          const mlt = parseFloat(entry["M/LT"].toString());
+
+          if (!fuelStats[fuelType]) {
+            fuelStats[fuelType] = { totalMLT: 0, count: 0 };
+          }
+
+          fuelStats[fuelType].totalMLT += mlt;
+          fuelStats[fuelType].count += 1;
         });
 
         const result = {
           data: Object.keys(fuelStats).map((fuelType) => ({
             fuel_name: fuelType,
-            value: parseFloat(
-              (fuelStats[fuelType].totalMLT / fuelStats[fuelType].count).toFixed(4)
-            ),
+            value: parseFloat((fuelStats[fuelType].totalMLT / fuelStats[fuelType].count).toFixed(4)),
           })),
         };
 
-
-        return res.status(200).json({ data: result["data"] })
+        return res.status(200).json({ data: result["data"] });
 
         // let fuelliterageSell;
 
