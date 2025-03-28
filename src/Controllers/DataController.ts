@@ -798,11 +798,8 @@ class DataController {
                 fuelSumsVolume["ETANOL HIDRATADO COMBUSTIVEL"])) *
             100
           ) / 100
-        const comparativoMLT = mltcomp < mltPercentageLast ? false : true
-        const sumMLTPercentage =
-          mltcomp / mltPercentageLast < 1
-            ? Math.round(100 - (mltcomp / mltPercentageLast) * 100)
-            : Math.round((mltcomp / mltPercentageLast) * 100 - 100);
+        
+
         //Novo MLT
 
         interface FuelEntry {
@@ -829,10 +826,13 @@ class DataController {
           totalMLT += entry["M/LT"];
           count += 1;
         });
-
+        
         const averageMLT = count > 0 ? parseFloat((totalMLT / count).toFixed(2)) : 0
-
-
+        const comparativoMLT = averageMLT < mltPercentageLast ? false : true
+        const sumMLTPercentage =
+        averageMLT / mltPercentageLast < 1
+            ? Math.round(100 - (averageMLT / mltPercentageLast) * 100)
+            : Math.round((averageMLT / mltPercentageLast) * 100 - 100);
 
         return res.status(200).json({
           data: [
