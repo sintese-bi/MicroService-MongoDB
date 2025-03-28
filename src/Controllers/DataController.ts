@@ -831,7 +831,7 @@ class DataController {
         });
 
         const averageMLT = count > 0 ? parseFloat((totalMLT / count).toFixed(2)) : 0
-        console.log(count, averageMLT)
+
 
 
         return res.status(200).json({
@@ -3533,78 +3533,103 @@ class DataController {
         `http://159.65.42.225:3053/v2/dataframes?token=${token}`
       );
 
-      const fuelArray = [
-        "GASOLINA COMUM",
-        "GAS NATURAL VEICULAR",
-        "OLEO DIESEL B S10 COMUM",
-        "ETANOL HIDRATADO COMBUSTIVEL",
-        "OLEO DIESEL B S500 COMUM",
-        "GASOLINA PREMIUM PODIUM",
-      ];
+      // const fuelArray = [
+      //   "GASOLINA COMUM",
+      //   "GAS NATURAL VEICULAR",
+      //   "OLEO DIESEL B S10 COMUM",
+      //   "ETANOL HIDRATADO COMBUSTIVEL",
+      //   "OLEO DIESEL B S500 COMUM",
+      //   "GASOLINA PREMIUM PODIUM",
+      // ];
 
       const literagePerFuel = tableData.data["combustivel"]
-        .map((element: any) => {
-          if (
-            element.hasOwnProperty("Combustivel") &&
-            fuelArray.includes(element["Combustivel"])
-          ) {
-            return element;
-          }
-          return null;
-        })
-        .filter((value: object) => value !== null);
+      //   .map((element: any) => {
+      //     if (
+      //       element.hasOwnProperty("Combustivel") &&
+      //       fuelArray.includes(element["Combustivel"])
+      //     ) {
+      //       return element;
+      //     }
+      //     return null;
+      //   })
+      //   .filter((value: object) => value !== null);
 
-      let arrayFuel: { [key: string]: number[] } = {};
+      // let arrayFuel: { [key: string]: number[] } = {};
 
-      literagePerFuel.forEach((element: any) => {
-        if (!arrayFuel[element["Combustivel"]]) {
-          arrayFuel[element["Combustivel"]] = [element["Lucro"]];
-        } else {
-          arrayFuel[element["Combustivel"]].push(element["Lucro"]);
+      // literagePerFuel.forEach((element: any) => {
+      //   if (!arrayFuel[element["Combustivel"]]) {
+      //     arrayFuel[element["Combustivel"]] = [element["Lucro"]];
+      //   } else {
+      //     arrayFuel[element["Combustivel"]].push(element["Lucro"]);
+      //   }
+      // });
+      // const fuelSums: { [key: string]: number } = {};
+
+      // for (const fuelType in arrayFuel) {
+      //   fuelSums[fuelType] = arrayFuel[fuelType].reduce(
+      //     (sum, value) => Math.round((sum + value) * 100) / 100,
+      //     0
+      //   );
+      // }
+
+      // let arrayFuelVolume: { [key: string]: number[] } = {};
+
+      // literagePerFuel.forEach((element: any) => {
+      //   if (!arrayFuelVolume[element["Combustivel"]]) {
+      //     arrayFuelVolume[element["Combustivel"]] = [element["Volume"]];
+      //   } else {
+      //     arrayFuelVolume[element["Combustivel"]].push(element["Volume"]);
+      //   }
+      // });
+      // const fuelSumsVolume: { [key: string]: number } = {};
+
+      // for (const fuelType in arrayFuelVolume) {
+      //   fuelSumsVolume[fuelType] = arrayFuelVolume[fuelType].reduce(
+      //     (sum, value) => Math.round((sum + value) * 100) / 100,
+      //     0
+      //   );
+      // }
+      // const mlt = Math.round(
+      //   ((fuelSums["GASOLINA COMUM"] +
+      //     fuelSums["GAS NATURAL VEICULAR"] +
+      //     fuelSums["GASOLINA PREMIUM PODIUM"] +
+      //     fuelSums["OLEO DIESEL B S10 COMUM"] +
+      //     fuelSums["OLEO DIESEL B S500 COMUM"] +
+      //     fuelSums["ETANOL HIDRATADO COMBUSTIVEL"]) /
+      //     (fuelSumsVolume["GASOLINA COMUM"] +
+      //       fuelSumsVolume["GAS NATURAL VEICULAR"] +
+      //       fuelSumsVolume["GASOLINA PREMIUM PODIUM"] +
+      //       fuelSumsVolume["OLEO DIESEL B S10 COMUM"] +
+      //       fuelSumsVolume["OLEO DIESEL B S500 COMUM"] +
+      //       fuelSumsVolume["ETANOL HIDRATADO COMBUSTIVEL"])) *
+      //   100
+      // ) / 100
+      interface FuelEntry {
+        Combustivel: string;
+        "M/LT": number;
+        "Nome da Empresa": string;
+        "Hora da Venda": string;
+      }
+      const latestMLTByCompany: Record<string, FuelEntry> = {};
+
+      literagePerFuel.forEach((entry: any) => {
+        const company = entry["Nome da Empresa"];
+        const timestamp = new Date(entry["Hora da Venda"]).getTime();
+
+        if (!latestMLTByCompany[company] || timestamp > new Date(latestMLTByCompany[company]["Hora da Venda"]).getTime()) {
+          latestMLTByCompany[company] = entry;
         }
       });
-      const fuelSums: { [key: string]: number } = {};
 
-      for (const fuelType in arrayFuel) {
-        fuelSums[fuelType] = arrayFuel[fuelType].reduce(
-          (sum, value) => Math.round((sum + value) * 100) / 100,
-          0
-        );
-      }
+      let totalMLT = 0;
+      let count = 0;
 
-      let arrayFuelVolume: { [key: string]: number[] } = {};
-
-      literagePerFuel.forEach((element: any) => {
-        if (!arrayFuelVolume[element["Combustivel"]]) {
-          arrayFuelVolume[element["Combustivel"]] = [element["Volume"]];
-        } else {
-          arrayFuelVolume[element["Combustivel"]].push(element["Volume"]);
-        }
+      Object.values(latestMLTByCompany).forEach((entry) => {
+        totalMLT += entry["M/LT"];
+        count += 1;
       });
-      const fuelSumsVolume: { [key: string]: number } = {};
 
-      for (const fuelType in arrayFuelVolume) {
-        fuelSumsVolume[fuelType] = arrayFuelVolume[fuelType].reduce(
-          (sum, value) => Math.round((sum + value) * 100) / 100,
-          0
-        );
-      }
-      const mlt = Math.round(
-        ((fuelSums["GASOLINA COMUM"] +
-          fuelSums["GAS NATURAL VEICULAR"] +
-          fuelSums["GASOLINA PREMIUM PODIUM"] +
-          fuelSums["OLEO DIESEL B S10 COMUM"] +
-          fuelSums["OLEO DIESEL B S500 COMUM"] +
-          fuelSums["ETANOL HIDRATADO COMBUSTIVEL"]) /
-          (fuelSumsVolume["GASOLINA COMUM"] +
-            fuelSumsVolume["GAS NATURAL VEICULAR"] +
-            fuelSumsVolume["GASOLINA PREMIUM PODIUM"] +
-            fuelSumsVolume["OLEO DIESEL B S10 COMUM"] +
-            fuelSumsVolume["OLEO DIESEL B S500 COMUM"] +
-            fuelSumsVolume["ETANOL HIDRATADO COMBUSTIVEL"])) *
-        100
-      ) / 100
-
+      const averageMLT = count > 0 ? parseFloat((totalMLT / count).toFixed(2)) : 0
       const users = await prismaRedeFlex.users.findMany({
         select: { use_uuid: true },
       });
@@ -3613,7 +3638,7 @@ class DataController {
 
       await prismaRedeFlex.mlt_history.createMany({
         data: users.map((id) => ({
-          mlt_history_value: mlt,
+          mlt_history_value: averageMLT,
           mlt_history_date: actualdate,
           use_uuid: id.use_uuid,
         })),
