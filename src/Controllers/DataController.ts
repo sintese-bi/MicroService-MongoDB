@@ -803,6 +803,36 @@ class DataController {
           mltcomp / mltPercentageLast < 1
             ? Math.round(100 - (mltcomp / mltPercentageLast) * 100)
             : Math.round((mltcomp / mltPercentageLast) * 100 - 100);
+        //Novo MLT
+
+        interface FuelEntry {
+          Combustivel: string;
+          "M/LT": number;
+          "Nome da Empresa": string;
+          "Hora da Venda": string;
+        }
+        const latestMLTByCompany: Record<string, FuelEntry> = {};
+
+        literagePerFuel.forEach((entry: any) => {
+          const company = entry["Nome da Empresa"];
+          const timestamp = new Date(entry["Hora da Venda"]).getTime();
+
+          if (!latestMLTByCompany[company] || timestamp > new Date(latestMLTByCompany[company]["Hora da Venda"]).getTime()) {
+            latestMLTByCompany[company] = entry;
+          }
+        });
+
+        let totalMLT = 0;
+        let count = 0;
+
+        Object.values(latestMLTByCompany).forEach((entry) => {
+          totalMLT += entry["M/LT"];
+          count += 1;
+        });
+
+        const averageMLT = count > 0 ? parseFloat((totalMLT / count).toFixed(2)) : 0
+        console.log(count, averageMLT)
+
 
         return res.status(200).json({
           data: [
@@ -946,25 +976,26 @@ class DataController {
                 unit_type: "real",
               },
               {
+                // formatNumber(
+                //   (Math.round(
+                //     ((fuelSums["GASOLINA COMUM"] +
+                //       fuelSums["GAS NATURAL VEICULAR"] +
+                //       fuelSums["GASOLINA PREMIUM PODIUM"] +
+                //       fuelSums["OLEO DIESEL B S10 COMUM"] +
+                //       fuelSums["OLEO DIESEL B S500 COMUM"] +
+                //       fuelSums["ETANOL HIDRATADO COMBUSTIVEL"]) /
+                //       (fuelSumsVolume["GASOLINA COMUM"] +
+                //         fuelSumsVolume["GAS NATURAL VEICULAR"] +
+                //         fuelSumsVolume["GASOLINA PREMIUM PODIUM"] +
+                //         fuelSumsVolume["OLEO DIESEL B S10 COMUM"] +
+                //         fuelSumsVolume["OLEO DIESEL B S500 COMUM"] +
+                //         fuelSumsVolume["ETANOL HIDRATADO COMBUSTIVEL"])) *
+                //     100
+                //   ) / 100),
+                //   2 // 0 casas decimais
+                // )
                 label: "M/LT",
-                value: formatNumber(
-                  (Math.round(
-                    ((fuelSums["GASOLINA COMUM"] +
-                      fuelSums["GAS NATURAL VEICULAR"] +
-                      fuelSums["GASOLINA PREMIUM PODIUM"] +
-                      fuelSums["OLEO DIESEL B S10 COMUM"] +
-                      fuelSums["OLEO DIESEL B S500 COMUM"] +
-                      fuelSums["ETANOL HIDRATADO COMBUSTIVEL"]) /
-                      (fuelSumsVolume["GASOLINA COMUM"] +
-                        fuelSumsVolume["GAS NATURAL VEICULAR"] +
-                        fuelSumsVolume["GASOLINA PREMIUM PODIUM"] +
-                        fuelSumsVolume["OLEO DIESEL B S10 COMUM"] +
-                        fuelSumsVolume["OLEO DIESEL B S500 COMUM"] +
-                        fuelSumsVolume["ETANOL HIDRATADO COMBUSTIVEL"])) *
-                    100
-                  ) / 100),
-                  2 // 0 casas decimais
-                ),
+                value: averageMLT,
                 secondary_label: "",
                 secondary_value: "0",
                 third_label: "Status Margem",
@@ -1152,7 +1183,7 @@ class DataController {
           })),
         };
 
-        
+
         return res.status(200).json({ data: result["data"] })
 
         // let fuelliterageSell;
